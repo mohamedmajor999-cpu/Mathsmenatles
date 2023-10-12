@@ -46,6 +46,10 @@ document.getElementById('zoomin').onclick = () => {
 document.getElementById('zoomout').onclick = () => {
     fontSizeMinus()
 }
+document.getElementById('dice').onclick = () => {
+    parameters.alea = common.setSeed()
+    refresh()
+}
 
 function getRandomPastelColor(){
     return "hsl(" + 360 * Math.random() + ',' +
