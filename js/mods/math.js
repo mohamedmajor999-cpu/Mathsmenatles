@@ -738,9 +738,9 @@ const math = {
                     quotient = Math.floor(nb / 100);
                     reste = nb % 100;
                     if (quotient == 1 && reste == 0) numberToLetter = "cent";
-                    if (quotient == 1 && reste != 0) numberToLetter = "cent" + " " + this.NumberToLetter(reste);
-                    if (quotient > 1 && reste == 0) numberToLetter = letter[quotient] + " cents";
-                    if (quotient > 1 && reste != 0) numberToLetter = letter[quotient] + " cent " + this.NumberToLetter(reste);
+                    if (quotient == 1 && reste != 0) numberToLetter = "cent" + "-" + this.NumberToLetter(reste);
+                    if (quotient > 1 && reste == 0) numberToLetter = letter[quotient] + "-cents";
+                    if (quotient > 1 && reste != 0) numberToLetter = letter[quotient] + "-cent-" + this.NumberToLetter(reste);
                     break;
                 case 4 :
                 case 5 :
@@ -748,9 +748,9 @@ const math = {
                     quotient = Math.floor(nb / 1000);
                     reste = nb - quotient * 1000;
                     if (quotient == 1 && reste == 0) numberToLetter = "mille";
-                    if (quotient == 1 && reste != 0) numberToLetter = "mille" + " " + this.NumberToLetter(reste);
-                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + " mille";
-                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + " mille " + this.NumberToLetter(reste);
+                    if (quotient == 1 && reste != 0) numberToLetter = "mille" + "-" + this.NumberToLetter(reste);
+                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + "-mille";
+                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + "-mille-" + this.NumberToLetter(reste);
                     break;
                 case 7:
                 case 8:
@@ -758,9 +758,9 @@ const math = {
                     quotient = Math.floor(nb / 1000000);
                     reste = nb % 1000000;
                     if (quotient == 1 && reste == 0) numberToLetter = "un million";
-                    if (quotient == 1 && reste != 0) numberToLetter = "un million" + " " + this.NumberToLetter(reste);
-                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + " millions";
-                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + " millions " + this.NumberToLetter(reste);
+                    if (quotient == 1 && reste != 0) numberToLetter = "un million" + "-" + this.NumberToLetter(reste);
+                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + "-millions";
+                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + "-millions-" + this.NumberToLetter(reste);
                     break;
                 case 10:
                 case 11:
@@ -768,9 +768,9 @@ const math = {
                     quotient = Math.floor(nb / 1000000000);
                     reste = nb - quotient * 1000000000;
                     if (quotient == 1 && reste == 0) numberToLetter = "un milliard";
-                    if (quotient == 1 && reste != 0) numberToLetter = "un milliard" + " " + this.NumberToLetter(reste);
-                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + " milliards";
-                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + " milliards " + this.NumberToLetter(reste);
+                    if (quotient == 1 && reste != 0) numberToLetter = "un milliard" + "-" + this.NumberToLetter(reste);
+                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + "-milliards";
+                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + "-milliards-" + this.NumberToLetter(reste);
                     break;
                 case 13:
                 case 14:
@@ -778,9 +778,9 @@ const math = {
                     quotient = Math.floor(nb / 1000000000000);
                     reste = nb - quotient * 1000000000000;
                     if (quotient == 1 && reste == 0) numberToLetter = "un billion";
-                    if (quotient == 1 && reste != 0) numberToLetter = "un billion" + " " + this.NumberToLetter(reste);
-                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + " billions";
-                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + " billions " + this.NumberToLetter(reste);
+                    if (quotient == 1 && reste != 0) numberToLetter = "un billion" + "-" + this.NumberToLetter(reste);
+                    if (quotient > 1 && reste == 0) numberToLetter = this.NumberToLetter(quotient) + "-billions";
+                    if (quotient > 1 && reste != 0) numberToLetter = this.NumberToLetter(quotient) + "-billions-" + this.NumberToLetter(reste);
                     break;
             }//fin switch
             /*respect de l'accord de quatre-vingt*/
