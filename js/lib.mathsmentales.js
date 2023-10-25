@@ -58,10 +58,28 @@ window.onload = function(){
     }
     document.querySelector("input[name='online'][value='no']").checked = true;
     // events sur les boutons
+    // open Menu sur smartphone
+    document.getElementById('openMenuButton').onclick = () => {
+        document.getElementById('nav-menu-niveaux').classList.toggle('hidden-phone')
+        document.getElementById('header-menu').classList.toggle('hidden-phone')
+    }
+    document.querySelectorAll('#nav-menu-niveaux > ul > li a').forEach((el) => {
+        el.onclick = (evt)=>{
+            document.querySelectorAll('#nav-menu-niveaux > ul > li > ul').forEach(elem => {
+                elem.classList.remove('show')
+            })
+            evt.target.parentNode.querySelector('ul').classList.add('show')
+        }
+    })
     // menus
     const lis = document.querySelectorAll("#nav-menu-niveaux li li");
     for(const li of lis){
-        li.onclick = (evt)=>{library.displayContent(evt.target.dataset.niv,true)};
+        li.onclick = (evt)=>{
+            library.displayContent(evt.target.dataset.niv,true)
+            document.querySelectorAll('#nav-menu-niveaux > ul > li > ul').forEach(elem => {
+                elem.classList.remove('show')
+            })
+        };
     }
     // ouvrons l'interface des paniers pour que tout le monde sache qu'il y en a !
     MM.showCartInterface();

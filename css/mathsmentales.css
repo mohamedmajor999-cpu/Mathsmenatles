@@ -119,6 +119,31 @@ mark {
   position:relative;
   padding: 2rem 10rem;
 }
+@media screen and (max-width: 600px) {
+  .grille {
+    padding: 2rem;
+  }
+  #tab-parameters {
+    display: flex;
+    flex-direction: column;
+  }
+  #tab-parameters div:fisrt-child {
+    order: 1;
+  }
+  #tab-parameters #divparams {
+    order: 2;
+  }
+  #tab-parameters #divcarts {
+    order: 3;
+  }
+  #tab-parameters #colparameters {
+    order: 4;
+  }
+  #cartsMenu {
+    display: flex;
+    flex-direction: row;
+  }
+}
 .grille .logoMM{
   float: left;
   margin-right: 1rem;
@@ -141,6 +166,19 @@ mark {
   flex-direction: column;
   transition: .2s;
   margin: 0;
+}
+@media screen and (max-width: 600px) {
+    .grille .tuile {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      width: 80%;
+      gap: 1rem;
+    }
+    .flex-container {
+      flex-direction: row;
+    }
 }
 .grille .tuile:hover{
   box-shadow: 0 8px 6px -6px #000,-1px 2px 20px rgba(255,255,255,.6) inset;
@@ -296,6 +334,27 @@ ul.menu, .menu ul {
     list-style-type:none;
     text-align:center;
 }
+#openMenuButton {
+  display: none;
+}
+#openMenuButton .bar1, #openMenuButton .bar2, #openMenuButton .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+#openMenuButton.change .bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+#openMenuButton.change .bar2 {opacity: 0;}
+
+#openMenuButton.change .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
+
 .menu li {
     line-height: 3em;
     min-width:100px;
@@ -334,9 +393,25 @@ ul.menu, .menu ul {
     line-height: 3em;
     text-decoration: none;
 }
-#header-menu{
+#header-menu {
   display: inline-block;
   vertical-align: top;
+}
+@media screen and (max-width: 600px) {
+  #openMenuButton {
+    display: block;
+    float: right;
+    cursor: pointer;
+  }
+  .hidden-phone, #header-menu.hidden-phone {
+    display: none;
+  }
+  .menu li ul.show {
+    display: block;
+  }
+  .menu li ul.show li {
+    float: none;
+  }
 }
 /* tab-telechargements */
 #tab-telechargements > p, #tab-telechargements > ul{
