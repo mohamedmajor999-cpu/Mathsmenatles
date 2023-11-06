@@ -873,6 +873,7 @@ const MM = {
             this.export()
         } else if(type === "wall"){
             return "t="+utils.superEncodeURI(document.getElementById("walltitle").value)+
+            ",a="+(withAleaSeed?MM.seed:"")+
             this.export()
         } else if(type==="dominossheet"){
             return "n="+document.getElementById("dominosNbValue").value+
