@@ -360,9 +360,9 @@ export default class activity {
             for(const [index,ans] of answer.entries()){
                 if((detection = ans.match(regex)) !== null){
                     if(detection[2]!== undefined)
-                        answer[index].replace(regex, question[index].slice(0,-Number(detection[2])))
+                        answer[index] = ans.replace(regex, question[index].slice(0,-Number(detection[2])))
                     else
-                        answer[index].replace(regex, question[index])
+                        answer[index] = ans.replace(regex, question[index])
                 }
             }
             return answer
@@ -381,9 +381,9 @@ export default class activity {
             for(const [index,ans] of answer.entries()){
                 if((detection = ans.match(regex)) !== null){
                     if(detection[2]!== undefined)
-                        answer[index].replace(regex, question.slice(0,-Number(detection[2])))
+                        answer[index]=ans.replace(regex, question.slice(0,-Number(detection[2])))
                     else
-                        answer[index].replace(regex, question)
+                        answer[index]=ans.replace(regex, question)
                 }
             }
             return answer
