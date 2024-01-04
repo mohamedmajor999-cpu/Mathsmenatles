@@ -14,6 +14,7 @@
                 "c":"2_5",
                 "b":"d0_${:a}_${:c}_^0"},
             "question": "Arrondir $$${:b}$$ à l'unité près",
+            "shortq": "$$${:b}\\approx\\colorbox{#ECECEC}{\\quad\\quad}$$ à l'unité près",
             "audio":"Arrondir ${String(:b).replace('.',',')} à l'unité près",
             "answer":"$$${:b}\\approx\\color{red}{${math.round(:b,0)}}$$ à l'unité près",
             "value":"${math.round(:b,0)}"
@@ -25,6 +26,7 @@
             "c":"3_5",
             "b":"d0_${:a}_${:c}_^0"},
             "question": "Arrondir $$${:b}$$ au dixième près",
+            "shortq": "$$${:b}\\approx\\colorbox{#ECECEC}{\\quad\\quad}$$ au 10<sup>e</sup> près",
             "audio":"Arrondir ${String(:b).replace('.',',')} au dixième près",
         "answer":"$$${:b}\\approx\\color{red}{${math.round(:b,1)}}$$ au dixième près",
         "value":"${math.round(:b,1)}"
@@ -36,6 +38,7 @@
             "c":"4_8",
             "b":"d0_${:a}_${:c}_^0"},
             "question": "Arrondir $$${:b}$$ au centième près",
+            "shortq": "$$${:b}\\approx\\colorbox{#ECECEC}{\\quad\\quad\\quad}$$ au 100<sup>e</sup> près",
             "audio":"Arrondir ${String(:b).replace('.',',')} au centième près",
         "answer":"$$${:b}\\approx\\color{red}{${math.round(:b,2)}}$$ au centième près",
         "value":"${math.round(:b,2)}"
@@ -48,6 +51,7 @@
             "b":"d0_${:a}_${:c}_^0"},
             "question": "Arrondir $$${:b}$$ au millième près",
             "audio":"Arrondir ${String(:b).replace('.',',')} au millième près",
+            "shortq": "$$${:b}\\approx\\colorbox{#ECECEC}{\\quad\\quad\\quad\\quad}$$ au 1000<sup>e</sup> près",
         "answer":"$$${:b}\\approx\\color{red}{${math.round(:b,3)}}$$ au millième près",
         "value":"${math.round(:b,3)}"
     }

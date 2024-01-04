@@ -47,6 +47,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.aeif.
 * "Circle Icons" de Nick Roach [iconfinder](https://www.iconfinder.com/iconsets/circle-icons-1) parfois retouchées, licence GPL
 * usage d'[Emoji](https://emojipedia.org/) dans l'affichage des ressources
 * Les images du mode duel viennent du site [freepik](https://www.freepik.com) dont j'ai acquis les licences, elles ne sont pas disponibles sur github ni en téléchargement en accord avec les termes de la licence. Si je trouve d'autres images de qualité, je changerai cela.
+* [Color Palette](https://icons8.com/icon/A5KjfdAgYLNE/color-palette) icon by [Icons8](https://icons8.com)
 
 ### liens directs :
 * https://seb-cogez.github.io/mathsmentales/index.html?n=4 envoie sur le niveau 4e

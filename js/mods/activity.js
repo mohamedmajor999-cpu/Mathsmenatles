@@ -26,9 +26,9 @@ export default class activity {
      * Création d'une activité à partir d'un objet javascript ou d'un code d'activité
      * @param {json ou string} obj 
      */
-    constructor(obj){
+    constructor(obj, id=''){
         if(_.isObject(obj)){
-            this.setParams(obj);
+            this.setParams(obj, id);
         } else if(_.isString(obj)){
             this.id = obj;
         }
@@ -37,8 +37,8 @@ export default class activity {
      * 
      * @param {Object} obj objet javascript contenant les paramètres d'une activités
      */
-    setParams(obj){
-        this.id = obj.id||obj.ID;
+    setParams(obj, id){
+        this.id = id!==''?id:obj.id||obj.ID;
         this.type = obj.type; // undefined => latex , "text" can include math, with $$ around
         this.figure = obj.figure; // for graphics description
         this.title = obj.title;  // title of de activity
@@ -132,13 +132,14 @@ export default class activity {
      * @param (JSON) obj
      * @param (String) id : id de destination de l'activité
      */
-    static import(obj,id){
+    static import(obj, id){
         /* load */
         let regexp = /^(\d{1,2}|T|G|K)/;// le fichier commence par un nombre ou un T pour la terminale
         let level = regexp.exec(obj.i)[0];
         let url = "N"+level+"/"+obj.i+".json";
         return library.import(url).then((json)=>{
             let act = new this(json);
+            act.id = obj.i;
             act.chosenOptions = obj.o;
             act.chosenQuestionTypes = obj.p;
             act.chosenQuestions = obj.q;

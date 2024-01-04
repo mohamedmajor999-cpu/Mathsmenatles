@@ -75,7 +75,8 @@ const common = {
             document.body.removeAttribute("layout");
         }
         document.head.appendChild(pagestyle);
-        evt.target.innerHTML = pageOrientations[pageFormat];
+        if(evt.target.nodeName === 'BUTTON')
+            evt.target.innerHTML = pageOrientations[pageFormat];
         pageFormat = (pageFormat+1)%2;
     },
     /**

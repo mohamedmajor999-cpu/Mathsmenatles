@@ -16,52 +16,72 @@
         <script src="js/libs/chartjs/Chart.bundle.min.js" defer></script>
         <script type="module" src="js/lib.ceinture.min.js"></script>
         <!--<script type="module" src="dist/ceinture.bundle.js"></script>-->
-    </head>  
+    </head>
     <body size="A4">
         <button onclick="document.getElementById('creator-menu').classList.toggle('hidden')" class="noprint" style="position: absolute;left:0;top:0;width:18pt;height:18pt;">🛠</button>
-        <span class="noprint" style="position: absolute;left:72px;top:0;">Copies par version<input type="number" max="12" min="1" size="3" id="copiesByPage" value="1"> <button id="btnPrintMode" title="Permet d'imprimer plusieurs grilles identiques sur une même page, pratique avec un massicot">Répéter chaque version</button> <input type="checkbox" id="par4" title="Pour placer les corrections au verso des énoncés, par 4, en position retournée pour un usage efficace">Corrigés par 4</span>
         <button onclick="window.print();" class="noprint" style="position: absolute;left:26px;top:0;height:18pt;" title="Cliquer pour imprimer ou enregistrer en pdf">Print</button>
         <div id="creator-container">
             <section id="creator-menu" class="noprint hidden">
-                <button id="pageOrientation" title="Change l'orientation de la page">paysage</button>
-                Nb Ceintures : 
-                <input type="number" min="1" id="nbFiches" size="3">
-                Corrigé :
-                <button id="toggleCorriges"> suivant </button>
-                <label for="colorpickertitle">Fond titre :</label>
-                <input type="color" id="colorpickertitle" value="#ECECEC">
+                <h3>Paramètres</h3>
+                <b>Orientation</b> 
+                <img class="v-align" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAdhAAAHYQGVw7i2AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAIJJREFUSInt1SsSwkAQRdHDR8A68GF/FAKBQFEo9pE1sAEcVQhWEYnAYJtMMsH1lVNv3u1q0/yZWfDe4lHwf44d3kPFh4LM+pu7YPlrgrEs0OGKY9RVI4AGWzyxn1rQ4YwXblFXuLtC7n2B2hX1koIUpCAFKZiC6B5scBrYtaqcZRwfgYINOdNRm9gAAAAASUVORK5CYII=">
+                <label class="switch">
+                    <input type="checkbox" id="pageOrientation">
+                    <span class="slider round"></span>
+                  </label>
+                  <img class="v-align" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAdhAAAHYQGVw7i2AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAKdJREFUSInt1DEOAUEUh/GftcVGoRO9TqdVStxELVFqXMEVNE7iBBoKpdoVWM2sTKhkR4Tsl0ymeMn/y7yZNzR8m1bYx5jjXDOvhzUOz4IJrtjVFKzQxQZHyCJRWTMc2lhihmEsSEU/hJ+wQJGHQibNCaoWlSjQyaNiCsElrEde6jt4oRG8JfgI8Rz8fot+UxBP8hSDhNkjbKvX0xF+v4TcsE+c+Y/cAaQbHKfk6nlNAAAAAElFTkSuQmCC">
+                  <b>Texte</b> 
+                  <small>A</small><span class="bigger">A</span> <input id="fsize" value="10" title="Taille énoncé toutes colonnes" type="number" size="5" min="8" max="16" step="0.5"> pt
+                 <b>Nombre de grilles</b> <input type="number" min="1" id="nbFiches" size="3"><br>
+                 <b>Hauteur de ligne</b> <input type="checkbox" value="true" id="btnAutoSetLineHeight" checked="checked"> auto ou <input type="number" min="4" value="6" max="60" id="lineHeightValue" size="3">mm
                 <br>
-                <span>Texte</span>
-                <span id="textSizes">
-                </span>
-                Tous <input id="fsize" value="10" title="Taille énoncé toutes colonnes" type="number" size="3" min="8" max="16" step="0.5">
-                <span>Largeur colonne</span>
-                <span id="columnsWidth">
-                </span><br>
+                <b>Corrigé</b> À la fin <label class="switch">
+                    <input type="checkbox" id="toggleCorriges">
+                    <span class="slider round"></span>
+                  </label> Après chaque ceinture
+                  <input type="checkbox" id="par4" title="Pour placer les corrections au verso des énoncés, par 4, en position retournée pour un usage efficace">Corrigés au verso (retourné, par 4)
+                <br>                
+                <b>Photocopies simplifiée</b>
+                Une ceinture dupliquée par page <label class="switch">
+                    <input type="checkbox" id="copiesByPage" title="Permet d'imprimer plusieurs grilles identiques sur une même page, pratique avec un massicot">
+                    <span class="slider round"></span>
+                  </label>
+                <br>
                 <strong>Champ Réponse</strong>
-                <span id="answersPositions">
-                </span>
-                <span>Tous</span> 
                 <select id="setAnswerAllPos">
                     <option value="row">à côté</option>
                     <option value="column">dessous</option>
                 </select>
-                Coul <input type="color" id="colorpicker" value="#ECECEC"> Cadre <input type="checkbox" value="true"  id="btnChangeBorder"> <input type="color" value="#111111" id="colorpicker2" size="8">
-                <br>Largeurs :
-                <span id="answersSizes"></span>
-                Tous
-                <input type="number" id="ansWidths" value="20" min="0" max="100" size="3" step="5">
-                <span>Hauteur : </span><input id="inputheight" value="20" title="Hauteur en pt" type="number" size="3" min="10" max="200">
-                <br><b>Mélanger la colonne :</b> 
-                <span id="columnsShuffles">
-                </span>
-                Figure : 
-                <span id="figuresDisplay">
-                </span>
-                <button id="btndisplayfig">Toutes on</button>
-                <button id="btndisplayeval">sans Éval.</button>
+                Couleur <input type="color" id="colorpicker" value="#ECECEC"> Cadre <input type="checkbox" value="true" id="btnChangeBorder"> <input type="color" value="#111111" id="colorpicker2" size="8">
+                Largeur min <input type="number" id="ansWidths" value="20" min="0" max="100" size="3" step="5"> %
+                <span>Hauteur : </span><input id="inputheight" value="8" title="Hauteur en mm" type="number" size="3" min="2" max="30">mm
+                <br>
+                <b>Figures</b> : <button id="btndisplayfig">Toutes on</button>
+                <div class="modele-ceinture">
+                    <div class="ceinture-header evaluation">
+                        <div class="border-black ceinture-titre">
+                            <label for="colorpickertitle">Fond : </label>
+                            <input type="color" id="colorpickertitle" value="#ECECEC">
+                        </div>
+                        <div class="border-black">
+                            NOM :<br>
+                            Classe :
+                        </div>
+                        <div class="border-black evaluation">
+                            □ Validée<br>
+                            □ non Validée
+                        </div>
+                        <div class="border-black is-relative">
+                            <button id="btndisplayeval" title="Montrer/cacher l'espace de validation" data-eval="1"><img src="img/closebutton32.png" width="10"></button>
+                            Clé : xxxxxxx<br>
+                            grille 1
+                        </div>
+                    </div>
+                    <div id="modele-grid" class="ceinture-content grid" style="grid-template-columns: 1fr;"></div>
+                </div>
+                Espace inter ceintures : <input type="number" name="spacerInput" id="spacerInput" min="0" max="50" value="6"> mm
+                <div class="spacer original" style="margin-top:6mm;"></div>
             </section>
-            <section id="tab-accueil" class="noprint"></section>
             <section id="creator-content">
             </section>
             </div>

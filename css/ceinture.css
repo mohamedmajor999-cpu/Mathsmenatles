@@ -40,6 +40,17 @@ li {
     float:right;
 }
 
+.is-relative {
+    position: relative;
+}
+.is-flipped {
+    transform: scaleX(-1);
+}
+#btndisplayeval {
+    position: absolute;
+    transform: translate(-150%);
+    top:0;
+}
 /*
 Taille carte de visite
 */
@@ -90,6 +101,7 @@ Taille carte de visite
     width: 100%;
 }
 #creator-content header{
+    position: relative;
     display: block;
     min-width: 5cm;
     max-width: 10cm;
@@ -100,30 +112,8 @@ Taille carte de visite
     text-align: center;
     margin: auto;
 }
-h3.exercice-title{
-    font-weight: 400;
-    margin-top: 0.5rem;
-    text-decoration: underline;
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-}
-@counter-style majuscules {
-    system : alphabetic;
-    symbols : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
-    suffix : ') ';
-}
 .enonce ol{
     padding-left: 1.5rem;
-}
-#creator-content ol{
-    margin-top:0;
-    list-style-type: majuscules;
-}
-#creator-content li {
-    float: left;
-    margin-right:2rem;
-    font-size: 1rem;
-    padding: 4px 10px 4px;
 }
 #creator-content section{
     clear: both;
@@ -147,6 +137,9 @@ h3.exercice-title{
 .hidden {
     display: none;
 }
+.v-align {
+    vertical-align: middle;
+}
 .barrev {
     display:block;
     background: rgb(131, 129, 129);
@@ -160,6 +153,9 @@ h3.exercice-title{
 }
 .red {
     color: red;
+}
+.bigger {
+    font-size: large;
 }
 .zoom {
     display: inline-block;
@@ -184,16 +180,22 @@ h3.exercice-title{
     width: 18px;
     height: 18px;
 }
+.colorpicker, input[type='color'] {
+    cursor: url(../img/icons8-color-palette-32.png), pointer;
+}
 /* ceinture spec */
-.ceinture, .ceintCorrige {
+.ceinture, .ceintCorrige, .modele-ceinture {
     border-top: 1pt solid black;
     border-left: 1pt solid black;
     page-break-inside:avoid;
-    margin-top:15pt;
+}
+.modele-ceinture {
+    background-color: white;
 }
 .ceintCorrige {
     float:left;
     margin-right:15pt;
+    margin-bottom: 15pt;
 }
 .ceintCorrige + .ceinture {
     clear: both;
@@ -317,6 +319,63 @@ input[type="color"]{
     bottom:0;
     right: 0;
 }
+/* Slider button */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+        transform: translateY(30%);
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 17px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;}
+    
 
 @media screen {
     html{
@@ -324,7 +383,7 @@ input[type="color"]{
     }
     body {
         position: relative;
-        padding: 10mm;
+        padding: 5mm 10mm 0 10mm;
         background: white;
         display: block;
         margin: 0.5em auto;
@@ -346,16 +405,12 @@ input[type="color"]{
     }
     #creator-menu {
         font-size: 10.5pt;
+        background-color: rgb(255, 243, 219);
     }
-    #creator-container::before{
-        content:"\ CC-BY-NC © 2022 MathsMentales.net";
-        color:darkblue !important;
-        font-size: 0.8rem;
-        border-bottom: 1pt solid black;
-        text-align: end;
-    }
-    .noprint {
-        opacity: 0.6;
+    #creator-menu h3 {
+        text-align: center;
+        background-color: rgb(222, 210, 185);
+        margin: 0 0 0.3em;
     }
     .titreCorrection::after {
         content: " ▼";
@@ -372,7 +427,11 @@ input[type="color"]{
         width: 210mm;
     }
     body{
-        padding: 10mm 10mm 0 10mm;
+        padding: 5mm 10mm 0 10mm;
+    }
+    .pagebreak {
+        padding: calc( 5mm + 10pt ) 0 0 0;
+        margin-top: 0 !important;
     }
     #creator-container::before {
         display: none;

@@ -10,7 +10,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 - Installer [Visual Studio Code](https://code.visualstudio.com/Download) de Microsoft ou [VSCodium](https://vscodium.com/), la version libre, mais parfois plus compliquée pour la suite.
 - Installer [NodeJS](https://nodejs.org/fr/)
 - Installer [Git](https://git-scm.com/)
-- Installer [GitHub Desktop](https://desktop.github.com/)
+- Installer [GitLab Workflow](https://desktop.github.com/)
 
 ### Paramétrage de Visual Studio Code (VSC)
 

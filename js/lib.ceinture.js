@@ -7,29 +7,32 @@ import Figure from './mods/figure.min.js';
 //import { format } from '@cortex-js/compute-engine/dist/types/compute-engine/public.js';
 const MM={}
 const content = document.getElementById("creator-content");
-const parameters = {};
-let separationFiches = false;
-let printMode = "normal";
+const pageHeight = 287;
+const parameters = {spacer:document.getElementById('spacerInput').value, answerHeight:document.getElementById('inputheight').value, par4:false};
 document.getElementById("creator-menu").onclick = (evt)=>{
     if(evt.target.id === "toggleCorriges"){
         if(parameters.posCorrection==="fin"){
             parameters.posCorrection = "apres";
-            evt.target.innerHTML = "séparé";
+            //evt.target.innerHTML = "à la fin";
         } else {
             parameters.posCorrection = "fin";
-            evt.target.innerHTML = "suivant";
+            //evt.target.innerHTML = "suivant";
         }
         refresh();
     } else if(evt.target.id === "btnChangeBorder"){
         changeBorder(evt.target.checked)
     } else if(evt.target.id === "btndisplayfig"){
         displayFigures('all')
-    } else if(evt.target.id === "btndisplayeval"){
+    } else if(evt.target.id === "btndisplayeval" || evt.target.parentNode.id === "btndisplayeval"){
         displayEval()
     } else if(evt.target.id.indexOf("btnorder")===0){
         changeOrder(evt.target.id.substr(8));
     } else if(evt.target.id.indexOf("btndisplayfig")===0){
         displayFigures(Number(evt.target.id.substr(13)));
+    } else if(evt.target.classList.contains('colorpicker')){
+        document.getElementById('colorpicker').click()
+    } else if(evt.target.id === 'btnAutoSetLineHeight'){
+        changeLinesHeight()
     }
 }
 document.getElementById("creator-menu").oninput = (evt)=>{
@@ -53,8 +56,14 @@ document.getElementById("nbFiches").oninput = (evt)=>{
 document.getElementById("inputheight").oninput = (evt)=>{
     changeHeight(evt.target.value);
 }
+document.getElementById('lineHeightValue').oninput = () => {
+    changeLinesHeight()
+}
 document.getElementById("fsize").oninput = (evt)=>{
     changeAllFontSize(evt.target.value);
+}
+document.getElementById('spacerInput').oninput = (evt)=>{
+    changeSpaceBetween(evt.target.value)
 }
 document.getElementById("setAnswerAllPos").oninput = (evt)=>{
     setDispositionReponseAll(evt.target.value);
@@ -76,23 +85,13 @@ document.getElementById("colorpickertitle").oncontextmenu = (evt)=>{
     changeColor("",'bgt',true);
     evt.target.value="#CCCCCC";
 }
-document.getElementById("btnPrintMode").onclick = (evt)=>{
-    if(evt.target.innerHTML === "Répéter chaque version"){
-        evt.target.innerHTML = "Supprimer les copies"
-    } else {
-        evt.target.innerHTML = "Répéter chaque version"
-    }
-    togglePrintMode();
+document.getElementById("copiesByPage").onclick = ()=>{
+    setPrintMode();
 }
-document.getElementById("copiesByPage").oninput = (evt)=>{
-    let btn = document.getElementById("btnPrintMode")
-    if(evt.target.value === 0){
-        btn.innerHTML = "Répéter chaque version"
-    }
-    else btn.innerHTML = "Supprimer les copies"
-    togglePrintMode("multi");
+document.getElementById("par4").onclick = ()=>{
+    parameters.par4 = document.getElementById("par4").checked;
+    refresh()
 }
-document.getElementById("par4").onclick = ()=>{refresh()}
 /*
 let exercicesColumn = Array(${nbcols}).fill("column");
 let nbcols = ${nbcols};
@@ -100,10 +99,41 @@ let nbcols = ${nbcols};
 * change la hauteur des cases réponses, et de l'élément question si réponse dessous plutôt que dessus
 */
 function changeHeight(nb){
+    parameters.answerHeight = nb
     let elts = document.querySelectorAll(".ans");
     for(let i=0;i<elts.length;i++){
-        elts[i].style.height = nb+"pt";
+        elts[i].style.height = nb+"mm";
     }
+    setPrintMode()
+}
+
+function changeLinesHeight(){
+    const isAuto = document.getElementById('btnAutoSetLineHeight').checked;
+    console.log(isAuto)
+    const elts = document.querySelectorAll('.ceinture-content.grid');
+    if(isAuto){
+        parameters.lineHeight = 'auto'
+        for (const el of elts) {
+            el.style['grid-template-rows'] = ''
+        }
+    } else {
+        parameters.lineHeight = document.getElementById('lineHeightValue').value
+        for(const el of elts){
+            if(el.id === 'modele-grid') continue
+            el.style['grid-template-rows'] = 'max-content '+Array(parameters.nbrows).fill(parameters.lineHeight+'mm').join(" ")+' max-content';
+        }    
+    }
+}
+/**
+ * change l'espace entre deux ceintures
+ * 
+ */
+function changeSpaceBetween(nb){
+    parameters.spacer = nb;
+    document.querySelectorAll('.spacer').forEach(el => {
+        el.style['margin-top'] = nb+'mm'
+    })
+    setPrintMode()
 }
 /**
  * function from https://codepen.io/andreaswik/pen/YjJqpK/
@@ -155,6 +185,7 @@ function changeFontSize(dest,value){
     for(let i=0;i<elts.length;i++){
         elts[i].style.fontSize = value+"pt";
     }
+    setPrintMode()
 }
 /*
 * change la taille des caractères de toutes les colonnes
@@ -164,8 +195,9 @@ function changeAllFontSize(value){
     for(let i=0;i<elts.length;i++){
         elts[i].style.fontSize = value+"pt";
     }
+    setPrintMode()
     // synchros des autres champs
-    document.querySelectorAll("#textSizes input").forEach(el=>{el.value=value});
+    document.querySelectorAll(".fsizei").forEach(el=>{el.value=value});
 }
 /*
 * change la disposition des lignes d'exercices d'une colonne
@@ -186,6 +218,7 @@ function setDispositionReponse(dest,how){
         })
         changeAnswerWidth(dest,100)
     }
+    setPageBreaks()
 }
 /*
 * Change la disposition de toutes les lignes d'exercices
@@ -208,6 +241,7 @@ function setDispositionReponseAll(how){
         })
         changeAnswerWidth("s","100",false)
     }
+    setPrintMode()
     // on met les valeurs des autres input à cette valeur
     let inputs = document.querySelectorAll(".selectpos");
     for(let i=0;i<inputs.length;i++){
@@ -226,13 +260,15 @@ function changeWidth(dest,nb){
             elts[i].style["grid-template-columns"] = style;
         }
     }
+    let style = elts[0].style["grid-template-columns"];
+    let stylecols = style.split(" ");
+    stylecols[dest-1] = nb+"fr";
+    style = stylecols.join(" ");
+    parameters.stylecols = style
     for(let i=0;i<elts.length;i++){
-        let style = elts[i].style["grid-template-columns"];
-        let stylecols = style.split(" ");
-        stylecols[dest-1] = nb+"fr";
-        style = stylecols.join(" ");
         elts[i].style["grid-template-columns"] = style;
     }
+    setPrintMode()
 }
 function changeAnswerWidth(dest,width,changevalues=true){
     if(dest === "s"){ // tous les champs
@@ -255,6 +291,7 @@ function changeAnswerWidth(dest,width,changevalues=true){
             el.style["width"] = "";
         })
     }
+    setPrintMode()
 }
 /*
 * change la couleur du fond des réponses
@@ -264,7 +301,7 @@ function changeColor(hexa,what,reset=false){
     let styleAttr = "background-color";
     let styleVal = hexa;
     if(what !=="bgt"){
-        let elts = document.querySelectorAll(".ans");
+        const elts = document.querySelectorAll(".ans");
         if(what==="bd"){
             parameters.colorbd = hexa;
             styleAttr="border";
@@ -273,8 +310,15 @@ function changeColor(hexa,what,reset=false){
         } else if(what === "bg") {
             parameters.colorbg = hexa;
         }
-        for(let i=0;i<elts.length;i++){
-            elts[i].style[styleAttr] = styleVal;
+        for(const el of elts){
+            el.style[styleAttr] = styleVal;
+        }
+        // éléments dans l'affichage katex
+        if(what === 'bg'){
+            const spanElements = document.querySelectorAll('.katex-html .colorbox')
+            for(const el of spanElements){
+                el.style[styleAttr] = styleVal
+            }    
         }
     } else if(what==="bgt"){
         if(!reset){
@@ -298,17 +342,23 @@ function changeColor(hexa,what,reset=false){
 *
 */
 function changeBorder(bool){
-if(bool){
-    changeColor(document.getElementById("colorpicker2").value,'bd');
-} else {
-    changeColor('none','bd');
-}
+    if(bool){
+        parameters.answerBordered = true
+        changeColor(document.getElementById("colorpicker2").value,'bd');
+    } else {
+        parameters.answerBordered = false
+        changeColor('none','bd');
+    }
 }
 /**
 * Change l'ordre d'une colonne 
 * (Integer) colId : numéro entier de la colonne (commence par 1)
 */
 function changeOrder(colId){
+    if(parameters.colsOrdered === undefined){
+        parameters.colsOrdered = [false,false,false,false,false,false]
+    }
+    parameters[colId] = true
     // on récupère l'ensemble des tableaux
     let tableaux = document.querySelectorAll(".ceinture-content");
     for(let i=0;i<tableaux.length;i++){
@@ -356,19 +406,24 @@ function displayFigures(idcol){
         })
         btn.innerHTML = idcol+" on";
     }
+    setPrintMode()
 }
 /*
 * toggle l'affichage de l'espace d'évaluation de la ceinture
 */
 function displayEval(){
     let btn=document.getElementById("btndisplayeval"), headers = document.querySelectorAll(".ceinture-header");
-    if (btn.innerHTML ==="Évaluation"){
-        btn.innerHTML = "sans Éval";
+    if (btn.dataset.eval === '0'){
+        parameters.resultInput = true
+        btn.dataset.eval = '1'
+        btn.innerHTML = '<img src="img/closebutton32.png" width="10">';
         headers.forEach(el=>{
             el.classList.add("evaluation")
         })
     } else {
-        btn.innerHTML ="Évaluation";
+        parameters.resultInput = false
+        btn.dataset.eval = '0'
+        btn.innerHTML ='<img src="img/iconfinder_pencil_1055013.png" width="10">';
         headers.forEach(el=>{
             el.classList.remove("evaluation")
         })
@@ -376,31 +431,43 @@ function displayEval(){
 }
 /**
  * toggle plusieurs mêmes ceintures par page
+ * le calcul du nombre de ceintures est automatique
+ * il va s'adapter à la taille de chaque ceinture suivie du spacer
  */
-function togglePrintMode(mode=undefined){
-    // on supprime les 
-    document.querySelectorAll("div.ceinture:not(.original)").forEach(el=>{
+function setPrintMode(){
+    // on supprime les copies
+    document.querySelectorAll("div.ceinture:not(.original), div.spacer:not(.original)").forEach(el=>{
         el.parentNode.removeChild(el);
     })
-    let nb = document.getElementById("copiesByPage").value||3
-
-    if(mode === "multi"){
-        printMode = "multi"
-    } else if(printMode === "normal"){
-        printMode = "multi"
-    } else {
-        printMode = "normal"
+    if(!document.getElementById('copiesByPage').checked){
+        setPageBreaks()
+        return
     }
-    if(printMode === "multi") {
-        document.querySelectorAll("div.ceinture.original").forEach(
-            el => {
-                for(let i=0;i<nb;i++){
-                    let copyEl = el.cloneNode(true);
-                    copyEl.classList.remove("original");
-                    document.getElementById("creator-content").insertBefore(copyEl, el.nextSibling);
-                }
-            })
-    }
+    const floatDiv = utils.create('div', {style:'position:absolute;top:'+pageHeight+'mm'})
+    document.getElementById('creator-content').appendChild(floatDiv)
+    let maxHeight = floatDiv.getBoundingClientRect().top
+    const heightOfMenu = document.querySelector('#creator-menu').getBoundingClientRect().height
+    const heightOfOneCeinture = document.querySelector('.ceinture').getBoundingClientRect().bottom - heightOfMenu
+    const heightOfspacer = document.querySelector('#creator-content .spacer').getBoundingClientRect().bottom - heightOfMenu - heightOfOneCeinture
+    const content = document.getElementById("creator-content")
+    document.querySelectorAll("div.ceinture.original").forEach(
+        original => {
+            let copyEl, spacer;
+            do {
+                copyEl = original.cloneNode(true);
+                copyEl.classList.remove("original");
+                spacer = utils.create('div', {style:'margin-top:'+parameters.spacer+'mm', className:'spacer'})
+                content.insertBefore(copyEl, original.nextSibling);
+                content.insertBefore(spacer, original.nextSibling)
+            } while (copyEl.getBoundingClientRect().bottom < maxHeight)
+            content.removeChild(copyEl)
+            content.removeChild(spacer)
+            floatDiv.style['top'] = pageHeight*compteur+'mm'
+            maxHeight = floatDiv.getBoundingClientRect().top
+        })
+    document.getElementById('creator-content').removeChild(floatDiv)
+    changeLinesHeight()
+    setPageBreaks()
 }
 /**
  * Crée la page
@@ -416,51 +483,59 @@ function makePage(){
         correction = utils.create("div",{id:"correction",className:"pagebreak"});
         correction.appendChild(utils.create("div",{innerHTML:"Correction"}));
     }
-    let par4 = false;
-    if(document.getElementById("par4").checked)par4= true;
     let divsPar4=[];
     // recréation des boutons individuels de dimensions
-    let textSizes = document.getElementById("textSizes");
-    let colSizes = document.getElementById("columnsWidth");
-    let shuffleOrders = document.getElementById("columnsShuffles");
-    let figuresDisp = document.getElementById("figuresDisplay");
-    let dispositionsAns = document.getElementById("answersPositions");
-    let answersSizes = document.getElementById("answersSizes");
-    textSizes.innerHTML = "";
-    colSizes.innerHTML = "";
-    shuffleOrders.innerHTML = "";
-    figuresDisp.innerHTML = "";
-    dispositionsAns.innerHTML = "";
-    answersSizes.innerHTML = "";
-    for(let i=0;i<parameters.nbcols;i++){
-        textSizes.innerHTML +=`<input id="fsize${i+1}" value="10" title="Taille énoncé colonne ${i+1}" type="number" size="3" min="8" max="16" step="0.5"></input>`;
-        colSizes.innerHTML += `<input id="asize${i+1}" value="1" title="Taille colonne ${i+1}" type="number" size="3" min="0.5" max="4" step="0.1">`
-        shuffleOrders.innerHTML += `<button id="btnorder${i+1}">${i+1}</button>`
-        figuresDisp.innerHTML += `<button id="btndisplayfig${i+1}">${i+1} on</button>`;
-        dispositionsAns.innerHTML += `<select id="selpos${i+1}" class="selectpos">
-        <option value="row">à côté</option>
-        <option value="column">dessous</option>
-        </select>`;
-        answersSizes.innerHTML += `<input type="number" class="answidth" id="ansWidth${i+1}" value="20" min="0" max="100" size="3" step="5">`
+    const modeleGrille = document.getElementById('modele-grid');
+    let stylecols = Array(parameters.nbcols).fill("1fr").join(" ");
+    if(parameters.stylecols !== undefined)
+         stylecols = parameters.stylecols
+    modeleGrille.style['grid-template-columns'] = stylecols
+    if(!modeleGrille.hasChildNodes()){
+        for(let i=0;i<parameters.nbcols;i++){
+            const colid = i+1;
+            const divcol = utils.create('div',{
+                innerHTML: `<img src="img/fleche-droite.png" height="16" class="is-flipped"><input id="asize${i+1}" value="1" title="Taille colonne ${i+1}" type="number" size="4" min="0.5" max="4" step="0.1"><img src="img/fleche-droite.png"" height="16">`,
+                className:"ceinture-titre-colonne border-black col" + colid,
+                style:"grid-column:"+colid})
+            modeleGrille.appendChild(divcol)
+        }
+        for(let i=0;i<parameters.nbcols;i++){
+            const colid = i+1;
+            const divcol = utils.create('div',{
+                innerHTML: `Texte <input class="fsizei" id="fsize${i+1}" value="10" title="Taille énoncé colonne ${i+1}" type="number" size="5" min="8" max="16" step="0.5"></input>pt<br>
+                Question : <button id="btnorder${i+1}">Mélanger</button><br>
+                figure <button id="btndisplayfig${i+1}">${i+1} on</button><br>
+                <span class="ans answer bg-grey colorpicker">Réponse</span>
+                <select id="selpos${i+1}" class="selectpos">
+                    <option value="row">à côté</option>
+                    <option value="column">dessous</option>
+                </select><br>
+                larg : <input type="number" class="answidth" id="ansWidth${i+1}" value="20" min="0" max="100" size="3" step="5">%`,
+                className:"border-black col" + colid,
+                style:"grid-column:"+colid
+            })
+            modeleGrille.appendChild(divcol)
+        }
     }
     // on crée autant de ceintures que demandées      
     for(let qty=0;qty<parameters.nb;qty++){
         // un conteneur pour la ceinture
-        let ceinture = utils.create("div",{className:"ceinture original"});
+        const ceinture = utils.create("div",{className:"ceinture original"});
+        const spacer = utils.create("div",{style:'margin-top:'+parameters.spacer+'mm;', className:'spacer original'})
         // un conteneur pour le corrigé
-        let corrige = utils.create("div",{className:"ceintCorrige corrige"});
-        if(qty%4===0 && par4){
+        const corrige = utils.create("div",{className:"ceintCorrige corrige"});
+        if(qty%4===0 && parameters.par4){
             divsPar4.push(utils.create("div",{className:"parquatre"}))
         }
         common.generateQuestions(parameters);
-        let header = utils.create("div",{className:"ceinture-header evaluation"});
+        const header = utils.create("div",{className:"ceinture-header evaluation"});
         // Entêtes
-        let bloc1 = utils.create("div",{className:"border-black ceinture-titre", innerHTML:parameters.titreCeinture});
-        let bloc2 = utils.create("div",{className:"border-black", innerHTML:"NOM :<br>Classe :"});
+        const bloc1 = utils.create("div",{className:"border-black ceinture-titre", innerHTML:parameters.titreCeinture});
+        const bloc2 = utils.create("div",{className:"border-black", innerHTML:"NOM :<br>Classe :"});
         let cleseed = "";
         if(parameters.ceintprintToEnonce)cleseed = "Clé : "+MM.seed+"<br> ";
-        let bloc3 = utils.create("div",{className:"border-black", innerHTML:cleseed+"grille "+(qty+1)});
-        let blocevaluation = utils.create("div",{className:"border-black evaluation",innerHTML:"□ Validée<br>□ non Validée"})
+        const bloc3 = utils.create("div",{className:"border-black", innerHTML:cleseed+"grille "+(qty+1)});
+        const blocevaluation = utils.create("div",{className:"border-black evaluation",innerHTML:"□ Validée<br>□ non Validée"})
         header.appendChild(bloc1);
         header.appendChild(bloc2);
         header.appendChild(blocevaluation);
@@ -473,11 +548,10 @@ function makePage(){
         // un repère de colonne
         let colsid=0;
         // le css directement dans le DOM pour pouvoir le modifier ensuite
-        let stylecols = Array(parameters.nbcols).fill("1fr").join(" ");
-        let stylecolscorrection = Array(parameters.nbcols).fill("auto").join(" ");
-        let stylerows = Array(parameters.nbrows).fill("auto").join(" ");
+        const stylecolscorrection = Array(parameters.nbcols).fill("auto").join(" ");
+        const stylerows = Array(parameters.nbrows).fill("auto").join(" ");
         const divColonnes = utils.create("div",{className:"ceinture-content grid",style:"grid-template-columns:"+stylecols+";grid-template-rows:"+(stylerows+1)});
-        let divColsCorrige = utils.create("div",{className:"ceinture-corrige grid",style:"grid-template-columns:"+stylecolscorrection+";grid-template-rows:"+stylerows});
+        const divColsCorrige = utils.create("div",{className:"ceinture-corrige grid",style:"grid-template-columns:"+stylecolscorrection+";grid-template-rows:"+stylerows});
         // conteners corrections et enoncés (objet de tableaux)
         let divCorr={},cols={};
         let nbq = 0;
@@ -496,10 +570,10 @@ function makePage(){
                     }
                 }
                 nbq++;
-                let ligne = utils.create("div",{className:"flex border-black col"+colsid,style:"grid-column:"+colsid});
-                let divQuestion = utils.create("div",{className:"valign"});
-                let ligneCorr = utils.create("div",{className:"grid border-black"});
-                let divans=`<div class="bg-grey ans answer ${colsid}" style="height:20pt;"></div>`;
+                const ligne = utils.create("div",{className:"flex border-black col"+colsid,style:"grid-column:"+colsid});
+                const divQuestion = utils.create("div",{className:"valign"});
+                const ligneCorr = utils.create("div",{className:"grid border-black"});
+                let divans=`<div class="bg-grey ans answer ${colsid}" style="height:${parameters.answerHeight}mm;"></div>`;
                 let content = activity.shortQuestions[j]||activity.questions[j];
                 let ansInside = false;
                 if(String(content).indexOf("colorbox")>-1){
@@ -507,15 +581,15 @@ function makePage(){
                     // divans = `<span class="bg-grey ans answer ${colsid}" style="height:20pt;"></span>`
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                    let divq = utils.create("div",{className:"question"+colsid+" quest"});
-                    let span = utils.create("span",{className:"math", innerHTML:content});
+                    const divq = utils.create("div",{className:"question"+colsid+" quest"});
+                    const span = utils.create("span",{className:"math", innerHTML:content});
                     divq.appendChild(span);
                     divQuestion.appendChild(divq);
                 } else {
                     divQuestion.appendChild(utils.create("div",{innerHTML:content,className:"question"+colsid+" quest"}));
                 }
                 if(activity.figures[j] !== undefined){
-                    let divfig = utils.create("div",{className:"fig"});
+                    const divfig = utils.create("div",{className:"fig"});
                     divQuestion.appendChild(divfig),
                     MM.memory[qty+"-"+"f"+i+"-"+j] = new Figure(utils.clone(activity.figures[j]), qty+"-"+"f"+i+"-"+j,divfig);
                 }
@@ -551,26 +625,32 @@ function makePage(){
         }
         ceinture.appendChild(divColonnes);
         content.appendChild(ceinture);
-
+        if(qty<parameters.nb-1)content.appendChild(spacer);
         for(let i=0;i<divCorr[1].length;i++){
             for(let j=1;j<=parameters.nbcols;j++){
                 divColsCorrige.appendChild(divCorr[j][i]);
             }
         }
         corrige.appendChild(divColsCorrige);
-        if(par4){
+        let par4Alafin = false
+        if(parameters.par4){
             divsPar4[divsPar4.length-1].appendChild(corrige);
-            if(qty%4===3)
+            if(qty%4===3){
                 content.appendChild(divsPar4[divsPar4.length-1]);
-        } else if(parameters.posCorrection === "fin")
+                par4Alafin = true
+            }
+        }
+        if(parameters.posCorrection === "fin" && !parameters.par4)
             correction.appendChild(corrige);
-        else {
+        else if(!parameters.par4) {
             content.appendChild(corrige);
+        } else if(parameters.par4 && !par4Alafin){
+            content.appendChild(divsPar4[divsPar4.length-1])
         }
     }
     //content.appendChild(utils.create("div",{className:"footer"}));
     // on ajoute la correction à la fin.
-    if(parameters.posCorrection ==="fin" && !par4)
+    if(parameters.posCorrection ==="fin" && !parameters.par4)
         content.appendChild(correction);
     if(parameters.colorbd !== undefined){
         changeColor(parameters.colorbd,'bd');
@@ -584,7 +664,12 @@ function makePage(){
                 if(k!=="dest")
                     MM.memory[k].display();
             }
+            setPrintMode()
         }, 300);
+    } else {
+        setTimeout(()=>{
+            setPrintMode()
+        }, 300)
     }
 }
 function refresh(){
@@ -595,6 +680,27 @@ function refresh(){
             changecols(evt.target.dataset.dest,evt.target.value)
         }
     }
+}
+function setPageBreaks(){
+    const mobileDiv = utils.create('div',{id:'mobileDiv',style:'position:absolute;top:0;'})
+    document.getElementById('creator-content').appendChild(mobileDiv)
+    const ceintures = document.querySelectorAll('#creator-content .ceinture')
+    const spacers = document.querySelectorAll('#creator-content .spacer')
+    spacers.forEach(el=>el.classList.remove('pagebreak'))
+    let hauteur = 0,compteur=1;
+    const divParametersHeight = document.getElementById('creator-menu').getBoundingClientRect().height
+    mobileDiv.style.top = pageHeight+'mm'
+    hauteur = mobileDiv.getBoundingClientRect().top
+    for(let i=0;i<ceintures.length;i++){
+        if(ceintures[i].getBoundingClientRect().bottom - divParametersHeight > hauteur){
+            if(spacers[i-1] !== undefined)
+                spacers[i-1].classList.add('pagebreak')
+            compteur++
+            mobileDiv.style.top = String(pageHeight*compteur)+'mm'
+            hauteur = mobileDiv.getBoundingClientRect().top
+        }
+    }
+    document.getElementById('creator-content').removeChild(mobileDiv)
 }
 
 function checkURL(urlString){
@@ -634,6 +740,7 @@ function checkURL(urlString){
         }
         // Affectation de la valeur au nombre de feuilles
         document.getElementById("nbFiches").value = parameters.nb;
+        document.querySelector('#creator-menu .spacer').style['margin-top'] = parameters.spacer+'mm'
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
         parameters.cart.import(json[0],false).then(()=>{
@@ -646,7 +753,7 @@ function checkURL(urlString){
                 className:"message",
                 innerHTML:"Impossible de charger le panier :(<br>"+err
             });
-            document.getElementById("tab-accueil").appendChild(alert);
+            document.getElementById("creator-content").appendChild(alert);
         });
     }
 }

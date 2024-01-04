@@ -12,8 +12,8 @@ const library = {
      * Affiche une activité dans l'onglet de paramètres
      * @param {JSON} json description de l'objet
      */
-    open:function(json){
-        let obj = new activity(json);
+    open:function(json, id){
+        let obj = new activity(json, id);
         MM.editedActivity = obj;
         // show tab-content
         let tab = document.querySelector("a[numero$='parameters'].tabs-menu-link");
@@ -37,7 +37,7 @@ const library = {
                 let regexp = /\/(.*)\./;
                 url = regexp.exec(url)[1];
                 MM.setHistory("Exercice","u="+url);
-                this.open(body)
+                this.open(body, url)
         })  .catch(e => console.log)
     },
     /**

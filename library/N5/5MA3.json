@@ -88,7 +88,7 @@
             "v":"${:r*:r*:h/3}\\pi"
         },
         "figure":{"type":"svg","content":"${:figures[:choixRorD]}"},
-        "question":"Quel est le volume de la pyramide à base circulaire ?",
+        "question":"Quel est le volume exact du cône ?",
         "answer":"Volume de la base circulaire ${:choixRorD==0?'de rayon':'de diamètre'} $$${:choixRorD==0?:r::d}$$<br>$$\\dfrac{\\pi\\times r^2\\times h}3= \\color{red}{${:v}}~cm^3$$"
     }]
 }

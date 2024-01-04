@@ -2,7 +2,7 @@
     "title":"Prouver que des droites sont parallèles (Thalès)",
     "type":"text",
     "textSize":"small",
-    "ID":"4GB9",
+    "ID":"4GB10",
     "description":"Vérifier si des quotients sont égaux ou qu'il y a une proportion entre les triangles",
     "dest":["4GB","3GB","2G2"],
     "vars":{
