@@ -326,7 +326,7 @@ function changeColor(hexa,what,reset=false){
         }else {
             parameters.colorbgt = "";
         }
-        let lumen = lightOrDark(parameters.colorbgt);
+        const lumen = lightOrDark(parameters.colorbgt);
         document.querySelectorAll(".ceinture-titre").forEach(el=>{
             el.style[styleAttr] = parameters.colorbgt;
             if(lumen === "dark"){

@@ -619,7 +619,8 @@ const MM = {
         MM.keyboards = {};
         //let slider=0,slide = 0;
         for(let slider=0,len=MM.carts[0].target.length;slider<len;slider++){
-            for(let slide=0,len2=MM.carts[0].actsArrays[slider].length;slide<len2;slide++){
+            const actArray = MM.carts[0].actsArrays[slider]
+            for(let slide=0,len2=actArray.length;slide<len2;slide++){
                 const MFTARGET = document.getElementById("slider"+slider);
                 const element = document.getElementById("slide"+slider+"-"+slide);
                 const ID = 'ansInput'+slider+'-'+slide;
@@ -629,7 +630,7 @@ const MM = {
                     fontsDirectory:'../katex/fonts',
                });
                //if(MM.touched){
-                    let keys = MM.carts[0].activities[MM.carts[0].actsArrays[slider][slide][0]].keyBoards[slide] || undefined;
+                    let keys = MM.carts[0].activities[actArray[slide][0]].keyBoards[actArray[slide][1]] || undefined;
                     MM.keyboards[ID]= new keyBoard(MM.mf[ID],keys,element,slider);
                     // si on affiche une figure, on diminue la taille du champ de réponse.
                     if(MM.figs[slider+"-"+slide]!== undefined){
