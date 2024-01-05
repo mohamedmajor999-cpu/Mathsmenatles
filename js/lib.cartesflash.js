@@ -9,12 +9,12 @@ import math from './mods/math.min.js';
 const MM={};
 const content = document.getElementById("creator-content");
 const pageOrientations = ["portrait","paysage"]
-const parameters = {};
 let pageHeight = 275; // cm
 let pageFormat = 0;// portrait
 let answersBorderColor = "#d0d0d0"
 let couleurDuCoin = '#bfbfbf'
 let couleurDuTexteDeco = '#bfbfbf'
+const parameters = {coincolor:couleurDuCoin, bordercolor:answersBorderColor, decocolor:couleurDuTexteDeco};
 
 //let zoom;
 
@@ -49,7 +49,8 @@ document.getElementById('btnRectoVerso').onclick = (evt)=>{
 }
 document.getElementById('inputcolorborder').value = answersBorderColor
 document.getElementById('inputcolorborder').onchange = (evt)=>{
-    const color = evt.target.value    
+    const color = evt.target.value
+    parameters.bordercolor = color
     const answersCards = document.querySelectorAll('.flash-reponse')
     for (const card of answersCards){
         card.style.border = "1pt solid "+color
@@ -58,20 +59,17 @@ document.getElementById('inputcolorborder').onchange = (evt)=>{
 document.getElementById('inputCoinColor').value = couleurDuCoin
 document.getElementById('inputCoinColor').onchange = (evt) => {
     const color = evt.target.value
-    const lumen = lightOrDark(color);
+    parameters.coincolor = color
     const tousLesCoins = document.querySelectorAll('.logoq')
     tousLesCoins.forEach(el => {
         el.style['background-color'] = color
-        if(lumen === 'dark'){
-            el.style['color'] = 'white'
-        } else {
-            el.style['color'] = 'black'
-        }
+        el.style['color'] = setWhiteOrBlack(color)
     })
 }
 document.getElementById('inputDecoColor').value = couleurDuTexteDeco
 document.getElementById('inputDecoColor').onchange = (evt) => {
     const color = evt.target.value
+    parameters.decocolor = color
     const tousLesTextes = document.querySelectorAll('.identifiant')
     tousLesTextes.forEach(el => {
         el.style['color'] = color
@@ -86,6 +84,14 @@ document.getElementById('identifiant').onchange = (evt)=>{
     }
 }
 
+function setWhiteOrBlack(color){
+    const lumen = lightOrDark(color);
+    if(lumen === 'dark'){
+        return 'white'
+    } else {
+        return 'black'
+    }
+}
 function changeOrientation(evt){
     // suppression du style de page précédent
     let pagestyle = document.querySelectorAll("head style")
@@ -199,10 +205,10 @@ function makePage(){
             const artQuestion = utils.create("article",{className:"flash-question card recto"});
             artQuestion.style.height = parameters.cardHeight+"mm";
             artQuestion.style.width = parameters.cardWidth+"mm";
-            artQuestion.appendChild(utils.create('div', {className:'logoq', innerText:'Q'}))
-            artQuestion.appendChild(utils.create('div', {className:'identifiant', innerText:document.getElementById('identifiant').value}))
+            artQuestion.appendChild(utils.create('div', {className:'logoq', innerText:'Q', style:'background-color:'+parameters.coincolor+';color:'+setWhiteOrBlack(parameters.coincolor)}))
+            artQuestion.appendChild(utils.create('div', {className:'identifiant', innerText:document.getElementById('identifiant').value, style:'color:'+parameters.decocolor}))
             const divq = utils.create("div");
-            const artCorrection = utils.create("article",{className:"flash-reponse card verso"});
+            const artCorrection = utils.create("article",{className:"flash-reponse card verso", style:'border:1px solid '+parameters.bordercolor});
             artCorrection.style.height = parameters.cardHeight+"mm";
             artCorrection.style.width = parameters.cardWidth+"mm";
             const divr = utils.create("div");
