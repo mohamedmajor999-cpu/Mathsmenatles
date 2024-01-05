@@ -13,6 +13,8 @@ const parameters = {};
 let pageHeight = 275; // cm
 let pageFormat = 0;// portrait
 let answersBorderColor = "#d0d0d0"
+let couleurDuCoin = '#bfbfbf'
+let couleurDuTexteDeco = '#bfbfbf'
 
 //let zoom;
 
@@ -52,6 +54,28 @@ document.getElementById('inputcolorborder').onchange = (evt)=>{
     for (const card of answersCards){
         card.style.border = "1pt solid "+color
     }
+}
+document.getElementById('inputCoinColor').value = couleurDuCoin
+document.getElementById('inputCoinColor').onchange = (evt) => {
+    const color = evt.target.value
+    const lumen = lightOrDark(color);
+    const tousLesCoins = document.querySelectorAll('.logoq')
+    tousLesCoins.forEach(el => {
+        el.style['background-color'] = color
+        if(lumen === 'dark'){
+            el.style['color'] = 'white'
+        } else {
+            el.style['color'] = 'black'
+        }
+    })
+}
+document.getElementById('inputDecoColor').value = couleurDuTexteDeco
+document.getElementById('inputDecoColor').onchange = (evt) => {
+    const color = evt.target.value
+    const tousLesTextes = document.querySelectorAll('.identifiant')
+    tousLesTextes.forEach(el => {
+        el.style['color'] = color
+    })
 }
 
 document.getElementById('identifiant').onchange = (evt)=>{
@@ -100,6 +124,48 @@ function refresh(){
     makePage()
     common.mathRender()
 }
+/**
+ * function from https://codepen.io/andreaswik/pen/YjJqpK/
+ * @param {*} color 
+ * @returns 
+ */
+function lightOrDark(color) {
+    let r,g,b,hsp;
+    // Check the format of the color, HEX or RGB?
+    if (color.match(/^rgb/)) {
+  
+      // If HEX --> store the red, green, blue values in separate variables
+      color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+  
+      r = color[1];
+      g = color[2];
+      b = color[3];
+    } 
+    else {
+      // If RGB --> Convert it to HEX: http://gist.github.com/983661
+      color = +("0x" + color.slice(1).replace( 
+        color.length < 5 && /./g, '$&$&'
+      )
+               );
+      r = color >> 16;
+      g = color >> 8 & 255;
+      b = color & 255;
+    }
+    // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+    hsp = Math.sqrt(
+      0.299 * (r * r) +
+      0.587 * (g * g) +
+      0.114 * (b * b)
+    );
+    // Using the HSP value, determine whether the color is light or dark
+    if (hsp>127.5) {
+      return 'light';
+    } 
+    else {
+      return 'dark';
+    }
+  }
+
 
 function makePage(){
     if(parameters.alea){
@@ -107,27 +173,28 @@ function makePage(){
     }
     content.innerHTML = "";
     MM.memory = {};
+    let pageWidth = 200
+    if(pageFormat !== 0) pageWidth = 287
+    const nombreDeCartesParLigne = Math.floor(pageWidth/Number(parameters.cardWidth))
     common.generateQuestions(parameters);
-    let aleaCode = utils.create("div",{className:"floatright noprint",innerHTML:"Clé : "+parameters.alea});
-    content.appendChild(aleaCode);
-    // set the titlesheet
-    let header = utils.create("header",{innerHTML:parameters.titreFiche, className:"noprint"});
-    content.appendChild(header);
-    const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid g2"})]
-    if(parameters.disposition === 'separated'){arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid g2"}))}
+    const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'})]
+    if(parameters.disposition === 'separated'){arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))}
     let currentSection = 0
-    let globalPrintHeight = 0
+    let globalPrintHeight = parameters.cardHeight
     let nbOfCards = 0
     for (const [index,activity] of parameters.cart.activities.entries()) {
         for(let j=0;j<activity.questions.length;j++){
             if(parameters.disposition === 'separated'){
                 nbOfCards++
-                if (nbOfCards%2 === 1) {
+                if (nbOfCards%nombreDeCartesParLigne === 1 && nbOfCards>1) {
                     globalPrintHeight += parameters.cardHeight
                 }
             } else {
                 nbOfCards = nbOfCards+2
-                globalPrintHeight += parameters.cardHeight
+                if(nbOfCards>nombreDeCartesParLigne){
+                    globalPrintHeight += parameters.cardHeight
+                    nbOfCards = nbOfCards%nombreDeCartesParLigne
+                }
             }
             const artQuestion = utils.create("article",{className:"flash-question card recto"});
             artQuestion.style.height = parameters.cardHeight+"mm";
@@ -155,10 +222,10 @@ function makePage(){
             }
             artCorrection.appendChild(divr)
             if(globalPrintHeight > pageHeight){
-                arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid g2"}))
+                arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
                 currentSection++;
                 if(parameters.disposition === 'separated'){
-                    arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid g2"}))
+                    arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
                 }
                 globalPrintHeight = parameters.cardHeight
             }
@@ -174,15 +241,22 @@ function makePage(){
     }
     for(const section of arrayOfFlashCardsSection){
         content.appendChild(section)
+        const resteDeCartes = section.childNodes.length%nombreDeCartesParLigne
+        if ( resteDeCartes > 0 ){
+            for(let i=0; i<nombreDeCartesParLigne-resteDeCartes; i++){
+                section.appendChild(utils.create('article'))
+            }
+        }
         if(parameters.disposition === 'separated'){
             const answersSections = document.querySelectorAll('.flash-section:nth-child(even)')
             for(const section of answersSections){
-                if(section.childNodes.length%2 === 1){
-                    section.appendChild(utils.create('article', {className:'card'}))
-                }
-                for(let i=1; i<section.childNodes.length; i=i+2){
-                    const elem = section.childNodes[i]
-                    elem.parentNode.insertBefore(elem, elem.previousSibling)
+                for(let i=0; i<section.childNodes.length; i=i+nombreDeCartesParLigne){
+                    for(let j=i+1;j<i+nombreDeCartesParLigne;j++){
+                        const elem = section.childNodes[j]
+                        if(elem !== undefined){
+                            elem.parentNode.insertBefore(elem, section.childNodes[i])
+                        }
+                    }
                 }
             }
         }
