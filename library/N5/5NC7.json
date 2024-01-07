@@ -79,6 +79,13 @@
         "question":"${:ent}+\\dfrac{${:num}}{${:den}}",        
         "answer":":question = \\color{red}{ \\displaystyle${math.calc('(' + :ent+')/('+1+')+('+:num+')/('+:den+')', false)} }",
         "value":"${math.calc('(' + :ent+')/('+1+')+('+:num+')/('+:den+')', true)}"
+    },{
+        "name":"Ajouter des fractions de même dénominateur, numérateurs relatifs (5e)",
+        "vars":{"num1":"-30_30_^0", "num2":"-30_${:num1<0?'30':'0'}_^0", "den":"2_30_^${:num1},${:num2}"},
+        "question":"\\dfrac{${:num1}}{${:den}}+\\dfrac{${:num2}}{${:den}}",
+        "audio":"(${:num1} ${math.NumberToFraction(:den,true)}) + (${:num2} ${math.NumberToFraction(:den,true)})",
+        "answer":":question = \\color{red}{\\dfrac{${:num1+(:num2)}}{${:den}}}",
+        "value":"${:num1+(:num2)}/${:den}"
     }
     ]
 }
