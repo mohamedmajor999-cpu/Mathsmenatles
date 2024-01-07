@@ -8,7 +8,12 @@ import Figure from './mods/figure.min.js';
 const MM={}
 const content = document.getElementById("creator-content");
 const pageHeight = 287;
-const parameters = {spacer:document.getElementById('spacerInput').value, answerHeight:document.getElementById('inputheight').value, par4:false};
+const parameters = {
+    spacer:document.getElementById('spacerInput').value,
+    answerHeight:document.getElementById('inputheight').value,
+    par4:false,
+    fontSizes:[]
+    };
 document.getElementById("creator-menu").onclick = (evt)=>{
     if(evt.target.id === "toggleCorriges"){
         if(parameters.posCorrection==="fin"){
@@ -109,7 +114,6 @@ function changeHeight(nb){
 
 function changeLinesHeight(){
     const isAuto = document.getElementById('btnAutoSetLineHeight').checked;
-    console.log(isAuto)
     const elts = document.querySelectorAll('.ceinture-content.grid');
     if(isAuto){
         parameters.lineHeight = 'auto'
@@ -182,6 +186,7 @@ function lightOrDark(color) {
 function changeFontSize(dest,value){
     // il peut y avoir plusieurs sujets, donc on doit faire un traitement multiple
     let elts = document.querySelectorAll(".question"+dest);
+    parameters.fontSizes[dest]=value
     for(let i=0;i<elts.length;i++){
         elts[i].style.fontSize = value+"pt";
     }
@@ -197,7 +202,9 @@ function changeAllFontSize(value){
     }
     setPrintMode()
     // synchros des autres champs
+    parameters.fontSizes = Array(parameters.nbcols+1).fill(value)
     document.querySelectorAll(".fsizei").forEach(el=>{el.value=value});
+
 }
 /*
 * change la disposition des lignes d'exercices d'une colonne
@@ -439,34 +446,37 @@ function setPrintMode(){
     document.querySelectorAll("div.ceinture:not(.original), div.spacer:not(.original)").forEach(el=>{
         el.parentNode.removeChild(el);
     })
+    // on supprime les sauts de page
+    const spacers = document.querySelectorAll('#creator-content .spacer')
+    spacers.forEach(el=>el.classList.remove('pagebreak'))
     if(!document.getElementById('copiesByPage').checked){
         setPageBreaks()
         return
     }
-    const floatDiv = utils.create('div', {style:'position:absolute;top:'+pageHeight+'mm'})
-    document.getElementById('creator-content').appendChild(floatDiv)
-    let maxHeight = floatDiv.getBoundingClientRect().top
-    const heightOfMenu = document.querySelector('#creator-menu').getBoundingClientRect().height
-    const heightOfOneCeinture = document.querySelector('.ceinture').getBoundingClientRect().bottom - heightOfMenu
-    const heightOfspacer = document.querySelector('#creator-content .spacer').getBoundingClientRect().bottom - heightOfMenu - heightOfOneCeinture
+    const heightOfspacer = document.querySelector('.spacer').getBoundingClientRect().height
     const content = document.getElementById("creator-content")
+    const divTemp = document.createElement('div', {style:'position:absolute;display:block;top:'+pageHeight+'mm'})
+    content.appendChild(divTemp)
+    const heightOfPage = divTemp.getBoundingClientRect().top - document.getElementById('creator-menu').getBoundingClientRect().bottom
+    content.removeChild(divTemp)
+    let compteur = 0
     document.querySelectorAll("div.ceinture.original").forEach(
         original => {
             let copyEl, spacer;
+            const heightOfCeinture = original.getBoundingClientRect().height
+            let totalHeight = heightOfCeinture+heightOfspacer
             do {
                 copyEl = original.cloneNode(true);
                 copyEl.classList.remove("original");
+                totalHeight += heightOfCeinture+heightOfspacer
                 spacer = utils.create('div', {style:'margin-top:'+parameters.spacer+'mm', className:'spacer'})
                 content.insertBefore(copyEl, original.nextSibling);
                 content.insertBefore(spacer, original.nextSibling)
-            } while (copyEl.getBoundingClientRect().bottom < maxHeight)
+            } while (totalHeight - heightOfspacer < heightOfPage)
             content.removeChild(copyEl)
             content.removeChild(spacer)
-            floatDiv.style['top'] = pageHeight*compteur+'mm'
-            maxHeight = floatDiv.getBoundingClientRect().top
         })
-    document.getElementById('creator-content').removeChild(floatDiv)
-    changeLinesHeight()
+    //changeLinesHeight()
     setPageBreaks()
 }
 /**
@@ -581,12 +591,12 @@ function makePage(){
                     // divans = `<span class="bg-grey ans answer ${colsid}" style="height:20pt;"></span>`
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                    const divq = utils.create("div",{className:"question"+colsid+" quest"});
+                    const divq = utils.create("div",{className:"question"+colsid+" quest", style:'font-size:'+parameters.fontSizes[colsid]+'pt'});
                     const span = utils.create("span",{className:"math", innerHTML:content});
                     divq.appendChild(span);
                     divQuestion.appendChild(divq);
                 } else {
-                    divQuestion.appendChild(utils.create("div",{innerHTML:content,className:"question"+colsid+" quest"}));
+                    divQuestion.appendChild(utils.create("div",{innerHTML:content,className:"question"+colsid+" quest", style:'font-size:'+parameters.fontSizes[colsid]+'pt'}));
                 }
                 if(activity.figures[j] !== undefined){
                     const divfig = utils.create("div",{className:"fig"});
