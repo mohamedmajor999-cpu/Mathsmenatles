@@ -56,7 +56,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.aeif.
 
 # inclure dans un site :
 Rien n'empêche d'inclure un diaporama dans un site, ou sur un genialy.
-A présent, vous pouvez même récupérer le score, et d'autres données en utilisant le protocole postMessage de javascript. Pour cela, il faut ajouter &embed=http://votresite.org à la fin de l'url d'inclusion.
+À présent, vous pouvez même récupérer le score, et d'autres données en utilisant le protocole postMessage de javascript. Pour cela, il faut ajouter &embed=http://votresite.org à la fin de l'url d'inclusion.
 En échange, MathsMentales renverra à votre site un objet JSON contenant les données suivantes :
  * url: adresse du diaporama complète
  * graine: la graine aléatoire utilisée pour la génération des données
@@ -87,7 +87,7 @@ Ces fichiers json comportent des *données obligatoires* :
    * Note : les variables présentes dans l'activité et redéfinies dans une option sont définies dans l'ordre de déclaration globale. Il faut bien l'avoir en tête.
 * **question** : chaine unique ou tableau de chaines contenant le texte de la question
   * pour le cas du tableau, il est possible de choisir le type de question à afficher lors du paramétrage de l'activité
-* **answer** : chaine unique  ou tableau de chaines contenant la réponse à la question
+* **answer** : chaine unique ou tableau de chaines contenant la réponse à la question. L'énoncé de la question peut être repris en indiquant :question directement dans la chaine, sans accolades si vous ajoutez |15 les 15 premiers caractères seront ignorés dans la recopie.
 
 ainsi que des *données optionnelles* :
 

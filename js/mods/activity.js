@@ -354,15 +354,21 @@ export default class activity {
     replaceQuestionInAnswer(answer,question){
         // check if question as to be written in answer
         // index needed to find the question
-        let regex = /:question(\|(\d)+)*/;
+        // if :question|5 suppress the last 5 caracters
+        // if :question|-5 suppress the 5 firsts caracters
+        let regex = /:question(\|(\-{0,1}(\d)+))*/;
         let detection
         if(_.isArray(answer) && _.isArray(question)){
             // same sizes
             for(const [index,ans] of answer.entries()){
                 if((detection = ans.match(regex)) !== null){
-                    if(detection[2]!== undefined)
-                        answer[index] = ans.replace(regex, question[index].slice(0,-Number(detection[2])))
-                    else
+                    if(detection[2]!== undefined){
+                        const numberOfCaracteresToDelete = -Number(detection[2])
+                        if (numberOfCaracteresToDelete < 0)
+                            answer[index] = ans.replace(regex, question[index].slice(0,numberOfCaracteresToDelete))
+                        else 
+                            answer[index] = ans.replace(regex, question[index].slice(numberOfCaracteresToDelete))
+                    } else
                         answer[index] = ans.replace(regex, question[index])
                 }
             }
@@ -371,9 +377,13 @@ export default class activity {
             if((detection = answer.match(regex)) !== null){
                 const listOfAnswers = []
                 for (const [index,quest] of question.entries()) {
-                    if(detection[2]!== undefined)
-                        listOfAnswers[index] = answer.replace(regex, question[index].slice(0,-Number(detection[2])))
-                    else
+                    if(detection[2]!== undefined){
+                        const numberOfCaracteresToDelete = -Number(detection[2])
+                        if (numberOfCaracteresToDelete < 0)
+                            listOfAnswers[index] = answer.replace(regex, question[index].slice(0,numberOfCaracteresToDelete))
+                        else
+                            listOfAnswers[index] = answer.replace(regex, question[index].slice(numberOfCaracteresToDelete))
+                    } else
                         listOfAnswers[index] = answer.replace(regex, question[index])
                 }
                 return listOfAnswers
@@ -381,18 +391,26 @@ export default class activity {
         } else if(_.isArray(answer) && _.isString(question)){
             for(const [index,ans] of answer.entries()){
                 if((detection = ans.match(regex)) !== null){
-                    if(detection[2]!== undefined)
-                        answer[index]=ans.replace(regex, question.slice(0,-Number(detection[2])))
-                    else
+                    if(detection[2]!== undefined) {
+                        const numberOfCaracteresToDelete = -Number(detection[2])
+                        if (numberOfCaracteresToDelete < 0)
+                            answer[index]=ans.replace(regex, question.slice(0,numberOfCaracteresToDelete))
+                        else
+                            answer[index]=ans.replace(regex, question.slice(numberOfCaracteresToDelete))
+                    } else
                         answer[index]=ans.replace(regex, question)
                 }
             }
             return answer
         } else if(_.isString(answer) && _.isString(question)){
             if((detection = answer.match(regex)) !== null){
-                if(detection[2]!== undefined)
-                    answer = answer.replace(regex, question.slice(0,-Number(detection[2])))
-                else
+                if(detection[2]!== undefined) {
+                    const numberOfCaracteresToDelete = -Number(detection[2])
+                    if (numberOfCaracteresToDelete < 0)
+                        answer = answer.replace(regex, question.slice(0,numberOfCaracteresToDelete))
+                    else
+                        answer = answer.replace(regex, question.slice(numberOfCaracteresToDelete))
+                } else
                     answer = answer.replace(regex, question)
             }
             return answer
