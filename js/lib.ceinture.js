@@ -455,11 +455,10 @@ function setPrintMode(){
     }
     const heightOfspacer = document.querySelector('.spacer').getBoundingClientRect().height
     const content = document.getElementById("creator-content")
-    const divTemp = document.createElement('div', {style:'position:absolute;display:block;top:'+pageHeight+'mm'})
-    content.appendChild(divTemp)
-    const heightOfPage = divTemp.getBoundingClientRect().top - document.getElementById('creator-menu').getBoundingClientRect().bottom
-    content.removeChild(divTemp)
-    let compteur = 0
+    const divTemp = utils.create('div', {style:'position:absolute;display:block;top:'+pageHeight+'mm'})
+    document.body.appendChild(divTemp)
+    const heightOfPage = divTemp.getBoundingClientRect().top
+    document.body.removeChild(divTemp)
     document.querySelectorAll("div.ceinture.original").forEach(
         original => {
             let copyEl, spacer;
@@ -473,6 +472,7 @@ function setPrintMode(){
                 content.insertBefore(copyEl, original.nextSibling);
                 content.insertBefore(spacer, original.nextSibling)
             } while (totalHeight - heightOfspacer < heightOfPage)
+            console.log(totalHeight - heightOfspacer , heightOfPage)
             content.removeChild(copyEl)
             content.removeChild(spacer)
         })
@@ -693,11 +693,11 @@ function refresh(){
 }
 function setPageBreaks(){
     const mobileDiv = utils.create('div',{id:'mobileDiv',style:'position:absolute;top:0;'})
-    document.getElementById('creator-content').appendChild(mobileDiv)
+    document.body.appendChild(mobileDiv)
     const ceintures = document.querySelectorAll('#creator-content .ceinture')
     const spacers = document.querySelectorAll('#creator-content .spacer')
     spacers.forEach(el=>el.classList.remove('pagebreak'))
-    let hauteur = 0,compteur=1;
+    let hauteur = 0,compteur=0;
     const divParametersHeight = document.getElementById('creator-menu').getBoundingClientRect().height
     mobileDiv.style.top = pageHeight+'mm'
     hauteur = mobileDiv.getBoundingClientRect().top
@@ -706,11 +706,11 @@ function setPageBreaks(){
             if(spacers[i-1] !== undefined)
                 spacers[i-1].classList.add('pagebreak')
             compteur++
-            mobileDiv.style.top = String(pageHeight*compteur)+'mm'
+            mobileDiv.style.top = String(pageHeight+compteur*297)+'mm'
             hauteur = mobileDiv.getBoundingClientRect().top
         }
     }
-    document.getElementById('creator-content').removeChild(mobileDiv)
+    document.body.removeChild(mobileDiv)
 }
 
 function checkURL(urlString){
