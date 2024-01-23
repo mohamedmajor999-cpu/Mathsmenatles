@@ -1608,7 +1608,8 @@ const MM = {
         
         if(!answerToShow)return;
         if(answerToShow.className.indexOf("hidden")>-1){
-            if(pause) MM.timers[id].pause();
+            if(!MM.timers[id].break) MM.timers[id].pause();
+            else MM.timers[id].stop();
             utils.removeClass(answerToShow, "hidden");
         } else {
             utils.addClass(answerToShow, "hidden");
