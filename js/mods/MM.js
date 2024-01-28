@@ -1605,11 +1605,11 @@ const MM = {
      */
     showTheAnswer(id, pause=true){
         let answerToShow = document.querySelector("#slide"+id+"-"+MM.steps[id].step+" .answerInSlide");
-        
         if(!answerToShow)return;
+
         if(answerToShow.className.indexOf("hidden")>-1){
-            if(!MM.timers[id].break) MM.timers[id].pause();
-            else MM.timers[id].stop();
+            if(!MM.timers[id].break && pause) MM.timers[id].pause();
+            else if(pause) MM.timers[id].stop();
             utils.removeClass(answerToShow, "hidden");
         } else {
             utils.addClass(answerToShow, "hidden");
@@ -1706,6 +1706,13 @@ const MM = {
     nextSlide:function(id){
         if(MM.onlineState === "yes"){ // save answer
             MM.userAnswers[id][MM.steps[id].step] = MM.mf["ansInput"+id+"-"+(MM.steps[id].step)].value;
+        }
+        if(MM.carts[id].progress === 'thenanswer'){
+            if(!MM.timers[id].answerShown){
+                MM.showTheAnswer(id, false)
+                MM.timers[id].answerShown = true
+                return
+            }
         }
         let step = MM.steps[id].nextStep();
         if(step === false) {
