@@ -352,7 +352,7 @@ export default class activity {
         utils.mathRender();
     }
     replaceQuestionInAnswer(answer,question){
-        // check if question as to be written in answer
+        // check if question as to be written in answer or shortquestion
         // index needed to find the question
         // if :question|5 suppress the last 5 caracters
         // if :question|-5 suppress the 5 firsts caracters
@@ -896,7 +896,7 @@ export default class activity {
                     }
                 }
                 this.questions[i] = thequestion;
-                this.shortQuestions[i] = theshort;
+                this.shortQuestions[i] = this.replaceQuestionInAnswer(this.replaceVars(theshort),thequestion);
                 this.audios[i] = theaudio;
                 this.answers[i] = this.replaceQuestionInAnswer(this.replaceVars(utils.clone(this.cAnswer)),thequestion);
                 this.values[i] = thevalue;
