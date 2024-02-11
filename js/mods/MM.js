@@ -842,6 +842,7 @@ const MM = {
     },
     paramsToURL(withAleaSeed=false,type=""){
         let colors = MM.colors.join("~").replace(/\,/g,"_");
+        MM.setSeed()
         if(type==="exosheet"){
             return "s="+document.getElementById("exTxtSizeValue").value+
                 ",n="+document.getElementById("exQtyValue").value+
@@ -1707,7 +1708,7 @@ const MM = {
         if(MM.onlineState === "yes"){ // save answer
             MM.userAnswers[id][MM.steps[id].step] = MM.mf["ansInput"+id+"-"+(MM.steps[id].step)].value;
         }
-        if(MM.carts[id].progress === 'thenanswer'){
+        if(MM.carts[MM.timers[id].cartId].progress === 'thenanswer'){
             if(!MM.timers[id].answerShown){
                 MM.showTheAnswer(id, false)
                 MM.timers[id].answerShown = true
