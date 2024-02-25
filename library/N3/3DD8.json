@@ -30,7 +30,7 @@
             "question":[
                 "Quelle est l'image de $$${:x0}$$ par la fonction $$f(x)=${math.signIfOne(:a0)}x${math.signedNumber(:b)}$$ ?",
                 "Quelle est l'image de $$${:x0}$$ par la fonction $$f : x\\mapsto ${math.signIfOne(:a0)}x${math.signedNumber(:b)}$$ ?",
-                "Soit la fonction $$f: x\\mapsto ${math.signIfOne(:a0)}x${math.signedNumer(:b)}$$,<br>calculer $$f(${:x0})$$"
+                "Soit la fonction $$f: x\\mapsto ${math.signIfOne(:a0)}x${math.signedNumber(:b)}$$,<br>calculer $$f(${:x0})$$"
             ],
             "answer":"$$f(${:x0})=\\color{red}{${:a0*:x0+:b}}$$",
             "value":"${:a0*:x0+:b}"
