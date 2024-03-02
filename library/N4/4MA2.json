@@ -94,9 +94,9 @@
             "Masse volumique ${:de} = $$${:v}~${:uv}$$, masse = $$${:d}~${:ud}$$, <br>donc volume = ... $$${:ut}$$"
         ],
         "answer":[
-            "$$d=v\\times t=${:v}~${:uv}\\times${:t}~${:ut}$$=$$\\color{red}{${:d}}~${:ud}$$",
-            "$$v=\\dfrac{d}{t}=\\dfrac{${:d}~${:ud}}{${:t}~${:ut}}=\\color{red}{${:v}}~${:uv}$$",
-            "$$t=\\dfrac{d}{v}=\\dfrac{${:d}~${:ud}}{${:v}~${:uv}}=\\color{red}{${:t}}~${:ut}$$"
+            "$$m=\\rho\\times V=${:v}~${:uv}\\times${:t}~${:ut}$$=$$\\color{red}{${:d}}~${:ud}$$",
+            "$$\\rho=\\dfrac{m}{V}=\\dfrac{${:d}~${:ud}}{${:t}~${:ut}}=\\color{red}{${:v}}~${:uv}$$",
+            "$$V=\\dfrac{m}{\\rho}=\\dfrac{${:d}~${:ud}}{${:v}~${:uv}}=\\color{red}{${:t}}~${:ut}$$"
         ],
         "value":["${:d}","${:v}","${:t}"]
     },{
@@ -115,9 +115,9 @@
             "Débit = $$${:v}~${:uv}$$, volume = $$${:d}~${:ud}$$, <br>donc durée = ... $$${:ut}$$"
         ],
         "answer":[
-            "$$d=v\\times t=${:v}~${:uv}\\times${:t}~${:ut}$$=$$\\color{red}{${:d}}~${:ud}$$",
-            "$$v=\\dfrac{d}{t}=\\dfrac{${:d}~${:ud}}{${:t}~${:ut}}=\\color{red}{${:v}}~${:uv}$$",
-            "$$t=\\dfrac{d}{v}=\\dfrac{${:d}~${:ud}}{${:v}~${:uv}}=\\color{red}{${:t}}~${:ut}$$"
+            "$$V=D\\times t=${:v}~${:uv}\\times${:t}~${:ut}$$=$$\\color{red}{${:d}}~${:ud}$$",
+            "$$D=\\dfrac{V}{t}=\\dfrac{${:d}~${:ud}}{${:t}~${:ut}}=\\color{red}{${:v}}~${:uv}$$",
+            "$$t=\\dfrac{V}{D}=\\dfrac{${:d}~${:ud}}{${:v}~${:uv}}=\\color{red}{${:t}}~${:ut}$$"
         ],
         "value":["${:d}","${:v}","${:t}"]
     },{
@@ -136,9 +136,9 @@
             "Concentration = $$${:v}~${:uv}$$, masse = $$${:d}~${:ud}$$, <br>donc volume = ... $$${:ut}$$"
         ],
         "answer":[
-            "$$d=v\\times t=${:v}~${:uv}\\times${:t}~${:ut}$$=$$\\color{red}{${:d}}~${:ud}$$",
-            "$$v=\\dfrac{d}{t}=\\dfrac{${:d}~${:ud}}{${:t}~${:ut}}=\\color{red}{${:v}}~${:uv}$$",
-            "$$t=\\dfrac{d}{v}=\\dfrac{${:d}~${:ud}}{${:v}~${:uv}}=\\color{red}{${:t}}~${:ut}$$"
+            "$$m=C\\times V=${:v}~${:uv}\\times${:t}~${:ut}$$=$$\\color{red}{${:d}}~${:ud}$$",
+            "$$C=\\dfrac{m}{V}=\\dfrac{${:d}~${:ud}}{${:t}~${:ut}}=\\color{red}{${:v}}~${:uv}$$",
+            "$$V=\\dfrac{m}{C}=\\dfrac{${:d}~${:ud}}{${:v}~${:uv}}=\\color{red}{${:t}}~${:ut}$$"
         ],
         "value":["${:d}","${:v}","${:t}"]
     }]
