@@ -6,7 +6,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 
 ### Forge
 
-- Créer un compte sur github.com puis le communiquer à Sébastien COGEZ pour lui signaler votre participation.
+- Créer un compte sur (forge.apps.education.fr) puis le communiquer à Sébastien COGEZ pour lui signaler votre participation.
 - Installer [Visual Studio Code](https://code.visualstudio.com/Download) de Microsoft ou [VSCodium](https://vscodium.com/), la version libre, mais parfois plus compliquée pour la suite.
 - Installer [NodeJS](https://nodejs.org/fr/)
 - Installer [Git](https://git-scm.com/)
@@ -16,10 +16,10 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 
 - Ouvrir VSC.
 - Ne pas installer de suite le module en français
-- Cliquer sur "Source Control" (panneau de gauche) > "Clone Repository" > "Clone from GitHub"
-![Cloner depuis GitHub](https://user-images.githubusercontent.com/85620848/155867784-8db0596a-88be-4ee7-9b03-d484ebee41cb.png)
-- Se connecter sur GItHub et autoriser VSC à accéder à son compte
-- Rechercher "mathsmentales" dans la barre du haut et cliquer sur "seb-cogez/mathsmentales"
+- Cliquer sur "Source Control" (panneau de gauche) > "Clone Repository" > "Clone from GitLab"
+![Cloner depuis GitLab](https://user-images.githubusercontent.com/85620848/155867784-8db0596a-88be-4ee7-9b03-d484ebee41cb.png)
+- Se connecter sur GitLab et autoriser VSC à accéder à son compte
+- Rechercher "mathsmentales" dans la barre du haut et cliquer sur "sebastien.cogez/mathsmentales"
 ![clonage de MathsMentales](https://blog.mathsmentales.net/wp-content/uploads/2022/10/cu251Jz3Wm.png)
 - Sélectionner le dossier dans lequel sera copié le code source de MathsMentales et attendre que la copie se termine.
 - Une fois le code chargé, cliquer sur la notification en bas à droite pour ouvrir le dossier. ![notification](https://blog.mathsmentales.net/wp-content/uploads/2022/10/BQe6ogm2nX.png)
@@ -42,7 +42,7 @@ Exemple, dans le dossier NK, on trouvera des activités commençant pas le code 
 
 On peut prendre le fichier /library/modele.json pour commencer et enregistrer sous le nom voulu dans le dossier visé, une fois l'ID décidé, qui reprend le nom du fichier.
 
-### Créer une branche GitHub
+### Créer une branche GitLab
 
 Avant chaque travail sur des activités, récupérer la dernière version du code de MathsMentales en sélectionnat la **branche master** et en faisant un **pull**. Créer ensuite une **branche** localement, en lui donnant un nom parlant, correspondant aux activités qui vont être créées. Le mieux, c'est une activité par branche, plus facile à corriger ensuite.
 Une fois le développement de l'activité terminé, on procèdera à un **push** / **Validation et envoi** de la branche, il restera à indiquer un petit message dans le pull-request proposé par VSC.
