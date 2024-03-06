@@ -52,7 +52,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.aeif.
 ### liens directs :
 * https://seb-cogez.github.io/mathsmentales/index.html?n=4 envoie sur le niveau 4e
 * https://seb-cogez.github.io/mathsmentales/index.html?u=5NC7 envoie directement sur l'activité 5NC7
-* (https://mathsmentales.net/index.html?i=321,e=correction,o=no,s=1,so=h,f=n,a=&p=0~t=ceinturebleue2br~c=1~o=true_i=6ND10~o=2~q=2.~p=~t=32~n=2_i=8MC1~o=2,3,4,5~q=2.0,1-3.-4.0,1-5.~p=~t=30~n=3_i=5DA2~o=4~q=1.-3.-4.~p=~t=41~n=2_i=3NB3~o=1~q=1.~p=~t=15~n=3) envoie sur un diaporama qui démarre automatiquement.
+* [https://mathsmentales.net/index.html?i=321,e=correction,o=no,s=1,so=h,f=n,a=&p=0~t=ceinturebleue2br~c=1~o=true_i=6ND10~o=2~q=2.~p=~t=32~n=2_i=8MC1~o=2,3,4,5~q=2.0,1-3.-4.0,1-5.~p=~t=30~n=3_i=5DA2~o=4~q=1.-3.-4.~p=~t=41~n=2_i=3NB3~o=1~q=1.~p=~t=15~n=3](https://mathsmentales.net/index.html?i=321,e=correction,o=no,s=1,so=h,f=n,a=&p=0~t=ceinturebleue2br~c=1~o=true_i=6ND10~o=2~q=2.~p=~t=32~n=2_i=8MC1~o=2,3,4,5~q=2.0,1-3.-4.0,1-5.~p=~t=30~n=3_i=5DA2~o=4~q=1.-3.-4.~p=~t=41~n=2_i=3NB3~o=1~q=1.~p=~t=15~n=3) envoie sur un diaporama qui démarre automatiquement.
 
 # inclure dans un site :
 Rien n'empêche d'inclure un diaporama dans un site, ou sur un genialy.
