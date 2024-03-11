@@ -274,7 +274,7 @@ function makePage(){
                 if(k!=="dest")
                     MM.memory[k].display();
             }
-        }, 300);
+        }, 1000);
     }
 }
 
