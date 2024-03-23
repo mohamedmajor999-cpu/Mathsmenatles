@@ -34,7 +34,7 @@
         "vars":{"n":"1_5_2","a1":"${10*:n[0]}","a2":"${10*:n[1]}","global":"${math.round(((1+:a1/100)*(1-:a2/100)-1)*100,2)}"},
         "question":[
             "A quel pourcentage correspond une augmentation de $$${:a1}\\%$$ suivie d'une diminution de $$${:a2}\\%$$ ?",
-            "A quel pourcentage correspond une diminution de $$${:a1}\\%$$ suivie d'une augmentation de $$${:a2}\\%$$ ?"
+            "A quel pourcentage correspond une diminution de $$${:a2}\\%$$ suivie d'une augmentation de $$${:a1}\\%$$ ?"
         ],
         "answer":[
             "$$+${:a1}\\%$$ puis -$$${:a2}\\%$$ correspond à $$\\color{red}{${(:global<0)?:global:'+'+:global}\\%}$$",
