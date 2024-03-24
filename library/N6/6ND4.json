@@ -19,6 +19,9 @@
     "audio": ["Combien manquetil à ${:c} pour faire ${:b} ?",
         "${:c} plusse combien pour faire ${:b} ?",
         "Calcule ${:b} moins ${:c}."],
+    "shortq": ["$$${:c}+\\colorbox{#ececec}{\\quad\\quad}=${:b}$$",
+        "$$${:c}+\\colorbox{#ececec}{\\quad\\quad}=${:b}$$",
+        "$$${:b}-${:c}=$$"],
     "answer":"$$${:c}+\\color{red}{${:b-:c}}=${:b}$$",
     "value":"${:b-:c}"
 }
