@@ -6,19 +6,37 @@
     "description":"Pas encore compatible avec la saisie en ligne",
     "textSize":"small",
     "dest":["6MC", "5MA", "4MA", "3MA"],
-    "consts":{"unites":["mm","cm","dm","m", "dam", "hm", "km"],
-    "uv":{"mm":"millimètres","cm":"centimètres","dm":"décimètres","m":"mètres","dam":"décamètres","hm":"hectomètres","km":"kilomètres"}},
+    "consts":{
+        "unites":["mm","cm","dm","m", "dam", "hm", "km"],
+        "uv":{"mm":"millimètres","cm":"centimètres","dm":"décimètres","m":"mètres","dam":"décamètres","hm":"hectomètres","km":"kilomètres"},
+        "figures":{
+            "rectangles":[
+                "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M3.958 7.394h57.518v25.503H3.958z'/><text style='line-height:1.25;-inkscape-font-specification:Arial' x='65.308' y='21.564' font-size='7.234' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99973 1.00027)'><tspan x='65.308' y='21.564'>${:lar}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial' x='24.672' y='41.548' font-size='7.234' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99973 1.00027)'><tspan x='24.672' y='41.548'>${:long}</tspan></text><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M3.958 7.394h2.3v2.302h-2.3zm0 23.201h2.3v2.302h-2.3zM59.175 7.394h2.301v2.302h-2.3zm0 23.201h2.301v2.302h-2.3z'/><path d='M32.702 5.682L30.22 9.498m4.388-3.724L32.127 9.59m.515 21.172l-2.483 3.816m4.39-3.725l-2.484 3.815M2.384 18.721l3.148 1.697m54.612-1.03l3.149 1.697' fill='none' stroke='#000' stroke-width='.707'/></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M8.993 2.814L63.751 18.16l-6.795 24.285L2.198 27.097z'/><text style='line-height:1.25;-inkscape-font-specification:Arial' x='62.006' y='36.18' font-size='7.152' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99964 1.00036)'><tspan x='62.006' y='36.18'>${:lar}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial' x='8.836' y='41.104' font-size='7.152' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99964 1.00036)'><tspan x='8.836' y='41.104'>${:long}</tspan></text><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M8.993 2.814l2.192.615-.613 2.191-2.192-.614zM2.812 24.905l2.19.615-.613 2.192-2.19-.615zm58.749-7.358l2.19.612-.614 2.194-2.19-.614zm-6.183 22.09l2.192.615-.614 2.192-2.192-.614z'/><path d='M36.815 8.853l-3.38 2.972m5.17-2.376l-3.379 2.97m-5.152 20.299l-3.38 2.97m5.172-2.376l-3.38 2.973M4.477 13.18l2.546 2.455m52.264 13.59l2.546 2.455' fill='none' stroke='#000' stroke-width='.707'/></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M3.207 20.592L54.852 3.705l7.475 22.914-51.645 16.887z'/><text style='line-height:1.25;-inkscape-font-specification:Arial' x='62.873' y='15.811' font-size='6.835' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99942 1.00058)'><tspan x='62.873' y='15.811'>${:lar}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial' x='39.754' y='41.904' font-size='6.835' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99942 1.00058)'><tspan x='39.754' y='41.904'>${:long}</tspan></text><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M3.207 20.592l2.067-.678.675 2.07-2.067.675zm6.8 20.846l2.067-.676.675 2.068-2.067.677zM52.787 4.38l2.065-.676.675 2.07-2.065.675zm6.8 20.846l2.065-.674.677 2.067-2.067.676z'/><path d='M28.514 10.616l-1.11 4.158m2.85-4.637l-1.112 4.158m6.668 18.872l-1.112 4.156m2.85-4.635l-1.11 4.158M5.114 31.232l3.324.6m48.734-16.958l3.323.6' fill='none' stroke='#000' stroke-width='.707'/></svg>"
+            ],
+            "carres":[
+                "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M9.924 5.449h36.2V41.67h-36.2z'/><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M9.924 39.19h2.479v2.48H9.924zM43.645 5.45h2.479v2.48h-2.479zm0 33.741h2.479v2.48h-2.479zM9.925 5.45h2.478v2.48H9.924z'/><text style='line-height:1.25;-inkscape-font-specification:Arial' x='50.247' y='25.674' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.9997 1.0003)'><tspan x='50.247' y='25.674'>${:cote}</tspan></text><path d='M28.318 3.557l-2.675 4.111m4.73-4.013l-2.676 4.112m-.162 31.49l-2.675 4.11m4.73-4.013l-2.676 4.113M11.808 20.51l-4.289 2.38m4.616-.422l-4.29 2.38m40.227-4.924l-4.289 2.377m4.616-.42L44.11 24.26' fill='none' stroke='#000' stroke-width='.707'/></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M7.754 11.565l33.179-8.427 8.421 33.208-33.18 8.426z'/><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M15.597 42.498l2.273-.576.577 2.273-2.273.577zM38.662 3.715l2.271-.577.577 2.274-2.271.576zm7.843 30.934l2.273-.578.576 2.275-2.272.575zM7.755 11.565l2.27-.578.579 2.275-2.271.577z'/><text style='line-height:1.25;-inkscape-font-specification:Arial' x='49.875' y='18.747' font-size='7.37' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99959 1.00041)'><tspan x='49.875' y='18.747'>${:cote}</tspan></text><path d='M24.173 5.548L22.677 9.94M26.08 5.16L24.583 9.55m7.17 28.907l-1.493 4.393m3.4-4.78l-1.494 4.39M12.98 24.935l-3.376 3.177m4.13-1.459l-3.375 3.18m35.723-13.88l-3.376 3.18m4.132-1.46l-3.378 3.18' fill='none' stroke='#000' stroke-width='.707'/></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M30.272 1.794l20.636 22.312-22.312 20.636L7.96 22.43z'/><path fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' d='M9.487 21.017l1.413 1.527-1.527 1.413-1.414-1.528zm40.01 1.56l1.41 1.53-1.526 1.413-1.412-1.528zM28.71 41.803l1.413 1.527-1.528 1.414-1.413-1.529zm1.562-40.008l1.414 1.528-1.528 1.412-1.413-1.527z'/><text style='line-height:1.25;-inkscape-font-specification:Arial' x='45.447' y='11.204' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265'><tspan x='45.447' y='11.204'>${:cote}</tspan></text><path d='M41.924 12.053l-4.058.694m5.169.628l-4.057.694M19.486 31.91l-4.057.695m5.17.627l-4.06.694m5.53-22.39l-3.91-1.288m2.89 2.604l-3.911-1.287m25.965 21.99l-3.91-1.288m2.89 2.604l-3.91-1.287' fill='none' stroke='#000' stroke-width='.707'/></svg>"
+            ],
+            "triangles":[
+                "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M9.7 39.68h55.792L46.522 8.818z' fill='none' stroke='#000' stroke-width='.706'/><path d='M46.523 8.812v30.501' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M46.523 37.674H48.5v1.977h-1.977z'/><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:center' x='39.675' y='44.416' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' text-anchor='middle'><tspan style='text-align:center' x='34.071' y='46.416'>${:base}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:end' x='45.276' y='27.251' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='45.276' y='27.251'>${:h}</tspan></text></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M9.7 39.68h58.17L25.004 8.818z' fill='none' stroke='#000' stroke-width='.706'/><path d='M24.827 9.492v29.821' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M24.827 37.674h1.977v1.977h-1.977z'/><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:center' x='39.675' y='44.416' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' text-anchor='middle'><tspan style='text-align:center' x='34.071' y='46.416'>${:base}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:start' x='26.216' y='27.366' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265'><tspan style='text-align:start' x='30.486' y='27.366'>${:h}</tspan></text></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M9.172 38.092h31.062l19.83-30.919z' fill='none' stroke='#000' stroke-width='.706'/><path d='M60.063 7.173v30.609' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M60.063 36.142h1.977v1.977h-1.977z'/><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:center' x='39.146' y='42.828' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='middle' stroke-width='.265'><tspan style='text-align:center' x='39.146' y='44.828'>${:base}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:start' x='61.452' y='25.047' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265'><tspan style='text-align:start' x='61.452' y='25.047'>${:h}</tspan></text><path d='M40.922 38.092h31.062' fill='none' stroke='#000' stroke-width='.706' stroke-dasharray='2.822 2.822'/></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M10.536 6.982l53.11 32.395 6.438-32.29z' fill='none' stroke='#000' stroke-width='.706'/><path d='M70.084 7.087l-15.939 26.13' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M54.999 31.818l1.688 1.03-1.03 1.687-1.688-1.03z'/><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:end' x='37.786' y='27.584' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='32.182' y='27.584'>${:base}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:end' x='60.164' y='20.491' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='60.164' y='20.491'>${:h}</tspan></text></svg>",
+                "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M72.566 2.785L12.132 17.55l18.333 27.35z' fill='none' stroke='#000' stroke-width='.706'/><path d='M30.465 44.899l-7.263-29.734' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M23.59 16.757l-1.92.47-.469-1.921 1.92-.47z'/><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:end' x='40.652' y='9.158' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='40.652' y='9.158'>${:base}</tspan></text><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:start' x='28.241' y='28.17' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265'><tspan style='text-align:start' x='32.511' y='28.17'>${:h}</tspan></text></svg>"
+            ],
+            "cercleR":"<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:end' x='75.01' y='18.152' font-size='7.546' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99928 1.00072)' text-anchor='end'><tspan x='52.727' y='18.152' style='text-align:end'>${:ray}</tspan></text><ellipse cx='39.006' cy='23.78' fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round' rx='19.98' ry='20.009'/><path d='M37.544 22.477l2.923 2.606M40.291 22.16l-2.57 3.24M39.05 23.77l19.122-5.775' fill='none' stroke='#000' stroke-width='.53'/></svg>",
+            "cercleD":"<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><text style='line-height:1.25;-inkscape-font-specification:Arial;text-align:center' x='21.799' y='36.157' transform='rotate(-29.672)' font-size='8.041' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='middle' stroke-width='.265'><tspan style='text-align:center' x='21.799' y='36.157'>${:diam}</tspan></text><circle cx='38.666' cy='23.542' r='21.307' fill='none' stroke='#000' stroke-width='.707' stroke-linecap='round' stroke-linejoin='round'/><path d='M20.688 34.773l36.63-21.385m-19.695 9.716l3.23 2.357' fill='none' stroke='#000' stroke-width='.707'/></svg>"
+        }
+    },
     "options":[{
         "name":"Aire du carré",
-        "vars":{"a":"1_10", "aire":"${:a*:a}","u":"0_6"},
+        "vars":{"a":"1_10", "aire":"${:a*:a}","u":"0_6", "fig":"0_2", "cote":"${:a} ${:unites[:u]}"},
         "figure":{
-            "type":"graph",
-            "axis":false,
-            "boundingbox":[0,10,10,0],
-            "content":[
-                ["jessiescript", "A1=point(2,2);A2=point(8,2);A3=point(8,8);A4=point(2,8);AB=segment(A1,A2);BC=segment(A2,A3);CD=segment(A3,A4);DA=segment(A4,A1);"],
-                ["text", [5,1.5,"${:a} ${:unites[:u]}"], {"anchorX":"middle","anchorY":"top", "fontSize":20}]
-            ]
+            "type":"svg",
+            "content":"${:figures['carres'][:fig]}"
         },
         "question": "Quelle est l'<b>aire</b> d'un carré de côté $$${:a}\\text{ ${:unites[:u]}}$$ ?",
         "audio": "Quelle est l'aire d'un carré de côté ${:a} ${:uv[:unites[:u]]} ?",
@@ -26,16 +44,10 @@
         "value":"${:aire}${:unites[:u]}^2"
     },{
         "name":"Aire du rectangle",
-        "vars":{"a":"1_8", "b":"${:a+1}_9", "aire":"${:a*:b}","u":"0_6"},
+        "vars":{"a":"1_8", "b":"${:a+1}_9", "aire":"${:a*:b}","u":"0_6","fig":"0_2", "lar":"${:a} ${:unites[:u]}", "long":"${:b} ${:unites[:u]}"},
         "figure":{
-            "type":"graph",
-            "axis":false,
-            "boundingbox":[0,10,10,0],
-            "content":[
-                ["jessiescript", "A1=point(0.5,0.5);A2=point(${0.5+:b},0.5);A3=point(${0.5+:b},${0.5+:a});A4=point(0.5,${0.5+:a});S1=segment(A1,A2);S2=segment(A2,A3);S3=segment(A3,A4);S4=segment(A4,A1);"],
-                ["text", ["${.5+:b/2}",0.5,"${:b} ${:unites[:u]}"], {"anchorX":"middle", "fontSize":20}],
-                ["text", ["${:b+1}","${.5+:a/2}","${:a} ${:unites[:u]}"], {"anchorX":"left", "fontSize":20}]
-            ]
+            "type":"svg",
+            "content":"${:figures['rectangles'][:fig]}"
         },
         "question": "Quelle est l'<b>aire</b> d'un rectangle de côtés $$${:a}\\text{ ${:unites[:u]}}$$ et  $$${:b}\\text{ ${:unites[:u]}}$$?",
         "audio": "Quelle est l'aire d'un rectangle de côtés ${:a} ${:uv[:unites[:u]]} et ${:b} ${:uv[:unites[:u]]} ?",
@@ -43,14 +55,10 @@
         "value":"${:aire}${:unites[:u]}^2"
     },{
         "name":"Aire du triangle",
-        "vars":{"a":"1_9","h":"1_9","u":"0_6","xc":"1_10","aire":"${math.round(:a*:h/2,1)}"},
+        "vars":{"a":"1_9","h":"1_9","u":"0_6","xc":"1_10","aire":"${math.round(:a*:h/2,1)}", "fig":"0_4", "base":"${:a} ${:unites[:u]}"},
         "figure":{
-            "type":"graph",
-            "axis":false,
-            "boundingbox":[0,10,10,0],
-            "content":[
-                ["jessiescript","A1=point(1,1);A2=point(${:a},1);A3=point(${:xc},${:h});AB=segment(A1,A2);AC=segment(A1,A3);BC=segment(A2,A3);H=point(${:xc},1);HC=segment(H,A3);"]
-            ]
+            "type":"svg",
+            "content":"${:figures['triangles'][:fig]}"
         },
         "question":"Quelle est l'<b>aire</b> d'un triangle de côté $$${:a}\\text{ ${:unites[:u]}}$$ et de hauteur $$${:h}\\text{ ${:unites[:u]}}$$ ?",
         "audio":"Quelle est l'aire d'un triangle de côté ${:a} ${:uv[:unites[:u]]} et de hauteur ${:h} ${:uv[:unites[:u]]} ?",
@@ -59,15 +67,10 @@
     },
     {
         "name":"Aire du disque",
-        "vars":{"r":"1_5","aire":"${math.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}"},
+        "vars":{"r":"1_5","aire":"${math.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}", "ray":"${:r} ${:unites[:u]}"},
         "figure":{
-            "type":"graph",
-            "axis":false,
-            "boundingbox":[0,10,10,0],
-            "content":[
-                ["jessiescript", "O=point(5,5);c=circle(O,${:r});M=point(${:xM},5);OM=segment(O,M);"],
-                ["text", ["${5+:r/2}",4.5,"${:r} ${:unites[:u]}"], {"anchorX":"middle", "fontSize":20}]
-            ]
+            "type":"svg",
+            "content":"${:figures['cercleR']}"
         },
         "question": "Quelle est l'<b>aire</b> d'un disque de rayon $$${:r}\\text{ ${:unites[:u]}}$$ ?",
         "audio": "Quelle est l'aire d'un disque de rayon ${:r} ${:uv[:unites[:u]]} ?",
@@ -76,15 +79,10 @@
     },
     {
         "name":"Aire du disque à partir du diamètre",
-        "vars":{"r":"1_5", "d":"${:r*2}","aire":"${math.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}","xN":"${5-:r}"},
+        "vars":{"r":"1_5", "d":"${:r*2}","aire":"${math.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}","xN":"${5-:r}", "diam":"${:d} ${:unites[:u]}"},
         "figure":{
-            "type":"graph",
-            "axis":false,
-            "boundingbox":[0,10,10,0],
-            "content":[
-                ["jessiescript", "O=point(5,5);c=circle(O,${:r});M=point(${:xM},5);N=point(${:xN},5);NM=segment(N,M);"],
-                ["text", [5,4.5,"${:d} ${:unites[:u]}"], {"anchorX":"middle", "fontSize":20}]
-            ]
+            "type":"svg",
+            "content":"${:figures['cercleD']}"
         },
         "question": "Quelle est l'<b>aire</b> d'un disque de diamètre $$${:d}\\text{ ${:unites[:u]}}$$ ?",
         "audio": "Quelle est l'aire d'un disque de diamètre ${:d} ${:uv[:unites[:u]]} ?",
