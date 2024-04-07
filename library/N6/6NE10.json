@@ -3,6 +3,7 @@
     "description":"Trouver le complément qui donne une unité entière",
     "ID":"6NE10",
     "dest":["6NE", "5NA", "7NE","4NA"],
+    "repeat":"true",
     "options":[{
         "name":"Compléter des dixièmes",
         "vars":{"n":"1_9","a":"${math.round(:n/10,1)}","c":"${math.round(1-:a,1)}"}
