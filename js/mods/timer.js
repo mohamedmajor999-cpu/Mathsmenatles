@@ -9,7 +9,7 @@ export default class timer {
         this.endTime = 0; // end time of the timer
         this.timeLeft = 0; // remaining time until the end of the timer
         this.percent = 0; // width of the progressbar
-        this.id = slideid; // number of the slider
+        this.id = slideid; // slider's number
         this.cartId = cartId;
         this.answerShowTime = 0;
         this.answerShown = false;
