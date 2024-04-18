@@ -62,7 +62,7 @@
         "answer":"Les aires sont multipliées par $$${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef,2)}}$$",
         "value":"${math.round(:vcoef*:vcoef,2)}"
     },{
-        "name":"Multiplication des aire connaissant des longueurs",
+        "name":"Multiplication des aires connaissant des longueurs",
         "vars":{
             "la":"2_10",
             "la1":"${math.round(:la*:vcoef,1)}",
