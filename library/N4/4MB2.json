@@ -86,7 +86,7 @@
             "choixfig":"3_8"
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
-        "question":"Par combien sont multipliées les volumes ?",
+        "question":"Par combien sont multipliés les volumes ?",
         "answer":"Le coefficient est $$${:vcoef}$$,<br> les volumes sont donc multipliés par $$${:vcoef}\\times${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef*:vcoef,3)}}$$",
         "value":"${math.round(:vcoef*:vcoef*:vcoef,3)}"
     }, {
@@ -100,7 +100,7 @@
             "coef":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
-        "question":"Par combien sont multipliées les volumes ?",
+        "question":"Par combien sont multipliés les volumes ?",
         "answer":"Le coefficient est $$${:la1+'\\div'+:la}=${:vcoef}$$,<br> les volumes sont donc multipliés par $$${:vcoef}\\times${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef*:vcoef,3)}}$$",
         "value":"${math.round(:vcoef*:vcoef*:vcoef,3)}"
     }

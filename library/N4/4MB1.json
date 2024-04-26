@@ -36,7 +36,7 @@
             "c":"","c1":"","p":"","p1":"","r":"","r1":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[0]::reductions[0]}"},
-        "question":"Combien mesure la longueur manquante ?",
+        "question":"Quelle est la longueur manquante ?",
         "answer":"La mesure manquante est $$${:choixa=='a'?:la+'\\times'+:vcoef::la1+'\\div'+:vcoef}=\\color{red}{${:choixa=='a'?:la1::la}}$$",
         "value":"${:choixa=='a'?:la1::la}"
     },{
@@ -55,7 +55,7 @@
             "c":"","c1":"","p":"","p1":"","r":"","r1":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[1]::reductions[1]}"},
-        "question":"Combien mesure la longueur manquante ?",
+        "question":"Quelle est la longueur manquante ?",
         "answer":"La mesure manquante est $$${:choixIorA=='im'?(:choixAorB=='a'?:la::lb)+'\\times'+:vcoef:(:choixAorB=='a'?:la1::lb1)+'\\div'+:vcoef}=\\color{red}{${:choixAorB=='a'?(:choixIorA=='im'?:la1::la)::choixIorA=='im'?:lb1::lb}}$$",
         "value":"${:choixAorB=='a'?(:choixIorA=='im'?:la1::la)::choixIorA=='im'?:lb1::lb}"
     },{
@@ -74,7 +74,7 @@
             "coef":"","c":"","c1":"","p":"","p1":"","r":"","r1":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[1]::reductions[1]}"},
-        "question":"Combien mesure la longueur manquante ?",
+        "question":"Quelle est la longueur manquante ?",
         "answer":"Le coefficient est $$${:choixAorB=='a'?:lb1+'\\div'+:lb::la1+'\\div'+:la}=${:vcoef}$$,<br> la mesure vaut donc $$${:choixIorA=='im'?(:choixAorB=='a'?:la::lb)+'\\times'+:vcoef:(:choixAorB=='a'?:la1::lb1)+'\\div'+:vcoef}=\\color{red}{${:choixAorB=='a'?(:choixIorA=='im'?:la1::la)::choixIorA=='im'?:lb1::lb}}$$",
         "value":"${:choixAorB=='a'?(:choixIorA=='im'?:la1::la)::choixIorA=='im'?:lb1::lb}"
     },{
@@ -97,7 +97,7 @@
             "coef":"","p":"","p1":"","r":"","r1":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[2]::reductions[2]}"},
-        "question":"Combien mesure la longueur manquante ?",
+        "question":"Quelle est la longueur manquante ?",
         "answer":"Le coefficient est $$${:choixAorB=='a'||:choixAorB=='c'?:lb1+'\\div'+:lb::la1+'\\div'+:la}=${:vcoef}$$,<br> la mesure vaut donc $$${:choixIorA=='im'?(:choixAorB=='a'?:la::choixAorB=='b'?:lb::lc)+'\\times'+:vcoef:(:choixAorB=='a'?:la1::choixAorB=='b'?:lb1::lc1)+'\\div'+:vcoef}=\\color{red}{${:choixAorB=='a'?(:choixIorA=='im'?:la1::la)::choixAorB=='b'?:choixIorA=='im'?:lb1::lb::choixIorA=='im'?:lc1::lc}}$$",
         "value":"${:choixAorB=='a'?(:choixIorA=='im'?:la1::la)::choixAorB=='b'?:choixIorA=='im'?:lb1::lb::choixIorA=='im'?:lc1::lc}"
     }, {
@@ -117,7 +117,7 @@
             "coef":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[3]::reductions[3]}"},
-        "question":"Combien mesure la longueur manquante ?",
+        "question":"Quelle est la longueur manquante ?",
         "answer":"Le coefficient est $$${:choixRorP=='a'?:lp1+'\\div'+:lr::lr1+'\\div'+:lr}=${:vcoef}$$,<br> la mesure vaut donc $$${:choixIorA=='im'?(:choixRorP=='r'?:lr::lp)+'\\times'+:vcoef:(:choixRorP=='r'?:lr1::lp1)+'\\div'+:vcoef}=\\color{red}{${:choixRorP=='r'?(:choixIorA=='im'?:lr1::lr)::choixIorA=='im'?:lp1::lp}}$$",
         "value":"${:choixRorP=='r'?(:choixIorA=='im'?:lr1::lr)::choixIorA=='im'?:lp1::lp}"
     }
