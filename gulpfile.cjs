@@ -52,20 +52,21 @@ async function build() {
     }).pipe( source('bundle.' + module + '.js'))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest('./js/'))
+    .pipe(gulp.dest('./public/js/'))
   })
 }
 
-async function updateVersion() {  
+async function updateVersion() {
   builds.map(module => {
     let htmlPageName = module + '.html'
     if (module === 'mathsmentales') htmlPageName = 'index.html'
-    const htmlPath = path.join(__dirname, htmlPageName);
+    const htmlPath = path.join(__dirname, './src/' + htmlPageName);
+    const destPath = path.join(__dirname, './public/' + htmlPageName)
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
     const regex = new RegExp('bundle\\.' +module+ '\\.js\\?v=[\\d\\.]+')
     const updatedContent = htmlContent.replace(regex, `bundle.${module}.js?v=${packageJson.version}`);
     console.log(htmlPageName + ' mis à jour')
-    fs.writeFileSync(htmlPath, updatedContent, 'utf8');  
+    fs.writeFileSync(destPath, updatedContent, 'utf8');
   })
 }
 
