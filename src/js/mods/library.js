@@ -1,5 +1,5 @@
 import utils from "./utils.js";
-import content from "../../../js/mods/content.js";
+import content from "./content.js";
 //import theactivities from "./theactivities.js";
 import MM from "./MM.js";
 import activity from "./activity.js";

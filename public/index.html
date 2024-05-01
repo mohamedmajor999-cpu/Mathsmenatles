@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Mathsmentales est une webapplication qui facilite la mise en place de rituels de calcul mental avec un corrigé final. Les questions aléatoires portent sur de nombreux thèmes." />
+    <meta name="keywords" content="Mathématiques, automatisme, calcul mental, images mentales, entiers, décimaux, relatifs,
+                fractions, fonctions, géométrie, calcul littéral, variable, aléatoire" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathsMentales : Automatismes et calcul mental en mathématiques</title>
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/bulma-steps.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/mathsmentales.min.css?v=16" type="text/css" media="screen" />
+    <link rel="stylesheet" href="js/libs/JSXGprah1.2.2/jsxgraph.css" type="text/css" />
+    <script src="js/libs/index.alllibs.min.js" defer></script>
+    <script src="js/libs/mathlive/mathlive.min.js" defer></script>
+    <script src="js/bundle.mathsmentales.js?v=2.0.36" id="mmscriptid"></script>
+
+</head>
+<body>
+    <div id="app-container">
+<header>
+    <a id="btnaccueil" numero="#tab-accueil" class="logo tabs-menu-link"><img numero="#tab-accueil" src="img/logocm32x32.png" alt="logo" /></a>
+    <div id="openMenuButton">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    <nav id="nav-menu-niveaux" class="hidden-phone">
+        <!--<div class="icon-menu"></div>-->
+        <ul class="menu color-inverse">
+            <li><a numero="nothing">Ecole</a>
+                <ul>
+                    <li data-niv="11">CP</li>
+                    <li data-niv="10">CE1</li>
+                    <li data-niv="9">CE2</li>
+                    <li data-niv="8">CM1</li>
+                    <li  data-niv="7">CM2</li>
+                </ul>
+            </li>
+            <li><a numero="nothing">Collège</a>
+                <ul>
+                    <li data-niv="6">6e</li>
+                    <li data-niv="5">5e</li>
+                    <li data-niv="4">4e</li>
+                    <li data-niv="3">3e</li>
+                </ul>    
+            </li>
+            <li><a numero="nothing">Lycée</a>
+                <ul>
+                    <li data-niv="2">2nde</li>
+                    <li data-niv="G">1ère Générale</li>
+                    <li data-niv="K">1ère/Tale Techno</li>
+                    <li data-niv="T">Tale</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="tabs hidden-phone" id="header-menu">
+        <nav class="tabs-menu">
+            <a numero="#tab-chercher" class="tabs-menu-link">Rechercher</a>
+            <a numero="#tab-parameters" class="tabs-menu-link">Paramétrer</a>
+            <a numero="#tab-enonce" class="tabs-menu-link">Enoncé</a>
+            <a numero="#tab-corrige" class="tabs-menu-link">Corrigé</a>
+            <a numero="#tab-historique" class="tabs-menu-link">Historique</a>
+            <a numero="#tab-telechargements" class="tabs-menu-link">Téléchargements</a>
+            <a href="./cgu.html" class="tabs-menu-link">CGU</a>
+            <a href="https://blog.mathsmentales.net" class="tabs-menu-link">Blog<span class="red">*</span></a>
+            <a href="about.html">À propos</a>
+        </nav>
+    </div>
+
+</header>
+<div class="clearfix"></div>
+<div id="contents" class="tabs-content">
+    <section id="tab-accueil" class="tabs-content-item">
+        <section class="grille">
+        <article class="accueillogo">
+            <img src="img/logocm160x132.png" class="logoMM">
+            <p>
+                <b>Automatismes et calcul mental</b> à données aléatoires sous forme de diaporamas, réponses en ligne, feuilles d'exercices, cartes flash, dominos, duels en ligne... (<a href="old/">ancienne version</a>) plus d'infos sur <a href="about.html">À propos</a>
+             </p>
+             <p>
+                 MathsMentales est un <a href="https://fr.wikipedia.org/wiki/Logiciel_libre"><b>logiciel libre</b></a> et gratuit sous <a href="https://forge.aeif.fr/scogez/mathsmentales/-/blob/master/LICENSE">licence Apache 2.0</a>.
+             </p>
+             <p><b>Contact</b> : <a href="mailto:contact@mathsmentales.net">contact@mathsmentales.net</a> pour signaler les problèmes, faire des suggestions...<br>
+            <span class="green">Un bon CTRL + F5 peut aider lors d'un blocage</span>, mais pas toujours !</p>
+            <p>
+                <a href="https://coopmaths.fr/"><img src="img/logo-coopmaths-final.png" class="logoCM"></a>Je collabore avec <a href="https://coopmaths.fr/">CoopMaths</a> qui propose de nombreuses <b>fiches d'exercices</b> à données aléatoires ainsi que tout un tas d'outils pour l'individualisation des apprentissages.
+            </p>
+            </article>
+        </section>
+        <h2 class="sg-title">École</h2>
+        <section id="grille-ecole" class="grille ecole">
+        </section>
+        <h2 class="sg-title">Collège</h2>
+        <section id="grille-college" class="grille college">
+        </section>
+        <h2 class="sg-title">Lycée</h2>
+        <section id="grille-lycee" class="grille lycee">
+        </section>
+    </section>
+    <section id="tab-parameters" class="grid-3 has-gutter tabs-content-item" style="display: none;">
+        <div>
+            <button id="addToCart" title="Ajouter au panier"><img src="img/addtocart.png"><br>Ajouter<br>au panier</button>
+            <button id="unlinkCart" class="hidden" title="Désolidariser l'édition du panier"><img src="img/iconfinder_pin.png"><br>Désolidariser<br>du panier</button>
+            <button id="removeFromCart" class="hidden" title="Supprimer du panier"><img src="img/removefromcart.png"><br>Retirer<br>du panier</button>
+            <h1><i class="icon-arrow--right"></i>Activité <span id="param-title-act"></span></h1>
+            <div id="activityTitle"></div>
+            <div id="activityDescription"></div>
+            <!-- Durée et nombre de questions de l'activité -->
+            <b>Durée d'affichage :</b> <span id="tempo-value"></span><br>
+            <input type="range" id="tempo-slider" min="0" max="120" value="8"><br>
+            <b>Nombre de questions :</b> <span id="nbq-value"></span><br>
+            <input type="range" id="nbq-slider" min="1" max="20" value="10"><br>
+            <div id="voix" class="hidden">
+                Lecture audio : <input type="radio" class="radio" name="audioRadio" value="0" checked="true" id="radioaudiooff"> off 
+                <input type="radio" class="radio" name="audioRadio" value="1" id="radioaudioon"> on <input type="number" id="audiorepeat" min="1" max="5" value="1" size="1" title="Nombre de répétitions"> rép.<br>
+                Voix <select id="selectVoice"></select> <button class="pointer btn" id="btntestreader" title="Lire les exemples proposés ci-dessous">▶</button> <button id="btnstopreader" class="pointer btn" title="Stopper la lecture en cours">⏹</button>
+            </div>
+        </div>
+        <div id="phantom" class=""></div>
+        <div id="divcarts" class="hidden">
+            <div class="tabs">
+                <nav class="tabs-menu" id="cartsMenu">
+                    <button class="tabs-menu-link is-active" value="1" id="button-cart1"><img src="img/cart1.png"></button>
+                    <button id="addcart" title="Ajouter un panier"><img src="img/cartadd.png"></button>
+                </nav>
+            </div>
+            <div id="cartscontainer">
+                <section id="cart0" class="cartcontent">
+                    <button id="btncartclose1" class="cart-close" title="Vider le panier"><img src="img/recyclecart.png"></button>
+                    <img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart1">
+                    <h3 contenteditable="true" title="Cliquer pour éditer" id="titlecart1">Groupe 1</h3>
+                    <div class="totaux">
+                        <div class="title" title="Durée totale du panier">Durée</div>
+                        <div class="title" title="Nombre total de questions du panier">Quest.</div>
+                        <div class="title" title="Zone d'affichage du panier">Cible</div>
+                        <div title="Ordre des questions du diaporama" class="title">Ordre</div>
+                        <div title="Affichage du corrigé" class="title">Corrigé</div>
+                        <div><span>0</span> s.</div>
+                        <div><span>0</span></div>
+                        <div><span>1</span></div>
+                        <div><span data-ordered="true" id="imgordercart1" class="pointer">ordonné</span></div>
+                        <div><span data-progress="normal" id="progress-cart1" class="pointer">sans</span></div>
+                    </div>
+                    <ul id="cart0-list" class="cart-list">
+                    </ul>
+                    Si vous voulez utiliser plus d'une activité dans votre séance, ajouter-les ici pour composer un panier.
+                </section>
+                <section id="cart1" class="hidden">
+                    <button class="cart-close" id="btncartdelete2" title="Supprimer le panier"><img src="img/burnCart.png"></button>
+                    <button class="cart-close" id="btncartclose2" title="Vider le panier"><img src="img/recyclecart.png"></button>
+                    <img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart2">
+                    <h3 contenteditable="true" title="Cliquer pour éditer" id="titlecart2">Groupe 2</h3>
+                    <div class="totaux">
+                        <div class="title" title="Durée totale du panier">Durée</div>
+                        <div class="title" title="Nombre total de questions du panier">Quest.</div>
+                        <div class="title" title="Zone d'affichage du panier">Cible</div>
+                        <div title="Ordre des questions du diaporama" class="title">Ordre</div>
+                        <div title="Affichage du corrigé" class="title">Corrigé</div>
+                        <div><span>0</span> s.</div>
+                        <div><span>0</span></div>
+                        <div><span>1</span></div>
+                        <div><span data-ordered="true" id="imgordercart2" class="pointer">ordonné</span></div>
+                        <div><span data-progress="normal" id="progress-cart2" class="pointer">sans</span></div>
+                    </div>
+                    <ul id="cart1-list" class="cart-list">
+                    </ul>
+                </section>
+                <section id="cart2" class="hidden">
+                    <button class="cart-close" id="btncartdelete3" title="Supprimer le panier"><img src="img/burnCart.png"></button>
+                    <button class="cart-close" id="btncartclose3" title="Vider le panier"><img src="img/recyclecart.png"></button>
+                    <img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart3">
+                    <h3 contenteditable="true" id="titlecart3" title="Cliquer pour éditer">Groupe 3</h3>
+                    <div class="totaux">
+                        <div class="title" title="Durée totale du panier">Durée</div>
+                        <div class="title" title="Nombre total de questions du panier">Quest.</div>
+                        <div class="title" title="Zone d'affichage du panier">Cible</div>
+                        <div title="Ordre des questions du diaporama" class="title">Ordre</div>
+                        <div title="Affichage du corrigé" class="title">Corrigé</div>
+                        <div><span>0</span> s.</div>
+                        <div><span>0</span></div>
+                        <div><span>1</span></div>
+                        <div><span data-ordered="true" id="imgordercart3" class="pointer">ordonné</span></div>
+                        <div><span data-progress="normal" id="progress-cart3" class="pointer">sans</span></div>
+                    </div>
+                    <ul id="cart2-list" class="cart-list">
+                    </ul>
+                </section>
+                <section id="cart3" class="hidden">
+                    <button class="cart-close" id="btncartdelete4" title="Supprimer le panier"><img src="img/burnCart.png"></button>
+                    <button class="cart-close" id="btncartclose4" title="Vider le panier"><img src="img/recyclecart.png"></button>
+                    <h3 contenteditable="true" id="titlecart4" title="Cliquer pour éditer">Groupe 4</h3>
+                    <div class="totaux">
+                        <div class="title" title="Durée totale du panier">Durée</div>
+                        <div class="title" title="Nombre total de questions du panier">Quest.</div>
+                        <div class="title" title="Zone d'affichage du panier">Cible</div>
+                        <div title="Ordre des questions du diaporama" class="title">Ordre</div>
+                        <div title="Affichage du corrigé" class="title">Corrigé</div>
+                        <div><span>0</span> s.</div>
+                        <div><span>0</span></div>
+                        <div><span>1</span></div>
+                        <div><span data-ordered="true" id="imgordercart4" class="pointer">ordonné</span></div>
+                        <div><span data-progress="normal" id="progress-cart4" class="pointer">sans</span></div>
+                    </div>
+                    <ul id="cart3-list" class="cart-list">
+                    </ul>
+                </section>
+            </div>
+        </div>
+         <div class="row-5" id="colparameters">
+            <h1><i class="icon-arrow--right"></i>Paramètres</h1>
+            Type d'usage :
+            <select id="chooseParamType">
+                <option value="paramsdiapo" selected="selected">Diaporama</option>
+                <option value="paramsexos">Feuille d'exercices</option>
+                <option value="paramsinterro">Feuille d'interro</option>
+                <option value="paramsceinture">Ceintures de CM</option>
+                <option value="paramscourse">Course aux nombres</option>
+                <option value="paramsflashcards">Cartes flash</option>
+                <option value="paramswhogots">J'ai/qui a ?</option>
+                <option value="paramsdominos">Dominos</option>
+                <option value="paramswall">Panneau</option>
+                <option value="paramsduel">Duel</option>
+            </select>
+            <br>
+            <em>Avez-vous déjà essayé le panneau ou la course aux nombres ?</em><br>
+            <fieldset><legend>Clé de données</legend>
+                <input type="checkbox" id="aleaInURL" value="1" class="switch" title="Prendre en compte dans l'adresse">Utiliser
+                <input type="text" placeholder="eHDtp" id="aleaKey" size="6">
+                <img src="img/iconfinder_die_32px.png" class="pointer" id="btn-params-aleakey">
+            </fieldset>
+            <div id="paramsdiapo">
+            <fieldset>
+                <legend>Introduction au diaporama</legend>
+                <span title="Commencer sur un exemple que l'on pourra discuter"><input type="checkbox" class="checkbox" name="beforeSlider" id="radiobeforeslider1" value="example"><label for="radiobeforeslider1">Exemple</label></span>
+                <span title="Commencer par un décompte 3...2...1..."><input type="checkbox" class="checkbox" name="beforeSlider" id="radiobeforeslider2" value="321" checked="true"><label for="radiobeforeslider2">Décompte</label></span>
+                <span title="Commencer directement"><input type="radio" class="radio" name="beforeSlider" id="radiobeforeslider3" value="nothing"><label for="radiobeforeslider3">Rien</label></span>
+            </fieldset>
+            <fieldset class="lh2">
+                <legend>Son</legend>
+                <select title="Son entre chaque diapo - panier unique" id="playerlist">
+                <option value="null">Aucun</option>
+                </select>
+                <audio src="" autoplay id="soundplayer"></audio>
+            </fieldset>
+            <fieldset id="onlinechoice">
+                <legend>Répondre en ligne</legend>
+                <input type="radio" class="radio" name="online" id="radioonline1" value="no" checked="true"><label for="radioonline1">Non</label>
+                <input type="radio" class="radio" name="online" id="radioonline2" value="yes"><label for="radioonline2">Oui</label>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Enoncé</legend>
+                <input type="radio" class="radio" name="Enonces" id="radionbenonces1" value="1" checked="true"><label for="radionbenonces1">Simple</label> 
+                <input type="radio" class="radio" name="Enonces" id="radionbenonces2" value="2"><label for="radionbenonces2">Double</label> 
+                <input type="radio" class="radio" name="Enonces" id="radionbenonces3" value="3"><label for="radionbenonces3">Triple</label> 
+                <input type="radio" class="radio" name="Enonces" id="radionbenonces4" value="4"><label for="radionbenonces4">Quadruple</label><br />
+                <div id="screen-division">
+                    <div id="sddiv1" class="sddiv1"><span>1</span></div>
+                    <div id="sddiv2" class="hidden"><span>2</span></div>
+                    <div id="sddiv3" class="hidden"><span>3</span></div>
+                    <div id="sddiv4" class="hidden"><span>4</span></div>
+                </div>
+                <div id="divisionsOption" class="hidden">
+                    <input type="radio" class="radio" id="radiodir1" name="direction" value="h"><label for="radior1">Horizontale</label><br>
+                    <input type="radio" class="radio" id="radiodir2" name="direction" value="v" checked="true"> <label for="radiodir2">Verticale</label>
+                </div>
+                <div id="facetofaceOption" class="hidden">
+                    <input type="radio" class="radio" name="facetoface" id="radioftf1" value="n" checked="true"><label for="radioftf1">Normal</label><br>
+                    <input type="radio" class="radio" name="facetoface" id="radioftf2" value="y"><label for="radioftf2"> <img src="img/facetoface.png" title="Face à face sur une tablette"></label>
+                </div>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Fin du diaporama</legend>
+                <input type="radio" class="radio" name="endOfSlideRadio" value="correction" checked="true" id="radioendslider1"><label for="radioendslider1">Correction</label>
+                <input type="radio" class="radio" name="endOfSlideRadio" value="nothing" id="radioendslider2"><label for="radioendslider2">Rien</label>
+                <input type="radio" class="radio" name="endOfSlideRadio" value="list"id="radioendslider3"><label for="radioendslider3">Énoncés</label>
+            </fieldset><br>
+            <section class="txtcenter" id="startbuttons">
+                <button class="button--primary tooltip" id="btnstart">C'est parti !
+                    <span class="tooltiptext">Démarre le diaporama</span>
+                </button>
+                <button class="button--info tooltip" id="btnenonces">Énoncés
+                    <span class="tooltiptext">Affiche directement<br>les énoncés</span>
+                </button>
+                <button class="button--warning tooltip" id="btnreponses">Réponses
+                    <span class="tooltiptext">Affiche directement<br>les réponses</span>
+                </button> <br>
+                <button class="button--inverse tooltip" id="btnadresse">Adresse/QRCode
+                <span class="tooltiptext">Copie l'adresse de<br>l'activité dans<br>le presse papier</span>
+                </button>
+                <input type="text" class="hidden" id="acturl" maxlength="1024">
+                <button class="button--success tooltip" id="btncopytohistoric">→ Historique
+                <span class="tooltiptext">Copie la sélection<br>dans l'historique</span>
+                </button>
+            </section>
+        </div>
+        <div id="paramsexos" class="hidden">
+            <fieldset>
+                <legend>Titre de la fiche</legend>
+                <input type="text" placeholder="Fiche d'exercices" id="extitle">
+            </fieldset>
+            <fieldset>
+                <legend>Titre de chaque exercice</legend>
+                <input type="text" placeholder="Exercice n°" id="exeachex">
+            </fieldset>
+            <fieldset>
+                <legend>Taille des caractères : <span id="exTxtSize" class="blue">10</span>pt</legend>
+                <input id="exTxtSizeValue" type="range" min="8" max="16" step="0.5" value="10" oninput="document.getElementById('exTxtSize').innerHTML=this.value;">
+            </fieldset>
+            <fieldset>
+                <legend>Nombres d'exemplaires différents</legend>
+                <input id="exQtyValue" type="number" value="1">
+            </fieldset>
+            <fieldset>
+                <legend>Corrigé</legend>
+                <input type="radio" name="excorr" value="each" class="radio"> Après chaque exercice<br>
+                <input type="radio" name="excorr" value="end" class="radio" checked> En fin de fiche <br>
+                <input type="radio" name="excorr" value="sans" class="radio"> Sans corrigé
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngeneratesheet">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-ex-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse de<br>la fiche dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-ex-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie la fiche<br>dans l'historique</span>
+                </button>
+            </section>
+        </div>
+        <div id="paramsinterro" class="hidden">
+            <fieldset>
+                <legend>Titre de l’interro</legend>
+                <input type="text" placeholder="Interrogation écrite" id="inttitle">
+            </fieldset>
+            <fieldset>
+                <legend>Titre de chaque exercice</legend>
+                <input type="text" placeholder="Exercice n°" id="inteachex">
+            </fieldset>
+            <fieldset>
+                <legend>Taille des caractères : <span id="intTxtSize" class="blue">12</span>pt</legend>
+                <input id="intTxtSizeValue" type="range" min="8" max="16" step="0.5" value="12" oninput="document.getElementById('intTxtSize').innerHTML=this.value;">
+            </fieldset>
+            <fieldset>
+                <legend>Nombres d'exemplaires différents</legend>
+                <input id="intQtyValue" type="number" value="1">
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateexams">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-exam-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l’adresse de<br>l’interro dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-exam-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie l’interro<br>dans l’historique</span>
+                </button>    
+            </section>
+        </div>
+        <div id="paramsceinture" class="hidden">
+            <fieldset>
+                <legend>Imprimer la clé</legend>
+                <input type="checkbox" id="ceintprintToEnonce" value="1" class="switch"> Dans les énoncés<br>
+                <input type="checkbox" id="ceintprintToCorrige" value="1" class="switch"> Dans les corrigés
+            </fieldset>
+            <fieldset>
+                <legend>Titre de la ceinture</legend>
+                <input type="text" placeholder="Ceinture blanche" id="ceinttitle">
+            </fieldset>
+            <fieldset>
+                <legend>Nb de colonnes : <span id="ceintcols" class="blue">4</span></legend>
+                <input id="ceintcolsval" type="range" min="1" max="5" step="1" value="4">
+            </fieldset>
+            <fieldset>
+                <legend>Titres des colonnes</legend>
+                <div id="ceintcolumnTitle">
+                    <label for="ceinttitlecol1">Colonne 1 : </label><input type="text" id="ceinttitlecol1" placeholder="Tables de multiplication"><br>
+                    <label for="ceinttitlecol2">Colonne 2 : </label><input type="text" id="ceinttitlecol2" placeholder="Trouver le 3e angle"><br>
+                    <label for="ceinttitlecol3">Colonne 3 : </label><input type="text" id="ceinttitlecol3" placeholder="Ecriture décimale de"><br>
+                    <label for="ceinttitlecol4">Colonne 4 : </label><input type="text" id="ceinttitlecol4" placeholder="Somme de 3 termes">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Nb de lignes : <span id="ceintrows" class="blue">5</span></legend>
+                <input id="ceintrowsval" type="range" min="1" max="10" step="1" value="5">
+            </fieldset>
+            <fieldset>
+                <legend>Nb de sujets : <span id="ceintqty" class="blue">3</span></legend>
+                <input id="ceintqtyvalue" type="range" min="1" max="30" step="1" value="3">
+            </fieldset>
+            <fieldset>
+                <legend>Position corrigé</legend>
+                <input type="radio" class="radio" name="ceintcorrpos" value="fin" checked> à part <input type="radio" class="radio" name="ceintcorrpos" value="apres"> après ceinture
+            </fieldset>
+            <fieldset>
+                <legend>Pied des colonnes</legend>
+                <input type="text" id="ceintpiedcol" placeholder="😕 😀 😎" value="😕 😀 😎" title="Laisser vide si vous ne voulez pas de pied">
+            </fieldset>
+            <fieldset>
+                <legend>Orientation page</legend>
+                <input type="radio" class="radio" name="ceintorientation" value="portrait" checked> portrait <input type="radio" class="radio" name="ceintorientation" value="landscape"> paysage
+            </fieldset>
+            <fieldset>
+                <legend>Paramètres supplémentaires</legend>
+                <input type="text" id="ceintureplus" placeholder="laisser vide">
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateceinture">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-ceinture-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse de<br>l'activité dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-ceinture-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie la course<br>dans l'historique</span>
+                </button>    
+            </section>
+        </div>
+        <div id="paramscourse" class="hidden">
+            <fieldset>
+                <legend>Titre de la course</legend>
+                <input type="text" placeholder="Course aux nombres" id="cantitle">
+            </fieldset>
+            <fieldset>
+                <legend>Titres des colonnes</legend>
+                <input type="text" placeholder="Énoncé" id="cancol1title"><br>
+                <input type="text" placeholder="Réponse" id="cancol2title"><br>
+                <input type="text" placeholder="Jury" id="cancol3title"><br>
+            </fieldset>
+            <fieldset>
+                <legend>Temps de la course</legend>
+                <input type="text" placeholder="7" id="cantime" size="3"> min
+            </fieldset>
+            <fieldset>
+                <legend>Nb de sujets : <span id="canqty" class="blue">3</span></legend>
+                <input id="canqtyvalue" type="range" min="1" max="30" step="1" value="3">
+            </fieldset>
+            <fieldset>
+                <legend>Position corrigé</legend>
+                <input type="radio" class="radio" name="cancorrpos" value="end" checked> à part<br>
+                <input type="radio" class="radio" name="cancorrpos" value="each"> après chaque fiche<br>
+                <input type="radio" class="radio" name="cancorrpos" value="none"> sans
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateCAN">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-can-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse de<br>la course dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-can-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie la course<br>dans l'historique</span>
+                </button>
+            </section>
+        </div>
+        <div id="paramsflashcards" class="hidden">
+            <fieldset>
+                <legend>Titre de la page</legend>
+                <input type="text" placeholder="Je retiens les..." id="FCtitle">
+            </fieldset>
+            <fieldset>
+                <legend>Disposition</legend>
+                <input type="radio" class="radio" name="flashcarddispo" id="fcdispoboth" value="both" checked><label for="fcdispoboth">Recto à côté du verso</label><br>
+                <input type="radio" class="radio" name="flashcarddispo" id="fcdisposeparated" value="separated" checked><label for="fcdisposeparated">Page rectos/page versos</label><br><br>
+                <p>Réglages à faire pour l'impression...</p>
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateFC">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-flash-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse du<br>document dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-flash-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie l'adresse du document<br>dans l'historique</span>
+                </button>
+            </section>
+        </div>
+        <div id="paramswall" class="hidden">
+            <fieldset>
+                <legend>Titre de la page</legend>
+                <input type="text" placeholder="Panneau d'activités" id="walltitle">
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateWall">Ouvrir</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-wall-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse du<br>document dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-wall-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie l'adresse du document<br>dans l'historique</span>
+                </button>
+            </section>
+        </div>
+        <div id="paramswhogots" class="hidden">
+            <fieldset>
+                <legend>Affirmation</legend>
+                <input type="text" placeholder="J'ai ..." id="WGaffirmation">
+            </fieldset>
+            <fieldset>
+                <legend>Question</legend>
+                <input type="text" placeholder="Qui a ... ?" id="WGquestion">
+            </fieldset>
+            <fieldset>
+                <legend>Nombre de cartes : <span id="cardsNb" class="blue">30</span> (si 1 seule activité)</legend>
+                <input id="cardsNbValue" type="range" min="2" max="100" step="1" value="30">
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateWG">Générer</button>
+            </section>
+        </div>
+        <div id="paramsdominos" class="hidden">
+            <fieldset>
+                <legend>Nombre de dominos : <span id="dominosNb" class="blue">28</span> (si 1 seule activité)</legend>
+                <input id="dominosNbValue" type="range" min="2" max="100" step="1" value="28">
+            </fieldset>
+            <fieldset><legend>Doublons autorisés</legend>
+                <input type="checkbox" id="dominosDoublons" value="1" class="switch" title="Autorise la présence de réponses doubles dans les dominos" checked> <span id="dominosDoublonsText">Oui</span>
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngenerateDominos">Générer</button>
+            </section>
+        </div>
+        <div id="paramsduel" class="hidden">
+            <fieldset class="lh2">
+                <legend>Thème</legend>
+                <select name="duelbackground" id="duelbackgroundselect">
+                    <option value="vs" selected>VS</option>
+                    <option value="space">Espace</option>
+                    <option value="foret">Forêt</option>
+                    <option value="marais">Marais</option>
+                    <option value="hangar">Hangar</option>
+                    <option value="saloon">Saloon</option>
+                    <option value="desert">Désert</option>
+                    <option value="nightdesert">Désert la nuit</option>
+                </select><br><br>
+                <div id="duelbg"></div>
+            </fieldset>
+            <fieldset class="lh3">
+                <legend>Type de duel</legend>
+                <input type="radio" class="radio" name="dueltype" value="tochoose" title="Au choix des joueurs" checked> Au choix
+                <input type="radio" class="radio" name="dueltype" value="normal" title="Meilleur score"> Normal 
+                <input type="radio" class="radio" name="dueltype" value="mortal" title="Le premier qui échoue perd"> À mort 
+                <input type="radio" class="radio" name="dueltype" value="roulette" title="Chacun son tour, le premier qui échoue"> Roulette <br>
+                <input type="radio" class="radio" name="dueltype" value="thefaster" title="Le plus rapide gagne le point"> Lucky Luke 
+                <input type="radio" class="radio" name="dueltype" value="coop" title="Réponses alternées, donner le plus de bonnes réponses"> Coopératif
+            </fieldset>
+            <fieldset class="lh3">
+                <legend>Durée</legend>
+                <input type="radio" class="radio" name="dueltemps" value="panier" checked> Durée définie par le panier<br>
+                <input type="radio" class="radio" name="dueltemps" value="limit"> Durée donnée<br>
+                <input type="time" id="dueltotaltime" value="03:00">
+            </fieldset>
+            <section>
+                <button class="button--primary tooltip beaubutton" id="btn-duel-start">C'est parti !
+                    <span class="tooltiptext">Démarre le diaporama</span>
+                </button>                <button class="button--inverse tooltip beaubutton" id="btn-duel-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse <br>du duel dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-duel-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie le duel<br>dans l'historique</span>
+                </button>
+            </section>
+
+        </div>
+        </div>
+       <div class="row-4 colsx2" id="divparams">
+        <button id="btn-annotation2">
+            <img src="img/iconfinder_pencil_1055013.png" title="Annoter l'énoncé">
+        </button>
+        <button id="btn-shuffle">
+            <img src="img/iconfinder_die_1055072.png" title="Changer les exemples">
+        </button>
+            <h1><i class="icon-arrow--right"></i>Questions types</h1>
+            <div id="activityConsigne"></div>
+            <div id="activityOptions"></div>
+        </div>
+    </section>
+    <section id="tab-enonce" class="tabs-content-item" style="display: none;">
+        <aside>
+            <button id="btn-annotation-enonce">
+                <img src="img/iconfinder_pencil_1055013.png" title="Annoter">
+            </button>
+        </aside>
+        <div id="enonce-content" class="grid">
+            Ici s'affichent les énoncés du diaporama.
+        </div>
+    </section>
+    <section id="tab-corrige" class="tabs-content-item" style="display: none;">
+        <aside>
+            <button id="btn-annotation-corrige">
+                <img src="img/iconfinder_pencil_1055013.png" title="Annoter le corrigé">
+            </button>
+            <button id="btn-restart-otherdata">
+                <img src="img/restart.png" title="Recommencer avec de nouvelles données">
+            </button>
+            <button id="btn-restart-samedata">
+                <img src="img/restartsame.png" title="Recommencer avec les mêmes données">
+            </button>
+        </aside>
+        <div id="corrige-content" class="grid">
+            Ici s'affichent les corrigés du diaporama
+        </div>
+    </section>
+    <section id="tab-historique" class="tabs-content-item" style="display: none;">
+        <header>
+        Ici, l'historique des activités pour pouvoir les relancer, les imprimer... <span class="pointer underline" id="btnemptyhist" title="Supprime tous les éléments de l'historique">💥Vider l'historique</span> <span class="pointer underline" title="Sélectionner plusieurs éléments de l'historique" id="btnSelectHist">☑ Sélectionner</span>
+        <span id="actionsSelectHist" class="hidden">Pour la sélection : <span title="Supprimer les éléments sélectionnés" id="btnsupprselhist" class="underline pointer">Supprimer</span><!-- <span>Générer page</span>--></span>
+        <!--<span class="pointer underline" onclick="MM.generatePage()">🧾 Générer une page de liens</span>-->
+        </header>
+        <ol reversed></ol>
+    </section>
+    <section id="tab-telechargements" class="tabs-content-item" style="display: none;">
+        <p>MathsMentales est gratuit et placé sous licence libre apache 2.0</p>
+        <h2 class="sg-title">Code source de MathsMentales</h2>
+        <p>Le code source de MathsMentales est visibile, téléchargeable, forkable sur la forge du développeur : <a href="https://forge.aeif.fr/scogez/mathsmentales">https://forge.aeif.fr/scogez/mathsmentales</a></p>
+        <p></p>
+        <p>Tous les documents ci-dessous sont sous licence libre GPL</p>
+        <h2 class="sg-title">Documentation de MathsMentales</h2>
+        <p>En attendant des tutos en vidéo, voici une courte documentation de MathsMentales : <a href="docs/MathsMentales documentation.pdf" rel="noreferrer" target="_blank">Télécharger le pdf</a></p>
+        <h2 class="sg-title">Livrets de Ceinture de calcul mental</h2>
+        <p>Un descriptif plus approfondi est donné sur la page <a href="http://olibo.jeduque.net/ceintures-de-calcul-mental-au-college/">ceintures de calcul mental</a> de mon site.</p>
+        <ul>
+            <li><a href="docs/Livret CM 6e 2019-min.pdf">Livret d'entrainement 6e 2020</a></li>
+            <li><a href="docs/Livret CM 5e 2019.pdf">Livret d'entrainement 5e 2019</a></li>
+            <li><a href="docs/Livret CM 4e 2019_compressed.pdf">Livret d'entrainement 4e 2019</a></li>
+            <li><a href="docs/Livret CM 3e 2021.pdf">Livret d'entrainement 3e 2021</a></li>
+        </ul>
+        <h2 class="sg-title">Générateurs LibreOffice Calc de feuilles de passage</h2>
+        <p>Ces fichiers permettent de générer des fiches ainsi que leurs corrigés. Ils sont présentés de manière à avoir 3 ou 4 fiches par page. Libre à vous de générer autant de fiches que désirer, d'exporter en pdf...</p>
+        <ul>
+            <li><a href="docs/generateur CM 6e 2019.ods">Fichier générateur 6e 2020</a></li>
+            <li><a href="docs/generateur CM 5e 2019.ods">Fichier générateur 5e 2019</a></li>
+            <li><a href="docs/generateur CM 4e 2019.ods">Fichier générateur 4e 2019</a></li>
+            <li><a href="docs/generateur CM 3e 2021.ods">Fichier générateur 3e 2021</a></li>
+        </ul>
+        <h2 class="sg-title">Ceintures de Laureen De-Buyzer</h2>
+        <p>Laureen est une enseignante qui partage son travail sur <a href="https://www.facebook.com/groups/lecoinboulotdesprofsdemathematiques">le coin boulot des profs de Mathématiques</a>. Elle a notamment réalisé des ceintures de calcul mental remarquables pour les classes de 3e et de 5e en partie grace à MathsMentales.</p>
+        <p>Elle a accepté que j'utilise ses fichiers sur mon site, je ne vous propose que les pdf à imprimer. Si vous voulez les corrigés et les fichiers éditables, il faudra s'inscrire sur le groupe facebook avec votre adresse académique et faire une recherche sur ses publications.</p>
+        <ul>
+            <li><a href="docs/LaureenDeBuyzer/3e-ceintures calcul mental-livret-entrainements-partage_pagenumber.pdf">Livret d'entrainement 3e</a></li>
+            <li><a href="docs/LaureenDeBuyzer/3e-ceintures calcul mental-livret-évaluations-à imprimer en deux pages par page.pdf">Fichier d'évaluation 3e</a></li>
+            <li><a href="docs/LaureenDeBuyzer/5e-ceintures calcul mental-livret-entrainements-partage.pdf">Livret d'entrainement 5e</a></li>
+            <li><a href="docs/LaureenDeBuyzer/5e-ceintures calcul mental-toutes les évaluations- à imprimer en deux pages par page.pdf">Fichier d'évaluation 5e</a></li>
+        </ul>
+    </section>
+    <section id="tab-chercher" class="tabs-content-item" style="display: none;">
+        <div class="flex-container">
+            <div>
+                <input type="text" placeholder="Mots clés (au moins 3 car.)" id="searchinput"> <button id="btn-addToCart" title="Ajouter la sélection au panier">Au panier</button> <input type="number" id="addToCartNbq" min="1" max="20" value="2" size="3" title="Nombre de questions par activité de la sélection">
+            </div>
+            <div id="searchLevels" class="flex-container"></div>
+        </div>
+        <div id="resultat-chercher">
+        Dans cet onglet s'affiche le résultat d'une recherche d'activités : soit un niveau complet, soit un début de mot clé.
+        </div>
+    </section>
+</div>
+</div>
+<div id="slideshow-container" class="hidden">
+    <header>
+        <button title="Tout arrêter" id="stop-all"><img src="img/slider-stop.png"></button>
+        <button title="Tout mettre en pause" id="pause-all"><img src="img/slider-pause.png"></button>
+        <button title="Passer à la suivante pour tous" id="next-all"><img src="img/slider-next.png"></button>
+    </header>
+    <section id="slideshow"></section>
+</div>
+<div id="countdown-container" class="hidden">
+    <div class="demo">
+        <div class="demo__colored-blocks">
+          <div class="demo__colored-blocks-rotater">
+            <div class="demo__colored-block"></div>
+            <div class="demo__colored-block"></div>
+            <div class="demo__colored-block"></div>
+          </div>
+          <div class="demo__colored-blocks-inner"></div>
+          <div class="demo__text">Prêt</div>
+        </div>
+        <div class="demo__inner">
+          <svg class="demo__numbers" viewBox="0 0 100 100">
+            <defs>
+              <path class="demo__num-path-1" d="M40,28 55,22 55,78"/>
+              <path class="demo__num-join-1-2" d="M55,78 55,83 a17,17 0 1,0 34,0 a20,10 0 0,0 -20,-10"/>
+              <path class="demo__num-path-2" d="M69,73 l-35,0 l30,-30 a16,16 0 0,0 -22.6,-22.6 l-7,7"/>
+              <path class="demo__num-join-2-3" d="M28,69 Q25,44 34.4,27.4"/>
+              <path class="demo__num-path-3" d="M30,20 60,20 40,50 a18,15 0 1,1 -12,19"/>
+            </defs>
+            <path class="demo__numbers-path" 
+                  d="M-10,20 60,20 40,50 a18,15 0 1,1 -12,19 
+                     Q25,44 34.4,27.4
+                     l7,-7 a16,16 0 0,1 22.6,22.6 l-30,30 l35,0 L69,73 
+                     a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 
+                     l0,-61 L40,28" />
+          </svg>
+        </div>
+      </div>
+</div>
+<!--<div id="figures-container">
+</div>-->
+</body>
+</html>
