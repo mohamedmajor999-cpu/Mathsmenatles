@@ -39,7 +39,7 @@
             "question":[
                 "Quelle est l'image de $$${:x}$$ par la fonction $$f(x)=${math.signIfOne(:a)}x$$ ?",
                 "Quelle est l'image de $$${:x}$$ par la fonction $$f : x\\mapsto ${math.signIfOne(:a)}x$$ ?",
-                "Soit la fonction $$f: x\\mapsto ${:a}x$$,<br>calculer $$f(${math.signIfOne(:a)})$$"
+                "Soit la fonction $$f: x\\mapsto ${:a}x$$,<br>calculer $$f(${:x})$$"
             ],
             "answer":"$$f(${:x})=\\color{red}{${math.round(:a*:x,2)}}$$",
             "value":"${math.round(:a*:x,2)}"
