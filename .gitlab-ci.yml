@@ -1,13 +1,9 @@
-image: alpine:latest
-
 pages:
     stage: deploy
     script:
         - echo 'Hello '
     artifacts:
         paths:
-            - ./
-        exclude:
-            - .git/
+            - public
     only:
         - master
