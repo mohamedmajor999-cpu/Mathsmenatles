@@ -3,10 +3,11 @@ image: alpine:latest
 pages:
     stage: deploy
     script:
-        - echo 'Nothing'
+        - mkdir public
+        - cp -R * ./public
     artifacts:
         paths:
-            - ./
+            - public
         exclude:
             - .git/
     only:
