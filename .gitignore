@@ -10,8 +10,8 @@ node_modules
 documentation
 src/js/modules/doc
 # private files
-about.html
-cgu.html
+public/library/illustrations/*
+public/js/matomo.js
 
 # localdev
 editor.html
@@ -25,7 +25,5 @@ _private
 # fichiers du serveur
 tinyweb-1-94
 *_log
-public/library/illustrations/*
-public/js/matomo.js
 
 .htaccess

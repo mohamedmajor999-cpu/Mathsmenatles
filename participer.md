@@ -10,7 +10,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 - Installer [Visual Studio Code](https://code.visualstudio.com/Download) de Microsoft ou [VSCodium](https://vscodium.com/), la version libre, mais parfois plus compliquée pour la suite.
 - Installer [NodeJS](https://nodejs.org/fr/)
 - Installer [Git](https://git-scm.com/)
-- Installer [GitLab Workflow](https://desktop.github.com/)
+- Installer [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=gitlab.gitlab-workflow)
 
 ### Paramétrage de Visual Studio Code (VSC)
 
@@ -19,7 +19,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 - Cliquer sur "Source Control" (panneau de gauche) > "Clone Repository" > "Clone from GitLab"
 ![Cloner depuis GitLab](https://user-images.githubusercontent.com/85620848/155867784-8db0596a-88be-4ee7-9b03-d484ebee41cb.png)
 - Se connecter sur GitLab et autoriser VSC à accéder à son compte
-- Rechercher "mathsmentales" dans la barre du haut et cliquer sur "sebastien.cogez/mathsmentales"
+- Rechercher "mathsmentales" dans la barre du haut et cliquer sur "mathsmentales/mathsmentales"
 ![clonage de MathsMentales](https://blog.mathsmentales.net/wp-content/uploads/2022/10/cu251Jz3Wm.png)
 - Sélectionner le dossier dans lequel sera copié le code source de MathsMentales et attendre que la copie se termine.
 - Une fois le code chargé, cliquer sur la notification en bas à droite pour ouvrir le dossier. ![notification](https://blog.mathsmentales.net/wp-content/uploads/2022/10/BQe6ogm2nX.png)
@@ -37,7 +37,7 @@ Les activités se trouvent dans le dossier /library, dans des dossiers rangés p
 - NK : les exercices de 1ère et Tale techno
 - NT : les exercices de Tale spé
 
-Le nom des activités commence toujours par le nom du niveau où elle se trouve. Des activités prévues pour différents niveaux n'ont pas besoin d'être clonées, il faut juste indiquer dans leur code les niveaux\chapitres visés (Cf exemples dans [README.md](https://github.com/seb-cogez/mathsmentales/blob/master/README.md))
+Le nom des activités commence toujours par le nom du niveau où elle se trouve. Des activités prévues pour différents niveaux n'ont pas besoin d'être clonées, il faut juste indiquer dans leur code les niveaux\chapitres visés (Cf exemples dans [README.md](https://forge.apps.education.fr/mathsmentales/mathsmentales/-/blob/master/README.md))
 Exemple, dans le dossier NK, on trouvera des activités commençant pas le code du chapitre déterminé dans le fichier /library/structure.json, exemple : Ko1 pour un exercice destiné à être classé dans "Automatismes\Calculs numériques", suit ensuite le numéro de l'activité, qui prend le premier numéro non utilisé dans ce chapitre.
 
 On peut prendre le fichier /library/modele.json pour commencer et enregistrer sous le nom voulu dans le dossier visé, une fois l'ID décidé, qui reprend le nom du fichier.
