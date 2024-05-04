@@ -21,10 +21,11 @@ _private
 
 # traces MacOS
 .DS_Store
-
+*.cert
 # fichiers du serveur
 tinyweb-1-94
 *_log
-library/illustrations/*
+public/library/illustrations/*
+public/js/matomo.js
 
 .htaccess
