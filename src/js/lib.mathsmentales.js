@@ -226,6 +226,8 @@ window.onload = function(){
     document.getElementById("dominosDoublons").onclick = (evt)=>{let text = document.getElementById("dominosDoublonsText"); if(evt.target.checked)text.innerHTML="Oui"; else text.innerHTML = "Non"}
     document.getElementById("dominosDoublons").checked = true;
     document.getElementById("btngenerateDominos").onclick = ()=>{MM.createDominos()}
+    // puzzles
+    document.getElementById("btngeneratePuzzle").onclick = ()=>{MM.createPuzzle()}
     // duels
     document.getElementById("btn-duel-start").onclick = ()=>{MM.duelLaunch();};
     document.getElementById("btn-duel-adresse").onclick = ()=>{MM.copyURL('duel');};

@@ -98,7 +98,7 @@ const MM = {
         document.getElementById(tab).style.display = "";
     },
     showParameters:function(id){
-        let ids = ["paramsdiapo","paramsexos", "paramsinterro", "paramsceinture", "paramsflashcards", "paramswhogots", "paramsdominos", "paramscourse", "paramsduel", "paramswall"];//
+        let ids = ["paramsdiapo","paramsexos", "paramsinterro", "paramsceinture", "paramsflashcards", "paramswhogots", "paramsdominos", 'paramspuzzle', "paramscourse", "paramsduel", "paramswall"];//
         if(ids.indexOf(id)<0) return false;
         // hide all
         for(let i=0,len=ids.length;i<len;i++){
@@ -768,6 +768,17 @@ const MM = {
         let value = this.setURL(params,"dominossheet");
         MM.window = window.open(value,"mywindow","location=no,menubar=no,titlebar=no,width=1123");
     },
+    createPuzzle:function(){
+        if(!MM.carts[0].activities.length){
+            MM.carts[0].addActivity(MM.editedActivity);
+        }
+        let withSeed = false;
+        if(document.getElementById("aleaInURL").checked)withSeed = true;
+        let params = this.paramsToURL(withSeed,"puzzlesheet");
+        let value = this.setURL(params,"puzzlesheet");
+        MM.window = window.open(value,"mywindow","location=no,menubar=no,titlebar=no,width=1123");
+    },
+
     duelLaunch:function(){
         if(!MM.editedActivity) return;
         if(!MM.carts[0].activities.length){
@@ -881,6 +892,9 @@ const MM = {
             return "n="+document.getElementById("dominosNbValue").value+
             ",a="+(withAleaSeed?MM.seed:"")+
             ",d="+(document.getElementById("dominosDoublons").checked)+
+            this.export();
+        } else if(type==="puzzlessheet"){
+            return ",a="+(withAleaSeed?MM.seed:"")+
             this.export();
         } else if(type === "duel"){
             return "ty="+utils.getRadioChecked("dueltype")+
@@ -1397,6 +1411,8 @@ const MM = {
             return utils.baseURL.replace('index','wall')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
         } else if(type==="dominossheet"){
             return utils.baseURL.replace('index','dominos')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
+        } else if(type==="puzzlesheet"){
+            return utils.baseURL.replace('index','puzzle')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
         } else if(type==="duel"){
             return utils.baseURL.replace('index','duel')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
         } else if(type==="ceinture"){
