@@ -1,11 +1,11 @@
 {
   "name": "mathsmentales",
-  "version": "2.0.39",
+  "version": "2.0.45",
   "description": "Outil pour travailler les automatismes et le calcul mental en mathématiques",
   "main": "index.html",
   "type": "commonjs",
   "scripts": {
-    "test": "echo \"Lancement des tests...\" && exit 0"
+    "test": "Lancement du packaging"
   },
   "keywords": [
     "javascript",

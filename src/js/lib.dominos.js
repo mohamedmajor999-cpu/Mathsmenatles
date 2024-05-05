@@ -4,7 +4,7 @@ import common from './mods/common.js';
 import cart from './mods/cart.js';
 import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
-import math from './mods/math.js';
+// import math from './mods/math.js';
 
 const MM={};
 const content = document.getElementById("creator-content");

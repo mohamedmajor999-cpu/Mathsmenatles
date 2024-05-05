@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/bulma-steps.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/mathsmentales.min.css?v=16" type="text/css" media="screen" />
-    <link rel="stylesheet" href="js/libs/JSXGprah1.4.0/jsxgraph.css" type="text/css" />
+    <link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />
     <script src="js/libs/index.alllibs.min.js" defer></script>
     <script src="js/libs/mathlive/mathlive.min.js" defer></script>
-    <script src="js/bundle.mathsmentales.js?v=2.0.34" id="mmscriptid"></script>
+    <script src="js/lib.mathsmentales.js?v=2.0.34" id="mmscriptid"></script>
     <script src="js/matomo.js"></script>
 </head>
 <body>
@@ -229,6 +229,7 @@
                 <option value="paramsflashcards">Cartes flash</option>
                 <option value="paramswhogots">J'ai/qui a ?</option>
                 <option value="paramsdominos">Dominos</option>
+                <option value="paramspuzzle">Puzzles</option>
                 <option value="paramswall">Panneau</option>
                 <option value="paramsduel">Duel</option>
             </select>
@@ -521,6 +522,15 @@
             </fieldset>
             <section>
                 <button class="button--primary beaubutton" id="btngenerateDominos">Générer</button>
+            </section>
+        </div>
+        <div id="paramspuzzle" class="hidden">
+            <fieldset>
+                <legend>Sélectionner 18 questions</legend>
+                En cours de développement, pour l'instant seul un triomino basé sur 16 pièces est disponible
+            </fieldset>
+            <section>
+                <button class="button--primary beaubutton" id="btngeneratePuzzle">Générer</button>
             </section>
         </div>
         <div id="paramsduel" class="hidden">

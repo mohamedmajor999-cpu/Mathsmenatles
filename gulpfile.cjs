@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 
 let cache
-const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall' ]
+const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall', 'puzzle' ]
 
 const packageJsonPath = path.join(__dirname, 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
@@ -48,7 +48,7 @@ async function build() {
       //this.emit('end')
     }).on('bundle', bundle => {
       cache = bundle
-    }).pipe( source('bundle.' + module + '.js'))
+    }).pipe( source('lib.' + module + '.js'))
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest('./public/js/'))
@@ -62,8 +62,8 @@ async function updateVersion() {
     const htmlPath = path.join(__dirname, './src/' + htmlPageName);
     const destPath = path.join(__dirname, './public/' + htmlPageName)
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
-    const regex = new RegExp('bundle\\.' +module+ '\\.js\\?v=[\\d\\.]+')
-    const updatedContent = htmlContent.replace(regex, `bundle.${module}.js?v=${packageJson.version}`);
+    const regex = new RegExp('lib\\.' +module+ '\\.js\\?v=[\\d\\.]+')
+    const updatedContent = htmlContent.replace(regex, `lib.${module}.js?v=${packageJson.version}`);
     console.log(htmlPageName + ' mis à jour')
     fs.writeFileSync(destPath, updatedContent, 'utf8');
   })
