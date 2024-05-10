@@ -31,7 +31,9 @@ const library = {
     load:function(url,id){
         // pour le développement, on peut lire une activité qui n'a pas encore été intégrée dans la bibliothèque
         // en fournissant ?u=id de l'activité.
-        fetch("library/"+url+"?v"+MM.version)
+        let source = ''
+        if(location.hostname==='127.0.0.1')source='../public/'
+        fetch(source+"library/"+url+"?v"+MM.version)
             .then(r => r.json())
             .then(body => {
                 let regexp = /\/(.*)\./;
@@ -45,7 +47,9 @@ const library = {
      * @param {String} url url du json à récupérer
      */
     loadJSON:async function(url){
-        const r = await fetch("library/"+url+"?v"+MM.version)
+        let source = ''
+        if(location.hostname==='127.0.0.1')source='../public/'
+        const r = await fetch(source+"library/"+url+"?v"+MM.version)
         if (r.ok === true) return r.json()
         throw new Error('Erreur de chargement de l\'activité')
     },
@@ -55,7 +59,9 @@ const library = {
      * @returns Promesse de chargement du fichier à charger
      */
     import:async function(url){
-        const r = await fetch("library/"+url+"?v"+MM.version)
+        let source = ''
+        if(location.hostname==='127.0.0.1')source='../public/'
+        const r = await fetch(source+"library/"+url+"?v"+MM.version)
         if(r.ok === true) return r.json()
         throw new Error('Problème de chargement de l\'activité')
     },

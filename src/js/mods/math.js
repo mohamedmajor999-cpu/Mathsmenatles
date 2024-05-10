@@ -541,26 +541,25 @@ const math = {
      */
     phrase(operandes,operations,option,ordre){
         let x,y,r,z;
-        let phrases = {
-            "+":["la somme de ${x} et de ${y}","${x}+${y}","${x}+${y}"],
-            "-":["la différence entre ${x} et ${y}","${x}-${y}","${x}-${y}"],
-            "*":["le produit de ${x} par ${y}","${x}\\\\times ${y}","${x}*${y}"],
-            "/":["le quotient de ${x} par ${y}","${x}\\\\div ${y}","${x}/${y}"],
-            "q":["le quotient de ${x} par ${y}", "\\\\dfrac{${x}}{${y}}","${x}/${y}"]
+        const phrases = {
+            "+":[()=>{return 'la somme de '+x+' et de '+y},()=>{return x+'+'+y},()=>{return x+'+'+y}],
+            "-":[()=>{return 'la différence entre '+x+' et '+y},()=>{return x+'-'+y},()=>{return x+'-'+y}],
+            "*":[()=>{return 'le produit de '+x+' par '+y},()=>{return x+'\\times'+y},()=>{return x+'*'+y}],
+            "/":[()=>{return 'le quotient de '+x+' par '+y},()=>{return x+'\\div'+y},()=>{return x+'/'+y}],
+            "q":[()=>{return 'le quotient de '+x+' par '+y},()=>{return '\\dfrac{'+x+'}{'+y+'}'},()=>{return x+'/'+y}]
         }
         x=operandes[0];y=operandes[1];
         switch(option){
             case "p":
-                r = eval("`"+phrases[operations[0]][0]+"`")
+                r = phrases[operations[0]][0]()
                 break;
             case "a":
-                r = eval("`"+phrases[operations[0]][1]+"`")
+                r = phrases[operations[0]][1]()
                 break;
             case "v":
-                r = eval("`"+phrases[operations[0]][2]+"`")
+                r = phrases[operations[0]][2]()
                 break;
             }
-            //debug(r);
         if(operations.length>1){// plus d'une opération
             if(ordre){ // la première operation est le premier argument
                 x=r;y=operandes[2];z=x;
@@ -573,15 +572,15 @@ const math = {
                 }
             switch(option){
                 case "p":
-                    r=eval("`"+phrases[operations[1]][0]+"`").replace("de le", "du");
+                    r=phrases[operations[1]][0]().replace("de le", "du");
                     break;
                 case "a":
                     if(ordre)x=z;else y=z;
-                    r = eval("`"+phrases[operations[1]][1]+"`")
+                    r = phrases[operations[1]][1]()
                     break;
                 case "v":
                     if(ordre)x=z;else y=z;
-                    r = eval("`"+phrases[operations[1]][2]+"`")
+                    r = phrases[operations[1]][2]()
                     break;
             }
         }
@@ -596,7 +595,7 @@ const math = {
      */
     bigDecimal(a,op,b){
         let x = Big(a);
-        return eval('x.'+op+'('+b+').toString()');
+        return x[op](b).toString()
     },
         /**
      * Génère un montant aléatoire en €

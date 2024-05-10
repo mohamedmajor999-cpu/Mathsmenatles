@@ -263,7 +263,7 @@ const MM = {
         let button = utils.create("button");
         button.value = cartsNb;
         button.className = "tabs-menu-link";
-        button.innerHTML = '<img src="img/cart'+cartsNb+'.png">';
+        button.innerHTML = '<i class="sprite sprite-cart'+cartsNb+'"></i>';
         button.id = "button-cart"+cartsNb;
         let addcart = document.getElementById('addcart');
         let cartsMenu = document.getElementById('cartsMenu');
@@ -298,14 +298,14 @@ const MM = {
     */
     restoreCartsInterface:function(){
         let cartsMenu = document.getElementById('cartsMenu');
-        cartsMenu.innerHTML = `<button class="tabs-menu-link is-active" value="1" id="button-cart1"><img src="img/cart1.png"></button>
-        <button id="addcart" title="Ajouter un panier"><img src="img/cartadd.png"></button>`;
+        cartsMenu.innerHTML = `<button class="tabs-menu-link is-active" value="1" id="button-cart1"><i class="sprite sprite-cart1"></i></button>
+        <button id="addcart" title="Ajouter un panier"><i class="sprite sprite-cartadd"></i></button>`;
         for(let i=1;i<this.carts.length;i++){
             let btnnb = i+1;
             let button = utils.create("button",{
                 value:btnnb,
                 className:"tabs-menu-link",
-                innerHTML:'<img src="img/cart'+btnnb+'.png">',
+                innerHTML:'<i class="sprite sprite-cart'+btnnb+'"></i>',
                 id:"button-cart"+btnnb
             });
             let addcart = document.getElementById('addcart');
@@ -328,7 +328,7 @@ const MM = {
         if(!document.getElementById("addcart")){
             let buttonAddCart = document.createElement("button");
             buttonAddCart.id = "addcart";
-            buttonAddCart.innerHTML = '<img src="img/cartadd.png">';
+            buttonAddCart.innerHTML = '<i class="sprite sprite-cartadd"></i>';
             buttonAddCart.onclick = function(){
                 MM.addCart();
             }
@@ -1137,7 +1137,7 @@ const MM = {
         let withSeed = false;
         if(document.getElementById("aleaInURL").checked)withSeed = true;
         let params = this.paramsToURL(withSeed,type);
-        let close = utils.create("button",{innerHTML:"<img src='img/closebutton32.png'>",style:"position:absolute;top:0.5rem;right:0.5rem;padding:0;background:transparent"});
+        let close = utils.create("button",{innerHTML:"<i class='sprite sprite-closebutton32'></i>",style:"position:absolute;top:0.5rem;right:0.5rem;padding:0;background:transparent"});
         close.onclick = ()=>{let m = document.getElementById("urlCopy");m.parentNode.removeChild(m)};
         modalMessage.appendChild(close);
         colparams.appendChild(modalMessage);
@@ -1457,17 +1457,17 @@ const MM = {
             else div.className = "slider-34";
             let nextActivity = "";
             if(MM.carts[assocSliderActivity[i]].activities.length>1) {
-                nextActivity = `<button title="Activité suivante du panier" data-actid="0" id="ButtonNextAct${i}"><img src="img/slider-next.png"></button>`;
+                nextActivity = `<button title="Activité suivante du panier" data-actid="0" id="ButtonNextAct${i}"><i  class="sprite sprite-slider-next"></i></button>`;
             }
             div.innerHTML = `Exemple `
             MM.zooms['zsample'+i] = new Zoom('zsample'+i, "#sampleSlide"+i, true, "em", facteurZoom, 'zs'+i)
             div.appendChild(MM.zooms['zsample'+i].createCursor())
             div.innerHTML += `<div class="slider-nav">
-            <button title="Annoter l'exemple" id="btn-sample-annotate${i}"><img src="img/iconfinder_pencil_1055013.png"></button>
-            <button title="Montrer la réponse" id="btn-sample-showanswer${i}"><img src="img/slider-solution.png"></button>
-            <button title="Autre exemple" id="btn-newsample${i}"><img src="img/newsample.png"></button>
+            <button title="Annoter l'exemple" id="btn-sample-annotate${i}"><i class="sprite sprite-iconfinder_pencil_1055013"></i></button>
+            <button title="Montrer la réponse" id="btn-sample-showanswer${i}"><i class="sprite sprite-slider-solution"></i></button>
+            <button title="Autre exemple" id="btn-newsample${i}"><i class="sprite sprite-newsample"></i></button>
             ${nextActivity}
-            <button title="Démarrer le diaporama" id="btn-sample-start${i}"><img src="img/fusee.png"></button>
+            <button title="Démarrer le diaporama" id="btn-sample-start${i}"><i class="sprite sprite-fusee"></i></button>
             </div>`;
             let divContent = utils.create("div",{className:"slide",id:"sampleSlide"+i});
             let span = utils.create("span",{id:"sample"+i+"-enonce"});
@@ -1563,15 +1563,15 @@ const MM = {
             /*if(nb>1 && MM.faceToFace==="y" && i===0)div.className += " return";
             else if(nb>2 && MM.faceToFace==="y" && i===1)div.className +=" return";*/
             let innerH = `<div class="slider-head"><div class="slider-nav">
-            <button title="Arrêter le diaporama" id="btn-timer-end${i}"><img src="img/slider-stop.png" /></button>`;
+            <button title="Arrêter le diaporama" id="btn-timer-end${i}"><i class="sprite sprite-slider-stop"></i></button>`;
             if(MM.onlineState==="no"){
                 // créer les boutons de pause et montrer réponse si on n'est pas en mode online
-                innerH += `<button title="Mettre le diapo en pause", id="btn-timer-pause${i}"><img src="img/slider-pause.png" /></button>
-                <button title="Montrer la réponse" id="btn-show-answer${i}"><img src="img/slider-solution.png" /></button>`;
+                innerH += `<button title="Mettre le diapo en pause", id="btn-timer-pause${i}"><i class="sprite sprite-slider-pause"></i></button>
+                <button title="Montrer la réponse" id="btn-show-answer${i}"><i class="sprite sprite-slider-solution"></i></button>`;
             }
             MM.zooms["zs"+i] = new Zoom("zs"+i,"#slider"+i+" .slide",false,"em",facteurZoom);
             let zoom = MM.zooms["zs"+i].createCursor();
-            innerH += `<button title="Passer la diapo" id="btn-next-slide${i}"><img src="img/slider-next.png" /></button>
+            innerH += `<button title="Passer la diapo" id="btn-next-slide${i}"><i class="sprite sprite-slider-next"></i></button>
             </div>
             <div class="slider-title"></div>
             <div class="slider-chrono"><progress class="progress is-link is-large" value="0" max="100"></progress></div></div>

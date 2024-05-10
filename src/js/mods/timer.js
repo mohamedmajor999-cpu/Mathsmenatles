@@ -46,9 +46,9 @@ export default class timer {
         this.stop(); // just in case;
         if(this.ended) return false;
         this.break = false;
-        const btnPause = document.querySelectorAll("#slider"+this.id+" .slider-nav img")[1];
+        const btnPause = document.querySelectorAll("#slider"+this.id+" .slider-nav i")[1];
         if(MM.onlineState==="no"){
-            btnPause.src="img/slider-pause.png";
+            btnPause.className="sprite sprite-slider-pause";
             utils.removeClass(btnPause,"blink_me");
         }
         if(id>-1){
@@ -81,8 +81,8 @@ export default class timer {
         } else {
             this.break = true;
             this.stop();
-            let btnPause = document.querySelectorAll("#slider"+this.id+" .slider-nav img")[1];
-            btnPause.src="img/slider-play.png";
+            let btnPause = document.querySelectorAll("#slider"+this.id+" .slider-nav i")[1];
+            btnPause.className="sprite sprite-slider-play";
             utils.addClass(btnPause,"blink_me");
         }
     }

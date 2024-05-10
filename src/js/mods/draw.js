@@ -39,8 +39,8 @@ export default class draw {
             height:target.offsetHeight+30
         });
         // changement d'aspect du bouton "annoter"
-        this.btn = document.querySelector("#"+btnId + " img");
-        this.btn.src = "img/iconfinder_pencil_activ.png";
+        this.btn = document.querySelector("#"+btnId + " i");
+        this.btn.className = "sprite sprite-iconfinder_pencil_activ";
         //insertion du canvas dans 
         target.appendChild(c);
         this.canvas = c;
@@ -112,7 +112,7 @@ export default class draw {
     }
     // destroy canvas
     destroy(){
-        this.btn.src = "img/iconfinder_pencil_1055013.png";
+        this.btn.className = "sprite sprite-iconfinder_pencil_1055013";
         this.canvas.parentNode.removeChild(this.canvas);
         this.canvas = undefined;
         this.ctx = undefined;

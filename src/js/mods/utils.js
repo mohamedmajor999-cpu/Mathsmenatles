@@ -285,7 +285,7 @@ const utils = {
      */
     getTargetWithImageInside(evt){
         let target = evt.target;
-        if(evt.target.nodeName.toLowerCase()==="img"){
+        if(evt.target.nodeName.toLowerCase()==="i"){
             target = evt.target.parentNode;
         }
         return target;
