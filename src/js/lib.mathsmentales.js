@@ -275,7 +275,7 @@ window.onload = function(){
                 MM.zooms[evt.target.dataset.assoc].minus();
             }
         }
-        if(evt.target.nodeName.toLowerCase() === "img"){
+        if(evt.target.nodeName.toLowerCase() === "i"){
             targetId = evt.target.parentNode.id;
         }
         for(let i=0;i<4;i++){

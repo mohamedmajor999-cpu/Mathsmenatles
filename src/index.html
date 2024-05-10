@@ -16,19 +16,17 @@
     <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
     <link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/bulma-steps.min.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/mathsmentales.min.css?v=16" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />
     <script src="js/libs/index.alllibs.min.js" defer></script>
     <script src="js/libs/mathlive/mathlive.min.js" defer></script>
-    <script src="js/lib.mathsmentales.js?v=2.0.34" id="mmscriptid"></script>
+    <script type="module" src="js/lib.mathsmentales.js?v=2.0.34" id="mmscriptid"></script>
     <script src="js/matomo.js"></script>
 </head>
 <body>
     <div id="app-container">
 <header>
-    <a id="btnaccueil" numero="#tab-accueil" class="logo tabs-menu-link"><img numero="#tab-accueil" src="img/logocm32x32.png" alt="logo" /></a>
+    <a id="btnaccueil" numero="#tab-accueil" class="logo tabs-menu-link"><!--<img numero="#tab-accueil" src="img/logocm32x32.png" alt="logo" />--><i numero="#tab-accueil" class="sprite sprite-logocm32x32"></i> </a>
     <div id="openMenuButton">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -84,7 +82,8 @@
     <section id="tab-accueil" class="tabs-content-item">
         <section class="grille">
         <article class="accueillogo">
-            <img src="img/logocm160x132.png" class="logoMM">
+            <!--<img src="img/logocm160x132.png" class="logoMM">-->
+            <i class="sprite sprite-logocm160x132 logoMM"></i>
             <p>
                 <b>Automatismes et calcul mental</b> à données aléatoires sous forme de diaporamas, réponses en ligne, feuilles d'exercices, cartes flash, dominos, duels en ligne... (<a href="old/">ancienne version</a>) plus d'infos sur <a href="about.html">À propos</a>
              </p>
@@ -94,7 +93,7 @@
              <p><b>Contact</b> : <a href="mailto:contact@mathsmentales.net">contact@mathsmentales.net</a> pour signaler les problèmes, faire des suggestions...<br>
             <span class="green">Un bon CTRL + F5 peut aider lors d'un blocage</span>, mais pas toujours !</p>
             <p>
-                <a href="https://coopmaths.fr/"><img src="img/logo-coopmaths-final.png" class="logoCM"></a>Je collabore avec <a href="https://coopmaths.fr/">CoopMaths</a> qui propose de nombreuses <b>fiches d'exercices</b> à données aléatoires ainsi que tout un tas d'outils pour l'individualisation des apprentissages.
+                <a href="https://coopmaths.fr/"><!--<img src="img/logo-coopmaths-final.png" class="logoCM">--><i class="sprite sprite-logo-coopmaths-final logoCM"></i></a>Je collabore avec <a href="https://coopmaths.fr/">CoopMaths</a> qui propose de nombreuses <b>fiches d'exercices</b> à données aléatoires ainsi que tout un tas d'outils pour l'individualisation des apprentissages.
             </p>
             </article>
         </section>
@@ -110,9 +109,9 @@
     </section>
     <section id="tab-parameters" class="grid-3 has-gutter tabs-content-item" style="display: none;">
         <div>
-            <button id="addToCart" title="Ajouter au panier"><img src="img/addtocart.png"><br>Ajouter<br>au panier</button>
-            <button id="unlinkCart" class="hidden" title="Désolidariser l'édition du panier"><img src="img/iconfinder_pin.png"><br>Désolidariser<br>du panier</button>
-            <button id="removeFromCart" class="hidden" title="Supprimer du panier"><img src="img/removefromcart.png"><br>Retirer<br>du panier</button>
+            <button id="addToCart" title="Ajouter au panier"><!--<img src="img/addtocart.png">--><i class="sprite sprite-addtocart"></i><br>Ajouter<br>au panier</button>
+            <button id="unlinkCart" class="hidden" title="Désolidariser l'édition du panier"><!--<img src="img/iconfinder_pin.png">--><i class="sprite sprite-iconfinder_pin"></i><br>Désolidariser<br>du panier</button>
+            <button id="removeFromCart" class="hidden" title="Supprimer du panier"><!--<img src="img/removefromcart.png">--><i class="sprite sprite-removefromcart"></i><br>Retirer<br>du panier</button>
             <h1><i class="icon-arrow--right"></i>Activité <span id="param-title-act"></span></h1>
             <div id="activityTitle"></div>
             <div id="activityDescription"></div>
@@ -131,14 +130,14 @@
         <div id="divcarts" class="hidden">
             <div class="tabs">
                 <nav class="tabs-menu" id="cartsMenu">
-                    <button class="tabs-menu-link is-active" value="1" id="button-cart1"><img src="img/cart1.png"></button>
-                    <button id="addcart" title="Ajouter un panier"><img src="img/cartadd.png"></button>
+                    <button class="tabs-menu-link is-active" value="1" id="button-cart1"><!--<img src="img/cart1.png">--><i class="sprite sprite-cart1"></i></button>
+                    <button id="addcart" title="Ajouter un panier"><!--<img src="img/cartadd.png">--><i class="sprite sprite-cartadd"></i></button>
                 </nav>
             </div>
             <div id="cartscontainer">
                 <section id="cart0" class="cartcontent">
-                    <button id="btncartclose1" class="cart-close" title="Vider le panier"><img src="img/recyclecart.png"></button>
-                    <img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart1">
+                    <button id="btncartclose1" class="cart-close" title="Vider le panier"><!--<img src="img/recyclecart.png">--><i class="sprite sprite-recyclecart"></i></button>
+                    <!--<img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart1">--><i class="sprite sprite-iconfinder_copy pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart1"></i>
                     <h3 contenteditable="true" title="Cliquer pour éditer" id="titlecart1">Groupe 1</h3>
                     <div class="totaux">
                         <div class="title" title="Durée totale du panier">Durée</div>
@@ -157,9 +156,9 @@
                     Si vous voulez utiliser plus d'une activité dans votre séance, ajouter-les ici pour composer un panier.
                 </section>
                 <section id="cart1" class="hidden">
-                    <button class="cart-close" id="btncartdelete2" title="Supprimer le panier"><img src="img/burnCart.png"></button>
-                    <button class="cart-close" id="btncartclose2" title="Vider le panier"><img src="img/recyclecart.png"></button>
-                    <img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart2">
+                    <button class="cart-close" id="btncartdelete2" title="Supprimer le panier"><!--<img src="img/burnCart.png">--><i class="sprite sprite-burnCart"></i></button>
+                    <button class="cart-close" id="btncartclose2" title="Vider le panier"><!--<img src="img/recyclecart.png">--><i class="sprite sprite-recyclecart"></i></button>
+                    <!--<img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart2">--><i class="sprite sprite-iconfinder_copy pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart2"></i>
                     <h3 contenteditable="true" title="Cliquer pour éditer" id="titlecart2">Groupe 2</h3>
                     <div class="totaux">
                         <div class="title" title="Durée totale du panier">Durée</div>
@@ -177,9 +176,9 @@
                     </ul>
                 </section>
                 <section id="cart2" class="hidden">
-                    <button class="cart-close" id="btncartdelete3" title="Supprimer le panier"><img src="img/burnCart.png"></button>
-                    <button class="cart-close" id="btncartclose3" title="Vider le panier"><img src="img/recyclecart.png"></button>
-                    <img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart3">
+                    <button class="cart-close" id="btncartdelete3" title="Supprimer le panier"><!--<img src="img/burnCart.png">--><i class="sprite sprite-burnCart"></i></button>
+                    <button class="cart-close" id="btncartclose3" title="Vider le panier"><!--<img src="img/recyclecart.png">--><i class="sprite sprite-recyclecart"></i></button>
+                    <!--<img src="img/iconfinder_copy.png" class="pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart3">--><i class="sprite sprite-iconfinder_copy pointer cartduplicate" title="Dupliquer le panier" id="imgduplicatecart3"></i>
                     <h3 contenteditable="true" id="titlecart3" title="Cliquer pour éditer">Groupe 3</h3>
                     <div class="totaux">
                         <div class="title" title="Durée totale du panier">Durée</div>
@@ -197,8 +196,8 @@
                     </ul>
                 </section>
                 <section id="cart3" class="hidden">
-                    <button class="cart-close" id="btncartdelete4" title="Supprimer le panier"><img src="img/burnCart.png"></button>
-                    <button class="cart-close" id="btncartclose4" title="Vider le panier"><img src="img/recyclecart.png"></button>
+                    <button class="cart-close" id="btncartdelete4" title="Supprimer le panier"><!--<img src="img/burnCart.png">--><i class="sprite sprite-burnCart"></i></button>
+                    <button class="cart-close" id="btncartclose4" title="Vider le panier"><!--<img src="img/recyclecart.png">--><i class="sprite sprite-recyclecart"></i></button>
                     <h3 contenteditable="true" id="titlecart4" title="Cliquer pour éditer">Groupe 4</h3>
                     <div class="totaux">
                         <div class="title" title="Durée totale du panier">Durée</div>
@@ -238,7 +237,8 @@
             <fieldset><legend>Clé de données</legend>
                 <input type="checkbox" id="aleaInURL" value="1" class="switch" title="Prendre en compte dans l'adresse">Utiliser
                 <input type="text" placeholder="eHDtp" id="aleaKey" size="6">
-                <img src="img/iconfinder_die_32px.png" class="pointer" id="btn-params-aleakey">
+                <!--<img src="img/iconfinder_die_32px.png" class="pointer" id="btn-params-aleakey">-->
+                <i class="pointer sprite sprite-iconfinder_dice_32px" id="btn-params-aleakey"></i>
             </fieldset>
             <div id="paramsdiapo">
             <fieldset>
@@ -278,7 +278,9 @@
                 </div>
                 <div id="facetofaceOption" class="hidden">
                     <input type="radio" class="radio" name="facetoface" id="radioftf1" value="n" checked="true"><label for="radioftf1">Normal</label><br>
-                    <input type="radio" class="radio" name="facetoface" id="radioftf2" value="y"><label for="radioftf2"> <img src="img/facetoface.png" title="Face à face sur une tablette"></label>
+                    <input type="radio" class="radio" name="facetoface" id="radioftf2" value="y"><label for="radioftf2"> <!--<img src="img/facetoface.png" title="Face à face sur une tablette">-->
+                    <i class="sprite sprite-facetoface" title="Face à face sur une tablette"></i>
+                    </label>
                 </div>
             </fieldset>
             <br>
@@ -577,11 +579,13 @@
         </div>
         </div>
        <div class="row-4 colsx2" id="divparams">
-        <button id="btn-annotation2">
-            <img src="img/iconfinder_pencil_1055013.png" title="Annoter l'énoncé">
+        <button id="btn-annotation2" title="Annoter l'énoncé">
+            <!--<img src="img/iconfinder_pencil_1055013.png" title="Annoter l'énoncé">-->
+            <i class="sprite sprite-iconfinder_pencil_1055013"></i>
         </button>
-        <button id="btn-shuffle">
-            <img src="img/iconfinder_die_1055072.png" title="Changer les exemples">
+        <button id="btn-shuffle" title="Changer les exemples">
+            <!--<img src="img/iconfinder_die_1055072.png" title="Changer les exemples">-->
+            <i class="sprite sprite-iconfinder_dice_48px"></i>
         </button>
             <h1><i class="icon-arrow--right"></i>Questions types</h1>
             <div id="activityConsigne"></div>
@@ -590,8 +594,9 @@
     </section>
     <section id="tab-enonce" class="tabs-content-item" style="display: none;">
         <aside>
-            <button id="btn-annotation-enonce">
-                <img src="img/iconfinder_pencil_1055013.png" title="Annoter">
+            <button id="btn-annotation-enonce" title="Annoter">
+                <!--<img src="img/iconfinder_pencil_1055013.png" title="Annoter">-->
+                <i class="sprite sprite-iconfinder_pencil_1055013"></i>
             </button>
         </aside>
         <div id="enonce-content" class="grid">
@@ -600,14 +605,17 @@
     </section>
     <section id="tab-corrige" class="tabs-content-item" style="display: none;">
         <aside>
-            <button id="btn-annotation-corrige">
-                <img src="img/iconfinder_pencil_1055013.png" title="Annoter le corrigé">
+            <button id="btn-annotation-corrige" title="Annoter le corrigé">
+                <!--<img src="img/iconfinder_pencil_1055013.png" title="Annoter le corrigé">-->
+                <i class="sprite sprite-iconfinder_pencil_1055013"></i>
             </button>
-            <button id="btn-restart-otherdata">
-                <img src="img/restart.png" title="Recommencer avec de nouvelles données">
+            <button id="btn-restart-otherdata" title="Recommencer avec de nouvelles données">
+                <!--<img src="img/restart.png">-->
+                <i class="sprite sprite-restart"></i>
             </button>
-            <button id="btn-restart-samedata">
-                <img src="img/restartsame.png" title="Recommencer avec les mêmes données">
+            <button id="btn-restart-samedata" title="Recommencer avec les mêmes données">
+                <!--<img src="img/restartsame.png">-->
+                <i class="sprite sprite-restartsame"></i>
             </button>
         </aside>
         <div id="corrige-content" class="grid">
@@ -671,9 +679,9 @@
 </div>
 <div id="slideshow-container" class="hidden">
     <header>
-        <button title="Tout arrêter" id="stop-all"><img src="img/slider-stop.png"></button>
-        <button title="Tout mettre en pause" id="pause-all"><img src="img/slider-pause.png"></button>
-        <button title="Passer à la suivante pour tous" id="next-all"><img src="img/slider-next.png"></button>
+        <button title="Tout arrêter" id="stop-all"><!--<img src="img/slider-stop.png">--><i class="sprite sprite-slider-stop"></i></button>
+        <button title="Tout mettre en pause" id="pause-all"><!--<img src="img/slider-pause.png">--><i class="sprite sprite-slider-pause"></i></button>
+        <button title="Passer à la suivante pour tous" id="next-all"><!--<img src="img/slider-next.png">--><i class="sprite sprite-slider-next"></i></button>
     </header>
     <section id="slideshow"></section>
 </div>
