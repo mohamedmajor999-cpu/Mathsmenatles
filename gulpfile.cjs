@@ -7,7 +7,18 @@ const cleanCSS = require('gulp-clean-css')
 const concat = require('gulp-concat')
 const fs = require('fs')
 const path = require('path')
-
+/*
+à faire dans le terminal de VSC
+lancer "gulp" pour une maj générale (modif d'un module touchant les autres, par exemple)
+lancer "gulp maj-ceinture" lors d'une modif ne touchant que ceinture
+lancer "gulp minify-js-ceinture" pour minifier uniquement le js de l'appli ceinture
+lancer "gulp minify-css-ceinture" pour minifier uniquement le css de l'appli ceinture
+lancer "gulp update-version-ceinture" pour modifier les version d'appel des fichiers css et js dans les fichiers html
+// changement de version de MM
+"gulp bump-major" pour une grosse mise à jour (gros changement du site)
+"gulp bump-minor" pour une petite mise à jour (nouvelle fonctionnalité par exemple)
+"gulp bump-patch" pour un patch (correction de bug, ajout d'activité)
+*/
 let cache
 const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall', 'puzzle' ]
 
