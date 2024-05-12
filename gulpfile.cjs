@@ -75,10 +75,16 @@ async function updateVersion() {
   })
 }
 
-gulp.task('minify-css', () => {
+gulp.task('minify-css-mm', () => {
   return gulp.src(['src/css/sprites.css', 'src/css/knacss.css','src/css/bulma-steps.css','src/css/mathsmentales.css'])
   .pipe(cleanCSS())
   .pipe(concat('mathsmentales.min.css'))
+  .pipe(gulp.dest('./public/css/'))
+})
+gulp.task('minify-css-puzzle', () => {
+  return gulp.src(['src/css/puzzle.css'])
+  .pipe(cleanCSS())
+  .pipe(concat('puzzle.css'))
   .pipe(gulp.dest('./public/css/'))
 })
 
@@ -88,4 +94,4 @@ gulp.task('bump-patch', () => bumpVersion({ patch: true }));
 
 gulp.task('build', build);
 gulp.task('update-version', updateVersion);
-gulp.task('default', gulp.series('build', 'minify-css', 'bump-patch', 'update-version'));
+gulp.task('default', gulp.series('build', 'minify-css-mm', 'bump-patch', 'update-version'));

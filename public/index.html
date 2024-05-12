@@ -16,11 +16,11 @@
     <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
     <link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/mathsmentales.min.css?v=2.0.49" />
+    <link rel="stylesheet" href="css/mathsmentales.min.css?v=2.0.55" />
     <link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />
     <script src="js/libs/index.alllibs.min.js" defer></script>
     <script src="js/libs/mathlive/mathlive.min.js" defer></script>
-    <script type="module" src="js/lib.mathsmentales.js?v=2.0.49" id="mmscriptid"></script>
+    <script type="module" src="js/lib.mathsmentales.js?v=2.0.55" id="mmscriptid"></script>
     <script src="js/matomo.js"></script>
 </head>
 <body>
@@ -111,7 +111,7 @@
         <div>
             <button id="addToCart" title="Ajouter au panier"><!--<img src="img/addtocart.png">--><i class="sprite sprite-addtocart"></i><br>Ajouter<br>au panier</button>
             <button id="unlinkCart" class="hidden" title="Désolidariser l'édition du panier"><!--<img src="img/iconfinder_pin.png">--><i class="sprite sprite-iconfinder_pin"></i><br>Désolidariser<br>du panier</button>
-            <button id="removeFromCart" class="hidden" title="Supprimer du panier"><!--<img src="img/removefromcart.png">--><i class="sprite sprite-removefromcart"></i><br>Retirer<br>du panier</button>
+            <button id="removeFromCart" class="hidden" title="Supprimer du panier"><!--<img src="img/removefromcart.png">--><i class="sprite sprite-removefromcart48"></i><br>Retirer<br>du panier</button>
             <h1><i class="icon-arrow--right"></i>Activité <span id="param-title-act"></span></h1>
             <div id="activityTitle"></div>
             <div id="activityDescription"></div>
@@ -528,8 +528,10 @@
         </div>
         <div id="paramspuzzle" class="hidden">
             <fieldset>
-                <legend>Sélectionner 18 questions</legend>
-                En cours de développement, pour l'instant seul un triomino basé sur 16 pièces est disponible
+                <legend>Explications</legend>
+                <p>Choisissez une ou plusieurs activités dans le premier panier et cliquez sur générer.</p>
+                <p>S'il n'y a pas assez de données, l'outil s'adaptera selon le ratio des choix effectués.</p>
+                <p>Ce type d'outil est lisible avec les énoncés courts et n'affichera pas les figures.</p>
             </fieldset>
             <section>
                 <button class="button--primary beaubutton" id="btngeneratePuzzle">Générer</button>

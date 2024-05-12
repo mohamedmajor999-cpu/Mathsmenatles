@@ -458,7 +458,7 @@ ul.menu, .menu ul {
   display: inline-block;
   box-shadow: 4px 4px 6px #AAA;
   padding: 1.5rem;
-  line-height: 1rem;
+  line-height: 1em;
 }
 #tab-parameters fieldset.lh2 {
   line-height: 2rem;

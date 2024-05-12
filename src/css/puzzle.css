@@ -41,6 +41,9 @@ body[size="A4"][layout="landscape"]{
     .noprint {
         display:none;
     }
+    h2:not(:first-child) {
+        page-break-before: always;
+    }
 }
 svg {
     width: 100%;
@@ -49,6 +52,7 @@ svg foreignObject {
     text-align: center;
 }
 svg foreignObject > div {
+    /*background-color: rgba(127, 255, 212, 0.394);*/
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -57,9 +61,73 @@ svg foreignObject > div {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-#svg5 {
+svg {
     font-size: 0.35em;
 }
+
 .svg8 {
-    font-size: 0.6em;
+    font-size: 0.52em;
 }
+.is-flex {
+    display: flex;
+    gap: 5px;
+}
+.is-flex > article {
+    flex-grow: 1;
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+}
+.is-flex > article:not(:first-child) {
+    cursor: pointer;
+}
+
+.btn {
+    background: #222;
+    border: none;
+    border-radius: 10px;
+    color: #eee;
+    font-family: 'Cookie', cursive;
+    position: relative;
+    transition: 1s;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-top: 5px;
+  }
+  
+  .btn .circle {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    overflow: hidden;
+    transition: 500ms;
+  }
+  
+  .noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+  }
+  
+  .btn:hover, .btn.selected {
+    background: transparent;
+    color:black;
+  }
+  
+  .btn:hover .circle, .btn.selected .circle {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    border-radius: 0;
+    border-bottom: 2px solid #343232;
+  }

@@ -9,29 +9,33 @@
             margin:0.8cm;
         }
     </style>
-    <link rel="stylesheet" href="css/puzzle.css">
+    <link rel="stylesheet" href="css/puzzle.css?v=2">
     <link rel="stylesheet" href="js/libs/katex/katex.css">
     <script src="js/libs/common.alllibs.js" defer></script>
     <script src="js/lib.puzzle.js?v=2.0.34" type="module" defer></script>
     <script src="js/libs/katex/katex.js"></script>
     <script src="js/matomo.js"></script>
 </head>
-
-<body size="A4">    
+<body size="A4">
     <section class="noprint">
-<button id="btn-nodistract">
-    Sans distracteur
-</button>
-<button id="btn-distract">Avec distracteurs</button> <label for="formulaSize">Taille des formules </label><input type="number" id="formulaSize" min="0.05" max="2" step="0.05" value="0.35">
+        <section class="is-flex" id="puzzleChoice">
+            <article>Puzzle >></article>
+            <article class="btn selected" id="btn-pyr16"><span class="noselect">Pyramide 16 pièces</span><div class="circle"></div></article>
+            <article class="btn" id="btn-los18"><span class="noselect">Losange 18 pièces</span><div class="circle"></div></article>
+            <article class="btn" id="btn-hexa24"><span class="noselect">Hexagone 24 pièces</span><div class="circle"></div></article>
+            <article class="btn" id="btn-pier12"><span class="noselect">Pierre 12 pièces</span><div class="circle"></div></article>
+        </section>
+        Distracteurs : 
+<input type="radio" id="radio-nodistract" name="radio-distract" checked><label for="radio-nodistract"> sans</label>
+<input type="radio" id="radio-distract" name="radio-distract"><label for="radio-distract"> avec</label> | 
+<label for="formulaSize">Taille des formules </label><input type="number" size="6" id="formulaSize" min="0.05" max="2" step="0.05" value="0.35">em
 <br>
 <div id="info"></div>
 </section>
-<head>
-        <h1>Puzzle MathsMentales.</h1>
-    </head>
     <section id="affichage">
         <h2>Solution</h2>
         <div id="figure"></div>
+        <h2>Pièces</h2>
         <div id="impression"></div>
     </section>
 </body>
