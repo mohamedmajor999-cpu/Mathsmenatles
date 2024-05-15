@@ -2,6 +2,7 @@
     "ID":"3DD1",
     "dest":["3DD","2F2"],
     "title":"Lire l'ordonnée à l'origine",
+    "description":"Lire l'ordonnée à l'origine d'une fonction affine sur sa représentation graphique.",
     "type":"text",
     "textSize":"small",
     "vars":{"a":"d-2_2_1", "c":"-6_6", "b":"${:c/2}"},

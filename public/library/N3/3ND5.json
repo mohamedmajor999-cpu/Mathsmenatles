@@ -1,5 +1,6 @@
 {
     "title":"Résoudre une équation se ramenant à x² = a",
+    "description":"Donner les solutions d'une équation x² = a ou ax²=b",
     "type":"latex",
     "textSize":"medium",
     "ID":"3ND5",

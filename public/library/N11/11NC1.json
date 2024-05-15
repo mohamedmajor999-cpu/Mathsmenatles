@@ -1,0 +1,43 @@
+{
+    "title": "Résolution de problèmes du champ additif",
+    "type": "text",
+    "textSize": "small",
+    "ID": "11NC1",
+    "description": "Problèmes comportant une ou deux étapes.",
+    "dest": ["11NC"],
+    "consts": {
+        "additions": [
+            "Dans un train, il y a ${:x} passagers dans le premier vagon, et ${:y} dans le deuxième. Combien y a-t-il de passagers au total ?",
+            "Dans une école, il y a ${:x} élèves dans une classe de CP, et ${:y} dans la deuxième. Combien y a-t-il d'élèves de CP au total ?",
+            "Dans un magasin, il y a ${:x} clients. Il en rentrent ${:y}. Combien y a-t-il de clients à présent ?",
+            "Dans un restaurant, il y a eu ${:x} clients au premier service et ${:y} au deuxième. Combien y a-t-il de clients au total ?",
+            "Lors d'une course, ${:x} coureurs ont passé la ligne d'arrivée. Il en reste ${:y} en course. Combien y a-t-il de coureurs au total ?",
+            "Lors d'une fête, on a éclaté ${:x} ballons. Il en reste ${:y}. Combien a-t-on gonflé de ballons ?",
+            "Tu as mangé ${:x} biscuits d'un paquet. Il en reste ${:y}. Combien y avait-il de biscuits ?",
+            "Dans le porte monnaie il reste ${:x}€ après avoir acheté un jeu à ${:y}€. Combien avais-tu d'argent ?",
+            "Dans un arbre, on a cueilli ${:x} pommes. Il en reste ${:y}. Combien y avait-il de pommes ?"
+        ],
+        "additionReponses": [
+            "il y a ${:x+:y} passagers",
+            "il y a ${:x+:y} élèves",
+            "il y a ${:x+:y} clients",
+            "il y a ${:x+:y} clients",
+            "il y a ${:x+:y} coureurs",
+            "On a gonflé ${:x+:y} ballons",
+            "il y avait ${:x+:y} biscuits",
+            "il y avait ${:x+:y} €",
+            "il y avait ${:x+:y} pommes"
+        ]
+    },
+    "options": [
+        {
+            "name": "Une opération",
+            "vars": { "situation": "0_8", "x": "2_30", "y": "2_30"},
+            "question": "${:additions[${:situation}]}",
+            "shortq": "${:additions[${:situation}]}",
+            "audio": "${:additions[${:situation}]}",
+            "answer": "${:additionReponses[${:situation}]}",
+            "value": "${:x+:y}"
+        }
+    ]
+}

@@ -1,5 +1,6 @@
 {
     "title":"Produit d'un vecteur par un nombre",
+    "description":"Calculer les coordonnées d'un produit d'un vecteur par un nombre.",
     "type":"latex",
     "ID":"2G13",
     "dest":["2G1"],

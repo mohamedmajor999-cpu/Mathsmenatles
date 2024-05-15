@@ -1,5 +1,6 @@
 {
     "title":"Colinéarité de deux vecteurs",
+    "description":"Déterminer si deux vecteurs sont colinéaires ou non.",
     "type":"latex",
     "ID":"2G15",
     "dest":["2G1"],

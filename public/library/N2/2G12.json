@@ -1,5 +1,6 @@
 {
     "title":"Somme et différence de deux vecteurs",
+    "description":"Calculer les coordonnées d'un vecteur resultant de la somme et de la différence de deux vecteurs.",
     "type":"latex",
     "ID":"2G12",
     "dest":["2G1"],

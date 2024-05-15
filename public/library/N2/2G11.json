@@ -1,5 +1,6 @@
 {
     "title":"Calculer les coordonnées d'un vecteur",
+    "description":"Utilisation des coordonnées de l'origine et de l'extrémité pour calculer les coordonnées.",
     "type":"latex",
     "ID":"2G11",
     "dest":["2G1"],

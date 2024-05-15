@@ -2,7 +2,7 @@
     "ID":"3DD7",
     "dest":["3DD","2F2","Ko4"],
     "title":"Résolution graphiques d'équations",
-    "description":"pas correction en ligne",
+    "description":"Utilisation de la méthode graphique pour resoudre des équations.<br>pas de correction en ligne",
     "type":"latex",
     "keys":["L","A","_","_","_","_","_","_"],
     "textSize":"small",

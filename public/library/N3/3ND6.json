@@ -1,5 +1,6 @@
 {
     "title":"Résoudre une équation produit nul",
+    "description":"Donner les solutions d'une équation présentée sous la forme d'un produit nul.",
     "type":"latex",
     "textSize":"medium",
     "ID":"3ND6",

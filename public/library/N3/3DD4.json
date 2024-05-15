@@ -2,6 +2,7 @@
     "ID":"3DD4",
     "dest":["3DD","2F2"],
     "title":"Déterminer le coefficient d'une fonction affine",
+    "description":"Utiliser la méthode graphique pour déterminer le coefficient d'une fonction affine.",
     "type":"text",
     "textSize":"small",
     "keys":["_","-","/","_","_","_","_","_"],

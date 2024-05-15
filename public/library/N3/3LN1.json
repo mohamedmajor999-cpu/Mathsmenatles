@@ -2,7 +2,7 @@
     "title":"Équations",
     "type":"text",
     "ID":"3LN1",
-    "description":"16 questions sur les équations",
+    "description":"16 questions de leçon sur les équations",
     "dest":["3LN","4LN"],
     "vars":{"a":"-9_9_4_^0,-1,1", "pos":"2_99", "neg":"-99_-2"},
     "options":[

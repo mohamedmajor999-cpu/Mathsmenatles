@@ -1,5 +1,6 @@
 {
     "title":"Réduire avec des parenthèses",
+    "description":"Réduire des expressions comportant des parenthèses.",
     "type":"latex",
     "ID":"3ND4",
     "textSize":"medium",
