@@ -309,6 +309,11 @@ export default class activity {
             if(Array.isArray(this.questions[0])){
                 for(let jj=0; jj<this.questions[0].length;jj++){
                     let li = document.createElement("li");
+                    if(this.figures[0]){
+                        let div = utils.create("div");
+                        this.examplesFigs[i] = new Figure(utils.clone(this.figures[0]), "fig-ex"+i, div);
+                        ul.appendChild(div);
+                    }
                     li.className = "tooltip";
                     li.innerHTML = "<input type='checkbox' class='checkbox' value='"+jj+"' onclick='MM.editedActivity.setQuestionType(this.value, this.checked);' ><span class='math'>"+this.questions[0][jj]+"</span>";
                     let span = document.createElement("span");
@@ -903,12 +908,17 @@ export default class activity {
                 if(this.cFigure!== undefined){
                     this.figures[i] = {
                         "type":this.cFigure.type,
-                        "content":this.replaceVars(utils.clone(this.cFigure.content)),
-                        "boundingbox":this.cFigure.boundingbox,
-                        "axis":this.cFigure.axis,
-                        "grid":this.cFigure.grid?true:false,
-                        "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true
-                    };
+                        "content":this.replaceVars(utils.clone(this.cFigure.content))
+                    }
+                    if(this.cFigure.type === 'graph') {
+                        this.figures[i] = {
+                            "boundingbox":this.cFigure.boundingbox,
+                            "axis":this.cFigure.axis,
+                            "grid":this.cFigure.grid?true:false,
+                            "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true,
+                            ...this.figures[i]
+                        }
+                    }
                 }
                 if(this.ckeyBoard !== undefined){
                     this.keyBoards[i] = utils.clone(this.ckeyBoard);
@@ -932,12 +942,17 @@ export default class activity {
                 if(this.cFigure !== undefined){
                     this.sample.figure = {
                         "type":this.cFigure.type,
-                        "content":this.replaceVars(this.cFigure.content),
-                        "boundingbox":this.cFigure.boundingbox,
-                        "axis":this.cFigure.axis,
-                        "grid":this.cFigure.grid?true:false,
-                        "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true
-                    };
+                        "content":this.replaceVars(this.cFigure.content)
+                    }
+                    if(this.cFigure.type === "graph"){
+                        this.sample.figure = {
+                            "boundingbox":this.cFigure.boundingbox,
+                            "axis":this.cFigure.axis,
+                            "grid":this.cFigure.grid?true:false,
+                            "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true,
+                            ...this.sample.figure
+                        }
+                    }
                 }
             }
         }

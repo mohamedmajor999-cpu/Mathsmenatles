@@ -10,7 +10,7 @@ node_modules
 documentation
 src/js/modules/doc
 # private files
-public/js/matomo.js
+public/js/visites.js
 
 # localdev
 editor.html

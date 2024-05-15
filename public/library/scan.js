@@ -81,7 +81,7 @@ for(const niveau in structure){
   }
 }
 let dataActivities = JSON.stringify(listOfActivities);
-fs.writeFileSync("../src/js/mods/theactivities.js","export {theactivities as default};"+
+fs.writeFileSync("../../src/js/mods/theactivities.js","export {theactivities as default};"+
 "const theactivities="+dataActivities);
 let data = JSON.stringify(structure);
-fs.writeFileSync("../src/js/mods/content.js", "export {content as default};const content="+data);
+fs.writeFileSync("../../src/js/mods/content.js", "export {content as default};const content="+data);
