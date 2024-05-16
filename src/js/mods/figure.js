@@ -339,7 +339,7 @@ export default class Figure {
         let elt;
         if(this.type ==="chart")
             elt = document.getElementById(this.id).parentNode;
-        else if(this.type ==="graph" || this.type === "svg")
+        else if(this.type ==="graph" || this.type === "svg" || this.type === "scratch")
             elt = document.getElementById(this.id);
         let cln = elt.className; // div contenant
         if(cln.indexOf("visible")<0){
@@ -439,6 +439,15 @@ export default class Figure {
             const code = this.content.join('\n')
             const doc = scratchblocks.parse(code, {style: 'scratch3', languages: ['fr']});
             const svg = scratchblocks.render(doc, {style: 'scratch3', languages: ['fr']});
+            // calcul de la largeur et de la hauteur de l'image à partir des données du viewbox
+            const width = Number(svg.getAttribute('viewBox').split(' ')[2])
+            const height = Number(svg.getAttribute('viewBox').split(' ')[3])
+            const ratio = height / width
+            let reduc = 19
+            if(this.id.indexOf('c') === 0) reduc = 64
+            const newWidth = width / reduc;
+            svg.setAttribute('height', newWidth * ratio + 'em');
+            svg.setAttribute('width', newWidth + 'em');
             target.appendChild(svg);
         }
     }
