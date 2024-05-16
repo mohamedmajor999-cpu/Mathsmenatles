@@ -1,6 +1,6 @@
 {
     "title":"Comprendre une suite d'\"avancer\"",
-    "description":"Estimer le résultat d'un script comportant deux 'avancer'",
+    "description":"Scratch, Estimer le résultat d'un script comportant deux 'avancer'",
     "ID":"5AA1",
     "type":"text",
     "dest":["5AA","4AA", "3AA"],
