@@ -923,8 +923,16 @@ h2.sg-title, h3.sg-title {
 #cartscontainer .totaux {
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 2fr 2fr;
 }
+#cartscontainer .totaux .has-choice {
+  background-color: #83b4df;
+  color: white;
+  padding: 0 0.3rem;
+  border-radius: 0.3rem;
+  width:90%;
+}
+
 .cartcontent {
     background-color: ivory;
     width:100%;
@@ -957,11 +965,11 @@ ul.cart-list{
 }
 /* Remove controls from Firefox */
 .totaux input[type=number] {
-  appearance: textfield;
+  all:unset;
+  display: inline-block;
   padding: 0 0 0 0.5rem;
   margin-left: 0.5rem;
-  width: 75%;
-  border: 0;
+  width: calc(100% - 2.5rem);
 }
 .numberInputContainer {
   position: relative;

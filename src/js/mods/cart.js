@@ -156,7 +156,7 @@ export default class cart {
         dom.innerHTML = "";
         this.time = 0;
         this.nbq = 0;
-        let spanOrder = document.querySelector("#cart"+this.id+" span[data-ordered]");
+        let spanOrder = document.querySelector("#cart"+this.id+" div[data-ordered]");
         if(this.ordered){
             spanOrder.innerHTML = "ordonné"
             spanOrder.dataset["ordered"] = "true";
