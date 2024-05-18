@@ -15,21 +15,32 @@ const common = {
     generateQuestions(params){
         if(params.doublons === undefined)params.doublons = true
         // vidage des questions/réponses
-        for(let index=0;index<params.cart.activities.length;index++){
-            params.cart.activities[index].initialize();
+        if (params.cart !== undefined) {
+            params.cart = this.generateOneQuestion(params.cart, params)
+        } else if(params.carts !== undefined){
+            for (let index=0; index<params.carts.length; index++) {
+                params.carts[index] = this.generateOneQuestion(params.carts[index], params)
+            }
+        } else {
+            console.log("no cart provided")
+        }
+    },
+    generateOneQuestion(cart, params) {
+        for(let index=0;index<cart.activities.length;index++){
+            cart.activities[index].initialize();
         }
         // generate questions and answers
         if(params.doublons){ // doublons autorisés
             params.errorDouble = false
-            for(let index=0;index<params.cart.activities.length;index++){
-                const activity = params.cart.activities[index];
+            for(let index=0;index<cart.activities.length;index++){
+                const activity = cart.activities[index];
                 activity.generate();
             }
         } else {
             let answers = []
             params.errorDouble = false
-            for(let index=0; index<params.cart.activities.length;index++){
-                const activity =  params.cart.activities[index];
+            for(let index=0; index<cart.activities.length;index++){
+                const activity =  cart.activities[index];
                 let double = false
                 let securite = 100;
                 do {
@@ -55,6 +66,7 @@ const common = {
                 } while(double && !params.errorDouble)
             }
         }
+        return cart
     },
     changeOrientation(evt){
         // suppression du style de page précédent

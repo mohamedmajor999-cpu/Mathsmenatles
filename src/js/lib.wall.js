@@ -50,11 +50,33 @@ document.getElementById('dice').onclick = () => {
     parameters.alea = common.setSeed()
     refresh()
 }
-
 function getRandomPastelColor(){
     return "hsl(" + 360 * Math.random() + ',' +
              (25 + 70 * Math.random()) + '%,' + 
              (85 + 10 * Math.random()) + '%)'
+}
+let tints = []
+function setRandomPaletteOfTint(tint) { // set random palette of a tint passed as parameter
+    return 'hsl(' + tint + ',' +
+             (25 + 70 * Math.random()) + '%,' + 
+             (85 + 10 * Math.random()) + '%)';
+}
+function setRandomTint(numberOfTints){
+    if(numberOfTints === undefined){
+        return []
+    }
+    let tints = [Math.round(360 * Math.random())]
+    if(numberOfTints === 2){
+        tints.push(tints[0]+180)
+    } else if(numberOfTints === 3){
+        tints.push(tints[0]+120)
+        tints.push(tints[0]+240)
+    } else {
+        tints.push(tints[0]+90)
+        tints.push(tints[0]+180)
+        tints.push(tints[0]-90)
+    }
+    return tints
 }
 function makePage(){
     if(parameters.alea){
@@ -62,51 +84,89 @@ function makePage(){
     }
     content.innerHTML = "";
     MM.memory = {};
+    MM.tints = [];
     common.generateQuestions(parameters);
-    let nbOfCards = 0
-    for (const [index,activity] of parameters.cart.activities.entries()) {
-        for(let j=0;j<activity.questions.length;j++){
-            nbOfCards++
-            const colorCard = getRandomPastelColor();
-            const container = utils.create('article',{className:"tuile"});
-            const flipCardInner = utils.create('div',{className:'flip-card-inner'})
-            const randomColor = Math.floor(Math.random()*16777215).toString(16);
-            const artQuestion = utils.create('div',{className:'question flip-card-front'})
-            artQuestion.style.backgroundColor = colorCard
-            const buttonSolution = utils.create('div', {className:'interrogation', innerText:'?',title:'Cliquer pour afficher la correction'})
-            buttonSolution.style['border-bottom'] = '0.3rem solid '+colorCard
-            buttonSolution.style['border-right'] = '0.3rem solid '+colorCard
-            const divq = utils.create("div");
-            if(activity.consigne)
-                divq.appendChild(utils.create('div',{innerHTML:'<i>'+activity.consigne+'</i>'}))
-            const artCorrection = utils.create("div",{className:"answer flip-card-back"})
-            artCorrection.style.backgroundColor = colorCard
-            buttonSolution.onclick = () => {
-                flipCardInner.classList.toggle('rotate')
+    if(parameters.carts.length===2){
+        content.classList.add('hasTwoChildren')
+        tints = setRandomTint(2)
+    }
+    for (let indexOfCart=0;indexOfCart< parameters.carts.length; indexOfCart++) {
+        let nbOfCards = 0
+        // create container
+        const containerOfCart = utils.create('section', {className:'wall-section'});
+        for (const [index,activity] of parameters.carts[indexOfCart].activities.entries()) {
+            for(let j=0;j<activity.questions.length;j++){
+                nbOfCards++
+                let colorCard;
+                if(parameters.carts.length===2){
+                    colorCard = setRandomPaletteOfTint(tints[indexOfCart])
+                } else {
+                    colorCard = getRandomPastelColor()
+                }
+                const container = utils.create('article',{className:"tuile"});
+                const flipCardInner = utils.create('div',{className:'flip-card-inner'})
+                const artQuestion = utils.create('div',{className:'question flip-card-front'})
+                artQuestion.style.backgroundColor = colorCard
+                const buttonSolution = utils.create('div', {className:'interrogation', innerText:'?',title:'Cliquer pour afficher la correction'})
+                buttonSolution.style['padding-bottom'] = '0.6rem solid transparent'
+                buttonSolution.style['padding-right'] = '0.6rem solid transparent'
+                const divq = utils.create("div");
+                if(activity.consigne)
+                    divq.appendChild(utils.create('div',{innerHTML:'<i>'+activity.consigne+'</i>'}))
+                const artCorrection = utils.create("div",{className:"answer flip-card-back"})
+                artCorrection.style.backgroundColor = colorCard
+                buttonSolution.onclick = () => {
+                    flipCardInner.classList.toggle('rotate')
+                }
+                const divr = utils.create("div");
+                if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
+                    const span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
+                    const spanCorrection = utils.create("span", {className:"math", innerHTML:activity.answers[j]});
+                    divq.appendChild(span);
+                    divr.appendChild(spanCorrection);
+                } else {
+                    divq.innerHTML = activity.questions[j];
+                    divr.innerHTML = activity.answers[j];
+                }
+                artQuestion.appendChild(divq);
+                flipCardInner.appendChild(artQuestion)
+                // figures
+                if(activity.figures[j] !== undefined){
+                    MM.memory["f"+indexOfCart+"-"+index+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+indexOfCart+"-"+index+"-"+j, divq);
+                }
+                artCorrection.appendChild(divr)
+                flipCardInner.appendChild(artCorrection)
+                container.appendChild(flipCardInner)
+                container.appendChild(utils.create('div', {className:'numero', innerText:nbOfCards}))
+                const fullScreenBtn = utils.create('button', {className:'fullscreen', innerText:''})
+                let scrollY = 0
+                fullScreenBtn.onclick = () => {
+                    // récupération de la taille de la carte
+                    let initWidth, initHeight, endWidth, endHeight, divWidth, divHeight
+                    fullScreenBtn.classList.toggle('fullscreen')
+                    fullScreenBtn.classList.toggle('fullscreenexit')
+                    if (fullScreenBtn.classList.contains('fullscreenexit')) {
+                        initWidth = container.getBoundingClientRect().width
+                        initHeight = container.getBoundingClientRect().height
+                        scrollY = window.scrollY
+                        window.scrollTo(0, 0)
+                        container.classList.add('fullscreen')
+                        endWidth = container.getBoundingClientRect().width
+                        endHeight = container.getBoundingClientRect().height
+                        const ratio = Math.min(4,Math.max(endWidth / initWidth, endHeight / initHeight))
+                        container.style['font-size'] = ratio*100 + '%'
+                    } else {
+                        container.classList.remove('fullscreen')
+                        container.style['font-size'] = ''
+                        window.scrollTo(0, scrollY)
+                    }
+                }
+                container.appendChild(fullScreenBtn)
+                container.appendChild(buttonSolution)
+                containerOfCart.appendChild(container)
             }
-            const divr = utils.create("div");
-            if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                const span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
-                const spanCorrection = utils.create("span", {className:"math", innerHTML:activity.answers[j]});
-                divq.appendChild(span);
-                divr.appendChild(spanCorrection);
-            } else {
-                divq.innerHTML = activity.questions[j];
-                divr.innerHTML = activity.answers[j];
-            }
-            artQuestion.appendChild(divq);
-            flipCardInner.appendChild(artQuestion)
-            // figures
-            if(activity.figures[j] !== undefined){
-                MM.memory["f"+index+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+index+"-"+j, divq);
-            }
-            artCorrection.appendChild(divr)
-            flipCardInner.appendChild(artCorrection)
-            container.appendChild(flipCardInner)
-            container.appendChild(utils.create('div', {className:'numero', innerText:nbOfCards}))
-            container.appendChild(buttonSolution)
-            content.appendChild(container)
         }
+        content.appendChild(containerOfCart)
     }
     if(!utils.isEmpty(MM.memory)){
         setTimeout(function(){
@@ -138,11 +198,15 @@ function checkURL(urlString){
         let json = vars.c;
         //document.getElementById("nbDominos").value = parameters.nb
         parameters.titreFiche=decodeURI(vars.t);
-        //document.getElementById("creator-menu").appendChild(zoom.createCursor());
-        //document.querySelector("html").style["fontSize"] = parameters.tailleTexte+"pt";
         // allcarts contient des promises qu'il faut charger
-        parameters.cart = new cart(0);
-        parameters.cart.import(json[0],false).then(()=>{
+        parameters.carts = []
+        let allcarts = []
+        for(const i in json){
+            parameters.carts[i] = new cart(i);
+            allcarts.push(parameters.carts[i].import(json[i],false));
+        }
+        // on attend le résultat de toutes les promesses pour mettre à jour les affichages.
+        Promise.all(allcarts).then(data=>{
             refresh()
         }).catch(err=>{
             // erreur à l'importation :(
