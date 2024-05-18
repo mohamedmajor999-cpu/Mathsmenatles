@@ -91,6 +91,7 @@ function makePage(){
         tints = setRandomTint(2)
     }
     for (let indexOfCart=0;indexOfCart< parameters.carts.length; indexOfCart++) {
+        const nbOfQuestions = parameters.carts[indexOfCart].activities.map(activity => activity.questions.length).reduce((a, b) => a + b, 0);
         let nbOfCards = 0
         // create container
         const containerOfCart = utils.create('section', {className:'wall-section'});
@@ -161,8 +162,32 @@ function makePage(){
                         window.scrollTo(0, scrollY)
                     }
                 }
+                const navigation = utils.create('div', {className:'navigation'})
+                if(nbOfCards > 1){
+                    const prevBtn = utils.create('button', {className:'prev', innerHTML:'<?xml version="1.0" ?><svg id="Outline" height="48" width="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#262626;}</style></defs><path transform="rotate(180 256 256)" class="cls-1" d="M357,249.84,169.05,101.3a11.34,11.34,0,0,0-18.37,8.9V405.77A11.34,11.34,0,0,0,169,414.7l188-147a11.34,11.34,0,0,0,0-17.83ZM173.36,382.51V133.61L331.63,258.69Z"/></svg>'})
+                    prevBtn.onclick = () => {
+                        fullScreenBtn.click()
+                        container.previousElementSibling.getElementsByClassName('fullscreen')[0].click()
+                    }
+                    navigation.appendChild(prevBtn)                        
+                } else if(nbOfCards === 1){
+                    const prevBtn = utils.create('button', {className:'prev disabled', innerText:''})
+                    navigation.appendChild(prevBtn)
+                }
+                if(nbOfCards < nbOfQuestions){
+                    const nextBtn = utils.create('button', {className:'next', innerHTML:'<?xml version="1.0" ?><svg id="Outline" height="48" width="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#262626;}</style></defs><path class="cls-1" d="M357,249.84,169.05,101.3a11.34,11.34,0,0,0-18.37,8.9V405.77A11.34,11.34,0,0,0,169,414.7l188-147a11.34,11.34,0,0,0,0-17.83ZM173.36,382.51V133.61L331.63,258.69Z"/></svg>'})
+                    nextBtn.onclick = () => {
+                        fullScreenBtn.click()
+                        container.nextElementSibling.getElementsByClassName('fullscreen')[0].click()
+                    }
+                    navigation.appendChild(nextBtn)
+                } else if(nbOfCards === nbOfQuestions){
+                    const nextBtn = utils.create('button', {className:'next disabled', innerText:''})
+                    navigation.appendChild(nextBtn)
+                }
                 container.appendChild(fullScreenBtn)
                 container.appendChild(buttonSolution)
+                container.appendChild(navigation)
                 containerOfCart.appendChild(container)
             }
         }
@@ -198,6 +223,8 @@ function checkURL(urlString){
         let json = vars.c;
         //document.getElementById("nbDominos").value = parameters.nb
         parameters.titreFiche=decodeURI(vars.t);
+        if(vars.t !== false)
+            document.getElementById("creator-title").innerHTML = parameters.titreFiche
         // allcarts contient des promises qu'il faut charger
         parameters.carts = []
         let allcarts = []
