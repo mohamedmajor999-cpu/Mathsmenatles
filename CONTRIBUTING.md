@@ -11,6 +11,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 - Installer [NodeJS](https://nodejs.org/fr/)
 - Installer [Git](https://git-scm.com/)
 - Installer [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=gitlab.gitlab-workflow)
+- Installer les extensions "ESLint" (dans le gestionnaire des extensions) "French Language Pack", "JS & XSS Minifier (Minify), "Live Server", "SVG"
 
 ### Paramétrage de Visual Studio Code (VSC)
 
@@ -22,7 +23,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 - Sélectionner le dossier dans lequel sera copié le code source de MathsMentales et attendre que la copie se termine.
 - Une fois le code chargé, cliquer sur la notification en bas à droite pour ouvrir le dossier. ![notification](https://blog.mathsmentales.net/wp-content/uploads/2022/10/BQe6ogm2nX.png)
 - Vous avez à présent le code source de MathsMentales ![code source de MM](https://blog.mathsmentales.net/wp-content/uploads/2022/10/Code_CIfqRb7EA9.png)
-- Installer les extensions "ESLint" (dans le gestionnaire des extensions) "French Language Pack", "JS & XSS Minifier (Minify), "Live Server", "SVG"
+- installer l'environnement de développement en tapant dans le terminal : npm install. Cela va charger des fichiers utiles pour tester et compiler le code.
 
 ## Créer une activité
 
