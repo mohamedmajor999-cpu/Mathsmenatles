@@ -687,7 +687,7 @@ export default class activity {
                 if(this.options[optionNumber].consts === undefined) {
                     this.cConsts = utils.clone(this.consts);
                 } else if(this.consts !== undefined){
-                    this.cConsts = Object.assign({},utils.clone(this.options[optionNumber].consts),utils.clone(this.options[optionNumber].consts));
+                    this.cConsts = Object.assign({},utils.clone(this.consts),utils.clone(this.options[optionNumber].consts));
                 } else this.cConsts = utils.clone(this.options[optionNumber].consts);
                 if(patternNumber !== false){
                     // la question est définie dans l'option, avec un pattern défini
