@@ -10,7 +10,7 @@ Démo : https://www.mathsmentales.net/
  * Fayçal TIB a voulu créer quelques activités pour le lycée (inachevées)
  * Mikael Le Mentec a modifié ou créé quelques activités en collège et lycée
  
-Pour ceux qui veulent participer, voir [cette documentation](https://forge.aeif.fr/scogez/mathsmentales/-/blob/master/participer.md)
+Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/blob/master/participer.md?ref_type=heads)
 
 ### Nouveautés apportées par cette version :
  * nouvelle interface : tous les réglages dans une page, affichage d'exemples de questions pour mieux comprendre
