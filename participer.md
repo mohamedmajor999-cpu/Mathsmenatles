@@ -6,7 +6,7 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 
 ### Forge
 
-- Créer un compte sur (forge.apps.education.fr) puis le communiquer à Sébastien COGEZ pour lui signaler votre participation.
+- Créer un compte sur [Ma forge education](https://forge.apps.education.fr) puis le communiquer à Sébastien COGEZ pour lui signaler votre participation.
 - Installer [Visual Studio Code](https://code.visualstudio.com/Download) de Microsoft ou [VSCodium](https://vscodium.com/), la version libre, mais parfois plus compliquée pour la suite.
 - Installer [NodeJS](https://nodejs.org/fr/)
 - Installer [Git](https://git-scm.com/)
@@ -16,15 +16,13 @@ Si vous avez besoin d'une fonction particulière pour créer un exercice, vous p
 
 - Ouvrir VSC.
 - Ne pas installer de suite le module en français
-- Cliquer sur "Source Control" (panneau de gauche) > "Clone Repository" > "Clone from GitLab"
-![Cloner depuis GitLab](https://user-images.githubusercontent.com/85620848/155867784-8db0596a-88be-4ee7-9b03-d484ebee41cb.png)
-- Se connecter sur GitLab et autoriser VSC à accéder à son compte
-- Rechercher "mathsmentales" dans la barre du haut et cliquer sur "mathsmentales/mathsmentales"
-![clonage de MathsMentales](https://blog.mathsmentales.net/wp-content/uploads/2022/10/cu251Jz3Wm.png)
+- Se connecter sur GitLab et se rendre sur [la page du projet](https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/tree/master) MathsMentales du groupe MathsMentales
+- Cliquer sur Code v puis sur Visual Studio Code (HTTPS) ![illustration](images/ChDHngpv1A.png)
+- OU si vous avez connecté VSC à Gitlab, Rechercher "mathsmentales" dans la barre du haut et cliquer sur "mathsmentales/mathsmentales"
 - Sélectionner le dossier dans lequel sera copié le code source de MathsMentales et attendre que la copie se termine.
 - Une fois le code chargé, cliquer sur la notification en bas à droite pour ouvrir le dossier. ![notification](https://blog.mathsmentales.net/wp-content/uploads/2022/10/BQe6ogm2nX.png)
 - Vous avez à présent le code source de MathsMentales ![code source de MM](https://blog.mathsmentales.net/wp-content/uploads/2022/10/Code_CIfqRb7EA9.png)
-- Installer les extensions "ESLint" (dans le gestionnaire des extensions) "French Language Pack", "JS & XSS Minifier (Minify), "Live Server", "SVG", GitHub Pull Requests and Issues"
+- Installer les extensions "ESLint" (dans le gestionnaire des extensions) "French Language Pack", "JS & XSS Minifier (Minify), "Live Server", "SVG"
 
 ## Créer une activité
 
@@ -53,7 +51,8 @@ Une fois validé par Sébastien COGEZ, l'exercice sera référencé dans la bibl
 
 ### Tester une activité
 
-Depuis VSC, ouvrir index.html, faire un clic droit et choisir **Open With Live Server**. Cela ouvre le navigateur par défaut sur MathsMentales. Pour accéder à un exercice qui n'est pas encore dans la base, il suffit d'ajouter ?u=IDdeLExercice à la fin de index.html dans le navigateur.
+Depuis VSC, ouvrir  src/index.html, faire un clic droit et choisir **Open With Live Server**. Cela ouvre le navigateur par défaut sur MathsMentales. Pour accéder à un exercice qui n'est pas encore dans la base, il suffit d'ajouter ?u=IDdeLExercice à la fin de index.html dans le navigateur.
+Exemple http://127.0.0.1:5001/src/index.html?u=3AA1
 
 À chaque enregistrement dans VSC, la page est mise à jour sur le navigateur, cela permet de trouver assez rapidement les erreurs de programmation. Si rien ne s'affiche, utiliser les outils de Développement du navigateur (F12 ou CTRL + MAJ + I généralement) pour consulter les erreurs javascript. Un passage à la souris sur les exemples de "questions types" permet de voir si les corrigés sont codés correctement également.
 
