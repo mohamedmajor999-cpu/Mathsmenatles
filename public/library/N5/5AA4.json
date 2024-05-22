@@ -4,6 +4,7 @@
     "type":"text",
     "description":"scratch polygones",
     "dest":["5AA","4AA","3AA"],
+    "repeat":3,
     "options":[{
         "name":"Reconnaitre un polygone avec jusqu'à 6 côtés",
         "consts":{

@@ -4,6 +4,7 @@
     "dest":["5DA", "4DA", "3DA"],
     "description":"Observer et trouver la donnée la plus ou la moins représentée. Ne pas utiliser en mode online pour le moment.",
     "ID":"5DA1",
+    "textSize":"small",
     "consts":{
         "b":[["fraises", "bananes", "oranges", "kiwis", "pommes"],
             ["vélo", "trotinette", "voiture", "bus", "scooter"],
@@ -19,6 +20,7 @@
                 "n":0,
                 "d":"bar",
                 "f":"0_2",
+                "ia":"x",
                 "g":"0_1"
             }
         },
@@ -26,7 +28,8 @@
         "vars":{
             "a":"10_100_5_^&",
             "n":0,
-            "d": "horizontalBar",
+            "d": "bar",
+            "ia":"y",
             "f":"0_2",
             "g":"0_1"
             }
@@ -35,6 +38,7 @@
         "vars":{
             "a":"1_9_5_^&",
             "n":1,
+            "ia":"",
             "d":"pie",
             "f":"0_2",
             "g":"0_1"
@@ -48,6 +52,7 @@
             "labels":["${:b[:f][0]}","${:b[:f][1]}","${:b[:f][2]}","${:b[:f][3]}","${:b[:f][4]}"],
             "datasets":[{
                 "label":"Graphique",
+                "indexAxis":"${:ia}",
                 "backgroundColor": ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
                 "data":["${:m[:n][0]}","${:m[:n][1]}","${:m[:n][2]}","${:m[:n][3]}","${:m[:n][4]}"]}]
             }

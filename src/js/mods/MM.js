@@ -1489,7 +1489,11 @@ const MM = {
                 document.getElementById("sample"+sN+"-corr").innerHTML = act.sample.answer;
                 if(act.type === undefined || act.type==="" || act.type === "latex"){
                     document.getElementById("sample"+sN+"-enonce").className = "math";
-                    document.getElementById("sample"+sN+"-corr").className += " math";
+                    document.getElementById("sample"+sN+"-corr").className = "hidden math";
+                }
+                if(act.textSize !== undefined) {
+                    document.getElementById("sample"+sN+"-enonce").classList.add(act.textSize);
+                    document.getElementById("sample"+sN+"-corr").classList.add(act.textSize);
                 }
                 if(act.sample.figure !== undefined){
                     let fig = new Figure(utils.clone(act.sample.figure), "sample-c"+sN, document.getElementById("sampleSlide"+sN));
@@ -1671,15 +1675,19 @@ const MM = {
                     document.getElementById("sample"+id+"-enonce").className = "math";
                     document.getElementById("sample"+id+"-corr").className += " math";
                 }
-                if(act.sample.figure !== undefined){
-                    let item;
-                    if(act.sample.figure.type === "chart"){
-                        item = document.getElementById("div-dest-canvas-sample-c"+id);
-                    }else{
-                        item = document.getElementById("sample-c"+id);
-                    }
-                    item.parentNode.removeChild(item);
-                    let fig = new Figure(utils.clone(act.sample.figure), "sample-c"+id, document.getElementById("sampleSlide"+id));
+                if(act.textSize !== undefined){
+                    document.getElementById("sample"+id+"-enonce").classList.add(act.textSize);
+                    document.getElementById("sample"+id+"-corr").classList.add(act.textSize);
+                }
+                // suppression de la figure existante
+                let item = document.getElementById("div-dest-canvas-sample-c"+id);
+                if (item !== null) item.parentNode.removeChild(item);
+                else {
+                    item = document.getElementById("sample-c"+id);
+                    if(item !== null) item.parentNode.removeChild(item);
+                }
+            if(act.sample.figure !== undefined) {
+                    const fig = new Figure(utils.clone(act.sample.figure), "sample-c"+id, document.getElementById("sampleSlide"+id));
                     setTimeout(function(){fig.display();},100);
                 }
                 utils.mathRender();

@@ -1,5 +1,6 @@
 import utils from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
+import Chart from "../libs/chartjs/Chart.js";
 
 scratchblocks.loadLanguages({
     fr: {
@@ -274,6 +275,7 @@ export default class Figure {
     constructor(obj, id, target, size){
         this.type = obj.type;
         this.content = obj.content;
+        this.options = (obj.options !== undefined)?obj.options:null;
         this.boundingbox = obj.boundingbox;
         this.axis = obj.axis;
         this.grid = obj.grid;
@@ -362,26 +364,20 @@ export default class Figure {
             let target;
             if(destination === undefined){
                 target = document.getElementById(this.id);
-                //this.figure = new Chart(target, this.content);
             } else {
                 target = destination.document.getElementById(this.id);
-                //this.figure = new destination.Chart(target, this.content);
             }
             target.innerHTML = this.content;
         } else if(this.type === "chart"){ // Chart.js
             let target;
             if(destination === undefined){
                 target = document.getElementById(this.id);
-                //this.figure = new Chart(target, this.content);
             } else {
                 target = destination.document.getElementById(this.id);
-                //this.figure = new destination.Chart(target, this.content);
             }
-            //debug("Chart data", target, utils.clone(this.content));
             this.figure = new Chart(target, this.content);
         } else if(this.type === "graph"){ //JSXGraph
             try{
-                //debug(this);
                 if(destination === undefined){
                     this.figure = JXG.JSXGraph.initBoard(this.id, {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid});
                 } else {

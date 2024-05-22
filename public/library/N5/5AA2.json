@@ -4,6 +4,7 @@
     "description":"scratch comparer des nombres",
     "type":"text",
     "dest":["5AA", "4AA", "3AA"],
+    "repeat":2,
     "consts":{"objets":[
         "pomme","poire","ballon","vélo","trotinette","carte","table","chaise","stylo"
     ]},

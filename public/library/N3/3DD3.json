@@ -18,7 +18,7 @@
                 ["functiongraph","${:a}*x+${:b}"]
             ]    
         },
-    "question":"La fonction représentée est elle linéaire (L) ou affine non linéraire (A) ?",
+    "question":"La fonction représentée est elle linéaire (L) ou affine non linéaire (A) ?",
     "answer":"La fonction représentée est <span class='red'>${:type}</span>",
     "value":"${:type}"
 }
