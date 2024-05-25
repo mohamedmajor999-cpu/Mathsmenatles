@@ -293,7 +293,7 @@ export default class Figure {
      */
     create(destination){
         if(this.type === "chart"){
-            let div = utils.create("div",{id:"div-dest-canvas-"+this.id});
+            let div = utils.create("div",{id:"div-dest-canvas-"+this.id, style:'width:14em'});
             let canvas = document.createElement("canvas");
             canvas.id = this.id;
             if(this.size !== undefined){
@@ -351,6 +351,12 @@ export default class Figure {
             utils.removeClass(elt,"visible");
         }
     }
+    setChartFontSize(target){
+        const envFontSize = window.getComputedStyle(target.parentNode).fontSize
+        const fontSizeValue = Number(envFontSize.substring(0, envFontSize.length - 2))
+        const fontSize = String(fontSizeValue * 0.8) + 'px';
+        Chart.defaults.font.size = fontSize;
+    }
     /**
      * Crée la figure
      * @param {window object} destination 
@@ -375,7 +381,9 @@ export default class Figure {
             } else {
                 target = destination.document.getElementById(this.id);
             }
+            this.setChartFontSize(target)
             this.figure = new Chart(target, this.content);
+            
         } else if(this.type === "graph"){ //JSXGraph
             try{
                 if(destination === undefined){

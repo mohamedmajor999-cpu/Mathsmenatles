@@ -646,7 +646,13 @@ aside > button {
   grid-auto-columns: 2em;
   grid-auto-rows: 1em;
 }
+/** Pour les smartphone
+à revoir !
+**/
 @media screen and (max-width: 800px) {
+  body {
+    font-size: 1rem;
+  }
   .numkey-base {
     padding: 6px;
     border-radius: 3px;
@@ -1216,7 +1222,38 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
 .slider-1, .slider-2, .slider-34 {
     font-size: 2em;
 }
-/* TODO à revoir selon résolution écran */
+@media (max-width: 1280px){
+  #slideshow {
+    font-size: 1.5rem;
+  }
+  .slider-1, .slider-2, .slider-34 {
+    font-size: 1.5em;
+  }
+}
+@media (max-width: 992px){
+  .slider-1, .slider-2, .slider-34 {
+    font-size: 1.5em;
+  }
+  #slideshow {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 768px){
+  .slider-1, .slider-2, .slider-34 {
+    font-size: 1em;
+  }
+  #slideshow {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 576px){
+  .slider-1, .slider-2, .slider-34 {
+    font-size: .8em;
+  }
+  #slideshow {
+    font-size: 1.2rem;
+  }
+}
 .slider-1 .slide {
   font-size : 3em;
 }
@@ -1237,15 +1274,7 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
 .vertical.return .slider-2 .slide {
   font-size: 1em;
 }
-/* pour les medias touchables */
-@media screen and (max-width : 800px){
-  .slider-1 .slide{
-    font-size: 1em;
-  }
-  .slider-2 .slide {
-    font-size : 1em;
-  }
-}
+
 .slider-bigger {
     font-size: 3em;
 }
@@ -1438,8 +1467,7 @@ math-field {
 
 /* progress bar */
 .progress {
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    appearance: none;
     border: none;
     border-radius: 290486px;
     display: block;
