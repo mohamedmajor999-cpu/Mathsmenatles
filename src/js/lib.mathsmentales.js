@@ -25,7 +25,7 @@ window.onload = function(){
     //MM.ascii2tex = new AsciiMathParser();
     MM.resetCarts();
     // interface
-    let tabsButtons = document.querySelectorAll("#header-menu .tabs-menu-link");
+    let tabsButtons = document.querySelectorAll("#header-menu .tabs-menu-link, #footer-menu .tabs-menu-link");
     tabsButtons.forEach(element => {
         element.onclick = function(){MM.showTab(element)};
     });

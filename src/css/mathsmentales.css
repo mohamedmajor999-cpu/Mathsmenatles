@@ -393,9 +393,21 @@ ul.menu, .menu ul {
     line-height: 3em;
     text-decoration: none;
 }
-#header-menu {
+#header-menu, #footer-menu {
   display: inline-block;
   vertical-align: top;
+}
+#footer-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: linen;
+}
+#footer-menu a {
+  margin: 0 1rem;
+  width: 150px;
+  cursor: pointer;
+  text-align: center;
 }
 @media screen and (max-width: 600px) {
   #openMenuButton {
