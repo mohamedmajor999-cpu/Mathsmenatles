@@ -1,6 +1,6 @@
 {
-    "ID":"11ND1",
-    "dest":["11ND","10ND"],
+    "ID":"11MC1",
+    "dest":["11MC","10MC"],
     "type":"text",
     "title":"Lire une horloge",
     "description":"Lecture des heures entières",
