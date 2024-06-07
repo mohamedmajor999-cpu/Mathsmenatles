@@ -102,7 +102,8 @@ ainsi que des *données optionnelles* :
   * **repeat** : Possibilité de répéter une question (le moteur évite normalement les répétitions de questions, mais parfois, c'est impossible car l'énoncé est visuel et les questions sont toujours les mêmes) valeurs possibles : true (on évite que la question se répète dans les 5 dernières questions) ou un nombre x (on évite que la réponse se répète plus de 2 fois dans les x dernières questions)
   valeur par défaut : false (si non défini)
   * **textSize** : taille du texte de la question, permet de modifier la taille d'affichage par défaut. valeurs possibles : "medium" ou "small" 
- * **speech** : 1, indique si l'exercice peut être lu par la synthèse vocale text to speech
+  * **speech** : 1, indique si l'exercice peut être lu par la synthèse vocale text to speech
+  * **consigne** : un texte donnant une consigne commune pour toutes les options de l'activité
 
 * Pour l'activité ou une option :
   * **consts** : objet contenant des données constantes, telles que des tableaux, ces données peuvent contenir des variables. Définies pour l'activité, elles sont accessibles dans les options. Si des constantes sont définies dans les options, les constantes globales sont concaténées avec elles
