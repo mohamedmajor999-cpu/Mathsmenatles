@@ -285,7 +285,7 @@ input[type="color"]{
 .valign {
     align-self: center;
 }
-.nofig .fig{
+.nofig .fig, .nofig svg {
     display:none;
 }
 .parquatre {

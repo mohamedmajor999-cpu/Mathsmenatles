@@ -407,11 +407,25 @@ function displayFigures(idcol){
             el.classList.add("nofig");
         })
         btn.innerHTML = idcol+" off";
+        if (idcol === 'Toutes') {
+            let cpt = 1
+            while (document.getElementById('btndisplayfig'+cpt) !== null) {
+                document.getElementById('btndisplayfig'+cpt).innerHTML = cpt + " off";
+                cpt++
+            }
+        }
     } else {
         elts.forEach(el=>{
             el.classList.remove("nofig");
         })
         btn.innerHTML = idcol+" on";
+        if (idcol === 'Toutes') {
+            let cpt = 1
+            while (document.getElementById('btndisplayfig'+cpt) !== null) {
+                document.getElementById('btndisplayfig'+cpt).innerHTML = cpt + " on";
+                cpt++
+            }
+        }
     }
     setPrintMode()
 }
