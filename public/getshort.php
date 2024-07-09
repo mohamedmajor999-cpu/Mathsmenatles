@@ -2,7 +2,7 @@
 /**
  * script qui envoie l'url longue au raccourcisseur d'url
  */
-$api_url =  'http://bref.jeduque.net/MathsMentalesShortener.php';
+$api_url =  'https://bref.jeduque.net/MathsMentalesShortener.php';
 
 // Init the CURL session
 $ch = curl_init();

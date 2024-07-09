@@ -1287,37 +1287,41 @@ const MM = {
             MM.carts[0].addActivity(MM.editedActivity);
         }
         // on récupère l'adresse créée
-        let url = document.getElementById("bigurl").value;
+        const url = document.getElementById("bigurl").value;
         // raccourcissement de l'url
-        let alert = document.getElementById("shortQRdiv");
+        const alert = document.getElementById("shortQRdiv");
         alert.innerHTML = "";
-        let div = utils.create("div",{className:'lds-ellipsis',innerHTML:"<div></div><div></div><div></div><div></div>"});
-        let div2 = utils.create("div",{innerHTML:"Génération en cours"});
+        const div = utils.create("div",{className:'lds-ellipsis',innerHTML:"<div></div><div></div><div></div><div></div>"});
+        const div2 = utils.create("div",{innerHTML:"Génération en cours"});
         alert.appendChild(div);
         alert.appendChild(div2);
-        let shorter = new XMLHttpRequest();
+        const shorter = new XMLHttpRequest();
         shorter.onload = function(){
-            alert.removeChild(div);
-            alert.removeChild(div2);
-            let shorturl = shorter.responseText;
-            if(shorturl.indexOf("http:")!==0){
-                alert.appendChild(utils.create("h2",{innertext:"Problème de récupération de l'url courte"}));
-                return;
+            try {
+                alert.removeChild(div);
+                alert.removeChild(div2);
+                let shorturl = shorter.responseText;
+                if(shorturl.indexOf("https:")!==0){
+                    alert.appendChild(utils.create("h2",{innertext:"Problème de récupération de l'url courte"}));
+                    return;
+                }
+                alert.appendChild(utils.create("h2",{innerText:"QRcode de l'exercice"}));
+                const qrdest = utils.create("img",{id:"qrious","title":"Clic droit pour copier l'image"});
+                alert.appendChild(qrdest);
+                let inputShortUrl = document.getElementById("shorturl");
+                inputShortUrl.value = shorturl;
+                inputShortUrl.select();
+                inputShortUrl.setSelectionRange(0,99999);
+                document.execCommand("copy");
+                let QR = new QRious({
+                    element: qrdest,// DOM destination
+                    value : shorturl,
+                    size: 200,
+                    padding:12
+                });
+                } catch(err) {
+                console.log(err);
             }
-            alert.appendChild(utils.create("h2",{innerText:"QRcode de l'exercice"}));
-            let qrdest = utils.create("img",{id:"qrious","title":"Clic droit pour copier l'image"});
-            alert.appendChild(qrdest);
-            let inputShortUrl = document.getElementById("shorturl");
-            inputShortUrl.value = shorturl;
-            inputShortUrl.select();
-            inputShortUrl.setSelectionRange(0,99999);
-            document.execCommand("copy");
-            let QR = new QRious({
-                element: qrdest,// DOM destination
-                value : shorturl,
-                size: 200,
-                padding:12
-            });
         }
         shorter.open("get","getshort.php?url="+encodeURIComponent(url));
         shorter.send();
