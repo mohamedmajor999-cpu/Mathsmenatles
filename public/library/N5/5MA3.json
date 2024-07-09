@@ -24,7 +24,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume de la pyramide à base carrée ?",
         "answer":"Volume de la pyramide à base carrée <br>$$V=\\dfrac{a\\times a \\times h}3=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume de pyramide à base rectangulaire",
         "consts":{"figures":[
@@ -46,7 +46,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume de la pyramide à base rectangulaire ?",
         "answer":"Volume de la pyramide à base rectangulaire <br>$$V=\\dfrac{a\\times b \\times H}3=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume de pyramide à base triangulaire",
         "consts":{"figures":[
@@ -68,7 +68,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume de la pyramide à base triangulaire ?",
         "answer":"Volume de la pyramide à base triangulaire <br>$$V=\\dfrac{\\dfrac{c\\times h}2 \\times H}3=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume d'un cône",
         "consts":{
@@ -89,6 +89,7 @@
         },
         "figure":{"type":"svg","content":"${:figures[:choixRorD]}"},
         "question":"Quel est le volume exact du cône ?",
-        "answer":"Volume de la base circulaire ${:choixRorD==0?'de rayon':'de diamètre'} $$${:choixRorD==0?:r::d}$$<br>$$\\dfrac{\\pi\\times r^2\\times h}3= \\color{red}{${:v}}~cm^3$$"
+        "answer":"Volume de la base circulaire ${:choixRorD==0?'de rayon':'de diamètre'} $$${:choixRorD==0?:r::d}$$<br>$$\\dfrac{\\pi\\times r^2\\times h}3= \\color{red}{${:v}}~cm^3$$",
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     }]
 }

@@ -35,7 +35,7 @@
             "lo":"1_10_2_^&"},
         "question":"Le triangle $$${:A+:B+:C}$$ est-il rectangle en $$${:C}$$, sachant que $$\\widehat{${:angles[0]}}=${:angA}°$$ et $$\\widehat{${:angles[1]}}=${:angB}°$$",
         "figure":{"type":"svg","content":"${:figures[:idfig]}"},
-        "shortq":"${:figures[:idfig]} rectangle ?",
+        "shortq":"$$${:A+:B+:C}$$ rectangle ?",
         "answer":"<span class='red'>${:choix==0?'Oui':'Non'}</span>, car $$${:angA}°+${:angB}°${:choix==0?'=':'\\not ='}90°$$",
         "value":["${:choix==0?'O':'N'}","${:choix==0?'OUI':'NON'}"]
         },
@@ -63,6 +63,7 @@
             "lo":"1_10",
             "hyp":"${:lo+1}_15"},
         "question":"Le triangle $$${:A+:B+:C}$$ est-il rectangle sachant que $$${:A+:B+'='+:c}$$, $$${:B+:C+'='+:a}$$ et $$${:C+:A}=${:b}$$ ?",
+        "shortq":"$$${:A+:B+:C}$$ rectangle ?",
         "figure":{"type":"svg","content":"${:figures[:idfig]}"},
         "answer":"<span class='red'>${:choix==0?'Oui':'Non'}</span>, car $$${:a}^2+${:b}^2${:choix==0?'=':'\\not ='}${:c}^2$$",
         "value":["${:choix==0?'O':'N'}","${:choix==0?'OUI':'NON'}"]

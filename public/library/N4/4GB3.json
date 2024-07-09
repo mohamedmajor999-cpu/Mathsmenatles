@@ -24,27 +24,27 @@
             "vars":{"l":"0_19_3_^&","A":"${:lettres[:l[0]]}", "B":"${:lettres[:l[1]]}", "C":"${:lettres[:l[2]]}", "idfig":"0_7"},
             "question":"Quel côté est l'hypoténuse ?",
             "figure":{"type":"svg","content":"${:figures[:idfig]}"},
-            "shortq":"Hypoténuse ?<br>${:figures[:idfig]}",
+            "shortq":"Hypoténuse ?",
             "answer":["L'hypoténuse est $$\\color{red}{[${:A+:B}]}$$","L'hypoténuse est $$\\color{red}{[${:B+:A}]}$$"],
-            "value":["$$[${:A+:B}]$$","$$[${:B+:A}]$$"]
+            "value":["[${:A+:B}]","[${:B+:A}]"]
         },
         {
             "name":"Déterminer le côté adjacent",
             "vars":{"l":"0_19_3_^&","choix":"0_1","A":"${:choix==0?'<tspan style=\"fill:#ff0000;\">'+:lettres[:l[0]]+'</tspan>'::lettres[:l[0]]}", "B":"${:choix==0?:lettres[:l[1]]:'<tspan style=\"fill:#ff0000;\">'+:lettres[:l[1]]+'</tspan>'}", "C":"${:lettres[:l[2]]}", "idfig":"0_7", "lettreB":"${:lettres[:l[1]]}", "lettreA":"${:lettres[:l[0]]}"},
             "question":"Quel côté est le côté adjacent à $$\\color{red}{\\widehat{${:choix==0?:lettreA::lettreB}}}$$&nbsp;?",
             "figure":{"type":"svg","content":"${:figures[:idfig]}"},
-            "shortq":"Adjacent à $$\\color{red}{\\widehat{${:choix==0?:lettreA::lettreB}}}$$ ?<br>${:figures[:idfig]}",
+            "shortq":"Adjacent à $$\\color{red}{\\widehat{${:choix==0?:lettreA::lettreB}}}$$ ?",
             "answer":["Le côté adjacent à $$\\widehat{${:choix==0?:lettreA::lettreB}}$$ est $$\\color{red}{[${(:choix==0?:lettreA::lettreB)+:C}]}$$","Le côté adjacent à $$\\widehat{${:choix==0?:lettreA::lettreB}}$$ est $$\\color{red}{[${:C+(:choix==0?:lettreA::lettreB)}]}$$"],
-            "value":["$$[${(:choix==0?:lettreA::lettreB)+:C}]$$","$$[${:C+(:choix==0?:lettreA::lettreB)}]$$"]
+            "value":["[${(:choix==0?:lettreA::lettreB)+:C}]","[${:C+(:choix==0?:lettreA::lettreB)}]"]
         },
         {
             "name":"Déterminer le côté opposé",
             "vars":{"l":"0_19_3_^&","choix":"0_1","A":"${:choix==0?'<tspan style=\"fill:#ff0000;\">'+:lettres[:l[0]]+'</tspan>'::lettres[:l[0]]}", "B":"${:choix==0?:lettres[:l[1]]:'<tspan style=\"fill:#ff0000;\">'+:lettres[:l[1]]+'</tspan>'}", "C":"${:lettres[:l[2]]}", "lettreA":"${:lettres[:l[0]]}", "lettreB":"${:lettres[:l[1]]}" , "idfig":"0_7"},
             "question":"Quel côté est le côté opposé à $$\\color{red}{\\widehat{${:choix==0?:lettreA::lettreB}}}$$&nbsp;?",
             "figure":{"type":"svg","content":"${:figures[:idfig]}"},
-            "shortq":"Opposé à $$\\color{red}{\\widehat{${:choix==0?:lettreA::lettreB}}}$$ ?<br>${:figures[:idfig]}",
+            "shortq":"Opposé à $$\\color{red}{\\widehat{${:choix==0?:lettreA::lettreB}}}$$ ?",
             "answer":["Le côté opposé à $$\\widehat{${:choix==0?:lettreA::lettreB}}$$ est $$\\color{red}{[${(:choix==1?:lettreA::lettreB)+:C}]}$$","Le côté opposé à $$\\widehat{${:choix==0?:lettreA::lettreB}}$$ est $$\\color{red}{[${:C+(:choix==1?:lettreA::lettreB)}]}$$"],
-            "value":["$$[${(:choix==1?:lettreA::lettreB)+:C}]$$","$$[${:C+(:choix==1?:lettreA::lettreB)}]$$"]
+            "value":["[${(:choix==1?:lettreA::lettreB)+:C}]","[${:C+(:choix==1?:lettreA::lettreB)}]"]
         }
     ]
     

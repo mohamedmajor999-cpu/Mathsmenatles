@@ -74,7 +74,7 @@
         }
     ],
     "question":"les droites $$(${:segments[2][0]})$$ et $$(${:segments[2][1]})$$ sont-elles parallèles ?",
-    "shortq":"$$(${:segments[2][0]}) // $${:segments[2][1]} ?$$",
+    "shortq":"$$(${:segments[2][0]}) // (${:segments[2][1]}) ?$$",
     "answer":"<span class='red'>${:repl}</span>, car $$\\dfrac{${:AB}}{${:AM}}=${:coeff1}$$ ${:choix==1?' et ':' mais '}$$\\dfrac{${:AC}}{${:AN}}=${:coeff2}$$",
     "value":["${:reps}","${:repl}"]
 }

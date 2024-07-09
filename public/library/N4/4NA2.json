@@ -14,7 +14,7 @@
         "question": ["Quel est l'inverse de $$${:d[:n]}$$ ?", "$$${:d[:n]}^{-1}$$"],
         "answer":["l'inverse de $$${:d[:n]}$$ est <span class='red'>$$${math.round(1/:d[:n],4)}$$</span>",
             "$$${:d[:n]}^{-1} =\\color{red}{${math.round(1/:d[:n],4)}}$$"],
-        "value":"${math.round(:d[:n],4)}"
+        "value":"${math.round(1/:d[:n],4)}"
     },{
         "name":"Inverses de décimaux classiques avec négatifs",
         "vars":{"n":"0_17", "s":"-1_1_^0"},

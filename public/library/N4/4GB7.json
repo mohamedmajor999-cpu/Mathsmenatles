@@ -28,7 +28,7 @@
             "lo":"1_10_2_^&"},
         "question":"Dans le triangle $$${:A+:B+:C}$$ ci-dessous rectangle en $$${:C}$$, sachant que ${:long[0]}$$=${:lo[0]}$$ et que ${:long[1]}$$=${:lo[1]}$$, calculez la longueur exacte $$${:A+:B}$$. ",
         "figure":{"type":"svg","content":"${:figures[:idfig]}"},
-        "shortq":"${:figures[:idfig]}",
+        "shortq":"$$${:A+:B}$$ ?",
         "answer":"$$${:A+:B}=\\color{red}{\\sqrt{${:lo[0]*:lo[0]+:lo[1]*:lo[1]}}}=\\color{green}{\\sqrt{${:lo[0]}^2+${:lo[1]}^2}}$$",
         "value":"\\sqrt{${:lo[0]*:lo[0]+:lo[1]*:lo[1]}}"
         },
@@ -44,6 +44,7 @@
         },
         "vars":{"l":"0_19_3_^&","A":"${:lettres[:l[0]]}", "B":"${:lettres[:l[1]]}", "C":"${:lettres[:l[2]]}", "idfig":"0_2", "lo":"1_10","hyp":"${:lo+1}_15"},
         "question":"Dans le triangle $$${:A+:B+:C}$$ ci-dessous rectangle en $$${:C}$$, $$${:A+:B}=${:hyp}$$ et $$${:B+:C}=${:lo}$$. Calculez la longueur exacte de $$[${:A+:C}]$$.",
+        "shortq":"$$${:A+:C}$$ ?",
         "figure":{"type":"svg","content":"${:figures[:idfig]}"},
         "answer":"$$${:A+:C}=\\color{red}{\\sqrt{${:hyp**2-:lo**2}}}=\\color{green}{\\sqrt{${:hyp**2}-${:lo**2}}}=\\color{green}{\\sqrt{${:hyp}^2-${:lo}^2}}$$",
         "value":"\\sqrt{${:hyp**2-:lo**2}}"

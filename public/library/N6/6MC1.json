@@ -47,9 +47,10 @@
             "content":"${:figures['carres'][:fig]}"
         },
         "question": "Quelle est l'<b>aire</b> d'un carré de côté $$${:a}\\text{ ${:unites[:u]}}$$ ?",
+        "shortq": "Aire du carré ?",
         "audio": "Quelle est l'aire d'un carré de côté ${:a} ${:uv[:unites[:u]]} ?",
         "answer":"$$${:a}\\times${:a}=\\color{red}{${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":"${:aire}${:unites[:u]}^2"
+        "value":["${:aire}~${:unites[:u]}^2", "${:aire}${:unites[:u]}^2", "${:aire}"]
     },{
         "name":"Aire du rectangle",
         "vars":{"a":"1_8", "b":"${:a+1}_9", "aire":"${:a*:b}","u":"0_6","fig":"0_2", "lar":"${:a} ${:unites[:u]}", "long":"${:b} ${:unites[:u]}"},
@@ -58,9 +59,10 @@
             "content":"${:figures['rectangles'][:fig]}"
         },
         "question": "Quelle est l'<b>aire</b> d'un rectangle de côtés $$${:a}\\text{ ${:unites[:u]}}$$ et  $$${:b}\\text{ ${:unites[:u]}}$$?",
+        "shortq": "Aire du rectangle ?",
         "audio": "Quelle est l'aire d'un rectangle de côtés ${:a} ${:uv[:unites[:u]]} et ${:b} ${:uv[:unites[:u]]} ?",
         "answer":"$$${:a}\\times${:b}=\\color{red}{${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":"${:aire}${:unites[:u]}^2"
+        "value":["${:aire}~${:unites[:u]}^2", "${:aire}${:unites[:u]}^2", "${:aire}"]
     },{
         "name":"Aire du triangle",
         "vars":{"a":"1_9","h":"1_9","u":"0_6","xc":"1_10","aire":"${math.round(:a*:h/2,1)}", "fig":"0_4", "base":"${:a} ${:unites[:u]}"},
@@ -69,9 +71,10 @@
             "content":"${:figures['triangles'][:fig]}"
         },
         "question":"Quelle est l'<b>aire</b> d'un triangle de côté $$${:a}\\text{ ${:unites[:u]}}$$ et de hauteur $$${:h}\\text{ ${:unites[:u]}}$$ ?",
+        "shortq": "Aire du triangle ?",
         "audio":"Quelle est l'aire d'un triangle de côté ${:a} ${:uv[:unites[:u]]} et de hauteur ${:h} ${:uv[:unites[:u]]} ?",
         "answer":"$$\\dfrac{b\\times h}{2}=\\dfrac{${:a}\\times${:h}}{2}=\\color{red}{${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":"${:aire}${:unites[:u]}^2"
+        "value":["${:aire}~${:unites[:u]}^2", "${:aire}${:unites[:u]}^2", "${:aire}"]
     },
     {
         "name":"Aire du disque",
@@ -81,9 +84,10 @@
             "content":"${:figures['cercleR']}"
         },
         "question": "Quelle est l'<b>aire</b> d'un disque de rayon $$${:r}\\text{ ${:unites[:u]}}$$ ?",
+        "shortq": "Aire du disque ?",
         "audio": "Quelle est l'aire d'un disque de rayon ${:r} ${:uv[:unites[:u]]} ?",
         "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2 \\approx ${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":["${:aire}${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2"]
+        "value":["${:aire}${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2", "${:aire}", "${math.signIfOne(:r2)}\\pi"]
     },
     {
         "name":"Aire du disque à partir du diamètre",
@@ -93,9 +97,10 @@
             "content":"${:figures['cercleD']}"
         },
         "question": "Quelle est l'<b>aire</b> d'un disque de diamètre $$${:d}\\text{ ${:unites[:u]}}$$ ?",
+        "shortq": "Aire du disque ?",
         "audio": "Quelle est l'aire d'un disque de diamètre ${:d} ${:uv[:unites[:u]]} ?",
         "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2 \\approx ${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":["${:aire}${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2"]
+        "value":["${:aire}${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2", "${:aire}", "${math.signIfOne(:r2)}\\pi"]
     },
     {
         "name":"Aire du triangle rectangle",
@@ -105,9 +110,36 @@
             "content":"${:figures['trianglesRectangles'][:fig]}"
         },
         "question": "Quelle est l'<b>aire</b> d'un triangle rectangle de côtés $$${:a}\\text{ ${:unites[:u]}}$$ et  $$${:b}\\text{ ${:unites[:u]}}$$?",
+        "shortq": "Aire du triangle ?",
         "audio": "Quelle est l'aire d'un triangle rectangle de côtés ${:a} ${:uv[:unites[:u]]} et ${:b} ${:uv[:unites[:u]]} ?",
         "answer":"$$${:a}\\times${:b}\\div 2=\\color{red}{${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":"${:aire}${:unites[:u]}^2"
+        "value":["${:aire}~${:unites[:u]}^2", "${:aire}${:unites[:u]}^2", "${:aire}"]
+    },
+    {
+        "name":"Aire exacte du disque",
+        "vars":{"r":"1_5","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}", "ray":"${:r} ${:unites[:u]}"},
+        "figure":{
+            "type":"svg",
+            "content":"${:figures['cercleR']}"
+        },
+        "question": "Quelle est l'<b>aire</b> exacte d'un disque de rayon $$${:r}\\text{ ${:unites[:u]}}$$ ?",
+        "audio": "Quelle est l'aire exacte d'un disque de rayon ${:r} ${:uv[:unites[:u]]} ?",
+        "shortq": "Aire exacte ?",
+        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2}$$",
+        "value":["${math.signIfOne(:r2)}\\pi~${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2"] 
+    },
+    {
+        "name":"Aire exacte du disque à partir du diamètre",
+        "vars":{"r":"1_5", "d":"${:r*2}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}","xN":"${5-:r}", "diam":"${:d} ${:unites[:u]}"},
+        "figure":{
+            "type":"svg",
+            "content":"${:figures['cercleD']}"
+        },
+        "question": "Quelle est l'<b>aire</b> exacte d'un disque de diamètre $$${:d}\\text{ ${:unites[:u]}}$$ ?",
+        "shortq": "Aire exacte ?",
+        "audio": "Quelle est l'aire exacte d'un disque de diamètre ${:d} ${:uv[:unites[:u]]} ?",
+        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2}$$",
+        "value":["${math.signIfOne(:r2)}\\pi~${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2"]
     }
     ]
 }

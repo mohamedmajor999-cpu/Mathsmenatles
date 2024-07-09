@@ -21,7 +21,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume exact du cylindre de rayon ${:r} cm et de hauteur ${:h} cm ?",
         "answer":"Volume du cylindre <br>$$V={r\\times r \\times \\pi \\times h}=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume d'un cylindre à partir du diamètre",
         "consts":{"figures":[
@@ -39,7 +39,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume exact du cylindre de diamètre ${:d} cm et de hauteur ${:h} cm ?",
         "answer":"Volume du cylindre <br>$$V={r \\times r \\times \\pi \\times h}=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume d'un cône à partir du rayon",        
         "vars":{
@@ -54,7 +54,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume exact du cône de rayon ${:r} cm et de hauteur ${:h} cm ?",
         "answer":"Volume du cône <br>$$V=\\dfrac{r\\times r \\times \\pi \\times h}3=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume d'un cône à partir du diamètre",
         "vars":{
@@ -69,7 +69,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume exact du cône de diamètre ${:d} cm et de hauteur ${:h} cm ?",
         "answer":"Volume du cône <br>$$V=\\dfrac{r \\times r \\times \\pi \\times h}3=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume d'une boule à partir du rayon",        
         "vars":{
@@ -80,7 +80,7 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume exact de la boule de rayon ${:r} cm  ?",
         "answer":"Volume de la boule <br>$$V=\\dfrac43\\pi\\times r\\times r \\times r=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     },{
         "name":"Volume d'une boule à partir du diamètre",
         "vars":{
@@ -92,6 +92,6 @@
         "shortq":"Volume ?",
         "question": "Quel est le volume exact de la boule de diamètre ${:d} cm ?",
         "answer":"Volume de la boule <br>$$V=\\dfrac43\\pi\\times r \\times r \\times r=\\color{red}{${:v}~cm^3}$$",
-        "value":["${:v}", "${:v}cm^3"]
+        "value":["${:v}~cm^3", "${:v}", "${:v}cm^3"]
     }]
 }
