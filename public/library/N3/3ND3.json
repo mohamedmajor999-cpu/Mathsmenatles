@@ -19,8 +19,8 @@
         "question":["${math.signIfOne(:a[0])}${:x}-(${(:posx==1)?math.signIfOne(:a[1])+:x::a[1]}${(:posx==2)?math.signedNumberButOne(:a[2])+:x:math.signedNumber(:a[2])})","${math.signIfOne(:a[0])}${:x}+(${(:posx==1)?math.signIfOne(:a[1])+:x::a[1]}${(:posx==2)?math.signedNumberButOne(:a[2])+:x:math.signedNumber(:a[2])})"],
         "answer":[":question=\\color{red}{${math.signIfOne(:a[0])}${:x}${(:posx==1)?math.signedNumberButOne(-:a[1])+:x:math.signedNumber(-:a[1])}${(:posx==2)?math.signedNumberButOne(-:a[2])+:x:math.signedNumber(-:a[2])}}",
         ":question=\\color{red}{${math.signIfOne(:a[0])}${:x}${(:posx==1)?math.signedNumberButOne(:a[1])+:x:math.signedNumber(:a[1])}${(:posx==2)?math.signedNumberButOne(:a[2])+:x:math.signedNumber(:a[2])}}"],
-        "value":["${math.signIfOne(:a[0])}${:x}${(:posx==1)?math.signedNumberButOne(-:a[1])+:x:-:a[1]}${(:posx==2)?math.signedNumberButOne(-:a[2])+:x:math.signedNumber(-:a[2])}",
-            "${math.signIfOne(:a[0])}${:x}${(:posx==1)?math.signedNumberButOne(:a[1])+:x::a[1]}${(:posx==2)?math.signedNumberButOne(:a[2])+:x:math.signedNumber(:a[2])}"]
+        "value":["${math.signIfOne(:a[0])}${:x}${(:posx==1)?math.signedNumberButOne(-:a[1])+:x:math.signedNumber(-:a[1])}${(:posx==2)?math.signedNumberButOne(-:a[2])+:x:math.signedNumber(-:a[2])}",
+            "${math.signIfOne(:a[0])}${:x}${(:posx==1)?math.signedNumberButOne(:a[1])+:x:math.signedNumber(:a[1])}${(:posx==2)?math.signedNumberButOne(:a[2])+:x:math.signedNumber(:a[2])}"]
     },{
         "name":"Supprimer les parenthèses(2)",
         "vars":{"a":"-9_9_4_^0","l":"0_5","x":"${:lettres[:l]}"},
