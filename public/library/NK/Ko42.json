@@ -11,14 +11,14 @@
         "name":"Polynomes de degré 2",
         "vars":{"a":"-9_9_3","cx":"0_0","x":"${:lettres[:cx]}"},
         "question":"\\text{Dériver la fonction } f(x)=${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}",
-        "answer":":question|-28\\\\\\text{donc }\\color{red}{f'(x) = ${math.calc('d('+:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+'))')}}",
-        "value":"${math.calc('d('+:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+'))')}"
+        "answer":":question|-28\\\\\\text{donc }\\color{red}{f'(x) = ${math.calc((:a[0]*2)+'*'+:x+'+('+:a[1]+')')}}",
+        "value":"${math.calc((:a[0]*2)+'*'+:x+'+('+:a[1]+')')}"
     },{
         "name":"Polynomes de degré 3",
         "vars":{"a":"-9_9_4","cx":"0_0","x":"${:lettres[:cx]}"},
         "question":"\\text{Dériver la fonction } f(x)=${math.calc(:a[0]+'*'+:x+'^3+('+:a[1]+')*'+:x+'^2+('+:a[2]+')*'+:x+'+('+:a[3]+')')}",
-        "answer":":question|-28\\\\\\text{donc }\\color{red}{f'(x) = ${math.calc('d('+:a[0]+'*'+:x+'^3+('+:a[1]+')*'+:x+'^2+('+:a[2]+')*'+:x+'+('+:a[3]+'))')}}",
-        "value":"${math.calc('d('+:a[0]+'*'+:x+'^3+('+:a[1]+')*'+:x+'^2+('+:a[2]+')*'+:x+'+('+:a[3]+'))')}"
+        "answer":":question|-28\\\\\\text{donc }\\color{red}{f'(x) = ${math.calc((:a[0]*3)+'*'+:x+'^2+('+(:a[1]*2)+')*'+:x+'+('+:a[2]+')')}}",
+        "value":"${math.calc((:a[0]*3)+'*'+:x+'^2+('+(:a[1]*2)+')*'+:x+'+('+:a[2]+')')}"
     }
     ]
 }

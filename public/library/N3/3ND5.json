@@ -31,7 +31,7 @@
         "name":"ax² = b, a, b entiers",
         "vars":{"a":"-20_20_^0","alea":"1_10", "n":"-20_20_^0", "b":"${(:alea<3 || :a*:n>0)?:n:-:n}" , "l":"0_5","x":"${:lettres[:l]}"},
         "question": "\\text{Résoudre } ${math.signIfOne(:a)}${:x}^2=${:b}",
-        "answer":"${math.signIfOne(:a)}${:x}^2=${:b} \\text{ pour } \\color{red}{${:a*:b<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+math.calc('sqrt('+:b+'/('+:a+'))')+';'+math.calc('sqrt('+:b+'/('+:a+'))')+'\\}')}}"
+        "answer":"${math.signIfOne(:a)}${:x}^2=${:b} \\text{ pour } \\color{red}{${:a*:b<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+';'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+'\\}')}}"
     }],
     "value":["${:a<0?'':-:n+';'+:n}","${:a<0?''::n+';-'+:n}","\\left\\{${:a<0?'':-:n+';'+:n}\\right\\}","\\left\\{${:a<0?''::n+';-'+:n}\\right\\}"]
 }

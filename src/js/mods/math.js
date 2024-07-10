@@ -1,4 +1,7 @@
 import utils from "./utils.js";
+import { ComputeEngine } from '../libs/cortexjs/compute-engine.min.esm.js';
+const ce = new ComputeEngine()
+/*import * as mathjs from "../libs/math.js";*/
 //import * as ce from "../node_modules/@cortex-js/compute-engine/dist/compute-engine.esm.js"
 export {math as default};
 const math = {
@@ -467,18 +470,21 @@ const math = {
      * @param {Boolean} notex default false : return as tex, else return as ascii
      * @returns 
      */
-    calc:function(expr,notex){
-        let ret = Algebrite.run(expr);
+    calc:function(expr,notex, evaluate = false){
+        //let ret = Algebrite.run(expr);
+        let ret = ce.parse(expr).simplify()
+        if (evaluate === true) {
+            ret = ce.parse(expr).evaluate()
+        }
         if(notex === undefined || notex===false) {
             // on calcule l'affichage latex en réalisant quelques petites simplifications d'écriture (1*x=>x, 2x+0 => 2x)...
-            //let parser= new AsciiMathParser()
-            //ret = ret.replace(/([0-9])(\*)([a-z])/g,'$1$3').replace(/frac/g,'dfrac');
-            //ret = parser.parse(ret);
-            ret = Algebrite.run('printlatex('+expr+')').replace(/frac/g,'dfrac').replace(/(\d) (\\times|\\cdot) (\w)/g,'$1$3');
-            //let expression = parse(expr);
-            //ret = serialize(this.ce.canonical(expression)).replace(/frac/g,'dfrac');
+            return ret.latex.replace(/frac/g,'dfrac')
         }
-        return ret;
+        return ret.value
+    },
+    box:function(expression){
+        console.log(expression)
+        return ce.box(expression).simplify().latex.replace(/frac/g,'dfrac').replace(/\\imaginaryI/g,'i')
     },
     /**
      * Retourne des heures minutes à partir d'heures, minutes, secondes pouvant dépasser 60 ou être négatives

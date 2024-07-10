@@ -22,14 +22,14 @@
         "name":"Carré d'un complexe",
         "vars":{"a":"-12_12", "b":"-12_12_^${:a}"},
         "question":"\\left(${:a!=0?:a:''}${:b!=0?:a==0?math.signIfOne(:b)+'i':math.signedNumberButOne(:b)+'i':''}\\right)^2",
-        "answer":":question=\\color{red}{${math.calc('('+:a+'+('+:b+')i)^2',true).replace('*','')}}",
-        "value":"${math.calc('('+:a+'+('+:b+')i)^2',true).replace('*','')}"
+        "answer":":question=\\color{red}{${math.box(['Multiply',['Complex',:a,:b],['Complex',:a,:b]])}}",
+        "value":"${math.box(['Multiply',['Complex',:a,:b],['Complex',:a,:b]])}"
         },{
         "name":"Inverse d'un complexe",
         "vars":{"a":"-10_10", "b":"-10_10_^${:a}"},
         "question":["\\left(${:a!=0?:a:''}${:b!=0?:a==0?math.signIfOne(:b)+'i':math.signedNumberButOne(:b)+'i':''}\\right)^{-1}",
             "\\dfrac{1}{${:a!=0?:a:''}${:b!=0?:a==0?math.signIfOne(:b)+'i':math.signedNumberButOne(:b)+'i':''}}"],
-        "answer":":question=\\color{red}{${math.calc('('+:a+'+('+:b+')i)^(-1)').replace('\\sqrt{-1}','i').replace(/frac/g,'dfrac')}}",
-        "value":"${math.calc('('+:a+'+('+:b+')i)^(-1)').replace('\\sqrt{-1}','i').replace(/frac/g,'dfrac')}"
+        "answer":":question=\\color{red}{${math.box(['Rational',:a,(:a*:a+:b*:b)])}+${math.box(['Rational',-:b,(:a*:a+:b*:b)])}i}",
+        "value":"${math.box(['Rational',:a,(:a*:a+:b*:b)])}+${math.box(['Rational',-:b,(:a*:a+:b*:b)])}i"
     }]
 }

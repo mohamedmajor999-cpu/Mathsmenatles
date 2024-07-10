@@ -4,9 +4,9 @@
     "ID":"GA52",
     "description":"",
     "dest":["GA5"],
-    "vars":{"a":"-10_10_^0", "b":"-10_10_^0", "c":"-10_10_^0","alpha":"${math.calc('-('+:b+')/(2*('+:a+'))', true)}","alphadec":"${-:b/2/:a}","beta":"${math.calc(:a+'*('+:alpha+')*('+:alpha+')+('+:b+')*('+:alpha+')+('+:c+')')}","alphasign":"${math.sign(-:alphadec)}","betasign":"${math.sign(:a*:alphadec*:alphadec+:b*:alphadec+:c)}"},
+    "vars":{"a":"-10_10_^0", "b":"-10_10_^0", "c":"-10_10_^0","alpha":"${math.calc('|\\frac{'+:b+'}{2\\times('+:a+')}|')}","alphadec":"${-:b/2/:a}","beta":"${math.calc('|\\frac{4\\times('+:a+')\\times('+:c+')-'+:b+'\\times'+:b+'}{4\\times('+:a+')}|')}","alphasign":"${math.sign(-:alphadec)}","betasign":"${math.sign((4*:a*:c-:b*:b)*:a)}"},
     "question":["\\text{Mettre }${math.signIfOne(:a)}x^2${math.signedNumber(:b)}x${math.signedNumber(:c)}\\text{ sous forme canonique}"
 	],
-    "answer":"${math.signIfOne(:a)}x^2${math.signedNumber(:b)}x${math.signedNumber(:c)}=\\color{red}{${math.signIfOne(:a)}\\left(x${:alphasign=='+'?'+':''}${math.calc('-('+:alpha+')')}\\right)^2${:betasign=='+'?'+':''}${:beta}}",
-    "value":"${math.signIfOne(:a)}*(x${math.calc('-('+:alpha+')')})^2${:beta}}"
+    "answer":"${math.signIfOne(:a)}x^2${math.signedNumber(:b)}x${math.signedNumber(:c)}=\\color{red}{${math.signIfOne(:a)}\\left(x${:alphasign}${:alpha}\\right)^2${:betasign}${:beta}}",
+    "value":"${math.signIfOne(:a)}\\left(x${:alphasign}${:alpha}\\right)^2${:betasign}${:beta}"
 }
