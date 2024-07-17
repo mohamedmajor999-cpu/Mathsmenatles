@@ -338,14 +338,41 @@ const math = {
         if(notNb) diviseurs = _.initial(diviseurs);
         return diviseurs[math.aleaInt(0,diviseurs.length-1)];
     },
+    factor (nb) {
+        nb = Number(nb)
+        if (nb > 4000000) return nb // pas prévu pour plus de 4000000
+        if (nb < 2) return String(nb)
+        const primeDivisors = {}
+        let i = 0, divisor = 2, divisors = false
+        while (divisor <= Math.sqrt(nb)) {
+            while (nb%divisor === 0) {
+                divisors = true
+                if (primeDivisors[divisor] === undefined) primeDivisors[divisor] = 0
+                primeDivisors[divisor]++
+                nb /= divisor
+            }
+            divisor = math.premiers[++i]
+        }
+        if (!divisors) return String(nb)
+        if(nb > 1){
+            primeDivisors[nb] = 1
+        } 
+        const factors = []
+        for (const prime in primeDivisors) {
+            if (primeDivisors[prime] > 1) factors.push(prime + '^' + primeDivisors[prime])
+            else factors.push(String(prime))
+        }
+        return factors.join("*")
+    },
     /**
      * replace parts of a string written as power
      * @param {String} value "integer1^integer2*integer3^integer4..."
      * @returns product of integers2 factors equals to integer1, ...
      */
     unpower:function(value){
+        value = String(value)
         let matches = value.match(/(\d*)\^(\d*)/g);
-            if(matches)
+        if(matches)
             for(let i=0,l=matches.length;i<l;i+=2){
                 value = value.replace(matches[i], math.powerToProduct(matches[i]));
             }
@@ -397,7 +424,7 @@ const math = {
      * @returns 
      */
     simplifieRacine(radicande){
-        const factors = Algebrite.run('factor('+radicande+')').split('*');
+        const factors = math.factor('+radicande+').split('*')
         let outOfSquareR = 1;
         let inSquareR = 1;
         for(let i=0;i<factors.length;++i){
@@ -441,7 +468,11 @@ const math = {
      * @returns gcd of a & b
      */
     pgcd: function(a, b) {
-        return Number(Algebrite.run('gcd(' + a + ',' + b + ')'));
+        if (b) {
+            return math.pgcd(b, a % b);
+        } else {
+            return Math.abs(a);
+        }
     },
     /**
      * Retourne le PPCM de deux nombres
@@ -450,7 +481,8 @@ const math = {
      * @returns lcm of a & b
      */
     ppcm: function(a, b) {
-        return Algebrite.run('lcm(' + a + ',' + b + ')');
+        const pgcd = math.pgcd(a, b);
+        return (a * b) / pgcd;
     },
     /**
      * Retourne l'inverse d'un nombre
@@ -458,11 +490,8 @@ const math = {
      * @param {Boolean} notex default false : return as tex, else return as ascii
      * @returns inverse of expr
      */
-    inverse:function(expr, notex){
-        let ret;
-        if(notex === undefined || notex===false) ret = Algebrite.run('printlatex(1/('+expr+'))');
-        else ret = Algebrite.run('1/('+expr+')');
-        return ret;
+    inverse: function(expr){
+        return ce.parse('1/('+String(expr)+')').simplify().latex
     },
     /**
      * 
@@ -470,8 +499,7 @@ const math = {
      * @param {Boolean} notex default false : return as tex, else return as ascii
      * @returns 
      */
-    calc:function(expr,notex, evaluate = false){
-        //let ret = Algebrite.run(expr);
+    calc:function(expr, notex, evaluate = false){
         let ret = ce.parse(expr).simplify()
         if (evaluate === true) {
             ret = ce.parse(expr).evaluate()

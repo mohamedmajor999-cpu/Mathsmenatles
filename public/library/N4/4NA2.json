@@ -28,9 +28,9 @@
         "vars":{"n":"1_50"},
         "question":["Quel est l'inverse de $$${:n}$$ ?",
             "$$${:n}^{-1}$$"],
-        "answer":["L'inverse de $$${:n}$$ est <span class='red'>$$\\displaystyle${math.inverse(:n,false)}$$</span>",
-            "$$${:n}^{-1}=\\color{red}{\\displaystyle${math.inverse(:n,false)}}$$"],
-        "value":"${math.inverse(:n,true)}"
+        "answer":["L'inverse de $$${:n}$$ est <span class='red'>$$\\displaystyle${math.inverse(:n)}$$</span>",
+            "$$${:n}^{-1}=\\color{red}{\\displaystyle${math.inverse(:n)}}$$"],
+        "value":"${math.inverse(:n)}"
     },{
         "name":"Inverse d'entier relatif",
         "vars":{"n":"1_50", "s":"-1_1_^0"},
@@ -39,10 +39,10 @@
             "$$${(:s>0)?:n:('(-'+:n+')')}^{-1}$$"
         ],
         "answer":[
-            "L'inverse de $$${:s*:n}$$ est <span class='red'>$$\\displaystyle${math.inverse(:s*:n,false)}$$</span>",
-            "$$${(:s>0)?:n:('(-'+:n+')')}^{-1}=\\color{red}{\\displaystyle${math.inverse(:s*:n,false)}}$$"
+            "L'inverse de $$${:s*:n}$$ est <span class='red'>$$\\displaystyle${math.inverse(:s*:n)}$$</span>",
+            "$$${(:s>0)?:n:('(-'+:n+')')}^{-1}=\\color{red}{\\displaystyle${math.inverse(:s*:n)}}$$"
         ],
-        "value":"${math.inverse(:s*:n,true)}"
+        "value":"${math.inverse(:s*:n)}"
     },{
         "name":"Inverse de fraction",
         "vars":{"num":"1_20","den":"2_20_^${:num}"},
@@ -50,10 +50,10 @@
             "Quel est l'inverse de $$\\dfrac{${:num}}{${:den}}$$ ?",
             "$$\\left(\\dfrac{${:num}}{${:den}}\\right)^{-1}$$"],
         "answer":[
-            "L'inverse de $$\\dfrac{${:num}}{${:den}}$$ est <span class='red'>$$\\displaystyle${math.inverse(:num+'/'+:den,false)}$$</span>",
-            "$$\\left(\\dfrac{${:num}}{${:den}}\\right)^{-1}=\\color{red}{\\displaystyle${math.inverse(:num+'/'+:den,false)}}$$"
+            "L'inverse de $$\\dfrac{${:num}}{${:den}}$$ est <span class='red'>$$\\displaystyle${math.inverse(:num+'/'+:den)}$$</span>",
+            "$$\\left(\\dfrac{${:num}}{${:den}}\\right)^{-1}=\\color{red}{\\displaystyle${math.inverse(:num+'/'+:den)}}$$"
         ],
-        "value":"${math.inverse(:num+'/'+:den,true)}"
+        "value":"${math.inverse(:num+'/'+:den)}"
     },{
         "name":"Inverse de fraction avec relatifs",
         "vars":{"num":"-20_20_^0","den":"-20_20_^${:num},0"},
@@ -61,10 +61,10 @@
             "Quel est l'inverse de $$\\dfrac{${:num}}{${:den}}$$ ?",
             "$$\\left(\\dfrac{${:num}}{${:den}}\\right)^{-1}$$"],
         "answer":[
-            "L'inverse de $$\\dfrac{${:num}}{${:den}}$$ est <span class='red'>$$\\displaystyle${math.inverse(:num+'/('+:den+')',false)}$$</span>",
-            "$$\\left(\\dfrac{${:num}}{${:den}}\\right)^{-1}=\\color{red}{\\displaystyle${math.inverse(:num+'/('+:den+')',false)}}$$"
+            "L'inverse de $$\\dfrac{${:num}}{${:den}}$$ est <span class='red'>$$\\displaystyle${math.inverse(:num+'/('+:den+')')}$$</span>",
+            "$$\\left(\\dfrac{${:num}}{${:den}}\\right)^{-1}=\\color{red}{\\displaystyle${math.inverse(:num+'/('+:den+')')}}$$"
         ],
-        "value":"${math.inverse(:num+'/('+:den+')',true)}"
+        "value":"${math.inverse(:num+'/('+:den+')')}"
     }
     ]
 }
