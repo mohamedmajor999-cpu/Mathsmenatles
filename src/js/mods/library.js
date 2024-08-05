@@ -7,7 +7,7 @@ import activity from "./activity.js";
 export {library as default};
 // lecture de la bibliotheque
 const library = {
-    ordre:{"grille-ecole":["11","10","9","8","7"],"grille-college":["6","5","4","3"],"grille-lycee":["2","G","K","T"]},
+    ordre:{"grille-ecole":["11","10","9","8","7"],"grille-college":["6","5","4","3",'H'],"grille-lycee":["2","G","K","T"]},
     /**
      * Affiche une activité dans l'onglet de paramètres
      * @param {JSON} json description de l'objet

@@ -525,5 +525,17 @@
                 }
             }
         }
+    },
+    "H":{
+        "nom":"Hors Prog.",
+        "themes":{
+            "HP":{
+                "nom":"Puissances",
+                "chapitres":{
+                    "HPF":"Puissances",
+                    "HPL":"Logarithmes"
+                }
+            }
+        }
     }
 }

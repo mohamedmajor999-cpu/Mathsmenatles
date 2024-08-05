@@ -24,6 +24,6 @@
     }
     ],
     "question": "\\begin{cases}${:points[:pt[0]]}(${:x[0]+';\\color{blue}{'+:x[1]}}) \\\\ ${:points[:pt[1]]}(${:x[2]+';\\color{blue}{'+:x[3]}})\\end{cases} \\quad \\overrightarrow{${:points[:pt[0]]+:points[:pt[1]]}}(? ; ?)",
-    "answer":"\\text{Pour }${:points[:pt[0]]}(${:x[0]+';\\color{blue}{'+:x[1]}}) \\text{ et } ${:points[:pt[1]]}(${:x[2]+';\\color{blue}{'+:x[3]}}), \\overrightarrow{${:points[:pt[0]]+:points[:pt[1]]}}\\color{red}{(${math.round(:x[2]-:x[0],2)};${math.round(:x[3]-:x[1],2)})}",
+    "answer":"\\text{Pour }${:points[:pt[0]]}(${:x[0]+';\\color{blue}{'+:x[1]}}) \\text{ et } ${:points[:pt[1]]}(${:x[2]+';\\color{blue}{'+:x[3]}}), \\newline \\overrightarrow{${:points[:pt[0]]+:points[:pt[1]]}}\\color{red}{(${math.round(:x[2]-:x[0],2)};${math.round(:x[3]-:x[1],2)})}",
     "value":"\\left(${math.round(:x[2]-:x[0])};${math.round(:x[3]-:x[1])}\\right)"
 }

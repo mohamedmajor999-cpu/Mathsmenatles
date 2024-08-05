@@ -56,8 +56,8 @@ for (const niveau in structure){
     structure.activitiesNumber++;
     for(let i in json.dest){
       let codechap = json.dest[i];
-      let destLevel = codechap.match(/(^\d+|T|G|K)/i)[0];
-      let themecode = codechap.match(/^(\d+|T|G|K)[A-Z]/i)[0];
+      let destLevel = codechap.match(/(^\d+|T|G|K|H)/i)[0];
+      let themecode = codechap.match(/^(\d+|T|G|K|H)[A-Z]/i)[0];
       if(structure[destLevel] !== undefined){
         structure[destLevel].activitiesNumber++;
         structure[destLevel].themes[themecode].chapitres[codechap].e.push(exo);
