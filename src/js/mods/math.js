@@ -225,6 +225,7 @@ const math = {
      */
     listeProduits:function(entier, max, values=false){
         let liste = [];
+        entier = Number(entier)
         if(max === undefined)max=10;
         for(let i=1,top=Math.floor(Math.sqrt(entier));i<=top;i++){
             let reste = entier%i, quotient = ~~(entier/i);
@@ -236,6 +237,15 @@ const math = {
         if(!values)
             return liste.join("; ");
         else return liste
+    },
+    unProduitEgalA(nb){
+        let listeProduits = this.listeProduits(nb,20, true)
+        // ajoute les produits symétriques
+        if (listeProduits.length === 0){
+            const nb = this.aleaInt(2,10)
+            listeProduits = ["0\\times"+nb, nb+"\\times0"]
+        }
+        return listeProduits[Math.floor(Math.random()*listeProduits.length)];
     },
     /** 
     * donne la liste des diviseurs d'un nombre sous forme de chaine

@@ -1,0 +1,34 @@
+{
+    "title": "Fractions de quantités",
+    "ID": "4NC8",
+    "dest": ["4NC", "3NB", "2N2"],
+    "consigne":"Calculer",
+    "description": "Calculs de produits avec des fractions",
+    "options": [{
+        "name": "Fraction de quantité",
+        "vars": {
+            "num":"1_20_^prime",
+            "den":"2_20_^prime",
+            "qte":"10_50_^prime"
+        },
+        "question": ["\\dfrac{${:num}}{${:den}} \\text{ de } ${:qte}",
+            "\\dfrac{${:num}}{${:den}} \\times ${:qte}",
+        "${:qte}\\times\\dfrac{${:num}}{${:den}}"],
+        "answer":":question = \\color{red}{${math.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}}",
+        "value":"${math.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}"
+},{
+    "name": "Fraction de fraction",
+    "vars": {
+        "num1":"1_20_^prime",
+        "den1":"2_20_^prime",
+        "num2":"1_20_^prime",
+        "den2":"2_20_^prime"
+    },
+    "question":[
+        "\\dfrac{${:num1}}{${:den1}} \\text{ de } \\dfrac{${:num2}}{${:den2}}",
+        "\\dfrac{${:num1}}{${:den1}} \\times \\dfrac{${:num2}}{${:den2}}"
+    ],
+    "answer":":question = \\color{red}{${math.calc('\\frac{'+:num1+' \\times '+:num2+'}{'+:den1+' \\times '+:den2+'}')}}",
+    "value":"${math.calc('\\frac{'+:num1+' \\times '+:num2+'}{'+:den1+' \\times '+:den2+'}')}"
+}]
+}

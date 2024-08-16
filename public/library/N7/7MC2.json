@@ -4,7 +4,7 @@
     "speech":1,
     "ID":"7MC2",
     "description":"Conversions par interprétation de reste.",
-    "dest":["7MC","6MB"],
+    "dest":["7MC","6MB", "5MA", "4MA", "3MA"],
     "options":[{
         "name":"Conversions siècle <=> années",
         "vars":{"a":"0_99","s":"0_21","an":"${:a+100*:s}"},
