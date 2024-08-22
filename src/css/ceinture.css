@@ -150,6 +150,9 @@ Taille carte de visite
 .fig {
     width:90%;
 }
+.jsxbox.fig {
+    height: 150px;
+}
 .red {
     color: red;
 }
