@@ -853,7 +853,7 @@ const MM = {
     },
     paramsToURL(withAleaSeed=false,type=""){
         let colors = MM.colors.join("~").replace(/\,/g,"_");
-        MM.setSeed()
+        // MM.setSeed()
         if(type==="exosheet"){
             return "s="+document.getElementById("exTxtSizeValue").value+
                 ",n="+document.getElementById("exQtyValue").value+

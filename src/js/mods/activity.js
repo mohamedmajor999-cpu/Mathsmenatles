@@ -134,7 +134,7 @@ export default class activity {
      */
     static import(obj, id){
         /* load */
-        let regexp = /^(\d{1,2}|T|G|K)/;// le fichier commence par un nombre ou un T pour la terminale
+        let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
         let level = regexp.exec(obj.i)[0];
         let url = "N"+level+"/"+obj.i+".json";
         return library.import(url).then((json)=>{
