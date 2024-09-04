@@ -22,7 +22,7 @@
         ]},
         "vars":{"a":"1_5","b":"1_5_^${:a}","h":"1_5","v":"${:a*:b*:h}","f":"0_2"},
         "figure":{"type":"svg", "content":"${:figures[:f]}"},
-        "shortq":"Volume ?",
+        "shortq":"Volume d'un pavé d'arêtes ${:a}, ${:b}, ${:h} cm ?",
         "question": "Quel est le volume d'un pavé d'arètes ${:a}, ${:b} et de hauteur ${:h} cm ?",
         "answer":"Volume d'un pavé ${:a}×${:b}×${:h} cm<br>$$V=a\\times b\\times h=\\color{red}{${:v}~cm^3}$$",
         "value":["${:v}", "${:v}cm^3"]

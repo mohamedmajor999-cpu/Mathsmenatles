@@ -34,8 +34,8 @@
         "name":"Puissance négative d'un entier négatif",
         "vars":{"p":"-3_-2", "a":"${:p==-3?-5:-15}_-2"},
         "question":"(${:a})^{${:p}}",
-        "answer":":question=\\color{red}{\\dfrac{${:p==-3?-1:1}}{${:a**(-:p)}}}",
-        "value":"\\dfrac{${:p==-3?-1:1}}{${:a**(-:p)}}"
+        "answer":":question=\\color{red}{\\dfrac{${:p==-3?-1:1}}{${(-:a)**(-:p)}}}",
+        "value":["\\dfrac{${:p==-3?-1:1}}{${(-:a)**(-:p)}}", "\\dfrac1{:a**(-:p)}"]
     }, {
         "name":"Puissance négative d'une variable",
         "vars":{"p":"-10_-2", "l":"0_9", "a":"${:lettres[:l]}"},
@@ -51,7 +51,7 @@
     }, {
         "name":"Puissance négative d'une puissance négative de 10",
         "vars":{"d":"-6_-1", "p":"-6_-1"},
-        "question":"${10**:d}^{${:p}}",
+        "question":"${math.round(10**:d,8)}^{${:p}}",
         "answer":":question=\\color{green}{10^{${:d}\\times(${:p})}}=\\color{red}{${10**(:d*:p)}}",
         "value":"${:d**(-:p)}"
     }
