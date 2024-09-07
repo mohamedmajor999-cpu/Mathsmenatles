@@ -44,7 +44,16 @@
         "Dans $$${:res}$$ combien de fois $$${:a}$$ ?",
         "$$${:res}$$ c'est $$${:a}$$ fois ... ?"
     ],
-    "shortq":"$$${:res} \\div ${:a} = \\colorbox{#ECECEC}{\\quad}$$",
+    "shortq":[
+        "$$${:res} \\div ${:a} = \\colorbox{#ECECEC}{\\quad}$$",
+        "$$${:res} = \\colorbox{#ECECEC}{\\quad} \\times ${:a}$$",
+        "$$${:res} = ${:a} \\times \\colorbox{#ECECEC}{\\quad}$$"
+    ],
+    "audio":[
+        "Combien vaut ${:res} divisé par ${:a} ?",
+        "Dans $$${:res}$$ combien y a-t-il de fois $$${:a}$$ ?",
+        "$$${:res}$$ c'est $$${:a}$$ fois combien ?"
+    ],
     "answer":"$$${:res} \\div ${:a}=\\color{red}{${:b}}$$",
     "value":"${:b}"
 }
