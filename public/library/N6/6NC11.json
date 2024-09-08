@@ -39,8 +39,8 @@
     },{
         "name":"centièmes, avec retenue sur les dixièmes",
         "vars":{
-            "pea":"0_9",
-            "peb":"0_${:pea}",
+            "pea":"1_9",
+            "peb":"0_${:pea-1}",
             "dixa":"0_8",
             "dixb":"${:dixa+1}_9",
             "cena":"1_9",
@@ -63,8 +63,8 @@
     },{
         "name":"centièmes, avec deux retenues",
         "vars":{
-            "pea":"0_9",
-            "peb":"0_${:pea}",
+            "pea":"1_9",
+            "peb":"0_${:pea-1}",
             "dixa":"0_8",
             "dixb":"${:dixa+1}_9",
             "cena":"1_8",
