@@ -521,7 +521,6 @@ const math = {
         return ret.value
     },
     box:function(expression){
-        console.log(expression)
         return ce.box(expression).simplify().latex.replace(/frac/g,'dfrac').replace(/\\imaginaryI/g,'i')
     },
     /**

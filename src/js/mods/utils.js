@@ -25,6 +25,10 @@ const utils = {
         }
         return elt;
     },
+    // met la première lettre en majuscule
+    capitalize:function(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    },
     copy(DOMel){
         /*DOMel.select();
         DOMel.setSelectionRange(0,99999);
