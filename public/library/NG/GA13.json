@@ -18,8 +18,8 @@
         "name":"avec inverse",
         "vars":{"a":"-3_3","p":"1_3","cx":"0_3","x":"${:lettres[:cx]}","f":"${:x}${:p>1?'^'+:p:''}${math.signedNumber(:a)}"},
         "question":"${:x}\\in\\R^*,\\left(\\dfrac{1}{${:x}}\\left(${:f}\\right)\\right)'",
-        "answer":":question=\\color{red}{\\dfrac{${math.calc(:f+'-'+:x+'*'+:p+'*'+:x+'^'+(:p-1))}}{${:x}^2}}",
-        "value":"\\dfrac{${math.calc(:f+'-'+:x+'*'+:p+'*'+:x+'^'+(:p-1))}}{${:x}^2}"
+        "answer":":question=\\color{red}{\\dfrac{${math.calc('-('+:f+')+'+:x+'*'+:p+'*'+:x+'^'+(:p-1))}}{${:x}^2}}",
+        "value":"\\dfrac{${math.calc('-('+:f+')+'+:x+'*'+:p+'*'+:x+'^'+(:p-1))}}{${:x}^2}"
     }
     ]
 }

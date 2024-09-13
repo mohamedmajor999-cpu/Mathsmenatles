@@ -24,8 +24,8 @@
         "name":"Inverse d'un polynome",
         "vars":{"a":"-9_9_3_^&,0","cx":"0_3","x":"${:lettres[:cx]}"},
         "question":"\\left(\\dfrac{${1}}{${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}}\\right)'",
-        "answer":":question=\\color{red}{\\dfrac{${math.calc((2*:a[0])+'*'+:x+'+('+:a[1]+')')}}{\\left(${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}\\right)^2}}",
-        "value":"\\dfrac{${math.calc((2*:a[0])+'*'+:x+'+('+:a[1]+')')}}{\\left(${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}\\right)^2}"
+        "answer":":question=\\color{red}{-\\dfrac{${math.calc((2*:a[0])+'*'+:x+'+('+:a[1]+')')}}{\\left(${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}\\right)^2}}",
+        "value":"-\\dfrac{${math.calc((2*:a[0])+'*'+:x+'+('+:a[1]+')')}}{\\left(${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}\\right)^2}"
     },{
         "name":"Quotient de polynomes",
         "vars":{"a":"-2_2_2","b":"1_3_2_^&","cx":"0_3","x":"${:lettres[:cx]}","n":"${:x}${:b[0]>1?'^'+:b[0]:''}${math.signedNumber(:a[0])}","d":"${:x}${:b[1]>1?'^'+:b[1]:''}${math.signedNumber(:a[1])}"},
