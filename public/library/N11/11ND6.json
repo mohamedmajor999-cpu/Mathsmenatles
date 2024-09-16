@@ -90,9 +90,9 @@
     "answer":[
         "${:n} + ${:m} = \\color{red}{${:n+:m}}",
         "${:m} + ${:n} = \\color{red}{${:n+:m}}",
-        "\\text{Il faut ajouter }\\color{red}{${:m}}\\text{ à }${:n}\\text{ pour avoir }\\color{red}{${:n+:m}}",
+        "\\color{red}{${:m}} + ${:n}=${:n+:m}",
         "${:n+:m} - ${:n} = \\color{red}{${:m}}",
-        "${:n+:m} = ${:n} + \\color{red}{${:m+:n}}",
+        "${:n+:m}\\text{ c'est } ${:n}\\text{ plus }\\color{red}{${:m}}",
         "\\text{Il reste }\\color{red}{${:m}}",
         "\\text{Il manque }\\color{red}{${:m}}"
     ],
