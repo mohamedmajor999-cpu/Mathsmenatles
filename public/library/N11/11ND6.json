@@ -91,8 +91,8 @@
         "${:n} + ${:m} = \\color{red}{${:n+:m}}",
         "${:m} + ${:n} = \\color{red}{${:n+:m}}",
         "\\text{Il faut ajouter }\\color{red}{${:m}}\\text{ à }${:n}\\text{ pour avoir }\\color{red}{${:n+:m}}",
-        "\\color{red}{${:n+:m}} = ${:n} + ${:m}",
-        "${:n+:m} - ${:n} = \\color{red}{${:m+:n}}",
+        "${:n+:m} - ${:n} = \\color{red}{${:m}}",
+        "${:n+:m} = ${:n} + \\color{red}{${:m+:n}}",
         "\\text{Il reste }\\color{red}{${:m}}",
         "\\text{Il manque }\\color{red}{${:m}}"
     ],
