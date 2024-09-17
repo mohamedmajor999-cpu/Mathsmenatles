@@ -6,6 +6,7 @@
     "textSize":"medium",
     "dest":["3NB","2N1"],
     "keys":["_","-","^","10n","_","_","_","_"],
+    "consigne":"Mettre sous la forme $$10^n$$",
     "options":[{
         "name":"Produit de puissances de 10",
         "vars":{"a":"-10_10_2_^0","s":"${:a[0]+:a[1]}"},
