@@ -54,6 +54,10 @@
         "Dans $$${:res}$$ combien y a-t-il de fois $$${:a}$$ ?",
         "$$${:res}$$ c'est $$${:a}$$ fois combien ?"
     ],
-    "answer":"$$${:res} \\div ${:a}=\\color{red}{${:b}}$$",
+    "answer":[
+        "$$${:res} \\div ${:a}=\\color{red}{${:b}}$$",
+        "Dans $$${:res}$$, il y a $$\\color{red}{${:b}}$$ fois $$${:a}$$.",
+        "$$${:res}$$ c'est $$${:a}$$ fois $$\\color{red}{${:b}}$$."
+    ],
     "value":"${:b}"
 }
