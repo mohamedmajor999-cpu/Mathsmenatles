@@ -11,8 +11,9 @@ const pageHeight = 287;
 const parameters = {
     spacer:document.getElementById('spacerInput').value,
     answerHeight:document.getElementById('inputheight').value,
-    par4:false,
-    fontSizes:[]
+    corrigeAuDos:document.getElementById('corrigeAuDos').checked,
+    corrigeAuDosValue:Number(document.getElementById('corrigeAuDosValue').value) || 4,
+    fontSizes:[],
     };
 document.getElementById("creator-menu").onclick = (evt)=>{
     if(evt.target.id === "toggleCorriges"){
@@ -93,8 +94,17 @@ document.getElementById("colorpickertitle").oncontextmenu = (evt)=>{
 document.getElementById("copiesByPage").onclick = ()=>{
     setPrintMode();
 }
-document.getElementById("par4").onclick = ()=>{
-    parameters.par4 = document.getElementById("par4").checked;
+document.getElementById("corrigeAuDos").onclick = ()=>{
+    const isCorrigeAuDos = document.getElementById("corrigeAuDos").checked;
+    parameters.corrigeAuDos = isCorrigeAuDos;
+    if (isCorrigeAuDos) {
+        document.getElementById("toggleCorriges").checked = false;
+        parameters.posCorrection = "fin";
+    }
+    refresh()
+}
+document.getElementById("corrigeAuDosValue").oninput = ()=>{
+    parameters.corrigeAuDosValue = Number(document.getElementById("corrigeAuDosValue").value);
     refresh()
 }
 /*
@@ -507,7 +517,7 @@ function makePage(){
         correction = utils.create("div",{id:"correction",className:"pagebreak"});
         correction.appendChild(utils.create("div",{innerHTML:"Correction"}));
     }
-    let divsPar4=[];
+    let divsPar=[];
     // recréation des boutons individuels de dimensions
     const modeleGrille = document.getElementById('modele-grid');
     let stylecols = Array(parameters.nbcols).fill("1fr").join(" ");
@@ -548,8 +558,8 @@ function makePage(){
         const spacer = utils.create("div",{style:'margin-top:'+parameters.spacer+'mm;', className:'spacer original'})
         // un conteneur pour le corrigé
         const corrige = utils.create("div",{className:"ceintCorrige corrige"});
-        if(qty%4===0 && parameters.par4){
-            divsPar4.push(utils.create("div",{className:"parquatre"}))
+        if(qty%parameters.corrigeAuDosValue===0 && parameters.corrigeAuDos){
+            divsPar.push(utils.create("div",{className:"parquatre"}))
         }
         common.generateQuestions(parameters);
         const header = utils.create("div",{className:"ceinture-header evaluation"});
@@ -656,25 +666,26 @@ function makePage(){
             }
         }
         corrige.appendChild(divColsCorrige);
-        let par4Alafin = false
-        if(parameters.par4){
-            divsPar4[divsPar4.length-1].appendChild(corrige);
-            if(qty%4===3){
-                content.appendChild(divsPar4[divsPar4.length-1]);
-                par4Alafin = true
+        let parAlafin = false
+        if(parameters.corrigeAuDos){
+            divsPar[divsPar.length-1].appendChild(corrige);
+            if(qty%parameters.corrigeAuDosValue===parameters.corrigeAuDosValue-1){
+                content.appendChild(divsPar[divsPar.length-1]);
+                content.appendChild(utils.create("div",{style:'margin-top:'+parameters.spacer+'mm;', className:'spacer original'}));
+                parAlafin = true
             }
         }
-        if(parameters.posCorrection === "fin" && !parameters.par4)
+        if(parameters.posCorrection === "fin" && !parameters.corrigeAuDos)
             correction.appendChild(corrige);
-        else if(!parameters.par4) {
+        else if(!parameters.corrigeAuDos) {
             content.appendChild(corrige);
-        } else if(parameters.par4 && !par4Alafin){
-            content.appendChild(divsPar4[divsPar4.length-1])
+        } else if(parameters.corrigeAuDos && !parAlafin){
+            content.appendChild(divsPar[divsPar.length-1])
         }
     }
     //content.appendChild(utils.create("div",{className:"footer"}));
     // on ajoute la correction à la fin.
-    if(parameters.posCorrection ==="fin" && !parameters.par4)
+    if(parameters.posCorrection ==="fin" && !parameters.corrigeAuDos)
         content.appendChild(correction);
     if(parameters.colorbd !== undefined){
         changeColor(parameters.colorbd,'bd');
@@ -715,13 +726,21 @@ function setPageBreaks(){
     const heightOfSpacer = spacers[0].getBoundingClientRect().height
     spacers.forEach(el=>el.classList.remove('pagebreak'))
     let heightOfElements = 0
-    for(let i=0;i<ceintures.length;i++){
-        heightOfElements += ceintures[i].getBoundingClientRect().height + heightOfSpacer
-        if(heightOfElements - heightOfSpacer > hauteurPage){
-            heightOfElements = ceintures[i].getBoundingClientRect().height + heightOfSpacer
-            if(spacers[i-1] !== undefined)
-                spacers[i-1].classList.add('pagebreak')
-        }
+    const parQuatre = document.querySelector('.parquatre')
+    if (parQuatre !== null) {
+        document.querySelectorAll('.parquatre + .spacer:not(:last-of-type)').forEach(el => {
+            el.classList.add('pagebreak')
+            console.log(el)
+    })
+    } else {
+        for(let i=0;i<ceintures.length;i++) {
+            heightOfElements += ceintures[i].getBoundingClientRect().height + heightOfSpacer
+            if(heightOfElements - heightOfSpacer > hauteurPage){
+                heightOfElements = ceintures[i].getBoundingClientRect().height + heightOfSpacer
+                if(spacers[i-1] !== undefined)
+                    spacers[i-1].classList.add('pagebreak')
+            }
+        }    
     }
 }
 

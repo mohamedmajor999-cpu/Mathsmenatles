@@ -402,6 +402,10 @@ input[type="color"]{
         border-bottom: 1px dashed rgb(18, 150, 47);
         margin-bottom: 1em;
     }
+    .parquatre {
+        border-bottom: 1px dashed rgb(18, 150, 47);
+        margin-bottom: 1em;
+    }
     .pagebreak {
         border-top: 1px dashed  rgb(18, 150, 47);
     }
