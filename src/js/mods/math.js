@@ -434,7 +434,7 @@ const math = {
      * @returns 
      */
     simplifieRacine(radicande){
-        const factors = math.factor('+radicande+').split('*')
+        const factors = math.factor(radicande).split('*')
         let outOfSquareR = 1;
         let inSquareR = 1;
         for(let i=0;i<factors.length;++i){
