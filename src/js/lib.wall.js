@@ -2,9 +2,7 @@ import protos from './mods/protos.js';
 import utils from './mods/utils.js';
 import common from './mods/common.js';
 import cart from './mods/cart.js';
-import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
-import math from './mods/math.js';
 
 const MM={};
 const content = document.getElementById("creator-content");
@@ -225,6 +223,14 @@ function checkURL(urlString){
         parameters.titreFiche=decodeURI(vars.t);
         if(vars.t !== false)
             document.getElementById("creator-title").innerHTML = parameters.titreFiche
+        if(vars.logo){
+            let locate = ''
+            if(location.hostname === "localhost" || location.hostname === "127.0.0.1"){
+                locate = '/public/'
+            }
+            document.getElementById("creator-title").prepend(utils.create("img",{src:locate+'img/partners/logo_m_h32.png',className:'logo'}))
+            document.getElementById("creator-title").appendChild(utils.create("img",{src:locate+'img/partners/Logo_B_h32.png',className:'logo'}))
+        }
         // allcarts contient des promises qu'il faut charger
         parameters.carts = []
         let allcarts = []

@@ -193,6 +193,8 @@ const utils = {
             &p=cartId2~t=title2~c=target2~o=ordered
             _i=activityId1~o=optionsIds~q=subOptionsIds~p=???~t=durée~n=nbquestions
             _i=activityId2~o=optionsIds~q=subOptionsIds~p=???~t=durée~n=nbquestions
+
+            le 22/10/24 ajout du paramètre &edit qui permet d'effectuer un paramétrage
           optionsIds et subOptionsIds peuvent être une liste d'id séparés par des virgules ou rien
         */
         } else {
@@ -243,6 +245,10 @@ const utils = {
                 } else if(hashes[i].indexOf("embed")===0){
                     let parts = hashes[i].split("=");
                     vars.embed = parts[1];
+                } else if(hashes[i].indexOf("edit")===0){
+                    vars.edit = true
+                } else if(hashes[i].indexOf("logo")===0){
+                    vars.logo = true
                 }
             }
         }

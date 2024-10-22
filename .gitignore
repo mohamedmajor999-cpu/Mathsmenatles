@@ -11,6 +11,7 @@ documentation
 src/js/modules/doc
 # private files
 public/js/visites.js
+public/img/partners
 
 # localdev
 editor.html
