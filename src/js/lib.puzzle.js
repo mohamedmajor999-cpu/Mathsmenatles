@@ -249,7 +249,8 @@ function makePage(){
                 let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
                 pairs.push([span.outerHTML, spanCorrection.outerHTML])
             } else {
-                pairs.push([activity.questions[j], value])
+                console.log(activity.questions[j], value)
+                pairs.push([activity.questions[j], '$$'+value+'$$'])
             }    
         }
     }
@@ -280,7 +281,7 @@ function makePage(){
                     if (math.aleaInt(0,1))
                         D.push(activity.questions[j])
                     else
-                        D.push(value)
+                        D.push('$$'+value+'$$')
                 }    
             }
         }
