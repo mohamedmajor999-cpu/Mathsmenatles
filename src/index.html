@@ -506,6 +506,9 @@
                 <legend>Nombre de cartes : <span id="cardsNb" class="blue">30</span> (si 1 seule activité)</legend>
                 <input id="cardsNbValue" type="range" min="2" max="100" step="1" value="30">
             </fieldset>
+            <fieldset><legend>Doublons autorisés</legend>
+                <input type="checkbox" id="WGDoublons" value="1" class="switch" title="Autorise la présence de réponses doubles dans les dominos" checked> <span id="dominosDoublonsText">Oui</span>
+            </fieldset>
             <section>
                 <button class="button--primary beaubutton" id="btngenerateWG">Générer</button>
             </section>
@@ -598,7 +601,7 @@
             </button>
         </aside>
         <div id="enonce-content" class="grid">
-            Ici s'affichent les énoncés du diaporama.
+            Ici s'affiche la liste des énoncés.
         </div>
     </section>
     <section id="tab-corrige" class="tabs-content-item" style="display: none;">
@@ -617,7 +620,7 @@
             </button>
         </aside>
         <div id="corrige-content" class="grid">
-            Ici s'affichent les corrigés du diaporama
+            Ici s'affiche la liste des corrigés
         </div>
     </section>
     <section id="tab-historique" class="tabs-content-item" style="display: none;">
@@ -674,44 +677,6 @@
         </div>
     </section>
 </div>
-</div>
-<div id="slideshow-container" class="hidden">
-    <header>
-        <button title="Tout arrêter" id="stop-all"><!--<img src="img/slider-stop.png">--><i class="sprite sprite-slider-stop"></i></button>
-        <button title="Tout mettre en pause" id="pause-all"><!--<img src="img/slider-pause.png">--><i class="sprite sprite-slider-pause"></i></button>
-        <button title="Passer à la suivante pour tous" id="next-all"><!--<img src="img/slider-next.png">--><i class="sprite sprite-slider-next"></i></button>
-    </header>
-    <section id="slideshow"></section>
-</div>
-<div id="countdown-container" class="hidden">
-    <div class="demo">
-        <div class="demo__colored-blocks">
-          <div class="demo__colored-blocks-rotater">
-            <div class="demo__colored-block"></div>
-            <div class="demo__colored-block"></div>
-            <div class="demo__colored-block"></div>
-          </div>
-          <div class="demo__colored-blocks-inner"></div>
-          <div class="demo__text">Prêt</div>
-        </div>
-        <div class="demo__inner">
-          <svg class="demo__numbers" viewBox="0 0 100 100">
-            <defs>
-              <path class="demo__num-path-1" d="M40,28 55,22 55,78"/>
-              <path class="demo__num-join-1-2" d="M55,78 55,83 a17,17 0 1,0 34,0 a20,10 0 0,0 -20,-10"/>
-              <path class="demo__num-path-2" d="M69,73 l-35,0 l30,-30 a16,16 0 0,0 -22.6,-22.6 l-7,7"/>
-              <path class="demo__num-join-2-3" d="M28,69 Q25,44 34.4,27.4"/>
-              <path class="demo__num-path-3" d="M30,20 60,20 40,50 a18,15 0 1,1 -12,19"/>
-            </defs>
-            <path class="demo__numbers-path" 
-                  d="M-10,20 60,20 40,50 a18,15 0 1,1 -12,19 
-                     Q25,44 34.4,27.4
-                     l7,-7 a16,16 0 0,1 22.6,22.6 l-30,30 l35,0 L69,73 
-                     a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 
-                     l0,-61 L40,28" />
-          </svg>
-        </div>
-      </div>
 </div>
 <div class="tabs hidden-phone" id="footer-menu">
     <a numero="#tab-telechargements" class="tabs-menu-link">Téléchargements</a>

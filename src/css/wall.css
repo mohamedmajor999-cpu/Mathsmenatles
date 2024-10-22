@@ -6,11 +6,34 @@
 body {
     font-size: calc(10px + 0.390625vw);
 }
+
+.logo {
+    margin: 0 15px;
+    height: 32px;
+    vertical-align: middle;
+}
+
+#creator-title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 320px) {
     b {
       font-size: 12px;
     }
   }
+/* affichage sur mobile en mode portrait */
+@media only screen and (orientation: portrait) {
+  #creator-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #creator-title img {
+    max-width: 181px;
+  }
+}
 
 #flipall {
     position: absolute;

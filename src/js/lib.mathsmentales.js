@@ -53,8 +53,6 @@ window.onload = function(){
         if(localStorage.getItem("history"))
             document.querySelector("#tab-historique ol").innerHTML = localStorage.getItem("history").replace(/onclick="utils\.checkurl\(this.dataset\['url'\]\,false\,true\)"/gi,"");
     }
-    MM.zoom = new Zoom("thezoom","#slideshow .slide");
-    document.querySelector("#slideshow-container header").appendChild(MM.zoom.createCursor());
     // ajout des pickers de colors
     for(let i=0;i<4;i++){
         let leparent = document.getElementById("sddiv"+(i+1));
@@ -283,58 +281,6 @@ window.onload = function(){
             MM.zooms[evt.target.dataset.zoom].minus();
         }
     }
-    // boutons de commande 
-    document.getElementById("slideshow").addEventListener("click",(evt)=>{
-        let targetId = evt.target.id;
-        //zooms
-        if(evt.target.dataset.what === "in"){
-            MM.zooms[evt.target.dataset.zoom].plus();
-            if(evt.target.dataset.assoc !== ''){
-                MM.zooms[evt.target.dataset.assoc].plus();
-            }
-        } else if(evt.target.dataset.what === "out"){
-            MM.zooms[evt.target.dataset.zoom].minus();
-            if(evt.target.dataset.assoc !== ''){
-                MM.zooms[evt.target.dataset.assoc].minus();
-            }
-        }
-        if(evt.target.nodeName.toLowerCase() === "i"){
-            targetId = evt.target.parentNode.id;
-        }
-        for(let i=0;i<4;i++){
-            switch (targetId){
-                case "ButtonNextAct"+i:
-                    MM.newSample(i,true);
-                    break;
-                case "btn-sample-annotate"+i:
-                    MM.annotateThisThing('sampleSlide'+i,targetId);
-                    break;
-                case "btn-sample-showanswer"+i:
-                    MM.showSampleAnswer(i);
-                    break;
-                case "btn-newsample"+i:
-                    MM.newSample(i);
-                    break;
-                case "btn-sample-start"+i:
-                    MM.startSlideShow(i);
-                    break;
-                case "btn-timer-end"+i:
-                    MM.timers[i].end();
-                    break;
-                case "btn-timer-pause"+i:
-                    MM.timers[i].pause();
-                    break;
-                case "btn-show-answer"+i:
-                    MM.showTheAnswer(i);
-                    break;
-                case "btn-next-slide"+i:
-                    MM.nextSlide(i);
-                    break;
-                default:
-                    break;
-            }    
-        }
-    })
 
     // boutons section corrigés
     document.querySelector("#tab-corrige aside").addEventListener("click",(evt)=>{
@@ -370,33 +316,6 @@ window.onload = function(){
                 break
         }
     })
-    // boutons commandes générales
-    document.querySelector("#slideshow-container header").onclick = (evt)=>{
-        switch (evt.target.parentNode.id) {
-            case "stop-all":
-                MM.stopAllSliders();
-                break;
-            case "pause-all":
-                MM.pauseAllSliders();
-                break;
-            case "next-all":
-                MM.nextAllSliders();
-                break;
-            default:
-                break;
-        }
-        switch (evt.target.dataset.what){
-            case "in":
-                MM.zooms[evt.target.dataset.zoom].plus();
-                break;
-            case "out":
-                MM.zooms[evt.target.dataset.zoom].minus();
-                break;
-            default:
-                break;
-        }
-
-    }
     // moteur de recherche d'activité
     document.getElementById("searchinput").onkeyup = (evt)=>{library.displayContent(evt.target.value)};
     document.getElementById("resultat-chercher").addEventListener("click",(evt)=>{
