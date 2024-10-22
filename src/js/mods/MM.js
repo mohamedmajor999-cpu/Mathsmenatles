@@ -1025,21 +1025,13 @@ const MM = {
                 setTimeout(utils.goToOldVersion,10000);
             }
         } else if(vars.c!==undefined){ // présence de carts MM v2 à lancer ou éditer
-            let alert = utils.create("div",{id:'messageinfo',className:"message",innerHTML:"Chargement de l'activité MathsMentales.<br>Merci pour la visite."});
-            document.getElementById("tab-accueil").appendChild(alert);
-            if(vars.o === "yes" && !edit){
-                // cas d'un truc online : message à valider !
-                start = false;
-                alert.innerHTML += "<br><br>";
-                let button = utils.create("button",{innerHTML:"Commencer !"});
-                button.onclick = ()=>{MM.closeMessage('messageinfo');MM.checkLoadedCarts(true)};
+            let alert
+            if(!edit){
+                alert = utils.create("div",{id:'messageinfo',className:"message",innerHTML:`Chargement de l'activité MathsMentales.<br>Cliquer pour démarrer.<br>`});
+                const button = utils.create("button",{innerHTML:"Commencer !"});
+                button.onclick = ()=>{MM.closeMessage('messageinfo');MM.start()};
                 alert.appendChild(button);
-                //<button onclick="MM.closeMessage('messageinfo');MM.checkLoadedCarts(true)"> Commencer !
-                //</button>`;
-            } else {
-                setTimeout(()=>{
-                    MM.closeMessage('messageinfo');
-                },3000);
+                document.getElementById("tab-accueil").appendChild(alert);
             }
             // indique quoi faire avant le slide
             MM.introType = vars.i||"nothing";
