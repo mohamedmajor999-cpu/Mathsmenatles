@@ -1326,6 +1326,14 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
 .consigneText {
   background-color: white;
 }
+label {
+  display: inline;
+}
+/** hack sinon click bloqué dessous **/
+.consigneText:before {
+  overflow: hidden;
+}
+
 .slide .fig {
   height:50%;
   width:50%;

@@ -179,8 +179,8 @@ const MM = {
         MM.setAudio(MM.editedActivity.audioRead);
         MM.setAudioRepetitions(MM.editedActivity.audioRepeat);
         MM.carts[MM.selectedCart].editedActivityId = index;
-        MM.carts[MM.selectedCart].display();
-        MM.editedActivity.display();
+        MM.carts[MM.selectedCart].display(index, MM.carts);
+        MM.editedActivity.display("sample", MM);
         document.getElementById("unlinkCart").className = "";
         document.getElementById("addToCart").className = "hidden";
         document.getElementById("removeFromCart").className = "";
@@ -193,9 +193,9 @@ const MM = {
     unlinkActivity:function(){
         this.uneditActivity();
         MM.editedActivity = new activity(utils.clone(MM.editedActivity));
-        MM.editedActivity.display();
+        MM.editedActivity.display("sample", MM);
         MM.carts[MM.selectedCart].editedActivityId = -1;
-        MM.carts[MM.selectedCart].display();
+        MM.carts[MM.selectedCart].display(-1, MM.carts);
     },
     setTempo:function(value){
         document.getElementById("tempo-slider").value = value;
@@ -359,7 +359,7 @@ const MM = {
         }
         // show edited activity
         if(MM.carts[MM.selectedCart].editedActivityId > -1){
-            MM.carts[MM.selectedCart].activities[MM.carts[MM.selectedCart].editedActivityId].display();
+            MM.carts[MM.selectedCart].activities[MM.carts[MM.selectedCart].editedActivityId].display('sample',MM);
             this.editActivity(MM.carts[MM.selectedCart].editedActivityId);
         }
     },
@@ -367,11 +367,11 @@ const MM = {
         if(window.confirm("Vous êtes sur le point de vider ce panier.\nConfirmez-vous ?")){
             MM.carts[index-1].activities = [];
             MM.carts[index-1].editedActivityId = -1;
-            MM.carts[index-1].display();
+            MM.carts[index-1].display(-1,MM.carts);
         } else return false;
     },
     addToCart(){
-        MM.carts[MM.selectedCart].addActivity(MM.editedActivity);
+        MM.carts[MM.selectedCart].addActivity(MM.editedActivity, false, -1, MM.carts);
         // on affiche les panier
         MM.showCartInterface();
     },
@@ -752,6 +752,7 @@ const MM = {
         let value = this.setURL(params,"wall");
         MM.window = window.open(value,"mywindow","location=no,menubar=no,titlebar=no,width=1123");
     },
+    // TODO : replace this by an independent webpage
     createWhoGots:function(){
         if(!MM.carts[0].activities.length){
             MM.carts[0].addActivity(MM.editedActivity);
@@ -789,10 +790,23 @@ const MM = {
         let value = this.setURL(params,"duel");
         MM.window = window.open(value,"mywindow","location=no,menubar=no,titlebar=no,width=720");
     },
+    diaporamaLaunch: function () {
+        if(!MM.editedActivity) return;
+        if(!MM.carts[0].activities.length){
+            MM.carts[0].addActivity(MM.editedActivity);
+        }
+        let withSeed = false;
+        if(document.getElementById("aleaInURL").checked) withSeed = true;
+        let params = this.paramsToURL(withSeed,"diaporama");
+        let value = this.setURL(params,"diaporama");
+        MM.window = window.open(value,"mywindow","location=no,menubar=no,titlebar=no,fullscreen=yes");
+    },
     /**
      * Start the slideshow
      */
     start:function(samedata=false){
+        this.diaporamaLaunch();
+        return;
         if(!MM.carts[0].activities.length){
             MM.carts[0].addActivity(MM.editedActivity);
         }
@@ -854,7 +868,7 @@ const MM = {
     paramsToURL(withAleaSeed=false,type=""){
         let colors = MM.colors.join("~").replace(/\,/g,"_");
         // MM.setSeed()
-        if(type==="exosheet"){
+        if (type==="exosheet") {
             return "s="+document.getElementById("exTxtSizeValue").value+
                 ",n="+document.getElementById("exQtyValue").value+
                 ",cor="+utils.getRadioChecked("excorr")+
@@ -862,7 +876,7 @@ const MM = {
                 ",t="+encodeURI(document.getElementById("extitle").value||document.getElementById("extitle").placeholder)+
                 ",ex="+encodeURI(document.getElementById("exeachex").value||document.getElementById("exeachex").placeholder)+
                 this.export();
-        }else if(type==="exam"){
+        } else if(type==="exam"){
             return "s="+document.getElementById("intTxtSizeValue").value+
                 ",n="+document.getElementById("intQtyValue").value+
                 ",a="+(withAleaSeed?MM.seed:"")+
@@ -937,12 +951,27 @@ const MM = {
         let url = MM.setURL(params);
         history.pushState({'id':'Homepage'},pageName,url);
     },
+    loadActivity(url) {
+        library.load(url, MM.version).then(([json, id]) => {
+            const obj = new activity(json, id);
+            MM.editedActivity = obj;
+            // show tab-content
+            const tab = document.querySelector("a[numero$='parameters'].tabs-menu-link");
+            MM.resetAllTabs();
+            utils.addClass(tab, "is-active");
+            document.getElementById("tab-parameters").style.display = "";
+            document.getElementById("addToCart").className = "";
+            document.getElementById("removeFromCart").className = "hidden";
+            obj.display("sample", MM);
+            MM.setHistory("Exercice","u="+id);
+        });
+    },
     /**
      * regarde les paramètres fournis dans l'url
      * et lance le diapo ou passe en mode édition
      * edit est true si appelé par l'historique pour édition
      */
-    checkURL(urlString=false,start=true,edit=false){
+    async checkURL(urlString=false,start=true,edit=false){
         const vars = utils.getUrlVars(urlString);
         // cas d'une page prévue pour exercice.html
         if(vars.cor && vars.ex && location.href.indexOf("exercices.html")<0 && !edit){
@@ -976,7 +1005,19 @@ const MM = {
              } else if(vars.u !== undefined) {
                  // s'il n'y a qu'une activité, on l'affiche.
                 let level = regexp.exec(vars.u)[0];
-                library.load("N"+level+"/"+vars.u+".json", vars.u);
+                library.load("N"+level+"/"+vars.u+".json", MM.version).then(([json, id]) => {
+                    const obj = new activity(json, id);
+                    MM.editedActivity = obj;
+                    // show tab-content
+                    const tab = document.querySelector("a[numero$='parameters'].tabs-menu-link");
+                    MM.resetAllTabs();
+                    utils.addClass(tab, "is-active");
+                    document.getElementById("tab-parameters").style.display = "";
+                    document.getElementById("addToCart").className = "";
+                    document.getElementById("removeFromCart").className = "hidden";
+                    obj.display("sample", MM);
+                    MM.setHistory("Exercice","u="+id);
+                });
             } else {
                 let alert = utils.create("div",{className:"message",innerHTML:"Cette activité n'a pas de correspondance dans cette nouvelle version de MathsMentales.<hr class='center w50'>Vous allez être redirigé vers l'ancienne version dans 10s. <a>Go !</a>"});
                 alert.onclick =  utils.goToOldVersion();
@@ -1051,7 +1092,7 @@ const MM = {
             let allcarts = [];
             for(const i in json){
                 MM.carts[i] = new cart(i);
-                allcarts.push(MM.carts[i].import(json[i],start));
+                allcarts.push(MM.carts[i].import(json[i],start,MM.version));
             }
             // on attend le résultat de toutes les promesses pour mettre à jour les affichages.
             Promise.all(allcarts).then(data=>{
@@ -1332,7 +1373,7 @@ const MM = {
             MM.annotate.destroy();
             MM.annotate = undefined;
         } else if(MM.annotate === undefined && _.isString(target)){
-            MM.annotate = new draw(target,btnId);
+            MM.annotate = new draw(target,btnId, this.touched);
         } else if(MM.annotate !== undefined) {
             MM.annotate.destroy();
             MM.annotate = undefined;
@@ -1421,6 +1462,8 @@ const MM = {
             return utils.baseURL.replace('index','duel')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
         } else if(type==="ceinture"){
             return utils.baseURL.replace('index','ceinture')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
+        } else if(type==="diaporama"){
+            return utils.baseURL.replace('index','diaporama')+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
         } else
             return utils.baseURL+'?'+string+(MM.embededIn?'&embed='+MM.embededIn:"");
     },

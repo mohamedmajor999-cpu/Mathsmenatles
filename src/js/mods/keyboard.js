@@ -1,4 +1,3 @@
-import MM from "./MM.js";
 import utils from "./utils.js";
 /**
  * keyboard interactif
@@ -52,7 +51,9 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
      * @param {String} sliderId Id du slider contenant
      * @param {String} keyboardId Id du keyboard.
      */
-    constructor(target,keys,displayContener,sliderId,keyboardId){
+    constructor(target,keys,displayContener,sliderId,keyboardId, touched = false, nbOfSliders = 1) {
+        this.touchable = touched;
+        this.nbOfSliders = nbOfSliders;
         this.keyConf = {
             "÷":["key colored","÷",()=>{this.targetField.executeCommand(["insert","\\div"]);this.focus();}],
             "×":["key colored","×",()=>{this.targetField.executeCommand(["insert","\\times"]);this.focus();}],
@@ -102,7 +103,7 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
      * give the focus to the target if only one player
      */
     focus(){
-        if(MM.slidersNumber<2)
+        if(this.nbOfSliders < 2)
             this.targetField.focus();
     }
     /**
@@ -118,13 +119,13 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
                 elm = utils.create("div");                
             } else if(["a","b","c","e","i","t",":","u","v","x","y","z","€",";","<",">","=","+","°"].indexOf(className)>-1){
                 elm =utils.create("div",{className:"key times colored",innerHTML:className});
-                if(MM.touched)
+                if(this.touched)
                     elm.ontouchend = ()=>{this.targetField.executeCommand(["insert",className]);this.focus();};
                 else
                     elm.onclick = ()=>{this.targetField.executeCommand(["insert",className]);this.focus();}
             } else {
                 elm =utils.create("div",{className:this.keyConf[className][0],innerHTML:this.keyConf[className][1]});
-                if(MM.touched)
+                if(this.touched)
                     elm.ontouchend = this.keyConf[className][2];
                 else
                     elm.onclick = this.keyConf[className][2];
@@ -133,7 +134,7 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
         } else {
             let elm =utils.create("div",{className:className,innerHTML:display});
             try {
-                if(MM.touched)
+                if(this.touched)
                     elm.ontouchend = afunction;
                 else 
                     elm.onclick = afunction;
@@ -203,7 +204,7 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
             this.addKey("key enter",keysSVG.enterKey,()=>{
                 this.targetField.executeCommand("complete");
                 this.targetField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
-                //MM.nextSlide(this.sliderId);
+                //this.nextSlide(this.sliderId);
             });
             // trou
             this.content.appendChild(utils.create("div"));

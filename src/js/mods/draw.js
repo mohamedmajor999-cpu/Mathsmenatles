@@ -1,5 +1,4 @@
 import utils from "./utils.js";
-import MM from "./MM.js";
 /**
  * offer the possibility to anotate the page
  * designed for interactive screens
@@ -30,7 +29,7 @@ import MM from "./MM.js";
 }
  */
 export default class draw {
-    constructor(tgt,btnId){
+    constructor(tgt,btnId, touched){
         // creation du canva et instanciation
         const target = document.getElementById(tgt);
         let c = utils.create("canvas",{
@@ -56,7 +55,7 @@ export default class draw {
         const mouvement = (event)=>{
             let target = event.target;
             let evt = event
-            if(MM.touched){
+            if(touched){
                 target=event.touches[0].target;
                 evt = event.touches[0];
             }
@@ -104,7 +103,7 @@ export default class draw {
         this.canvas.addEventListener('mousedown', yesDraw, false);
         this.canvas.addEventListener('mouseup',noDraw,false);
         this.canvas.addEventListener('mouseout',noDraw,false);
-        if(MM.touched){
+        if(touched){
             this.canvas.addEventListener("touchmove",mouvement, false);
             this.canvas.addEventListener('touchstart', yesDraw, false);
             this.canvas.addEventListener('touchend', noDraw,false);

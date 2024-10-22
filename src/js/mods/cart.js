@@ -1,7 +1,5 @@
 import activity from "./activity.js";
-import MM from "./MM.js";
 import utils from "./utils.js";
-import math from "./math.js";
 
 export default class cart {
     constructor(id){
@@ -39,7 +37,7 @@ export default class cart {
      * @param {json} obj objet importé d'un exo téléchargé
      * @param {Boolean} start if true, will make start slideshow when all is ready
      */
-    import(obj,start=false){
+    import(obj,start=false, version){
         // à revoir
         this.title = obj.t;
         this.target = obj.c;
@@ -58,22 +56,18 @@ export default class cart {
         // activités, utilise Promise
         let activities = [];
         for(const i in obj.a){
-            activities.push(activity.import(obj.a[i],i));
+            activities.push(activity.import(obj.a[i],i, version));
         }
         return Promise.all(activities).then(data=>{
             data.forEach((table)=>{
                 this.activities[table[0]] = table[1];
             });
-            //MM.editedActivity = this.activities[activities.length-1];
             this.loaded = true;
             // si dans contexte de MM
             if(document.querySelector("#tab-parameters") !== null){
                 // on crée l'affichage du panier chargé dans le contexte de l'interface de config de MM
                 this.display();
             }
-            if(start)
-                MM.checkLoadedCarts();
-
         }).catch(err=>{
             let alert = utils.create(
                 "div",
@@ -95,31 +89,29 @@ export default class cart {
     /**
      * Ducplicate this object
      */
-    duplicate(){
-        if(MM.carts.length<4){
-            // on ajoute un panier et l'affiche
-            MM.addCart();
+    duplicate(carts){
+        if(carts.length<4){
             // on affecte des copies des activités à ce nouveau panier.
-            let cart = MM.carts[MM.carts.length-1];
+            let cart = carts[carts.length-1];
             for(let i=0;i<this.activities.length;i++){
-                cart.addActivity(this.activities[i]);
+                cart.addActivity(this.activities[i], this.activities[i].nbq, -1, carts);
             }
             cart.ordered = this.ordered
             cart.progress = this.progress
             cart.showAnswerTime = this.showAnswerTime
             // on affiche le panier.
-            cart.display();
+            cart.display(carts);
         }
 
     }
-    addActivity(obj,nbQuestions=false){
+    addActivity(obj,nbQuestions=false, carts){
         this.editedActivityId = -1;
         let temp = new activity(obj);
         if(nbQuestions){
             temp.nbq = nbQuestions;
         }
         this.activities.push(temp);
-        this.display();
+        this.display(carts);
     }
     /**
      * remove an activity from the list
@@ -136,7 +128,7 @@ export default class cart {
      * @param {integer} oldIndex old index of the activity
      * @param {integer} newIndex new index of the activity
      */
-    exchange(oldIndex, newIndex){
+    exchange(oldIndex, newIndex, carts){
         let indexes = this.activities.getKeys();
         let tempindexes = indexes[oldIndex];
         let temp = this.activities[oldIndex];
@@ -145,12 +137,12 @@ export default class cart {
         this.activities.splice(newIndex, 0, temp);
         indexes.splice(newIndex, 0, tempindexes);
         this.editedActivityId =  Number(indexes.indexOf(this.editedActivityId));
-        this.display();// refresh order
+        this.display(carts);// refresh order
     }
     /**
      * display the cart in his content area
      */
-    display(){
+    display(carts){
         document.querySelector("#cart"+this.id+" h3").innerText=this.title;
         let dom = document.getElementById("cart"+(this.id)+"-list");
         dom.innerHTML = "";
@@ -170,13 +162,13 @@ export default class cart {
             this.time += Number(activity.tempo)*Number(activity.nbq);
             this.nbq += Number(activity.nbq);
             li.innerHTML = "<i class='sprite sprite-editcart pointer' align='left' data-actid='"+i+"' title=\"Editer l'activité\"></i><i class='sprite sprite-removefromcart removefromcartbutton pointer' data-actidtoremove='"+i+"' title='Enlever du panier'></i>"+(activity.audioRead==true?activity.title:activity.title.replace("📣 ","")) + " (<span>"+activity.tempo + "</span> s. / <span>"+activity.nbq+"</span> quest.)";
-            if(MM.carts[this.id].editedActivityId === i){
+            if(this.editedActivityId === i){
                 li.className = "active";
             }
             dom.appendChild(li);
         }
         let spans = document.querySelectorAll("#cart"+(this.id)+" div.totaux span");
-        spans[0].innerHTML = math.sToMin(this.time);
+        spans[0].innerHTML = utils.sToMin(this.time);
         spans[1].innerHTML = this.nbq;
         spans[2].innerHTML = this.target;
         this.setProgress(this.progress)
@@ -185,7 +177,7 @@ export default class cart {
         this.sortable = new Sortable(dom, {
             animation:150,
             ghostClass:'ghost-movement',
-            onEnd : evt=>MM.carts[this.id].exchange(evt.oldIndex, evt.newIndex)
+            onEnd : evt=>carts[this.id].exchange(evt.oldIndex, evt.newIndex, carts)
         });
     }
     /**

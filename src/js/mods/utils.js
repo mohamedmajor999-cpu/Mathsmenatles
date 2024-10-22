@@ -120,6 +120,24 @@ const utils = {
         }
         return count;
     },
+     /**
+     * convert seconds to hours minutes & seconds
+     * @param {Integer} sec number of seconds to convert
+     * @returns 
+     */
+     sToMin(sec){
+        sec = Number(sec);
+        let time = "";
+        if(sec>3600){
+          time += ~~(sec/3600) + " h ";
+          sec = sec%3600;
+        }
+        if(sec>60){
+          time += ~~(sec/60) + " min ";
+          sec = sec%60;
+        }
+        return time += sec;
+    },
     /**
      * Endode les accolades dans une chaine car encodeURIComponent ne le fait pas
      * @param {String} url a string corresponding an URL
@@ -514,18 +532,21 @@ const utils = {
      * Render the math
      * @param (dom) wtarget : window reference
      */
-    mathRender: function(wtarget) {
-        let contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne"];
+    mathRender: function(wtarget = false, diaporama = false) {
+        let contents = ["enonce-content", "corrige-content", "sampleLayer"];
+        if (!diaporama) {
+            contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne"];
+        }
         contents.forEach(id => {
             // search for $$ formulas $$ => span / span
-            let content = document.getElementById(id).innerHTML;
-            document.getElementById(id).innerHTML = content.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
-        });
+            let content = document.getElementById(id);
+            if (content !== null)
+                content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+        });                
         document.querySelectorAll(".slide").forEach(elt => {
             elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
-
         });
-        if(wtarget !== undefined){
+        if(wtarget !== false){
             let content = wtarget.document.getElementById("creator-content");
             content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
             content.querySelectorAll(".math").forEach(function(item){

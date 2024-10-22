@@ -34,7 +34,15 @@ window.onload = function(){
     }
     MM.checkValues();
     MM.initializeAlea(Date());
-    library.openContents();
+    MM.content = library.openContents();
+    MM.createTuiles();
+    // création des tuiles des niveaux
+    MM.createSearchCheckboxes();
+    // check if parameters from URL
+    MM.checkURL();
+    if(MM.embededIn){
+        window.parent.postMessage({url: window.location.href, ready:"ok"}, MM.embededIn);
+    } 
     sound.getPlayer();
     // put the good default selected
     document.getElementById("chooseParamType").value = "paramsdiapo";
@@ -88,9 +96,11 @@ window.onload = function(){
     document.getElementById("unlinkCart").onclick = ()=>{MM.unlinkActivity();};
     document.getElementById("removeFromCart").onclick = ()=>{MM.removeFromCart()};
     document.getElementById("tempo-slider").oninput = (evt)=>{if(evt.target.value<2)evt.target.value=0;MM.changeTempoValue(evt.target.value);};
-    document.getElementById("tempo-slider").onchange=()=>{MM.carts[MM.selectedCart].display();};
+    document.getElementById("tempo-slider").onchange=()=>{
+        MM.carts[MM.selectedCart].display(MM.carts);
+    };
     document.getElementById("nbq-slider").oninput = (evt)=>{MM.changeNbqValue(evt.target.value);};
-    document.getElementById("nbq-slider").onchange = ()=>{MM.carts[MM.selectedCart].display();};
+    document.getElementById("nbq-slider").onchange = ()=>{MM.carts[MM.selectedCart].display(MM.carts);};
     // radio orientation séparation
     document.getElementById("radiodir1").onclick = ()=>{MM.setDispositionDoubleEnonce('h');};
     document.getElementById("radiodir2").onclick = ()=>{MM.setDispositionDoubleEnonce('v');};
@@ -104,21 +114,34 @@ window.onload = function(){
     document.getElementById("titlecart1").onblur = (evt)=>{MM.carts[0].title = evt.target.innerText}
     document.getElementById("imgordercart1").onclick = (evt)=>{MM.carts[0].changeOrder(evt.target)}
     document.getElementById("progress-cart1").onclick = (evt)=>{MM.carts[0].changeProgress(evt.target)}
-    document.getElementById("imgduplicatecart1").onclick = ()=>{MM.carts[0].duplicate();};
+    document.getElementById("imgduplicatecart1").onclick = ()=>{
+        if(MM.carts.length < 4){
+            MM.addCart();
+            MM.carts[0].duplicate(MM.editedActivity,MM.carts);
+        }
+    };
     // panier 2
     document.getElementById("btncartdelete2").onclick=()=>{MM.removeCart(2)}
     document.getElementById("btncartclose2").onclick=()=>{MM.emptyCart(2)}
     document.getElementById("titlecart2").onblur = (evt)=>{MM.carts[1].title = evt.target.innerText}
     document.getElementById("imgordercart2").onclick = (evt)=>{MM.carts[1].changeOrder(evt.target)}
     document.getElementById("progress-cart2").onclick = (evt)=>{MM.carts[1].changeProgress(evt.target)}
-    document.getElementById("imgduplicatecart2").onclick = ()=>{MM.carts[1].duplicate()}
+    document.getElementById("imgduplicatecart2").onclick = ()=>{
+        if(MM.carts.length < 4){
+            MM.addCart();
+            MM.carts[1].duplicate(MM.editedActivity,MM.carts);
+        }}
     // panier 3
     document.getElementById("btncartdelete3").onclick=()=>{MM.removeCart(3)};
     document.getElementById("btncartclose3").onclick=()=>{MM.emptyCart(3)};
     document.getElementById("titlecart3").onblur = (evt)=>{MM.carts[2].title = evt.target.innerText}
     document.getElementById("imgordercart3").onclick = (evt)=>{MM.carts[2].changeOrder(evt.target)}
     document.getElementById("progress-cart3").onclick = (evt)=>{MM.carts[2].changeProgress(evt.target)}
-    document.getElementById("imgduplicatecart3").onclick = ()=>{MM.carts[2].duplicate();};
+    document.getElementById("imgduplicatecart3").onclick = ()=>{
+        if(MM.carts.length < 4){
+            MM.addCart();
+            MM.carts[2].duplicate(MM.editedActivity,MM.carts);
+        }};
     // panier 4
     document.getElementById("btncartdelete4").onclick=()=>{MM.removeCart(4)};
     document.getElementById("btncartclose4").onclick=()=>{MM.emptyCart(4)};
@@ -239,7 +262,7 @@ window.onload = function(){
         let target = utils.getTargetWithImageInside(evt);
         MM.annotateThisThing('divparams', target.id)
     });
-    document.getElementById("btn-shuffle").onclick = ()=>{MM.editedActivity.display('sample')}
+    document.getElementById("btn-shuffle").onclick = ()=>{MM.editedActivity.display('sample', MM)}
     // boutons section énoncés
     document.getElementById("btn-annotation-enonce").onclick = (evt)=>{
         let target = utils.getTargetWithImageInside(evt);
@@ -383,7 +406,7 @@ window.onload = function(){
             utils.deploy(evt.target);
         } else if(evt.target.id.indexOf("rcli")===0){
             // clic sur une activite
-            library.load(evt.target.dataset['url'],evt.target.dataset['id']);
+            MM.loadActivity(evt.target.dataset['url'])
         }
     })
     // bouton d'ajout au panier
@@ -394,7 +417,7 @@ window.onload = function(){
             let nbq = Number(document.getElementById("addToCartNbq").value);
             selection.forEach(el=>{
                 //MM.carts[0].addActivity(theactivities[el.value],nbq);
-                allActivities.push(library.loadJSON(el.dataset["url"]))
+                allActivities.push(library.loadJSON(el.dataset["url"], MM.version))
             })
             Promise.all(allActivities).then(data=>{
                 data.forEach(val=>{
@@ -455,22 +478,10 @@ window.onload = function(){
      * cases à cocher dans le choix des options d'une activité
      */
     document.getElementById('activityOptions').addEventListener("click",(evt)=>{
-        if(evt.target.id==="chckallopt")
-            {MM.editedActivity.setOption('all',evt.target.checked)
+        if(evt.target.id==="chckallopt"){
+            MM.editedActivity.setOption('all',evt.target.checked)
         } else if(evt.target.id.indexOf("o")===0){
             MM.editedActivity.setOption(evt.target.value, evt.target.checked)
         }
     })
-
-    // load scratchblocks french translation
-    // TODO : à changer au moment de l'utilisation de scratchblocks
-    // doesn't work on local file :( with Chrome
-    /*let reader = new XMLHttpRequest();
-    reader.onload = function(){
-        let json = JSON.parse(reader.responseText);
-        window.scratchblocks.loadLanguages({
-            fr: json});
-        }
-    reader.open("get", "libs/scratchblocks/fr.json", false);
-    reader.send();*/
 }

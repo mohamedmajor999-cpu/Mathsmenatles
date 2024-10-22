@@ -31,7 +31,7 @@
         "name":"Puissance de 10 correspondante",
         "vars":{"n":"-6_6"},
         "question":"À quelle puissance de dix correspond $$${math.round(Math.pow(10,:n),6)}$$ ?",
-        "shortq":"$$${math.round(Math.pow(10,:n),6}=10^{?}$$",
+        "shortq":"$$${math.round(Math.pow(10,:n),6)}=10^{?}$$",
         "answer":"$$${math.round(Math.pow(10,:n),6)}=\\color{red}{10^{${:n}}}$$",
         "value":"10^${:n}"
     }

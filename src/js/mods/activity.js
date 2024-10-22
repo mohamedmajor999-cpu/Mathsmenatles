@@ -2,7 +2,7 @@ import utils from "./utils.js";
 import math from "./math.js";
 import Figure from "./figure.js";
 import library from "./library.js";
-import MM from "./MM.js";
+// import MM from "./MM.js";
 // lecture des fichiers exercice
 /**
 * Structure d'un fichier exercice
@@ -132,12 +132,12 @@ export default class activity {
      * @param (JSON) obj
      * @param (String) id : id de destination de l'activité
      */
-    static import(obj, id){
+    static import(obj, id, version){
         /* load */
         let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
         let level = regexp.exec(obj.i)[0];
         let url = "N"+level+"/"+obj.i+".json";
-        return library.import(url).then((json)=>{
+        return library.import(url, version).then((json)=>{
             let act = new this(json);
             act.id = obj.i;
             act.chosenOptions = obj.o;
@@ -191,7 +191,7 @@ export default class activity {
     /**
      * Display the activity editor
      */
-    display(cle="sample"){
+    display(cle="sample", MM){
         this.initialize();
         document.getElementById("param-title-act").innerHTML = this.id;
         // affichages
@@ -214,10 +214,12 @@ export default class activity {
         else
             document.getElementById('activityDescription').innerHTML = "";
         const consigne = document.getElementById('activityConsigne')
+        consigne.innerHTML = '';
         if(this.consigne){
-            consigne.innerHTML = '<b>Consigne générale :</b><br><blockquote class="consigneText">'+this.consigne+'</bloquote>'
-        } else {
-            consigne.innerHTML = ''
+            const b = utils.create("b", {innerHTML:"Consigne Générale : "});
+            consigne.appendChild(b);
+            const bloc = utils.create("blockquote", {className:"consigneText",innerHTML:this.consigne});
+            consigne.appendChild(bloc);
         }
         // affichage d'exemple(s)
         let examples = document.getElementById('activityOptions');
@@ -226,13 +228,13 @@ export default class activity {
         if(this.options !== undefined && this.options.length > 0){
             let colors = ['',' red',' orange',' blue', ' green', ' grey',];
             // Ajout de la possibilité de tout cocher ou pas
-            let p = utils.create("span",{className:"bold"});
+            let label = utils.create("label",{className:"bold", htmlFor:"chckallopt"});
             let hr = utils.create("hr");
-            let input = utils.create("input",{type:"checkbox",id:"checkalloptions",className:"checkbox blue",id:"chckallopt"})
+            let input = utils.create("input",{type:"checkbox",className:"checkbox blue",id:"chckallopt", value:'all'})
             //input.setAttribute("onclick","MM.editedActivity.setOption('all',this.checked)");
-            p.appendChild(input);
-            p.appendChild(document.createTextNode(" Tout (dé)sélectionner"));
-            examples.appendChild(p);
+            examples.appendChild(input);
+            label.appendChild(document.createTextNode(" Tout (dé)sélectionner"));
+            examples.appendChild(label);
             examples.appendChild(hr);
             let optionsLen = 0;
             // affichage des options
@@ -247,7 +249,9 @@ export default class activity {
                 let p = utils.create("span");
                 let input = utils.create("input",{id:"o"+i,type:"checkbox",value:i,defaultChecked:(this.chosenOptions.indexOf(i)>-1)?true:false,className:"checkbox"+colors[i%colors.length]});
                 p.appendChild(input);
-                p.innerHTML += " "+this.options[i]["name"] + " :";
+                const label = utils.create("label",{htmlFor:"o"+i});
+                label.innerHTML = ' ' +this.options[i]["name"] + ' :';
+                p.appendChild(label);
                 let ul = document.createElement("ul");
                 if(Array.isArray(this.questions[0])){
                     if(this.figures[0]){
@@ -263,7 +267,7 @@ export default class activity {
                             if(this.chosenQuestions[i].indexOf(jj)>-1)
                                 checked = "checked";
                         }
-                        li.innerHTML = "<input class='checkbox"+colors[i%colors.length]+"' type='checkbox' id='o"+i+"-"+jj+"' value='"+i+"-"+jj+"'"+checked+"> "+this.setMath(this.questions[0][jj]);
+                        li.innerHTML = "<input class='checkbox"+colors[i%colors.length]+"' type='checkbox' id='o"+i+"-"+jj+"' value='"+i+"-"+jj+"'"+checked+"> <label for='o"+i+"-"+jj+"'>"+this.setMath(this.questions[0][jj])+"</label>";
                         // answer
                         let span = utils.create("span",{className:"tooltiptext"});
                         if(Array.isArray(this.answers[0]))

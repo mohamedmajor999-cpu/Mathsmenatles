@@ -9,6 +9,7 @@ export default class Zoom {
         this.target = targetSelector
         this.id=id
         this.value = value
+        this.defaultvalue = value
         this.normaltarget = normaltarget
         this.unite=unit
         this.associateTarget=associateTarget
@@ -30,7 +31,7 @@ export default class Zoom {
             if(this.value<=1)
                 this.value-=0.1;
             else{
-                this.value-=0.5;
+                this.value-=0.3;
             }
         } else if(this.unite === "pt"){
             if(this.value < 7) return;
@@ -44,7 +45,7 @@ export default class Zoom {
         if(this.unite === "em"){
             if(this.value>=6)return;
             if(this.value<1)this.value+=0.1;
-            else this.value +=0.5;
+            else this.value +=0.3;
         } else if(this.unite === "pt"){
             if(this.value>28)return;
             if(this.value<16)this.value+=1;
@@ -53,13 +54,16 @@ export default class Zoom {
         this.changeSize(this.value);
     }
     reset(){
-        if(this.unite==="em")this.value=1;
+        if(this.unite==="em")this.value=this.defaultvalue;
         else if(this.unite==="pt")this.value=11;
         this.changeSize(this.value);
     }
     createCursor(){
         let div = utils.create("div",{id:this.id, className:"zoom"});
-        let span = utils.create("span",{className:"zoom-A1 pointer","data-what":"reset",innerText:"A", "data-zoom": this.id, "data-assoc":this.associateTarget, ondblclick:this.reset});
+        let span = utils.create("button",{className:"zoom-A1 pointer",innerText:"A"});
+        span.dataset.assoc = this.associateTarget;
+        span.dataset.what = "reset";
+        span.dataset.zoom = this.id;
         let btn2 = `<button class="zoominbtn" data-what="in" data-zoom="${this.id}"><svg
         data-zoom="${this.id}"
         data-assoc="${this.associateTarget}"
