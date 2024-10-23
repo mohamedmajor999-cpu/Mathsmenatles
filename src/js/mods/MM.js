@@ -636,8 +636,8 @@ const MM = {
         }
         let withSeed = false;
         if (document.getElementById("aleaInURL").checked) withSeed = true;
-        let params = this.paramsToURL(withSeed, "dominossheet");
-        let value = this.setURL(params, "dominossheet");
+        let params = this.paramsToURL(withSeed, "dominos");
+        let value = this.setURL(params, "dominos");
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     createPuzzle: function () {
@@ -646,8 +646,8 @@ const MM = {
         }
         let withSeed = false;
         if (document.getElementById("aleaInURL").checked) withSeed = true;
-        let params = this.paramsToURL(withSeed, "puzzlesheet");
-        let value = this.setURL(params, "puzzlesheet");
+        let params = this.paramsToURL(withSeed, "puzzle");
+        let value = this.setURL(params, "puzzle");
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
 
@@ -715,7 +715,7 @@ const MM = {
             return "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
-        } else if (type === "dominossheet") {
+        } else if (type === "dominos") {
             return "n=" + document.getElementById("dominosNbValue").value +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",d=" + (document.getElementById("dominosDoublons").checked) +
@@ -727,7 +727,7 @@ const MM = {
                 ',aff=' + (document.getElementById("WGaffirmation").value) +
                 ',quest=' + (document.getElementById("WGquestion").value) +
                 this.export();
-        } else if (type === "puzzlessheet") {
+        } else if (type === "puzzles") {
             return ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export();
         } else if (type === "duel") {
@@ -1030,6 +1030,12 @@ const MM = {
             typeName = "🥋 Ceinture"
         } else if (type === 'cartesflash') {
             typeName = '⚡ Cartes flash'
+        } else if (type === 'puzzle') {
+            typeName = '🧩 Puzzle'
+        } else if (type === 'whogots') {
+            typeName = '⁉️ J’ai/Qui a ?'
+        } else if (type === 'dominos') {
+            typeName = '🀄 Dominos'
         }
         let span = utils.create("span", { innerText: typeName + " du " + utils.getDate() + ": ", className: "bold" });
         li.appendChild(span);
@@ -1259,11 +1265,11 @@ const MM = {
             return utils.baseURL.replace('index', 'cartesflash') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
         } else if (type === "wall") {
             return utils.baseURL.replace('index', 'wall') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
-        } else if (type === "dominossheet") {
+        } else if (type === "dominos") {
             return utils.baseURL.replace('index', 'dominos') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
         } else if (type === "whogots") {
             return utils.baseURL.replace('index', 'jaiquia') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
-        } else if (type === "puzzlesheet") {
+        } else if (type === "puzzle") {
             return utils.baseURL.replace('index', 'puzzle') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
         } else if (type === "duel") {
             return utils.baseURL.replace('index', 'duel') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");

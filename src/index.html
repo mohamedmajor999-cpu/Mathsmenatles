@@ -496,7 +496,7 @@
         <div id="paramswhogots" class="hidden">
             <fieldset>
                 <legend>Affirmation</legend>
-                <input type="text" placeholder="J'ai ..." id="WGaffirmation">
+                <input type="text" placeholder="J’ai ..." id="WGaffirmation">
             </fieldset>
             <fieldset>
                 <legend>Question</legend>
@@ -511,6 +511,12 @@
             </fieldset>
             <section>
                 <button class="button--primary beaubutton" id="btngenerateWG">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-wg-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse <br>du J’ai/qui a ? dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-wg-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie la référence <br>dans l'historique</span>
+                </button>
             </section>
         </div>
         <div id="paramsdominos" class="hidden">
@@ -523,6 +529,12 @@
             </fieldset>
             <section>
                 <button class="button--primary beaubutton" id="btngenerateDominos">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-dominos-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse <br>des dominos dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-dominos-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie la référence <br>dans l'historique</span>
+                </button>
             </section>
         </div>
         <div id="paramspuzzle" class="hidden">
@@ -534,6 +546,12 @@
             </fieldset>
             <section>
                 <button class="button--primary beaubutton" id="btngeneratePuzzle">Générer</button>
+                <button class="button--inverse tooltip beaubutton" id="btn-puzzle-adresse">Adresse/QRCode
+                    <span class="tooltiptext">Copie l'adresse <br>du puzzle dans<br>le presse papier</span>
+                </button>
+                <button class="button--success tooltip beaubutton" id="btn-puzzle-copytohistoric">→ Historique
+                    <span class="tooltiptext">Copie la référence<br>dans l'historique</span>
+                </button>
             </section>
         </div>
         <div id="paramsduel" class="hidden">
@@ -569,7 +587,8 @@
             <section>
                 <button class="button--primary tooltip beaubutton" id="btn-duel-start">C'est parti !
                     <span class="tooltiptext">Démarre le diaporama</span>
-                </button>                <button class="button--inverse tooltip beaubutton" id="btn-duel-adresse">Adresse/QRCode
+                </button>
+                <button class="button--inverse tooltip beaubutton" id="btn-duel-adresse">Adresse/QRCode
                     <span class="tooltiptext">Copie l'adresse <br>du duel dans<br>le presse papier</span>
                 </button>
                 <button class="button--success tooltip beaubutton" id="btn-duel-copytohistoric">→ Historique

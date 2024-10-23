@@ -242,13 +242,20 @@ window.onload = function(){
 
     // j'ai / qui a ?
     document.getElementById("btngenerateWG").onclick = ()=>{MM.createWhoGots()}
+    document.getElementById("btn-wg-adresse").onclick = ()=>{MM.copyURL('whogots');};
+    document.getElementById("btn-wg-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('whogots')};
     // dominos
     document.getElementById("dominosNbValue").oninput = (evt)=>{document.getElementById('dominosNb').innerHTML=evt.target.value;}
     document.getElementById("dominosDoublons").onclick = (evt)=>{let text = document.getElementById("dominosDoublonsText"); if(evt.target.checked)text.innerHTML="Oui"; else text.innerHTML = "Non"}
     document.getElementById("dominosDoublons").checked = true;
     document.getElementById("btngenerateDominos").onclick = ()=>{MM.createDominos()}
+    document.getElementById("btn-dominos-adresse").onclick = ()=>{MM.copyURL('dominos');};
+    document.getElementById("btn-dominos-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('dominos')};
     // puzzles
     document.getElementById("btngeneratePuzzle").onclick = ()=>{MM.createPuzzle()}
+    document.getElementById("btn-puzzle-adresse").onclick = ()=>{MM.copyURL('puzzle');};
+    document.getElementById("btn-puzzle-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('puzzle')};
+
     // duels
     document.getElementById("btn-duel-start").onclick = ()=>{MM.duelLaunch();};
     document.getElementById("btn-duel-adresse").onclick = ()=>{MM.copyURL('duel');};
