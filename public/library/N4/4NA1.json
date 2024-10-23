@@ -83,15 +83,16 @@
     },{
         "name":"Donner une écriture scientifique approchée avec quelques chiffres significatifs",
         "vars":{
-            "dec":"100000_1000000000",
+            "p":"5_8",
+            "dec":"${Math.pow(10,:p)}_${Math.pow(10,:p+1)}",
             "chiffres_sig":"3_5",
             "ecrit_sci":" ${Number.parseFloat(:dec).toExponential()} ",
-            "mantisse_arr" : "${ Number.parseFloat(:ecrit_sci.substring(1,:ecrit_sci.search('e'))).toFixed(:chiffres_sig-1) }",
-            "exposant" : "${ :ecrit_sci.substring(:ecrit_sci.search('e')+1,:ecrit_sci.length) }"
+            "mantisse_arr" : "${Number.parseFloat(:ecrit_sci.substring(1,:ecrit_sci.search('e'))).toFixed(:chiffres_sig-1)}",
+            "exposant" : "${Number(:ecrit_sci.substring(:ecrit_sci.search('e')+1,:ecrit_sci.length))}"
         },
         "question": "Donner une écriture scientifique approchée de $$${:dec}$$ avec $$${:chiffres_sig}$$ chiffres significatifs?",
         "answer":"$$${:dec} \\approx \\color{red}{ ${ :mantisse_arr + ' \\times 10^{' + :exposant +'}' } }$$",
-        "value":"${:arrondi}"
+        "value":"${ :mantisse_arr + ' \\times 10^{' + :exposant +'}' }"
     }
     ]
 }

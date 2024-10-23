@@ -111,6 +111,7 @@ export default class draw {
     }
     // destroy canvas
     destroy(){
+        if(this.canvas === undefined) return;
         this.btn.className = "sprite sprite-iconfinder_pencil_1055013";
         this.canvas.parentNode.removeChild(this.canvas);
         this.canvas = undefined;

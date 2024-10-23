@@ -10,17 +10,16 @@ import speech from './mods/speech.js';
 import steps from './mods/steps.js';
 import timer from './mods/timer.js';
 import { MathfieldElement } from "./libs/mathlive/mathlive.mjs";
-// import { ComputeEngine } from './libs/compute-engine/compute-engine.esm.js';
 import keyBoard from "./mods/keyboard.js";
 import draw from './mods/draw.js';
 import Figure from './mods/figure.js';
-import math from './mods/math.js';
+import analyseReponse from './mods/analysereponse.js';
 
 MathfieldElement.fontsDirectory = '../katex/fonts'
 MathfieldElement.soundsDirectory = null
 /* sauvegarde des résultats pour éviter la triche */
 let contentResultats = ''
-// const ce = new ComputeEngine();
+let startOnlineTime = 0
 
 const diaporama = {
   version: 7,// à mettre à jour à chaque upload pour régler les pb de cache
@@ -30,6 +29,7 @@ const diaporama = {
   seed: "", // String to initialize the randomization
   slidersOrientation: "", // if vertical => vertical presentation for 2 sliders
   onlineState: "no", // true if user answers on computer (Cf start and online functions)
+  forcedOnline: false,
   carts: [], // max 4 carts
   steps: [],
   timers: [],
@@ -46,17 +46,14 @@ const diaporama = {
   keyboards: {},// claviers virtuels pour réponses en ligne
   ended: true,
   embededIn: false, // variable qui contient l'url du site dans lequel MM est affiché (vérifier url)
-  correction: utils.create("div"),
-  enonces: utils.create("div"),
+  correction: utils.create("div"), // on garde le contenu de la correction en mémoire pour choisir de l'intégrer au DOM ou pas
+  enonces: utils.create("div"), // idem au dessus
+  times: [0], // temps mis pour faire l'activité en mode interactif
+  totaltimes: [0], // temps prévu pour le diaporama en mode interactif
   // functions
   setSeed(value) {
-    if (value !== undefined && value !== "sample" && value !== "checkSwitched") {
+    if (value !== undefined && value !== "sample") {
       diaporama.seed = value;
-    } else if (value === "sample") {
-      diaporama.seed = utils.seedGenerator();
-    } else if (value === "checkSwitched") {
-      // on ne fait rien
-      return false;
     } else {
       diaporama.seed = utils.seedGenerator();
     }
@@ -68,7 +65,7 @@ const diaporama = {
   * return nothing
   */
   initializeAlea: function (seed) {
-    if (seed) {
+    if (seed !== undefined) {
       if (utils.alea) delete utils.alea;
       utils.alea = new Math.seedrandom(seed);
     } else {
@@ -81,7 +78,7 @@ const diaporama = {
     if (div !== null) div.parentNode.removeChild(div);
     document.body.removeEventListener("click", (evt) => { if (evt.target.id === "btn-messagefin-close") { diaporama.closeMessage('messagefin'); diaporama.showTab('corrige'); } });
   },
-  checkURL: function (urlString = false, start = true, edit = false) {
+  checkURL: function (urlString = false, start = true) {
     const vars = utils.getUrlVars(urlString);
     if (vars.embed !== undefined) {
       // cas d'une activité embeded, on vérifie que l'url est conforme
@@ -91,40 +88,23 @@ const diaporama = {
       if (vars.embed.match(regex))
         diaporama.embededIn = vars.embed;
     }
-    if (vars.u !== undefined && vars.cd === undefined && !edit) { // ancien exo MM1
-      let regexp = /(\d+|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
-      // un paramétrage d'exercice à afficher
-      if (_.isArray(vars.u)) {
-        let listeURLs = [];
-        // il peut y avoir plusieurs exercices correspondant à une activité MM1
-        for (let i = 0; i < vars.u.length; i++) {
-          let url = vars.u[i];
-          let level = regexp.exec(url)[0];
-          listeURLs.push({ u: "N" + level + "/" + url + ".json", t: "" });
-        }
-        library.displayContent(listeURLs);
-      } else if (vars.u !== undefined) {
-        // s'il n'y a qu'une activité, on l'affiche.
-        let level = regexp.exec(vars.u)[0];
-        library.load("N" + level + "/" + vars.u + ".json", vars.u);
-      } else {
-        let alert = utils.create("div", { className: "message", innerHTML: "Cette activité n'a pas de correspondance dans cette nouvelle version de MathsMentales.<hr class='center w50'>Vous allez être redirigé vers l'ancienne version dans 10s. <a>Go !</a>" });
-        alert.onclick = utils.goToOldVersion();
-        document.getElementById("tab-accueil").appendChild(alert);
-        setTimeout(utils.goToOldVersion, 10000);
-      }
-    } else if (vars.c !== undefined) { // présence de carts MM v2 à lancer ou éditer
+    if (vars.c !== undefined) { // présence de carts MM v2 à lancer ou éditer
       let alert = utils.create("div", { id: 'messageinfo', className: "message", innerHTML: "Chargement de l'activité MathsMentales.<br>Merci pour la visite." });
       document.getElementById("tab-accueil").appendChild(alert);
-      if (vars.o === "yes" && !edit) {
+      // le seed d'aléatorisation est fourni et on n'est pas en mode online
+      let sameData = false
+      if (vars.a && diaporama.onlineState === 'no') {
+        diaporama.setSeed(vars.a);
+        // on check la clé de donnée incluse
+        sameData = true
+      }
+      if (vars.o === 'yes') {
         // cas d'un truc online : message à valider !
         start = false;
         alert.innerHTML += "<br><br>";
         let button = utils.create("button", { innerHTML: "Commencer !" });
-        button.onclick = () => { diaporama.closeMessage('messageinfo'); diaporama.checkLoadedCarts(true) };
+        button.onclick = () => { diaporama.closeMessage('messageinfo'); diaporama.checkLoadedCarts(true, sameData) };
         alert.appendChild(button);
-        //<button onclick="diaporama.closeMessage('messageinfo');diaporama.checkLoadedCarts(true)"> Commencer !
-        //</button>`;
       } else {
         setTimeout(() => {
           diaporama.closeMessage('messageinfo');
@@ -143,8 +123,9 @@ const diaporama = {
         }
       }
       // Mode online
-      if (vars.o) {
+      if (vars.o === 'yes') {
         diaporama.onlineState = vars.o;
+        diaporama.forcedOnline = true;
       }
       // Mode face to face
       if (vars.f) diaporama.faceToFace = vars.f;
@@ -158,15 +139,6 @@ const diaporama = {
           sound.setSound(Number(vars.snd));
         }
       }
-      // le seed d'aléatorisation est fourni et on n'est pas en mode online
-      if ((vars.a && diaporama.onlineState === "no") || edit) {
-        diaporama.setSeed(vars.a);
-        // on check la clé de donnée incluse
-        // document.getElementById("aleaInURL").checked = true;
-      } /*else if(diaporama.onlineState=="yes" || !vars.a)
-                diaporama.setSeed(utils.seedGenerator());*/
-      // on supprime tous les paniers
-      // diaporama.resetCarts();
       // orientation dans le cas de 2 diapos
       if (vars.so) {
         diaporama.slidersOrientation = vars.so;
@@ -179,6 +151,28 @@ const diaporama = {
       // la version à partir du 15/08/21 fonctionne avec un objet vars.c déjà construit.
       // alcarts contient des promises qu'il faut charger
       let allcarts = [];
+      // online non forcé, on va afficher un lien vers le paramétrage les énoncés et les corrigés.
+      if (diaporama.onlineState !== 'yes') {
+        // check if window.parent has same url as window
+        if (window.parent.location.href === window.location.href) {
+          const paramsContent = document.getElementById('param-content')
+          paramsContent.innerHTML = ''
+          const info = utils.create('div', { className: 'info', innerHTML: 'Le diaporama est à présent une entité indépendante de l’éditeur. Vous pouvez cependant y revenir en suivant le lien ci-dessous.' });
+          paramsContent.appendChild(info);
+          const list = utils.create('ul');
+          // put a link to param-content html
+          const link = utils.create('li', { className: 'pointer underline' });
+          link.innerText = 'Éditer les paramètres de ce diaporama.';
+          link.onclick = () => {
+            let url = window.location.href.replace('diaporama.html', 'index.html') + '&edit&type=diaporama';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + diaporama.seed + ',');
+            window.location.href = url
+          }
+          list.appendChild(link);
+          paramsContent.appendChild(list);
+        }
+      }
       for (const i in json) {
         diaporama.carts[i] = new cart(i);
         allcarts.push(diaporama.carts[i].import(json[i], start));
@@ -187,7 +181,7 @@ const diaporama = {
       Promise.all(allcarts).then(data => {
         // console.log("allcarts", data, allcarts);
       }).then(() => {
-        diaporama.checkLoadedCarts()
+        diaporama.checkLoadedCarts(false, sameData)
       }).catch(err => {
         // erreur à l'importation :(
         let alert = utils.create("div",
@@ -214,7 +208,7 @@ const diaporama = {
   * regarde si tous les paniers sont chargés
   * si oui, on lance le diaporama.
   */
-  checkLoadedCarts(start = false) {
+  checkLoadedCarts(start = false, sameData = false) {
     let loaded = true;
     for (const panier of this.carts) {
       if (!panier.loaded)
@@ -225,7 +219,7 @@ const diaporama = {
         panier.target = panier.target.split(",");
       })
       if (start)
-        diaporama.start();
+        diaporama.start(sameData);
       else {
         const tabaccueil = document.getElementById("tab-accueil");
         let message = `Tu as suivi un lien d'activité préconfigurée MathsMentales.<br>Clique ci-dessous pour démarrer.<br><br><button class="button--primary" id="btn-message-start"> Démarrer le diaporama </button>`;
@@ -238,13 +232,13 @@ const diaporama = {
         tabaccueil.addEventListener("click", (evt) => {
           switch (evt.target.id) {
             case "btn-message-start":
-              diaporama.closeMessage('messageinfo'); diaporama.start()
+              diaporama.closeMessage('messageinfo'); diaporama.start(sameData)
               break;
             case "btn-message-sound":
               sound.next();
               break;
             case "btn-message-interact":
-              diaporama.closeMessage('messageinfo'); diaporama.onlineState = 'yes'; diaporama.start()
+              diaporama.closeMessage('messageinfo'); diaporama.onlineState = 'yes'; diaporama.start(sameData)
               break;
             default:
               break;
@@ -367,6 +361,8 @@ const diaporama = {
           if (fontSize) spanAns.className += " " + fontSize;
           // timers
           diaporama.timers[slideId].addDuration(activity.tempo);
+          if (diaporama.totaltimes[slideId] === undefined) diaporama.totaltimes[slideId] = 0
+          diaporama.totaltimes[slideId] += Number(activity.tempo);
           // enoncés et corrigés
           let lie = utils.create("li");
           let lic = document.createElement("li");
@@ -504,7 +500,7 @@ const diaporama = {
   /**
    * Start the slideshow
    */
-  start: function (samedata = false) {
+  start: function (sameData = false) {
     document.getElementById('tab-accueil').className = 'hidden';
 
     if (!diaporama.carts[0].activities.length) {
@@ -515,13 +511,6 @@ const diaporama = {
       for (let i = 0; i < diaporama.slidersNumber; i++) {
         diaporama.userAnswers[i] = [];
       }
-      // security there should not be more than 1 cart for the online use
-      // TODO à adapter pour le mode duel
-      /*if (diaporama.carts.length > 1) {
-          for (let i = 1, len = diaporama.carts.length; i < len; i++) {
-              delete diaporama.carts[i];
-          }
-      }*/
       // cacher le menu de commandes général
       document.querySelector("#slideshow-container > header").className = "hidden";
     } else {
@@ -532,10 +521,10 @@ const diaporama = {
     // check if an option has been chosen
     diaporama.createSlideShows();
     // if restart true, we restart with same values
-    if (!samedata) {
-      diaporama.setSeed()
+    if (!sameData) {
+      diaporama.setSeed();
     } else {
-      diaporama.setSeed(document.getElementById("aleaKey").value);
+      diaporama.setSeed(diaporama.seed);
     }
     diaporama.populateQuestionsAndAnswers();
     if (diaporama.introType === "321") {
@@ -546,8 +535,9 @@ const diaporama = {
       }
       setTimeout(function () {
         document.getElementById("countdown-container").className = "hidden";
-        if (diaporama.onlineState === "yes") { // create inputs for user
+        if (diaporama.onlineState === 'yes') { // create inputs for user
           diaporama.createUserInputs();
+          startOnlineTime = Number(Date.now());
         }
         diaporama.showSlideShows();
         diaporama.startTimers();
@@ -558,8 +548,9 @@ const diaporama = {
       diaporama.showSlideShows();
     } else {
       // on démarre directement
-      if (diaporama.onlineState === "yes") { // create inputs for user
+      if (diaporama.onlineState === 'yes') { // create inputs for user
         diaporama.createUserInputs();
+        startOnlineTime = Number(Date.now());
       }
       diaporama.showSlideShows();
       diaporama.startTimers();
@@ -715,15 +706,15 @@ const diaporama = {
     }
   },
   hideSlideshows: function () {
-    if (this.ended) return false; // on l'a déjà fait
     utils.addClass(document.getElementById("slideshow-container"), "hidden");
-    // utils.removeClass(document.getElementById("app-container"), "hidden");
-    // let whatToDo = utils.getRadioChecked("endOfSlideRadio");
     const whatToDo = diaporama.endType;
-    if (diaporama.onlineState === "yes") {
+    const $containerEnonce = document.getElementById('enonce-content')
+    $containerEnonce.innerHTML = '';
+    $containerEnonce.appendChild(diaporama.enonces);
+    if (diaporama.forcedOnline) {
       // on affiche un message de fin qui attend une validation
       let message = ''
-      if(whatToDo === "correction"){
+      if (whatToDo === 'correction') {
         message = `L'activité MathsMentales est terminée.<br>Pour consulter les résultats, cliquer sur le bouton ci-dessous.<br><br>
             <button id="btn-messagefin-close"> Voir le corrigé </button>`
       } else {
@@ -731,19 +722,26 @@ const diaporama = {
         <button id="btn-messagefin-close"> Fermer ce message </button>`
       }
       let alert = utils.create("div", {
-        id: "messagefin", className: "message", innerHTML: message});
+        id: "messagefin", className: "message", innerHTML: message
+      });
       document.body.appendChild(alert);
-      document.body.addEventListener("click", (evt) => { if (evt.target.id === "btn-messagefin-close") { diaporama.closeMessage('messagefin'); diaporama.showTab('corrige'); } });
-    }
-    const $containerEnonce = document.getElementById('enonce-content')
-    $containerEnonce.innerHTML = '';
-    $containerEnonce.appendChild(diaporama.enonces);
-    if (whatToDo === "correction") {
+      document.body.addEventListener("click", (evt) => {
+        if (evt.target.id === "btn-messagefin-close") {
+          diaporama.closeMessage('messagefin');
+          diaporama.showTab('enonce');
+        }
+      });
+    } else {
       const $containerCorrige = document.getElementById('corrige-content')
       $containerCorrige.innerHTML = '';
-      $containerCorrige.appendChild(diaporama.correction);
+      $containerCorrige.appendChild(diaporama.correction);      
+    }
+    if (whatToDo === "correction") {
+      diaporama.showTab("corrige");
     } else if (whatToDo === "list") {
-      diaporama.showTab("enonce");      
+      diaporama.showTab("enonce");
+    } else {
+      diaporama.showTab("param");
     }
     utils.mathRender(false, true);
     saveContent()
@@ -751,12 +749,17 @@ const diaporama = {
   },
   showTab(tab) {
     // on cache tout
+    const tabs = ['enonce', 'corrige', 'param'];
+    tabs.forEach((tab) => {
+      document.getElementById('tab-' + tab).className = 'hidden';
+    })
+    tabs.forEach((tab) => {
+      document.getElementById('btn-' + tab).classList.remove('active');
+    })
     document.getElementById("slideshow-container").className = "hidden";
-    document.getElementById('tab-enonce').className = 'hidden';
-    document.getElementById('tab-corrige').className = 'hidden';
     document.getElementById("tab-content").className = '';
-    document.getElementById('tab-'+tab).className = "is-active";
-    document.getElementById('btn-'+tab).classList.add('active');
+    document.getElementById('tab-' + tab).className = "is-active";
+    document.getElementById('btn-' + tab).classList.add('active');
   },
   /**
    * Montre la réponse si l'une est indiquée (ne l'est pas pour un élève)
@@ -881,6 +884,7 @@ const diaporama = {
   nextSlide: function (id) {
     if (diaporama.onlineState === "yes") { // save answer
       diaporama.userAnswers[id][diaporama.steps[id].step] = diaporama.mf["ansInput" + id + "-" + (diaporama.steps[id].step)].value;
+      diaporama.times[id] = Number(Date.now()) - startOnlineTime;
     }
     if (diaporama.carts[diaporama.timers[id].cartId].progress === 'thenanswer') {
       if (!diaporama.timers[id].answerShown) {
@@ -950,6 +954,7 @@ const diaporama = {
             let targetId = Number(diaporama.carts[cartId].target[slider])
             let ol = document.createElement("ol");
             ol.innerHTML = "<b>Réponses pour " + String(targetId) + "</b>";
+            ol.innerHTML += ' (' + diaporama.times[targetId - 1] / 1000 + ' s. / ' + diaporama.totaltimes[targetId - 1] + ' s. prévues.)';
             let ia = 0;
             // pour un target, on a l'ordre des activités et des réponses.
             for (let slide = 0, len2 = diaporama.carts[cartId].actsArrays[slider].length; slide < len2; slide++) {
@@ -973,7 +978,7 @@ const diaporama = {
               // attention, si c'est du texte, il faut supprimer des choses car mathlive transforme 
               if (Array.isArray(expectedAnswer)) {
                 for (const oneExpected of expectedAnswer) {
-                  const result = math.correction(oneExpected, userAnswer, valueType)
+                  const result = analyseReponse(oneExpected, userAnswer, valueType)
                   if (result) {
                     li.className = "good";
                     score++;
@@ -985,7 +990,7 @@ const diaporama = {
               } else if (String(expectedAnswer).indexOf(',') > 0) {
                 const expetedAnswersArray = expectedAnswer.split(',')
                 for (const oneExpected of expetedAnswersArray) {
-                  const result = math.correction(oneExpected, userAnswer, valueType)
+                  const result = analyseReponse(oneExpected, userAnswer, valueType)
                   if (result) {
                     li.className = "good";
                     score++;
@@ -995,7 +1000,7 @@ const diaporama = {
                   }
                 }
               } else {
-                const result = math.correction(expectedAnswer, userAnswer, valueType)
+                const result = analyseReponse(expectedAnswer, userAnswer, valueType)
                 if (result) {
                   li.className = "good";
                   score++;
@@ -1093,18 +1098,20 @@ window.onload = () => {
     window.removeEventListener('touchstart', listener, false);
   }
   window.addEventListener('touchstart', listener, false);
-  diaporama.initializeAlea(Date());
+  // diaporama.initializeAlea(Date());
   sound.getPlayer();
   diaporama.zooms["thezoom"] = new Zoom("thezoom", "#slideshow .slide");
   document.querySelector("#slideshow-container header").appendChild(diaporama.zooms["thezoom"].createCursor());
   diaporama.speech = new speech()
   // boutons de commande 
-  document.querySelectorAll("#corrige-content, #enonce-content").forEach(el => el.onclick = (evt) => {
-    setZoom(evt.target)
-    saveContent()
+  document.querySelectorAll("#corrige-content, #enonce-content").forEach(el => {
+    el.onclick = (evt) => {
+      setZoom(evt.target)
+      saveContent()
+    }
   })
   const zones = ['corrige', 'enonce', 'param']
-  function resetButtonsAndContent () {
+  function resetButtonsAndContent() {
     zones.forEach(el => document.getElementById('btn-' + el).classList.remove('active'))
     zones.forEach(el => document.getElementById('tab-' + el).classList.add('hidden'))
   }
@@ -1182,6 +1189,28 @@ window.onload = () => {
       default:
         break;
     }
+  }
+  // boutons section corrigés
+  document.querySelector("#tab-corrige aside").addEventListener("click", (evt) => {
+    let target = utils.getTargetWithImageInside(evt);
+    switch (target.id) {
+      case "btn-annotation-corrige":
+        diaporama.annotateThisThing('corrige-content', target.id)
+        saveContent()
+        break
+      case "btn-restart-otherdata":
+        diaporama.start()
+        break
+      case "btn-restart-samedata":
+        // the true value force to restart with same datas
+        diaporama.start(true)
+        break
+      default:
+        break
+    }
+  })
+  document.getElementById('btn-annotation-enonce').onclick = () => {
+    diaporama.annotateThisThing('enonce-content', 'btn-annotation-enonce')
   }
   diaporama.checkURL();
 }

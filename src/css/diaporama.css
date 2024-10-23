@@ -15,8 +15,25 @@
 #tab-content header button.active {
   background: #8aacf2;
 }
+#tab-corrige aside, #tab-enonce aside {
+  display: inline-block;
+  width: 50px;
+  vertical-align: top;
+}
+#tab-corrige > div, #tab-enonce > div {
+  display: inline-block;
+}
+#tab-corrige aside button, #tab-enonce aside button {
+  background-color: rgba(0,0,0,0);
+  padding: 0;
+  margin-bottom: 5px;
+}
+
 .pointer {
   cursor: pointer;
+}
+.underline {
+  text-decoration: underline !important;
 }
 .zoom-A1 {
   font-size: 1.2em;

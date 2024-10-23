@@ -393,7 +393,7 @@ const utils = {
      * shuffle an array
      * @param {Array} arr 
      */
-    shuffle : function(arr){        
+    shuffle : function(arr){
         if(!Array.isArray(arr))return false;
         let curId = arr.length;
         while(0 !== curId){

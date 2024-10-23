@@ -29,16 +29,29 @@
             <button id="btn-param">Paramétrer</button>
           </header>
           <section id="tab-enonce" class="hidden">
-            <h2>Énoncés</h2>
-            <div id="enonce-content">Non disponible</div>
+            <aside>
+              <button id="btn-annotation-enonce" title="Annoter">
+                  <i class="sprite sprite-iconfinder_pencil_1055013"></i>
+              </button>
+            </aside>
+              <div id="enonce-content">Non disponible</div>
           </section>
           <section id="tab-corrige" class="hidden">
-            <h2>Corrigés</h2>
+            <aside>
+              <button id="btn-annotation-corrige" title="Annoter le corrigé">
+                  <i class="sprite sprite-iconfinder_pencil_1055013"></i>
+              </button>
+              <button id="btn-restart-otherdata" title="Recommencer avec de nouvelles données">
+                  <i class="sprite sprite-restart"></i>
+              </button>
+              <button id="btn-restart-samedata" title="Recommencer avec les mêmes données">
+                  <i class="sprite sprite-restartsame"></i>
+              </button>
+          </aside>
             <div id="corrige-content">Non disponible</div>
           </section>
           <section id="tab-param" class="hidden">
-            <h2>Paramétrage</h2>
-            <div>
+            <div id="param-content">
               Il n'est pas possible de paramétrer le diaporama sur cette page.
             </div>
           </section>
