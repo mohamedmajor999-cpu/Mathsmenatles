@@ -45,7 +45,7 @@ const MM = {
             document.getElementById("aleaKey").value = value;
         } else if (value === "sample") {
             MM.seed = utils.seedGenerator();
-        } else if (document.getElementById("aleaInURL").checked === true) {
+        } else if (document.getElementById("aleaInURL").checked) {
             if (document.getElementById("aleaKey").value === "") {
                 MM.seed = utils.seedGenerator();
                 document.getElementById("aleaKey").value = MM.seed;
@@ -60,6 +60,17 @@ const MM = {
             document.getElementById("aleaKey").value = MM.seed;
         }
         MM.initializeAlea(MM.seed);
+    },
+    getSeed() {
+        if (document.getElementById("aleaInURL").checked) {
+            if (document.getElementById("aleaKey").value === "") {
+                MM.seed = utils.seedGenerator();
+                document.getElementById("aleaKey").value = MM.seed;
+            } else {
+                MM.seed = document.getElementById("aleaKey").value;
+            }
+        }
+        return MM.seed;
     },
     /**
     * 
@@ -674,21 +685,21 @@ const MM = {
             return "s=" + document.getElementById("exTxtSizeValue").value +
                 ",n=" + document.getElementById("exQtyValue").value +
                 ",cor=" + utils.getRadioChecked("excorr") +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",t=" + encodeURI(document.getElementById("extitle").value || document.getElementById("extitle").placeholder) +
                 ",ex=" + encodeURI(document.getElementById("exeachex").value || document.getElementById("exeachex").placeholder) +
                 this.export();
         } else if (type === "exam") {
             return "s=" + document.getElementById("intTxtSizeValue").value +
                 ",n=" + document.getElementById("intQtyValue").value +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",t=" + encodeURI(document.getElementById("inttitle").value || document.getElementById("inttitle").placeholder) +
                 ",ex=" + encodeURI(document.getElementById("inteachex").value || document.getElementById("inteachex").placeholder) +
                 this.export();
         } else if (type === "cansheet") {
             return "n=" + document.getElementById("canqtyvalue").value +
                 ",t=" + encodeURI(document.getElementById("cantitle").value || document.getElementById("cantitle").placeholder) +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",cor=" + (utils.getRadioChecked("cancorrpos") || "fin") +
                 ",tm=" + (document.getElementById("cantime").value || document.getElementById("cantime").placeholder) +
                 ",t1=" + encodeURI(document.getElementById("cancol1title").value || document.getElementById("cancol1title").placeholder) +
@@ -698,26 +709,26 @@ const MM = {
         } else if (type === "cartesflash") {
             return "disp=" + (utils.getRadioChecked("flashcarddispo")) +
                 ",t=" + (document.getElementById("FCtitle").value || "Cartes Flash") +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
         } else if (type === "wall") {
             return "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
         } else if (type === "dominossheet") {
             return "n=" + document.getElementById("dominosNbValue").value +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",d=" + (document.getElementById("dominosDoublons").checked) +
                 this.export();
         } else if (type === "whogots") {
             return "n=" + document.getElementById("cardsNbValue").value +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",d=" + (document.getElementById("WGDoublons").checked) +
                 ',aff=' + (document.getElementById("WGaffirmation").value) +
                 ',quest=' + (document.getElementById("WGquestion").value) +
                 this.export();
         } else if (type === "puzzlessheet") {
-            return ",a=" + (withAleaSeed ? MM.seed : "") +
+            return ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export();
         } else if (type === "duel") {
             return "ty=" + utils.getRadioChecked("dueltype") +
@@ -737,7 +748,7 @@ const MM = {
                 ",kc=" + document.getElementById("ceintprintToCorrige").checked +
                 ",nc=" + document.getElementById("ceintcolsval").value +
                 chaine +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",nr=" + document.getElementById("ceintrowsval").value +
                 ",n=" + document.getElementById("ceintqtyvalue").value +
                 ",cor=" + (utils.getRadioChecked("ceintcorrpos") || "fin") +
@@ -751,7 +762,7 @@ const MM = {
                 ",s=" + MM.slidersNumber +
                 ",so=" + MM.slidersOrientation +
                 ",f=" + MM.faceToFace +
-                ",a=" + (withAleaSeed ? MM.seed : "") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",colors=" + colors +
                 ",snd=" + sound.selected +
                 this.export();
