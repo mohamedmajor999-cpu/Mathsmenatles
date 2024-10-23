@@ -51,28 +51,6 @@ const diaporama = {
   times: [0], // temps mis pour faire l'activité en mode interactif
   totaltimes: [0], // temps prévu pour le diaporama en mode interactif
   // functions
-  setSeed(value) {
-    if (value !== undefined && value !== "sample") {
-      diaporama.seed = value;
-    } else {
-      diaporama.seed = utils.seedGenerator();
-    }
-    diaporama.initializeAlea(diaporama.seed);
-  },
-  /**
-  * 
-  * @params {string} seed valeur d'initialisation des données aléatoires
-  * return nothing
-  */
-  initializeAlea: function (seed) {
-    if (seed !== undefined) {
-      if (utils.alea) delete utils.alea;
-      utils.alea = new Math.seedrandom(seed);
-    } else {
-      if (utils.alea) delete utils.alea;
-      utils.alea = new Math.seedrandom(diaporama.seed);
-    }
-  },
   closeMessage(id) {
     let div = document.getElementById(id);
     if (div !== null) div.parentNode.removeChild(div);
@@ -94,7 +72,7 @@ const diaporama = {
       // le seed d'aléatorisation est fourni et on n'est pas en mode online
       let sameData = false
       if (vars.a && diaporama.onlineState === 'no') {
-        diaporama.setSeed(vars.a);
+        diaporama.seed = utils.setSeed(vars.a);
         // on check la clé de donnée incluse
         sameData = true
       }
@@ -320,6 +298,7 @@ const diaporama = {
         // on fait la liste des références activités / questions pour pouvoir créer les affichages
         for (let z = 0, alen = diaporama.carts[i].activities.length; z < alen; z++) {
           let activity = diaporama.carts[i].activities[z];
+          activity.initialize();
           activity.generate();
           diaporama.goodAnswers[i][kk][z] = utils.clone(activity.values);
           diaporama.steps[slideId].addSize(activity.nbq);
@@ -522,9 +501,9 @@ const diaporama = {
     diaporama.createSlideShows();
     // if restart true, we restart with same values
     if (!sameData) {
-      diaporama.setSeed();
+      diaporama.seed = utils.setSeed();
     } else {
-      diaporama.setSeed(diaporama.seed);
+      diaporama.seed = utils.setSeed(diaporama.seed);
     }
     diaporama.populateQuestionsAndAnswers();
     if (diaporama.introType === "321") {
@@ -570,7 +549,7 @@ const diaporama = {
   },
   showSampleQuestion: function () {
     let nb = diaporama.slidersNumber;
-    diaporama.setSeed("sample");
+    diaporama.seed = utils.setSeed("sample");
     let container = document.getElementById("slideshow");
     let assocSliderActivity = [];
     // génération des données aléatoires pour les exemples
