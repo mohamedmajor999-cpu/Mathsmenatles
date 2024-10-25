@@ -681,60 +681,11 @@ const MM = {
     paramsToURL(withAleaSeed = false, type = "") {
         let colors = MM.colors.join("~").replace(/\,/g, "_");
         // MM.setSeed()
-        if (type === "exosheet") {
-            return "s=" + document.getElementById("exTxtSizeValue").value +
-                ",n=" + document.getElementById("exQtyValue").value +
-                ",cor=" + utils.getRadioChecked("excorr") +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                ",t=" + encodeURI(document.getElementById("extitle").value || document.getElementById("extitle").placeholder) +
-                ",ex=" + encodeURI(document.getElementById("exeachex").value || document.getElementById("exeachex").placeholder) +
-                this.export();
-        } else if (type === "exam") {
-            return "s=" + document.getElementById("intTxtSizeValue").value +
-                ",n=" + document.getElementById("intQtyValue").value +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                ",t=" + encodeURI(document.getElementById("inttitle").value || document.getElementById("inttitle").placeholder) +
-                ",ex=" + encodeURI(document.getElementById("inteachex").value || document.getElementById("inteachex").placeholder) +
-                this.export();
-        } else if (type === "cansheet") {
-            return "n=" + document.getElementById("canqtyvalue").value +
-                ",t=" + encodeURI(document.getElementById("cantitle").value || document.getElementById("cantitle").placeholder) +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                ",cor=" + (utils.getRadioChecked("cancorrpos") || "fin") +
-                ",tm=" + (document.getElementById("cantime").value || document.getElementById("cantime").placeholder) +
-                ",t1=" + encodeURI(document.getElementById("cancol1title").value || document.getElementById("cancol1title").placeholder) +
-                ",t2=" + encodeURI(document.getElementById("cancol2title").value || document.getElementById("cancol2title").placeholder) +
-                ",t3=" + encodeURI(document.getElementById("cancol3title").value || document.getElementById("cancol3title").placeholder) +
-                this.export()
-        } else if (type === "cartesflash") {
+        if (type === "cartesflash") {
             return "disp=" + (utils.getRadioChecked("flashcarddispo")) +
                 ",t=" + (document.getElementById("FCtitle").value || "Cartes Flash") +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
-        } else if (type === "wall") {
-            return "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                this.export()
-        } else if (type === "dominos") {
-            return "n=" + document.getElementById("dominosNbValue").value +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                ",d=" + (document.getElementById("dominosDoublons").checked) +
-                this.export();
-        } else if (type === "whogots") {
-            return "n=" + document.getElementById("cardsNbValue").value +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                ",d=" + (document.getElementById("WGDoublons").checked) +
-                ',aff=' + (document.getElementById("WGaffirmation").value) +
-                ',quest=' + (document.getElementById("WGquestion").value) +
-                this.export();
-        } else if (type === "puzzles") {
-            return ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                this.export();
-        } else if (type === "duel") {
-            return "ty=" + utils.getRadioChecked("dueltype") +
-                ",bg=" + document.getElementById("duelbackgroundselect").value +
-                (utils.getRadioChecked("dueltemps") === "limit" ? ",t=" + utils.timeToSeconds(document.getElementById("dueltotaltime").value) : "") +
-                this.export();
         } else if (type === "ceinture") {
             let chaine = "", t = 0;
             // liste des titres :
@@ -755,6 +706,55 @@ const MM = {
                 ",pie=" + document.getElementById("ceintpiedcol").value +
                 ",or=" + (utils.getRadioChecked("ceintorientation") || "portrait") +
                 this.export();
+        } else if (type === "cansheet") {
+            return "n=" + document.getElementById("canqtyvalue").value +
+                ",t=" + encodeURI(document.getElementById("cantitle").value || document.getElementById("cantitle").placeholder) +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                ",cor=" + (utils.getRadioChecked("cancorrpos") || "fin") +
+                ",tm=" + (document.getElementById("cantime").value || document.getElementById("cantime").placeholder) +
+                ",t1=" + encodeURI(document.getElementById("cancol1title").value || document.getElementById("cancol1title").placeholder) +
+                ",t2=" + encodeURI(document.getElementById("cancol2title").value || document.getElementById("cancol2title").placeholder) +
+                ",t3=" + encodeURI(document.getElementById("cancol3title").value || document.getElementById("cancol3title").placeholder) +
+                this.export()
+        } else if (type === "dominos") {
+            return "n=" + document.getElementById("dominosNbValue").value +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                ",d=" + (document.getElementById("dominosDoublons").checked) +
+                this.export();
+        } else if (type === "duel") {
+            return "ty=" + utils.getRadioChecked("dueltype") +
+                ",bg=" + document.getElementById("duelbackgroundselect").value +
+                (utils.getRadioChecked("dueltemps") === "limit" ? ",t=" + utils.timeToSeconds(document.getElementById("dueltotaltime").value) : "") +
+                this.export();
+        } else if (type === "exam") {
+            return "s=" + document.getElementById("intTxtSizeValue").value +
+                ",n=" + document.getElementById("intQtyValue").value +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                ",t=" + encodeURI(document.getElementById("inttitle").value || document.getElementById("inttitle").placeholder) +
+                ",ex=" + encodeURI(document.getElementById("inteachex").value || document.getElementById("inteachex").placeholder) +
+                this.export();
+        } else if (type === "exosheet") {
+            return "s=" + document.getElementById("exTxtSizeValue").value +
+                ",n=" + document.getElementById("exQtyValue").value +
+                ",cor=" + utils.getRadioChecked("excorr") +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                ",t=" + encodeURI(document.getElementById("extitle").value || document.getElementById("extitle").placeholder) +
+                ",ex=" + encodeURI(document.getElementById("exeachex").value || document.getElementById("exeachex").placeholder) +
+                this.export();
+        } else if (type === "whogots") {
+            return "n=" + document.getElementById("cardsNbValue").value +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                ",d=" + (document.getElementById("WGDoublons").checked) +
+                ',aff=' + (document.getElementById("WGaffirmation").value) +
+                ',quest=' + (document.getElementById("WGquestion").value) +
+                this.export();
+        } else if (type === "puzzles") {
+            return ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                this.export();
+        } else if (type === "wall") {
+            return "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
+                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+                this.export()
         } else
             return "i=" + MM.introType +
                 ",e=" + MM.endType +
@@ -793,9 +793,7 @@ const MM = {
      */
     async checkURL(urlString = false, start = true, edit = false) {
         const vars = utils.getUrlVars(urlString);
-        if (vars.edit !== undefined) {
-            edit = true;
-        }
+        if(vars.edit)edit = true
         // cas d'une page prévue pour exercice.html
         if (vars.cor && vars.ex && location.href.indexOf("exercices.html") < 0 && !edit) {
             // on redirige vers exercice.html
@@ -849,7 +847,7 @@ const MM = {
             }
         } else if (vars.c !== undefined) { // présence de carts MM v2 à lancer ou éditer
             // si pas d'édition, on lance le diaporama en mode autonome
-            if (!edit) {
+            if (!vars.edit) {
                 location.href = location.href.replace("index.html", "diaporama.html");
             }
             // indique quoi faire avant le slide
@@ -896,6 +894,92 @@ const MM = {
             // version avant le 15/08/21
             if (typeof vars.c === "string")
                 json = JSON.parse(decodeURIComponent(vars.c));
+            // récup des paramètres de panier
+            // on affiche l'interface de paramétrage si on est en mode édition
+            if (vars.edit) {
+                MM.showTab("tab-parameters");
+                const typeParams = utils.getTypeOfURL(urlString, vars.type)
+                // remplissage des données de carte flash
+                if (typeParams === "paramsflashcards") {
+                    console.log(vars)
+                    document.getElementById('FCtitle').value = vars.t ? decodeURIComponent(vars.t) : '';
+                    utils.checkRadio('flashcarddispo', vars.disp);
+                } else
+                // remplissage des données ceinture
+                if (typeParams === "paramsceinture") {
+                    MM.resetInterface();
+                    document.getElementById("ceinttitle").value = vars.t ? decodeURIComponent(vars.t) : "";
+                    document.getElementById("ceintcols").value = vars.nc;
+                    document.getElementById("ceintcolsval").value = vars.nc;
+                    let coltitles = document.getElementById("ceintcolumnTitle");
+                    coltitles.innerHTML = "";
+                    for (let i = 0, tot = Number(vars.nc); i < tot; i++) {
+                        if (i > 0) coltitles.appendChild(utils.create("br"));
+                        coltitles.appendChild(utils.create("label", { "for": "ceinttitlecol" + (i + 1), innerHTML: "Colonne " + (i + 1) + " :" }))
+                        coltitles.appendChild(utils.create("input", { "type": "text", id: "ceinttitlecol" + (i + 1), value: vars["t" + i] ? decodeURIComponent(vars["t" + i]) : "" }))
+                    }
+                    document.getElementById("ceintrows").value = vars.nr;
+                    document.getElementById("ceintrowsval").value = vars.nr;
+                    document.getElementById("ceintqty").value = vars.n;
+                    document.getElementById("ceintqtyvalue").value = vars.n;
+                    utils.checkRadio("ceintcorrpos", vars.cor);
+                    document.getElementById("ceintpiedcol").value = vars.pie;
+                    utils.checkRadio("ceintorientation", vars.o ? vars.o : "portrait");
+                } else if (typeParams === "paramscourse") {
+                    document.getElementById('cantitle').value = vars.t ? decodeURIComponent(vars.t) : '';
+                    document.getElementById('cancol1title').value = vars.t1 ? decodeURIComponent(vars.t1) : '';
+                    document.getElementById('cancol2title').value = vars.t2 ? decodeURIComponent(vars.t2) : '';
+                    document.getElementById('cancol3title').value = vars.t3 ? decodeURIComponent(vars.t3) : '';
+                    document.getElementById('cantime').value = vars.tm ? decodeURIComponent(vars.tm) : '';
+                    document.getElementById('canqtyvalue').value = vars.n ? decodeURIComponent(vars.n) : '';
+                    utils.checkRadio('cancorrpos', vars.cor);
+                } else if (typeParams === "paramsdominos") {
+                    document.getElementById('dominosNbValue').value = vars.n ? Number(vars.n) : 28;
+                    document.getElementById('dominosNb').innerHTML = vars.n ? vars.n : 28;
+                    document.getElementById('dominosDoublons').checked = vars.d === 'true';
+                    const text = document.getElementById("dominosDoublonsText")
+                    if(vars.d === 'true') text.innerHTML="Oui"
+                    else text.innerHTML = "Non"
+                } else if (typeParams === "paramsduel") {
+                    utils.selectOption('duelbackgroundselect', vars.bg)
+                    utils.checkRadio('dueltype', vars.ty)
+                    if (Number(vars.t)>0) {
+                        utils.checkRadio('dueltemps', 'limit')
+                        document.getElementById('dueltotaltime').value = utils.secondToTime(Number(vars.t))
+                    } else {
+                        utils.checkRadio('dueltemps', 'panier')
+                    }
+                } else if (typeParams === "paramsinterro") {
+                    document.getElementById('inttitle').value = vars.t ? decodeURIComponent(vars.t) : '';
+                    document.getElementById('inteachex').value = vars.ex ? decodeURIComponent(vars.ex) : '';
+                    document.getElementById('intTxtSize').innerHTML = vars.s ? decodeURIComponent(vars.s) : '';
+                    document.getElementById('intTxtSizeValue').value = vars.s ? vars.s : '';
+                    document.getElementById('intQtyValue').value = vars.n ? vars.n : '';
+
+                } else if (typeParams === "paramswexos") {
+                    document.getElementById("exTxtSizeValue").value = vars.s ? vars.s : '';
+                    document.getElementById("exTxtSize").innerHTML = vars.s ? decodeURIComponent(vars.s) : '';
+                    document.getElementById("exQtyValue").value = vars.n ? vars.n : '';
+                    utils.checkRadio('excorr', vars.cor);
+                    document.getElementById("extitle").value = vars.t ? decodeURIComponent(vars.t) : '';
+                    document.getElementById("exeachex").value = vars.ex ? decodeURIComponent(vars.ex) : '';
+                } else if (typeParams === "paramswhogots") {
+                    document.getElementById("cardsNbValue").value = vars.n ? Number(vars.n) : '';
+                    document.getElementById("cardsNb").innerHTML = vars.n ? vars.n : '';
+                    document.getElementById("WGDoublons").checked = vars.d === 'true';
+                    document.getElementById("WGaffirmation").value = vars.aff ? decodeURIComponent(vars.aff) : '';
+                    document.getElementById("WGquestion").value = vars.quest ? decodeURIComponent(vars.quest) : '';
+                } else if (typeParams === "paramspuzzle") {
+                    // no parameters yet
+                }
+                else if (typeParams === "paramswall") {
+                    document.getElementById('walltitle').value = vars.t ? decodeURIComponent(vars.t) : '';
+                }
+                // on sélectionne le menu qu'il faut
+                utils.selectOption("chooseParamType", typeParams);
+                MM.showParameters(typeParams)
+            }
+            
             // la version à partir du 15/08/21 fonctionne avec un objet vars.c déjà construit.
             // alcarts contient des promises qu'il faut charger
             let allcarts = [];
@@ -903,42 +987,14 @@ const MM = {
                 MM.carts[i] = new cart(i);
                 allcarts.push(MM.carts[i].import(json[i], start, MM.version));
             }
+
             // on attend le résultat de toutes les promesses pour mettre à jour les affichages.
-            Promise.all(allcarts).then(data => {
+            Promise.all(allcarts).then(() => {
                 // on prépare l'affichage des paniers
-                MM.resetInterface();
                 MM.restoreCartsInterface();
                 MM.showCartInterface();
                 MM.showCart(1);
                 MM.editActivity(0);
-                // on affiche l'interface de paramétrage si on est en mode édition
-                if (edit) {
-                    MM.showTab("tab-parameters");
-                    // remplissage des données ceinture
-                    if (utils.getTypeOfURL(urlString) === "paramsceinture") {
-                        document.getElementById("ceinttitle").value = vars.t ? decodeURIComponent(vars.t) : "";
-                        document.getElementById("ceintcols").value = vars.nc;
-                        document.getElementById("ceintcolsval").value = vars.nc;
-                        let coltitles = document.getElementById("ceintcolumnTitle");
-                        coltitles.innerHTML = "";
-                        for (let i = 0, tot = Number(vars.nc); i < tot; i++) {
-                            if (i > 0) coltitles.appendChild(utils.create("br"));
-                            coltitles.appendChild(utils.create("label", { "for": "ceinttitlecol" + (i + 1), innerHTML: "Colonne " + (i + 1) + " :" }))
-                            coltitles.appendChild(utils.create("input", { "type": "text", id: "ceinttitlecol" + (i + 1), value: vars["t" + i] ? decodeURIComponent(vars["t" + i]) : "" }))
-                        }
-                        document.getElementById("ceintrows").value = vars.nr;
-                        document.getElementById("ceintrowsval").value = vars.nr;
-                        document.getElementById("ceintqty").value = vars.n;
-                        document.getElementById("ceintqtyvalue").value = vars.n;
-                        utils.checkRadio("ceintcorrpos", vars.cor);
-                        document.getElementById("ceintpiedcol").value = vars.pie;
-                        utils.checkRadio("ceintorientation", vars.o ? vars.o : "portrait");
-                    }
-                    // on sélectionne le menu qu'il faut
-                    utils.selectOption("chooseParamType", utils.getTypeOfURL(urlString));
-                    let element = document.getElementById("chooseParamType");
-                    element.dispatchEvent(new Event('change', { 'bubbles': true }));
-                }
             }).catch(err => {
                 // erreur à l'importation :(
                 let alert = utils.create("div",

@@ -132,8 +132,8 @@ const diaporama = {
       let allcarts = [];
       // online non forcé, on va afficher un lien vers le paramétrage les énoncés et les corrigés.
       if (diaporama.onlineState !== 'yes') {
-        // check if window.parent has same url as window
-        if (window.parent.location.href === window.location.href) {
+        // check if window has been opened by another window
+        if (window.opener === null) {
           const paramsContent = document.getElementById('param-content')
           paramsContent.innerHTML = ''
           const info = utils.create('div', { className: 'info', innerHTML: 'Le diaporama est à présent une entité indépendante de l’éditeur. Vous pouvez cependant y revenir en suivant le lien ci-dessous.' });

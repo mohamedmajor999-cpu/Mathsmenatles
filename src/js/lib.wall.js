@@ -211,6 +211,20 @@ function checkURL(urlString){
         if(vars.embed.match(regex))
             MM.embededIn = vars.embed;
     }
+    if (window.opener === null) {
+        const $destination = document.getElementById('zoom');
+        const buttonEdit = utils.create('button', {
+            innerHTML: '<svg height="48" width="48" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="31.833" cy="32" fill="#76C2AF" r="32"/><path d="M28 23v-9H15a3 3 0 00-3 3v34a3 3 0 003 3h22a3 3 0 003-3V26h-9a3 3 0 01-3-3z" fill="#231F20" opacity=".2"/><path d="M37 12H15a3 3 0 00-3 3v34a3 3 0 003 3h22a3 3 0 003-3V15a3 3 0 00-3-3z" fill="#E0E0D1"/><path fill="#231F20" d="M16 19h10v2H16zM16 35h20v2H16zM16 30h20v2H16zM16 25h20v2H16zM16 40h20v2H16z" opacity=".2"/><g opacity=".2"><path fill="#231F20" d="M16 45h20v2H16z"/></g><g opacity=".2"><path d="M55.121 21.864l-7.071-7.071a3 3 0 00-4.243 0l-3.536 3.536-.707.707-16.262 16.263-1.886 9.428-.943 4.714 4.714-.943 9.428-1.886 16.263-16.263.707-.707 3.536-3.536a2.998 2.998 0 000-4.242z" fill="#231F20"/></g><g><path d="M50.879 28.435a3 3 0 01-4.243 0l-7.071-7.071a3 3 0 010-4.243l4.243-4.243a3 3 0 014.243 0l7.071 7.071a3 3 0 010 4.243l-4.243 4.243z" fill="#C75C5C"/></g><g><path fill="#E0995E" d="M23.301 33.385l16.97-16.97 2.83 2.828-16.971 16.97z"/></g><g><path fill="#F5CF87" d="M24.715 37.627L43.1 19.242l5.657 5.657-18.385 18.385z"/></g><g><path fill="#E0995E" d="M31.786 41.87l16.97-16.97 2.829 2.828-16.97 16.97z"/></g><g><path fill="#4F5D73" d="M20.473 47.527l4.714-.943-3.771-3.771z"/><path fill="#FFF" d="M23.302 33.385l-1.886 9.428 3.771 3.771 9.428-1.886-1.414-1.414v-2.828h-5.657v-5.657h-2.828z"/></g></svg>',
+            className: 'edit-btn',
+            title:'Éditer les activités du panneau' });
+        buttonEdit.onclick = () => {
+            let url = window.location.href.replace('wall.html', 'index.html') + '&edit&type=wall';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + parameters.alea + ',');
+            window.location.href = url
+        }
+        $destination.appendChild(buttonEdit);
+    }
     if(vars.c!==undefined){
         if(vars.a){
             parameters.alea = vars.a;

@@ -34,6 +34,11 @@ li {
 .fright{
     float:right;
 }
+.abstopright {
+    position: absolute;
+    top:0;
+    right:0;
+}
 .entete {
     font-size: 1.2em;
 }

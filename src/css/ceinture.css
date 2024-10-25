@@ -39,7 +39,11 @@ li {
 .fright{
     float:right;
 }
-
+.abstopright {
+    position: absolute;
+    top:0;
+    right:0;
+}
 .is-relative {
     position: relative;
 }

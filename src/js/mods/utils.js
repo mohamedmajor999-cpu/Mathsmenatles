@@ -94,18 +94,34 @@ const utils = {
             }
         }
     },
-    getTypeOfURL(url) {
-        if (url.indexOf("exercices.html") > -1) {
-            return "paramsexos"
-        } else if (url.indexOf("courseauxnombres.html") > -1) {
-            return "paramscourse"
-        } else if (url.indexOf("dominos.html") > -1) {
-            return "paramsdominos"
-        } else if (url.indexOf("duel.html") > -1) {
-            return "paramsduel"
-        } else if (url.indexOf("ceinture.html") > -1) {
-            return "paramsceinture"
-        } else return "paramsdiapo"
+    getTypeOfURL(url, type=false) {
+        if(!type){
+            if(url.indexOf("cartesflash.html") > -1) return "paramsflashcards";
+            else if (url.indexOf("ceinture.html") > -1) return "paramsceinture"
+            else if(url.indexOf("courseauxnombres.html") > -1) return "paramscourse";
+            else if (url.indexOf("diaporama.html") > -1) return "paramsdiapo"
+            else if (url.indexOf("dominos.html") > -1) return "paramsdominos"
+            else if (url.indexOf("duel.html") > -1) return "paramsduel"
+            else if(url.indexOf("exam.html") > -1) return "paramsinterro";
+            else if (url.indexOf("exercices.html") > -1) return "paramsexos"
+            else if (url.indexOf("jaiquia.html") > -1) return "paramswhogots"
+            else if (url.indexOf("puzzle.html") > -1) return "paramspuzzle"
+            else if (url.indexOf("wall.html") > -1) return "paramswall"
+            else return "paramsdiapo"
+        } else {
+            if (type === 'cartesflash') return "paramsflashcards"
+            else if (type === 'ceinture') return "paramsceinture"
+            else if (type === 'cansheet') return "paramscourse"
+            else if (type === 'diaporama') return "paramsdiapo"
+            else if (type === 'dominos') return "paramsdominos"
+            else if (type === 'duel') return "paramsduel"
+            else if (type === 'exam') return "paramsinterro"
+            else if (type === 'exosheet') return "paramsexos"
+            else if (type === 'whogots') return "paramswhogots"
+            else if (type === 'puzzle') return "paramspuzzle"
+            else if (type === 'wall') return "paramswall"
+            else return "paramsdiapo"
+        }
     },
     /**
      * 
@@ -249,6 +265,8 @@ const utils = {
                     vars.edit = true
                 } else if (hashes[i].indexOf("logo") === 0) {
                     vars.logo = true
+                } else if (hashes[i].indexOf("type") === 0) {
+                    vars.type = hashes[i].split("=")[1];
                 }
             }
         }
@@ -273,6 +291,15 @@ const utils = {
     timeToSeconds(timeValue) {
         let elems = timeValue.split(":");
         return Number(elems[0]) * 60 + Number(elems[1]);
+    },
+    /**
+     * Transform seconds string to 10:05 string
+     * @param {number} seconds 
+     */
+    secondToTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        seconds = seconds % 60;
+        return (minutes < 10 ? "0" + String(minutes) : String(minutes)) + ":" + (seconds < 10 ? "0" + String(seconds) : String(seconds));
     },
     /**
      * Create a string of six alphabetic letters

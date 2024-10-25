@@ -14,14 +14,14 @@
         <link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />
         <script src="js/libs/common.alllibs.js"></script>
         <script src="js/libs/chartjs/Chart.bundle.min.js" defer></script>
-        <script type="module" src="js/lib.jaiquia.js?v=2.3.1"></script>
+        <script type="module" src="js/lib.jaiquia.js?v=2.3.6"></script>
     </head>  
     <body size="A4">
-        <button onclick="document.getElementById('creator-menu').classList.toggle('hidden')" class="noprint" style="position: absolute;left:0;top:0;width:18pt;height:18pt;">🛠</button>
+        <button onclick="document.getElementById('creator-menu').classList.toggle('hidden')" class="noprint" style="position: absolute;left:0;top:0;width:90pt;height:18pt;">🛠 Mise en page</button>
+        <button onclick="window.print();" class="noprint" title="Imprimer ou enregistrer en pdf"style="position: absolute;left:92pt;top:0;width:70pt;height:18pt;">🖨️ Imprimer</button>
         <div id="creator-container">
             <section id="creator-menu" class="noprint hidden">
                 <button id="pageOrientation" title="Change l'orientation de la page">paysage</button>
-                <button onclick="window.print();" title="Cliquer pour imprimer ou enregistrer en pdf">Print</button>
                 | Cartes : 
                 <input type="number" id="nbCartes" value="28" title="Nombre de cartes à générer\nSi 1 seule activité" size="3" min="2" max="180">
                 <button id="btnnodoublon" title="Supprime les doublons">No doublon</button> <button id="btnshuffle">Mélanger</button> <button id="btneditcontent" title="Modifier le contenu des cartes">Éditer</button>

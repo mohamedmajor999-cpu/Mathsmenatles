@@ -38,14 +38,14 @@ window.onload = function(){
     MM.createTuiles();
     // création des tuiles des niveaux
     MM.createSearchCheckboxes();
+    // put the good default selected
+    document.getElementById("chooseParamType").value = "paramsdiapo";
     // check if parameters from URL
     MM.checkURL();
     if(MM.embededIn){
         window.parent.postMessage({url: window.location.href, ready:"ok"}, MM.embededIn);
     } 
     sound.getPlayer();
-    // put the good default selected
-    document.getElementById("chooseParamType").value = "paramsdiapo";
     // to show de good checked display
     MM.setDispositionEnonce(utils.getRadioChecked("Enonces"));
     // take history if present

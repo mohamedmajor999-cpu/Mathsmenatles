@@ -114,6 +114,23 @@ function makePage(){
     if(parameters.alea){
         common.setSeed(parameters.alea);
     }
+    // Add Button Edit parameters of document
+    // check if window has been opened directly
+    if (window.opener === null) {
+        const $destination = document.body;
+        const buttonEdit = utils.create('button', {
+            innerHTML: '🖋️ Éditer',
+            className: 'noprint abstopright',
+            title:'Éditer les activités des dominos' });
+        buttonEdit.onclick = () => {
+            let url = window.location.href.replace('dominos.html', 'index.html') + '&edit&type=dominos';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + parameters.alea + ',');
+            window.location.href = url
+        }
+        $destination.prepend(buttonEdit);
+    }
+
     content.innerHTML = "";
     MM.memory = {};
     setNumberOfDominos();

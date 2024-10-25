@@ -49,7 +49,7 @@ document.getElementById("intro").onclick = (evt)=>{
         setOrientation("sidebyside");
     }else if(["svg-ftf","btn-orientation-facetoface"].indexOf(evt.target.id)>-1){
         setOrientation("facetoface");
-    }else if(evt.target.id === "full-screen"){
+    } else if(evt.target.id === "full-screen"){
         if(document.documentElement.requestFullscreen){
 		    document.documentElement.requestFullscreen()
             .then(()=>{
@@ -61,7 +61,7 @@ document.getElementById("intro").onclick = (evt)=>{
          } else if(document.documentElement.webkitRequestFullScreen){
 		    document.documentElement.webkitRequestFullScreen();
         }
-    }else if(evt.target.id === "btn-start"){
+    } else if(evt.target.id === "btn-start"){
         document.getElementById("intro").classList.add("hidden");
         document.getElementById("countdown-container").classList.remove("hidden");
         setTimeout(()=>{
@@ -800,6 +800,23 @@ function checkURL(urlString){
         if(vars.embed.match(regex))
             MM.embededIn = vars.embed;
     }
+    // Add Button Edit parameters of document
+    // check if window has been opened directly
+    if (window.opener === null) {
+        const $destination = document.getElementById('infodebug');
+        const buttonEdit = utils.create('button', {
+            innerHTML: '🖋️ Revenir à l’édition des activités de ce duel',
+            className: 'noprint',
+            title:'Éditer les activités du duel' });
+        buttonEdit.onclick = () => {
+            let url = window.location.href.replace('duel.html', 'index.html') + '&edit&type=duel';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + parameters.alea + ',');
+            window.location.href = url
+        }
+        $destination.appendChild(buttonEdit);
+    }
+
     if(vars.c!==undefined){
         parameters.alea = common.setSeed();
         // paramètres des activités des paniers

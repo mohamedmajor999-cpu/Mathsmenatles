@@ -251,6 +251,23 @@ function checkURL(urlString){
         if(vars.embed.match(regex))
             MM.embededIn = vars.embed;
     }
+    // Add Button Edit parameters of document
+    // check if window has been opened directly
+    if (window.opener === null) {
+        const $destination = document.body;
+        const buttonEdit = utils.create('button', {
+            innerHTML: '🖋️ Éditer',
+            className: 'noprint abstopright',
+            title:'Éditer les activités de la feuille' });
+        buttonEdit.onclick = () => {
+            let url = window.location.href.replace('exam.html', 'index.html') + '&edit&type=exam';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + parameters.alea + ',');
+            window.location.href = url
+        }
+        $destination.prepend(buttonEdit);
+    }
+
     if(vars.c!==undefined){ // présence de carts MM v2 à lancer ou éditer
         // le seed d'aléatorisation est fourni et on n'est pas en mode online
         if(vars.a){

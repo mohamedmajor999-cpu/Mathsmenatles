@@ -4,7 +4,7 @@ import common from './mods/common.js';
 import cart from './mods/cart.js';
 import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
-import math from './mods/math.js';
+// import math from './mods/math.js';
 
 const MM={};
 const content = document.getElementById("creator-content");
@@ -288,6 +288,23 @@ function checkURL(urlString){
         if(vars.embed.match(regex))
             MM.embededIn = vars.embed;
     }
+    // Add Button Edit parameters of document
+    // check if has been opened directly
+    if (window.opener === null) {
+        const $destination = document.getElementById('creator-menu');
+        const buttonEdit = utils.create('button', {
+             innerHTML: '🖋️ Éditer',
+             className: 'noprint fright',
+             title:'Éditer les activités des cartes' });
+        buttonEdit.onclick = () => {
+            let url = window.location.href.replace('cartesflash.html', 'index.html') + '&edit&type=cartesflash';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + parameters.alea + ',');
+            window.location.href = url
+        }
+        $destination.prepend(buttonEdit);
+    }
+
     if(vars.c!==undefined){
         if(vars.a){
             parameters.alea = vars.a;

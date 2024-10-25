@@ -17,6 +17,11 @@ body[size="A4"][layout="landscape"]{
     width: 27.7cm;
     min-height: 21cm;
 }
+.abstopright {
+    position: absolute;
+    top:1pt;
+    right:1pt;
+}
 @media screen {
     html{
         background: rgb(204,204,204); 

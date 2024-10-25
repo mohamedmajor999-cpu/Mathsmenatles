@@ -402,6 +402,22 @@ function checkURL(urlString){
         if(vars.embed.match(regex))
             MM.embededIn = vars.embed;
     }
+    // Add Button Edit parameters of document
+    // check if window has been opened directly
+    if (window.opener === null) {
+        const $destination = document.body;
+        const buttonEdit = utils.create('button', {
+            innerHTML: '🖋️ Éditer',
+            className: 'noprint abstopright',
+            title:'Éditer les activités du puzzle' });
+        buttonEdit.onclick = () => {
+            let url = window.location.href.replace('puzzle.html', 'index.html') + '&edit&type=puzzle';
+            // add alea key
+            url = url.replace(/,a=[\d\w]*,/, ',a=' + parameters.alea + ',');
+            window.location.href = url
+        }
+        $destination.prepend(buttonEdit);
+    }
     if(vars.c!==undefined){
         if(vars.a){
             parameters.alea = vars.a;
