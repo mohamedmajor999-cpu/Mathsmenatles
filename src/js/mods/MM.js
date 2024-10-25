@@ -875,10 +875,8 @@ const MM = {
                 MM.slidersNumber = Number(vars.s);
             }
             // son
-            if (vars.snd !== undefined) {
-                if (vars.snd !== "null") {
-                    sound.setSound(Number(vars.snd));
-                }
+            if (Number(vars.snd) >= 0 && !vars.snd) {
+                sound.setSound(Number(vars.snd));
             }
             // le seed d'aléatorisation est fourni et on n'est pas en mode online
             if ((vars.a && MM.onlineState === "no") || edit) {

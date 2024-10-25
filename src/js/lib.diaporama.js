@@ -3,7 +3,7 @@ import protos from './mods/protos.js';
 import utils from './mods/utils.js';
 // MathsMentales core
 import cart from "./mods/cart.js";
-import library from './mods/library.js';
+// import library from './mods/library.js';
 import sound from './mods/sound.js';
 import Zoom from './mods/zoom.js';
 import speech from './mods/speech.js';
@@ -11,6 +11,7 @@ import steps from './mods/steps.js';
 import timer from './mods/timer.js';
 import { MathfieldElement } from "./libs/mathlive/mathlive.mjs";
 import keyBoard from "./mods/keyboard.js";
+import math from './mods/math.js';
 import draw from './mods/draw.js';
 import Figure from './mods/figure.js';
 import analyseReponse from './mods/analysereponse.js';
@@ -707,6 +708,16 @@ const diaporama = {
       document.body.addEventListener("click", (evt) => {
         if (evt.target.id === "btn-messagefin-close") {
           diaporama.closeMessage('messagefin');
+        }
+        utils.mathRender(false, true);
+        if(whatToDo === 'correction') {
+          const $containerCorrige = document.getElementById('corrige-content')
+          $containerCorrige.innerHTML = '';
+          $containerCorrige.appendChild(diaporama.correction);  
+          utils.mathRender(false, true);
+          saveContent()  
+          diaporama.showTab('corrige');
+        } else {
           diaporama.showTab('enonce');
         }
       });
@@ -714,16 +725,16 @@ const diaporama = {
       const $containerCorrige = document.getElementById('corrige-content')
       $containerCorrige.innerHTML = '';
       $containerCorrige.appendChild(diaporama.correction);      
-    }
-    if (whatToDo === "correction") {
-      diaporama.showTab("corrige");
-    } else if (whatToDo === "list") {
-      diaporama.showTab("enonce");
-    } else {
-      diaporama.showTab("param");
-    }
-    utils.mathRender(false, true);
-    saveContent()
+      utils.mathRender(false, true);
+      saveContent()
+      if (whatToDo === "correction") {
+        diaporama.showTab("corrige");
+      } else if (whatToDo === "list") {
+        diaporama.showTab("enonce");
+      } else {
+        diaporama.showTab("param");
+      }
+      }
     this.ended = true;
   },
   showTab(tab) {
@@ -834,6 +845,7 @@ const diaporama = {
     diaporama.removeSample();
     if (diaporama.onlineState === "yes") { // create inputs for user
       diaporama.createUserInputs();
+      startOnlineTime = Number(Date.now());
     }
     if (diaporama.onlineState === "yes" && !diaporama.touched) {
       document.getElementById("ansInput0-0").focus();
@@ -933,7 +945,7 @@ const diaporama = {
             let targetId = Number(diaporama.carts[cartId].target[slider])
             let ol = document.createElement("ol");
             ol.innerHTML = "<b>Réponses pour " + String(targetId) + "</b>";
-            ol.innerHTML += ' (' + diaporama.times[targetId - 1] / 1000 + ' s. / ' + diaporama.totaltimes[targetId - 1] + ' s. prévues.)';
+            ol.innerHTML += ' (' + math.round(diaporama.times[targetId - 1] / 1000,2) + ' s. / ' + diaporama.totaltimes[targetId - 1] + ' s. prévues.)';
             let ia = 0;
             // pour un target, on a l'ordre des activités et des réponses.
             for (let slide = 0, len2 = diaporama.carts[cartId].actsArrays[slider].length; slide < len2; slide++) {
