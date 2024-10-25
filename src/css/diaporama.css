@@ -481,7 +481,7 @@ math-field::part(menu-toggle) {
     height: 1rem;
     overflow: hidden;
     padding: 0;
-    width: 100%;
+    width: 200px;
   }
   
   .progress::-webkit-progress-bar {
