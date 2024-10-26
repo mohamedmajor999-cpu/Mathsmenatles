@@ -246,14 +246,6 @@ const MM = {
         document.getElementById("divcarts").className = "hidden";
         document.getElementById("phantom").className = "";
         document.getElementById("divparams").className = "col-2 row-3";
-        // on check tous les boutons radio en fonction des valeurs en méméoire
-        utils.checkRadio("direction", this.slidersOrientation);
-        utils.checkRadio("beforeSlider", this.introType);
-        utils.checkCheckbox("beforeSlider", this.introType.split("-"));
-        utils.checkRadio("endOfSlideRadio", this.endType);
-        utils.checkRadio("online", this.onlineState);
-        utils.checkRadio("facetoface", this.faceToFace);
-        utils.checkRadio("Enonces", this.slidersNumber);
     },
     showCartInterface() {
         document.getElementById("divcarts").className = "row-4";
@@ -897,6 +889,7 @@ const MM = {
             // récup des paramètres de panier
             // on affiche l'interface de paramétrage si on est en mode édition
             if (edit) {
+                MM.resetInterface();
                 MM.showTab("tab-parameters");
                 const typeParams = utils.getTypeOfURL(urlString, vars.type)
                 // remplissage des données de carte flash
@@ -907,7 +900,6 @@ const MM = {
                 } else
                 // remplissage des données ceinture
                 if (typeParams === "paramsceinture") {
-                    MM.resetInterface();
                     document.getElementById("ceinttitle").value = vars.t ? decodeURIComponent(vars.t) : "";
                     document.getElementById("ceintcols").value = vars.nc;
                     document.getElementById("ceintcolsval").value = vars.nc;
@@ -925,7 +917,9 @@ const MM = {
                     utils.checkRadio("ceintcorrpos", vars.cor);
                     document.getElementById("ceintpiedcol").value = vars.pie;
                     utils.checkRadio("ceintorientation", vars.o ? vars.o : "portrait");
-                } else if (typeParams === "paramscourse") {
+                } else
+                // donnéess de course aux nombres
+                if (typeParams === "paramscourse") {
                     document.getElementById('cantitle').value = vars.t ? decodeURIComponent(vars.t) : '';
                     document.getElementById('cancol1title').value = vars.t1 ? decodeURIComponent(vars.t1) : '';
                     document.getElementById('cancol2title').value = vars.t2 ? decodeURIComponent(vars.t2) : '';
@@ -933,7 +927,27 @@ const MM = {
                     document.getElementById('cantime').value = vars.tm ? decodeURIComponent(vars.tm) : '';
                     document.getElementById('canqtyvalue').value = vars.n ? decodeURIComponent(vars.n) : '';
                     utils.checkRadio('cancorrpos', vars.cor);
-                } else if (typeParams === "paramsdominos") {
+                } else 
+                // données de diaporama
+                if (typeParams === "paramsdiapo") {
+                    // on check tous les boutons radio en fonction des valeurs en mémoire
+                    utils.checkRadio("direction", this.slidersOrientation);
+                    if (this.introType === "nothing"){
+                        utils.checkRadio("beforeSlider", this.introType);
+                        document.getElementById('radiobeforeslider1').checked = false;
+                        document.getElementById('radiobeforeslider2').checked = false;
+                    } else {
+                        document.getElementById('radiobeforeslider3').checked = false;
+                        utils.checkCheckbox("beforeSlider", this.introType.split('-'));
+                    }
+                    utils.checkRadio("endOfSlideRadio", this.endType);
+                    utils.checkRadio("online", this.onlineState);
+                    utils.checkRadio("facetoface", this.faceToFace);
+                    utils.checkRadio("Enonces", this.slidersNumber);
+                    MM.setDispositionEnonce(this.slidersNumber);
+                } else
+                // données de dominos
+                if (typeParams === "paramsdominos") {
                     document.getElementById('dominosNbValue').value = vars.n ? Number(vars.n) : 28;
                     document.getElementById('dominosNb').innerHTML = vars.n ? vars.n : 28;
                     document.getElementById('dominosDoublons').checked = vars.d === 'true';
