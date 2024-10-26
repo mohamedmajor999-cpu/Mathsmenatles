@@ -10,6 +10,7 @@ const MM={};
 const content = document.getElementById("creator-content");
 const parameters = {};
 let zoom;
+let editionMode = false
 
 document.getElementById("creator-menu").onclick = (evt)=>{
     if(evt.target.dataset.what === "in"){
@@ -17,11 +18,17 @@ document.getElementById("creator-menu").onclick = (evt)=>{
     } else if(evt.target.dataset.what === "out"){
         zoom.minus();
     } else if(evt.target.id === "btneditcontent"){
-        document.querySelector(".dominos-section").contentEditable = true;
+        if (editionMode) {
+            evt.target.innerHTML = 'Éditer le contenu'
+            document.querySelectorAll(".dominos-carte > article > div").forEach(el=>{el.contentEditable = false;})
+            editionMode = false
+        } else {
+            evt.target.innerHTML = 'Ne plus éditer'
+            document.querySelectorAll(".dominos-carte > article > div").forEach(el=>{el.contentEditable = true;})
+            editionMode = true
+        }
     } else if(evt.target.id ==="btnnodoublon"){
         noDoublon();
-    } else if(evt.target.id ==="btneditcontent"){
-        document.querySelectorAll("table").forEach(el=>{el.contentEditable = true;})
     } else if(evt.target.id === "btnshuffle"){
         melanger();
     } else if(evt.target.id === "deleteImg"){
