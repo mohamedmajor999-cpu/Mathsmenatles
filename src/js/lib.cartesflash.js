@@ -96,6 +96,7 @@ function changeOrientation(evt){
     // suppression du style de page précédent
     let pagestyle = document.querySelectorAll("head style")
     for (const style of pagestyle) {
+        if (style.innerText === undefined) continue
         if(style.innerText.indexOf('MMentales')>-1){
             style.parentNode.removeChild(style);
             const newStyle = utils.create("style");
