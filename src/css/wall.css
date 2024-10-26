@@ -18,6 +18,14 @@ body {
   font-weight: bold;
 }
 
+.flip-card-inner .fig{
+  aspect-ratio: 15 / 10;
+  width: 80%;
+}
+.flip-card-inner.rotate .fig {
+  display: none;
+}
+
 @media only screen and (max-width: 320px) {
     b {
       font-size: 12px;
