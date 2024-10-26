@@ -847,7 +847,7 @@ const MM = {
             }
         } else if (vars.c !== undefined) { // présence de carts MM v2 à lancer ou éditer
             // si pas d'édition, on lance le diaporama en mode autonome
-            if (!vars.edit) {
+            if (!edit) {
                 location.href = location.href.replace("index.html", "diaporama.html");
             }
             // indique quoi faire avant le slide
@@ -896,7 +896,7 @@ const MM = {
                 json = JSON.parse(decodeURIComponent(vars.c));
             // récup des paramètres de panier
             // on affiche l'interface de paramétrage si on est en mode édition
-            if (vars.edit) {
+            if (edit) {
                 MM.showTab("tab-parameters");
                 const typeParams = utils.getTypeOfURL(urlString, vars.type)
                 // remplissage des données de carte flash
