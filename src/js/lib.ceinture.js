@@ -720,7 +720,7 @@ function setPageBreaks(){
     const tempDiv = utils.create('div',{id:'mobileDiv',style:'position:absolute;top:'+pageHeight+'mm;'})
     document.body.appendChild(tempDiv)
     let hauteurPage = tempDiv.getBoundingClientRect().top
-    document.body.removeChild(mobileDiv)
+    document.body.removeChild(tempDiv)
     const ceintures = document.querySelectorAll('#creator-content .ceinture')
     const spacers = document.querySelectorAll('#creator-content .spacer')
     const heightOfSpacer = spacers[0].getBoundingClientRect().height
@@ -730,7 +730,6 @@ function setPageBreaks(){
     if (parQuatre !== null) {
         document.querySelectorAll('.parquatre + .spacer:not(:last-of-type)').forEach(el => {
             el.classList.add('pagebreak')
-            console.log(el)
     })
     } else {
         for(let i=0;i<ceintures.length;i++) {
