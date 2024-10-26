@@ -6,9 +6,7 @@ import utils from './mods/utils.js';
 import MM from "./mods/MM.js";
 import library from './mods/library.js';
 import sound from './mods/sound.js';
-import Zoom from './mods/zoom.js';
 import speech from './mods/speech.js';
-import math from './mods/math.js';
 //import theactivities from './mods/theactivities.js';
 window.onload = function(){
     let scripturl = document.getElementById("mmscriptid").attributes.src.value;
