@@ -840,7 +840,11 @@ const MM = {
         } else if (vars.c !== undefined) { // présence de carts MM v2 à lancer ou éditer
             // si pas d'édition, on lance le diaporama en mode autonome
             if (!edit) {
-                location.href = location.href.replace("index.html", "diaporama.html");
+                if(location.href.indexOf("index.html") < 0) {
+                    location.href = location.href.replace("/?", "/diaporama.html?");
+                } else {
+                    location.href = location.href.replace("index.html", "diaporama.html");
+                }
             }
             // indique quoi faire avant le slide
             MM.introType = vars.i || "nothing";
