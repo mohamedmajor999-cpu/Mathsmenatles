@@ -1,6 +1,7 @@
 {
     "title":"Encadrer une fraction entre deux entiers consécutifs",
     "ID":"5NB1",
+    "type":"text",
     "valueType":"liste",
     "description":"Trouver le nombre entier qui précède et le nombre qui suit une fraction.",
     "speech":1,
@@ -14,7 +15,7 @@
         "vars":{"den":"2_10", "coeff":"5_10", "delta":"1_${:den-1}", "num":"${:den*:coeff+:delta}", "inf":"${Math.floor(:num/:den)}", "sup":"${Math.ceil(:num/:den)}"}
     }],
     "value":"${:inf};${:sup}",
-    "question":"\\text{Encadrer entre deux entiers consécutifs } \\dfrac{${:num}}{${:den}}",
+    "question":"Encadrer entre deux entiers consécutifs $$\\dfrac{${:num}}{${:den}}$$",
     "audio":"Encadrer entre deux entiers consécutifs la fraction ${:num} ${math.NumberToFraction(:den)}",
-    "answer":"\\color{red}{${:inf}} \\lt \\dfrac{${:num}}{${:den}} \\lt \\color{red}{${:sup}}"
+    "answer":"$$\\color{red}{${:inf}} \\lt \\dfrac{${:num}}{${:den}} \\lt \\color{red}{${:sup}}$$"
 }
