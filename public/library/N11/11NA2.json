@@ -5,6 +5,7 @@
     "description":"Nombres précèdant et suivant",
     "dest":["11NA","10NA"],
     "speech":1,
+    "valueType":"liste",
     "options":[{
         "name":"Nombre qui précède et nombre qui suit",
         "vars":{"n":"1_99", "pre":"${:n-1}", "sui":"${:n+1}", "liste":"${:pre}, ${:n+1}"},
