@@ -1,7 +1,7 @@
 import utils from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
-
+const evalString = eval
 scratchblocks.loadLanguages({
     fr: {
         "commands": {
@@ -419,9 +419,9 @@ export default class Figure {
                     if(type === "functiongraph"){
                         let formule = commande;
                         if(!options)
-                            this.figure.create("functiongraph", [function(x){return eval(formule)}], {strokeWidth:2});
+                            this.figure.create("functiongraph", [function(x){return evalString(formule)}], {strokeWidth:2});
                         else
-                            this.figure.create("functiongraph", [function(x){return eval(formule)}], options);
+                            this.figure.create("functiongraph", [function(x){return evalString(formule)}], options);
                     } else if(type==="jessiescript") {
                         if(this.figure.jc === undefined){
                             this.figure.jc = new JXG.JessieCode();

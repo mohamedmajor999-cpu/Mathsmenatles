@@ -785,8 +785,8 @@ function checkURL(urlString){
         parameters.titreCeinture=vars.t?decodeURI(vars.t):"Ceinture";
         parameters.nbcols=Number(vars.nc);
         parameters.nbrows=Number(vars.nr);
-        parameters.ceintprintToEnonce=eval(vars.ke);
-        parameters.ceintprintToCorrige=eval(vars.kc);
+        parameters.ceintprintToEnonce = vars.ke === 'true' ? true : false;
+        parameters.ceintprintToCorrige = vars.kc === 'true' ? true : false;
         parameters.titres = [];
         parameters.pied = decodeURI(vars.pie)||"";
         parameters.orientation = vars.or;

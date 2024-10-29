@@ -5,6 +5,7 @@ import math from "./mods/math.js";
 import Figure from './mods/figure.js';
 import activity from "./mods/activity.js";
 
+const evalString = eval
 const MM={};
 let textSize = '0.35'
 const puzzles = ['pyr16', 'hexa24', 'los18', 'pier12']
@@ -295,7 +296,7 @@ function makePage(){
     } else {
         D = new Array(distracteurs[type]).fill('')
     }
-    $fig.innerHTML = eval('`' + figures[type] + '`')
+    $fig.innerHTML = evalString('`' + figures[type] + '`')
     let workSet3 = []
     let workSet4 = []
     let figs = ''
@@ -388,7 +389,7 @@ function makePage(){
             figs += fig
         }
     }
-    $impression.innerHTML = eval('`' + figs+ '`')
+    $impression.innerHTML = evalString('`' + figs+ '`')
 }
 
 function refresh(){

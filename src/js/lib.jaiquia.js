@@ -229,7 +229,7 @@ function checkURL(urlString){
         parameters.titreFiche=decodeURI(vars.t);
         parameters.affirmation = decodeURI(vars.aff) ?? 'J\'ai...'
         parameters.question = decodeURI(vars.quest) ?? 'Qui a ?'
-        parameters.doublons = eval(vars.d)||false;
+        parameters.doublons = vars.d === "true" ? true : false;
         if(!parameters.doublons)document.getElementById("btnnodoublon").innerHTML = "Doublons"
         // Affectation de la valeur au nombre de feuilles
         zoom = new Zoom("changeFontSize","#thehtml",true,"pt",parameters.tailleTexte);

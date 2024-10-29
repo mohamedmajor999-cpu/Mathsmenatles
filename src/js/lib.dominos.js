@@ -233,7 +233,7 @@ function checkURL(urlString){
         parameters.nb=Number(vars.n);
         document.getElementById("nbDominos").value = parameters.nb
         parameters.titreFiche=decodeURI(vars.t);
-        parameters.doublons = eval(vars.d)||false;
+        parameters.doublons = vars.d === undefined ? true : false;
         if(!parameters.doublons)document.getElementById("btnnodoublon").innerHTML = "Doublons"
         // Affectation de la valeur au nombre de feuilles
         document.getElementById("nbDominos").value = parameters.nb;
