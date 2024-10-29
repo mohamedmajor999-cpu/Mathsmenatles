@@ -244,7 +244,10 @@ function makePage(){
         const activity = parameters.cart.activities[i];
         for(let j=0;j<activity.questions.length;j++){
             let value = (Array.isArray(activity.values[j]))?activity.values[j][0]:activity.values[j];
-            if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
+            console.log(value)
+            if (String(value).indexOf(',') > -1)
+                value = value.split(',')[math.aleaInt(0, value.split(',').length-1)]
+        if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                 let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
                 let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
                 pairs.push([span.outerHTML, spanCorrection.outerHTML])
@@ -270,6 +273,8 @@ function makePage(){
             const activity = parameters.cart.activities[i];
             for(let j=0;j<activity.questions.length;j++){
                 let value = (Array.isArray(activity.values[j]))?activity.values[j][0]:activity.values[j];
+                if (value.indexOf(',') > -1)
+                    value = value.split(',')[math.aleaInt(0, value.split(',').length-1)]
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                     let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
                     let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
@@ -280,8 +285,9 @@ function makePage(){
                 } else {
                     if (math.aleaInt(0,1))
                         D.push(activity.questions[j])
-                    else
+                    else {
                         D.push('$$'+value+'$$')
+                    }
                 }    
             }
         }
