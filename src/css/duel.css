@@ -850,3 +850,21 @@ width: 30%;
       line-height: 8em;
     }
 }
+/* variation sur un écran portrait de 420 px de large */
+@media screen and (max-width: 420px) {
+   #field-options img {
+    height: 100px;
+   }
+   button {
+    font-size: 2.3vh;
+   }
+   #jaugel, #jauger {
+    width: 2em;
+   }
+   .numkey-base {
+    font-size: 2vh;
+   }
+   .enonce {
+    font-size: 7vw;
+   }
+}

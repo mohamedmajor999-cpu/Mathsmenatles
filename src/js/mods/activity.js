@@ -2,7 +2,7 @@ import utils from "./utils.js";
 import math from "./math.js";
 import Figure from "./figure.js";
 import library from "./library.js";
-const evalString = eval
+
 // import MM from "./MM.js";
 // lecture des fichiers exercice
 /**
@@ -625,7 +625,7 @@ export default class activity {
             //debug("Chaine à parser", chaine);
             let result = "";
             // doublage des \ caractères d'échapement.
-            try { result = evalString("`"+chaine.replace(/\\/g,"\\\\")+"`");}
+            try { result = eval("`"+chaine.replace(/\\/g,"\\\\")+"`");}
             catch(error){
                 utils.debug(error, "Error replacing vars with "+chaine);
             }
