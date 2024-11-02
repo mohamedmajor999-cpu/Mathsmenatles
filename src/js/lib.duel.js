@@ -835,6 +835,7 @@ function checkURL(urlString){
 
         if(parameters.typeduel === "tochoose"){ // choix laissé aux joueurs
             document.getElementById("typeduelchoice").classList.remove("hidden");
+            document.getElementById('duel-type').classList.add('hidden');
             // choix par défaut :
             parameters.typeduel = "normal";
         }

@@ -823,6 +823,7 @@ width: 30%;
       justify-items: center;
       align-items: center;
       grid-template-columns: 1fr;
+      margin-bottom: 0.5em !important;
     }
     #thewinnercontent div > div:nth-child(1) img{
       max-width: 80vw;
@@ -853,7 +854,7 @@ width: 30%;
 /* variation sur un écran portrait de 420 px de large */
 @media screen and (max-width: 420px) {
    #field-options img {
-    height: 100px;
+    height: 10vh;
    }
    button {
     font-size: 2.3vh;
@@ -868,5 +869,13 @@ width: 30%;
    }
    .enonce {
     font-size: 7vw;
+   }
+}
+@media screen and (max-width: 400px) {
+   button {
+    font-size: 2vh;
+   }
+   #intro h1 {
+    margin: 0.3em;
    }
 }
