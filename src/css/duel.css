@@ -860,9 +860,11 @@ width: 30%;
    }
    #jaugel, #jauger {
     width: 2em;
+    bottom: 50%;
+    transform: translateY(50%);
    }
    .numkey-base {
-    font-size: 2vh;
+    font-size: 1.5vh;
    }
    .enonce {
     font-size: 7vw;
