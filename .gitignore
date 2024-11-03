@@ -19,6 +19,7 @@ public/css
 # localdev
 editor.html
 src/js/libs
+!src/js/libs/*alllibs.js
 
 # la conf privée
 _private

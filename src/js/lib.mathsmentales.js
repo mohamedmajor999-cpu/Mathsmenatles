@@ -7,7 +7,7 @@ import MM from "./mods/MM.js";
 import library from './mods/library.js';
 import sound from './mods/sound.js';
 import speech from './mods/speech.js';
-//import theactivities from './mods/theactivities.js';
+
 window.onload = function(){
     let scripturl = document.getElementById("mmscriptid").attributes.src.value;
     /*get value from query parameters*/

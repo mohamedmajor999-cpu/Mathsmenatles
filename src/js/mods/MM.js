@@ -535,6 +535,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "exosheet");
         let value = this.setURL(params, "exosheet");
+        MM.copyURLtoHistory('exosheet');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     createCourseAuxNombres: function () {
@@ -545,6 +546,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "cansheet");
         let value = this.setURL(params, "cansheet");
+        MM.copyURLtoHistory('cansheet');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     /**
@@ -559,6 +561,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "exam");
         let value = this.setURL(params, "exam");
+        MM.copyURLtoHistory('exam');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     createCeintureSheet: function () {
@@ -588,6 +591,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "ceinture");
         let value = this.setURL(params, "ceinture");
+        MM.copyURLtoHistory('ceinture');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
         //MM.fiche = new ficheToPrint("ceinture",MM.carts[0],utils.getRadioChecked("ceintorientation"));
     },
@@ -599,6 +603,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "cartesflash");
         let value = this.setURL(params, "cartesflash");
+        MM.copyURLtoHistory('cartesflash');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     createWall: function () {
@@ -609,6 +614,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "wall");
         let value = this.setURL(params, "wall");
+        MM.copyURLtoHistory('wall');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     // TODO : replace this by an independent webpage
@@ -620,6 +626,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "whogots");
         let value = this.setURL(params, "whogots");
+        MM.copyURLtoHistory('whogots');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123")
     },
     createDominos: function () {
@@ -630,6 +637,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "dominos");
         let value = this.setURL(params, "dominos");
+        MM.copyURLtoHistory('dominos');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
     createPuzzle: function () {
@@ -640,6 +648,7 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "puzzle");
         let value = this.setURL(params, "puzzle");
+        MM.copyURLtoHistory('puzzle');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
 
@@ -651,6 +660,7 @@ const MM = {
         let withSeed = false;
         let params = this.paramsToURL(withSeed, "duel");
         let value = this.setURL(params, "duel");
+        MM.copyURLtoHistory('duel');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=720");
     },
     diaporamaLaunch: function () {
@@ -662,7 +672,9 @@ const MM = {
         if (document.getElementById("aleaInURL").checked) withSeed = true;
         let params = this.paramsToURL(withSeed, "diaporama");
         let value = this.setURL(params, "diaporama");
-        MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,fullscreen=yes");
+        // ajout dans l'historique
+        MM.copyURLtoHistory();
+        MM.window = window.open(value, "mywindow", "location=no,menubar=notitlebar=no,fullscreen=yes");
     },
     /**
      * Start the slideshow
@@ -1108,6 +1120,8 @@ const MM = {
             typeName = '⁉️ J’ai/Qui a ?'
         } else if (type === 'dominos') {
             typeName = '🀄 Dominos'
+        } else if (type === 'wall') {
+            typeName = '🧱 Panneau'
         }
         let span = utils.create("span", { innerText: typeName + " du " + utils.getDate() + ": ", className: "bold" });
         li.appendChild(span);
