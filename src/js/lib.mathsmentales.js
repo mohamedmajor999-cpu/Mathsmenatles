@@ -12,6 +12,19 @@ window.onload = function(){
     let scripturl = document.getElementById("mmscriptid").attributes.src.value;
     /*get value from query parameters*/
     MM.version = scripturl.replace(/\|/g,'/').slice(scripturl.indexOf('?') + 3);
+    // detection de l'hébergement sur la forge
+    if (window.location.host == "mathsmentales.forge.apps.education.fr"){
+        document.getElementById('accueillogo').innerHTML =
+            `<i class="sprite sprite-logocm160x132 logoMM"></i>
+            <p>
+                Ceci est la version de test de MathsMentales, le code source est accessible sur la <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr">forge du developpeur</a>
+            </p>
+            <p>
+                Préferez utiliser la version stable sur <a href="https://mathsmentales.net">mathsmentales.net</a>
+            </p>
+            <p>
+                Merci de signaler les bugs sur <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/issues">la forge</a>.
+            </p>`
     // detect if touching interface
     let listener = function(evt){
         // the user touched the screen!
