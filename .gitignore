@@ -16,10 +16,13 @@ public/*.html
 public/js
 public/css
 
-# localdev
+# dev
 editor.html
 src/js/libs
 !src/js/libs/*alllibs.js
+!src/js/libs/*alllibs.min.js
+!src/js/libs/katex
+!src/js/libs/JSXGraph1.4.0
 
 # la conf privée
 _private
