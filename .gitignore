@@ -10,8 +10,11 @@ node_modules
 documentation
 src/js/modules/doc
 # private files
-public/js/visites.js
 public/img/partners
+# files for prod
+public/*.html
+public/js
+public/css
 
 # localdev
 editor.html
