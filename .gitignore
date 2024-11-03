@@ -25,6 +25,8 @@ src/js/libs
 !src/js/libs/JSXGraph1.4.0
 !src/js/libs/compute-engine
 !src/js/libs/mathlive
+!src/js/libs/scratchblocks
+!src/js/libs/chartjs
 
 # la conf privée
 _private
