@@ -8,7 +8,7 @@ import library from './mods/library.js';
 import sound from './mods/sound.js';
 import speech from './mods/speech.js';
 
-window.onload = function(){
+window.onload = function() {
     let scripturl = document.getElementById("mmscriptid").attributes.src.value;
     /*get value from query parameters*/
     MM.version = scripturl.replace(/\|/g,'/').slice(scripturl.indexOf('?') + 3);
@@ -25,6 +25,7 @@ window.onload = function(){
             <p>
                 Merci de signaler les bugs sur <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/issues">la forge</a>.
             </p>`
+    }
     // detect if touching interface
     let listener = function(evt){
         // the user touched the screen!
