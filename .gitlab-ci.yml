@@ -1,11 +1,12 @@
-# The Docker image that will be used to build your app
+# .gitlab-ci.yml
+
 image: alpine:latest
 
 stages:
   - deploy
 
 # Étape de déploiement
-deploy:
+pages:
   stage: deploy
   script:
     - mkdir -p temp_public  # Créer un dossier temporaire
