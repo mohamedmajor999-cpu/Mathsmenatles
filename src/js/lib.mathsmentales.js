@@ -14,7 +14,8 @@ window.onload = function() {
     MM.version = scripturl.replace(/\|/g,'/').slice(scripturl.indexOf('?') + 3);
     // detection de l'hébergement sur la forge
     if (window.location.host == "mathsmentales.forge.apps.education.fr"){
-        document.getElementById('accueillogo').innerHTML =
+        const accueil = document.getElementById('accueillogo')
+        if (accueil) accueil.innerHTML =
             `<i class="sprite sprite-logocm160x132 logoMM"></i>
             <p>
                 Ceci est la version de test de MathsMentales, le code source est accessible sur la <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr">forge du developpeur</a>
