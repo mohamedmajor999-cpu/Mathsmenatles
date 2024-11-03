@@ -1,5 +1,4 @@
 # .gitlab-ci.yml
-
 stages:
   - deploy
 
