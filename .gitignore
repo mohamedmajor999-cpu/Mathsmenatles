@@ -23,6 +23,8 @@ src/js/libs
 !src/js/libs/*alllibs.min.js
 !src/js/libs/katex
 !src/js/libs/JSXGraph1.4.0
+!src/js/libs/compute-engine
+!src/js/libs/mathlive
 
 # la conf privée
 _private
