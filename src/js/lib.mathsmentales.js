@@ -18,13 +18,13 @@ window.onload = function() {
         if (accueil) accueil.innerHTML =
             `<i class="sprite sprite-logocm160x132 logoMM"></i>
             <p>
-                Ceci est la version de test de MathsMentales, le code source est accessible sur la <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr">forge du developpeur</a>
+                Ceci est la version de <span class="red">test de MathsMentales</span>, dont le code source est accessible sur la <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr">Forge des communs numériques.</a>
             </p>
             <p>
-                Préferez utiliser la version stable sur <a href="https://mathsmentales.net">mathsmentales.net</a>
+                Préferez utiliser la version stable sur <a href="https://mathsmentales.net">https://mathsmentales.net</a>
             </p>
             <p>
-                Merci de signaler les bugs sur <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/issues">la forge</a>.
+                Merci de signaler les <b>bugs</b> sous forme de <b>ticket</b> sur <a href="https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/issues">le dépot mathsmentales</a> .
             </p>`
     }
     // detect if touching interface
