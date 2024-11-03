@@ -8,7 +8,7 @@ deploy:
   stage: deploy
   script:
     - mkdir -p public  # Crée le dossier de destination final
-    # - cp -r public/* public/  # Copie les fichiers du dossier public dans le dossier final public
+    - cp -r public/* public/  # Copie les fichiers du dossier public dans le dossier final public
     - cp -r src/* public/  # Copie les fichiers du dossier src dans public
   artifacts:
     paths:
