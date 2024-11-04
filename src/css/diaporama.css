@@ -90,7 +90,25 @@
 /* Slides
 Animations from https://www.w3schools.com/w3css/4/w3.css 
 */
-/* Font sizes
+/* figures */
+.slide .fig {
+  height:50%;
+  width:50%;
+}
+#corrige-content .fig {
+  height: 300px;
+  width: 300px;
+}
+#enonce-content .fig {
+  height: 150px;
+  width: 150px;
+}
+#corrige-content li > div {
+  display: none;
+}
+#corrige-content li > div.visible {
+  display: block;
+}/* Font sizes
 */
 #slideshow-container{
     position:absolute;

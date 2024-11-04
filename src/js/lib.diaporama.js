@@ -38,9 +38,9 @@ const diaporama = {
   userAnswers: [],
   slidersNumber: 1,
   faceToFace: 'n',
-  colors: [],// couleurs de fond des diaporamas
-  memory: [],// memoire des figures
-  goodAnswers: [],// stockage des réponses attendues dans le online,
+  colors: [], // couleurs de fond des diaporamas
+  memory: {}, // memoire des figures
+  goodAnswers: [], // stockage des réponses attendues dans le online,
   zooms: {},// zooms créés pour chaque élément d'affichage,
   mf: {},// MathFields pour réponses en ligne
   text2speach: [],
@@ -197,7 +197,7 @@ const diaporama = {
       diaporama.carts.forEach(panier => {
         panier.target = panier.target.split(",");
       })
-      if (start)
+      if (start || window.opener !== null)
         diaporama.start(sameData);
       else {
         const tabaccueil = document.getElementById("tab-accueil");
@@ -398,10 +398,10 @@ const diaporama = {
           setTimeout(function () {
             for (let j = 0; j < indiceSlide; j++) {
               // toutes les questions ne comportent pas de figures, on vérifie qu'il y en a.
-              if (diaporama.memory['e' + slideId + "-" + j] !== undefined)
-                diaporama.memory['e' + slideId + "-" + j].display();
+              /*if (diaporama.memory['e' + slideId + "-" + j] !== undefined)
+                diaporama.memory['e' + slideId + "-" + j].display();*/
             }
-          });
+          },500);
         }
       }
     }
@@ -691,6 +691,11 @@ const diaporama = {
     const $containerEnonce = document.getElementById('enonce-content')
     $containerEnonce.innerHTML = '';
     $containerEnonce.appendChild(diaporama.enonces);
+    for (const figureId in diaporama.memory) {
+      if (figureId.indexOf("e") === 0) {
+        diaporama.memory[figureId].display();
+      }
+    }
     if (diaporama.forcedOnline) {
       // on affiche un message de fin qui attend une validation
       let message = ''
@@ -713,7 +718,12 @@ const diaporama = {
         if(whatToDo === 'correction') {
           const $containerCorrige = document.getElementById('corrige-content')
           $containerCorrige.innerHTML = '';
-          $containerCorrige.appendChild(diaporama.correction);  
+          $containerCorrige.appendChild(diaporama.correction);
+          for (const figureId in diaporama.memory) {
+            if (figureId.indexOf("c") === 0) {
+              diaporama.memory[figureId].display();
+            }
+          }
           utils.mathRender(false, true);
           saveContent()  
           diaporama.showTab('corrige');
@@ -725,6 +735,11 @@ const diaporama = {
       const $containerCorrige = document.getElementById('corrige-content')
       $containerCorrige.innerHTML = '';
       $containerCorrige.appendChild(diaporama.correction);      
+      for (const figureId in diaporama.memory) {
+        if (figureId.indexOf("c") === 0) {
+          diaporama.memory[figureId].display();
+        }
+      }
       utils.mathRender(false, true);
       saveContent()
       if (whatToDo === "correction") {
@@ -899,8 +914,9 @@ const diaporama = {
     utils.addClass(slidetoHide, "hidden");
     if (slide) {
       utils.removeClass(slide, "hidden");
-      if (diaporama.figs[id + "-" + step] !== undefined)
-        diaporama.figs[id + "-" + step].display();
+      if (diaporama.figs[id + "-" + step] !== undefined){
+        diaporama.figs[id + "-" + step].display()
+      }
       if (diaporama.onlineState === "yes" && !diaporama.touched) {
         // on met le focus dans le champ seulement si on est online et pas sur tablette/smartphone
         //document.getElementById("userAnswer"+step).focus();
@@ -1203,5 +1219,10 @@ window.onload = () => {
   document.getElementById('btn-annotation-enonce').onclick = () => {
     diaporama.annotateThisThing('enonce-content', 'btn-annotation-enonce')
   }
+  document.getElementById("corrige-content").addEventListener("click",(evt)=>{
+    if(evt.target.innerHTML === "Figure"){
+        diaporama.memory[evt.target.dataset.id].toggle();
+    }
+})
   diaporama.checkURL();
 }

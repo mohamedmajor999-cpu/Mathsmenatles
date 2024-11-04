@@ -26,7 +26,7 @@
             ]
         },
         "vars":{
-            "angA":"21_89",
+            "angA":"21_69",
             "delta":[10,-10,20,1,-1,-20],
             "choix":"0_1","angB":"${:choix==0?90-:angA:90-:angA+:delta}",
             "mi":"${:angA<45?:angA::angB}",
