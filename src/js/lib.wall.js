@@ -145,7 +145,7 @@ function makePage() {
             flipCardInner.appendChild(artQuestion)
             // figures
             if (activity.figures[questionNumber] !== undefined) {
-                MM.memory["f" + indexOfCart + "-" + index + "-" + j] = new Figure(utils.clone(activity.figures[questionNumber]), "f" + indexOfCart + "-" + index + "-" + j, divq);
+                MM.memory["f" + indexOfCart + "-" + i] = new Figure(utils.clone(activity.figures[questionNumber]), "f" + indexOfCart + "-" + i, divq);
             }
             artCorrection.appendChild(divr)
             flipCardInner.appendChild(artCorrection)
