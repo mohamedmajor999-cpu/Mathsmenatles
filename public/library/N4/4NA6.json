@@ -15,6 +15,6 @@
     }
     ],
     "question": "${:a}^${:p}=?",
-    "answer":":question|2=\\color{red}{${math.calc(:calc)}}", 
-    "value":"${math.calc(:calc)}"
+    "answer":":question|2=\\color{red}{${math.calc(:calc, true)}}", 
+    "value":"${math.calc(:calc, true)}"
 }
