@@ -710,7 +710,7 @@ const diaporama = {
         id: "messagefin", className: "message", innerHTML: message
       });
       document.body.appendChild(alert);
-      document.body.addEventListener("click", (evt) => {
+      alert.addEventListener("click", (evt) => {
         if (evt.target.id === "btn-messagefin-close") {
           diaporama.closeMessage('messagefin');
         }
