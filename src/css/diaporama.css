@@ -108,7 +108,8 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
 }
 #corrige-content li > div.visible {
   display: block;
-}/* Font sizes
+}
+/* Font sizes
 */
 #slideshow-container{
     position:absolute;

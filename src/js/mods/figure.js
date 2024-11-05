@@ -447,7 +447,7 @@ export default class Figure {
             const height = Number(svg.getAttribute('viewBox').split(' ')[3])
             const ratio = height / width
             let reduc = 19
-            if(this.id.indexOf('c') === 0) reduc = 64
+            if(this.id.indexOf('c') === 0 && this.id.indexOf('cor') === -1) reduc = 64
             const newWidth = width / reduc;
             svg.setAttribute('height', newWidth * ratio + 'em');
             svg.setAttribute('width', newWidth + 'em');
