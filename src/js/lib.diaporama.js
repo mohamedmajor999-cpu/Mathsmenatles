@@ -244,8 +244,10 @@ const diaporama = {
     for (let i = 0; i < length; i++) {
       sliders += diaporama.carts[i].target.length
     }
-    let enonces = diaporama.enonces // document.getElementById('enonce-content');
-    let corriges = diaporama.correction // document.getElementById('corrige-content');
+    let enonces = diaporama.enonces 
+    let corriges = diaporama.correction 
+    document.getElementById('enonce-content').innerHTML = ''
+    document.getElementById('corrige-content').innerHTML = ''
     if (sliders > 1) {
       enonces.className = "grid-" + sliders;
       corriges.className = "grid-" + sliders;
