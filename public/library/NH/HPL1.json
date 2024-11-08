@@ -9,7 +9,7 @@
     "options":[{
         "name":"Logarithme décimal (log)",
         "vars":{"a":"-5_5"},
-        "question": "\\log${10**:a}",
+        "question": "\\log${math.round(10**:a,6)}",
         "answer":":question=\\color{red}{${:a}}",
         "value":"${:a}"
     },{
