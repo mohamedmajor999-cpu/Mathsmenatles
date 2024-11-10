@@ -152,6 +152,16 @@ export default class activity {
         },err=>{utils.debug(err)});
     }
     /**
+     * Nouvelle façon de faire prochainement
+     * 
+     * async () => {
+ await import('library/N11/11MA1.js')
+ .then( (exo) => {
+   return new activity(exo)
+  })
+}
+     */
+    /**
      * getOption
      * 
      * return uniqueId (Integer)

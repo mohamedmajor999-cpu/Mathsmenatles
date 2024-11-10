@@ -45,6 +45,7 @@ const math = {
    * @param {string} avoid start with ^ indicates the list of exeptions,
    * & as exeption => no doble number in the list
    * prime => not a prime
+   * the list is coma separated
    */
   aleaInt: function (min, max, ...others) { // accepts 2 arguments more
     let qty = 1;
@@ -222,6 +223,7 @@ const math = {
    * donne la liste des produits de 2 facteurs égaux
    * @param {integer} entier product
    * @param {integer} max factors's max value
+   * @param {boolean} values return values true as array or false as string
    */
   listeProduits: function (entier, max, values = false) {
     let liste = [];
