@@ -315,6 +315,7 @@ const diaporama = {
         }
         // on stocke les associations pour pouvoir comparer quand on fera le online
         diaporama.carts[i].actsArrays[kk] = actsArray;
+        diaporama.totaltimes = [0]
         // parcours des questions
         for (let ff = 0; ff < actsArray.length; ff++) {
           let activity = diaporama.carts[i].activities[actsArray[ff][0]];
@@ -484,6 +485,9 @@ const diaporama = {
    */
   start: function (sameData = false) {
     document.getElementById('tab-accueil').className = 'hidden';
+    document.getElementById('tab-content').className = 'hidden';
+    document.getElementById('tab-enonce').className = 'hidden'
+    document.getElementById('tab-corrige').className = 'hidden';
 
     if (!diaporama.carts[0].activities.length) {
       diaporama.carts[0].addActivity(diaporama.editedActivity);
