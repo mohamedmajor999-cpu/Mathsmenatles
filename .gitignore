@@ -27,7 +27,6 @@ src/js/libs
 !src/js/libs/mathlive
 !src/js/libs/scratchblocks
 !src/js/libs/chartjs
-public/library/*/*.js
 
 # la conf privée
 _private
