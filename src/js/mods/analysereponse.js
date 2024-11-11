@@ -2,6 +2,8 @@ import { ComputeEngine } from '../libs/compute-engine/compute-engine.esm.js';
 const ce = new ComputeEngine()
 
 function analyseReponse (goodAnswer, userAnswer, typeOfAnswer = false) {
+  // on utilise dfrac pour l'affichage des fractions
+  goodAnswer = goodAnswer.replace('dfrac', 'frac');
     if (typeOfAnswer !== false) {
       // confrontation de listes séparées par des ;
       if (typeOfAnswer === "liste") {
