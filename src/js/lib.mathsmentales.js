@@ -213,7 +213,7 @@ window.onload = function() {
     document.getElementById("btnstart").onclick = ()=>{MM.start();};
     document.getElementById("btnenonces").onclick = ()=>{MM.showQuestions();};
     document.getElementById("btnreponses").onclick = ()=>{MM.showAnswers();};
-    document.getElementById("btnadresse").onclick = ()=>{MM.copyURL();};
+    document.getElementById("btnadresse").onclick = ()=>{MM.copyURL('diaporama');};
     document.getElementById("btncopytohistoric").onclick = ()=>{MM.copyURLtoHistory()};
     // bouton d'inclusion de la variable aléatoire
     document.getElementById("aleaInURL").onchange = ()=>{MM.setSeed("checkSwitched")}
