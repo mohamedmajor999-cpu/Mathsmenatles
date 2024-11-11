@@ -3,7 +3,19 @@ const ce = new ComputeEngine()
 
 function analyseReponse (goodAnswer, userAnswer, typeOfAnswer = false) {
   // on utilise dfrac pour l'affichage des fractions
-  goodAnswer = goodAnswer.replace('dfrac', 'frac');
+  if(typeof goodAnswer === "string") {
+    goodAnswer = goodAnswer.replace('dfrac', 'frac');
+  }
+  if (typeof userAnswer === "string") {
+      // suppression des &
+      userAnswer = userAnswer.replace(/\&amp\;/g, "&");
+      // suppression du displaystyle
+      userAnswer = userAnswer.replace(/\\displaystyle/g, "");
+      // remplacement de &gt; et &lt;
+      userAnswer = userAnswer.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
+      userAnswer = userAnswer.replace(/>/g, "\\gt").replace(/</g, "\\lt");
+  }
+  console.log(goodAnswer, userAnswer);
     if (typeOfAnswer !== false) {
       // confrontation de listes séparées par des ;
       if (typeOfAnswer === "liste") {
