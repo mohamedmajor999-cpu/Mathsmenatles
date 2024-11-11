@@ -178,23 +178,32 @@ const utils = {
      * @returns array of datas from GET vars
      */
     getUrlVars: function (urlString) {
-        if (!urlString) urlString = window.location.href;
+        if (!urlString) urlString = window.location;
         var vars = {},
             hash;
-        if (urlString.indexOf("#") > 0 && urlString.indexOf("?") < 0) { // cas d'une activité MMv1
+        if (urlString.hash !== '' && urlString.search === '') { // cas d'une activité MMv1
             // cas d'une référence simple à l'exo
             // pour ouvrir l'éditeur sur cet exo
-            let idExo = urlString.substring(urlString.indexOf("#") + 1, urlString.length);
+            let idExo = urlString.hash.slice(1);
             if (MM1toMM2[idExo].new !== undefined) {
                 vars.u = MM1toMM2[idExo].new;
             }
         }
         // on fait un tableau de données qui sont séparées par le &
-        var hashes = urlString.replace(/\|/g, '/').slice(urlString.indexOf('?') + 1).split('&');
+        let trueUrl = urlString.search.slice(1);
+        let hashes = trueUrl.split('&');
+        if (this.isURLEncoded(hashes[0])) {
+            trueUrl = this.decodeUrlUnreadable(hashes[0]);
+            let datas = trueUrl.split('&');
+            if (hashes[1] !== undefined)
+                hashes = [...datas, ...hashes.slice(1)];
+            else
+                hashes = [...datas];
+        }
         var len = hashes.length;
         // cas de la version avant le 15/08/21 - simple
         // le tilde ~ est une caractéristique des nouvelles url
-        if (urlString.indexOf("~") < 0) {
+        if (trueUrl.indexOf("~") < 0) {
             for (var i = 0; i < len; i++) {
                 hash = hashes[i].split('=');
                 vars[hash[0]] = hash[1];
@@ -674,5 +683,27 @@ const utils = {
             value = "0" + value;
         }
         return value;
+    },
+    /**
+     * 
+     * @param {String} str 
+     * @returns {String} string url encoded non human readable
+     */
+    encodeUrlUnreadable(str) {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            (match, p1) => String.fromCharCode(`0x${p1}`)));
+    },
+    /**
+     * 
+     * @param {String} str 
+     * @returns {String} string url decoded non human readable
+     */
+    decodeUrlUnreadable(str) {
+        return decodeURIComponent(atob(str).split("").map(function(c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(""));
+    },
+    isURLEncoded(str) {
+        return !(str.indexOf("u=") > -1 || str.indexOf("&p=") > 0);
     }
 }

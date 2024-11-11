@@ -40,7 +40,7 @@ const MM = {
      * @param {String} value 
      */
     setSeed(value) {
-        if (value !== undefined && value !== "sample" && value !== "checkSwitched") {
+        if (value !== undefined && value !== "sample" && value !== "checkSwitched" && value !== false) {
             MM.seed = value;
             document.getElementById("aleaKey").value = value;
         } else if (value === "sample") {
@@ -682,14 +682,19 @@ const MM = {
     start: function () {
         this.diaporamaLaunch();
     },
-    paramsToURL(withAleaSeed = false, type = "") {
+    paramsToURL(withAleaSeed = false, type = "", encoded=false) {
         let colors = MM.colors.join("~").replace(/\,/g, "_");
         // MM.setSeed()
         if (type === "cartesflash") {
-            return "disp=" + (utils.getRadioChecked("flashcarddispo")) +
+            const urlparams = "disp=" + (utils.getRadioChecked("flashcarddispo")) +
                 ",t=" + (document.getElementById("FCtitle").value || "Cartes Flash") +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "ceinture") {
             let chaine = "", t = 0;
             // liste des titres :
@@ -698,7 +703,7 @@ const MM = {
                 chaine += ",t" + t + "=" + (inp.value ? utils.superEncodeURI(inp.value) : "");
                 t++;
             })
-            return "t=" + utils.superEncodeURI(document.getElementById("ceinttitle").value) +
+            const urlparams = "t=" + utils.superEncodeURI(document.getElementById("ceinttitle").value) +
                 ",ke=" + document.getElementById("ceintprintToEnonce").checked +
                 ",kc=" + document.getElementById("ceintprintToCorrige").checked +
                 ",nc=" + document.getElementById("ceintcolsval").value +
@@ -710,8 +715,13 @@ const MM = {
                 ",pie=" + document.getElementById("ceintpiedcol").value +
                 ",or=" + (utils.getRadioChecked("ceintorientation") || "portrait") +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "cansheet") {
-            return "n=" + document.getElementById("canqtyvalue").value +
+            const urlparams = "n=" + document.getElementById("canqtyvalue").value +
                 ",t=" + encodeURI(document.getElementById("cantitle").value || document.getElementById("cantitle").placeholder) +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",cor=" + (utils.getRadioChecked("cancorrpos") || "fin") +
@@ -720,47 +730,87 @@ const MM = {
                 ",t2=" + encodeURI(document.getElementById("cancol2title").value || document.getElementById("cancol2title").placeholder) +
                 ",t3=" + encodeURI(document.getElementById("cancol3title").value || document.getElementById("cancol3title").placeholder) +
                 this.export()
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "dominos") {
-            return "n=" + document.getElementById("dominosNbValue").value +
+            const urlparams = "n=" + document.getElementById("dominosNbValue").value +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",d=" + (document.getElementById("dominosDoublons").checked) +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "duel") {
-            return "ty=" + utils.getRadioChecked("dueltype") +
+            const urlparams = "ty=" + utils.getRadioChecked("dueltype") +
                 ",bg=" + document.getElementById("duelbackgroundselect").value +
                 (utils.getRadioChecked("dueltemps") === "limit" ? ",t=" + utils.timeToSeconds(document.getElementById("dueltotaltime").value) : "") +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "exam") {
-            return "s=" + document.getElementById("intTxtSizeValue").value +
+            const urlparams = "s=" + document.getElementById("intTxtSizeValue").value +
                 ",n=" + document.getElementById("intQtyValue").value +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",t=" + encodeURI(document.getElementById("inttitle").value || document.getElementById("inttitle").placeholder) +
                 ",ex=" + encodeURI(document.getElementById("inteachex").value || document.getElementById("inteachex").placeholder) +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "exosheet") {
-            return "s=" + document.getElementById("exTxtSizeValue").value +
+            const urlparams = "s=" + document.getElementById("exTxtSizeValue").value +
                 ",n=" + document.getElementById("exQtyValue").value +
                 ",cor=" + utils.getRadioChecked("excorr") +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",t=" + encodeURI(document.getElementById("extitle").value || document.getElementById("extitle").placeholder) +
                 ",ex=" + encodeURI(document.getElementById("exeachex").value || document.getElementById("exeachex").placeholder) +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "whogots") {
-            return "n=" + document.getElementById("cardsNbValue").value +
+            const urlparams = "n=" + document.getElementById("cardsNbValue").value +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",d=" + (document.getElementById("WGDoublons").checked) +
                 ',aff=' + (document.getElementById("WGaffirmation").value) +
                 ',quest=' + (document.getElementById("WGquestion").value) +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "puzzles") {
-            return ",a=" + (withAleaSeed ? this.getSeed() : "") +
+            const urlparams = ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export();
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
         } else if (type === "wall") {
-            return "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
+            const urlparams = "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
                 ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
-        } else
-            return "i=" + MM.introType +
+            if (encoded) {
+                return utils.encodeUrlUnreadable(urlparams);
+            } else {
+                return urlparams
+            }
+        } else {
+            const urlparams = "i=" + MM.introType +
                 ",e=" + MM.endType +
                 ",o=" + MM.onlineState +
                 ",s=" + MM.slidersNumber +
@@ -770,6 +820,11 @@ const MM = {
                 ",colors=" + colors +
                 ",snd=" + sound.selected +
                 this.export();
+            if (encoded)
+                return utils.encodeUrlUnreadable(urlparams)
+            else
+                return urlparams
+        }
     },
     setHistory(pageName, params) {
         let url = MM.setURL(params);
@@ -1056,9 +1111,12 @@ const MM = {
                 id: "urlCopy",
                 className: "message",
                 style: "padding:1.5rem",
-                innerHTML: `<div>Adresse longue<div>
-                <textarea readonly="true" id="bigurl" cols="38" onfocus=""></textarea><br>
+                innerHTML: `<div>Adresse longue <span id="longcopied" class='red'>Copié !</span></div>
+                <textarea readonly="true" id="bigurl" cols="38" rows="6" onfocus=""></textarea><br>
                 <button id="btn-urlshorter">Raccourcir l'url</button><br>
+                <div>Adresse encodée <span id="encodedcopied" class='red hidden'>Copié !</span></div>
+                <textarea readonly="true" id="encodedurl" cols="38" rows="6" onfocus=""></textarea><br>
+                <button id="btn-urlshorter-encode">Raccourcir l'url encodée</button><br>
                 <input readonly="true" type="url" id="shorturl" size="38">
                 <div id="shortQRdiv"></div>
                 `
@@ -1066,26 +1124,56 @@ const MM = {
         colparams.addEventListener("click", (evt) => {
             if (evt.target.id === "btn-urlshorter") MM.getQR();
         });
-        colparams.addEventListener("focus", (evt) => {
-            if (["bigurl", "shorturl"].indexOf(evt.target.id) > -1) utils.copy(evt.target);
+        colparams.addEventListener("click", (evt) => {
+            if (evt.target.id === "btn-urlshorter-encode") MM.getQR(true);
         })
-        //let carts = this.export();
+        colparams.addEventListener("focus", (evt) => {
+            if (["bigurl", "shorturl", "encodedurl"].indexOf(evt.target.id) > -1) utils.copy(evt.target);
+        })
         let withSeed = false;
         if (document.getElementById("aleaInURL").checked) withSeed = true;
-        let params = this.paramsToURL(withSeed, type);
-        let close = utils.create("button", { innerHTML: "<i class='sprite sprite-closebutton32'></i>", style: "position:absolute;top:0.5rem;right:0.5rem;padding:0;background:transparent" });
+        const close = utils.create("button", { innerHTML: "<i class='sprite sprite-closebutton32'></i>", style: "position:absolute;top:0.5rem;right:0.5rem;padding:0;background:transparent" });
         close.onclick = () => { let m = document.getElementById("urlCopy"); m.parentNode.removeChild(m) };
         modalMessage.appendChild(close);
         colparams.appendChild(modalMessage);
-        //if(document.getElementById("aleaInURL").checked)params.a = MM.seed;
-        let input = document.getElementById("bigurl");
+        const params = this.paramsToURL(withSeed, type);
+        const input = document.getElementById("bigurl");
         input.value = this.setURL(params, type);
+        const encodedParams = this.paramsToURL(withSeed, type, true);
+        const input2 = document.getElementById("encodedurl");
+        input2.value = this.setURL(encodedParams, type);
+        input2.onclick = () => {
+            navigator.clipboard.writeText(input2.value);
+            setTimeout(()=>{
+                input2.select();
+                input2.setSelectionRange(0, 99999);    
+                document.getElementById('encodedcopied').classList.remove('hidden');
+            }, 200)
+            setTimeout(()=>{
+                document.getElementById('encodedcopied').classList.add('hidden');
+            },2200);
+        };
+        input.onclick = () => {
+            navigator.clipboard.writeText(input.value);
+            setTimeout(()=>{
+                input.select();
+                input.setSelectionRange(0, 99999);    
+                document.getElementById('longcopied').classList.remove('hidden');
+            }, 500)
+            setTimeout(()=>{
+                document.getElementById('longcopied').classList.add('hidden');
+            },2000);
+        };
+        //if(document.getElementById("aleaInURL").checked)params.a = MM.seed;
         // on affiche (furtivement) le input pour que son contenun puisse être sélectionné.
         //input.className = "";
         //let value = input.value;
         navigator.clipboard.writeText(input.value);
         input.select();
         input.setSelectionRange(0, 99999);
+        setTimeout(()=>{
+            document.getElementById('longcopied').classList.add('hidden');
+        },2000);
         //document.execCommand("copy");
         //input.className ="hidden";
         //let message = document.querySelector(".button--inverse .tooltiptext").innerHTML;
@@ -1218,14 +1306,19 @@ const MM = {
             localStorage.setItem("history", "");
         }
     },
-    getQR() {
+    getQR(isEncoded = false) {
         // si on n'est pas en mode edition de panier.
         if (MM.carts.length < 2 && MM.carts[0].activities.length < 2) {
             MM.carts[0].activities = [];
             MM.carts[0].addActivity(MM.editedActivity);
         }
         // on récupère l'adresse créée
-        const url = document.getElementById("bigurl").value;
+        let url
+        if(!isEncoded){
+            url = document.getElementById("bigurl").value;
+        } else {
+            url = document.getElementById("encodedurl").value;
+        }        
         // raccourcissement de l'url
         const alert = document.getElementById("shortQRdiv");
         alert.innerHTML = "";

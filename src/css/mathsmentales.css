@@ -1479,6 +1479,9 @@ math-field {
   box-shadow: 0 8px 6px -6px #000,-1px 2px 20px rgba(47, 91, 235, 0.6) inset;
   z-index: 10;
 }
+.message .red {
+  color: rgb(255, 159, 70);
+}
 .copied {
   background-image: url(../img/copied.png);
   background-repeat: no-repeat;
