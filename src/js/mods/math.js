@@ -255,6 +255,7 @@ const math = {
   * @param {boolean} array false ou undefined renvoie une chaine, un tableau sinon
   */
   listeDiviseurs: function (nb, array = false) {
+    if (nb < 0) nb = -nb;
     let maxSearch = Math.floor(Math.sqrt(nb));
     let diviseurs = [];
     let grandsdiviseurs = [];
@@ -314,12 +315,19 @@ const math = {
   /**
    * 
    * @param {integer} nb
+   * @param {boolean} superieur true permet de renvoyer aléatoirement aussi un non multiple
    * return un non diviseur d'un nombre
    */
-  nonDiviseur(nb) {
+  nonDiviseur(nb, superieur = false) {
+    if (nb === 1) return math.aleaInt(2, 10);
+    if (nb === 2) return math.aleaInt(3, 10);
     let unnondiviseur = 0;
     do { unnondiviseur = math.aleaInt(2, nb - 1); }
     while (nb % unnondiviseur === 0)
+    if (superieur && math.aleaInt(0, 1) === 0) {
+      do { unnondiviseur = math.aleaInt(nb + 1, nb+10); }
+      while (unnondiviseur % nb === 0)
+    }
     return unnondiviseur;
   },
   /**
@@ -344,10 +352,13 @@ const math = {
    * return un diviseur de nb
    */
   unDiviseur(nb, notOne = false, notNb = true) {
-    if (Number(nb) === 0) return 1
+    if (Number(nb) === 0) return math.aleaInt(1, 10);
+    if (Number(nb) === 1) return 1
     let diviseurs = math.listeDiviseurs(nb, true);
-    if (notOne) diviseurs = _.rest(diviseurs); // on enlève la première valeur qui est 1.
-    if (notNb) diviseurs = _.initial(diviseurs);
+    // on enlève la première valeur qui est 1.
+    if (notOne) diviseurs = diviseurs.slice(1)
+    // on enlève la dernière valeur qui est le nombre s'il y a d'autres valeurs
+    if (notNb && diviseurs.length > 1) diviseurs = diviseurs.slice(0, -1);
     return diviseurs[math.aleaInt(0, diviseurs.length - 1)];
   },
   factor(nb) {

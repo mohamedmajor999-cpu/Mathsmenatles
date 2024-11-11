@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import { utils, _ } from './utils.js';
 import sound from "./sound.js";
 import cart from "./cart.js";
 import Zoom from "./zoom.js";

@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import { utils, _ } from './utils.js';
 import math from "./math.js";
 import Figure from "./figure.js";
 import library from "./library.js";

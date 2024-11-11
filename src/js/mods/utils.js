@@ -3,7 +3,131 @@ export { utils as default }
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const joursFR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
-const utils = {
+export const _ = {
+    /**
+     * Checks if an object is an array.
+     * 
+     * @param {Object} o - The object to check.
+     * @returns {boolean} Returns true if the object is an array, otherwise false.
+     */
+    isArray: function (o) {
+        return Object.prototype.toString.call(o) === '[object Array]';
+    },
+/**
+ * Checks if an object is empty.
+ * 
+ * @param {Object} obj - The object to check.
+ * @returns {boolean} Returns true if the object has no enumerable properties, otherwise false.
+ */
+    isEmpty: function (obj) {
+        var x;
+        for (x in obj) {
+            return false;
+        }
+        return true;
+    },
+    /**
+     * Checks if an object is an object.
+     * 
+     * @param {Object} o - The object to check.
+     * @returns {boolean} Returns true if the object is an object, otherwise false.
+     */
+    isObject: function (o) {
+        return Object.prototype.toString.call(o) === '[object Object]';
+    },
+    /**
+     * Checks if an object is a string.
+     * 
+     * @param {Object} o - The object to check.
+     * @returns {boolean} Returns true if the object is a string, otherwise false.
+     */
+    isString: function (o) {
+        return Object.prototype.toString.call(o) === '[object String]';
+    },
+    /**
+     * Reduces a given object to a single output value.
+     * 
+     * @param {Object} obj - The object to reduce.
+     * @param {Function} iteratee - A function invoked per own property key in object, taking four arguments: (previousValue, currentValue, key, object)
+     * @param {*} [memo] - The initial value to return.
+     * @param {*} [context] - The this binding of the iteratee.
+     * @returns {*} Returns the accumulated value.
+     */
+    reduce: function(obj, iteratee, memo, context) {
+        if (obj == null) obj = [];
+        const keys = Object.keys(obj);
+        const length = keys.length;
+        let index = 0;
+
+        if (arguments.length < 3) {
+            memo = obj[keys[index]];
+            index += 1;
+        }
+
+        for (; index < length; index++) {
+            const key = keys[index];
+            memo = iteratee.call(context, memo, obj[key], key, obj);
+        }
+
+        return memo;
+    },
+    /**
+     * Sorts the elements of a collection in ascending order by the results of
+     * running each element in a collection through an iteratee.
+     * 
+     * @param {Array|Object} collection - The collection to iterate over.
+     * @param {Function} iteratee - The iteratee invoked per element.
+     * @returns {Array} Returns the new sorted array.
+     */
+    sortBy: function(collection, iteratee) {
+        return Object.entries(collection)
+            .map(([key, value]) => ({ key, value, criteria: iteratee(value) }))
+            .sort((a, b) => {
+                if (a.criteria < b.criteria) return -1;
+                if (a.criteria > b.criteria) return 1;
+                return 0;
+            })
+            .map(item => item.value);
+    },
+    /**
+     * The opposite of _.max; this method returns the smallest value in `collection`.
+     *
+     * If `collection` is empty or falsey, `undefined` is returned.
+     *
+     * @static
+     * @memberOf _
+     * @category Math
+     * @param {Array} collection The collection to iterate over.
+     * @returns {*} Returns the minimum value.
+     * @example
+     *
+     * _.min([4, 2, 8, 6]);
+     * // => 2
+     */
+    min: function(collection) {
+        return Math.min(...Object.values(collection));
+    },
+
+    /**
+     * The opposite of _.min; this method returns the largest value in `collection`.
+     *
+     * If `collection` is empty or falsey, `undefined` is returned.
+     *
+     * @static
+     * @memberOf _
+     * @category Math
+     * @param {Array} collection The collection to iterate over.
+     * @returns {*} Returns the maximum value.
+     * @example
+     *
+     * _.max([4, 2, 8, 6]);
+     * // => 8
+     */
+    max: function(collection) {
+        return Math.max(...Object.values(collection));
+    }
+}
+export const utils = {
     baseURL: window.location.href.split("?")[0].split("#")[0],
     seed: "sample",
     security: 300,// max number for boucles
@@ -191,9 +315,11 @@ const utils = {
         }
         // on fait un tableau de données qui sont séparées par le &
         let trueUrl = urlString.search.slice(1);
+        trueUrl = trueUrl.replace('&amp;', '&');
         let hashes = trueUrl.split('&');
-        if (this.isURLEncoded(hashes[0])) {
+        if (this.isURLEncoded(trueUrl)) {
             trueUrl = this.decodeUrlUnreadable(hashes[0]);
+            trueUrl = trueUrl.replace('&amp;', '&');
             let datas = trueUrl.split('&');
             if (hashes[1] !== undefined)
                 hashes = [...datas, ...hashes.slice(1)];
@@ -617,6 +743,10 @@ const utils = {
             content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
             content.querySelectorAll(".math").forEach(function (item) {
                 var texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
+                // suppression du displaystyle
+                texTxt = texTxt.replace(/\\displaystyle/g, "");
+                // remplacement de &gt; et &lt;
+                texTxt = texTxt.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
                 // recherche les nombres, décimaux ou pas
                 let nbrgx = /(\d+\.*\d*)/g;
                 // insère des espaces tous les 3 chiffres;
@@ -637,10 +767,13 @@ const utils = {
             // transform ascii to Latex
             //var texTxt = MM.ascii2tex.parse(item.innerHTML);
             var texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
+            // suppression du displaystyle
+            texTxt = texTxt.replace(/\\displaystyle/g, "");
+            // remplacement de &gt; et &lt;
+            texTxt = texTxt.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
             // recherche les nombres, décimaux ou pas
             let nbrgx = /(\d+\.*\d*)/g;
             // insère des espaces tous les 3 chiffres;
-
             texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
             //texTxt = texTxt.replace(/\.(\d{3})(?=(\d+))/g,"$1~");
             //texTxt = texTxt.replace(/\./g, "{,}");
@@ -704,6 +837,6 @@ const utils = {
         }).join(""));
     },
     isURLEncoded(str) {
-        return !(str.indexOf("u=") > -1 || str.indexOf("&p=") > 0);
+        return !(str.indexOf("u=") > -1 || str.indexOf("&p=") > 0 || str.indexOf("&amp;p=") > 0);
     }
 }

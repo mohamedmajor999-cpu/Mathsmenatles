@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import { utils, _ } from './utils.js';
 import content from "./content.js";
 //import theactivities from "./theactivities.js";
 // import MM from "./MM.js";

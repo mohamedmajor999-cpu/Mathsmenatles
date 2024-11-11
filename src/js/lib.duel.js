@@ -6,7 +6,6 @@ import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
 import keyBoard from './mods/keyboard.js';
 import MM from './mods/MM.js';
-import math from './mods/math.js';
 
 MM.touched = false;
 MM.slidersNumber = 2;

@@ -1,6 +1,7 @@
 
 import protos from './mods/protos.js';
-import utils from './mods/utils.js';
+// import utils from './mods/utils.js';
+import { utils, _ } from './mods/utils.js';
 import common from './mods/common.js';
 import cart from './mods/cart.js';
 import Figure from './mods/figure.js';

@@ -1,6 +1,6 @@
 "use strict"
 import protos from './mods/protos.js';
-import utils from './mods/utils.js';
+import { utils, _ } from './mods/utils.js';
 // MathsMentales core
 import cart from "./mods/cart.js";
 // import library from './mods/library.js';
