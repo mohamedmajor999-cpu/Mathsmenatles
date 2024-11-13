@@ -1,5 +1,6 @@
 import activity from "./activity.js";
 import utils from "./utils.js";
+import Sortable from '../libs/sortable/Sortable.mjs.js';
 
 export default class cart {
     constructor(id){
@@ -94,7 +95,7 @@ export default class cart {
             // on affecte des copies des activités à ce nouveau panier.
             let cart = carts[carts.length-1];
             for(let i=0;i<this.activities.length;i++){
-                cart.addActivity(this.activities[i], this.activities[i].nbq, -1, carts);
+                cart.addActivity(this.activities[i], this.activities[i].nbq, carts);
             }
             cart.ordered = this.ordered
             cart.progress = this.progress
@@ -104,7 +105,7 @@ export default class cart {
         }
 
     }
-    addActivity(obj,nbQuestions=false, carts){
+    addActivity(obj, nbQuestions=false, carts){
         this.editedActivityId = -1;
         let temp = new activity(obj);
         if(nbQuestions){
@@ -177,7 +178,13 @@ export default class cart {
         this.sortable = new Sortable(dom, {
             animation:150,
             ghostClass:'ghost-movement',
-            onEnd : evt=>carts[this.id].exchange(evt.oldIndex, evt.newIndex, carts)
+            onEnd : evt=>{
+                if(carts === undefined){
+                    this.exchange(evt.oldIndex, evt.newIndex);
+                } else {
+                    carts[this.id].exchange(evt.oldIndex, evt.newIndex, carts)
+                }
+            }
         });
     }
     /**

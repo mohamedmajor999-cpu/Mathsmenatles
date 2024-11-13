@@ -46,12 +46,18 @@ async function bumpVersion(options) {
     const newVersion = `${major}.${minor}.${patch}`;
     packageJson.version = newVersion;
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  
+
     console.log(`Version augmentée à ${newVersion}`);
   }  
 
 async function build() {
   builds.map((module) => {
+    // delete all public/js/lib.*.js
+    fs.readdirSync('./public/js/').forEach(file => {
+      if (file.startsWith('lib.' + module)) {
+        fs.unlinkSync('./public/js/' + file);
+      }
+    })
     return rollupStream({
       input: 'src/js/lib.' + module + '.js',
       cache: cache,
@@ -60,7 +66,7 @@ async function build() {
       console.log('Error : '+ err.message)
     }).on('bundle', bundle => {
       cache = bundle
-    }).pipe( source('lib.' + module + '.js'))
+    }).pipe( source('lib.' + module + '-' + packageJson.version + '.js'))
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest('./public/js/'))
@@ -69,7 +75,13 @@ async function build() {
 
 async function minifyCss() {
   builds.map(module => {
-    let listOfCss = ['src/css/'+module+'.css']
+    // delete all src/js/module-xxx.css
+    fs.readdirSync('./public/css/').forEach(file => {
+      if (file.startsWith(module)) {
+        fs.unlinkSync('./public/css/' + file);
+      }
+    })
+    let listOfCss = ['src/css/'+ module + '.css']
     if(module === 'mathsmentales')
       listOfCss = ['src/css/sprites.css', 'src/css/knacss.css','src/css/bulma-steps.css','src/css/mathsmentales.css']
     else if(module === 'diaporama')
@@ -78,7 +90,7 @@ async function minifyCss() {
       listOfCss = ['src/css/knacss.css','src/css/wall.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css']
     return gulp.src(listOfCss)
     .pipe(cleanCSS())
-    .pipe(concat(module+'.css'))
+    .pipe(concat(module+'-' + packageJson.version +'.css'))
     .pipe(gulp.dest('./public/css/'))
   })
 }
@@ -92,14 +104,18 @@ async function updateVersion() {
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
     // js
     const regex = new RegExp('lib\\.' +module+ '\\.js\\?v=[\\d\\.]+')
-    let updatedContent = htmlContent.replace(regex, `lib.${module}.js?v=${packageJson.version}`);
+    let updatedContent = htmlContent.replace(regex, `lib.${module}-${packageJson.version}.js`);
+    updatedContent = updatedContent.replace('alllibs.js', 'alllibs.min.js')
     // css - à mettre à jour pour autres modules
     if(htmlPageName === 'index.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />', '<link rel="stylesheet" href="css/mathsmentales.css?v='+packageJson.version+'" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />', '<link rel="stylesheet" href="css/mathsmentales-' + packageJson.version + '.css?" />')
     } else if(htmlPageName === 'wall.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall.css?v='+packageJson.version+'" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'diaporama.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama.css?v='+packageJson.version+'" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama-' + packageJson.version + '.css" />')
+    } else {
+      const regex2 = new RegExp(module+'\\.css\\?v=[\\d\\.]+')
+      updatedContent = updatedContent.replace(regex2, module +'-' + packageJson.version + '.css');
     }
     console.log(htmlPageName + ' mis à jour')
     fs.writeFileSync(destPath, updatedContent, 'utf8');
@@ -112,6 +128,12 @@ gulp.task('bump-patch', () => bumpVersion({ patch: true }));
 // création des modules de minification de js et css indépendants
 builds.forEach(module => {
   gulp.task('minify-js-'+module, () => {
+    // delete lib.module
+    fs.readdirSync('./public/js/').forEach(file => {
+      if (file.startsWith('lib.' + module)) {
+        fs.unlinkSync('./public/js/' + file);
+      }
+    })
     return rollupStream({
       input: 'src/js/lib.' + module + '.js',
       cache: cache,
@@ -120,13 +142,19 @@ builds.forEach(module => {
       console.log('Error : '+ err.message)
     }).on('bundle', bundle => {
       cache = bundle
-    }).pipe( source('lib.' + module + '.js'))
+    }).pipe( source('lib.' + module + '-' + packageJson.version + '.js'))
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest('./public/js/'))
   })
   gulp.task('minify-css-'+module, () => {
-    let listOfCss = ['src/css/'+module+'.css']
+      // delete all src/js/module-xxx.css
+      fs.readdirSync('./public/css/').forEach(file => {
+        if (file.startsWith(module)) {
+          fs.unlinkSync('./public/css/' + file);
+        }
+      })
+    let listOfCss = ['src/css/'+module + '.css']
     if(module === 'mathsmentales')
       listOfCss = ['src/css/sprites.css', 'src/css/knacss.css','src/css/bulma-steps.css','src/css/mathsmentales.css']
     else if(module === 'diaporama')
@@ -135,7 +163,7 @@ builds.forEach(module => {
       listOfCss = ['src/css/knacss.css','src/css/wall.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css']
     return gulp.src(listOfCss)
     .pipe(cleanCSS())
-    .pipe(concat(module+'.css'))
+    .pipe(concat(module + '-' + packageJson.version +'.css'))
     .pipe(gulp.dest('./public/css/'))
   })
   gulp.task('update-version-'+module, async () => {
@@ -146,25 +174,26 @@ builds.forEach(module => {
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
     // js
     const regex = new RegExp('lib\\.' +module+ '\\.js\\?v=[\\d\\.]+')
-    let updatedContent = htmlContent.replace(regex, `lib.${module}.js?v=${packageJson.version}`);
+    let updatedContent = htmlContent.replace(regex, `lib.${module}-${packageJson.version}.js`);
+    updatedContent = updatedContent.replace('alllibs.js', 'alllibs.min.js')
     // css - à mettre à jour pour autres modules
     if(htmlPageName === 'index.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />', '<link rel="stylesheet" href="css/mathsmentales.css?v='+packageJson.version+'" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacss.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />', '<link rel="stylesheet" href="css/mathsmentales-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'wall.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall.css?v='+packageJson.version+'" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'diaporama.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama.css?v='+packageJson.version+'" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacss.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama-' + packageJson.version + '.css" />')
     } else {
       const regex2 = new RegExp(module+'\\.css\\?v=[\\d\\.]+')
-      updatedContent = updatedContent.replace(regex2, module+'.css?v='+packageJson.version);
+      updatedContent = updatedContent.replace(regex2, module +'-' + packageJson.version + '.css');
     }
     console.log(htmlPageName + ' mis à jour')
     fs.writeFileSync(destPath, updatedContent, 'utf8');
   })
-  gulp.task('maj-'+module, gulp.series('minify-js-'+module, 'minify-css-'+module, 'bump-patch', 'update-version-'+module))
+  gulp.task('maj-'+module, gulp.series('bump-patch', 'minify-js-'+module, 'minify-css-'+module, 'update-version-'+module))
 })
 
 gulp.task('minify-css', minifyCss)
 gulp.task('build', build);
 gulp.task('update-version', updateVersion);
-gulp.task('default', gulp.series('build', 'minify-css', 'bump-patch', 'update-version'));
+gulp.task('default', gulp.series('bump-patch', 'build', 'minify-css', 'update-version'));

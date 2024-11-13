@@ -303,6 +303,7 @@ export const utils = {
      */
     getUrlVars: function (urlString) {
         if (!urlString) urlString = window.location;
+        else urlString = new URL(urlString);
         var vars = {},
             hash;
         if (urlString.hash !== '' && urlString.search === '') { // cas d'une activité MMv1

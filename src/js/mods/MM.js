@@ -370,7 +370,7 @@ const MM = {
         } else return false;
     },
     addToCart() {
-        MM.carts[MM.selectedCart].addActivity(MM.editedActivity, false, -1, MM.carts);
+        MM.carts[MM.selectedCart].addActivity(MM.editedActivity, false, MM.carts);
         // on affiche les panier
         MM.showCartInterface();
     },
