@@ -6,6 +6,8 @@ import math from "./mods/math.js";
 // import activity from "./mods/activity.js";
 
 const MM={};
+MM.version = utils.getVersion()
+
 let textSize = '0.35'
 const puzzles = ['pyr16', 'hexa24', 'los18', 'pier12']
 const parameters = {distract:false};
@@ -453,7 +455,7 @@ function checkURL(urlString){
         let json = vars.c;
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
-        parameters.cart.import(json[0],false).then(()=>{
+        parameters.cart.import(json[0],false, MM.version).then(()=>{
             refresh()
         }).catch(err=>{
             // erreur à l'importation :(

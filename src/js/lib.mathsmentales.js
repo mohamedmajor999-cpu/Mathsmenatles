@@ -9,9 +9,7 @@ import sound from './mods/sound.js';
 import speech from './mods/speech.js';
 
 window.onload = function() {
-    let scripturl = document.getElementById("mmscriptid").attributes.src.value;
-    /*get value from query parameters*/
-    MM.version = scripturl.replace(/\|/g,'/').slice(scripturl.indexOf('?') + 3);
+    MM.version = utils.getVersion()
     // detection de l'hébergement sur la forge
     if (window.location.host == "mathsmentales.forge.apps.education.fr"){
         const accueil = document.getElementById('accueillogo')

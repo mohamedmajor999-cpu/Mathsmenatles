@@ -135,6 +135,13 @@ export const utils = {
     debug: function () {
         if (utils.modeDebug) console.log(arguments);
     },
+    getVersion() {
+        const fileName = document.getElementById("mmscriptid").attributes.src.value;
+        /*get value from query parameters*/
+        const regex = /(\d+\.\d+\.\d+)/;
+        const match = fileName.match(regex);
+        return match ? match[1] : null;
+    },
     /**
      * objet contenant des fonctions utiles à MathsMentales
      */

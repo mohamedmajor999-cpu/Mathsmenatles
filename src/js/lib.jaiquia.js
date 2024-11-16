@@ -6,6 +6,8 @@ import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
 
 const MM={};
+MM.version = utils.getVersion()
+
 const content = document.getElementById("creator-content");
 const parameters = {};
 let zoom;
@@ -238,7 +240,7 @@ function checkURL(urlString){
         //console.log(parameters);
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
-        parameters.cart.import(json[0],false).then(()=>{
+        parameters.cart.import(json[0],false,MM.version).then(()=>{
             refresh()
         }).catch(err=>{
             // erreur à l'importation :(

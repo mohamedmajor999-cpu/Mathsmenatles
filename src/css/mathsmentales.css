@@ -1472,9 +1472,9 @@ math-field {
   background: #367ebd;
   color: rgb(223, 227, 245);
   padding:3rem;
-  top:30%;
+  top:40%;
   left:50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-40%);
   border-radius: 0.5em;
   box-shadow: 0 8px 6px -6px #000,-1px 2px 20px rgba(47, 91, 235, 0.6) inset;
   z-index: 10;

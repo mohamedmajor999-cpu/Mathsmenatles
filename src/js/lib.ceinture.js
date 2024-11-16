@@ -7,6 +7,8 @@ import cart from './mods/cart.js';
 import Figure from './mods/figure.js';
 //import { format } from '@cortex-js/compute-engine/dist/types/compute-engine/public.js';
 const MM={}
+MM.version = utils.getVersion()
+
 const content = document.getElementById("creator-content");
 const pageHeight = 287;
 const parameters = {
@@ -801,7 +803,7 @@ function checkURL(urlString){
         document.querySelector('#creator-menu .spacer').style['margin-top'] = parameters.spacer+'mm'
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
-        parameters.cart.import(json[0],false).then(()=>{
+        parameters.cart.import(json[0],false, MM.version).then(()=>{
             refresh()
         }).catch(err=>{
             // erreur à l'importation :(

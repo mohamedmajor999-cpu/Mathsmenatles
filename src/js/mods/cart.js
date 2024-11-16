@@ -38,7 +38,7 @@ export default class cart {
      * @param {json} obj objet importé d'un exo téléchargé
      * @param {Boolean} start if true, will make start slideshow when all is ready
      */
-    import(obj,start=false, version){
+    import(obj,start=false, version) {
         // à revoir
         this.title = obj.t;
         this.target = obj.c;

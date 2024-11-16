@@ -7,6 +7,7 @@ import Figure from './mods/figure.js';
 // import math from './mods/math.js';
 
 const MM={};
+MM.version = utils.getVersion()
 const content = document.getElementById("creator-content");
 const pageOrientations = ["portrait","paysage"]
 let pageHeight = 275; // cm
@@ -330,7 +331,7 @@ function checkURL(urlString){
         document.querySelector("html").style["fontSize"] = parameters.tailleTexte+"pt";
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
-        parameters.cart.import(json[0],false).then(()=>{
+        parameters.cart.import(json[0],false, MM.version).then(()=>{
             document.getElementById('inputheight').value = vars.ch||55
             parameters.cardHeight = Number(document.getElementById('inputheight').value)
             document.getElementById('inputwidth').value = vars.cw||85

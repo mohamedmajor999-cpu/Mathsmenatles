@@ -154,7 +154,7 @@ const diaporama = {
       }
       for (const i in json) {
         diaporama.carts[i] = new cart(i);
-        allcarts.push(diaporama.carts[i].import(json[i], start));
+        allcarts.push(diaporama.carts[i].import(json[i], start, diaporama.version));
       }
       // on attend le résultat de toutes les promesses pour mettre à jour les affichages.
       Promise.all(allcarts).then(data => {
@@ -1102,9 +1102,8 @@ function setZoom(element) {
 }
 
 window.onload = () => {
-  let scripturl = document.getElementById("mmscriptid").attributes.src.value;
-  diaporama.version = scripturl.replace(/\|/g, '/').slice(scripturl.indexOf('?') + 3);
-  // detect if touching interface
+  diaporama.version = utils.getVersion();
+// detect if touching interface
   let listener = function () {
     // the user touched the screen!
     diaporama.touched = true;

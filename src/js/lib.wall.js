@@ -5,6 +5,8 @@ import cart from './mods/cart.js';
 import Figure from './mods/figure.js';
 
 const MM = {};
+MM.version = utils.getVersion()
+
 const content = document.getElementById("creator-content");
 const pageOrientations = ["portrait", "paysage"]
 const parameters = {};
@@ -264,7 +266,7 @@ function checkURL(urlString) {
         let allcarts = []
         for (const i in json) {
             parameters.carts[i] = new cart(i);
-            allcarts.push(parameters.carts[i].import(json[i], false));
+            allcarts.push(parameters.carts[i].import(json[i], false, MM.version));
         }
         // on attend le résultat de toutes les promesses pour mettre à jour les affichages.
         Promise.all(allcarts).then(data => {
