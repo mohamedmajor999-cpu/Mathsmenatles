@@ -83,7 +83,7 @@
             "la1":"${math.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
-            "choixfig":"3_8"
+            "choixfig":"4_8"
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
         "question":"Par combien sont multipliés les volumes ?",
@@ -96,7 +96,7 @@
             "la1":"${math.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
-            "choixfig":"0_8",
+            "choixfig":"4_8",
             "coef":""
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
