@@ -89,7 +89,24 @@ footer {page-break-after: always;}
     display:grid;
     justify-items: center;
 }
-
+/** color peaker */
+input[type="color"] {
+    appearance: none;
+    width: 1em;
+    height: 2em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5em;
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border-radius: 15px;
+    border: none;
+  }
+  input[type="color"]::-moz-color-swatch {
+    border-radius: 15px;
+    border: none;
+  }
 /*
 Taille carte de visite
 */

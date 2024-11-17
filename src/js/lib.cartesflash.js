@@ -78,7 +78,31 @@ document.getElementById('inputDecoColor').onchange = (evt) => {
 }
 
 document.getElementById('identifiant').onchange = (evt)=>{
-    const content = evt.target.value
+    changeText(evt)
+}
+document.getElementById('btnValidateText').onclick = ()=>{
+    changeText()
+}
+
+// actions pour la numérotation
+document.getElementById('radioNo').onclick = ()=>{
+    parameters.numeroter = 'no'
+    refresh()
+}
+document.getElementById('radioQ').onclick = ()=>{
+    parameters.numeroter = 'Q'
+    refresh()
+}
+document.getElementById('radioText').onclick = ()=>{
+    parameters.numeroter = 'text'
+    refresh()
+}
+
+function changeText(evt) {
+    let content = ''
+    if (evt !== undefined)
+        content = evt.target.value
+    else content = document.getElementById('identifiant').value
     const cardIds = document.querySelectorAll('.identifiant')
     for (const id of cardIds){
         id.innerText = content
@@ -181,6 +205,9 @@ function makePage(){
     }
     content.innerHTML = "";
     MM.memory = {};
+    let numeroterQ = false, numeroterT = false
+    if (parameters.numeroter === 'Q') numeroterQ = true
+    else if (parameters.numeroter === 'text') numeroterT = true
     let pageWidth = 200
     if(pageFormat !== 0) pageWidth = 287
     const nombreDeCartesParLigne = Math.floor(pageWidth/Number(parameters.cardWidth))
@@ -207,8 +234,8 @@ function makePage(){
             const artQuestion = utils.create("article",{className:"flash-question card recto"});
             artQuestion.style.height = parameters.cardHeight+"mm";
             artQuestion.style.width = parameters.cardWidth+"mm";
-            artQuestion.appendChild(utils.create('div', {className:'logoq', innerText:'Q', style:'background-color:'+parameters.coincolor+';color:'+setWhiteOrBlack(parameters.coincolor)}))
-            artQuestion.appendChild(utils.create('div', {className:'identifiant', innerText:document.getElementById('identifiant').value, style:'color:'+parameters.decocolor}))
+            artQuestion.appendChild(utils.create('div', {className:'logoq', innerText:'Q' + (numeroterQ ? nbOfCards : ''), style:'background-color:'+parameters.coincolor+';color:'+setWhiteOrBlack(parameters.coincolor)}))
+            artQuestion.appendChild(utils.create('div', {className:'identifiant', innerText:document.getElementById('identifiant').value + (numeroterT ? ' ' + nbOfCards : ''), style:'color:'+parameters.decocolor}))
             const divq = utils.create("div");
             const artCorrection = utils.create("article",{className:"flash-reponse card verso", style:'border:1px solid '+parameters.bordercolor});
             artCorrection.style.height = parameters.cardHeight+"mm";
