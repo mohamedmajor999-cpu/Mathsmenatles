@@ -1,5 +1,6 @@
 import utils from "./utils.js";
 import MM from "./MM.js";
+
 export {common as default}
 const pageOrientations = ["portrait","paysage"]
 const pageWidthes = ["794", "1123"]
@@ -165,38 +166,11 @@ const common = {
     mathRender: function(all) {
         // search for $$ formulas $$ => span / span
         if(all === undefined){
-            const content = document.getElementById("creator-content");
-            content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+            utils.mathRender(["creator-content"]);
         } else {
             if(Array.isArray(all)){
-                for(const content of all){
-                    document.querySelectorAll('.'+content).forEach(el=>{
-                        el.innerHTML = el.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
-                    })
-                }
+                utils.mathRender(all);
             }
         }
-        document.querySelectorAll(".math").forEach(function(item) {
-            // transform ascii to Latex
-            //var texTxt = MM.ascii2tex.parse(item.innerHTML);
-            var texTxt = item.innerHTML.replace(/\&amp\;/g,"&");
-            // recherche les nombres, décimaux ou pas
-            let nbrgx = /(\d+\.*\d*)/g;
-            // insère des espaces tous les 3 chiffres;
-            
-            texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
-            //texTxt = texTxt.replace(/\.(\d{3})(?=(\d+))/g,"$1~");
-            //texTxt = texTxt.replace(/\./g, "{,}");
-            try {
-                katex.render(texTxt, item, { //"\\displaystyle "+
-                throwOnError: false,
-                errorColor: "#FFF",
-                colorIsTextColor: true
-                });
-                utils.removeClass(item,"math");
-            } catch (err) {
-                item.innerHTML = "<span class='err'>" + err + ' avec '+texTxt + '</span>';
-            };
-            });
-      },
+    },
 }

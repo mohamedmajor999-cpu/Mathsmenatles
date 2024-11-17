@@ -1,3 +1,4 @@
+import katex from '../libs/katex/katex.mjs';
 export { utils as default }
 // Some traductions
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -737,6 +738,7 @@ export const utils = {
         if (!diaporama) {
             contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne"];
         }
+        if(Array.isArray(wtarget))contents = wtarget;
         contents.forEach(id => {
             // search for $$ formulas $$ => span / span
             let content = document.getElementById(id);
@@ -746,31 +748,6 @@ export const utils = {
         document.querySelectorAll(".slide").forEach(elt => {
             elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
         });
-        if (wtarget !== false) {
-            let content = wtarget.document.getElementById("creator-content");
-            content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
-            content.querySelectorAll(".math").forEach(function (item) {
-                var texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
-                // suppression du displaystyle
-                texTxt = texTxt.replace(/\\displaystyle/g, "");
-                // remplacement de &gt; et &lt;
-                texTxt = texTxt.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
-                // recherche les nombres, décimaux ou pas
-                let nbrgx = /(\d+\.*\d*)/g;
-                // insère des espaces tous les 3 chiffres;
-                texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
-                try {
-                    katex.render(texTxt, item, {
-                        throwOnError: false,
-                        errorColor: "#FFF",
-                        colorIsTextColor: true
-                    });
-                    utils.removeClass(item, "math");
-                } catch (err) {
-                    item.innerHTML = "<span class='err'>" + err + ' avec ' + texTxt + '</span>';
-                };
-            })
-        }
         document.querySelectorAll(".math").forEach(function (item) {
             // transform ascii to Latex
             //var texTxt = MM.ascii2tex.parse(item.innerHTML);
