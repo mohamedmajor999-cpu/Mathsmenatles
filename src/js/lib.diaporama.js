@@ -195,7 +195,8 @@ const diaporama = {
     }
     if (loaded) {
       diaporama.carts.forEach(panier => {
-        panier.target = panier.target.split(",");
+        if (typeof panier.target === 'string')
+          panier.target = panier.target.split(",");
       })
       if (start || window.opener !== null)
         diaporama.start(sameData);
