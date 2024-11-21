@@ -29,7 +29,7 @@ document.getElementById('flipall').onclick = () => {
 }
 function refresh() {
     makePage()
-    common.mathRender()
+    common.mathRender(['.question', '.answer'])
 }
 
 function fontSizePlus() {

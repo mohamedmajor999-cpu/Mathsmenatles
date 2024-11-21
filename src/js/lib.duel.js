@@ -783,7 +783,7 @@ function addContent(){
             }
         }, 500);
     }
-    common.mathRender()
+    common.mathRender();
 }
 /**
  * Récupère les paramètres indiqués dans l'url de la page appelée.

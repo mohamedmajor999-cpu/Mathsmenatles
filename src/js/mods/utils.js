@@ -742,8 +742,15 @@ export const utils = {
         contents.forEach(id => {
             // search for $$ formulas $$ => span / span
             let content = document.getElementById(id);
-            if (content !== null)
+            if (content !== null) {
                 content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+            } else {
+                contents = document.querySelectorAll(id);
+                contents.forEach(elt => {
+                    elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+                });
+            }
+                
         });
         document.querySelectorAll(".slide").forEach(elt => {
             elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
