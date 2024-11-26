@@ -126,7 +126,7 @@ window.onload = function() {
     document.getElementById("imgduplicatecart1").onclick = ()=>{
         if(MM.carts.length < 4){
             MM.addCart();
-            MM.carts[0].duplicate(MM.editedActivity,MM.carts);
+            MM.carts[0].duplicate(MM.carts);
         }
     };
     // panier 2
@@ -138,7 +138,7 @@ window.onload = function() {
     document.getElementById("imgduplicatecart2").onclick = ()=>{
         if(MM.carts.length < 4){
             MM.addCart();
-            MM.carts[1].duplicate(MM.editedActivity,MM.carts);
+            MM.carts[1].duplicate(MM.carts);
         }}
     // panier 3
     document.getElementById("btncartdelete3").onclick=()=>{MM.removeCart(3)};
@@ -149,7 +149,7 @@ window.onload = function() {
     document.getElementById("imgduplicatecart3").onclick = ()=>{
         if(MM.carts.length < 4){
             MM.addCart();
-            MM.carts[2].duplicate(MM.editedActivity,MM.carts);
+            MM.carts[2].duplicate(MM.carts);
         }};
     // panier 4
     document.getElementById("btncartdelete4").onclick=()=>{MM.removeCart(4)};
