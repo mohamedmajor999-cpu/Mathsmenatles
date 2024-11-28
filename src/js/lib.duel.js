@@ -5,7 +5,11 @@ import cart from './mods/cart.js';
 import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
 import keyBoard from './mods/keyboard.js';
+import { MathfieldElement } from './libs/mathlive/mathlive.mjs';
 import MM from './mods/MM.js';
+
+MathfieldElement.fontsDirectory = '../katex/fonts'
+MathfieldElement.soundsDirectory = null
 
 MM.touched = false;
 MM.slidersNumber = 2;
@@ -735,12 +739,10 @@ function addContent(){
         try{
             const IDL = 'ansInputl'+'-'+questionCount;
             MM.mf[IDL] = new MathfieldElement({
-                smartMode:true,
-                virtualKeyboardMode:'off',
-                fontsDirectory:'../katex/fonts',
+                mathVirtualKeyboardPolicy: 'manual'
             });
             let keys = activity.keys || undefined;
-            MM.keyboards[IDL]= new keyBoard(MM.mf[IDL],keys,carte,"l","kl"+questionCount);
+            MM.keyboards[IDL]= new keyBoard(MM.mf[IDL],keys,carte,"l","kl"+questionCount,MM.touched);
             MM.mf[IDL].id = IDL;
             MM.mf[IDL].target = carte;
             MM.mf[IDL].addEventListener("keyup",function(event){
@@ -753,11 +755,9 @@ function addContent(){
 
             const IDR = 'ansInputr'+'-'+questionCount;
             MM.mf[IDR] = new MathfieldElement({
-                smartMode:true,
-                virtualKeyboardMode:'off',
-                fontsDirectory:'../katex/fonts',
+                mathVirtualKeyboardPolicy: 'manual'
             });
-            MM.keyboards[IDR]= new keyBoard(MM.mf[IDR],keys,carted,"r","kr"+questionCount);
+            MM.keyboards[IDR]= new keyBoard(MM.mf[IDR],keys,carted,"r","kr"+questionCount,MM.touched);
             MM.mf[IDR].id = IDR;
             MM.mf[IDR].target = carted;
             MM.mf[IDR].addEventListener("keyup",function(event){
@@ -783,7 +783,7 @@ function addContent(){
             }
         }, 500);
     }
-    common.mathRender();
+    common.mathRender(['enonce']);
 }
 /**
  * Récupère les paramètres indiqués dans l'url de la page appelée.

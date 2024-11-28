@@ -51,7 +51,7 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
      * @param {String} sliderId Id du slider contenant
      * @param {String} keyboardId Id du keyboard.
      */
-    constructor(target,keys,displayContener,sliderId,keyboardId, touched = false, nbOfSliders = 1) {
+    constructor(target, keys, displayContener, sliderId, keyboardId, touched = false, nbOfSliders = 1) {
         this.touchable = touched;
         this.nbOfSliders = nbOfSliders;
         this.keyConf = {

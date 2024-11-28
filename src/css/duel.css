@@ -117,6 +117,16 @@ math-field {
   border: 1px solid rgba(0, 0, 0, .3); 
   box-shadow: 0 0 8px rgba(0, 0, 0, .2);
 }
+/* Hide the virtual keyboard toggle */
+math-field::part(virtual-keyboard-toggle) {
+  display: none;
+}
+
+/* Hide the menu toggle */
+math-field::part(menu-toggle) {
+  display: none;
+}
+
 button {
   margin-bottom: 1vh;
   color: white;
