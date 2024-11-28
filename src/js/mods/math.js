@@ -533,6 +533,14 @@ const math = {
     }
     return ret.value
   },
+  /**
+   * Retourne le nombre de chiffres (avant et après la virgule) d'un nombre
+   * @param {Number} n nombre
+   * @returns {Int} nombre de chiffres
+   */
+  nombreDeChiffres: function (n) {
+    return Math.abs(n).toString().replace('.', '').length;
+  },
   box: function (expression) {
     return ce.box(expression).simplify().latex.replace(/frac/g, 'dfrac').replace(/\\imaginaryI/g, 'i')
   },
