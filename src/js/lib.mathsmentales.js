@@ -353,12 +353,11 @@ window.onload = function() {
             let allActivities = [];
             let nbq = Number(document.getElementById("addToCartNbq").value);
             selection.forEach(el=>{
-                //MM.carts[0].addActivity(theactivities[el.value],nbq);
                 allActivities.push(library.loadJSON(el.dataset["url"], MM.version))
             })
             Promise.all(allActivities).then(data=>{
                 data.forEach(val=>{
-                    MM.carts[0].addActivity(val,nbq);
+                    MM.carts[MM.selectedCart].addActivity(val,nbq);
                 })
                 let tab = document.querySelector("a[numero$='parameters'].tabs-menu-link");
                 MM.resetAllTabs();
