@@ -229,8 +229,9 @@ function checkURL(urlString){
         parameters.nb=Number(vars.n);
         document.getElementById("nbCartes").value = parameters.nb
         parameters.titreFiche=decodeURI(vars.t);
-        parameters.affirmation = decodeURI(vars.aff) ?? 'J\'ai...'
-        parameters.question = decodeURI(vars.quest) ?? 'Qui a ?'
+        console.log(vars.aff)
+        parameters.affirmation = vars.aff ? decodeURI(vars.aff) : 'J\'ai...'
+        parameters.question = vars.quest ? decodeURI(vars.quest) : 'Qui a ?'
         parameters.doublons = vars.d === "true" ? true : false;
         if(!parameters.doublons)document.getElementById("btnnodoublon").innerHTML = "Doublons"
         // Affectation de la valeur au nombre de feuilles
