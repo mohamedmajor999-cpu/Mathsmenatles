@@ -9,11 +9,11 @@ html{
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body[size="A4"]{
+body[size="A4"] #creator-content {
     width: 21cm;
   min-height: 29.7cm;
 }
-body[size="A4"][layout="landscape"]{
+body[size="A4"][layout="landscape"]  #creator-content {
     width: 27.7cm;
     min-height: 21cm;
 }
@@ -81,6 +81,15 @@ Taille carte de visite
 .g6 {
     grid-template-columns: repeat(6,1fr);
 }
+
+.cols2 {
+    column-count: 2;
+    column-rule: 1pt solid #626262;
+}
+.column-break {
+    break-before: column;
+}
+
 /* Commons
 */
 #creator-container {
@@ -92,7 +101,7 @@ Taille carte de visite
 #creator-content header{
     display: block;
     min-width: 5cm;
-    max-width: 10cm;
+    max-width: 90%;
     padding: 1pt 10pt;
     font-family:'Century Gothic', 'Trebuchet MS', 'Segoe UI', Geneva, Verdana, sans-serif;
     font-size: 1.3rem;
@@ -131,6 +140,7 @@ h3.exercice-title{
 }
 .enonce {
     margin-top:10pt;
+    break-inside: avoid;
 }
 .corrige {
     font-size:smaller;
@@ -170,6 +180,7 @@ h3.exercice-title{
 .zoominbtn, .zoomoutbtn{
     background-color: transparent;
     padding: 4px;
+    cursor: pointer;
 }
 .pointer {
     cursor: pointer;
@@ -190,10 +201,20 @@ h3.exercice-title{
     }
     body {
         position: relative;
+        margin: auto;
+    }
+    #creator-menu {
+        position: absolute;
+        width: 21cm;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #creator-content {
+        position: relative;
         padding: 10mm;
         background: white;
         display: block;
-        margin: 0.5em auto;
+        margin: 2.2cm auto;
         margin-bottom: 0.5cm;
         box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
     }
@@ -213,7 +234,7 @@ h3.exercice-title{
     #creator-menu {
         font-size: 10.5pt;
     }
-    #creator-container::before{
+    #creator-menu #fontSize::after{
         content:"\ CC-BY-NC © 2022 MathsMentales.net";
         color:darkblue !important;
         font-size: 0.8rem;
@@ -228,6 +249,9 @@ h3.exercice-title{
     }
 }
 @media print {
+    body {
+        padding: 1cm;
+    }
     #creator-menu {
         display: none;
     }

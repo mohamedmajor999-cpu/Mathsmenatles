@@ -9,7 +9,7 @@ const MM={};
 MM.version = utils.getVersion()
 
 const content = document.getElementById("creator-content");
-const parameters = {};
+const parameters = {exocols:[]};
 let separationFiches = false;
 let zoom;
 document.getElementById("creator-menu").onclick = (evt)=>{
@@ -17,31 +17,35 @@ document.getElementById("creator-menu").onclick = (evt)=>{
         zoom.plus();
     } else if(evt.target.dataset.what === "out"){
         zoom.minus();
-    } else if(evt.target.id ==="btn-break"){
-        pagebreak();
     } else if(evt.target.id === "fichesSeparation"){
         if(separationFiches){
             separationFiches = false;
-            document.getElementById(evt.target.id).innerText = "Séparer";
+            document.getElementById(evt.target.id).innerText = "Feuilles séparées";
             document.querySelectorAll("footer").forEach(elt=>{elt.className = ""})
         } else {
             separationFiches = true;
-            document.getElementById(evt.target.id).innerText = "Regrouper";
+            document.getElementById(evt.target.id).innerText = "Sans saut de page";
             document.querySelectorAll("footer").forEach(elt=>{elt.className = "break"})
         }
     } else if(evt.target.id==="toggleCorriges"){
         let lesCorriges = document.querySelectorAll("ol.corrige");
-        if(evt.target.innerHTML === " ▼ "){
-            evt.target.innerHTML = " ▲ ";
+        if(evt.target.innerHTML === "Afficher"){
+            evt.target.innerHTML = "Cacher";
             lesCorriges.forEach(el=>{el.classList.remove("hidden")});
             document.querySelectorAll(".correction").forEach(el=>{el.classList.remove("noprint");})
             document.querySelectorAll(".correction .titreCorrection").forEach(el=>{el.classList.remove("noprint")});
         } else {
-            evt.target.innerHTML = " ▼ ";
+            evt.target.innerHTML = "Afficher";
             document.querySelectorAll(".correction").forEach(el=>{el.classList.add("noprint");})
             document.querySelectorAll(".correction .titreCorrection").forEach(el=>{el.classList.add("noprint")});
             lesCorriges.forEach(el=>{el.classList.add("hidden")});
         }
+    } else if(evt.target.name === 'corriges') {
+        parameters.positionCorrection = evt.target.value
+        refresh()
+    } else if(evt.target.name === 'columns') {
+        parameters.columns = evt.target.value
+        refresh()
     }
 }
 document.getElementById("creator-menu").oninput = (evt)=>{
@@ -53,25 +57,26 @@ document.getElementById("creator-menu").oninput = (evt)=>{
  * gestion des click sur les éléments pour afficher les corrections
  */
 document.getElementById("creator-content").onclick = (evt)=>{
-    if(evt.target.id.indexOf("idCorrige")===0){
-        let target = document.getElementById(evt.target.id.replace("idCorrige","corrige"));
+    if(evt.target.id.indexOf("idCorrige")===0) {
+        const target = document.getElementById(evt.target.id.replace("idCorrige","corrige"));
         if(target.classList.toggle("hidden")){
             document.getElementById(evt.target.id).classList.add("noprint");
         } else {
             document.getElementById(evt.target.id).classList.remove("noprint");
         }
-    } else if(evt.target.id.indexOf("titreExo")===0){ // arrive sur le titre de l'exo ou le titre du corrigé.
-        let target = document.getElementById(evt.target.id.replace("titreExo","corrige"));
+    } else if(evt.target.id.indexOf("titreExo")===0) { // arrive sur le titre de l'exo ou le titre du corrigé.
+        const target = document.getElementById(evt.target.id.replace("titreExo","corrige"));
+        const idDest = evt.target.id.replace("titreExo","sectionCorrige");
         if(target.classList.toggle("hidden")){
             // on cache
-            document.querySelector(".correction #"+evt.target.id).classList.add("noprint");
+            document.querySelector("#"+idDest).classList.add("noprint");
             // seulement si tous les éléments sont invisibles
             let invisible = true;
             document.querySelectorAll(".correction .titreCorrection").forEach(el=>{if(!el.classList.contains("noprint")){invisible=false}});
             if(invisible)
                 document.querySelectorAll(".correction").forEach(el=>{el.classList.add("noprint");})
         } else {
-            document.querySelector(".correction #"+evt.target.id).classList.remove("noprint");
+            document.querySelector("#"+idDest).classList.remove("noprint");
             document.querySelectorAll(".correction").forEach(el=>{el.classList.remove("noprint");})
         }
     }
@@ -84,66 +89,66 @@ function changecols(dest,nb){
     document.querySelectorAll("."+dest).forEach((el)=>{el.className=dest+" grid g"+nb})
     // on met à jour les autres boutons
     document.querySelectorAll("[data-dest="+dest+"]").forEach((el)=>{el.value=nb})
+    parameters.exocols[Number(dest.slice(3))] = Number(nb);
 };
-function pagebreak(){
-    let cor = document.querySelectorAll('.correction'),
-    btn = document.getElementById('btn-break');
-    if(!cor[0].classList.contains("pagebreak")){
-        for(let i=0;i<cor.length;i++){
-            cor[i].classList.add("pagebreak");
-        }
-        btn.innerText='même feuille';
-    } else {
-        for(let i=0;i<cor.length;i++){
-            cor[i].classList.remove("pagebreak");
-        }
-        btn.innerText='à part';
-    }
-}
+
 function makePage(){
     if(parameters.alea){
         common.setSeed(parameters.alea);
     }
-    content.innerHTML = "";
-    if(parameters.positionCorrection === "end" && !document.getElementById('btn-break')){
-        document.getElementById('btpCorrigePlace').appendChild(utils.create("button",{id:"btn-break",innerText:"à part",title:"Ne pas mettre sur la même feuille que le sujet"}))
+    if (parameters.columns === undefined || parameters.columns === '1') {
+        content.classList.remove('cols2')
+    } else if (parameters.columns === '2') {
+        content.classList.add('cols2')
     }
+    content.innerHTML = "";
     MM.memory = {};
     for(let qty=0;qty<parameters.nb;qty++){
+        const $enonceContent = utils.create("div", {className:"enonceContent"});        
         common.generateQuestions(parameters);
         // si plus d'une interro, on introduit un pagebreak
-        if(qty>0)
+        if(qty>0){
             content.appendChild(utils.create("footer"));
+            $enonceContent.classList.add('column-break');
+        }
+        content.appendChild($enonceContent);
         // set elements :
-        let aleaCode = utils.create("div",{className:"floatright",innerHTML:"Clé : "+common.seed+" p."+(qty+1)});
-        content.appendChild(aleaCode);
+        let aleaCode = utils.create("div",{className:"fright",innerHTML: "V"+(qty+1)});
+        $enonceContent.appendChild(aleaCode);
         // get the titlesheet
         let sheetTitle = parameters.titreFiche||"Fiche d'exercices";
         // set the titlesheet
         let header = utils.create("header",{innerHTML:sheetTitle});
-        content.appendChild(header);
+        $enonceContent.appendChild(header);
         // get the exercice title
-        let exTitle = parameters.titreExercices||"Exercice n°";
+        let exTitle = parameters.titreExercices !== '' ? parameters.titreExercices : "Exercice n°";
         // get the position of the correction
         let correctionContent = utils.create("div",{className:"correction noprint", id:"divcorrection"+qty});
-        if(parameters.positionCorrection === "end"){
+        if(["end","separe"].includes(parameters.positionCorrection)) {
             let titleCorrection = utils.create("header", {className:"clearfix",innerHTML:"Correction des exercices"});
             correctionContent.appendChild(titleCorrection);
+        }
+        if(parameters.positionCorrection === 'separe') {
+            correctionContent.classList.add('pagebreak');
         }
         // in case of figures
         // create a shit because of the li float boxes
         let divclear = utils.create("div", {className:"clearfix"});
-        for(let i=0;i<parameters.cart.activities.length;i++){
+        for(let i=0;i<parameters.cart.activities.length;i++) {
             const activity = parameters.cart.activities[i];
-            let sectionEnonce = utils.create("section",{id:"enonce"+qty+"-"+i,className:"enonce"});
+            const sectionEnonce = utils.create("section",{id:"enonce"+qty+"-"+i,className:"enonce"});
+            const sectionCorrection = utils.create("section",{id:"sectionCorrige"+qty+"-"+i,className:"correction"});
             //let sectionCorrection = utils.create("section",{id:"corrige"+qty+"-"+i});
-            let input = `<input id="nbcols${qty}-${i}" data-dest="exo${i}" class="noprint fright" value="2" title="Nb de colonnes" type="number" size="2" min="1" max="6">`;
+            if (parameters.exocols[i] === undefined) {
+                parameters.exocols[i] = 2;
+            }
+            let input = `<input id="nbcols${qty}-${i}" data-dest="exo${i}" class="noprint fright" value="${parameters.exocols[i]}" title="Nb de colonnes" type="number" size="2" min="1" max="6">`;
             sectionEnonce.innerHTML += input;
             let h3 = utils.create("h3", {className:"exercice-title pointer",innerHTML:exTitle+(i+1)+" : "+activity.title,id:"titreExo"+qty+"-"+i});
             sectionEnonce.appendChild(h3);
-            let ol = utils.create("ol",{id:"ol"+qty+"-"+i,className:"grid g2 exo"+i});
+            let ol = utils.create("ol",{id:"ol"+qty+"-"+i,className:"grid g"+parameters.exocols[i]+" exo"+i});
             let olCorrection = utils.create("ol", {className:"hidden corrige", "id":"corrige"+qty+"-"+i});
-            for(let j=0;j<activity.questions.length;j++){
+            for(let j=0;j<activity.questions.length;j++) {
                 let li = utils.create("li",{className:"c3"});
                 let liCorrection = utils.create("li");
                 let answer = (Array.isArray(activity.answers[j]))?activity.answers[j][0]:activity.answers[j];
@@ -170,17 +175,18 @@ function makePage(){
             // affichage de la correction
             if(parameters.positionCorrection === "each" ){
                 let hr = utils.create("div",{className:"titreCorrection pointer noprint",innerHTML:"Correction",id:"idCorrige"+qty+"-"+i});
-                sectionEnonce.appendChild(hr);
-                sectionEnonce.appendChild(olCorrection);
-            } else if(parameters.positionCorrection === "end"){
+                sectionCorrection.appendChild(hr);
+                sectionCorrection.appendChild(olCorrection);
+                sectionEnonce.appendChild(sectionCorrection);
+            } else if(["end","separe"].includes(parameters.positionCorrection)){
                 let h3correction = h3.cloneNode(true);
                 h3correction.classList.add("titreCorrection","noprint");
-                correctionContent.appendChild(h3correction);
-                correctionContent.appendChild(olCorrection);
-                correctionContent.appendChild(utils.create("div",{className:"clearfix"}));
-                //correctionContent.appendChild(sectionCorrection);
+                sectionCorrection.appendChild(h3correction);
+                sectionCorrection.appendChild(olCorrection);
+                sectionCorrection.appendChild(utils.create("div",{className:"clearfix"}));
+                correctionContent.appendChild(sectionCorrection);
             }
-            content.appendChild(sectionEnonce);
+            $enonceContent.appendChild(sectionEnonce);
         }
         if(correctionContent.hasChildNodes){
             content.appendChild(correctionContent);
@@ -246,6 +252,9 @@ function checkURL(urlString){
         parameters.tailleTexte=Number(vars.s);
         parameters.nb=Number(vars.n);
         parameters.positionCorrection=vars.cor;
+        if(parameters.positionCorrection === 'sans') {
+            document.getElementById('corriges-params').classList.add('hidden');
+        }
         parameters.titreFiche=decodeURI(vars.t);
         parameters.titreExercices=decodeURI(vars.ex).trim()+" ".replace("📣","");
         parameters.enoncesSepares=vars.es||0;
@@ -261,7 +270,7 @@ function checkURL(urlString){
         // Affectation de la valeur au nombre de feuilles
         document.getElementById("nbFiches").value = parameters.nb;
         zoom = new Zoom("changeFontSize","#thehtml",true,"pt",parameters.tailleTexte);
-        document.getElementById("creator-menu").appendChild(zoom.createCursor());
+        document.getElementById("fontSize").appendChild(zoom.createCursor());
         document.querySelector("html").style["fontSize"] = parameters.tailleTexte+"pt";
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
