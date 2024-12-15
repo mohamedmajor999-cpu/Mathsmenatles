@@ -344,6 +344,8 @@ window.onload = function() {
         } else if(evt.target.id.indexOf("rcli")===0){
             // clic sur une activite
             MM.loadActivity(evt.target.dataset['url'])
+        } else if (evt.target.parentNode.id.indexOf("rcli")===0) {
+            MM.loadActivity(evt.target.parentNode.dataset['url'])
         }
     })
     // bouton d'ajout au panier
