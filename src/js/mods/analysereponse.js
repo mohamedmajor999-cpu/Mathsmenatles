@@ -14,6 +14,8 @@ function analyseReponse (goodAnswer, userAnswer, typeOfAnswer = false) {
       // remplacement de &gt; et &lt;
       userAnswer = userAnswer.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
       userAnswer = userAnswer.replace(/>/g, "\\gt").replace(/</g, "\\lt");
+      // si l'utilisateur a entré un texte \text{...}, on l'enleve
+      userAnswer = userAnswer.replace(/\\text\{([^}]*)\}/g, "$1");
   }
   console.log(goodAnswer, userAnswer);
     if (typeOfAnswer !== false) {
