@@ -1,0 +1,109 @@
+{
+    "title": "Nommer un angle",
+    "type": "text",
+    "description": "Donner le nom d'un angle avec trois lettres.",
+    "ID": "6GC2",
+    "dest": ["6GC", "5GB", "4GB", "3GB"],
+    "options":[
+        {
+            "name":"À l'aide de trois points",
+            "consts": {
+                "points": "ABCDEFGHIJKLMNOPRST",
+                "figures": [
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:5px;font-family:Arial}</style><path d='M32.663 8.014L7.528 22.16 35.88 36.973' fill='none' stroke='#000' stroke-width='.265'/><path d='M12.936 19.144a6.193 6.19 0 01.072 5.898' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='3.036' y='22.827'>${:A}</text><path d='M24.588 10.807l1.518 2.732M27.684 31.145l-.728 2.853' fill='none' stroke='#000' stroke-width='.265'/><text x='24.042' y='9.653'>${:B}</text><text x='26.349' y='37.945'>${:C}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:5px;font-family:Arial}</style><path d='M37.52 25.317L8.075 7.589l10.2 30.963' fill='none' stroke='#000' stroke-width='.265'/><path d='M15.714 12.38a6.193 6.19 51.996 01-4.602 3.688' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='3.886' y='6.921'>${:A}</text><path d='M27.927 17.97l-1.882 2.308M17.485 31.51l-2.61.667' fill='none' stroke='#000' stroke-width='.265'/><text x='27.32' y='16.817'>${:B}</text><text x='18.881' y='31.813'>${:C}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:5px;font-family:Arial}</style><path d='M25.148 38.856l8.874-32.18L5.172 8.48' fill='none' stroke='#000' stroke-width='.265'/><path d='M32.511 11.59a6.19 6.193 48.46 01-3.965-4.367' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='33.884' y='5.972'>${:A}</text><path d='M15.41 6.584l.015 2.526M28.287 34.465l-3.012-.792' fill='none' stroke='#000' stroke-width='.265'/><text x='28.889' y='35.794'>${:B}</text><text x='14.137' y='5.172'>${:C}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:5px;font-family:Arial}</style><path d='M37.702 38.382l-24.226-5.576L5.173 8.48' fill='none' stroke='#000' stroke-width='.265'/><path d='M12.025 28.041a6.193 6.19-71.74 015.113 1.308 6.193 6.19-71.74 012.245 4.778' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='10.892' y='36.445'>${:A}</text><path d='M8.476 14.869l-2.174.628M28.287 34.465l-.786 2.53' fill='none' stroke='#000' stroke-width='.265'/><text x='28.889' y='35.794'>${:B}</text><text x='9.064' y='16.485'>${:C}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:5px;font-family:Arial}</style><path d='M7.066 41.04l4.552-24.439 23.956-9.318' fill='none' stroke='#000' stroke-width='.265'/><path d='M16.319 14.951a6.193 6.19 15.852 01-1.092 5.164 6.193 6.19 15.852 01-4.68 2.444' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='9.031' y='15.205'>${:A}</text><path d='M29.33 10.852l-.719-2.146M10.583 31.47l-2.56-.68' fill='none' stroke='#000' stroke-width='.265'/><text x='10.861' y='34.079'>${:B}</text><text x='28.808' y='14.368'>${:C}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:5px;font-family:Arial}</style><path d='M36.279 19.733L13.476 32.806 5.173 8.48' fill='none' stroke='#000' stroke-width='.265'/><path d='M12.025 28.041a6.193 6.19-71.74 015.955 2.152' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='11.513' y='36.992'>${:A}</text><path d='M8.476 14.869l-2.174.628M27.12 23.626l.892 2.165' fill='none' stroke='#000' stroke-width='.265'/><text x='28.269' y='28.276'>${:B}</text><text x='8.809' y='15.865'>${:C}</text></svg>"
+                ]
+            },
+            "vars": {
+                "pts": "0_18_3_^&",
+                "fig": "0_5",
+                "A": "${:points[:pts[0]]}",
+                "B": "${:points[:pts[1]]}",
+                "C": "${:points[:pts[2]]}"
+            },
+            "figure": {
+                "type": "svg",
+                "content": "${:figures[:fig]}"
+            },
+            "question":"Donner un nom à l'angle marqué",
+            "answer":"L’angle marqué peut s'appeler $$\\color{red}{\\widehat{${:B}${:A}${:C}}}$$ ou $$\\color{red}{\\widehat{${:C}${:A}${:B}}}$$.",
+            "value":[
+                "${:B}${:A}${:C}",
+                "${:C}${:A}${:B}",
+                "\\widehat{${:B}${:A}${:C}}",
+                "\\widehat{${:C}${:A}${:B}}"
+            ]
+        },{
+            "name": "À l'aide du sommet et de directions",
+            "consts":{
+                "points":"ABCDEFGHIJKLMNOPRST",
+                "directions":"tuvwxyz",
+                "figures":[
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:4.233px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M32.663 8.014L7.528 22.16 35.88 36.973' fill='none' stroke='#000' stroke-width='.265'/><path d='M12.936 19.144a6.193 6.19 0 01.072 5.898' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='3.036' y='22.827'>${:A}</text><text x='28.959' y='8.135' class='i'>${:x}</text><text x='32.116' y='39.766' class='i'>${:y}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:4.233px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M37.52 25.317L8.075 7.589l10.2 30.963' fill='none' stroke='#000' stroke-width='.265'/><path d='M15.714 12.38a6.193 6.19 51.996 01-4.602 3.688' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='3.886' y='6.921'>${:A}</text><text x='35.213' y='23.435' class='i'>${:x}</text><text x='13.842' y='38.37' class='i'>${:y}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:4.233px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M25.148 38.856l8.874-32.18L5.172 8.48' fill='none' stroke='#000' stroke-width='.265'/><path d='M32.511 11.59a6.19 6.193 48.46 01-3.965-4.367' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='33.884' y='5.972'>${:A}</text><text x='26.262' y='38.823' class='i'>${:x}</text><text x='3.955' y='7.362' class='i'>${:y}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:4.233px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M37.702 38.382l-24.226-5.576L5.173 8.48' fill='none' stroke='#000' stroke-width='.265'/><path d='M12.025 28.041a6.193 6.19-71.74 015.113 1.308 6.193 6.19-71.74 012.245 4.778' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='10.892' y='36.445'>${:A}</text><text x='36' y='37.29' class='i'>${:x}</text><text x='6.035' y='10.2' class='i'>${:y}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:4.233px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M7.066 41.04l4.552-24.439 23.956-9.318' fill='none' stroke='#000' stroke-width='.265'/><path d='M16.319 14.951a6.193 6.19 15.852 01-1.092 5.164 6.193 6.19 15.852 01-4.68 2.444' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='9.031' y='15.205'>${:A}</text><text x='4' y='39.954' class='i'>${:y}</text><text x='31' y='7.471' class='i'>${:x}</text></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 42.333 42.333' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:4.233px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M36.279 19.733L13.476 32.806 5.173 8.48' fill='none' stroke='#000' stroke-width='.265'/><path d='M12.025 28.041a6.193 6.19-71.74 015.955 2.152' fill='none' stroke='#1a1a1a' stroke-width='.249' stroke-linecap='round' stroke-linejoin='round'/><text x='11.513' y='36.992'>${:A}</text><text x='33.816' y='24.189' class='i'>${:y}</text><text x='2.568' y='10.5' class='i'>${:x}</text></svg>"
+                ]
+            },
+            "vars": {
+                "som": "0_18",
+                "dirs":"0_6_2_^&",
+                "fig": "0_5",
+                "A": "${:points[:som]}",
+                "x": "${:directions[:dirs[0]]}",
+                "y": "${:directions[:dirs[1]]}"
+            },
+            "figure": {
+                "type": "svg",
+                "content": "${:figures[:fig]}"
+            },
+            "question":"Donner un nom à l'angle marqué",
+            "answer":"L’angle marqué peut s'appeler $$\\color{red}{\\widehat{${:x}${:A}${:y}}}$$ ou $$\\color{red}{\\widehat{${:y}${:A}${:x}}}$$.",
+            "value":[
+                "${:x}${:A}${:y}",
+                "${:y}${:A}${:x}",
+                "\\widehat{${:x}${:A}${:y}}",
+                "\\widehat{${:y}${:A}${:x}}"
+            ]
+        },{
+            "name":"Angles simples formés par deux droites",
+            "consts":{
+                "points":"ABCDEFGHIJKLMNOPRST",
+                "directions":"tuvwxyz",
+                "figures":[
+                    "<svg width='10em' height='10em' viewBox='0 0 31.75 31.75' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:3px;font-family:Arial}.i{font-family:KaTeX_Math;font-style:italic}</style><g stroke-width='.265'><path d='M7.496 3.465l18.067 24.643M27.154 3.43L4.879 27.79M21.497 8.167l1.343 1.874M8.203 22.805l1.166 1.414' fill='none' stroke='#000'/><text x='18.668' y='16.653' text-anchor='middle'>${:O}</text><text x='21.78' y='7.602' text-anchor='middle'>${:A}</text><text x='7.849' y='22.133' text-anchor='middle'>${:B}</text><text x='9.9' y='4.561' text-anchor='middle' class='i'>${:x}</text><text x='26.128' y='26.305' text-anchor='middle' class='i'>${:y}</text><path d='M19.539 12.087a4.84 4.694 0 011.408 3.608 4.84 4.694 0 01-1.855 3.413' fill='none' stroke='#0608be' stroke-linecap='round' stroke-linejoin='round' visibility='${:vis0}' /><path d='M18.308 18.266a3.606 3.606 0 01-4.446-.17' fill='none' stroke='#241ae2' stroke-linecap='round' stroke-linejoin='round' visibility='${:vis1}'/><path d='M13.821 18.061a3.606 3.606 0 01-1.23-2.883 3.606 3.606 0 011.492-2.758' fill='none' stroke='#301de6' stroke-linecap='round' stroke-linejoin='round' visibility='${:vis2}'/><path d='M14.116 12.396a3.606 3.606 0 014.572.344' fill='none' stroke='#0a0cd7' stroke-linecap='round' stroke-linejoin='round' visibility='${:vis3}'/></g></svg>",
+                    "<svg width='10em' height='10em' viewBox='0 0 31.75 31.75' xmlns='http://www.w3.org/2000/svg'><style>text{fill:#1a1a1a;font-size:3px;font-family:Arial;text-align:center}.i{font-family:KaTeX_Math;font-style:italic}</style><path d='M1.47 7.315l28.168 13.818M27.154 3.43L4.879 27.79m2.368-4.148l1.468 1.3M6.253 10.43l.29-1.511' fill='none' stroke='#000' stroke-width='.265'/><text x='13' y='16.5' text-anchor='middle' stroke-width='.265'>${:O}</text><text x='9' y='28' text-anchor='middle' stroke-width='.265'>${:A}</text><text x='6.199' y='12.933' text-anchor='middle' stroke-width='.265'>${:B}</text><text x='24.575' y='3.686' text-anchor='middle' stroke-width='.265' class='i'>${:x}</text><text x='27.303' y='23.705' text-anchor='middle' stroke-width='.265' class='i'>${:y}</text><path d='M17.889 13.537c.756.651.868 1.115.508 2.058-.46.843-1.611 1.536-2.93.638' fill='none' stroke='#0608be' stroke-linecap='round' stroke-linejoin='round' stroke-width='.265' visibility='${:vis3}'/><path d='M19.158 16.066c-.97 1.448-2.88 1.853-4.146.78' fill='none' stroke='#241ae2' stroke-linecap='round' stroke-linejoin='round' stroke-width='.265' visibility='${:vis0}'/><path d='M14.823 13.664c.467-.992 1.956-1.443 2.88-.87 1.373.572 1.486 1.599 1.01 2.876' fill='none' stroke='#301de6' stroke-linecap='round' stroke-linejoin='round' stroke-width='.265' visibility='${:vis1}'/><path d='M14.191 13.421c.685-1.744 3.051-2 4.472-.781' fill='none' stroke='#0a0cd7' stroke-linecap='round' stroke-linejoin='round' stroke-width='.265' visibility='${:vis2}'/></svg>"
+                ]
+            },            
+            "vars": {
+                "pts": "0_18_3_^&",
+                "dirs":"0_6_2_^&",
+                "fig": "0_1",
+                "O": "${:points[:pts[0]]}",
+                "A": "${:points[:pts[1]]}",
+                "B": "${:points[:pts[2]]}",
+                "x": "${:directions[:dirs[0]]}",
+                "y": "${:directions[:dirs[1]]}",
+                "angle":"0_3",
+                "vis0":"${:angle==0?'visible':'hidden'}",
+                "vis1":"${:angle==1?'visible':'hidden'}",
+                "vis2":"${:angle==2?'visible':'hidden'}",
+                "vis3":"${:angle==3?'visible':'hidden'}",
+                "ans1":"${:angle==0?'\\widehat{'+:A+:O+:y+'}'::angle==1?'\\widehat{'+:y+:O+:B+'}'::angle==2?'\\widehat{'+:B+:O+:x+'}':'\\widehat{'+:x+:O+:A+'}'}",
+                "ans2":"${:angle==0?'\\widehat{'+:y+:O+:A+'}'::angle==1?'\\widehat{'+:B+:O+:y+'}'::angle==2?'\\widehat{'+:x+:O+:B+'}':'\\widehat{'+:A+:O+:x+'}'}"
+            },
+            "figure": {
+                "type": "svg",
+                "content": "${:figures[:fig]}"
+            },
+            "question":"Donner un nom à l'angle marqué",
+            "answer":"L’angle marqué peut s'appeler $$\\color{red}{${:ans1}}$$ ou $$\\color{red}{${:ans2}}$$."
+        }
+    ]
+}
