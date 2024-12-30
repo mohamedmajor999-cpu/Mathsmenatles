@@ -212,7 +212,22 @@ function makePage() {
                 if (k !== "dest")
                     MM.memory[k].display();
             }
+            setAllCardSameHeight()
         }, 300);
+    } else {
+        setAllCardSameHeight()
+    }
+}
+
+function setAllCardSameHeight() {
+    const fronts = document.querySelectorAll('.flip-card-front');
+    const backs = document.querySelectorAll('.flip-card-back');
+    for (let i = 0; i < fronts.length; i++) {
+        if (fronts[i].offsetHeight > backs[i].offsetHeight) {
+            backs[i].style.height = fronts[i].offsetHeight + 'px';
+        } else {
+            fronts[i].style.height = backs[i].offsetHeight + 'px';
+        }
     }
 }
 
