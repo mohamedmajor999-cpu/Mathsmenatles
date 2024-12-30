@@ -1228,6 +1228,7 @@ window.onload = () => {
   document.getElementById("corrige-content").addEventListener("click",(evt)=>{
     if(evt.target.innerHTML === "Figure"){
         diaporama.memory[evt.target.dataset.id].toggle();
+        saveContent()
     }
 })
   diaporama.checkURL();
