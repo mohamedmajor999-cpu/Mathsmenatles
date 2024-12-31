@@ -15,6 +15,7 @@ let pageFormat = 0;// portrait
 let answersBorderColor = "#d0d0d0"
 let couleurDuCoin = '#bfbfbf'
 let couleurDuTexteDeco = '#bfbfbf'
+let zoom
 const parameters = {coincolor:couleurDuCoin, bordercolor:answersBorderColor, decocolor:couleurDuTexteDeco};
 
 //let zoom;
@@ -96,6 +97,15 @@ document.getElementById('radioQ').onclick = ()=>{
 document.getElementById('radioText').onclick = ()=>{
     parameters.numeroter = 'text'
     refresh()
+}
+document.getElementById('fontSize').onclick = (evt) =>{
+    if(evt.target.dataset.what === "in"){
+        zoom.plus();
+    } else if(evt.target.dataset.what === "out"){
+        zoom.minus();
+    } else if(evt.target.dataset.what === "reset"){
+        zoom.reset();
+    }
 }
 
 function changeText(evt) {
@@ -333,7 +343,6 @@ function checkURL(urlString){
         }
         $destination.prepend(buttonEdit);
     }
-
     if(vars.c!==undefined){
         if(vars.a){
             parameters.alea = vars.a;
@@ -346,7 +355,9 @@ function checkURL(urlString){
         parameters.tailleTexte=10.5;
         parameters.disposition=vars.disp||'both';//'both' or 'separated'
         document.getElementById('btnRectoVerso').innerText = parameters.disposition==='both'?'Recto':'Recto/Verso'
-        //parameters.nb=Number(vars.n);
+        zoom = new Zoom("changeFontSize","#creator-content",true,"pt",parameters.tailleTexte);
+        document.getElementById("fontSize").appendChild(zoom.createCursor());
+            //parameters.nb=Number(vars.n);
         //document.getElementById("nbDominos").value = parameters.nb
         parameters.titreFiche=decodeURI(vars.t);
         //parameters.doublons = eval(vars.d)||false;

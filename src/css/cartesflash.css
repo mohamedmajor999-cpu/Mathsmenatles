@@ -74,6 +74,13 @@ footer {page-break-after: always;}
 .s155{
     font-size: 15.5pt;
 }
+.zoom {
+    display: inline-block;
+}
+.zoom svg {
+    width: 1em;
+    height: 1em;
+}
 /*
 */
 .floatright{
