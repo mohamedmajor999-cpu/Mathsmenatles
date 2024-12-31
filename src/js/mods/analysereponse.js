@@ -17,7 +17,8 @@ function analyseReponse (goodAnswer, userAnswer, typeOfAnswer = false) {
       // si l'utilisateur a entré un texte \text{...}, on l'enleve
       userAnswer = userAnswer.replace(/\\text\{([^}]*)\}/g, "$1");
   }
-  console.log(goodAnswer, userAnswer);
+  // console.log(goodAnswer, userAnswer);
+  
     if (typeOfAnswer !== false) {
       // confrontation de listes séparées par des ;
       if (typeOfAnswer === "liste") {
