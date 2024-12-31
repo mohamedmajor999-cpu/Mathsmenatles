@@ -10,7 +10,8 @@
     "consts":{"vocab":["linéaire", "affine non linéaire"]},
     "vars":{"a":"d-2_2_1", "c":"-6_6_^0","choix":"0_1", "b":"${:choix*:c/2}", "type":"${:vocab[:choix]}"},
     "figure":{
-        "type":"graph", 
+        "type":"graph",
+        "scale":2.5,
         "boundingbox":[-5,5,5,-5],
         "axis":true,
         "grid":true,

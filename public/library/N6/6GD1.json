@@ -21,8 +21,23 @@
             "axis":false,
             "boundingbox":[0,10,10,0],
             "content":[
-                ["jessiescript", "A=point(2,2);B=point(8,2);C=point(8,8);D=point(2,8);AB=segment(A,B);BC=segment(B,C);CD=segment(C,D);DA=segment(D,A);"],
-                ["text", [5,1,"${:a} ${:c}"], {"anchorX":"middle", "fontSize":14}]
+                ["point",[2,2],{"name":"A","size":0,"label":{"offset":[-6,-8]}}],
+                ["point",[2,8],{"name":"B","size":0,"label":{"offset":[-6,6]}}],
+                ["point",[8,8],{"name":"C","size":0,"label":{"offset":[0,6]}}],
+                ["point",[8,2],{"name":"D","size":0,"label":{"offset":[0,-8]}}],
+                ["segment",["A","B"]],
+                ["segment",["B","C"]],
+                ["segment",["C","D"]],
+                ["segment",["D","A"]],
+                ["angle",["A","B","C"],{"radius":1,"label":{"visible":false}}],
+                ["angle",["B","C","D"],{"radius":1,"label":{"visible":false}}],
+                ["angle",["C","D","A"],{"radius":1,"label":{"visible":false}}],
+                ["angle",["D","A","B"],{"radius":1,"label":{"visible":false}}],
+                ["text", [4.8,8,"//"]],
+                ["text", [2,5,"//"],{"rotate":90}],
+                ["text", [4.6,2,"//"]],
+                ["text", [8,5,"//"],{"rotate":90}],
+                ["text", [5,1,"${:a} ${:c}"], {"anchorX":"middle", "fontSize":13}]
             ]
         },
         "value":["${:b} ${:c}^2", "${:b}${:c}^2"]
@@ -37,8 +52,23 @@
                 "axis":false,
                 "boundingbox":[0,10,10,0],
                 "content":[
-                    ["jessiescript", "A=point(2,2);B=point(8,2);C=point(8,8);D=point(2,8);AB=segment(A,B);BC=segment(B,C);CD=segment(C,D);DA=segment(D,A);"],
-                    ["text", [5,5,"${:b} ${:c}²"], {"anchorX":"middle", "fontSize":14}]
+                    ["point",[2,2],{"name":"A","size":0,"label":{"offset":[-6,-8]}}],
+                    ["point",[2,8],{"name":"B","size":0,"label":{"offset":[-6,6]}}],
+                    ["point",[8,8],{"name":"C","size":0,"label":{"offset":[0,6]}}],
+                    ["point",[8,2],{"name":"D","size":0,"label":{"offset":[0,-8]}}],
+                    ["segment",["A","B"]],
+                    ["segment",["B","C"]],
+                    ["segment",["C","D"]],
+                    ["segment",["D","A"]],
+                    ["angle",["A","B","C"],{"radius":1,"label":{"visible":false}}],
+                    ["angle",["B","C","D"],{"radius":1,"label":{"visible":false}}],
+                    ["angle",["C","D","A"],{"radius":1,"label":{"visible":false}}],
+                    ["angle",["D","A","B"],{"radius":1,"label":{"visible":false}}],
+                    ["text", [4.8,8,"//"]],
+                    ["text", [2,5,"//"],{"rotate":90}],
+                    ["text", [4.6,2,"//"]],
+                    ["text", [8,5,"//"],{"rotate":90}],
+                    ["text", [5,5,"${:b} ${:c}²"], {"anchorX":"middle", "fontSize":13}]
                 ]
             },
             "value":["${:a} ${:c}", "${:a}${:c}"]

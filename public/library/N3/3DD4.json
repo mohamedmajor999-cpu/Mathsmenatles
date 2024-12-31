@@ -8,7 +8,8 @@
     "keys":["_","-","/","_","_","_","_","_"],
     "vars":{"xa":"-4_0","ya":"-4_4","xb":"1_4","yb":"-4_4", "a":"${:yb-:ya}","b":"${:xb-:xa}"},
     "figure":{
-        "type":"graph", 
+        "type":"graph",
+        "scale":2.5,
         "boundingbox":[-5,5,5,-5],
         "axis":true,
         "grid":true,

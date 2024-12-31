@@ -278,6 +278,8 @@ export default class Figure {
         this.boundingbox = obj.boundingbox;
         this.axis = obj.axis;
         this.grid = obj.grid;
+        this.scale = (obj.scale !== undefined)?obj.scale:1; // default scale is 1
+        this.xscale = (obj.xscale !== undefined)?obj.xscale:1;
         this.id = id;
         this.keepAspect = (obj.keepAspect!==undefined)?obj.keepAspect:true;
         this.size = size;//[w,h]
@@ -302,10 +304,20 @@ export default class Figure {
             div.appendChild(canvas);
             destination.appendChild(div);
         } else if(this.type === "graph"){
-            let div = document.createElement("div");
+            const div = document.createElement("div");
             div.id=this.id;
-            div.className = "jsxbox fig";
+            div.className = "fig";
             destination.appendChild(div);
+            // create svg fixed container for jsxgraph temp construction
+            this.div2 = document.createElement("div");
+            this.div2.id = this.id + "-svgcontainer";
+            const div3 = document.createElement("div");
+            div3.id = this.id + "-svg";
+            this.div2.appendChild(div3);
+            div3.style.width = Math.abs(this.boundingbox[2] - this.boundingbox[0])*10*this.scale + "px";
+            div3.style.height = Math.abs(this.boundingbox[3] - this.boundingbox[1])*10*this.scale + "px";
+            this.div2.style.display = 'none';
+            document.body.appendChild(this.div2);
         } else if(this.type === "svg"){
             let div = document.createElement("div");
             div.id=this.id;
@@ -384,11 +396,18 @@ export default class Figure {
             this.figure = new Chart(target, this.content);
             
         } else if(this.type === "graph"){ //JSXGraph
+            this.div2.style.display = 'block';
+            const target = document.getElementById(this.id)
+            if (this.svg !== undefined){
+                target.innerHTML = this.svg;
+                return
+            }
             try{
+                JXG.Options.text.display = 'internal'
                 if(destination === undefined){
-                    this.figure = JXG.JSXGraph.initBoard(this.id, {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid});
+                    this.figure = JXG.JSXGraph.initBoard(this.id + "-svg", {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid});
                 } else {
-                    this.figure = destination.JXG.JSXGraph.initBoard(this.id, {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid});
+                    this.figure = destination.JXG.JSXGraph.initBoard(this.id + "-svg", {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid});
                 }
                 let content = utils.clone(this.content);
                 let elements = [];
@@ -434,6 +453,37 @@ export default class Figure {
                             elements[i] = this.figure.create(type,commande,options);
                     }
                 }
+                let svg = new XMLSerializer().serializeToString(this.figure.renderer.svgRoot)
+                // get the svg height value in the svg string
+                const height = svg.match(/height="([^"]+)"/)[1];
+                // get the svg width value in the svg string
+                const width = svg.match(/width="([^"]+)"/)[1];
+                // remove the <filter> tag in the svg string
+                svg = svg.replace(/<filter.*?<\/filter>/g, '');
+                // suppress all font-size:12px; in the svg string
+                svg = svg.replace(/font-size: 12px;/g, '');
+                svg = svg.replace(/stroke-width="2px"/g, 'stroke-width="2"')
+                // add a size="4" in each <text> tag in the svg string
+                // Expression régulière pour trouver toutes les balises <text> dans la chaîne SVG
+                let regex = /<text.*?>/g;
+                // Fonction callback pour remplacer chaque match par le même texte avec l'attribut size="4" ajouté
+                let callback = function (match, offset, string) {
+                    // On cherche les balises <text> qui ne sont pas vides
+                    if(match.trim().length > 0){
+                        return match.slice(0,5) + " font-size=\"10\"" + match.slice(6);
+                    }
+                    // Si la balise est vide, on l'ignore
+                    else{
+                        return match;
+                    }
+                };
+                // Utilisation de la méthode replace() pour remplacer chaque élément correspondant à la regex avec le résultat du callback
+                svg = svg.replace(regex, callback);
+                svg = svg.replace(/<svg[^>]*>/, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+width+' '+height+'" width="'+(width*this.xscale/10/this.scale)+'em" height="'+(height*this.xscale/10/this.scale)+'em">');
+                target.innerHTML = svg;
+                this.svg = svg;
+                // remove the div2 from the dom
+                this.div2.parentNode.removeChild(this.div2);
             } catch(error){
                 utils.debug("Figure", error, this);
             }

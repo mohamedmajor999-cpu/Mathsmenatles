@@ -28,14 +28,14 @@
                 "mes":"${:cx==0?:ai::cx==1?90::obt}"},
             "figure":{
                 "type":"graph", 
-                "boundingbox":[-5,5,5,-5],
+                "boundingbox":[-6,6,6,-6],
                 "axis":false,
                 "grid":false,
                 "content" :[
-                        ["point",[0,0],{"name":"${:A}","size":4, "face":"x"}],
-                        ["point",["${math.round(4*Math.cos(Math.PI*:in/180),3)}","${math.round(4*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":4, "face":"x"}],
+                        ["point",[0,0],{"name":"${:A}","size":3, "face":"x"}],
+                        ["point",["${math.round(4*Math.cos(Math.PI*:in/180),3)}","${math.round(4*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":3, "face":"x"}],
                         ["line",["${:A}","${:B}"],{"straightFirst":false}],
-                        ["point",["${math.round(4*Math.cos(Math.PI*(:in+:mes)/180),3)}","${math.round(4*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":4, "face":"x"}],
+                        ["point",["${math.round(4*Math.cos(Math.PI*(:in+:mes)/180),3)}","${math.round(4*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":3, "face":"x"}],
                         ["line",["${:A}","${:C}"],{"straightFirst":false}],
                         ["angle", ["${:B}", "${:A}", "${:C}"],{"radius":1,"label":{"visible":false}}]
                     ]    
@@ -56,15 +56,15 @@
                 "in":"-180_180",
                 "mes":"${:cx==3?0.2::cx==4?180:359.8}"},
             "figure":{
-                "type":"graph", 
-                "boundingbox":[-5,5,5,-5],
+                "type":"graph",
+                "boundingbox":[-6,6,6,-6],
                 "axis":false,
                 "grid":false,
                 "content" :[
-                        ["point",[0,0],{"name":"${:A}","size":4, "face":"x"}],
-                        ["point",["${math.round(3.5*Math.cos(Math.PI*:in/180),3)}","${math.round(3.5*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":4, "face":"x"}],
+                        ["point",[0,0],{"name":"${:A}","size":3, "face":"x"}],
+                        ["point",["${math.round(3.5*Math.cos(Math.PI*:in/180),3)}","${math.round(3.5*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":3, "face":"x"}],
                         ["line",["${:A}","${:B}"],{"straightFirst":false}],
-                        ["point",["${math.round(4.55*Math.cos(Math.PI*(:in+:mes)/180),3)}","${math.round(4.55*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":4, "face":"x"}],
+                        ["point",["${math.round(4.55*Math.cos(Math.PI*(:in+:mes)/180),3)}","${math.round(4.55*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":3, "face":"x"}],
                         ["line",["${:A}","${:C}"],{"straightFirst":false}],
                         ["angle", ["${:B}", "${:A}", "${:C}"],{"radius":1,"label":{"visible":false}}]
                     ]    
@@ -91,7 +91,7 @@
                 "axis":false,
                 "grid":false,
                 "content": [
-                    ["point", [0,0], {"name":"O","size":4,"face":"x","visible":false}],
+                    ["point", [0,0], {"name":"O","size":3,"face":"x","visible":false}],
                     ["point", ["${math.round(3.5*Math.cos(Math.PI*:aa/180),3)}","${math.round(3.5*Math.sin(Math.PI*:aa/180),3)}"], {"name":"A","visible":0}],
                     ["point", ["${math.round(3.5*Math.cos(Math.PI*(:aa+:ab)/180),3)}","${math.round(3.5*Math.sin(Math.PI*(:aa+:ab)/180),3)}"], {"name":"B","visible":0}],
                     ["point", ["${math.round(3.5*Math.cos(Math.PI*(:aa+:ac)/180),3)}","${math.round(3.5*Math.sin(Math.PI*(:aa+:ac)/180),3)}"], {"name":"C","visible":0}],

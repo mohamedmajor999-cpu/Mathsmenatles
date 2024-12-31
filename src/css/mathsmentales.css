@@ -224,6 +224,11 @@ mark {
   left:0;
   /*visibility: hidden;*/
 }
+.fig .italic {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-style: italic;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -514,7 +519,7 @@ ul.menu, .menu ul {
 }
 #tab-parameters .fig {
   width:90%;
-  height:150px;
+  /*height:150px;*/
 }
 #divparams .tooltip, #colparameters .tooltip, #resultat-chercher .tooltip {
   position: relative;
@@ -562,17 +567,17 @@ ul.menu, .menu ul {
 #divparams .tooltip:hover .tooltiptext, #colparameters .tooltip:hover .tooltiptext, #resultat-chercher .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-#enonce-content .fig{
+/*#enonce-content .fig{
   height: 150px;
   width: 150px;
 }
 /** Fin tab-params **/
 
 /* tab corrige */
-#corrige-content .fig{
+/*#corrige-content .fig{
   height: 300px;
   width: 300px;
-}
+}*/
 #corrige-content li > div {
   display: none;
 }

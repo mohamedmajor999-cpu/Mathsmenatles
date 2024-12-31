@@ -91,7 +91,7 @@
                 "a": "1_30",
                 "b": "1_30",
                 "c": "${:choix?(:a+:b+1):(Math.abs(:a-:b)+1)}_${:choix?(:a+:b+10):(:a+:b-1)}",
-                "rl": "${:choix?'NON, un triangle peut avoir des côtés de longueurs '+:listeNombres[:choixliste]:'OUI, un triangle de côtés '+:listeNombres[:choixliste]+' existe.'}",
+                "rl": "${:choix?'NON, un triangle ne peut pas avoir des côtés de longueurs '+:listeNombres[:choixliste]:'OUI, un triangle de côtés '+:listeNombres[:choixliste]+' existe.'}",
                 "rc": "${:choix?'N':'O'}",
                 "vc": "${:choix?'NON':'OUI'}"
             },

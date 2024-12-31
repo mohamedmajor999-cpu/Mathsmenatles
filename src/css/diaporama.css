@@ -96,19 +96,27 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
   height:50%;
   width:50%;
 }
-#corrige-content .fig {
+/* #corrige-content .fig {
   height: 300px;
   width: 300px;
-}
+} */
 #enonce-content .fig {
   height: 150px;
   width: 150px;
+}
+.fig svg {
+  max-width: 100% !important;
+  max-height: 100% !important;
 }
 #corrige-content li > div {
   display: none;
 }
 #corrige-content li > div.visible {
   display: block;
+}
+.fig .italic {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-style: italic;
 }
 /* Font sizes
 */

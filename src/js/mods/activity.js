@@ -929,6 +929,8 @@ export default class activity {
                         this.figures[i] = {
                             "boundingbox":this.cFigure.boundingbox,
                             "axis":this.cFigure.axis,
+                            "scale":this.cFigure.scale,
+                            "xscale":this.cFigure.xscale,
                             "grid":this.cFigure.grid?true:false,
                             "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true,
                             ...this.figures[i]

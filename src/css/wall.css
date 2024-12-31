@@ -19,7 +19,7 @@ body {
 }
 
 .flip-card-inner .fig{
-  aspect-ratio: 15 / 10;
+  /*aspect-ratio: 15 / 10;*/
   width: 80%;
 }
 .flip-card-inner.rotate .fig {

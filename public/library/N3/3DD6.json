@@ -3,7 +3,7 @@
     "dest":["3DD","2F2","Ko4"],
     "title":"Lectures graphiques d'images et d'antécédents",
     "description":"Utilisation de la représentation graphique pour lire des images et des antécédents<br>pas de correction en ligne",
-    "type":"latex",
+    "type":"text",
     "repeat":2,
     "keys":["L","A","_","_","_","_","_","_"],
     "textSize":"small",
@@ -11,34 +11,62 @@
         {
         "name":"Lecture d'image",
         "consts":{"delt":"math.sqrt(${:a})"},
-        "vars":{"a0":"1_6", "a":"${:a0*0.03}", "x1":"1_5", "x2":"-5_5","x3":"-5_-1","c":"${:a*:x1*:x2+:a*:x1*:x3+:a*:x2*:x3}","b":"${-1*:a*(:x1+:x2+:x3)}","d":"${-1*:a*:x1*:x2*:x3}","image":"-4_4","antec":"-4_4"},
+        "vars":{"cfs":"0_4_3_^$","sig0":"-1_1_^0","a":"${:cfs[0]*:sig0}","b":"${:cfs[1]*:sig0**2}","c":"${:cfs[2]*:sig0**3}","d":"0_${(:sig0**5)*3}",
+        "x0":"-5_5",
+        "im0":"${math.round(:a*:x0**3/125+:b*:x0**2/25+:c*:x0/5+:d,1)}",
+        "x1":"${Math.abs(:im0)>5?'-4_4':0}",
+        "im1":"${Math.abs(:im0)>5?math.round(:a*:x1**3/125+:b*:x1**2/25+:c*:x1/5+:d,1):0}",
+        "x2":"${Math.abs(:im1)>5?'-3_3':0}",
+        "im2":"${Math.abs(:im1)>5?math.round(:a*:x2**3/125+:b*:x2**2/25+:c*:x2/5+:d,1):0}",
+        "x3":"${Math.abs(:im2)>5?'-2_2':0}",
+        "im3":"${Math.abs(:im2)>5?math.round(:a*:x3**3/125+:b*:x3**2/25+:c*:x3/5+:d,1):0}",
+        "x":"${Math.abs(:im0)<=5?:x0:Math.abs(:im1)<=5?:x1:Math.abs(:im2)<=5?:x2::x3}",        
+        "image":"${Math.abs(:im0)<=5?:im0:Math.abs(:im1)<=5?:im1:Math.abs(:im2)<=5?:im2::im3}",
+        "arr":"${0.5*math.round(2*:a*:x**3/125+2*:b*:x**2/25+2*:c*:x/5+2*:d,0)}"},
         "figure":{  
-            "type":"graph", 
-            "boundingbox":[-5,10,5,-10],
+            "type":"graph",
+            "scale":2.5,
+            "boundingbox":[-6,6,6,-6],
             "keepAspect": false,
             "axis":true,
             "grid":true,
             "content" :[
-                ["functiongraph", "${:a}*x**3+${:b}*x**2+${:c}*x+${:d};"]]   
+                ["functiongraph", "${:a}*x**3/125+${:b}*x**2/25+${:c}*x/5+${:d};"]]   
             },
-        "question":"\\text{A 0,5 près, lire l'image de ${:image}}",
-        "answer":"\\text{L'image de ${:image} est } \\color{red}{${math.round(:a*:image**3+:b*:image**2+:c*:image+:d,1)}} \\text{ (accepté autour de } ${0.5*math.round(2*:a*:image**3+2*:b*:image**2+2*:c*:image+2*:d,0)})"
+        "question":"À 0,5 près, lire l'image de $$${:x}$$",
+        "answer":"L’image de $$${:x}$$ est <span class='red'>${:image}</span> (accepté autour de $$${:arr}$$)"
         },
         {
         "name":"Lecture d'antécédents",
-        "vars":{"b":"1_5", "a":"${-1*:b*3}_${:b*3}_^0","c":"-4_4"},
+        "vars":{"cfs":"0_5_3_^$","sig0":"-1_1_^0","a":"${:cfs[0]*:sig0}","b":"${:cfs[1]*:sig0**2}","c":"${:cfs[2]*:sig0**3}",
+        "x0":"-5_5",
+        "im0":"${math.round(:a*:x0**2/25+:b*:x0/5+:c,1)}",
+        "x1":"${Math.abs(:im0)>5?'-4_4':0}",
+        "im1":"${Math.abs(:im0)>5?math.round(:a*:x1**2/25+:b*:x1/5+:c,1):0}",
+        "x2":"${Math.abs(:im1)>5?'-3_3':0}",
+        "im2":"${Math.abs(:im0)>5?math.round(:a*:x2**2/25+:b*:x2/5+:c,1):0}",
+        "x3":"${Math.abs(:im1)>5?'-2_2':0}",
+        "im3":"${Math.abs(:im0)>5?math.round(:a*:x3**2/25+:b*:x3/5+:c,1):0}",
+        "x":"${Math.abs(:im0)<=5?:x0:Math.abs(:im1)<=5?:x1:Math.abs(:im2)<=5?:x2::x3}",        
+        "image":"${Math.abs(:im0)<=5?:im0:Math.abs(:im1)<=5?:im1:Math.abs(:im2)<=5?:im2::im3}",
+        "delta":"${(:b*:b/-4*:a*(:c-:image))/25}",
+        "s1":"${(-:b/5+Math.sqrt(:delta))/(2*:a/25)}",
+        "s2":"${(-:b/5-Math.sqrt(:delta))/(2*:a/25)}",
+        "sol2":"${Math.abs(:x-:s1)<0.1?math.round(:s1,1):math.round(:s2,1)}"
+    },
         "figure":{   
-            "type":"graph", 
-            "boundingbox":[-5,10,8,-8],
+            "type":"graph",
+            "scale":2.5,
+            "boundingbox":[-6,6,6,-6],
             "keepAspect": false,
             "axis":true,
             "grid":true,
             "content" : [
-                    ["functiongraph", "${:a}*x**2+${:b}*x+${:c};"]  
+                    ["functiongraph", "${:a}*x**2/25+${:b}*x/5+${:c};"]  
                 ]               
             },
-        "question":"\\text{A 0,5 près, lire l'(es) antécédent(s) éventuel(s) de ${:c}}",       
-        "answer":"\\text{Les solutions sont } \\color{red}{${math.round(-:b/:a,1)}} \\text{ (} ${0.5*math.round(-2*:b/:a,0)} \\text{ accepté) et 0.}"
+        "question":"Lire le ou les antécédents de $$${:image}$$",
+        "answer":"${Math.abs(:s2)>5?'L’antécédent de $$'+:image+'$$ est $$\\color{red}{'+:x+'}$$':'Les antécédents de $$'+:image+'$$ sont $$\\color{red}{'+:x+', '+:sol2+'}$$'} environ"
         }
     ]
 }

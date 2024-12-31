@@ -12,8 +12,8 @@
         "consts":{"max1":"${(-5)**2+:b*(-5)+:c}","max2":"${5**2+:b*5+:c,0}","Delta":"${math.round((:b)**2-4*(:c-(:d)),10)}","del":"${math.round(Math.sqrt(:Delta),2)}","x1":"${math.round((-:b-:del)*0.5,1)}","x2":"${math.round((-:b+:del)*0.5,1)}"},
         "vars":{ "b":"d-5_5_1", "c":"d-5_5_1","d":"-5_5","e":"${:max1>0?'('+math.round((-5)**2+:b*(-5)+:c,0)+')':math.round(5**2+:b*5+:c,0)}"},
         "figure":{  
-            "type":"graph", 
-            "boundingbox":[-5,10,5,-10],
+            "type":"graph",
+            "boundingbox":[-10,10,10,-10],
             "keepAspect": false,
             "axis":true,
             "grid":true,
