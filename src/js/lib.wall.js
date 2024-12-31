@@ -212,22 +212,17 @@ function makePage() {
                 if (k !== "dest")
                     MM.memory[k].display();
             }
-            setAllCardSameHeight()
+            setTimeout(()=>{setAllCardSameHeight()},500)
         }, 300);
-    } else {
-        setAllCardSameHeight()
     }
 }
 
 function setAllCardSameHeight() {
+    const tuiles = document.querySelectorAll('.tuile');
     const fronts = document.querySelectorAll('.flip-card-front');
     const backs = document.querySelectorAll('.flip-card-back');
-    for (let i = 0; i < fronts.length; i++) {
-        if (fronts[i].offsetHeight > backs[i].offsetHeight) {
-            backs[i].style.height = fronts[i].offsetHeight + 'px';
-        } else {
-            fronts[i].style.height = backs[i].offsetHeight + 'px';
-        }
+    for (let i = 0; i < tuiles.length; i++) {
+        tuiles[i].style.height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight) + 'px';
     }
 }
 
