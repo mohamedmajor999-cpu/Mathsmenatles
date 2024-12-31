@@ -638,6 +638,7 @@ export default class activity {
             try { result = eval("`"+chaine.replace(/\\/g,"\\\\")+"`");}
             catch(error){
                 utils.debug(error, "Error replacing vars with "+chaine);
+                console.log(this.wVars,this.cConsts)
             }
             // return number if this is one
             if(!isNaN(result) && result !== '' && result.indexOf('+')<0){
