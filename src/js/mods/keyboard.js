@@ -81,7 +81,8 @@ srqt:`<svg width="1em" height="1em" viewBox="0 0 8.467 8.467" xmlns="http://www.
             "l":["key colored","L",()=>{this.targetField.executeCommand(["insert","\\text{ L}"]),this.focus();}],
             "m":["key colored","m",()=>{this.targetField.executeCommand(["insert","\\text{ m}"]),this.focus();}],
             "g":["key colored","g",()=>{this.targetField.executeCommand(["insert","\\text{ g}"]),this.focus();}],
-            "%":["key colored","%",()=>{this.targetField.executeCommand(["insert","\\%"]),this.focus();}]
+            "%":["key colored","%",()=>{this.targetField.executeCommand(["insert","\\%"]),this.focus();}],
+            "Ø":["key colored","Ø",()=>{this.targetField.executeCommand(["insert","\\empty"]),this.focus();}]
         }
         this.targetField = target;
         this.sliderId = sliderId;

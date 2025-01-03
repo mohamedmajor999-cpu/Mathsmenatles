@@ -5,7 +5,7 @@
     "textSize":"medium",
     "ID":"3ND5",
     "dest":["3ND", "2N3","2N3"],
-    "keys":["{","-",";","√","_","_","_","_"],
+    "keys":["{","-",";","√","Ø","_","_","_"],
     "consts":{"lettres":["u","v","t","x", "y","z"]},
     "options":[{
         "name":"x² = a, a entier",
@@ -19,19 +19,20 @@
         "answer":"${:x}^2=${:a} \\text{ pour } \\color{red}{${:a>0?(:x+'\\in\\{-'+:n+';'+:n+'\\}'):'\\text{Pas de solution}'}}"
     },{
         "name":"x² + a = 0, a entier",
-        "vars":{"n":"1_20","alea":"1_10", "a":"${:alea<3?:n*:n:-:n*:n}" , "l":"0_5","x":"${:lettres[:l]}"},
-        "question": "\\text{Résoudre } ${:x}^2${math.signedNumber(:a)}=0",
-        "answer":"${:x}^2${math.signedNumber(:a)}=0 \\text{ pour } \\color{red}{${:a>0?'\\text{Pas de solution}':(:x+'\\in\\{-'+:n+';'+:n+'\\}')}}"
+        "vars":{"n":"1_20","alea":"1_10", "a":"${:alea>4?:n*:n:-:n*:n}" , "l":"0_5","x":"${:lettres[:l]}"},
+        "question": "\\text{Résoudre } ${:x}^2${math.signedNumber(-:a)}=0",
+        "answer":"${:x}^2${math.signedNumber(-:a)}=0 \\text{ pour } \\color{red}{${:a<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+:n+';'+:n+'\\}')}}"
     },{
         "name":"x² + a = 0, a décimal",
-        "vars":{"n":"d0.1_2_1","alea":"1_10", "a":"${:alea<3?math.round(:n*:n,2):math.round(-:n*:n,2)}" , "l":"0_5","x":"${:lettres[:l]}"},
-        "question": "\\text{Résoudre } ${:x}^2${math.signedNumber(:a)}=0",
-        "answer":"${:x}^2${math.signedNumber(:a)}=0 \\text{ pour } \\color{red}{${:a>0?'\\text{Pas de solution}':(:x+'\\in\\{-'+:n+';'+:n+'\\}')}}"
+        "vars":{"n":"d0.1_2_1","alea":"1_10", "a":"${:alea>4?math.round(:n*:n,2):math.round(-:n*:n,2)}" , "l":"0_5","x":"${:lettres[:l]}"},
+        "question": "\\text{Résoudre } ${:x}^2${math.signedNumber(-:a)}=0",
+        "answer":"${:x}^2${math.signedNumber(-:a)}=0 \\text{ pour } \\color{red}{${:a<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+:n+';'+:n+'\\}')}}"
     },{
         "name":"ax² = b, a, b entiers",
         "vars":{"a":"-20_20_^0","alea":"1_10", "n":"-20_20_^0", "b":"${(:alea<3 || :a*:n>0)?:n:-:n}" , "l":"0_5","x":"${:lettres[:l]}"},
         "question": "\\text{Résoudre } ${math.signIfOne(:a)}${:x}^2=${:b}",
-        "answer":"${math.signIfOne(:a)}${:x}^2=${:b} \\text{ pour } \\color{red}{${:a*:b<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+';'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+'\\}')}}"
+        "answer":"${math.signIfOne(:a)}${:x}^2=${:b} \\text{ pour } \\color{red}{${:a*:b<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+';'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+'\\}')}}",
+        "value":"${:a*:b<0?'\\text{Pas de solution}':(:x+'\\in\\{-'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+';'+math.calc('\\sqrt{'+:b+'\\div('+:a+')}')+'\\}')}"
     }],
-    "value":["${:a<0?'':-:n+';'+:n}","${:a<0?''::n+';-'+:n}","\\left\\{${:a<0?'':-:n+';'+:n}\\right\\}","\\left\\{${:a<0?''::n+';-'+:n}\\right\\}"]
+    "value":["${:a<0?'\\empty':-:n+';'+:n}","${:a<0?'\\empty'::n+';-'+:n}","${:a<0?'\\empty':'\\left\\{'+-:n+';'+:n+'\\right\\}'}","${:a<0?'\\empty':'\\left\\{'+:n+';-'+:n+'\\right\\}'}"]
 }
