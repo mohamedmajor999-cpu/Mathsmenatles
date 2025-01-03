@@ -523,6 +523,27 @@
                     "TMG":"Graphes",
                     "TMM":"Matrices"
                 }
+            },
+            "TN":{
+                "nom":"Analyse",
+                "chapitres":{
+                    "TN1":"Suites",
+                    "TN2":"Limites",
+                    "TN3":"Dérivation",
+                    "TN4":"Continuité",
+                    "TN5":"Fonction logarithme",
+                    "TN6":"Fonctions sinus et cosinus",
+                    "TN7":"Primitives, équations différentielles",
+                    "TN8":"Calcul intégral"
+                }
+            },
+            "TP":{
+                "nom":"Probabilités",
+                "chapitres":{
+                    "TP1":"Épreuves indépendantes, Bernouilli",
+                    "TP2":"Sommes de variables aléatoires",
+                    "TP3":"Concentration, loi des grands nombres"
+                }
             }
         }
     },
