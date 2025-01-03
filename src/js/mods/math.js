@@ -498,6 +498,18 @@ const math = {
     }
   },
   /**
+   * Calculates the factorial of a number
+   * @param {Int} n number to calculate factorial
+   * @returns {Int} factorial of n
+   */
+  factorial: function (n) {
+    let resultat = 1;
+    for (let i = 2; i <= n; i++) {
+      resultat *= i;
+    }
+    return resultat;
+  },
+  /**
    * Retourne le PPCM de deux nombres
    * @param {Int} a integer 1
    * @param {Int} b integer 2
