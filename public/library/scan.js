@@ -80,6 +80,14 @@ for(const niveau in structure){
     }
   }
 }
+// création d'un fichier html qui contient toutes les références aux exercices avec chacun un lien vers index.html?u=ID de l'exercice
+fs.writeFileSync("../liste-des-exercices.html",
+  "<!DOCTYPE html><html lang='fr'><head><meta charset='utf-8'><title>Liste des exercices</title></head><body>"+
+  Object.keys(listOfActivities).map(
+    id => `<p><a href='index.html?u=${id}'>${listOfActivities[id].title}</a> (niveaux : ${listOfActivities[id].dest.join(", ")})</p>` + listOfActivities[id].description !== undefined ? `<p>${listOfActivities[id].description}</p>` : ""
+  ).join("")+
+  "</body></html>"
+);
 let dataActivities = JSON.stringify(listOfActivities);
 fs.writeFileSync("../../src/js/mods/theactivities.js","export {theactivities as default};"+
 "const theactivities="+dataActivities);
