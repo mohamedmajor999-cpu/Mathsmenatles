@@ -7,55 +7,62 @@
         {
             "name":"Primitive de $$\\dfrac{f'}{f}$$",
             "vars":{
-                "a":"-9_9_^0",
-                "b":"-9_9",
+                "a":"-10_10_^0",
+                "bz":"0_1",
+                "b":"${:bz==0?0:'-10_10'}",
                 "F":"\\ln |${math.box(['Add',['Multiply',:a,'x'],:b])}| + C",
                 "f":"${math.box(['Divide',:a,['Add',['Multiply',:a,'x'],:b]])}"
             }
         },{
             "name":"Primitive de $$\\dfrac1f$$",
             "vars":{
-                "a":"-9_9_^0",
-                "b":"-9_9",
+                "a":"-10_10_^0",
+                "bz":"0_1",
+                "b":"${:bz==0?0:'-10_10'}",
                 "F":"${math.box(['Divide',1,:a])}\\ln |${math.box(['Add',['Multiply',:a,'x'],:b])}| + C",
                 "f":"${math.box(['Divide',1,['Add',['Multiply',:a,'x'],:b]])}"
             }
         },{
             "name":"Primitive de $$\\dfrac af$$",
             "vars":{
-                "a":"-9_9_^0",
-                "b":"-9_9",
-                "c":"-9_9_^0",
+                "a":"-10_10_^0",
+                "bz":"0_1",
+                "b":"${:bz==0?0:'-10_10'}",
+                "c":"-10_10_^0",
                 "F":"${math.box(['Divide',:c,:a])}\\ln |${math.box(['Add',['Multiply',:a,'x'],:b])}| + C",
                 "f":"${math.box(['Divide',:c,['Add',['Multiply',:a,'x'],:b]])}"
             }
         },{
             "name":"Primitive de $$f'(x)e^{f(x)}$$",
             "vars":{
-                "a":"-9_9_^0",
-                "b":"-9_9",
+                "a":"-10_10_^0",
+                "bz":"0_1",
+                "b":"${:bz==0?0:'-10_10'}",
                 "F":"e^{${math.box(['Add',['Multiply',:a,'x'],:b])}} + C",
                 "f":"${:a}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}}"
             }
         },{
             "name":"Primitive de $$e^{f(x)}$$",
             "vars":{
-                "a":"-9_9_^0",
-                "b":"-9_9",
+                "a":"-10_10_^0",
+                "bz":"0_1",
+                "b":"${:bz==0?0:'-10_10'}",
                 "F":"${math.box(['Divide',1,:a])}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}} + C",
                 "f":"e^{${math.box(['Add',['Multiply',:a,'x'],:b])}}"
             }
         },{
             "name":"Primitive de $$a e^{f(x)}$$",
             "vars":{
-                "a":"-9_9_^0",
-                "b":"-9_9",
-                "c":"-9_9_^0",
+                "a":"-10_10_^0",
+                "bz":"0_1",
+                "b":"${:bz==0?0:'-10_10'}",
+                "c":"-10_10_^0",
                 "F":"${math.box(['Divide',:c,:a])}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}} + C",
                 "f":"${:c}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}}"
             }
         }
     ],
     "question": "Donner une primitive de la fonction<br> $$f(x)=${:f}$$",
-    "answer":"$$\\int\\!${:f}\\,\\operatorname{d}x = \\color{red}{${:F}}$$"
+    "answer":"$$\\int\\!${:f}\\,\\operatorname{d}x = \\color{red}{${:F}}$$",
+    "value":"${:F}"
 }
