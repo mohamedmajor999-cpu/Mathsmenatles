@@ -219,6 +219,11 @@ h3.exercice-title{
     width:90%;
     height: 200px;
 }
+.fig .italic {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-style: italic;
+  }
+  
 .red {
     color: red;
 }

@@ -134,6 +134,11 @@ Taille carte de visite
     /* height: 150px;*/
     aspect-ratio: 4 / 3;
 }
+.fig .italic {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-style: italic;
+  }
+  
 .recto {
     border: 1pt solid black;
 }

@@ -22,6 +22,11 @@ body[size="A4"][layout="landscape"]{
     top:1pt;
     right:1pt;
 }
+.fig .italic {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-style: italic;
+  }
+  
 @media screen {
     html{
         background: rgb(204,204,204); 

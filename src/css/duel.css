@@ -110,6 +110,11 @@ body {
   margin: auto;
   height: 150px;
 }
+.fig .italic {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-style: italic;
+}
+
 math-field {
   margin: auto;
   min-width:300px;

@@ -551,11 +551,11 @@ ul.menu, .menu ul {
   position: absolute;
   z-index: 1;
   bottom:120%;
-  left:-50%;
-  margin-left:calc(-100% / 2 + 50px);
+  /*left:-50%;
+  margin-left:calc(-100% / 2 + 50px);*/
 }
 #resultat-chercher .tooltip .tooltiptext {
-  left:40%;
+  left:50px;
 }
 #divparams .tooltiptext::after, #colparameters .tooltiptext::after, #resultat-chercher .tooltip .tooltiptext::after {
 	content: "";

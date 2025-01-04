@@ -22,6 +22,11 @@ body {
   /*aspect-ratio: 15 / 10;*/
   width: 80%;
 }
+.fig .italic {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-style: italic;
+}
+
 .flip-card-inner.rotate .fig {
   display: none;
 }
