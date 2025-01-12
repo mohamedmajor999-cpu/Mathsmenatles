@@ -1056,7 +1056,7 @@ const diaporama = {
     // on permet de mettre en pause uniquement si on n'est pas en mode online.
     if (diaporama.onlineState === "no") {
       for (let i = 0, l = diaporama.timers.length; i < l; i++) {
-        diaporama.timers[i].pause();
+        diaporama.timers[i].pause(this);
       }
     }
   },

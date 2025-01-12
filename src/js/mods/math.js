@@ -24,12 +24,24 @@ const math = {
       }
     }
   },
+  /**
+   * Renvoie la valeur arrondie par d?faut 
+   * @param {float} valeur nombre ? arrondir
+   * @param {integer} [precision] nombre de chiffres apr?s la virgule
+   * @returns {float} valeur arrondie
+   */
   valeurParDefaut: function (valeur, precision) {
     if (precision === undefined) {
       return Math.floor(valeur);
     } else
       return Number(Math.floor(Number(valeur + 'e' + precision)) + 'e' + (-precision));
   },
+  /**
+   * Renvoie la valeur arrondie par excès
+   * @param {float} valeur nombre à arrondir
+   * @param {integer} [precision] nombre de chiffres apr?s la virgule
+   * @returns {float} valeur arrondie
+   */
   valeurParExces: function (valeur, precision) {
     if (precision === undefined) {
       return Math.ceil(valeur);
@@ -240,6 +252,12 @@ const math = {
       return liste.join("; ");
     else return liste
   },
+  /**
+   * Return a string with a product that is equal to nb
+   * If nb has not factor, return a product with 0 or nb
+   * @param {integer} nb
+   * @return {string} a product string
+   */
   unProduitEgalA(nb) {
     let listeProduits = this.listeProduits(nb, 20, true)
     // ajoute les produits symétriques
@@ -361,6 +379,11 @@ const math = {
     if (notNb && diviseurs.length > 1) diviseurs = diviseurs.slice(0, -1);
     return diviseurs[math.aleaInt(0, diviseurs.length - 1)];
   },
+  /**
+   * Renvoie le décomposé en facteurs premiers d'un nombre
+   * @param {integer} nb
+   * @returns {String} décomposé en facteurs premiers
+   */
   factor(nb) {
     nb = Number(nb)
     if (nb > 4000000) return nb // pas prévu pour plus de 4000000
