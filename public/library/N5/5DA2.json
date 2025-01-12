@@ -15,8 +15,8 @@
     },{
         "name":"Médiane (4e)",
         "vars":{"nbvals":"2_5", "b":"1_30_${:nbvals}","bsorted":"${[...:b].sort((a,b)=>a-b)}"},
-        "question": "Quelle est la médiane de ${:b.join(', ')} ?",
-        "answer":"La médiane de ${:bsorted.split(',').join(', ')} est $$\\color{red}{${:nbvals%2?:bsorted.split(',')[(:nbvals-1)/2]:(Number(:bsorted.split(',')[:nbvals/2-1])+Number(:bsorted.split(',')[:nbvals/2]))/2}}$$",
+        "question": "Quelle est la médiane de ${:b.join('; ')} ?",
+        "answer":"La médiane de ${:bsorted.split(',').join('; ')} est $$\\color{red}{${:nbvals%2?:bsorted.split(',')[(:nbvals-1)/2]:(Number(:bsorted.split(',')[:nbvals/2-1])+Number(:bsorted.split(',')[:nbvals/2]))/2}}$$",
         "value":"${:nbvals%2?:bsorted.split(',')[(:nbvals-1)/2]:(Number(:bsorted.split(',')[:nbvals/2-1])+Number(:bsorted.split(',')[:nbvals/2]))/2}"
     },{
         "name":"Moyenne et médiane (4e)",
@@ -27,8 +27,8 @@
     },{
         "name":"Etendue (3e)",
         "vars":{"nbvals":"2_5", "b":"1_30_${:nbvals}","etendue":"${Math.max(...:b)-Math.min(...:b)}"},
-        "question": "Quelle est l'étendue de ${:b.join(', ')} ?",
-        "answer":"L'étendue de ${:b.join(', ')} est $$${Math.max(...:b)}-${Math.min(...:b)} = \\color{red}{${:etendue}}$$",
+        "question": "Quelle est l'étendue de ${:b.join('; ')} ?",
+        "answer":"L'étendue de ${:b.join('; ')} est $$${Math.max(...:b)}-${Math.min(...:b)} = \\color{red}{${:etendue}}$$",
         "value":"${:etendue}"
     },{
         "name":"Moyenne, médiane et étendue (3e)",
