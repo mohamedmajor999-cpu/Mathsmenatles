@@ -77,13 +77,13 @@ const common = {
         if(pageFormat===0){
             pagestyle.innerHTML = `@page{
                 size:A4 landscape;
-                margin:0.8cm;
+                margin:0;
             }`
             document.body.setAttribute("layout","landscape");
         } else {
             pagestyle.innerHTML = `@page{
                 size:A4 portrait;
-                margin:0.8cm;
+                margin:0;
             }`
             document.body.removeAttribute("layout");
         }

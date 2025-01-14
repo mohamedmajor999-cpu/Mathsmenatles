@@ -10,22 +10,21 @@ const MM={}
 MM.version = utils.getVersion()
 
 const content = document.getElementById("creator-content");
-const pageHeight = 287;
+let pageHeight = 287;
 const parameters = {
     spacer:document.getElementById('spacerInput').value,
     answerHeight:document.getElementById('inputheight').value,
     corrigeAuDos:document.getElementById('corrigeAuDos').checked,
     corrigeAuDosValue:Number(document.getElementById('corrigeAuDosValue').value) || 4,
     fontSizes:[],
+    lineHeight:'auto'
     };
 document.getElementById("creator-menu").onclick = (evt)=>{
     if(evt.target.id === "toggleCorriges"){
         if(parameters.posCorrection==="fin"){
             parameters.posCorrection = "apres";
-            //evt.target.innerHTML = "à la fin";
         } else {
             parameters.posCorrection = "fin";
-            //evt.target.innerHTML = "suivant";
         }
         refresh();
     } else if(evt.target.id === "btnChangeBorder"){
@@ -131,7 +130,7 @@ function changeLinesHeight(){
     if(isAuto){
         parameters.lineHeight = 'auto'
         for (const el of elts) {
-            el.style['grid-template-rows'] = ''
+            el.style['grid-template-rows'] = 'max-content '+Array(parameters.nbrows).fill('auto').join(" ")+' max-content';
         }
     } else {
         parameters.lineHeight = document.getElementById('lineHeightValue').value
@@ -469,10 +468,16 @@ function displayEval(){
  * il va s'adapter à la taille de chaque ceinture suivie du spacer
  */
 function setPrintMode(){
+    checkPortraitMode()
     // on supprime les copies
     document.querySelectorAll("div.ceinture:not(.original), div.spacer:not(.original)").forEach(el=>{
         el.parentNode.removeChild(el);
     })
+    // on remet les margin-top à la normale
+    document.querySelectorAll('div.spacer.original').forEach(el=>{
+        el.style.marginTop = parameters.spacer+'mm'
+    })
+    
     // on supprime les sauts de page
     const spacers = document.querySelectorAll('#creator-content .spacer')
     spacers.forEach(el=>el.classList.remove('pagebreak'))
@@ -486,6 +491,7 @@ function setPrintMode(){
     document.body.appendChild(divTemp)
     const heightOfPage = divTemp.getBoundingClientRect().top
     document.body.removeChild(divTemp)
+    const whiteBottoms = []
     document.querySelectorAll("div.ceinture.original").forEach(
         original => {
             let copyEl, spacer, first=true;
@@ -500,11 +506,20 @@ function setPrintMode(){
                 content.insertBefore(copyEl, original.nextSibling);
                 content.insertBefore(spacer, original.nextSibling)
             }
-            console.log(totalHeight - heightOfspacer , heightOfPage)
+            whiteBottoms.push(heightOfPage - totalHeight + heightOfspacer)
         })
+    let i=0;
     document.querySelectorAll('#creator-content .spacer.original').forEach(spacer => {
         spacer.classList.add('pagebreak')
+        spacer.style['margin-top'] = whiteBottoms[i] + 'px'
+        spacer.style['padding-bottom'] = '0.01px'
+        i++
     })
+}
+function checkPortraitMode() {
+    const landscape = document.querySelector('body[layout="landscape"]')
+    if (landscape === null) pageHeight = 287
+    else pageHeight = 200
 }
 /**
  * Crée la page
@@ -517,7 +532,7 @@ function makePage(){
     }
     let correction;
     if(parameters.posCorrection === "fin"){
-        correction = utils.create("div",{id:"correction",className:"pagebreak"});
+        correction = utils.create("div",{id:"correction"});
         correction.appendChild(utils.create("div",{innerHTML:"Correction"}));
     }
     let divsPar=[];
@@ -554,7 +569,7 @@ function makePage(){
             modeleGrille.appendChild(divcol)
         }
     }
-    // on crée autant de ceintures que demandées      
+    // on crée autant de ceintures que demandées
     for(let qty=0;qty<parameters.nb;qty++){
         // un conteneur pour la ceinture
         const ceinture = utils.create("div",{className:"ceinture original"});
@@ -586,9 +601,10 @@ function makePage(){
         let colsid=0;
         // le css directement dans le DOM pour pouvoir le modifier ensuite
         const stylecolscorrection = Array(parameters.nbcols).fill("auto").join(" ");
-        const stylerows = Array(parameters.nbrows).fill("auto").join(" ");
-        const divColonnes = utils.create("div",{className:"ceinture-content grid",style:"grid-template-columns:"+stylecols+";grid-template-rows:"+(stylerows+1)});
-        const divColsCorrige = utils.create("div",{className:"ceinture-corrige grid",style:"grid-template-columns:"+stylecolscorrection+";grid-template-rows:"+stylerows});
+        const stylerowsCorrection = Array(parameters.nbrows).fill('auto').join(" ");
+        const stylerows = Array(parameters.nbrows).fill(parameters.lineHeight + (Number(parameters.lineHeight)>0?'mm':'')).join(" ");
+        const divColonnes = utils.create("div",{className:"ceinture-content grid",style:"grid-template-columns:"+stylecols+";grid-template-rows:"+('max-content '+stylerows+' max-content')});
+        const divColsCorrige = utils.create("div",{className:"ceinture-corrige grid",style:"grid-template-columns:"+stylecolscorrection+";grid-template-rows:"+stylerowsCorrection});
         // conteners corrections et enoncés (objet de tableaux)
         let divCorr={},cols={};
         let nbq = 0;
@@ -678,9 +694,9 @@ function makePage(){
                 parAlafin = true
             }
         }
-        if(parameters.posCorrection === "fin" && !parameters.corrigeAuDos)
+        if(parameters.posCorrection === "fin" && !parameters.corrigeAuDos){
             correction.appendChild(corrige);
-        else if(!parameters.corrigeAuDos) {
+        } else if(!parameters.corrigeAuDos) {
             content.appendChild(corrige);
         } else if(parameters.corrigeAuDos && !parAlafin){
             content.appendChild(divsPar[divsPar.length-1])
@@ -688,8 +704,11 @@ function makePage(){
     }
     //content.appendChild(utils.create("div",{className:"footer"}));
     // on ajoute la correction à la fin.
-    if(parameters.posCorrection ==="fin" && !parameters.corrigeAuDos)
+    if(parameters.posCorrection ==="fin" && !parameters.corrigeAuDos){
+        const pageBreaker = utils.create('div',{className:"pagebreak"})
+        content.appendChild(pageBreaker)
         content.appendChild(correction);
+    }
     if(parameters.colorbd !== undefined){
         changeColor(parameters.colorbd,'bd');
     }
@@ -720,6 +739,7 @@ function refresh(){
     }
 }
 function setPageBreaks(){
+    checkPortraitMode()
     const tempDiv = utils.create('div',{id:'mobileDiv',style:'position:absolute;top:'+pageHeight+'mm;'})
     document.body.appendChild(tempDiv)
     let hauteurPage = tempDiv.getBoundingClientRect().top
@@ -738,9 +758,13 @@ function setPageBreaks(){
         for(let i=0;i<ceintures.length;i++) {
             heightOfElements += ceintures[i].getBoundingClientRect().height + heightOfSpacer
             if(heightOfElements - heightOfSpacer > hauteurPage){
-                heightOfElements = ceintures[i].getBoundingClientRect().height + heightOfSpacer
-                if(spacers[i-1] !== undefined)
+                heightOfElements -= ceintures[i].getBoundingClientRect().height + heightOfSpacer
+                if(spacers[i-1] !== undefined){
                     spacers[i-1].classList.add('pagebreak')
+                    spacers[i-1].style['margin-top'] = String(hauteurPage - heightOfElements)+'px'
+                    spacers[i-1].style['padding-bottom'] = '0.01px'
+                }
+                heightOfElements = ceintures[i].getBoundingClientRect().height + heightOfSpacer
             }
         }    
     }
@@ -803,6 +827,9 @@ function checkURL(urlString){
         document.querySelector('#creator-menu .spacer').style['margin-top'] = parameters.spacer+'mm'
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
+        if (!document.getElementById('btnAutoSetLineHeight').checked){
+            parameters.lineHeight = document.getElementById('lineHeightValue').value;
+        }
         parameters.cart.import(json[0],false, MM.version).then(()=>{
             refresh()
         }).catch(err=>{
