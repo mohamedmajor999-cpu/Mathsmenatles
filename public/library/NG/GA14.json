@@ -23,8 +23,8 @@
     },{
         "name":"Logarithme népérien",
         "question":["\\left(\\ln(${:f})\\right)'","\\dfrac{d}{d${:x}} \\ln(${:f})"],
-        "answer":":question=\\color{red}{\\dfrac{${math.signIfOne(:a)}}{${:f}}}",
-        "value":"\\dfrac{${math.signIfOne(:a)}}{${:f}}"
+        "answer":":question=\\color{red}{\\dfrac{${:a}}{${:f}}}",
+        "value":"\\dfrac{${:a}}{${:f}}"
     },{
         "name":"Fonction sinus",
         "question":["\\left(\\sin(${:f})\\right)'","\\dfrac{d}{d${:x}} \\sin(${:f})"],
