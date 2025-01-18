@@ -8,7 +8,7 @@
         "name":"Division entière",
         "vars":{"a":"0_10", "b":"1_10", "p":"${:a*:b}"},
         "question": "${:p}\\div ${:b} = ?",
-        "answer":":question=\\color{red}{${:a}}",
+        "answer":":question|2\\color{red}{${:a}}",
         "value":"${:a}"
     },{
         "name":"Division à trou",
