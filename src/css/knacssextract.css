@@ -606,6 +606,8 @@ progress {
 .switch::-ms-check {
     display: none
 }
+.switch{border-radius:3em}
+.switch{width:4rem;height:2rem;line-height:2rem;font-size:70%;-webkit-box-shadow:inset -2rem 0 0 #333,inset 0 0 0 1px #333;box-shadow:inset -2rem 0 0 #333,inset 0 0 0 1px #333;-webkit-transition:-webkit-box-shadow .15s;transition:-webkit-box-shadow .15s;transition:box-shadow .15s;transition:box-shadow .15s,-webkit-box-shadow .15s;background-color:#fff}.switch:after,.switch:before{font-weight:700;color:#fff}.switch:before{content:"✕";float:right;margin-right:.66667rem}.switch:checked{-webkit-box-shadow:inset 2rem 0 0 #5cb85c,inset 0 0 0 1px #5cb85c;box-shadow:inset 2rem 0 0 #5cb85c,inset 0 0 0 1px #5cb85c}.switch:checked:before{content:"✓";float:left;margin-left:.66667rem}
 
 .radio {
     width: 2rem;
