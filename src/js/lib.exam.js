@@ -23,11 +23,11 @@ document.getElementById("creator-menu").onclick = (evt)=>{
         if(separationFiches){
             separationFiches = false;
             document.getElementById(evt.target.id).innerText = "Séparer";
-            document.querySelectorAll("footer").forEach(elt=>{elt.className = ""})
+            document.querySelectorAll("footer.footer-end").forEach(elt=>{elt.classList.remove('break')})
         } else {
             separationFiches = true;
             document.getElementById(evt.target.id).innerText = "Regrouper";
-            document.querySelectorAll("footer").forEach(elt=>{elt.className = "break"})
+            document.querySelectorAll("footer.footer-end").forEach(elt=>{elt.classList.add("break")})
         }
     } else if(evt.target.id==="toggleCorriges"){
         let lesCorriges = document.querySelectorAll("ol.corrige");
@@ -57,7 +57,7 @@ document.getElementById("creator-menu").oninput = (evt)=>{
 /**
  * gestion des click sur les éléments pour afficher les corrections
  */
-document.getElementById("creator-content").onclick = (evt)=>{
+document.getElementById("creator-content").onclick = (evt) => {
     if(evt.target.id.indexOf("idCorrige")===0){
         let target = document.getElementById(evt.target.id.replace("idCorrige","corrige"));
         if(target.classList.toggle("hidden")){
@@ -106,16 +106,16 @@ function setNumberFiches(nb){
     refresh();
 }
 function pagebreak(){
-    let cor = document.querySelectorAll('.correction'),
+    let cor = document.querySelectorAll('footer.footer-enonce'),
     btn = document.getElementById('btn-break');
-    if(!cor[0].classList.contains("pagebreak")){
+    if(!cor[0].classList.contains("break")){
         for(let i=0;i<cor.length;i++){
-            cor[i].classList.add("pagebreak");
+            cor[i].classList.add("break");
         }
         btn.innerText='même feuille';
     } else {
         for(let i=0;i<cor.length;i++){
-            cor[i].classList.remove("pagebreak");
+            cor[i].classList.remove("break");
         }
         btn.innerText='à part';
     }
@@ -129,11 +129,11 @@ function makePage(){
         document.getElementById('btpCorrigePlace').appendChild(utils.create("button",{id:"btn-break",innerText:"à part",title:"Ne pas mettre sur la même feuille que le sujet"}))
     }
     MM.memory = {};
-    for(let qty=0;qty<parameters.nb;qty++){
+    for(let qty=0; qty<parameters.nb; qty++){
         common.generateQuestions(parameters);
         // si plus d'une interro, on introduit un pagebreak
         if(qty>0)
-            content.appendChild(utils.create("footer"));
+            content.appendChild(utils.create("footer",{className:"footer-end"}));
         // set elements :
         const aleaCode = utils.create("div",{className:"floatright",innerHTML:"p."+(qty+1)})
         content.appendChild(aleaCode);
@@ -166,6 +166,7 @@ function makePage(){
             const actIndex = activitiesArray[i][0]
             const activity = parameters.cart.activities[actIndex]
             const j = activitiesArray[i][1]
+            // à revoir, une seule section par type d'exercice nécessaire.
             const sectionEnonce = utils.create("section",{id:"section"+qty+"-"+i})
             const sectionCorrection = utils.create("section");
             if((lastActivityIndex !== actIndex && parameters.cart.ordered) || i===0){
@@ -176,7 +177,7 @@ function makePage(){
                 if(!parameters.cart.ordered)
                     activityTitle = exTitle
                 else
-                activityTitle = exTitle+(actIndex+1)+" : "+activity.title
+                    activityTitle = exTitle+(actIndex+1)+" : "+activity.title
                 h3 = utils.create("h3", {className:"exercice-title",innerHTML: activityTitle});
                 sectionEnonce.appendChild(h3);
                 if(activity.consigne){
@@ -216,10 +217,10 @@ function makePage(){
             sectionCorrection.appendChild(olCorrection);
             correctionContent.appendChild(sectionCorrection);
             content.appendChild(sectionEnonce);
-
         }
         // insert footer for print page break
-        content.appendChild(utils.create("footer"));
+        const footer = utils.create("footer", {className: 'footer-enonce'});
+        content.appendChild(footer);
         // insert correction
         content.appendChild(correctionContent);
         const ds = divclear.cloneNode(true);
