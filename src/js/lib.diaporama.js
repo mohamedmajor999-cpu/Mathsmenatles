@@ -363,7 +363,7 @@ const diaporama = {
             lie.innerHTML = question;
           }
           div.appendChild(span);
-          if (diaporama.onlineState !== "yes") {
+          if (diaporama.onlineState !== "yes" || diaporama.carts[i].progress === 'thenanswer') {
             // include answer if not online state
             div.appendChild(spanAns);
           }
@@ -901,8 +901,14 @@ const diaporama = {
     }
     if (diaporama.carts[diaporama.timers[id].cartId].progress === 'thenanswer') {
       if (!diaporama.timers[id].answerShown) {
+        // arrêter le timer de la question puis afficher la réponse
+        diaporama.timers[id].pause(this);
+        // on empêche toute nouvelle validation en désactivant le champ de saisie
+        diaporama.mf["ansInput" + id + "-" + (diaporama.steps[id].step)].disabled = true;
         diaporama.showTheAnswer(id, false)
         diaporama.timers[id].answerShown = true
+        diaporama.timers[id].timeLeft = -0.01;
+        diaporama.timers[id].pause(this);
         return
       }
     }
