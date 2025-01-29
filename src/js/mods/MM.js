@@ -390,6 +390,8 @@ const MM = {
  * @param {boolean} withAnswer insère les réponses dans le diaporama si true
  */
     populateQuestionsAndAnswers(withAnswer) {
+        const exportTextArea = document.getElementById('text-export-pixelart');
+        exportTextArea.value = 'Export MathsMentales pour PixelArt https://jeduque.net/pixelart/\n'
         if (withAnswer === undefined) withAnswer = true;
         MM.figs = {}; MM.steps = []; MM.timers = []; MM.memory = {}; MM.goodAnswers = []; MM.text2speach = [];
         // length = nombre de paniers
@@ -455,6 +457,7 @@ const MM = {
                     let j = actsArray[ff][1];
                     let question = activity.questions[j];
                     let answer = activity.answers[j];
+                    let value = activity.values[j];
                     // enoncés et corrigés
                     let lie = utils.create("li");
                     let lic = document.createElement("li");
@@ -465,8 +468,10 @@ const MM = {
                         lie.appendChild(spane);
                         spanc = utils.create("span", { className: "math" });
                         lic.appendChild(spanc);
+                        exportTextArea.value += '---\n$'+ question+'$\n\n';
                     } else {
                         lie.innerHTML = question;
+                        exportTextArea.value += '---\n'+ question.replace('$$', '$')+'\n\n';
                     }
                     if (activity.audioRead && activity.audios[j] !== undefined && activity.audios[j] !== false) {
                         MM.text2speach[indiceSlide] = [activity.audios[j], activity.audioRepeat];
@@ -480,6 +485,11 @@ const MM = {
                             spanc.innerHTML += answer;
                         else
                             lic.innerHTML += answer;
+                    }
+                    if (Array.isArray(value)){
+                        exportTextArea.value += String(value[0]).replace('$$', '$')+'\n';
+                    } else {
+                        exportTextArea.value += String(value).replace('$$', '$')+'\n';
                     }
                     if (activity.figures[j] !== undefined) {
                         lic.innerHTML += "&nbsp; <button data-id=\"c" + slideNumber + "-" + indiceSlide + "\">Figure</button>";

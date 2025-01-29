@@ -299,6 +299,12 @@ window.onload = function() {
             MM.zooms[evt.target.dataset.zoom].minus();
         }
     }
+    // bouton section Enoncé pour export vers Pixel Art
+    document.getElementById("btn-export-enonce-pixelart").onclick = ()=>{
+        // copy value of textarea to clipboard
+        navigator.clipboard.writeText(document.getElementById("text-export-pixelart").value);
+        alert("Copié dans le presse-papiers !");
+    }
 
     // boutons section corrigés
     document.querySelector("#tab-corrige aside").addEventListener("click",(evt)=>{
