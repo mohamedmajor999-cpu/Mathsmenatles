@@ -3,6 +3,7 @@
     "ID":"5NA7",
     "dest":["5NA","4NA","3NA"],
     "type":"text",
+    "description":"Changement d'écriture entre pourcentages et écriture décimale.",
     "options":[
         {
             "name": "Décimaux à deux chiffres",
