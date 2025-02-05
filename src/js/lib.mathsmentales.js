@@ -423,9 +423,16 @@ window.onload = function() {
      */
     document.getElementById('activityOptions').addEventListener("click",(evt)=>{
         if(evt.target.id==="chckallopt"){
-            MM.editedActivity.setOption('all',evt.target.checked)
+            MM.editedActivity.setOption('all', evt.target.checked)
         } else if(evt.target.id.indexOf("o")===0){
             MM.editedActivity.setOption(evt.target.value, evt.target.checked)
+        } else if(evt.target.id.indexOf('checkAllOptions')===0) {
+            const toutesOptions = document.querySelectorAll('#activityOptions > span > ul')
+            const i = Number(evt.target.value)
+            toutesOptions.forEach(option => {
+                const input = option.querySelector(`li:nth-of-type(${i+1}) input`)
+                input.checked = evt.target.checked;
+            })
         }
     })
 }

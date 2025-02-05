@@ -86,6 +86,7 @@ export default class activity {
         this.audios = [];
         this.examplesFigs = {};
         this.intVarsHistoric = {};
+        this.arraysHistoric = {};
         this.getOptionHistory = [];
         this.getPatternHistory = {global:[]};
         this.keyBoards = [];
@@ -233,7 +234,7 @@ export default class activity {
             consigne.appendChild(bloc);
         }
         // affichage d'exemple(s)
-        let examples = document.getElementById('activityOptions');
+        const examples = document.getElementById('activityOptions');
         examples.innerHTML = "";
         MM.setSeed(cle);
         if(this.options !== undefined && this.options.length > 0){
@@ -368,6 +369,30 @@ export default class activity {
                     this.examplesFigs[i].display();
                 }
             }, 300);
+        }
+        // calcul du nombre de sous options par option pour voir s'il y en a autant par option
+        let sameNumberOfSubOptions = true;
+        let numbersOFSubOptions = []
+        const toutesOptions = document.querySelectorAll('#activityOptions > span > ul')
+        toutesOptions.forEach(ul => {
+            if(numbersOFSubOptions.length > 1 && !numbersOFSubOptions.includes(ul.children.length)){
+                sameNumberOfSubOptions = false;
+            }
+            numbersOFSubOptions.push(ul.children.length);
+        })
+        // on va ajouter des boutons de sélection multiple si il y a plusieurs sous options par option en quantités égales
+        if (sameNumberOfSubOptions && numbersOFSubOptions.length > 1) {
+            if(numbersOFSubOptions[0] > 1) {
+                const hr = document.querySelector('#activityOptions > hr')
+                const div = utils.create('div')
+                for (let i=0; i< numbersOFSubOptions[0]; i++){
+                    const chckbutton = utils.create('input', {type:'checkbox',id:`checkAllOptions${i}`,name: `checkAllOptions${i}`, className:'checkbox', value:i});
+                    const label = utils.create('label', {htmlFor:`checkAllOptions${i}`,innerHTML:` Options ${i+1} `});
+                    div.appendChild(chckbutton);
+                    div.appendChild(label);
+                }
+                hr.parentNode.insertBefore(div, hr);
+            }
         }
         utils.mathRender();
     }
@@ -587,7 +612,7 @@ export default class activity {
         let boxes = document.querySelectorAll("#activityOptions input[type=checkbox]");
         let tocheck = true;
         for(const checkbox of boxes){
-            if(checkbox.id === "chckallopt")continue;
+            if(checkbox.id === "chckallopt" || checkbox.id.indexOf('checkAllOptions')==0)continue;
             if(!checkbox.checked){
                 tocheck = false;
                 break;
@@ -682,6 +707,7 @@ export default class activity {
         // données pour éviter une répétition acharnée des variables entières
         //utils.debug("génération de questions pour "+this.title, n+" questions");
         this.intVarsHistoric = {};
+        this.arraysHistoric = {};
         for(let i=0;i<n;i++){
             this.cFigure = undefined;
             this.ckeyBoard = undefined;
@@ -797,7 +823,22 @@ export default class activity {
                     // var is defined with an array of values
                     // we sort one of them
                     // but it can content some vars value
-                    this.wVars[name] = this.replaceVars(this.wVars[name][math.aleaInt(0,this.wVars[name].length-1)]);
+                    // évitement des répétitions de valeurs
+                    if (this.arraysHistoric[name] === undefined){
+                        this.arraysHistoric[name] = []
+                        this.arraysHistoric[name+'-length'] = this.wVars[name].length;
+                    }
+                    let protectionLoop = 0, entier = 0
+                    do {
+                        entier = math.aleaInt(0,this.wVars[name].length-1)
+                        protectionLoop++
+                        if(protectionLoop > 100) break; // tant pis, on sort de la boucle
+                    } while (this.arraysHistoric[name].indexOf(entier) > -1)
+                        this.arraysHistoric[name].push(entier);
+                        this.wVars[name] = this.replaceVars(this.wVars[name][entier]);
+                    if (this.arraysHistoric[name].length >= this.arraysHistoric[name+'-length']){
+                        this.arraysHistoric[name].splice(0)
+                    }
                 } else if(typeof this.wVars[name] === "string" && this.wVars[name].indexOf("_")>-1){
                     // var is defined with a min-max interval within a string
                     var bornes = this.wVars[name].split("_");
