@@ -546,12 +546,15 @@ ul.menu, .menu ul {
   content:"Réponse attendue";
   font-size: x-small;
   position: absolute;
+  display: block;
+  white-space: nowrap;
   top:-20px;
-  left:10px;
+  left:-5px;
   border-radius: 3px;
   padding: 0 1em;
   background-color: rgb(249, 255, 226);
   z-index: 1;
+  border: 1px solid rgb(18, 18, 11);
 }
 #colparameters .tooltip .tooltiptext, #resultat-chercher .tooltip .tooltiptext {
   visibility: hidden;
