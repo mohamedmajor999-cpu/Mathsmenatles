@@ -238,7 +238,7 @@ const diaporama = {
   */
   populateQuestionsAndAnswers(withAnswer) {
     if (withAnswer === undefined) withAnswer = true;
-    diaporama.figs = {}; diaporama.steps = []; diaporama.timers = []; diaporama.memory = {}; diaporama.goodAnswers = []; diaporama.text2speach = [];
+    diaporama.figs = {}; diaporama.figsCorr = {}; diaporama.steps = []; diaporama.timers = []; diaporama.memory = {}; diaporama.goodAnswers = []; diaporama.text2speach = [];
     // length = nombre de paniers
     let length = diaporama.carts.length;
     let sliders = 0
@@ -347,7 +347,7 @@ const diaporama = {
           diaporama.timers[slideId].addDuration(activity.tempo);
           if (diaporama.totaltimes[slideId] === undefined) diaporama.totaltimes[slideId] = 0
           diaporama.totaltimes[slideId] += Number(activity.tempo);
-          // enoncés et corrigés
+          // enoncés et corrigés pour la fin du diaporama
           let lie = utils.create("li");
           let lic = document.createElement("li");
           let tex = false; let spane, spanc;
@@ -389,6 +389,10 @@ const diaporama = {
             diaporama.memory['e' + slideId + "-" + indiceSlide] = new Figure(utils.clone(activity.figures[j]), "en" + slideId + "-" + indiceSlide, lie, [300, 150]);
             diaporama.memory['c' + slideId + "-" + indiceSlide] = new Figure(utils.clone(activity.figures[j]), "cor" + slideId + "-" + indiceSlide, lic, [450, 225]);
           }
+          if (activity.figuresCorrection[j] !== undefined) {
+            diaporama.figsCorr[slideId + "-" + indiceSlide] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc" + slideId + "-" + indiceSlide, spanAns);
+            diaporama.memory['fc' + slideId + "-" + indiceSlide] = new Figure(utils.clone(activity.figuresCorrection[j]), "fcn" + slideId + "-" + indiceSlide, lic, [300, 150]);
+          }
           ole.appendChild(lie);
           olc.appendChild(lic);
           indiceSlide++;
@@ -398,15 +402,6 @@ const diaporama = {
         enonces.append(dive);
         corriges.append(divc);
         diaporama.steps[slideId].display();
-        if (!utils.isEmpty(diaporama.figs)) {
-          setTimeout(function () {
-            for (let j = 0; j < indiceSlide; j++) {
-              // toutes les questions ne comportent pas de figures, on vérifie qu'il y en a.
-              /*if (diaporama.memory['e' + slideId + "-" + j] !== undefined)
-                diaporama.memory['e' + slideId + "-" + j].display();*/
-            }
-          },500);
-        }
       }
     }
     utils.mathRender(false, true);
@@ -619,6 +614,10 @@ const diaporama = {
           let fig = new Figure(utils.clone(act.sample.figure), "sample-c" + sN, document.getElementById("sampleSlide" + sN));
           setTimeout(function () { fig.display(); }, 100);
         }
+        if (act.sample.figureCorrection !== undefined) {
+          let figCor = new Figure(utils.clone(act.sample.figureCorrection), "sample-fc" + sN, document.getElementById("sample" + sN + "-corr"));
+          setTimeout(function () { figCor.display(); }, 100);
+        }
       }
     }
     utils.mathRender(false, true);
@@ -690,6 +689,10 @@ const diaporama = {
       if (typeof diaporama.figs[i + "-0"] === "object") {
         diaporama.figs[i + "-0"].display();
       }
+      if (typeof diaporama.figsCorr[i + "-0"] === "object") {
+        diaporama.figsCorr[i + "-0"].display();
+      }
+
     }
   },
   hideSlideshows: function () {
@@ -730,6 +733,9 @@ const diaporama = {
             if (figureId.indexOf("c") === 0) {
               diaporama.memory[figureId].display();
             }
+            if(figureId.indexOf("fc") === 0) {
+              diaporama.memory[figureId].display();
+            }
           }
           utils.mathRender(false, true);
           saveContent()  
@@ -745,6 +751,10 @@ const diaporama = {
       for (const figureId in diaporama.memory) {
         if (figureId.indexOf("c") === 0) {
           diaporama.memory[figureId].display();
+        }
+        if (figureId.indexOf("fc") === 0) {
+          diaporama.memory[figureId].display();
+          diaporama.memory[figureId].toggle();
         }
       }
       utils.mathRender(false, true);
@@ -855,6 +865,10 @@ const diaporama = {
           const fig = new Figure(utils.clone(act.sample.figure), "sample-c" + id, document.getElementById("sampleSlide" + id));
           setTimeout(function () { fig.display(); }, 100);
         }
+        if (act.sample.figureCorrection !== undefined) {
+          const figCorrection = new Figure(utils.clone(act.sample.figureCorrection), "sample-fc" + id, document.getElementById("sample" + id+'-corr'));
+          setTimeout(function () { figCorrection.display(); }, 100);
+        }
         utils.mathRender();
       }
     }
@@ -929,6 +943,9 @@ const diaporama = {
       utils.removeClass(slide, "hidden");
       if (diaporama.figs[id + "-" + step] !== undefined){
         diaporama.figs[id + "-" + step].display()
+      }
+      if (diaporama.figsCorr[id + "-" + step] !== undefined){
+        diaporama.figsCorr[id + "-" + step].display()
       }
       if (diaporama.onlineState === "yes" && !diaporama.touched) {
         // on met le focus dans le champ seulement si on est online et pas sur tablette/smartphone

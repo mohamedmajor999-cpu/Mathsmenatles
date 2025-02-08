@@ -18,18 +18,25 @@ body {
   font-weight: bold;
 }
 
-.flip-card-inner .fig{
-  /*aspect-ratio: 15 / 10;*/
-  width: 80%;
-}
 .fig .italic {
   font-family: 'Times New Roman', Times, serif !important;
   font-style: italic;
 }
 
-.flip-card-inner.rotate .fig {
+.flip-card-inner.rotate .flip-card-front .fig {
   display: none;
 }
+
+.flip-card-inner:not(.rotate) .flip-card-back .fig {
+  display: none;
+}
+
+.flip-card-inner .fig > * {
+  max-width: 90%;
+  max-height: 80%;
+  margin: auto;
+}
+
 
 @media only screen and (max-width: 320px) {
     b {
@@ -90,6 +97,7 @@ h1 {
     min-height: 5rem;
     position: relative;
     perspective: 1000px;
+    min-height: 15rem;
 }
 .tuile > div > div > div {
   padding: 0.5rem 5rem 0.5rem 3rem;

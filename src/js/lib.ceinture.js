@@ -646,6 +646,7 @@ function makePage(){
                     divQuestion.appendChild(divfig),
                     MM.memory[qty+"-"+"f"+i+"-"+j] = new Figure(utils.clone(activity.figures[j]), qty+"-"+"f"+i+"-"+j,divfig);
                 }
+            
                 ligne.appendChild(divQuestion);
                 let value = activity.values[j];
                 if(Array.isArray(value)) {
@@ -660,9 +661,14 @@ function makePage(){
                 if(!ansInside){
                     ligne.innerHTML += divans//ligne.innerHTML.replaceAll("_",divans);
                 }// else {
-                //    ligne.innerHTML += divans;
+                    //    ligne.innerHTML += divans;
                 //}
                 cols[colsid].push(ligne);
+                if(activity.figuresCorrection[j] !== undefined){
+                    const divfigc = utils.create("div",{className:"fig"});
+                    ligneCorr.appendChild(divfigc),
+                    MM.memory[qty+"-"+"fc"+i+"-"+j] = new Figure(utils.clone(activity.figuresCorrection[j]), qty+"-"+"fc"+i+"-"+j,divfigc);
+                }
                 if(nbq%parameters.nbrows === 0 && parameters.nbrows>0){
                     if(parameters.pied !== ""){
                         cols[colsid].push(utils.create("div",{innerHTML:parameters.pied,className:"ceinture-pied-colonne border-black"}));

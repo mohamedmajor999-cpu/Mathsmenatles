@@ -199,6 +199,9 @@ function makePage(){
             } else {
                 divr.innerHTML = answer;
             }
+            if(activity.figuresCorrection[j] !== undefined){
+                MM.memory["fc"+j] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc"+j, divr);
+            }
             artCorrection.appendChild(divr);
             carte.prepend(artCorrection);
         }
@@ -219,7 +222,7 @@ function makePage(){
  */
 function testIfLatex(chaine){
     let isLatex = false;
-    isLatex = chaine.indexOf('\\')>-1 || chaine.indexOf('x')>-1 || chaine.indexOf('^')>-1 || chaine.indexOf('+')>-1 || chaine.indexOf('-')>-1 || chaine.indexOf('=')>-1;
+    isLatex = chaine.indexOf('\\')>-1 || chaine.indexOf('x')>-1 || chaine.indexOf('^')>-1;
     return isLatex;
 }
 function checkURL(urlString){

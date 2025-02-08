@@ -273,6 +273,9 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
       background-color: #ffcac5;
       padding: 2rem;
   }
+  .answerInSlide .fig {
+    margin: auto;
+  }
   .slide.hidden{
       display: none;
   }

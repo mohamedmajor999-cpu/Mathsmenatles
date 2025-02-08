@@ -167,6 +167,9 @@ function makePage(){
                     //if(i===0 && j=== 0)MM.memory["dest"] = content;
                     MM.memory[qty+"-"+"f"+i+"-"+j] = new Figure(utils.clone(activity.figures[j]), qty+"-"+"f"+i+"-"+j,li);
                 }
+                if (activity.figuresCorrection[j] !== undefined){
+                    MM.memory[qty+"-"+"f"+i+"-"+j+"-corr"] = new Figure(utils.clone(activity.figuresCorrection[j]), qty+"-"+"f"+i+"-"+j+"-corr",liCorrection);
+                }
                 olCorrection.appendChild(liCorrection);
             }
             sectionEnonce.appendChild(ol);

@@ -158,6 +158,9 @@ function makePage() {
                     //if(i===0 && j=== 0)MM.memory["dest"] = content;
                     MM.memory[qty + "-" + "f" + i + "-" + j] = new Figure(utils.clone(activity.figures[j]), qty + "-" + "f" + i + "-" + j, divenonce);
                 }
+                if (activity.figuresCorrection[j] !== undefined) {
+                    MM.memory[qty + "-" + "fc" + i + "-" + j] = new Figure(utils.clone(activity.figuresCorrection[j]), qty + "-" + "fc" + i + "-" + j, divanswerc);
+                }
                 trc.appendChild(divenoncec);
                 trc.appendChild(divanswerc);
                 tbodye.appendChild(tre);

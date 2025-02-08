@@ -530,16 +530,28 @@ ul.menu, .menu ul {
 }
 #divparams .tooltip .tooltiptext {
   visibility: hidden;
-  background-color: black;
-  color: white;
+  background-color: rgb(249, 255, 226);
+  color: rgb(5, 2, 162);
   text-align: center;
   padding: 5px;
   border-radius: 6px;
+  border: 1px solid rgb(18, 18, 11);
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   bottom:100%;
   left:50%;
   margin-left:calc(-100% / 2 + 50px);
+}
+#divparams .tooltip .tooltiptext::before {
+  content:"Réponse attendue";
+  font-size: x-small;
+  position: absolute;
+  top:-20px;
+  left:10px;
+  border-radius: 3px;
+  padding: 0 1em;
+  background-color: rgb(249, 255, 226);
+  z-index: 1;
 }
 #colparameters .tooltip .tooltiptext, #resultat-chercher .tooltip .tooltiptext {
   visibility: hidden;

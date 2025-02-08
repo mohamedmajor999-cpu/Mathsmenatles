@@ -187,7 +187,12 @@ h3.exercice-title{
     font-family: 'Times New Roman', Times, serif !important;
     font-style: italic;
   }
-  
+
+.corrige .fig {
+    display: inline-block;
+    vertical-align: text-top;
+}
+
 .red {
     color: red;
 }

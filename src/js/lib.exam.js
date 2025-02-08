@@ -202,7 +202,11 @@ function makePage(){
             if(activity.figures[j] !== undefined){
                 //if(i===0 && j=== 0)MM.memory["dest"] = this.wsheet;
                 MM.memory["f"+qty+"-"+i+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+qty+"-"+i+"-"+j,li);
-            }                
+            }
+            if(activity.figuresCorrection[j] !== undefined){
+                MM.memory["f"+qty+"-"+i+"-"+j+"-correction"] = new Figure(utils.clone(activity.figuresCorrection[j]), "f"+qty+"-"+i+"-"+j+"-correction",liCorrection);
+            }
+
             const article = utils.create("article");
             li.appendChild(article);
             olCorrection.appendChild(liCorrection);

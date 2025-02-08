@@ -496,6 +496,9 @@ const MM = {
                         MM.memory['e' + slideNumber + "-" + indiceSlide] = new Figure(utils.clone(activity.figures[j]), "en" + slideNumber + "-" + indiceSlide, lie, [300, 150]);
                         MM.memory['c' + slideNumber + "-" + indiceSlide] = new Figure(utils.clone(activity.figures[j]), "cor" + slideNumber + "-" + indiceSlide, lic, [450, 225]);
                     }
+                    if (activity.figuresCorrection[j] !== undefined) {
+                        MM.memory['fc'+slideNumber + "-" + indiceSlide] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc" + slideNumber + "-" + indiceSlide, lic, [300, 150]);
+                    }
                     ole.appendChild(lie);
                     olc.appendChild(lic);
                     indiceSlide++;
@@ -511,6 +514,10 @@ const MM = {
                             // toutes les questions ne comportent pas de figures, on vérifie qu'il y en a.
                             if (MM.memory['e' + slideNumber + "-" + j] !== undefined)
                                 MM.memory['e' + slideNumber + "-" + j].display();
+                            if (MM.memory['fc' + slideNumber + "-" + j] !== undefined){
+                                MM.memory['fc' + slideNumber + "-" + j].display();
+                                MM.memory['fc' + slideNumber + "-" + j].toggle()
+                            }
                         }
                     }, 450);
                 }

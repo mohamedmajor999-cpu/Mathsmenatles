@@ -266,6 +266,9 @@ function makePage(){
                 MM.memory["f"+index+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+index+"-"+j, divq);
             }
             artCorrection.appendChild(divr)
+            if(activity.figuresCorrection[j] !== undefined){
+                MM.memory["fc"+index+"-"+j] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc"+index+"-"+j, divr);
+            }
             if(globalPrintHeight > pageHeight){
                 arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
                 currentSection++;

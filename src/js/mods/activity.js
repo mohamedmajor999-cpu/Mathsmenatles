@@ -42,6 +42,7 @@ export default class activity {
         this.id = id!==''?id:obj.id||obj.ID;
         this.type = obj.type; // undefined => latex , "text" can include math, with $$ around
         this.figure = obj.figure; // for graphics description
+        this.figureCorrection = obj.figureCorrection; 
         this.title = obj.title;  // title of de activity
         this.description = obj.description; // long description
         this.speech = obj.speech||false;
@@ -62,8 +63,10 @@ export default class activity {
         this.answers = utils.clone(obj.answers)||[];
         this.samples = utils.clone(obj.samples)||[];// samples of answers, for online answer
         this.values = utils.clone(obj.values)||[];
-        this.figures = utils.clone(obj.figures)||[]; // generetad figures paramaters
-        this.examplesFigs = {}; // genrated graphics from Class Figure
+        this.figures = utils.clone(obj.figures)||[]; // generated figures paramaters
+        this.figuresCorrection = utils.clone(obj.figuresCorrection)||[]; // generated figures correction paramaters
+        this.examplesFigs = {}; // generated graphics from Class Figure
+        this.examplesFigsCorr = {} // generated graphics from Class Figure
         this.chosenOptions = utils.clone(obj.chosenOptions)||[]; // options choisies (catégories)
         this.chosenQuestions = utils.clone(obj.chosenQuestions)||{}; // questions parmi les options (sous catégories)
         this.chosenQuestionTypes = utils.clone(obj.chosenQuestionTypes)||[]; // pattern parmi les questions
@@ -83,8 +86,10 @@ export default class activity {
         this.answers = [];
         this.values = [];
         this.figures = [];
+        this.figuresCorrection = [];
         this.audios = [];
         this.examplesFigs = {};
+        this.examplesFigsCorr = {};
         this.intVarsHistoric = {};
         this.arraysHistoric = {};
         this.getOptionHistory = [];
@@ -267,7 +272,7 @@ export default class activity {
                 let ul = document.createElement("ul");
                 if(Array.isArray(this.questions[0])){
                     if(this.figures[0]){
-                        let div = utils.create("div");
+                        const div = utils.create("div");
                         this.examplesFigs[i] = new Figure(utils.clone(this.figures[0]), "fig-ex"+i, div);
                         p.appendChild(div);
                     }
@@ -282,10 +287,15 @@ export default class activity {
                         li.innerHTML = "<input class='checkbox"+colors[i%colors.length]+"' type='checkbox' id='o"+i+"-"+jj+"' value='"+i+"-"+jj+"'"+checked+"> <label for='o"+i+"-"+jj+"'>"+this.setMath(this.questions[0][jj])+"</label>";
                         // answer
                         let span = utils.create("span",{className:"tooltiptext"});
-                        if(Array.isArray(this.answers[0]))
-                            span.innerHTML = this.setMath(String(this.answers[0][jj]));
-                        else {
+                        if(Array.isArray(this.answers[0])){
+                            span.innerHTML = this.setMath(String(this.answers[0][jj]));                            
+                        } else {
                             span.innerHTML = this.setMath(String(this.answers[0]));
+                        }
+                        if (this.figuresCorrection[0]){
+                            const div = utils.create('div');
+                            this.examplesFigsCorr[i] = new Figure(utils.clone(this.figuresCorrection[0]), "fig-ex-c"+i, div);
+                            span.appendChild(div);
                         }
                         li.appendChild(span);
                         ul.appendChild(li);
@@ -301,6 +311,7 @@ export default class activity {
                         span.innerHTML = this.setMath(this.answers[0][0]);
                     else
                         span.innerHTML = this.setMath(this.answers[0]);
+                    this.examplesFigsCorr[i] = new Figure(utils.clone(this.figuresCorrection[0]), "fig-ex-c"+i, span);
                     li.appendChild(span);
                     ul.appendChild(li);
                 }
@@ -326,7 +337,7 @@ export default class activity {
                 for(let jj=0; jj<this.questions[0].length;jj++){
                     let li = document.createElement("li");
                     if(this.figures[0]){
-                        let div = utils.create("div");
+                        const div = utils.create("div");
                         this.examplesFigs[i] = new Figure(utils.clone(this.figures[0]), "fig-ex"+i, div);
                         ul.appendChild(div);
                     }
@@ -338,6 +349,11 @@ export default class activity {
                         span.innerHTML = this.setMath(this.answers[0][jj]);
                     } else {
                         span.innerHTML = this.setMath(this.answers[0]);
+                    }
+                    if(this.figuresCorrection[0]){
+                        const div = utils.create("div");
+                        this.examplesFigsCorr[i] = new Figure(utils.clone(this.figuresCorrection[0]), "fig-ex"+i+"corr", div);
+                        span.appendChild(div);
                     }
                     li.appendChild(span);
                     ul.appendChild(li);
@@ -352,6 +368,9 @@ export default class activity {
                 let span = document.createElement("span");
                 span.className = "tooltiptext";
                 span.innerHTML = this.setMath(this.answers[0]);
+                if (this.figuresCorrection[0]){
+                    this.examplesFigsCorr[i] = new Figure(utils.clone(this.figuresCorrection[0]), "fig-ex"+i+"corr", span);
+                }
                 li.appendChild(span);
                 ul.appendChild(li);
             }
@@ -362,11 +381,14 @@ export default class activity {
             // display answer
             examples.appendChild(p);
         }
-        if(!utils.isEmpty(this.examplesFigs)){
+        if(!utils.isEmpty(this.examplesFigs) || !utils.isEmpty(this.examplesFigsCorr)) {
             // it has to take his time... 
             setTimeout(()=>{
                 for(let i in this.examplesFigs){
                     this.examplesFigs[i].display();
+                }
+                for(let i in this.examplesFigsCorr){
+                    this.examplesFigsCorr[i].display();
                 }
             }, 300);
         }
@@ -704,12 +726,14 @@ export default class activity {
         let loopProtect = 0, maxLoop = 100;
         // vidage de figures pour éviter les traces.
         this.figures = [];
+        this.figuresCorrection = [];
         // données pour éviter une répétition acharnée des variables entières
         //utils.debug("génération de questions pour "+this.title, n+" questions");
         this.intVarsHistoric = {};
         this.arraysHistoric = {};
         for(let i=0;i<n;i++){
             this.cFigure = undefined;
+            this.cFigureCorrection = undefined;
             this.ckeyBoard = undefined;
             optionNumber = opt!==undefined?opt:this.getOption();
             patternNumber = patt!==undefined?patt:this.getPattern(optionNumber);
@@ -781,6 +805,11 @@ export default class activity {
                 } else if(this.figure !== undefined){
                     this.cFigure = utils.clone(this.figure);
                 }
+                if(this.options[optionNumber].figureCorrection !== undefined){
+                    this.cFigureCorrection = utils.clone(this.options[optionNumber].figureCorrection);
+                } else if(this.figureCorrection !== undefined){
+                    this.cFigureCorrection = utils.clone(this.figureCorrection);
+                }
                 // traitement du clavier (optionnel)
                 if(this.options[optionNumber].keys !== undefined){
                     this.ckeyBoard = this.options[optionNumber].keys;
@@ -807,6 +836,9 @@ export default class activity {
                 this.cValue = this.valuePatterns?this.valuePatterns:this.cAnswer;
                 if(this.figure !== undefined){
                     this.cFigure = utils.clone(this.figure);
+                }
+                if(this.figureCorrection !== undefined){
+                    this.cFigureCorrection = utils.clone(this.figureCorrection);
                 }
                 if(this.keys !== undefined){
                     this.ckeyBoard = this.keys;
@@ -979,6 +1011,24 @@ export default class activity {
                         }
                     }
                 }
+                if(this.cFigureCorrection!== undefined){
+                    this.figuresCorrection[i] = {
+                        "type":this.cFigureCorrection.type,
+                        "content":this.replaceVars(utils.clone(this.cFigureCorrection.content))
+                    }
+                    if(this.cFigureCorrection.type === 'graph') {
+                        this.figuresCorrection[i] = {
+                            "boundingbox":this.cFigureCorrection.boundingbox,
+                            "axis":this.cFigureCorrection.axis,
+                            "scale":this.cFigureCorrection.scale,
+                            "xscale":this.cFigureCorrection.xscale,
+                            "grid":this.cFigureCorrection.grid?true:false,
+                            "keepAspect":(this.cFigureCorrection.keepAspect!==undefined)?this.cFigureCorrection.keepAspect:true,
+                            ...this.figuresCorrection[i]
+                        }
+                    }
+                }
+
                 if(this.ckeyBoard !== undefined){
                     this.keyBoards[i] = utils.clone(this.ckeyBoard);
                 }
@@ -1011,6 +1061,21 @@ export default class activity {
                             "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true,
                             ...this.sample.figure
                         }
+                    }
+                }
+                if (this.cFigureCorrection !== undefined) {
+                    this.sample.figureCorrection = {
+                        "type": this.cFigureCorrection.type,
+                        "content": this.replaceVars(this.cFigureCorrection.content)
+                    };
+                    if (this.cFigureCorrection.type === "graph") {
+                        this.sample.figureCorrection = {
+                            "boundingbox": this.cFigureCorrection.boundingbox,
+                            "axis": this.cFigureCorrection.axis,
+                            "grid": this.cFigureCorrection.grid ? true : false,
+                            "keepAspect": (this.cFigureCorrection.keepAspect !== undefined) ? this.cFigureCorrection.keepAspect : true,
+                            ...this.sample.figureCorrection
+                        };
                     }
                 }
             }

@@ -151,7 +151,7 @@ function makePage(){
             if(activity.figures[j] !== undefined){
                 if(MM.memory["dest"]===undefined)
                     MM.memory["dest"] = content;
-                MM.memory["f"+nbOfCards] = new Figure(utils.clone(activity.figures[j]), "f"+nbOfCards, divq);
+                MM.memory["f"+j] = new Figure(utils.clone(activity.figures[j]), "f"+j, divq);
             }
             sectionCartes.appendChild(carte);
         }
@@ -173,6 +173,9 @@ function makePage(){
                 divr.appendChild(spanCorrection);
             } else {
                 divr.innerHTML = "<span class='math'>"+answer+"</span>";
+            }
+            if (activity.figuresCorrection[j] !== undefined){
+                MM.memory['fc'+numAnswer] = new Figure(utils.clone(activity.figuresCorrection[j]), 'fc'+numAnswer, divr)
             }
             artCorrection.appendChild(divr);
             let hr = utils.create("hr");

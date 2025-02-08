@@ -149,6 +149,9 @@ function makePage() {
             if (activity.figures[questionNumber] !== undefined) {
                 MM.memory["f" + indexOfCart + "-" + i] = new Figure(utils.clone(activity.figures[questionNumber]), "f" + indexOfCart + "-" + i, divq);
             }
+            if (activity.figuresCorrection[questionNumber] !== undefined) {
+                MM.memory["fc" + indexOfCart + "-" + i] = new Figure(utils.clone(activity.figuresCorrection[questionNumber]), "fc" + indexOfCart + "-" + i, divr);
+            }
             artCorrection.appendChild(divr)
             flipCardInner.appendChild(artCorrection)
             container.appendChild(flipCardInner)
