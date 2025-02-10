@@ -22,5 +22,5 @@
     "consigne":"Décomposer en produit de facteurs premiers",
     "question":"${:p}",
     "shortq":"${:p}",
-    "value":["${math.unpower(:b)}", "${math.toTex(:b)}"]
+    "value":["${math.toTex(:b)}", "${math.toTex(math.unpower(:b))}"]
 }
