@@ -10,12 +10,12 @@
         "vars":{"p":"4_30", "b":"${math.factor(:p)}"},
         "answer":"${:p}=\\color{red}{${math.toTex(math.unpower(:b))}}"
     },{
-        "name":"Nombres inférieurs à 100 (4e)",
-        "vars":{"a":"4_10_2","p":"${:a[0]*:a[1]}", "b":"${math.factor(:p)}"},
+        "name":"Nombres de 30 à 100 (4e)",
+        "vars":{"p":"32_100_^31,37,41,43,47,53,59,61,67,71,73,79,83,89,97", "b":"${math.factor(:p)}"},
         "answer":"${:p}=\\color{red}{${math.toTex(:b)}}"
     },{
-        "name":"Nombres inférieurs à 1000 (3e)",
-        "vars":{"a":"2_11_3","p":"${:a[0]*:a[1]*:a[2]}", "b":"${math.factor(:p)}"},
+        "name":"Nombres de 101 à 1000 (3e)",
+        "vars":{"a1":"15_100_^31,37,41,43,47,53,59,61,67,71,73,79,83,89,97", "a2":"2_10","p":"${:a1*:a2}", "b":"${math.factor(:p)}"},
         "answer":"${:p}=\\color{red}{${math.toTex(:b)}}"
     }
     ],

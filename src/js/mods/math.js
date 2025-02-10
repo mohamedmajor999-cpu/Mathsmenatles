@@ -72,8 +72,14 @@ const math = {
         arrayType = true;
       } else if (typeof others[i] === "string" && others[i][0] == "^") {
         avoid = others[i].substring(1).split(",");
-        if (avoid.indexOf("&") > -1) nodouble = true;
-        if (avoid.indexOf("prime") > -1) notPrime = true;
+        if (avoid.indexOf("&") > -1) {
+          nodouble = true;
+          avoid.splice(avoid.indexOf("&"), 1);
+        }
+        if (avoid.indexOf("prime") > -1) {
+          notPrime = true;
+          avoid.splice(avoid.indexOf("prime"), 1);
+        }
         avoid = avoid.map(Number);
       }
     }
@@ -85,7 +91,7 @@ const math = {
       var integers = [];
       for (let i = 0; i < qty; i++) {
         let thisint = math.round(utils.alea() * (max - min)) + min;
-        if (avoid.indexOf(thisint) > -1 || (nodouble && integers.indexOf(thisint) > -1) || (notPrime && math.premiers.indexOf(thisint) > -1)) {
+        if (avoid.indexOf(thisint) > -1 || (nodouble && integers.indexOf(thisint) > -1) || (notPrime && math.premiers.includes(thisint))) {
           // do not use exeptions numbers
           // or no double number
           i--;
@@ -462,7 +468,7 @@ const math = {
    * @returns String
    */
   toTex(string) {
-    return string.replace(/\*/g, "\\times");
+    return String(string).replace(/\*/g, "\\times");
   },
   /**
    * retourne l'écriture simplifiée d'une racine carrée
