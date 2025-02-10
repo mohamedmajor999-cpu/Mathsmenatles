@@ -193,7 +193,7 @@ function makePage(){
             let divr = utils.create("div");
             let answer = activity.values[j];
             if(_.isArray(answer))answer = answer[0];
-            if(activity.type === "latex" || activity.type === "" || activity.type === undefined || testIfLatex(answer)){
+            if(activity.type === "latex" || activity.type === "" || activity.type === undefined || utils.testIfLatex(answer)){
                 let spanCorrection = utils.create("span", {className:"math", innerHTML:answer});
                 divr.appendChild(spanCorrection);
             } else {
@@ -215,16 +215,7 @@ function makePage(){
         }, 300);
     }
 }
-/**
- * 
- * @param {string} chaine chaine à tester
- * @returns boolean
- */
-function testIfLatex(chaine){
-    let isLatex = false;
-    isLatex = chaine.indexOf('\\')>-1 || chaine.indexOf('x')>-1 || chaine.indexOf('^')>-1;
-    return isLatex;
-}
+
 function checkURL(urlString){
     const vars = utils.getUrlVars(urlString);
     if(vars.embed !== undefined){

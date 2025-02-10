@@ -682,6 +682,16 @@ export const utils = {
         return obj;
     },
     /**
+     * 
+     * @param {string} chaine chaine à tester
+     * @returns boolean
+     */
+    testIfLatex(chaine){
+        let isLatex = false;
+        isLatex = chaine.indexOf('\\')>-1 || chaine.indexOf('x')>-1 || chaine.indexOf('^')>-1;
+        return isLatex;
+    },
+    /**
     * function removeClass
     * remove a class name from a DOM element
     *

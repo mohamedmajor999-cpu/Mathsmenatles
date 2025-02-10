@@ -471,7 +471,7 @@ const MM = {
                         exportTextArea.value += '---\n$'+ question+'$\n\n';
                     } else {
                         lie.innerHTML = question;
-                        exportTextArea.value += '---\n'+ question.replace('$$', '$')+'\n\n';
+                        exportTextArea.value += '---\n'+ question.replace(/$$/g, '$')+'\n\n';
                     }
                     if (activity.audioRead && activity.audios[j] !== undefined && activity.audios[j] !== false) {
                         MM.text2speach[indiceSlide] = [activity.audios[j], activity.audioRepeat];
@@ -486,11 +486,21 @@ const MM = {
                         else
                             lic.innerHTML += answer;
                     }
+                    let valueToExport = ''
                     if (Array.isArray(value)){
-                        exportTextArea.value += String(value[0]).replace('$$', '$')+'\n';
+                        valueToExport = value[0];
                     } else {
-                        exportTextArea.value += String(value).replace('$$', '$')+'\n';
+                        valueToExport = value;
                     }
+                    if (typeof valueToExport === 'number') {
+                        valueToExport = '$' + String(valueToExport) + '$';
+                    } else if (valueToExport.indexOf('$$') > -1) {
+                        valueToExport = String(valueToExport).replace('$$', '$')
+                    } else if (utils.testIfLatex(valueToExport) && valueToExport.indexOf('$') === -1) {
+                        valueToExport = '$' + valueToExport + '$';
+                    }
+                    // check if value is a latex formula or a number
+                    exportTextArea.value += valueToExport+'\n';
                     if (activity.figures[j] !== undefined) {
                         lic.innerHTML += "&nbsp; <button data-id=\"c" + slideNumber + "-" + indiceSlide + "\">Figure</button>";
                         MM.memory['e' + slideNumber + "-" + indiceSlide] = new Figure(utils.clone(activity.figures[j]), "en" + slideNumber + "-" + indiceSlide, lie, [300, 150]);
