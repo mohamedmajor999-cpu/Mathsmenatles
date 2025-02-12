@@ -1,6 +1,6 @@
 {
   "name": "mathsmentales",
-  "version": "2.3.65",
+  "version": "2.3.66",
   "description": "Outil pour travailler les automatismes et le calcul mental en mathématiques",
   "main": "index.html",
   "type": "commonjs",

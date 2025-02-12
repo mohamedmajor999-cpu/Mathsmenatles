@@ -9,14 +9,6 @@ html{
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body[size="A4"] #creator-content {
-    width: 21cm;
-  min-height: 29.7cm;
-}
-body[size="A4"][layout="landscape"]  #creator-content {
-    width: 27.7cm;
-    min-height: 21cm;
-}
 
 footer.break {
     page-break-after: always;
@@ -98,7 +90,7 @@ Taille carte de visite
     flex-direction: column;
     width: 100%;
 }
-#creator-content header{
+#creator-content header {
     display: block;
     min-width: 5cm;
     max-width: 90%;
@@ -204,6 +196,14 @@ h3.exercice-title{
     html{
         background: rgb(204,204,204); 
     }
+    body[size="A4"] #creator-content {
+        width: 21cm;
+        min-height: 29.7cm;
+    }
+    body[size="A4"][layout="landscape"]  #creator-content {
+        width: 27.7cm;
+        min-height: 21cm;
+    }    
     body {
         position: relative;
         margin: auto;
@@ -223,19 +223,37 @@ h3.exercice-title{
         margin-bottom: 0.5cm;
         box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
     }
-    footer.break::before, .pagebreak::before{
-        content:"--> saut de page <--";
-        color:rgb(18, 150, 47);
-        font-size: 0.8rem;
-        text-align: end;
+    footer.break::before, .pagebreak::before {
+        content: ' ';
+        position: absolute;
+        display: block;
+        box-shadow: 0 0.2cm 0.2cm rgba(0,0,0,0.5);
+        height: 5mm;
+        width: 210mm;
+        margin-left:-10mm;
+        z-index: 5;
     }
-    footer.break {
-        border-bottom: 1px dashed rgb(18, 150, 47);
-        margin-bottom: 1em;
+    .pagebreak, footer.break {
+        margin-bottom: 2.5cm;
     }
-    .pagebreak {
-        border-top: 1px dashed  rgb(18, 150, 47);
+    .pagebreak::after, footer.break::after {
+        position: absolute;
+        z-index: 2;
+        content: ' ';
+        display: block;
+        margin-top:5mm;
+        height: 0.5cm;
+        width: 220mm;
+        margin-left:-15mm;
+        background-color: rgb(204,204,204);
     }
+    body[size="A4"][layout="landscape"] .pagebreak::after {
+        width: 307mm;
+    }
+    body[size="A4"][layout="landscape"] .pagebreak::before {
+        width: 297mm;
+    }
+
     #creator-menu {
         font-size: 10.5pt;
     }
@@ -254,13 +272,28 @@ h3.exercice-title{
     }
 }
 @media print {
+    html {
+        padding: 0;
+    }
     body {
         padding: 1cm;
+        margin:0;
+    }
+    body[size="A4"] {
+        width: 21cm;
+        min-height: 29.7cm;
+    }
+    body[size="A4"][layout="landscape"] {
+        width: 27.7cm;
+        min-height: 21cm;
     }
     #creator-menu {
         display: none;
     }
     .noprint {
         display:none;
+    }
+    .enonceContent:not(:first-of-type) {
+        margin-top: 1cm;
     }
 }

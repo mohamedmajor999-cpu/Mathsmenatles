@@ -13,14 +13,6 @@ html{
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body[size="A4"] #creator-content{
-    width: 210mm;
-    min-height: 297mm;
-}
-body[size="A4"][layout="landscape"] #creator-content {
-    width: 297mm;
-    min-height: 210mm;
-}
 
 footer.break {
     page-break-after: always;
@@ -310,10 +302,21 @@ input[type="color"]{
 .nofig .fig, .nofig svg {
     display:none;
 }
-.parquatre {
+body[size="A4"] .parquatre {
     display: block;
     width:19cm;
     height: 27.7cm;
+    margin-bottom: 1cm;
+    margin-top:1cm;
+    transform: rotate(180deg);
+    position: relative;
+    page-break-before: always;
+    page-break-inside: avoid;
+}
+body[size="A4"][layout="landscape"] .parquatre {
+    display: block;
+    width:27.7cm;
+    height: 19cm;
     margin-bottom: 1cm;
     margin-top:1cm;
     transform: rotate(180deg);
@@ -412,6 +415,14 @@ input[type="color"]{
         /*margin-bottom: 0.5cm;*/
         box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
     }
+    body[size="A4"] #creator-content{
+        width: 210mm;
+        min-height: 297mm;
+    }
+    body[size="A4"][layout="landscape"] #creator-content {
+        width: 297mm;
+        min-height: 210mm;
+    }
     /*footer.break::before, .pagebreak::before{
         content:"--> saut de page <--";
         color:rgb(18, 150, 47);
@@ -489,10 +500,9 @@ input[type="color"]{
     body {
         width: 21cm; /* A4 width */
     }
-    html, body[size="A4"][layout="landscape"] {
+    body[size="A4"][layout="landscape"] {
         width: 29.7cm; /* A4 height */
     }
-
     body #creator-content {
         padding: 5mm 5mm 0 5mm;
     }
