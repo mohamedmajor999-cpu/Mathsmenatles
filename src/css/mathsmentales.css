@@ -569,9 +569,6 @@ ul.menu, .menu ul {
   /*left:-50%;
   margin-left:calc(-100% / 2 + 50px);*/
 }
-#resultat-chercher .tooltip .tooltiptext {
-  left:50px;
-}
 #divparams .tooltiptext::after, #colparameters .tooltiptext::after, #resultat-chercher .tooltip .tooltiptext::after {
 	content: "";
 	position: absolute;
@@ -581,6 +578,13 @@ ul.menu, .menu ul {
 	border-width: 5px;
 	border-style: solid;
 	border-color: #555 transparent transparent transparent;
+}
+#resultat-chercher .tooltip .tooltiptext {
+  left:50px;
+}
+#colparameters .tooltip .tooltiptext {
+  left: 50%;
+  transform: translateX(-50%);
 }
 /* Show the tooltip text when you mouse over the tooltip container */
 #divparams .tooltip:hover .tooltiptext, #colparameters .tooltip:hover .tooltiptext, #resultat-chercher .tooltip:hover .tooltiptext {
