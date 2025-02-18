@@ -113,7 +113,8 @@
                     "8NE":"Calculer avec des nombres décimaux",
                     "8NF":"Résoudre des problèmes avec des calculs",
                     "8NG":"Organisation et gestion de données",
-                    "8NH":"Problèmes de proportionnalité"
+                    "8NH":"Problèmes de proportionnalité",
+                    "8NN":"Faits numériques"
                 }
             },
             "8M":{
@@ -152,7 +153,8 @@
                     "7NE":"Calculer avec des nombres décimaux",
                     "7NF":"Résoudre des problèmes avec des calculs",
                     "7NG":"Organisation et gestion de données",
-                    "7NH":"Problèmes de proportionnalité"
+                    "7NH":"Problèmes de proportionnalité",
+                    "7NN":"Faits numériques"
                 }
             },
             "7M":{
@@ -188,7 +190,8 @@
                     "6NC":"Utiliser et représenter les nombres décimaux",
                     "6ND":"Calculer avec des nombres entiers",
                     "6NE":"Calculer avec des nombres décimaux",
-                    "6NF":"Résoudre des problèmes avec des calculs"         
+                    "6NF":"Résoudre des problèmes avec des calculs",
+                    "6NN":"Faits numériques"   
                 }
             },
             "6M":{
