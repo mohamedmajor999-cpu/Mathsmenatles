@@ -182,11 +182,13 @@ function makePage() {
             content.appendChild(utils.create("footer", { className: "break" }));
             content.appendChild(correctionContent);
         } else if (parameters.positionCorrection === "end") {
-            allCorrectionsContent.appendChild(utils.create("footer", { className: "break" }));
+            if (qty>0)
+                allCorrectionsContent.appendChild(utils.create("footer", { className: "break" }));
             allCorrectionsContent.appendChild(correctionContent);
         }
     }
     if (allCorrectionsContent.hasChildNodes) {
+        content.appendChild(utils.create("footer", { className: "break" }));
         content.appendChild(allCorrectionsContent);
     }
     if (!parameters.cart.ordered && utils.isEmpty(MM.memory)) {
@@ -207,7 +209,7 @@ function makePage() {
 function refresh() {
     makePage()
     common.mathRender()
-    setPageBreaks()
+    setTimeout(()=> {setPageBreaks()},500)
     content.oninput = (evt) => {
         if (evt.target.nodeName.toLowerCase() === "input") {
             changecols(evt.target.dataset.dest, evt.target.value)
@@ -260,8 +262,8 @@ function setPageBreaks() {
         for (let i = 0; i < lignes.length; i++) {
             heightOfElements += lignes[i].getBoundingClientRect().height
             if (heightOfElements > hauteurPage) {
-                heightOfElements = lignes[i].getBoundingClientRect().height
-                lignes[i - 1].classList.add('pagebreak')
+                // le saut de page est fait par le block qui dépasse. page-break-before
+                lignes[i].classList.add('pagebreak')
                 heightOfElements = heightOfTableHead
             }
         }
