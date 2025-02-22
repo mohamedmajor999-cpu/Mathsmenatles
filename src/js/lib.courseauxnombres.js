@@ -187,7 +187,7 @@ function makePage() {
             allCorrectionsContent.appendChild(correctionContent);
         }
     }
-    if (allCorrectionsContent.hasChildNodes) {
+    if (allCorrectionsContent.hasChildNodes()) {
         content.appendChild(utils.create("footer", { className: "break" }));
         content.appendChild(allCorrectionsContent);
     }
