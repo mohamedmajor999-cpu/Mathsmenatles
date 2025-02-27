@@ -110,7 +110,7 @@ ainsi que des *données optionnelles* :
   * **value** : chaine ou tableau de chaines contenant les réponses attendues dans le formulaire de réponse en ligne
   * **figure** : chaine contenant une figure illustrant l'activité. On peut par exemple faire référence à une figure d'une table contenant des svg, svg contenant des variables. héhéhé !
   * **figureCorrection** : figure de la correction, dans le cas où la question demande de tracer une figure.
-  * **shortq** : question au format court (sans la consigne par exemple) pour un export plus lisible dans les ceintures, doit suivre la forme de "questions" : une chaine ou un tableau. si l'on prévoit un emplacement de réponse dans la question, il n'y a pas d'espace de réponse derrière. Pour l'emplacement de la réponse, on utilisera \\colorbox{codecouleur}{\\quad} (un quad laisse de la place pour environ 2 chiffres pas trop grands)
+  * **shortq** : question au format court (sans la consigne par exemple) pour un export plus lisible dans les ceintures, doit suivre la forme de "questions" : une chaine ou un tableau. si l'on prévoit un emplacement de réponse dans la question, il n'y a pas d'espace de réponse derrière. Pour l'emplacement de la réponse, on utilisera \\colorbox{#ECECEC}{\\quad} (un quad laisse de la place pour environ 2 chiffres pas trop grands)
   * **keys** : tableau d'au plus huit éléments contenant les touches optionnelles pour le clavier virtuel.
   * **audio** : texte à faire lire par le moteur text to speech de l'appareil utilisé, souvent la question dépouillée de mise en forme. Il faut parfois bidouiller, car les maths ne sont pas toujours lues correctement.
   * **valueType** : chaine qui indique le type de réponse attendue, pour une correction en ligne plus précise

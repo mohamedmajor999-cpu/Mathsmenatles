@@ -209,7 +209,7 @@ function makePage() {
 function refresh() {
     makePage()
     common.mathRender()
-    setTimeout(()=> {setPageBreaks()},500)
+    setTimeout(()=> {setPageBreaks()},1000)
     content.oninput = (evt) => {
         if (evt.target.nodeName.toLowerCase() === "input") {
             changecols(evt.target.dataset.dest, evt.target.value)
