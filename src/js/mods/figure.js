@@ -446,7 +446,7 @@ export default class Figure {
                             this.figure.jc.use(this.figure);
                         }
                         this.figure.jc.parse(commande);
-                    } else if(["text", "point","axis", "line", "segment", "angle", "polygon", "transform","intersection", "ticks"].indexOf(type)>-1){
+                    } else if(["text", "point","grid","axis", "line", "segment", "angle", "polygon", "circle", "transform","intersection", "ticks"].indexOf(type)>-1){
                         if(!options)
                             elements[i] = this.figure.create(type, commande);
                         else
