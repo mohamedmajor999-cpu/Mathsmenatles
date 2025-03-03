@@ -10,8 +10,8 @@
     "options":[{
         "name":"Appartenance à une droite",
         "consts":{
-            "vrai":["${:A}\\in(${:B+:D})","${:B}\\in(${:A+:D})", "${:C}\\notin(${:D+:A})", "${:D}\\in(${:C+:A})"],
-            "faux":["${:A}\\notin(${:B+:D})", "${:B}\\notin(${:A+:D})", "${:C}\\in(${:D+:A})", "${:D}\\notin(${:C+:A})"],
+            "vrai":["${:A}\\in(${:B+:D})","${:B}\\in(${:A+:D})", "${:C}\\notin(${:D+:A})", "${:D}\\in(${:B+:A})", "${:C}\\notin(${:D+:B})"],
+            "faux":["${:A}\\notin(${:B+:D})", "${:B}\\notin(${:A+:D})", "${:C}\\in(${:D+:A})", "${:D}\\in(${:C+:A})", "${:C}\\in(${:D+:B})"],
             "repc":["F","V"],
             "repl":["Faux","Vrai"]
         },
@@ -34,7 +34,7 @@
             "xD":"d0.5_2_1",
             "yD":"${:pente*:xD+:intercept}",
             "yn":"0_1_2",
-            "num":"0_3_2_^&"
+            "num":"0_4_2_^&"
         },
         "figure":{
             "type":"graph",
@@ -49,7 +49,7 @@
                 ["line", [["${:xA}", "${:yA}"], ["${:xB}", "${:yB}"]]]
             ]
         },
-        "question":"Vrai ou Faux ? a. $$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$ b. $$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$",
+        "question":"Vrai ou Faux ?<br><b>a.</b> $$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$<br><b>b.</b> $$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$",
         "answer":"$$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$ est <span class='red'>${:repl[:yn[0]]}</span>.<br/>$$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$ est <span class='red'>${:repl[:yn[1]]}</span>.",
         "value":["${:repl[:yn[0]]};${:repl[:yn[1]]}","${:repc[:yn[0]]};${:repc[:yn[1]]}"]
     },{
@@ -92,8 +92,8 @@
                 ["line", [["${:xA}", "${:yA}"], ["${:xB}", "${:yB}"]]]
             ]
         },
-        "question":"Vrai ou Faux ? <b>a.</b> $$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$ <b>b.</b> $$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$ <b>c.</b> $$${:yn[2]==0?:faux[:num[2]]::vrai[:num[2]]}$$ <b>d.</b> $$${:yn[3]==0?:faux[:num[3]]::vrai[:num[3]]}$$",
-        "answer":"$$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$ est <span class='red'>${:repl[:yn[0]]}</span>.<br/>$$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$ est <span class='red'>${:repl[:yn[1]]}</span>.<br/>$$${:yn[2]==0?:faux[:num[2]]::vrai[:num[2]]}$$ est <span class='red'>${:repl[:yn[2]]}</span>.<br/>$$${:yn[3]==0?:faux[:num[3]]::vrai[:num[3]]}$$ est <span class='red'>${:repl[:yn[3]]}</span>.",
+        "question":"Vrai ou Faux ?<br><b>a.</b> $$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$ &nbsp; &nbsp; <b>b.</b> $$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$<br><b>c.</b> $$${:yn[2]==0?:faux[:num[2]]::vrai[:num[2]]}$$ &nbsp; &nbsp; <b>d.</b> $$${:yn[3]==0?:faux[:num[3]]::vrai[:num[3]]}$$",
+        "answer":"$$${:yn[0]==0?:faux[:num[0]]::vrai[:num[0]]}$$ est <span class='red'>${:repl[:yn[0]]}</span>.<br>$$${:yn[1]==0?:faux[:num[1]]::vrai[:num[1]]}$$ est <span class='red'>${:repl[:yn[1]]}</span>.<br>$$${:yn[2]==0?:faux[:num[2]]::vrai[:num[2]]}$$ est <span class='red'>${:repl[:yn[2]]}</span>.<br>$$${:yn[3]==0?:faux[:num[3]]::vrai[:num[3]]}$$ est <span class='red'>${:repl[:yn[3]]}</span>.",
         "value":["${:repl[:yn[0]]};${:repl[:yn[1]]};${:repl[:yn[2]]};${:repl[:yn[3]]}","${:repc[:yn[0]]};${:repc[:yn[1]]};${:repc[:yn[2]]};${:repc[:yn[3]]}"]
     }]
 }
