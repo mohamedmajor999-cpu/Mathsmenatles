@@ -9,7 +9,7 @@
         "vars":{"nb":"2_200","qte":"${:nb*10}","pourcent":[10,20,30,40,50]}
     }
     ],
-    "question": ["Après une augmentation de ${:pourcent} %, le chiffre  ${:qte} devient ? ", "Après une réduction de ${:pourcent} %, le chiffre  ${:qte} devient ?"],
+    "question": ["Après une augmentation de ${:pourcent} %, le nombre  ${:qte} devient ? ", "Après une réduction de ${:pourcent} %, le nombre  ${:qte} devient ?"],
     "answer":["${:qte} + ${:pourcent}% de ${:qte} = <span class='red'>$$${math.round(:qte*(1+:pourcent/100),2)}$$</span>","${:qte} - ${:pourcent}% de ${:qte} = <span class='red'>$$${math.round(:qte*(1-:pourcent/100),2)}$$</span>"],
     "value":["${math.round(:qte*(1+:pourcent/100),2)}","${math.round(:qte*(1-:pourcent/100),2)}"]
 }
