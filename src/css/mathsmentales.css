@@ -241,7 +241,7 @@ mark {
 }
 /* Range input, from http://danielstern.ca/range.css/ */
 #tab-parameters input[type=range] {
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   margin: 5.9px 0;
 }
