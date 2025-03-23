@@ -918,7 +918,8 @@ const diaporama = {
         // arrêter le timer de la question puis afficher la réponse
         diaporama.timers[id].pause(this);
         // on empêche toute nouvelle validation en désactivant le champ de saisie
-        diaporama.mf["ansInput" + id + "-" + (diaporama.steps[id].step)].disabled = true;
+        if (diaporama.mf["ansInput" + id + "-" + (diaporama.steps[id].step)] !== undefined)
+          diaporama.mf["ansInput" + id + "-" + (diaporama.steps[id].step)].disabled = true;
         diaporama.showTheAnswer(id, false)
         diaporama.timers[id].answerShown = true
         diaporama.timers[id].timeLeft = -0.01;
