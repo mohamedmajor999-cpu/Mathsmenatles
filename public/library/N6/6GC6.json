@@ -5,7 +5,7 @@
     "speech":1,
     "repeat":true,
     "ID":"6GC6",
-    "description":"Différencier les lignes géométriques de base (ne pas utiliser encore)",
+    "description":"Différencier les lignes géométriques de base",
     "keys":["droite","segment","demi-droite","[","("],
     "dest":["6GC","7GC","8GC"],
     "consts":{"points":"ABCDEFGHJKLMNPRST"},
