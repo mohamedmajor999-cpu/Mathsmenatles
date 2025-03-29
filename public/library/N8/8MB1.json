@@ -48,9 +48,9 @@
         ]
     },
     "question":[
-        "Quelle est le périmètre du ${:fig} ?",
+        "Quel est le périmètre du ${:fig} ?",
         "Quelle est l'aire du ${:fig} ?",
-        "Quelles sont le périmètre et l’aire du ${:fig} ?"
+        "Quels sont le périmètre et l’aire du ${:fig} ?"
     ],
     "answer":[
         "$$${:c1*2 + :c2*2} \\text{ cm}$$",
