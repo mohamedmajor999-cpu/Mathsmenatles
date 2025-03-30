@@ -682,7 +682,9 @@ export default class activity {
             //debug("Chaine à parser", chaine);
             let result = "";
             // doublage des \ caractères d'échapement.
-            try { result = eval("`"+chaine.replace(/\\/g,"\\\\")+"`");}
+            try {
+                result = eval("`"+chaine.replace(/\\/g,"\\\\")+"`");
+            }
             catch(error){
                 utils.debug(error, "Error replacing vars with "+chaine);
                 console.log(this.wVars,this.cConsts)
@@ -690,6 +692,8 @@ export default class activity {
             // return number if this is one
             if(!isNaN(result) && result !== '' && result.indexOf('+')<0){
                 return parseFloat(result);
+            } else if(result === 'true' || result === 'false') { // return true or false if this is a boolean
+                return result === 'true';
             } else return result;
         } else if(typeof chaine === "object"){
             // case 1 : it's an array
