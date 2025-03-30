@@ -89,11 +89,11 @@
         },
         {
             "name":"Triangle rectangle (multiple de 5)",
-            "vars":{"pts":"0_16_3_^&", "c":"1_17", "a":"${5*:c}", "b":"${90-:a}", "numill":"0_3", "illustration":"${:a>45?:numill:(:numill+4)}", "T":["${:A+:B+:C}", "${:B+:A+:C}", "${:C+:B+:A}", "${:B+:C+:A}"]},
+            "vars":{"pts":"0_16_3_^&", "c":"1_17", "a":"${5*:c}", "b":"${90-:a}", "numill":"0_3", "illustration":"${:a>45?:numill:(:numill+4)}", "T":["${:A+:B+:C}", "${:B+:A+:C}", "${:C+:B+:A}", "${:B+:C+:A}"], "connu":["${:B+:A+:C}", "${:C+:A+:B}"], "cherche":["${:A+:B+:C}","${:C+:B+:A}"]},
             "figure":{"type":"svg","content":"${:trianglesrectangles[:illustration]}"},
-            "question":"Le triangle ${:T} est rectangle en ${:A}. Quelle est la mesure de l'angle $$\\widehat{${:A+:C+:B}}$$ sachant que $$\\widehat{${:A+:B+:C}}=${:a}°$$ ?",
-            "shortq":"${:T} rectangle en ${:A}, $$\\widehat{${:A+:B+:C}}=${:a}°$$, $$\\widehat{${:A+:C+:B}}=?$$",
-            "answer":"L'angle $$\\widehat{${:A+:C+:B}}$$ mesure $$90°-${:a}=\\color{red}{${:b}°}$$",
+            "question":"Le triangle ${:T} est rectangle en ${:C}. Quelle est la mesure de l'angle $$\\widehat{${:cherche}}$$ sachant que $$\\widehat{${:connu}}=${:a}°$$ ?",
+            "shortq":"${:T} rectangle en ${:A}, $$\\widehat{${:connu}}=${:a}°$$, $$\\widehat{${:cherche}}=?$$",
+            "answer":"L'angle $$\\widehat{${:cherche}}$$ mesure $$90°-${:a}=\\color{red}{${:b}°}$$",
             "value":["${:b}°","${:b}"]
         }
     ]
