@@ -451,6 +451,37 @@ export default class Figure {
                             elements[i] = this.figure.create(type, commande);
                         else
                             elements[i] = this.figure.create(type,commande,options);
+                    } else if (type === 'fillSquares') {
+                        const squares = [];
+                        commande[0] = Number(commande[0])
+                        commande[1] = Number(commande[1])
+                        commande[2] = Number(commande[2])
+                        for (let h=0; h<commande[1]; h++) {
+                            squares.push([].fill(0,0,commande[0]))
+                        }
+                        // places commande[2] 1 in the squares array randomly
+                        for (let h=0; h<commande[2]; h++) {
+                            let x,y
+                            do {
+                                x = Math.floor(Math.random() * commande[1]);
+                                y = Math.floor(Math.random() * commande[0]);    
+                            } while (squares[x][y] === 1);
+                            squares[x][y] = 1;
+                        }
+                        const h = commande[3];
+                        const w = commande[4];
+                        // create squares
+                        for (let i=0; i<squares.length; i++) {
+                            for (let j=0; j<squares[i].length; j++) {
+                                if (squares[i][j] === 1) {
+                                    let a = this.figure.create('point',[i+w,j+h],{face:'', label: {visible: false}})
+                                    let b = this.figure.create('point',[i+w+1,j+h],{face:'', label: {visible: false}})
+                                    let c = this.figure.create('point',[i+w+1,j+h+1],{face:'', label: {visible: false}})
+                                    let d = this.figure.create('point',[i+w,j+h+1],{face:'', label: {visible: false}})
+                                    this.figure.create('polygon', [a, b, c, d], {fillColor: 'black'})
+                                }
+                            }
+                        }
                     }
                 }
                 let svg = new XMLSerializer().serializeToString(this.figure.renderer.svgRoot)
