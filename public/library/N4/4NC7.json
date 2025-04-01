@@ -29,7 +29,7 @@
     },{
         "name":"Quotient d'un nombre par un carré",
         "vars":{"x":"2_6","i":"1_5","y":"${:x*:x*:i}"},
-        "question": ["${:y}\\div${:x}^2","\\dfrac{${:y}}{${:x}}"],
+        "question": ["${:y}\\div${:x}^2","\\dfrac{${:y}}{${:x}^2}"],
         "answer":":question = \\color{red}{${:y/:x/:x}}",
         "value":"${:y/:x/:x}"
     },{
