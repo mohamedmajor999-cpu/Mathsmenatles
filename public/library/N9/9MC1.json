@@ -24,7 +24,7 @@
                 "h":"0_11",
                 "m":"0_1",
                 "min":"${:m*30}",
-                "angleH":"${:h*30+Math.round(30/12*:m*30)}",
+                "angleH":"${:h*30+Math.round(30/60*:m*30)}",
                 "angleM":"${:m*180}"
             },
             "answer":"Il est <span class='red'>${:h} heures ${:m?' et demie':''}</span>.",
@@ -37,7 +37,7 @@
                 "h":"0_11",
                 "m":"0_1",
                 "min":"${:m*30}",
-                "angleH":"${:h*30+Math.round(30/12*:m*30)}",
+                "angleH":"${:h*30+Math.round(30/60*:m*30)}",
                 "angleM":"${:m*180}"
             },
             "answer":"Il est <span class='red'>${:h+12} heures ${:m?' et demie':''}</span>.",
