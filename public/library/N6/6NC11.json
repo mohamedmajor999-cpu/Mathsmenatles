@@ -18,7 +18,7 @@
         "name":"Dixièmes, avec retenue",
         "vars":{
             "pea":"1_9",
-            "peb":"0_${:pea}",
+            "peb":"0_${:pea-1}",
             "pda":"1_8",
             "pdb":"${:pda+1}_9",
             "a":"${:pea+:pda/10}",
