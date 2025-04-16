@@ -478,7 +478,7 @@ export default class Figure {
                                     let b = this.figure.create('point',[i+w+1,j+h],{face:'', label: {visible: false}})
                                     let c = this.figure.create('point',[i+w+1,j+h+1],{face:'', label: {visible: false}})
                                     let d = this.figure.create('point',[i+w,j+h+1],{face:'', label: {visible: false}})
-                                    this.figure.create('polygon', [a, b, c, d], {fillColor: 'black'})
+                                    this.figure.create('polygon', [a, b, c, d], {fillColor: 'black', withLines:false})
                                 }
                             }
                         }

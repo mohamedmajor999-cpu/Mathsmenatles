@@ -75,7 +75,7 @@
                     ["point", ["${:w+Math.ceil(:nbp1/:l)}", "${:h+:nbp1%:l}"], {"name":"F","face":"", "label":{"visible":false}}],
                     ["point", ["${:w+Math.floor(:nbp1/:l)}", "${:h+:nbp1%:l}"], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", ["${:w+Math.floor(:nbp1/:l)}", "${:h+:l}"], {"name":"H","face":"", "label":{"visible":false}}],
-                    ["polygon",["A","E","F","G","H","B"],{"fillColor":"black"}]
+                    ["polygon",["A","E","F","G","H","B"],{"fillColor":"black","withLines":false}]
                 ]
             },
             "question":[
@@ -110,7 +110,7 @@
                     ["point", ["${:w+:nbp1%:L}", "${:h+Math.ceil(:nbp1/:L)}"], {"name":"F","face":"", "label":{"visible":false}}],
                     ["point", ["${:w+:nbp1%:L}", "${:h+Math.floor(:nbp1/:L)}"], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", ["${:w+:L}", "${:h+Math.floor(:nbp1/:L)}"], {"name":"H","face":"", "label":{"visible":false}}],
-                    ["polygon",["A","E","F","G","H","D"],{"fillColor":"black"}]
+                    ["polygon",["A","E","F","G","H","D"],{"fillColor":"black","withLines":false}]
                 ]
             },
             "question":[
