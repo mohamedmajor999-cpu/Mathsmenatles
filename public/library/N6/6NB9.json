@@ -122,13 +122,13 @@
         },{
             "name":"Rectangle et proportion rempli au hasard",
             "vars":{
-                "l":"2_5",
-                "L":"2_6",
-                "nbe":"${:l*:L}",
+                "height":"2_5",
+                "width":"2_6",
+                "nbe":"${:width*:height}",
                 "nbp1":"1_${:nbe-1}",
                 "nbp2":"${:nbe-:nbp1}",
-                "w":"${1+Math.floor((6-:L)/2)}",
-                "h":"${1+Math.floor((5-:l)/2)}"
+                "left":"${1+Math.floor((6-:width)/2)}",
+                "top":"${1+Math.floor((5-:height)/2)}"
             },
             "figure": {
                 "type":"graph",
@@ -136,12 +136,12 @@
                 "boundingbox":[0,0,8,7],
                 "content": [
                     ["grid",[]],
-                    ["point", ["${:w}", "${:h}"], {"name":"A","face":"", "label":{"visible":false}}],
-                    ["point", ["${:w}", "${:h+:l}"], {"name":"B","face":"", "label":{"visible":false}}],
-                    ["point", ["${:w+:L}", "${:h+:l}"], {"name":"C","face":"", "label":{"visible":false}}],
-                    ["point", ["${:w+:L}", "${:h}"], {"name":"D","face":"", "label":{"visible":false}}],
+                    ["point", ["${:left}", "${:top}"], {"name":"A","face":"", "label":{"visible":false}}],
+                    ["point", ["${:left}", "${:top+:height}"], {"name":"B","face":"", "label":{"visible":false}}],
+                    ["point", ["${:left+:width}", "${:top+:height}"], {"name":"C","face":"", "label":{"visible":false}}],
+                    ["point", ["${:left+:width}", "${:top}"], {"name":"D","face":"", "label":{"visible":false}}],
                     ["polygon", ["A","B","C","D"], {"fillColor":"none"}],
-                    ["fillSquares", ["${:l}","${:L}","${:nbp1}","${:h}","${:w}"]]
+                    ["fillSquares",[], {"width":"${:width}","height":"${:height}","qty":"${:nbp1}","left":"${:left}","top":"${:top}"}]
                 ]
             },
             "question":[

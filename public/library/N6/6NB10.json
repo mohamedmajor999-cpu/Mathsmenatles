@@ -1,14 +1,14 @@
 {
     "ID":"6NB10",
-    "title": "Lire une fraction sur un axe",
+    "title": "Lire une fraction supérieure à 1 sur un axe",
     "dest": ["6NB", "5DB", "4DB", "3DB"],
     "type":"latex",
-    "consigne":"Lire l’abscisse du point A",
+    "consigne":"Donner l’abscisse du point A sous forme de fraction",
     "options":[
         {
             "name":"Lire des demis",
             "vars":{
-                "num":"1_11"
+                "num":"3_11"
             },
             "figure":{
                 "type":"graph",
@@ -16,9 +16,9 @@
                 "axis":false,
                 "content":[
                     ["line",[[0,0],[24,0]],{"name":"li","lastArrow":true}],
-                    ["ticks",["li"],{"drawZero":true, "minorTicks":1, "scale":4, "drawLabels":true, "label":{"anchorX":"middle","offset":[0,-12]}}],
+                    ["ticks",["li"],{"drawZero":true, "minorTicks":1, "scale":6, "drawLabels":true, "label":{"anchorX":"middle","offset":[0,-12]}}],
                     ["text", [0,-1.1,"0"],{"anchorX":"middle"}],
-                    ["point", ["${:num*2}", 0], {"name":"A","face":"x", "label":{"offset":[0,10]}}]
+                    ["point", ["${:num*3}", 0], {"name":"A","face":"x", "label":{"offset":[0,10]}}]
                 ]
             },
             "question":"",
@@ -27,7 +27,7 @@
         },{
             "name":"Lire des tiers",
             "vars":{
-                "num":"1_11"
+                "num":"4_11"
             },
             "figure":{
                 "type":"graph",
@@ -46,7 +46,7 @@
         },{
             "name":"Lire des quarts",
             "vars":{
-                "num":"1_15"
+                "num":"5_15"
             },
             "figure":{
                 "type":"graph",
@@ -65,7 +65,7 @@
         },{
             "name":"Lire des cinquièmes",
             "vars":{
-                "num":"1_22"
+                "num":"6_18"
             },
             "figure":{
                 "type":"graph",
@@ -73,9 +73,9 @@
                 "axis":false,
                 "content":[
                     ["line",[[0,0],[24,0]],{"name":"li","lastArrow":true}],
-                    ["ticks",["li"],{"drawZero":true, "minorTicks":4, "scale":5, "drawLabels":true, "label":{"anchorX":"middle","offset":[0,-12]}}],
+                    ["ticks",["li"],{"drawZero":true, "minorTicks":4, "scale":6, "drawLabels":true, "label":{"anchorX":"middle","offset":[0,-12]}}],
                     ["text", [0,-1.1,"0"],{"anchorX":"middle"}],
-                    ["point", ["${:num}", 0], {"name":"A","face":"x", "label":{"offset":[0,10]}}]
+                    ["point", ["${:num*1.2}", 0], {"name":"A","face":"x", "label":{"offset":[0,10]}}]
                 ]
             },
             "question":"",
@@ -84,7 +84,7 @@
         },{
             "name":"Lire des sixièmes",
             "vars":{
-                "num":"1_12"
+                "num":"7_22"
             },
             "figure":{
                 "type":"graph",
@@ -92,13 +92,13 @@
                 "axis":false,
                 "content":[
                     ["line",[[0,0],[24,0]],{"name":"li","lastArrow":true}],
-                    ["ticks",["li"],{"drawZero":true, "minorTicks":5, "scale":9, "drawLabels":true, "label":{"anchorX":"middle","offset":[0,-12]}}],
+                    ["ticks",["li"],{"drawZero":true, "minorTicks":5, "scale":6, "drawLabels":true, "label":{"anchorX":"middle","offset":[0,-12]}}],
                     ["text", [0,-1.1,"0"],{"anchorX":"middle"}],
-                    ["point", ["${:num*1.5}", 0], {"name":"A","face":"x", "label":{"offset":[0,10]}}]
+                    ["point", ["${:num}", 0], {"name":"A","face":"x", "label":{"offset":[0,10]}}]
                 ]
             },
             "question":"",
-            "answer":"A\\left(\\dfrac{${:num}}{6}\\right)${:num%5==0?'\\text{ soit }A('+(:num/6)+')':''}",
+            "answer":"A\\left(\\dfrac{${:num}}{6}\\right)${:num%6==0?'\\text{ soit }A('+(math.round(:num/6,0))+')':''}",
             "value":"\\dfrac{${:num}}{6}"
         }
     ]

@@ -1,6 +1,7 @@
 import utils from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
+import math from "./math.js";
 scratchblocks.loadLanguages({
     fr: {
         "commands": {
@@ -446,39 +447,82 @@ export default class Figure {
                             this.figure.jc.use(this.figure);
                         }
                         this.figure.jc.parse(commande);
-                    } else if(["text", "point","grid","axis", "line", "segment","glider", "angle", "polygon", "circle", "transform","intersection","perpendicular","ticks"].indexOf(type)>-1){
+                    } else if(["angle", "axis", "circle", "glider", "grid", "intersection", "line", "perpendicular", "point", "polygon", "transform", "segment", "text", "ticks"].indexOf(type)>-1){
                         if(!options)
                             elements[i] = this.figure.create(type, commande);
                         else
                             elements[i] = this.figure.create(type,commande,options);
                     } else if (type === 'fillSquares') {
                         const squares = [];
-                        commande[0] = Number(commande[0])
-                        commande[1] = Number(commande[1])
-                        commande[2] = Number(commande[2])
-                        for (let h=0; h<commande[1]; h++) {
-                            squares.push([].fill(0,0,commande[0]))
+                        const width = Number(options.width)
+                        const height = Number(options.height)
+                        const qty = Number(options.qty)
+                        for (let h=0; h<width; h++) {
+                            squares.push([].fill(0,0,height))
                         }
                         // places commande[2] 1 in the squares array randomly
-                        for (let h=0; h<commande[2]; h++) {
-                            let x,y
+                        const protectLoop = 1000
+                        for (let h=0; h<qty; h++) {
+                            let ii,jj
+                            let test = 0;
                             do {
-                                x = Math.floor(Math.random() * commande[1]);
-                                y = Math.floor(Math.random() * commande[0]);    
-                            } while (squares[x][y] === 1);
-                            squares[x][y] = 1;
+                                ii = math.aleaInt(0, width-1);
+                                jj = math.aleaInt(0, height-1);
+                                test++
+                                if(test > protectLoop){
+                                    console.log('erreur looping')
+                                    break
+                                }
+                            } while (squares[ii][jj] === 1);
+                            squares[ii][jj] = 1;
                         }
-                        const h = commande[3];
-                        const w = commande[4];
+                        const left = Number(options.left);
+                        const top = Number(options.top);
+                        const scaleX = Number(options.scaleX ?? 1);
+                        const scaleY = Number(options.scaleY ?? 1);
                         // create squares
                         for (let i=0; i<squares.length; i++) {
                             for (let j=0; j<squares[i].length; j++) {
                                 if (squares[i][j] === 1) {
-                                    let a = this.figure.create('point',[i+w,j+h],{face:'', label: {visible: false}})
-                                    let b = this.figure.create('point',[i+w+1,j+h],{face:'', label: {visible: false}})
-                                    let c = this.figure.create('point',[i+w+1,j+h+1],{face:'', label: {visible: false}})
-                                    let d = this.figure.create('point',[i+w,j+h+1],{face:'', label: {visible: false}})
+                                    let a = this.figure.create('point',[i*scaleX+left,j*scaleY+top],{face:'', label: {visible: false}})
+                                    let b = this.figure.create('point',[(i+1)*scaleX+left,j*scaleY+top],{face:'', label: {visible: false}})
+                                    let c = this.figure.create('point',[(i+1)*scaleX+left,(j+1)*scaleY+top],{face:'', label: {visible: false}})
+                                    let d = this.figure.create('point',[i*scaleX+left,(j+1)*scaleY+top],{face:'', label: {visible: false}})
                                     this.figure.create('polygon', [a, b, c, d], {fillColor: 'black', withLines:false})
+                                }
+                            }
+                        }
+                    } else if(type === 'fillSectors'){
+                        const sectors = []
+                        const nbOfCircles = options.centers.length
+                        const unitCut = Number(options.unitCut)
+                        const qty = Number(options.qty)
+                        const protectLoop = 300
+                        const radius = Number(options.radius)
+                        for (let i=0; i<nbOfCircles; i++) {
+                            sectors.push([].fill(0,0,unitCut))
+                        }
+                        for (let h=0; h<qty; h++) {
+                            let ii,jj
+                            let test = 0;
+                            do {
+                                ii = math.aleaInt(0, nbOfCircles-1);
+                                jj = math.aleaInt(0, unitCut-1);
+                                test++
+                                if(test > protectLoop){
+                                    console.log('erreur looping')
+                                    break
+                                }
+                            } while (sectors[ii][jj] === 1);
+                            sectors[ii][jj] = 1;
+                        }
+                        for (let i=0; i<sectors.length; i++) {
+                            for (let j=0; j<sectors[i].length; j++) {
+                                if (sectors[i][j] === 1) {
+                                    const center = options.centers[i]
+                                    let a = this.figure.create('point',[center[0]+radius*Math.cos(2*Math.PI*j/unitCut),center[1]+radius*Math.sin(2*Math.PI*j/unitCut)], {face:'', label:{visible: false}})
+                                    let b = this.figure.create('point',[center[0]+radius*Math.cos(2*Math.PI*(j+1)/unitCut),center[1]+radius*Math.sin(2*Math.PI*(j+1)/unitCut)], {face:'', label:{visible: false}})
+                                    this.figure.create('sector',[center,a,b],{withLines:false})
                                 }
                             }
                         }
