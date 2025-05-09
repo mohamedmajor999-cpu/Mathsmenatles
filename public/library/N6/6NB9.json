@@ -20,8 +20,8 @@
                     "Dans une classe de $$${:nbe}$$ élèves, il y a $$${:nbp2}$$ garçons. Quelle est la proportion de filles dans cette classe ?",
                     "En tirant à pile ou face $$${:nbe}$$ fois, j'ai obtenu $$${:nbp2}$$ faces. Quelle est la proportion de piles ?",
                     "En tirant à pile ou face $$${:nbe}$$ fois, j'ai obtenu $$${:nbp2}$$ piles. Quelle est la proportion de faces ?",
-                    "Dans un panier, il y a $$${:nbe}$$ fruits dont $$${:nbp2}$$ poires et les autres sont des poires. Quelle est la proportion de pommes ?",
-                    "Dans un panier, il y a $$${:nbe}$$ fruits. $$${:nbp2}$$ sont des pommes et les autres sont des pommes. Quelle est la proportion de bananes ?"
+                    "Dans un panier, il y a $$${:nbe}$$ fruits dont $$${:nbp2}$$ poires et les autres sont des pommes. Quelle est la proportion de pommes ?",
+                    "Dans un panier, il y a $$${:nbe}$$ fruits. $$${:nbp2}$$ sont des pommes et les autres sont des bananes. Quelle est la proportion de bananes ?"
                 ],
                 "qv3":[
                     "Une classe comporte $$${:nbp1}$$ filles et $$${:nbp2}$$ garçons. Quelle est la proportion de filles dans cette classe ?",
