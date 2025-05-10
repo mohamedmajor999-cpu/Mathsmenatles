@@ -839,6 +839,6 @@ export const utils = {
         }).join(""));
     },
     isURLEncoded(str) {
-        return !(str.indexOf("u=") > -1 || str.indexOf("&p=") > 0 || str.indexOf("&amp;p=") > 0 || str.indexOf("&c=") > 0);
+        return !(str.indexOf("n=") > -1 || str.indexOf("u=") > -1 || str.indexOf("&p=") > 0 || str.indexOf("&amp;p=") > 0 || str.indexOf("&c=") > 0);
     }
 }
