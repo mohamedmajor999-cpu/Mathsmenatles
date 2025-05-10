@@ -287,6 +287,7 @@ export default class Figure {
         this.imgSrc = obj.imgSrc||false;
         this.figure = undefined;
         this.displayed = false;
+        this.transformLayer = (obj.transformLayer!==false)?obj.transformLayer:false;
         this.create(target);
     }
     /**
@@ -447,11 +448,12 @@ export default class Figure {
                             this.figure.jc.use(this.figure);
                         }
                         this.figure.jc.parse(commande);
-                    } else if(["angle", "axis", "circle", "glider", "grid", "intersection", "line", "perpendicular", "point", "polygon", "transform", "segment", "text", "ticks"].indexOf(type)>-1){
+                    } else if(["angle", "axis", "circle", "glider", "grid", "intersection", "line", "perpendicular", "point", "polygon", "transform", "segment", "text", "ticks", "foreignobject"].indexOf(type)>-1){
                         if(!options)
                             elements[i] = this.figure.create(type, commande);
-                        else
+                        else {
                             elements[i] = this.figure.create(type,commande,options);
+                        }
                     } else if (type === 'fillSquares') {
                         const squares = [];
                         const width = Number(options.width)
@@ -557,6 +559,12 @@ export default class Figure {
                 svg = svg.replace(/<svg[^>]*>/, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+width+' '+height+'" width="'+(width*this.xscale/10/this.scale)+'em" height="'+(height*this.xscale/10/this.scale)+'em">');
                 target.innerHTML = svg;
                 this.svg = svg;
+                if(this.transformLayer !== false){
+                    const layer = target.querySelector('svg > g:nth-of-type('+(this.transformLayer.id+1)+')');
+                    if(layer !== null) {
+                        layer.setAttribute('transform', this.transformLayer.transform);
+                    }
+                }
                 // remove the div2 from the dom
                 this.div2.parentNode.removeChild(this.div2);
             } catch(error){

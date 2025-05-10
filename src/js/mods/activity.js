@@ -1001,7 +1001,8 @@ export default class activity {
                 if(this.cFigure!== undefined){
                     this.figures[i] = {
                         "type":this.cFigure.type,
-                        "content":this.replaceVars(utils.clone(this.cFigure.content))
+                        "content":this.replaceVars(utils.clone(this.cFigure.content)),
+                        "transformLayer":this.replaceVars(utils.clone(this.cFigure.transformLayer))
                     }
                     if(this.cFigure.type === 'graph') {
                         this.figures[i] = {
@@ -1018,7 +1019,8 @@ export default class activity {
                 if(this.cFigureCorrection!== undefined){
                     this.figuresCorrection[i] = {
                         "type":this.cFigureCorrection.type,
-                        "content":this.replaceVars(utils.clone(this.cFigureCorrection.content))
+                        "content":this.replaceVars(utils.clone(this.cFigureCorrection.content)),
+                        "transformLayer":this.replaceVars(utils.clone(this.cFigure.transformLayer))
                     }
                     if(this.cFigureCorrection.type === 'graph') {
                         this.figuresCorrection[i] = {
@@ -1027,6 +1029,7 @@ export default class activity {
                             "scale":this.cFigureCorrection.scale,
                             "xscale":this.cFigureCorrection.xscale,
                             "grid":this.cFigureCorrection.grid?true:false,
+                            "transformLayer":this.cFigure.transformLayer?this.cFigure.transformLayer:false,
                             "keepAspect":(this.cFigureCorrection.keepAspect!==undefined)?this.cFigureCorrection.keepAspect:true,
                             ...this.figuresCorrection[i]
                         }

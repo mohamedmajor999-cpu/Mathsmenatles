@@ -33,12 +33,16 @@ function refresh() {
 }
 
 function fontSizePlus() {
+    unsetAllCardHeight()
     fontSize = fontSize * 1.25
     content.style['font-size'] = fontSize + 'em'
+    setAllCardSameHeight()
 }
 function fontSizeMinus() {
+    unsetAllCardHeight()
     fontSize = fontSize * 0.8
     content.style['font-size'] = fontSize + 'em'
+    setAllCardSameHeight()
 }
 document.getElementById('zoomin').onclick = () => {
     fontSizePlus()
@@ -164,6 +168,7 @@ function makePage() {
                 fullScreenBtn.classList.toggle('fullscreen')
                 fullScreenBtn.classList.toggle('fullscreenexit')
                 if (fullScreenBtn.classList.contains('fullscreenexit')) {
+                    unsetAllCardHeight()
                     initWidth = container.getBoundingClientRect().width
                     initHeight = container.getBoundingClientRect().height
                     scrollY = window.scrollY
@@ -177,6 +182,7 @@ function makePage() {
                     container.classList.remove('fullscreen')
                     container.style['font-size'] = ''
                     window.scrollTo(0, scrollY)
+                    setAllCardSameHeight();
                 }
             }
             const navigation = utils.create('div', { className: 'navigation' })
@@ -228,7 +234,17 @@ function setAllCardSameHeight() {
         tuiles[i].style.height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight) + 'px';
     }
 }
+function unsetAllCardHeight() {
+    const tuiles = document.querySelectorAll('.tuile');
+    for (let i = 0; i < tuiles.length; i++) {
+        tuiles[i].style.height = '';
+    }
+}
 
+window.onresize = () => {
+    unsetAllCardHeight();
+    setAllCardSameHeight();
+}
 function checkURL(urlString) {
     const vars = utils.getUrlVars(urlString);
     if (vars.embed !== undefined) {
