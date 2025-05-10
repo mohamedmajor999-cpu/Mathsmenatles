@@ -5,11 +5,10 @@
    height="196.48625"
    viewBox="0 0 354.82877 196.48625"
    id="svg58"
-   sodipodi:docname="Rapporteur_180deg.svg"
+   sodipodi:docname="Rapporteur_180deg simplifie.svg"
    inkscape:version="1.4 (86a8ad7, 2024-10-11)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
@@ -23,14 +22,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="2.9422643"
-     inkscape:cx="257.45478"
-     inkscape:cy="156.17224"
-     inkscape:window-width="2684"
-     inkscape:window-height="1931"
-     inkscape:window-x="1729"
-     inkscape:window-y="101"
-     inkscape:window-maximized="0"
+     inkscape:zoom="4.1609901"
+     inkscape:cx="160.65888"
+     inkscape:cy="161.74035"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="1285"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
      inkscape:current-layer="g58" />
   <g
      transform="translate(177.41438,177.41438)"
@@ -57,80 +56,6 @@
        stroke-width="1"
        id="path3"
        style="fill:#e0f6ff;fill-opacity:0.39915076" />
-    <g
-       id="set">
-      <path
-         d="m -8.7,0 h -124.1 m -26.9,0 h -17 M 0,-8.7 v -124.1 m 0,-26.9 v -17"
-         id="path4" />
-      <path
-         d="m -66.7,0 h -66.1 m -26.9,0 h -17 M 0,-66.7 v -66.1 m 0,-26.9 v -17"
-         transform="rotate(5)"
-         id="path5" />
-      <path
-         id="a"
-         d="m -168.5,0 h -8.2 M 0,-168.5 v -8.2"
-         transform="rotate(1)" />
-      <use
-         xlink:href="#a"
-         transform="rotate(1)"
-         id="use5" />
-      <use
-         xlink:href="#a"
-         transform="rotate(2)"
-         id="use6" />
-      <use
-         xlink:href="#a"
-         transform="rotate(3)"
-         id="use7" />
-      <use
-         xlink:href="#a"
-         transform="rotate(5)"
-         id="use8" />
-      <use
-         xlink:href="#a"
-         transform="rotate(6)"
-         id="use9" />
-      <use
-         xlink:href="#a"
-         transform="rotate(7)"
-         id="use10" />
-      <use
-         xlink:href="#a"
-         transform="rotate(8)"
-         id="use11" />
-    </g>
-    <use
-       xlink:href="#set"
-       transform="rotate(10)"
-       id="use12" />
-    <use
-       xlink:href="#set"
-       transform="rotate(20)"
-       id="use13" />
-    <use
-       xlink:href="#set"
-       transform="rotate(30)"
-       id="use14" />
-    <use
-       xlink:href="#set"
-       transform="rotate(40)"
-       id="use15" />
-    <use
-       xlink:href="#set"
-       transform="rotate(50)"
-       id="use16" />
-    <use
-       xlink:href="#set"
-       transform="rotate(60)"
-       id="use17" />
-    <use
-       xlink:href="#set"
-       transform="rotate(70)"
-       id="use18" />
-    <use
-       xlink:href="#set"
-       transform="rotate(80)"
-       id="use19" />
     <path
        d="m 8.7,0 h 124.1 m 26.9,0 h 17"
        id="path19" />
@@ -350,5 +275,95 @@
            id="text56">0</text>
       </g>
     </g>
+    <path
+       d="M 8.5708598,-1.518563 130.7855,-23.068301 m 26.49133,-4.671137 16.74173,-2.952019"
+       id="path6"
+       inkscape:transform-center-x="-91.337909"
+       inkscape:transform-center-y="-16.083768" />
+    <path
+       d="M 8.1799859,-2.9916308 124.79584,-45.436329 m 25.27773,-9.200344 15.97477,-5.814342"
+       id="path22"
+       inkscape:transform-center-x="-87.157362"
+       inkscape:transform-center-y="-31.700081" />
+    <path
+       d="M 7.5392547,-4.3744448 115.01301,-66.424443 m 23.29608,-13.450002 14.72243,-8.499999"
+       id="path23"
+       inkscape:transform-center-x="-80.328586"
+       inkscape:transform-center-y="-46.353203" />
+    <path
+       d="M 6.6681345,-5.6249889 101.73425,-85.39493 m 20.60659,-17.29099 13.02276,-10.92739"
+       id="path24"
+       inkscape:transform-center-x="-71.059066"
+       inkscape:transform-center-y="-59.597908" />
+    <path
+       d="M 5.5930939,-6.705266 85.363037,-101.77138 m 17.290983,-20.6066 10.92739,-13.02275"
+       id="path25"
+       inkscape:transform-center-x="-59.630451"
+       inkscape:transform-center-y="-71.031757" />
+    <path
+       d="M 4.3467973,-7.5824525 66.396798,-115.0562 m 13.449996,-23.29609 8.500001,-14.72243"
+       id="path26"
+       inkscape:transform-center-x="-46.389995"
+       inkscape:transform-center-y="-80.307345" />
+    <path
+       d="M 2.967113,-8.2298955 45.411814,-124.84574 m 9.200337,-25.27774 5.814344,-15.97478"
+       id="path27"
+       inkscape:transform-center-x="-31.740003"
+       inkscape:transform-center-y="-87.142837" />
+    <path
+       d="M 1.4959618,-8.6279227 23.045704,-130.84256 m 4.671129,-26.49133 2.95202,-16.74174"
+       id="path28"
+       inkscape:transform-center-x="-16.125606"
+       inkscape:transform-center-y="-91.330536" />
+    <path
+       d="m -0.02195602,-8.7644402 4.14e-6,-124.0999998 m -7.12e-6,-26.9 -4.6e-7,-17"
+       id="path29"
+       inkscape:transform-center-x="-0.021242743"
+       inkscape:transform-center-y="-92.7432" />
+    <path
+       d="M -1.5405193,-8.6353001 -23.090254,-130.84994 m -4.671143,-26.49133 -2.95202,-16.74173"
+       id="path30"
+       inkscape:transform-center-x="16.08377"
+       inkscape:transform-center-y="-91.33791" />
+    <path
+       d="M -3.0135873,-8.2444261 -45.458283,-124.86028 m -9.200349,-25.27773 -5.814343,-15.97477"
+       id="path31"
+       inkscape:transform-center-x="31.700083"
+       inkscape:transform-center-y="-87.157363" />
+    <path
+       d="M -4.3964015,-7.6036948 -66.446397,-115.07745 m -13.450007,-23.29608 -8.5,-14.72243"
+       id="path32"
+       inkscape:transform-center-x="46.353205"
+       inkscape:transform-center-y="-80.328587" />
+    <path
+       d="M -5.6469458,-6.7325745 -85.416884,-101.79869 m -17.290996,-20.60659 -10.92739,-13.02276"
+       id="path33"
+       inkscape:transform-center-x="59.59791"
+       inkscape:transform-center-y="-71.059067" />
+    <path
+       d="M -6.7272231,-5.6575338 -101.79333,-85.427477 m -20.60661,-17.290983 -13.02276,-10.92739"
+       id="path34"
+       inkscape:transform-center-x="71.031764"
+       inkscape:transform-center-y="-59.630452" />
+    <path
+       d="M -7.6044098,-4.4112371 -115.07815,-66.461239 m -23.2961,-13.449994 -14.72244,-8.5"
+       id="path35"
+       inkscape:transform-center-x="80.307352"
+       inkscape:transform-center-y="-46.389995" />
+    <path
+       d="M -8.2518529,-3.0315527 -124.8677,-45.476256 m -25.27774,-9.200334 -15.97478,-5.814341"
+       id="path36"
+       inkscape:transform-center-x="87.142839"
+       inkscape:transform-center-y="-31.740002" />
+    <path
+       d="M -8.6498803,-1.5604014 -130.86452,-23.110145 m -26.49133,-4.671127 -16.74174,-2.952016"
+       id="path37"
+       inkscape:transform-center-x="91.330538"
+       inkscape:transform-center-y="-16.125605" />
+    <path
+       d="m -8.7863981,-0.04248342 -124.1000019,-5.1e-6 m -26.9,9.09e-6 -17,4.4e-6"
+       id="path38"
+       inkscape:transform-center-x="92.743202"
+       inkscape:transform-center-y="-0.021241888" />
   </g>
 </svg>
