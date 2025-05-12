@@ -49,10 +49,10 @@
         "im3":"${Math.abs(:im0)>5?math.round(:a*:x3**2/25+:b*:x3/5+:c,1):0}",
         "x":"${Math.abs(:im0)<=5?:x0:Math.abs(:im1)<=5?:x1:Math.abs(:im2)<=5?:x2::x3}",        
         "image":"${Math.abs(:im0)<=5?:im0:Math.abs(:im1)<=5?:im1:Math.abs(:im2)<=5?:im2::im3}",
-        "delta":"${(:b*:b/-4*:a*(:c-:image))/25}",
+        "delta":"${(:b*:b-4*:a*(:c-:image))/25}",
         "s1":"${(-:b/5+Math.sqrt(:delta))/(2*:a/25)}",
         "s2":"${(-:b/5-Math.sqrt(:delta))/(2*:a/25)}",
-        "sol2":"${Math.abs(:x-:s1)<0.1?math.round(:s1,1):math.round(:s2,1)}"
+        "sol2":"${Math.abs(:x-:s1)>0.1?math.round(:s1,1):math.round(:s2,1)}"
     },
         "figure":{   
             "type":"graph",
@@ -66,7 +66,7 @@
                 ]               
             },
         "question":"Lire le ou les antécédents de $$${:image}$$",
-        "answer":"${Math.abs(:s2)>5?'L’antécédent de $$'+:image+'$$ est $$\\color{red}{'+:x+'}$$':'Les antécédents de $$'+:image+'$$ sont $$\\color{red}{'+:x+', '+:sol2+'}$$'} environ"
+        "answer":"${Math.abs(:s2)>5?'L’antécédent de $$'+:image+'$$ est $$\\color{red}{'+:x+'}$$':'Les antécédents de $$'+:image+'$$ sont $$\\color{red}{'+:x+'\\text{ et } '+:sol2+'}$$'} environ"
         }
     ]
 }
