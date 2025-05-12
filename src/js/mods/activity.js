@@ -1020,7 +1020,7 @@ export default class activity {
                     this.figuresCorrection[i] = {
                         "type":this.cFigureCorrection.type,
                         "content":this.replaceVars(utils.clone(this.cFigureCorrection.content)),
-                        "transformLayer":this.replaceVars(utils.clone(this.cFigure.transformLayer))
+                        "transformLayer":this.replaceVars(utils.clone(this.cFigureCorrection.transformLayer))
                     }
                     if(this.cFigureCorrection.type === 'graph') {
                         this.figuresCorrection[i] = {
@@ -1029,7 +1029,7 @@ export default class activity {
                             "scale":this.cFigureCorrection.scale,
                             "xscale":this.cFigureCorrection.xscale,
                             "grid":this.cFigureCorrection.grid?true:false,
-                            "transformLayer":this.cFigure.transformLayer?this.cFigure.transformLayer:false,
+                            "transformLayer":this.cFigureCorrection.transformLayer?this.cFigureCorrection.transformLayer:false,
                             "keepAspect":(this.cFigureCorrection.keepAspect!==undefined)?this.cFigureCorrection.keepAspect:true,
                             ...this.figuresCorrection[i]
                         }
