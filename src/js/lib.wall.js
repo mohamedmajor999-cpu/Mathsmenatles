@@ -223,6 +223,8 @@ function makePage() {
             }
             setTimeout(()=>{setAllCardSameHeight()},500)
         }, 300);
+    } else {
+        setAllCardSameHeight()
     }
 }
 
@@ -230,8 +232,15 @@ function setAllCardSameHeight() {
     const tuiles = document.querySelectorAll('.tuile');
     const fronts = document.querySelectorAll('.flip-card-front');
     const backs = document.querySelectorAll('.flip-card-back');
+    let minheight=0
     for (let i = 0; i < tuiles.length; i++) {
-        tuiles[i].style.height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight) + 'px';
+        const height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight);
+        if (minheight < height){
+            minheight=height;
+        }
+    }
+    for (let i = 0; i < tuiles.length; i++) {
+        tuiles[i].style.height = minheight + 'px';
     }
 }
 function unsetAllCardHeight() {
