@@ -343,7 +343,9 @@ window.onload = function() {
     // moteur de recherche d'activité
     document.getElementById("searchinput").onkeyup = (evt)=>{library.displayContent(evt.target.value)};
     document.getElementById("resultat-chercher").addEventListener("click",(evt)=>{
-        if(evt.target.id.indexOf("rch2")===0){
+        if (evt.target.type === 'checkbox'){
+            return;
+        }else if(evt.target.id.indexOf("rch2")===0){
             utils.deploy(evt.target);
         } else if(evt.target.id.indexOf("rch3")===0){
             utils.deploy(evt.target);
