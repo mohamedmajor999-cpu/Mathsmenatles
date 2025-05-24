@@ -762,12 +762,21 @@ export default class activity {
                 if(patternNumber !== false){
                     // la question est définie dans l'option, avec un pattern défini
                     if(this.options[optionNumber].question !== undefined){
-                        this.cQuestion = this.options[optionNumber].question[patternNumber];
-                        lenQ = this.options[optionNumber].question.length;
-                        if(this.options[optionNumber].shortq !== undefined)
-                            this.cShortQ = this.options[optionNumber].shortq[patternNumber]||false;
-                        if(this.options[optionNumber].audio !== undefined){
-                            this.cAudio = this.options[optionNumber].audio[patternNumber]||false;
+                        if(Array.isArray(this.options[optionNumber].question)){
+                            this.cQuestion = this.options[optionNumber].question[patternNumber];
+                            lenQ = this.options[optionNumber].question.length;
+                            if(this.options[optionNumber].shortq !== undefined)
+                                this.cShortQ = this.options[optionNumber].shortq[patternNumber]||false;
+                            if(this.options[optionNumber].audio !== undefined){
+                                this.cAudio = this.options[optionNumber].audio[patternNumber]||false;
+                            }
+                        } else {
+                            this.cQuestion = this.options[optionNumber].question;
+                            if(this.options[optionNumber].shortq !== undefined){
+                                this.cShortQ = this.options[optionNumber].shortq;
+                            } if(this.options[optionNumber].audio !== undefined){
+                                this.cAudio = this.options[optionNumber].audio;
+                            }
                         }
                     } else { // elle est définie globalement
                         this.cQuestion = this.questionPatterns[patternNumber];
