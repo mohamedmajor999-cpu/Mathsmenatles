@@ -158,7 +158,7 @@ const diaporama = {
       }
       // on attend le résultat de toutes les promesses pour mettre à jour les affichages.
       Promise.all(allcarts).then(data => {
-        console.log(diaporama.carts);
+        //console.log(diaporama.carts);
       }).then(() => {
         diaporama.checkLoadedCarts(false, sameData)
       }).catch(err => {
