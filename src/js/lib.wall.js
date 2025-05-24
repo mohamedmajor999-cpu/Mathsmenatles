@@ -130,8 +130,9 @@ function makePage() {
             buttonSolution.style['padding-bottom'] = '0.6rem solid transparent'
             buttonSolution.style['padding-right'] = '0.6rem solid transparent'
             const divq = utils.create("div");
-            if (activity.consigne)
+            if (activity.consigne){
                 divq.appendChild(utils.create('div', { innerHTML: '<i>' + activity.consigne + '</i>' }))
+            }
             const artCorrection = utils.create("div", { className: "answer flip-card-back" })
             artCorrection.style.backgroundColor = colorCard
             buttonSolution.onclick = () => {
@@ -144,8 +145,8 @@ function makePage() {
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {
-                divq.innerHTML = activity.questions[questionNumber];
-                divr.innerHTML = activity.answers[questionNumber];
+                divq.innerHTML += activity.questions[questionNumber];
+                divr.innerHTML += activity.answers[questionNumber];
             }
             artQuestion.appendChild(divq);
             flipCardInner.appendChild(artQuestion)
@@ -227,21 +228,25 @@ function makePage() {
         setAllCardSameHeight()
     }
 }
-
+/* calcule le min'height pour front et back */
 function setAllCardSameHeight() {
     const tuiles = document.querySelectorAll('.tuile');
-    const fronts = document.querySelectorAll('.flip-card-front');
-    const backs = document.querySelectorAll('.flip-card-back');
-    let minheight=0
+    const fronts = document.querySelectorAll('.flip-card-front > div');
+    const backs = document.querySelectorAll('.flip-card-back > div');
+    //let minheight=0
     for (let i = 0; i < tuiles.length; i++) {
+        const height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight);
+        tuiles[i].style['min-height'] = height + 'px';
+    }
+    /*for (let i = 0; i < tuiles.length; i++) {
         const height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight);
         if (minheight < height){
             minheight=height;
         }
-    }
-    for (let i = 0; i < tuiles.length; i++) {
+    }*/
+    /*for (let i = 0; i < tuiles.length; i++) {
         tuiles[i].style.height = minheight + 'px';
-    }
+    }*/
 }
 function unsetAllCardHeight() {
     const tuiles = document.querySelectorAll('.tuile');
