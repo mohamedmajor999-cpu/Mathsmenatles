@@ -408,7 +408,7 @@ export default class activity {
                 const hr = document.querySelector('#activityOptions > hr')
                 const div = utils.create('div')
                 for (let i=0; i< numbersOFSubOptions[0]; i++){
-                    const chckbutton = utils.create('input', {type:'checkbox',id:`checkAllOptions${i}`,name: `checkAllOptions${i}`, className:'checkbox', value:i});
+                    const chckbutton = utils.create('input', {type:'checkbox',id:`checkAllOptions${i}`,name: `checkAllOptions${i}`, className:'checkbox lightblue', value:i});
                     const label = utils.create('label', {htmlFor:`checkAllOptions${i}`,innerHTML:` Options ${i+1} `});
                     div.appendChild(chckbutton);
                     div.appendChild(label);
@@ -551,7 +551,7 @@ export default class activity {
      * @param {boolean} check check state
      * 
      */
-    setOption(value, check){
+    setOption(value, check) {
         var optionId, renderId;
         if(value === "all"){
             this.chosenOptions = [];
@@ -573,12 +573,18 @@ export default class activity {
                     }
                     document.getElementById("o"+i).checked = false;
                 }
+                document.querySelectorAll('#activityOptions > div > input').forEach(el => {
+                    if (el.type==='checkbox' && el.id.indexOf('checkAllOptions')===0){
+                        el.checked = check
+                    }
+                })
             }
         } else if(value.indexOf("-")>-1){
             let Ids = value.split("-");
             optionId = Number(Ids[0]); renderId = Number(Ids[1]);
             if(check){ // checkbox checked
                 document.getElementById("o"+optionId).checked = true;
+                document.getElementById("o"+optionId+'-'+renderId).checked = true;
                 if(this.chosenOptions.indexOf(optionId)<0){
                     this.chosenOptions.push(optionId);
                 }
@@ -588,6 +594,7 @@ export default class activity {
                     this.chosenQuestions[optionId].push(renderId);
                 }
             } else { // checkbox unchecked
+                document.getElementById("o"+optionId+'-'+renderId).checked = false;
                 if(this.chosenQuestions[optionId].removeValue(renderId)){
                     if(this.chosenQuestions[optionId].length === 0){
                         this.chosenOptions.removeValue(optionId);

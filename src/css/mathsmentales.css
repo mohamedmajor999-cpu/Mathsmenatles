@@ -1436,6 +1436,9 @@ math-field {
 .checkbox.blue:checked{
     background-color:#3688f4
 }
+.checkbox.lightblue:checked{
+    background-color:#7cb5ff
+}
 .checkbox.red:checked{
     background-color:#F44336
 }

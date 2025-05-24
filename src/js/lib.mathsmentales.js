@@ -431,9 +431,12 @@ window.onload = function() {
         } else if(evt.target.id.indexOf('checkAllOptions')===0) {
             const toutesOptions = document.querySelectorAll('#activityOptions > span > ul')
             const i = Number(evt.target.value)
-            toutesOptions.forEach(option => {
-                const input = option.querySelector(`li:nth-of-type(${i+1}) input`)
-                input.checked = evt.target.checked;
+            let count = 0
+            toutesOptions.forEach(() => {
+                //const input = option.querySelector(`li:nth-of-type(${i+1}) input`)
+                //input.checked = evt.target.checked;
+                MM.editedActivity.setOption(count+'-'+i, evt.target.checked)
+                count++
             })
         }
     })
