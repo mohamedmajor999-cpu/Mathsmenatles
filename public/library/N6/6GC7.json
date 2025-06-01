@@ -3,7 +3,6 @@
     "title":"Dessiner un schéma de triangle à main levée (sans donnée numérique)",
     "type":"text",
     "dest":["6GC","5GB"],
-    "consigne":"Faire une figure à main levée puis ajouter les codages des longueurs égales et des angles droits éventuels.",
     "consts":{
         "schemas":{
             "isoceles":[
@@ -28,15 +27,17 @@
         },
         "lettres":"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
+    "vars":{
+        "l":"0_${:lettres.length-1}_3_^&",
+        "A":"${:lettres[:l[0]]}",
+        "B":"${:lettres[:l[1]]}",
+        "C":"${:lettres[:l[2]]}",
+        "ABC":["${:A+:B+:C}","${:B+:C+:A}","${:C+:A+:B}","${:A+:C+:B}","${:B+:A+:C}","${:C+:B+:A}"]
+},
     "options":[
         {
             "name":"Triangle isocèle",
             "vars":{
-                "l":"0_${:lettres.length-1}_3_^&",
-                "A":"${:lettres[:l[0]]}",
-                "B":"${:lettres[:l[1]]}",
-                "C":"${:lettres[:l[2]]}",
-               "ABC":["${:A+:B+:C}","${:B+:C+:A}","${:C+:A+:B}","${:A+:C+:B}","${:B+:A+:C}","${:C+:B+:A}"],
                "sample":"0_2"
             },
             "question":"Faire un schéma codé de triangle ${:ABC} isocèle en ${:C}",
@@ -44,11 +45,6 @@
         },{
             "name":"Triangle équilatéral",
             "vars":{
-                "l":"0_${:lettres.length-1}_3_^&",
-                "A":"${:lettres[:l[0]]}",
-                "B":"${:lettres[:l[1]]}",
-                "C":"${:lettres[:l[2]]}",
-               "ABC":["${:A+:B+:C}","${:B+:C+:A}","${:C+:A+:B}","${:A+:C+:B}","${:B+:A+:C}","${:C+:B+:A}"],
                "sample":"0_1"
             },
             "question":"Faire un schéma codé de triangle ${:ABC} équilatéral",
@@ -56,11 +52,6 @@
         },{
             "name":"Triangle rectangle",
             "vars":{
-                "l":"0_${:lettres.length-1}_3_^&",
-                "A":"${:lettres[:l[0]]}",
-                "B":"${:lettres[:l[1]]}",
-                "C":"${:lettres[:l[2]]}",
-               "ABC":["${:A+:B+:C}","${:B+:C+:A}","${:C+:A+:B}","${:A+:C+:B}","${:B+:A+:C}","${:C+:B+:A}"],
                "sample":"0_3"
             },
             "question":"Faire un schéma codé de triangle ${:ABC} rectangle en ${:A}",
@@ -68,11 +59,6 @@
         },{
             "name":"Triangle rectangle isocèle",
             "vars":{
-                "l":"0_${:lettres.length-1}_3_^&",
-                "A":"${:lettres[:l[0]]}",
-                "B":"${:lettres[:l[1]]}",
-                "C":"${:lettres[:l[2]]}",
-               "ABC":["${:A+:B+:C}","${:B+:C+:A}","${:C+:A+:B}","${:A+:C+:B}","${:B+:A+:C}","${:C+:B+:A}"],
                "sample":"0_2"
             },
             "question":"Faire un schéma codé de triangle ${:ABC} rectangle et isocèle en ${:A}",
