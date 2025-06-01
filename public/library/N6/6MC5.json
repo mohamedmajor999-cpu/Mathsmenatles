@@ -8,7 +8,7 @@
         {
             "name":"De l’unité principale aux sous unités",
             "vars":{
-                "unit1":"m",
+                "unit1":"",
                 "iu2":"4_6",
                 "unit2":"${:units[:iu2]}",
                 "n":1,
@@ -17,7 +17,7 @@
         },{
             "name":"De l’unité principale à ses multiples",
             "vars":{
-                "unit1":"m",
+                "unit1":"",
                 "iu2":"0_2",
                 "unit2":"${:units[:iu2]}",
                 "n":1,
@@ -26,7 +26,7 @@
         },{
             "name":"Des sous unités à l’unité principale",
             "vars":{
-                "unit2":"m",
+                "unit2":"",
                 "iu2":"4_6",
                 "unit1":"${:units[:iu2]}",
                 "n":1,
@@ -35,7 +35,7 @@
         },{
             "name":"Des multiples à l’unité principale",
             "vars":{
-                "unit2":"m",
+                "unit2":"",
                 "iu2":"0_2",
                 "unit1":"${:units[:iu2]}",
                 "n":1,
@@ -57,12 +57,10 @@
             "vars":{
                 "unit2":"kg",
                 "unit1":["t","q"],
-                "p":"1_3",
-                "n":1,
                 "coef":"${:unit1=='t'?1000:100}"
             },
-            "question":"${:n}\\text{ ${:unit1}} = \\text{...}\\text{ ${:unit2}}",
-            "answer":"${:n}\\text{ ${:unit1}} = \\color{red}{${math.round(:n*:coef,3)}}\\text{ ${:unit2}}"
+            "question":"1\\text{ ${:unit1}} = \\text{...}\\text{ ${:unit2}}",
+            "answer":"1\\text{ ${:unit1}} = \\color{red}{${math.round(:coef,3)}}\\text{ ${:unit2}}"
         }
     ],
     "question":[

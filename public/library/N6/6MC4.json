@@ -8,7 +8,7 @@
         {
             "name":"De l’unité principale aux sous unités",
             "vars":{
-                "unit1":"m",
+                "unit1":"",
                 "iu2":"4_6",
                 "unit2":"${:units[:iu2]}",
                 "p":"1_3",
@@ -18,7 +18,7 @@
         },{
             "name":"De l’unité principale à ses multiples",
             "vars":{
-                "unit1":"m",
+                "unit1":"",
                 "iu2":"0_2",
                 "unit2":"${:units[:iu2]}",
                 "p":"1_4",
@@ -28,7 +28,7 @@
         },{
             "name":"Des sous unités à l’unité principale",
             "vars":{
-                "unit2":"m",
+                "unit2":"",
                 "iu2":"4_6",
                 "unit1":"${:units[:iu2]}",
                 "p":"1_4",
@@ -38,7 +38,7 @@
         },{
             "name":"Des multiples à l’unité principale",
             "vars":{
-                "unit2":"m",
+                "unit2":"",
                 "iu2":"0_2",
                 "unit1":"${:units[:iu2]}",
                 "p":"1_3",
