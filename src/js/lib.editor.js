@@ -37,7 +37,7 @@ const options = {
         }
     }
 }
-const initialJson = {
+let initialJson = {
     "ID":"none",
     "title":"Titre de l’activité",
     "type":"latex",
@@ -62,6 +62,17 @@ const initialJson = {
         }
     ]
 }
+function saveJson() {
+    const jsonString = editor.getText()
+    localStorage.setItem('activityEditor', jsonString)
+}
+function loadJson() {
+    const jsonString = localStorage.getItem('activityEditor')
+    if (jsonString){
+       initialJson = JSON.parse(jsonString)
+    }
+}
+loadJson()
 const editor = new JSONEditor(editorDOMElement, options, initialJson)
 
 window.onload = () => {
@@ -82,16 +93,19 @@ window.onload = () => {
             a.click();
             document.body.removeChild(a);
         }
+        saveJson()
     }
     document.getElementById('testBtn').onclick = () => {
         const act = new activity(editor.get())
         MM.editedActivity = act
         act.display('sample',MM)
+        saveJson()
     }
     document.getElementById('actIDImport').oninput = (evt) => {
         const id = evt.target.value
         if (theactivities[id] !== undefined){
             editor.set(theactivities[id])
+            saveJson()
             try {
                 const act = new activity(theactivities[id])
                 MM.editedActivity = act
@@ -106,6 +120,7 @@ window.onload = () => {
         // set json
         const json = theactivities[activitiesIDs[Math.floor(Math.random()*activitiesIDs.length)]]
         editor.set(json)
+        saveJson()
         try {
         const act = new activity(editor.get())
         MM.editedActivity = act
@@ -123,6 +138,7 @@ window.onload = () => {
             try {
                 const jsonContent = JSON.parse(e.target.result);
                 editor.set(jsonContent);
+                saveJson()
                 try{
                     const act = new activity(editor.get())
                     MM.editedActivity = act
