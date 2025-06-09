@@ -17,7 +17,6 @@ public/js
 public/css
 
 # dev
-editor.html
 src/js/libs
 !src/js/libs/*alllibs.js
 !src/js/libs/*alllibs.min.js
