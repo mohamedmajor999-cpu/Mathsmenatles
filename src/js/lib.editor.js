@@ -44,13 +44,21 @@ const initialJson = {
     "dest":["chap1","chap2"],
     "options":[
         {
-            "name":"",
+            "name":"Multiplications",
             "vars":{
                 "a":"2_10",
                 "b":"2_10"
             },
             "question":"${:a}\\times${:b}",
             "answer":":question=\\color{red}{${:a*:b}}"
+        },{
+            "name":"Divisions",
+            "vars":{
+                "a":"2_10",
+                "b":"2_10"
+            },
+            "question":"${:a*:b}\\div${:b}",
+            "answer":":question=\\color{red}{${:a}}"
         }
     ]
 }
@@ -84,18 +92,27 @@ window.onload = () => {
         const id = evt.target.value
         if (theactivities[id] !== undefined){
             editor.set(theactivities[id])
-            const act = new activity(theactivities[id])
-            MM.editedActivity = act
-            act.display('sample',MM)
+            try {
+                const act = new activity(theactivities[id])
+                MM.editedActivity = act
+                act.display('sample',MM)
+            }
+            catch (err) {
+                document.getElementById('activityTitle').innerHTML = "<span class='red'>Erreur dans le code</span>"+err
+            }
         }
     }
     document.getElementById('randomBtn').onclick = ()=>{
         // set json
         const json = theactivities[activitiesIDs[Math.floor(Math.random()*activitiesIDs.length)]]
         editor.set(json)
+        try {
         const act = new activity(editor.get())
         MM.editedActivity = act
         act.display('sample',MM)
+        } catch (err){
+                document.getElementById('activityTitle').innerHTML = "<span class='red'>Erreur dans le code</span>"+err
+        }
     }
     document.getElementById('openFileInput').onchange = (event) => {
         const file = event.target.files[0];
@@ -106,9 +123,13 @@ window.onload = () => {
             try {
                 const jsonContent = JSON.parse(e.target.result);
                 editor.set(jsonContent);
-                const act = new activity(editor.get())
-                MM.editedActivity = act
-                act.display('sample',MM)
+                try{
+                    const act = new activity(editor.get())
+                    MM.editedActivity = act
+                    act.display('sample',MM)
+                }catch(err){
+                    document.getElementById('activityTitle').innerHTML = "<span class='red'>Erreur dans le code</span>"+err
+                }
             } catch (error) {
                 console.error("Error parsing JSON: ", error);
             }
@@ -116,9 +137,12 @@ window.onload = () => {
         reader.readAsText(file);
     };
     setTimeout(()=>{
-        // editor.setMode('code')
         const act = new activity(editor.get())
-        MM.editedActivity = act
-        act.display('sample',MM)
+        try {
+            MM.editedActivity = act
+            act.display('sample',MM)
+        } catch (err){
+            document.getElementById('activityTitle').innerHTML = "<span class='red'>Erreur dans le code</span>"+err 
+        }
     },1000)
 }
