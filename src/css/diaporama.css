@@ -94,7 +94,7 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
 /* figures */
 .slide .fig {
   height:50%;
-  width:50%;
+  /*width:50%;*/
 }
 /* #corrige-content .fig {
   height: 300px;
