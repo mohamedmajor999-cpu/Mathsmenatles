@@ -13,17 +13,17 @@ IF ERRORLEVEL ==1 goto fire
 goto end
 :fire
 @echo Lancement de firefox...
-start firefox "http://127.0.0.1:1180/public/index.html"
+start firefox "http://127.0.0.1:1180/src/index.html"
 goto end
 
 :edge
 @echo Lancement de Edge...
-start msedge "http://127.0.0.1:1180/public/index.html"
+start msedge "http://127.0.0.1:1180/src/index.html"
 goto end
 
 :chrom
 @echo Lancement de Chrome...
-start chrome "http://127.0.0.1:1180/public/index.html"
+start chrome "http://127.0.0.1:1180/src/index.html"
 goto end
 
 :end
