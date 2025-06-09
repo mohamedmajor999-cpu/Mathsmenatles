@@ -5,12 +5,43 @@
 }
 #affichage {
     width: 100%;
+    min-height: 90vh;
+    display: flex;
 }
 #affichage > div {
     width: 49%;
-    display: inline-block;
     margin-left: 0.5%;
-    vertical-align: top;
+}
+#param-title-act {
+    font-weight: bold;
+}
+#activityTitle {
+    font-size: bigger;
+}
+#activityDescription {
+    font-size: smaller;
+    font-style: italic;
+}
+#display li {
+    list-style-type: none;
+}
+.tooltip {
+    color: rgb(5, 2, 162);
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid rgb(18, 18, 11);
+}
+.tooltip .tooltiptext {
+    display: block;
+    position: relative;
+    background-color: rgb(249, 255, 226);
+}
+.red {
+    font-weight: bold;
+    color: red;
+}
+#openFileInput {
+    width: 150px;
 }
 .paramsButtons > span {
     color: #818181;
@@ -64,9 +95,10 @@ legend button {
     display: inline-block;
     visibility: hidden;
 }
-blockquote{
-    border:#0f3da1 dotted;
-    padding:1em;
+blockquote {
+    padding: 0.2em;
+    margin: 0.2em;
+    background-color: #EEFFFE;
 }
 .valedit:hover .supprthis {
     visibility: visible;

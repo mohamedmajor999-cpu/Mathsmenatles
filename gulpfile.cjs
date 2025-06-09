@@ -88,6 +88,8 @@ async function minifyCss() {
       listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/diaporama.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css', 'src/css/bulma-steps.css']
     else if(module === 'wall')
       listOfCss = ['src/css/knacssextract.css','src/css/wall.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css']
+    else if(module === 'editor')
+      listOfCss = ['src/css/editor.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css']
     return gulp.src(listOfCss)
     .pipe(cleanCSS())
     .pipe(concat(module+'-' + packageJson.version +'.css'))
@@ -113,6 +115,8 @@ async function updateVersion() {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'diaporama.html') {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama-' + packageJson.version + '.css" />')
+    } else if(htmlPageName === 'editor.html'){
+      updatedContent = updatedContent.replace('<link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" /><link rel="stylesheet" href="css/editor.css">', '<link rel="stylesheet" href="css/editor-' + packageJson.version + '.css" />')
     } else {
       const regex2 = new RegExp(module+'\\.css\\?v=[\\d\\.]+')
       updatedContent = updatedContent.replace(regex2, module +'-' + packageJson.version + '.css');
@@ -161,6 +165,8 @@ builds.forEach(module => {
       listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/diaporama.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css', 'src/css/bulma-steps.css']
     else if(module === 'wall')
       listOfCss = ['src/css/knacssextract.css','src/css/wall.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css']
+    else if(module === 'editor')
+      listOfCss = ['src/css/editor.css','src/js/libs/JSXGraph1.4.0/jsxgraph.css','src/js/libs/katex/katex.min.css']
     return gulp.src(listOfCss)
     .pipe(cleanCSS())
     .pipe(concat(module + '-' + packageJson.version +'.css'))
@@ -183,6 +189,8 @@ builds.forEach(module => {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'diaporama.html') {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama-' + packageJson.version + '.css" />')
+    } else if(htmlPageName === 'editor.html'){
+      updatedContent = updatedContent.replace('<link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.4.0/jsxgraph.css" type="text/css" /><link rel="stylesheet" href="css/editor.css">', '<link rel="stylesheet" href="css/editor-' + packageJson.version + '.css" />')
     } else {
       const regex2 = new RegExp(module+'\\.css\\?v=[\\d\\.]+')
       updatedContent = updatedContent.replace(regex2, module +'-' + packageJson.version + '.css');
