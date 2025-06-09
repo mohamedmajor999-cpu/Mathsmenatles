@@ -27,6 +27,7 @@ src/js/libs
 !src/js/libs/scratchblocks
 !src/js/libs/sortable
 !src/js/libs/chartjs
+!src/js/libs/jsoneditor-9.5.3
 
 # la conf privée
 _private
