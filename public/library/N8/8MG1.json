@@ -63,7 +63,7 @@
             ["Si je lis ${:a} pages en un jour, je finirai un livre de ${:a*:coeff} pages en ${:coeff} jours.","<span class='red'>Faux</span>, on ne lit pas le même nombre de pages chaque jour."],
             ["${:prenoms[:choixPrenom]} fait le tour du lac avec un sac à dos de ${:a} kg en 1h. S'il fait la même randonnée avec un sac à dos de ${:a*:coeff} kg, il va mettre ${:coeff} heures.", "<span class='red'>Faux</span>, la vitesse n’est pas proportionnelle au poids du sac."],
             ["Manger ${math.NumberToLetter(:coeff)} fois plus de légumes rend ${math.NumberToLetter(:coeff)} fois plus fort", "<span class='red'>Faux</span>, la force n’est pas proportionnelle à la quantité de légumes mangés."],
-            ["Pour mon anniversaire, j’ai invité ${:a} amis. S’il y avait ${math.NumberToLetter(:coeff)} fois plus d’amis, nous ferions ${:coeff} plus de bruit.", "<span class='red'>Faux</span>, le bruit n’est pas proportionnel au nombre de personnes."],
+            ["Pour mon anniversaire, j’ai invité ${:a} amis. S’il y avait ${math.NumberToLetter(:coeff)} fois plus d’amis, nous ferions ${:coeff} fois plus de bruit.", "<span class='red'>Faux</span>, le bruit n’est pas proportionnel au nombre de personnes."],
             ["Un paquet de gâteaux coute habituellement ${math.round(:a*:coeff/10,2)} €. Lors d'une promotion, un magasin propose la vente de ces gâteaux par lots de ${:coeff} paquets. On peut déterminer le prix du lot.","<span class='red'>Faux</span>, dans un lot, il peut y avoir un ou plusieur paquets gratuits. Il peut arriver que le lot soit plus cher que prévu."]
         ]},
         "vars":{

@@ -24,6 +24,13 @@ const math = {
       }
     }
   },
+  /*
+  * @param {float} nb nombre à convertir en euro décimal (2 chiffres après la virgule)
+  */
+  twoDecimals: function (nb) {
+    // retourne la valeur avec 2 chiffres après la virgule
+    return String(Number(nb).toFixed(2)).replace('.', ',');;
+  },
   /**
    * Renvoie la valeur arrondie par d?faut 
    * @param {float} valeur nombre ? arrondir
