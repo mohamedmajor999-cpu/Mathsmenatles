@@ -59,7 +59,7 @@
             ["Si un robinet fournit ${:a} litres par minute, alors en en ${:coeff} minutes on aura utilisé ${:coeff*:a} litres si on ne change pas le débit.","<span class='red'>Vrai</span>, car le débit est proportionnel au temps."]
         ],
         "faux":[
-            ["À ${:a} ans, on est ${math.NumberToLetter(:coeff)} plus grand qu’à ${:a*:coeff} ans.","<span class='red'>Faux</span>, la taille ne dépend pas de l’âge."],
+            ["À ${:a} ans, on est ${math.NumberToLetter(:coeff)} plus petit qu’à ${:a*:coeff} ans.","<span class='red'>Faux</span>, la taille ne dépend pas de l’âge."],
             ["Si je lis ${:a} pages en un jour, je finirai un livre de ${:a*:coeff} pages en ${:coeff} jours.","<span class='red'>Faux</span>, on ne lit pas le même nombre de pages chaque jour."],
             ["${:prenoms[:choixPrenom]} fait le tour du lac avec un sac à dos de ${:a} kg en 1h. S'il fait la même randonnée avec un sac à dos de ${:a*:coeff} kg, il va mettre ${:coeff} heures.", "<span class='red'>Faux</span>, la vitesse n’est pas proportionnelle au poids du sac."],
             ["Manger ${math.NumberToLetter(:coeff)} fois plus de légumes rend ${math.NumberToLetter(:coeff)} fois plus fort", "<span class='red'>Faux</span>, la force n’est pas proportionnelle à la quantité de légumes mangés."],
