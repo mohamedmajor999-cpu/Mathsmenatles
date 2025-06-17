@@ -36,7 +36,7 @@
             }
         }
     ],
-    "question":"Dans le nombre $$${:nb}$$ quel est le chiffre des unité ?",
+    "question":"Dans le nombre $$${:nb}$$ quel est le chiffre des unités ?",
     "answer":"Le chiffre des unités de $$${:nb}$$ est $$\\color{red}{${:u}}$$.",
     "value":"${:u}"
 }
