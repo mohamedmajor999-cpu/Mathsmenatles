@@ -5,6 +5,7 @@
     "description":"Écrire une fraction égale avec numérateur et dénominateurs les plus petits possibles",
     "keys":["_","_","_","/"],
     "dest":["6NB","5NA","4NA","3NA"],
+    "consigne":"Simplifier le plus possible",
     "options":[{
         "name":"Niveau 6e, reconnaissance des fractions 1/2, 1/10, 1/100",
         "vars":{"num":"2_30", "coeff":[2,10,100], "den":"${:num*:coeff}"},
