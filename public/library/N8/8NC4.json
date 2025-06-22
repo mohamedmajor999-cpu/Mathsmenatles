@@ -38,12 +38,12 @@
         "question":[
             "$$${:n} - ${:x*100}$$",
             "$$${:n} - ${:x}\\times 100$$",
-            "Combien font $$${:n}$$ et $$${:x}$$ centaine${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ centaine${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n} - ${:x*100} = \\color{red}{${:n-:x*100}}$$",
             "$$${:n} - ${:x}\\times 100 = \\color{red}{${:n-:x*100}}$$",
-            "$$${:n}$$ et $$${:x}$$ centaine${:x>1?'s':''} font $$\\color{red}{${:n-:x*100}}$$"
+            "$$${:n}$$ moins $$${:x}$$ centaine${:x>1?'s':''} font $$\\color{red}{${:n-:x*100}}$$"
         ],
         "value":"${math.round(:n-:x*100)}"
     },{
@@ -59,12 +59,12 @@
         "question":[
             "$$${:n} - ${:x*10}$$",
             "$$${:n} - ${:x}\\times 10$$",
-            "Combien font $$${:n}$$ et $$${:x}$$ dizaine${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ dizaine${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n} - ${:x*10} = \\color{red}{${:n-:x*10}}$$",
             "$$${:n} - ${:x}\\times 10 = \\color{red}{${:n-:x*10}}$$",
-            "$$${:n}$$ et $$${:x}$$ dizaine${:x>1?'s':''} font $$\\color{red}{${:n-:x*10}}$$"
+            "$$${:n}$$ moins $$${:x}$$ dizaine${:x>1?'s':''} font $$\\color{red}{${:n-:x*10}}$$"
         ],
         "value":"${math.round(:n-:x*10)}"
     },{
@@ -80,12 +80,12 @@
         "question":[
             "$$${:n}-${:x}$$",
             "$$${:n} - ${:x}\\times 1$$",
-            "Combien font $$${:n}$$ et $$${:x}$$ unité${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ unité${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n}-${:x}= \\color{red}{${math.round(:n-:x,1)}}$$",
             "$$${:n}-${:x}\\times 1= \\color{red}{${math.round(:n-:x,1)}}$$",
-            "$$${:n}$$ et $$${:x}$$ unité${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x,1)}}$$"
+            "$$${:n}$$ moins $$${:x}$$ unité${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x,1)}}$$"
         ],
         "value":"${math.round(:n-:x,1)}"
     },{
@@ -101,12 +101,12 @@
         "question":[
             "$$${:n}-${math.round(:x/10,1)}$$",
             "$$${:n} - \\dfrac{${:x}}{10}$$",
-            "Combien font $$${:n}$$ et $$${:x}$$ dixième${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ dixième${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n}-${:x}=\\color{red}{${math.round(:n-:x/10,2)}}$$",
             "$$${:n} - \\dfrac{${:x}}{10} = \\color{red}{${math.round(:n-:x/10,2)}}$$",
-            "$$${:n}$$ et $$${:x}$$ dixième${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x/10,2)}}$$."
+            "$$${:n}$$ moins $$${:x}$$ dixième${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x/10,2)}}$$."
         ],
         "value":"${math.round(:n-:x/10,2)}"
     },{
@@ -122,12 +122,12 @@
         "question":[
             "$$${:n}-${math.round(:x/100,2)}$$",
             "$$${:n} - \\dfrac{${:x}}{100}$$",
-            "Combien font $$${:n}$$ et $$${:x}$$ centième${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ centième${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n}-${:x}=\\color{red}{${math.round(:n-:x/100,3)}}$$",
             "$$${:n} - \\dfrac{${:x}}{100} = \\color{red}{${math.round(:n-:x/100,3)}}$$",
-            "$$${:n}$$ et $$${:x}$$ centième${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x/100,3)}}$$."
+            "$$${:n}$$ moins $$${:x}$$ centième${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x/100,3)}}$$."
         ],
         "value":"${math.round(:n-:x/100,3)}"
     },{
@@ -143,12 +143,12 @@
         "question":[
             "$$${:n}-${math.round(:x/1000,3)}$$",
             "$$${:n} - \\dfrac{${:x}}{1000}$$",
-            "Combien font $$${:n}$$ et $$${:x}$$ millièmes${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ millièmes${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n}-${:x}=\\color{red}{${math.round(:n-:x/1000,3)}}$$",
             "$$${:n} - \\dfrac{${:x}}{1000} = \\color{red}{${math.round(:n-:x/1000,3)}}$$",
-            "$$${:n}$$ et $$${:x}$$ millième${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x/1000,3)}}$$."
+            "$$${:n}$$ moins $$${:x}$$ millième${:x>1?'s':''} font $$\\color{red}{${math.round(:n-:x/1000,3)}}$$."
         ],
         "value":"${math.round(:n-:x/1000,3)}"
     }]
