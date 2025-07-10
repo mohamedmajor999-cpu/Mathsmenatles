@@ -42,10 +42,10 @@
             "Stop"
         ],
         "icons":[
-            ["adobe","alarm-clock","alarm-snooze","arrow-rotate","arrow-trend-down","arrow-trend-up","arrows-rotate","at","badge-check","broom","bullhorn","carrot","check","circle-check","clock","coffe","credit-card","devices","feather","file-lines","file-search","filter","fire","folder","git-branch","image","key","link","map","message","microchip","music","objects-column","palette","shuffle","wave-pulse"],
+            ["adobe","alarm-clock","alarm-snooze","arrow-rotate","arrow-trend-down","arrow-trend-up","arrows-rotate","at","badge-check","broom","bullhorn","carrot","check","circle-check","clock","coffe","credit-card","devices","feather","file-lines","file-search","filter","fire","folder","git-branch","image","key","link","map","message","music","objects-column","palette","shuffle","wave-pulse"],
             [["airplay",1],["alarm-exclamation",1],["alarm-minus",1],["alarm-plus",1],["alien",1],["align-left",1],["align-right",1],["anchor",1],["angles-down",1],["angles-left",1],["angles-right",1],["angles-up",1],["backward",1],["backward-step",1],["bluesky",1],["circle-exclamation",1],["comment",1],["compact-disc",1],["cookie",1],["copy",1],["copyright",1],["equals",1],["face-smile",1],["ghost",1],["gitlab",1],["grid-plus",1],["heart",1],["location-dot",1],["microphone",1],["mmon",1],["open-source",1],["rss",1],["search",1],["tag",1],["trash-can",1]],
             [["align-center",2],["chain",2],["code",2],["bars",2],["binance",2],["equals",2],["eye",2],["film",2],["git-commit",2],["globe",2],["grip-dots",2],["pause",2],["radio",2],["rhombus",2],["unlink",2]],
-            [["codesandbox",3],["cube",3],["album",4],["atom",4],["circle-xmark",4],["clover",4],["command",4],["compress",4],["cross",4],["expand",4],["gear",8],["grid",4],["hexagon",6],["plus",4],["sparkle",4],["star",5],["sun",8],["triangle",3],["xmark",4]]
+            [["codesandbox",3],["cube",3],["album",4],["atom",4],["circle-xmark",4],["clover",4],["command",4],["compress",4],["cross",4],["expand",4],["gear",8],["grid",4],["hexagon",6],["plus",4],["sparkle",4],["star",5],["sun",8],["triangle",3],["xmark",4],["microchip",4]]
         ],"figuresClassiquesCodees":[
             ["carré",4,["Carre1","Carre2","Carre3","Carre4"]],
             ["rectangle",2,["rectangle1","rectangle2","rectangle3","rectangle4"]],
