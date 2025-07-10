@@ -235,18 +235,11 @@ function setAllCardSameHeight() {
     const backs = document.querySelectorAll('.flip-card-back > div');
     //let minheight=0
     for (let i = 0; i < tuiles.length; i++) {
-        const height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight);
+        const height = Math.max(fronts[i].getBoundingClientRect().height, backs[i].getBoundingClientRect().height);
+        const width = Math.max(fronts[i].getBoundingClientRect().width, backs[i].getBoundingClientRect().width);
         tuiles[i].style['min-height'] = height + 'px';
+        tuiles[i].style['min-width'] = width + 'px';
     }
-    /*for (let i = 0; i < tuiles.length; i++) {
-        const height = Math.max(fronts[i].offsetHeight, backs[i].offsetHeight, tuiles[i].offsetHeight);
-        if (minheight < height){
-            minheight=height;
-        }
-    }*/
-    /*for (let i = 0; i < tuiles.length; i++) {
-        tuiles[i].style.height = minheight + 'px';
-    }*/
 }
 function unsetAllCardHeight() {
     const tuiles = document.querySelectorAll('.tuile');
