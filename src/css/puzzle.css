@@ -26,7 +26,12 @@ body[size="A4"][layout="landscape"]{
     font-family: 'Times New Roman', Times, serif !important;
     font-style: italic;
   }
-  
+  custom-svg svg .correction {
+  display: none;
+}
+custom-svg.corrige svg .correction {
+  display: initial;
+}
 @media screen {
     html{
         background: rgb(204,204,204); 

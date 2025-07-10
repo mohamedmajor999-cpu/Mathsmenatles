@@ -586,6 +586,13 @@ ul.menu, .menu ul {
   left: 50%;
   transform: translateX(-50%);
 }
+custom-svg svg .correction {
+  display: none
+}
+custom-svg.corrige svg .correction {
+  display: initial
+}
+
 /* Show the tooltip text when you mouse over the tooltip container */
 #divparams .tooltip:hover .tooltiptext, #colparameters .tooltip:hover .tooltiptext, #resultat-chercher .tooltip:hover .tooltiptext {
   visibility: visible;

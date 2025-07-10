@@ -118,6 +118,12 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
   font-family: 'Times New Roman', Times, serif !important;
   font-style: italic;
 }
+custom-svg svg .correction {
+  display: none;
+}
+custom-svg.corrige svg .correction {
+  display: initial;
+}
 /* Font sizes
 */
 #slideshow-container{

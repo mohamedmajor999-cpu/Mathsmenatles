@@ -42,6 +42,12 @@ body {
   margin: auto;
 }
 
+custom-svg svg .correction {
+  display: none;
+}
+custom-svg.corrige svg .correction {
+  display: initial;
+}
 
 @media only screen and (max-width: 320px) {
     b {
@@ -97,7 +103,7 @@ h1 {
 }
 .tuile {
     font-size: 1.5em;
-    flex-grow: 1;
+    flex: 1 0 15em;
     position: relative;
     perspective: 1000px;
     min-width: 30rem;
@@ -129,12 +135,6 @@ h1 {
 .tuile .navigation button.disabled {
   visibility: hidden;
   width: 58px;
-}
-
-@media (orientation: landscape) {
-  .tuile:not(:last-child) {
-    max-width: 48vw;
-  }  
 }
 
 .tuile .numero {

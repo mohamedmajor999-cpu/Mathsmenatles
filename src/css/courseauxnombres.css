@@ -11,14 +11,15 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
 li {
     page-break-inside: avoid;
 }
 
-.pagebreak, .break {
+.pagebreak,
+.break {
     page-break-before: always;
 }
 
@@ -111,15 +112,19 @@ tr td {
     border-top: 1pt solid black;
     border-left: 1pt solid black;
 }
+
 tr td:last-of-type {
     border-right: 1pt solid black;
 }
+
 tr:last-of-type td {
     border-bottom: 1pt solid black;
 }
+
 tr:has(+ tr.pagebreak) td {
     border-bottom: 1pt solid black;
 }
+
 tr.pagebreak td {
     border-top: 1pt solid black;
 }
@@ -160,6 +165,7 @@ tr.pagebreak td {
     text-align: center;
     margin: auto;
 }
+
 #divcorrection header {
     margin-bottom: 1cm;
 }
@@ -232,11 +238,19 @@ h3.exercice-title {
     width: 90%;
     height: 200px;
 }
+
 .fig .italic {
     font-family: 'Times New Roman', Times, serif !important;
     font-style: italic;
-  }
-  
+}
+
+custom-svg svg .correction {
+    display: none;
+}
+
+custom-svg.corrige svg .correction {
+    display: initial;
+}
 
 .red {
     color: red;
@@ -282,16 +296,17 @@ h3.exercice-title {
     .entete[contenteditable="true"] {
         border: 2px solid #7882ef;
     }
+
     body[size="A4"] #creator-content {
         width: 21cm;
         min-height: 29.7cm;
     }
-    
+
     body[size="A4"][layout="landscape"] #creator-content {
         width: 27.7cm;
         min-height: 21cm;
     }
-    
+
     body {
         position: relative;
     }
@@ -304,50 +319,60 @@ h3.exercice-title {
         margin-bottom: 0.5cm;
         box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
     }
+
     tr.pagebreak {
         position: relative;
     }
-    footer.break::before, tr.pagebreak td:last-child::before {
+
+    footer.break::before,
+    tr.pagebreak td:last-child::before {
         content: ' ';
         position: absolute;
         display: block;
-        box-shadow: 0 0.2cm 0.2cm rgba(0,0,0,0.5);
+        box-shadow: 0 0.2cm 0.2cm rgba(0, 0, 0, 0.5);
         height: 5mm;
         width: 210mm;
-        margin-left:-10mm;
+        margin-left: -10mm;
         z-index: 5;
     }
+
     tr.pagebreak td {
-        border-top:2cm solid white;
+        border-top: 2cm solid white;
     }
 
     footer.break {
         margin-bottom: 2cm;
     }
+
     tr.pagebreak td:last-child::before {
-        top:0;
+        top: 0;
         left: 0;
         transform: translateY(-100%);
     }
-    footer.break::after, tr.pagebreak td:last-child::after {
+
+    footer.break::after,
+    tr.pagebreak td:last-child::after {
         position: absolute;
         z-index: 2;
         content: ' ';
         display: block;
-        margin-top:5mm;
+        margin-top: 5mm;
         height: 0.5cm;
         width: 220mm;
-        margin-left:-15mm;
-        background-color: rgb(204,204,204);
+        margin-left: -15mm;
+        background-color: rgb(204, 204, 204);
     }
+
     tr.pagebreak td:last-child::after {
         top: 0;
         left: 0;
         transform: translateY(-100%);
     }
+
     body[size="A4"][layout="landscape"] .pagebreak::after {
         width: 307mm;
     }
+
     body[size="A4"][layout="landscape"] .pagebreak::before {
         width: 297mm;
     }
@@ -376,10 +401,12 @@ h3.exercice-title {
     .noprint {
         display: none;
     }
+
     html {
-        margin:0;
-        padding:0;
+        margin: 0;
+        padding: 0;
     }
+
     body {
         /* padding: 5mm 10mm 10mm 10mm;*/
         padding: 0;
@@ -399,5 +426,5 @@ h3.exercice-title {
     thead {
         display: table-header-group;
     }
-    
+
 }

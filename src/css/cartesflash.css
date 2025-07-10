@@ -138,7 +138,12 @@ Taille carte de visite
     font-family: 'Times New Roman', Times, serif !important;
     font-style: italic;
   }
-  
+custom-svg svg .correction {
+  display: none;
+}
+custom-svg.corrige svg .correction {
+  display: initial;
+}
 .recto {
     border: 1pt solid black;
 }
