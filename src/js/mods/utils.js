@@ -4,6 +4,24 @@ export { utils as default }
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const joursFR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
+/* define new HTMLElement to insert svg as inline */
+class CustomSVG extends HTMLElement {
+    constructor() {
+        super();
+    }
+    connectedCallback() {
+        if(this.getAttribute('src') ===''){console.log('src vide');return}
+        fetch(this.getAttribute('src'))
+        .then(response => response.text())
+        .then(text => {
+            this.innerHTML = text;
+        }).catch(err=>{
+            console.log(err)
+        });
+    }
+}
+customElements.define('custom-svg', CustomSVG);
+
 export const _ = {
     /**
      * Checks if an object is an array.
@@ -325,6 +343,8 @@ export const utils = {
         // on fait un tableau de données qui sont séparées par le &
         let trueUrl = urlString.search.slice(1);
         trueUrl = trueUrl.replace('&amp;', '&');
+        // problème avec Elea qui encode les virgules et les =
+        trueUrl = trueUrl.replace(/%2C/g,',').replace(/%3D/g,'=')
         let hashes = trueUrl.split('&');
         if (this.isURLEncoded(trueUrl)) {
             trueUrl = this.decodeUrlUnreadable(hashes[0]);
