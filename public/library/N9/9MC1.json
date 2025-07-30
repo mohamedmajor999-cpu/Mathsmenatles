@@ -58,7 +58,7 @@
         },
         {
             "name":"Les quarts d'heures, l'après-midi",
-            "question":"C’est le matin. Quelle heure est-il ?",
+            "question":"C’est l’après-midi. Quelle heure est-il ?",
             "vars":{
                 "h":"1_11",
                 "m":[1,3],
