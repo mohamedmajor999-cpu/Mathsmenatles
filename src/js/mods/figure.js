@@ -2,6 +2,16 @@ import utils from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
 import math from "./math.js";
+import {
+  BoxGeometry,
+  DirectionalLight,
+  EdgesGeometry,
+  Mesh,
+  MeshPhongMaterial,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer, OrbitControls, LineMaterial, Wireframe, LineSegmentsGeometry } from '../libs/threejs.bundle.min.js';
+
 scratchblocks.loadLanguages({
     fr: {
         "commands": {
@@ -271,6 +281,9 @@ scratchblocks.loadLanguages({
       } })
 
 // Figures
+/**
+ * types : 'chart', 'graph', 'svg', 'scratch', 'threejscubes'
+ */
 export default class Figure {
     constructor(obj, id, target, size){
         this.type = obj.type;
@@ -283,7 +296,7 @@ export default class Figure {
         this.xscale = (obj.xscale !== undefined)?obj.xscale:1;
         this.id = id;
         this.keepAspect = (obj.keepAspect!==undefined)?obj.keepAspect:true;
-        this.size = size;//[w,h]
+        this.size = size!==undefined?size:obj.size!==undefined&&obj.size.length?obj.size:undefined;//[w,h]
         this.imgSrc = obj.imgSrc||false;
         this.figure = undefined;
         this.displayed = false;
@@ -296,8 +309,8 @@ export default class Figure {
      */
     create(destination){
         if(this.type === "chart"){
-            let div = utils.create("div",{id:"div-dest-canvas-"+this.id, style:'width:14em'});
-            let canvas = document.createElement("canvas");
+            const div = utils.create("div",{id:"div-dest-canvas-"+this.id, style:'width:14em'});
+            const canvas = document.createElement("canvas");
             canvas.id = this.id;
             if(this.size !== undefined){
                 div.style.width = this.size[0]+"px";
@@ -329,6 +342,12 @@ export default class Figure {
             div.className = "scratchblocks";
             div.id=this.id;
             destination.appendChild(div);
+        } else if(this.type === 'threecubes'){
+            const div = document.createElement('div');
+            div.id = this.id;
+            div.className = 'threecubes';
+            destination.appendChild(div);
+            div.innerHTML = `<canvas id="${this.id}-canvas"></canvas>`
         }
     }
     /**
@@ -354,7 +373,7 @@ export default class Figure {
         let elt;
         if(this.type ==="chart")
             elt = document.getElementById(this.id).parentNode;
-        else if(this.type ==="graph" || this.type === "svg" || this.type === "scratch")
+        else if(['graph', 'svg', 'scratch', 'threecubes'].indexOf(this.type)>-1)
             elt = document.getElementById(this.id);
         let cln = elt.className; // div contenant
         if(cln.indexOf("visible")<0){
@@ -397,6 +416,150 @@ export default class Figure {
             this.setChartFontSize(target)
             this.figure = new Chart(target, this.content);
             
+        } else if(this.type === 'threecubes'){
+            const $scene = document.getElementById(this.id+'-canvas')
+            const scene = new Scene()
+            scene.background = null
+            // Create spot lights
+            const color = 0xFFFFFF;
+            const colors = ['red','orange','yellow']
+            colors.forEach(color => {
+                let i=0, j=0, k=0
+                if(color === 'red')j=1
+                else if (color === 'orange')k=1
+                else i=1
+                const light = new DirectionalLight( color, 4 );
+                light.position.set( i, j, k );
+                scene.add( light );
+                const light2 = new DirectionalLight( color, 2)
+                light2.position.set(-i, -j, -k)
+                scene.add(light2)
+            })
+
+            // Create a camera
+            const fov = 35; // AKA Field of View
+            if(this.size === undefined){
+                this.size = [500,300]
+            }
+            const aspect = this.size[0] / this.size[1];
+            const near = 0.1; // the near clipping plane
+            const far = 100; // the far clipping plane
+
+            const camera = new PerspectiveCamera(fov, aspect, near, far);
+            // every object is initially created at ( 0, 0, 0 )
+            // move the camera back so we can view the scene
+            camera.position.set(11, 11, 11);
+            camera.lookAt(0,0,0)
+
+            // define a cube and his edges
+            const geometry = new BoxGeometry();
+            const edgesGeometry = new EdgesGeometry( geometry );
+            const lineGeometry = new LineSegmentsGeometry().fromEdgesGeometry( edgesGeometry );
+            const matLine = new LineMaterial( {
+                color: "black",
+                linewidth: 3,
+            } );
+
+            // create a default (white) Basic material
+            const material = new MeshPhongMaterial({color: "lightgrey"});
+
+            function createCube({x=0,y=0,z=0}) {
+                // create a Mesh containing the geometry and material
+                const cube = new Mesh(geometry, material);
+                cube.position.x = x
+                cube.position.y = y
+                cube.position.z = z
+                // add the mesh to the scene
+                scene.add(cube);
+                // add edges
+                const wireframe = new Wireframe( lineGeometry, matLine );
+                wireframe.computeLineDistances();
+                wireframe.scale.set( 1, 1, 1 );
+                wireframe.position.x = x
+                wireframe.position.y = y
+                wireframe.position.z = z
+                scene.add( wireframe );
+            }
+            const controls = new OrbitControls(camera, $scene);
+            controls.target.set(0, 0, 0);
+            controls.update();
+            // cubes selon les coordonnées passées en contents
+            for(const content of this.content){
+                if(content.camera > 0 ){
+                    camera.position.set(content.camera,content.camera,content.camera)
+                }
+                if(content.cube > 0){
+                    for(let x=0;x<content.cube;x++){
+                        for(let y=0;y<content.cube;y++){
+                            for(let z=0;z<content.cube;z++){
+                                createCube({x,y,z})
+                            }
+                        }
+                    }
+                } else if (content.mur !== undefined) {
+                    let x=0,z=0,xorz=math.aleaInt(0,1)
+                    for(const value of content.mur){
+                        for(let y=0;y<value;y++){
+                            createCube({x,y,z})
+                        }
+                        if(xorz)x++;
+                        else z++
+                    }
+                } else if (content.doublemur !== undefined){
+                    let z=0
+                    for(const value of content.doublemur[0]){
+                        for(let y=0;y<value;y++){
+                            createCube({x:0,y,z})
+                        }
+                        z++
+                    }
+                    let x=1
+                    for(const value of content.doublemur[1]){
+                        for(let y=0;y<value;y++){
+                            createCube({x,y,z:0})
+                        }
+                        x++
+                    }
+                } else if(content.cube !== undefined){
+                    /*
+                    hauteur des colonnes données dans l'ordre suivant :
+                    cube 3x3 :  cube 4x4
+                    0 3 6       0 4 8  12
+                    1 4 7       1 5 9  13
+                    2 5 8       2 6 10 14
+                                3 7 11 15
+                    */
+                    let index=0
+                    const size = Math.sqrt(content.cube.length)
+                    for(let x=0;x<size;x++){
+                        for(let z=0;z<size;z++){
+                            for(let y=0;y<content.cube[index];y++){
+                                createCube({x,y,z})
+                            }
+                            index++
+                        }
+                    }
+                }
+            }
+            // create the renderer
+            const renderer = new WebGLRenderer({antialias: true, canvas:$scene, alpha: true,preserveDrawingBuffer:true});
+            // renderer size
+            const width = this.size[0]
+            const height = this.size[1]
+            renderer.setSize(width, height)
+            // on change la taille ici maintenant que tout est ok
+            $scene.style['width'] = '15em'
+            $scene.style['height'] = String(math.round(15*this.size[1]/this.size[0],2))+'em'
+            // finally, set the pixel ratio so that our scene will look good on HiDPI displays
+            renderer.setPixelRatio(window.devicePixelRatio);
+            let isRendering = true
+            function render() {
+                if(!isRendering) return
+              // render, or 'create a still image', of the scene
+              renderer.render(scene, camera);
+            }
+            controls.addEventListener('change',render)
+            render()
         } else if(this.type === "graph"){ //JSXGraph
             this.div2.style.display = 'block';
             const target = document.getElementById(this.id)

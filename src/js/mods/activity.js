@@ -1020,6 +1020,8 @@ export default class activity {
                         "content":this.replaceVars(utils.clone(this.cFigure.content)),
                         "transformLayer":this.replaceVars(utils.clone(this.cFigure.transformLayer))
                     }
+                    if(this.cFigure.size !== undefined)
+                        this.figures[i].size = this.replaceVars(utils.clone(this.cFigure.size))
                     if(this.cFigure.type === 'graph') {
                         this.figures[i] = {
                             "boundingbox":this.cFigure.boundingbox,
@@ -1038,6 +1040,8 @@ export default class activity {
                         "content":this.replaceVars(utils.clone(this.cFigureCorrection.content)),
                         "transformLayer":this.replaceVars(utils.clone(this.cFigureCorrection.transformLayer))
                     }
+                    if(this.cFigureCorrection.size !== undefined)
+                        this.figuresCorrection[i].size = this.replaceVars(utils.clone(this.cFigureCorrection.size))
                     if(this.cFigureCorrection.type === 'graph') {
                         this.figuresCorrection[i] = {
                             "boundingbox":this.cFigureCorrection.boundingbox,
@@ -1076,6 +1080,8 @@ export default class activity {
                         "type":this.cFigure.type,
                         "content":this.replaceVars(this.cFigure.content)
                     }
+                    if(this.cFigure.size !== undefined)
+                        this.sample.figure.size = this.replaceVars(utils.clone(this.cFigure.size))
                     if(this.cFigure.type === "graph"){
                         this.sample.figure = {
                             "boundingbox":this.cFigure.boundingbox,
@@ -1091,6 +1097,9 @@ export default class activity {
                         "type": this.cFigureCorrection.type,
                         "content": this.replaceVars(this.cFigureCorrection.content)
                     };
+                    if(this.cFigureCorrection.size !== undefined)
+                        this.sample.figureCorrection.size = this.replaceVars(utils.clone(this.cFigureCorrection.size))
+
                     if (this.cFigureCorrection.type === "graph") {
                         this.sample.figureCorrection = {
                             "boundingbox": this.cFigureCorrection.boundingbox,

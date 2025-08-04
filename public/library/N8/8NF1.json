@@ -1,0 +1,50 @@
+{
+    "ID": "8NF1",
+    "dest": [
+        "8NF",
+        "7NF",
+        "6NF"
+    ],
+    "title": "Résoudre des problèmes multiplicatifs",
+    "type": "text",
+    "options": [
+        {
+            "consts": {
+                "phrases": [
+                    [
+                        "Un jardinier plante ${:n1} rangées de pommes de terre avec ${:n2} pommes de terre par rangée. Combien de pommes de terre plante-t-il au total ?",
+                        "Au total, il plante $$${:n1}\\times${:n2}=\\color{red}{${:produit}}$$ pommes de terre."
+                    ],
+                    [
+                        "Une bibliothèque comporte ${:n1} étagères avec ${:n2} livres chacune. Combien de livres y a-t-il en tout ?",
+                        "La bibliothèque contient $$${:n1}\\times${:n2}=\\color{red}{${:produit}}$$ livres."
+                    ],
+                    [
+                        "Un pâtissier prépare ${:n1} gâteaux et met ${:n2} bougies sur chacun. Combien de bougies utilise-t-il en tout ?",
+                        "Il utilise $$${:n1}\\times${:n2}=\\color{red}{${:produit}}$$ bougies."
+                    ],
+                    [
+                        "Un fermier a ${:n1} vaches et chaque vache donne ${:n2} litres de lait par jour. Combien de litres de lait obtient-il chaque jour ?",
+                        "Il obtient $$${:n1}\\times${:n2}=\\color{red}{${:produit}}$$ litres de lait."
+                    ],
+                    [
+                        "Un magasin vend ${:n1} cartons de stylos avec ${:n2} stylos dans chaque carton. Combien de stylos y a-t-il en tout ?",
+                        "Il y a $$${:n1}\\times${:n2}=\\color{red}{${:produit}}$$ stylos."
+                    ],
+                    [
+                        "Un professeur distribue ${:n1} feuilles de travail à chacun de ses ${:n2} élèves. Combien de feuilles distribue-t-il en tout ?",
+                        "Il distribue $$${:n1}\\times${:n2}=\\color{red}{${:produit}}$$ feuilles."
+                    ]
+                ]
+            },
+            "vars": {
+                "situation": "0_${:phrases.length-1}",
+                "n1": "2_10",
+                "n2": "2_10",
+                "produit": "${:n1*:n2}"
+            },
+            "question": "${:phrases[:situation][0]}",
+            "answer": "${:phrases[:situation][1]}"
+        }
+    ]
+}

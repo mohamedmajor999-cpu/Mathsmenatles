@@ -1,6 +1,6 @@
 {
   "name": "mathsmentales",
-  "version": "2.3.88",
+  "version": "2.3.92",
   "description": "Outil pour travailler les automatismes et le calcul mental en mathématiques",
   "main": "index.html",
   "type": "commonjs",
@@ -15,6 +15,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/stream": "^3.0.1",
     "gulp": "^5.0.0",

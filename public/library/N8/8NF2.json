@@ -1,0 +1,68 @@
+{
+    "ID":"8NF2",
+    "dest":["8NF","7NF","6NF"],
+    "title":"Résoudre des problèmes multiplicatifs illustrés",
+    "type":"text",
+    "options":[
+        {
+            "name":"Utilisation simple des tables",
+            "consts":{
+                "fig":[
+                    ["un cube gris","<svg width='15em' height='5em' version='1.1' viewBox='0 0 79.37 26.46' xmlns='http://www.w3.org/2000/svg' id='balancevideopti'><style>#balancevideopti rect{fill:#53676c;stroke-width:.1;stroke:#000000}</style><g><path d='m39.69 13.56-1.155 7.268a1.188 1.188 0 00-.03978.3052v.01117a1.188 1.188 0 001.198 1.176 1.188 1.188 0 001.179-1.195 1.188 1.188 0 00-.01553-.1798h.000527l-.0049-.03024z' style='fill:#000000'/>  <path d='m18.54 21.18h42.29' style='fill:none;stroke-width:.2646px;stroke:#000000'/>  <rect x='18.52' y='19.76' width='.881' height='1.496' style='fill:#000000'/>  <rect x='59.97' y='19.76' width='.881' height='1.496' style='fill:#000000'/>  <path d='m5.151 18.18 1.024 1.516h25.69l.9015-1.475' style='fill:none;stroke-width:.2646px;stroke:#000000'/>  <path d='m46.6 18.14 1.024 1.516h25.69l.9015-1.475' style='fill:none;stroke-width:.2646px;stroke:#000000'/>  <path d='m34.53 14.22a8.564 8.564 0 0110.37.03969' style='fill:none;stroke-width:.2;stroke:#000000'/> <path d='m39.69 12.48v.891' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m40.9 12.56-.08233.5883' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m38.51 12.56.08233.5883' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m42.06 12.81-.162.5715' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m37.34 12.81.162.5715' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m43.2 13.22-.2395.5436' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m36.2 13.22.2395.5436' style='fill:none;stroke-width:.1;stroke:#000000'/>  <path d='m60.35 8.565a2.421 2.422 0 00-2.412 2.424v.0224a2.421 2.422 0 00.8034 1.777h-4.846v6.675h13.02v-6.675h-4.941a2.421 2.422 0 00.8034-1.816 2.421 2.422 0 00-2.429-2.408z' style='fill:#b3b3b3;stroke-width:.1;stroke:#000000'/><rect x='17.02' y='15.74' width='3.811' height='3.811'/><rect x='21.25' y='15.74' width='3.811' height='3.811'/><rect x='12.78' y='15.74' width='3.811' height='3.811' style='display:${:c3}'/><rect x='8.55' y='15.74' width='3.811' height='3.811' style='display:${:c4}'/><rect x='25.48' y='15.74' width='3.811' height='3.811' style='display:${:c5}'/><rect x='17.02' y='11.5' width='3.811' height='3.811' style='display:${:c6}'/><rect x='21.25' y='11.5' width='3.811' height='3.811' style='display:${:c7}'/><rect x='12.78' y='11.5' width='3.811' height='3.811' style='display:${:c8}'/><rect x='8.55' y='11.5' width='3.811' height='3.811' style='display:${:c9}'/><rect x='25.48' y='11.5' width='3.811' height='3.811' style='display:${:c10}'/><text x='60.397362' y='17.259487' style='font-family:Arial;font-size:3.492px;letter-spacing:0px;line-height:1.25;stroke-width:.2646;text-align:center;text-anchor:middle;word-spacing:0px' xml:space='preserve'><tspan x='60.397362' y='17.259487' style='stroke-width:.2646;text-align:center;text-anchor:middle'>${:m}</tspan></text> </g></svg>"],
+                    ["un cone bleu","<svg width='15em' height='5em' version='1.1' viewBox='0 0 79.37 26.46' xmlns='http://www.w3.org/2000/svg' id='balancetrianglesopti'><style>#balancetrianglesopti #triangles path{fill:#0066ff;}</style><g><path d='m39.69 13.56-1.155 7.268a1.188 1.188 0 00-.03978.3052v.01117a1.188 1.188 0 001.198 1.176 1.188 1.188 0 001.179-1.195 1.188 1.188 0 00-.01553-.1798h.000527l-.0049-.03024z' style='fill:#000000'/><path d='m18.54 21.18h42.29' style='fill:none;stroke-width:.2646px;stroke:#000000'/><rect x='18.52' y='19.76' width='.881' height='1.496' style='fill:#000000'/><rect x='59.97' y='19.76' width='.881' height='1.496' style='fill:#000000'/><path d='m4.542 18.18 1.07 1.516h26.83l.9413-1.475' style='fill:none;stroke-width:.2646px;stroke:#000000'/><path d='m46.6 18.14 1.024 1.516h25.69l.9015-1.475' style='fill:none;stroke-width:.2646px;stroke:#000000'/><path d='m34.53 14.22a8.564 8.564 0 0110.37.03969' style='fill:none;stroke-width:.2;stroke:#000000'/><g style='fill:none;stroke-width:.1;stroke:#000000'><path d='m39.69 12.48v.891'/><path d='m40.9 12.56-.08233.5883'/><path d='m38.51 12.56.08233.5883'/><path d='m42.06 12.81-.162.5715'/><path d='m37.34 12.81.162.5715'/><path d='m43.2 13.22-.2395.5436'/><path d='m36.2 13.22.2395.5436'/></g><path d='m60.35 8.565a2.421 2.422 0 00-2.412 2.424v.0224a2.421 2.422 0 00.8034 1.777h-4.846v6.675h13.02v-6.675h-4.941a2.421 2.422 0 00.8034-1.816 2.421 2.422 0 00-2.429-2.408z' style='fill:#b3b3b3;stroke-width:.1;stroke:#000000'/><text x='60.397362' y='17.259487' style='font-family:Arial;font-size:3.492px;letter-spacing:0px;line-height:1.25;stroke-width:.2646;text-align:center;text-anchor:middle;word-spacing:0px' xml:space='preserve'><tspan x='60.397362' y='17.259487' style='stroke-width:.2646;text-align:center;text-anchor:middle'>${:m}</tspan></text><g id='triangles'><path transform='translate(10.07 4.556)' d='m11.48 14.99h-5.19l2.595-4.495z'/><path transform='translate(4.779 4.556)' d='m11.48 14.99h-5.19l2.595-4.495z'/><path transform='translate(15.36 4.556)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c3}'/><path transform='translate(7.425 .08416)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c4}'/><path transform='translate(12.72 .08416)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c5}'/><path transform='translate(10.04 -4.388)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c6}'/><path transform='translate(20.6 4.556)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c7}'/><path transform='translate(17.95 .05804)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c8}'/><path transform='translate(15.31 -4.469)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c9}'/><path transform='translate(12.67 -8.91)' d='m11.48 14.99h-5.19l2.595-4.495z' style='display:${:c10}'/></g></g></svg>"],
+                    ["une balle verte","<svg width='15em' height='5em' version='1.1' viewBox='0 0 79.37 26.46' xmlns='http://www.w3.org/2000/svg'><g><path d='m39.69 13.56-1.155 7.268a1.188 1.188 0 00-.03978.3052v.01117a1.188 1.188 0 001.198 1.176 1.188 1.188 0 001.179-1.195 1.188 1.188 0 00-.01553-.1798h.000527l-.0049-.03024z' style='fill:#000000'/><path d='m18.54 21.18h42.29' style='fill:none;stroke-width:.2646px;stroke:#000000'/><rect x='18.52' y='19.76' width='.881' height='1.496' style='fill:#000000'/><rect x='59.97' y='19.76' width='.881' height='1.496' style='fill:#000000'/><g style='fill:none;stroke-width:.2646px;stroke:#000000'><path d='m5.151 18.18 1.024 1.516h25.69l.9015-1.475'/><path d='m46.6 18.14 1.024 1.516h25.69l.9015-1.475'/></g><path d='m34.53 14.22a8.564 8.564 0 0110.37.03969' style='fill:none;stroke-width:.2;stroke:#000000'/><g  style='fill:none;stroke-width:.1;stroke:#000000'><path d='m39.69 12.48v.891'/><path d='m40.9 12.56-.08233.5883'/><path d='m38.51 12.56.08233.5883'/><path d='m42.06 12.81-.162.5715'/><path d='m37.34 12.81.162.5715'/><path d='m43.2 13.22-.2395.5436'/><path d='m36.2 13.22.2395.5436'/></g><path d='m60.35 8.565a2.421 2.422 0 00-2.412 2.424v.0224a2.421 2.422 0 00.8034 1.777h-4.846v6.675h13.02v-6.675h-4.941a2.421 2.422 0 00.8034-1.816 2.421 2.422 0 00-2.429-2.408z' style='fill:#b3b3b3;stroke-width:.1;stroke:#000000'/><text x='60.397362' y='17.259487' style='font-family:Arial;font-size:3.492px;letter-spacing:0px;line-height:1.25;stroke-width:.2646;text-align:center;text-anchor:middle;word-spacing:0px' xml:space='preserve'><tspan x='60.397362' y='17.259487' style='stroke-width:.2646;text-align:center;text-anchor:middle'>${:m}</tspan></text><g style='fill:#00aa00;stroke-dasharray:7.99999, 2;stroke-width:2'><circle cx='18.98' cy='17.33' r='2.264'/><circle cx='23.74' cy='17.33' r='2.264'/><circle cx='14.22' cy='17.33' r='2.264' style='display:${:c3}'/><circle cx='16.6' cy='13.36' r='2.264' style='display:${:c4}'/><circle cx='21.36' cy='13.36' r='2.264' style='display:${:c5}'/><circle cx='28.51' cy='17.33' r='2.264' style='display:${:c6}'/><circle cx='9.455' cy='17.33' r='2.264' style='display:${:c7}'/><circle cx='26.12' cy='13.36' r='2.264' style='display:${:c8}'/><circle cx='11.83' cy='13.36' r='2.264' style='display:${:c9}'/><circle cx='18.98' cy='9.389' r='2.264' style='display:${:c10}'/></g></g></svg>"]
+                ]
+            },
+            "vars":{
+                "qte":"2_10",
+                "coeff":"2_10",
+                "m":"${:coeff*:qte*10} g",
+                "c3":"${:coeff<3?'none':''}",
+                "c4":"${:coeff<4?'none':''}",
+                "c5":"${:coeff<5?'none':''}",
+                "c6":"${:coeff<6?'none':''}",
+                "c7":"${:coeff<7?'none':''}",
+                "c8":"${:coeff<8?'none':''}",
+                "c9":"${:coeff<9?'none':''}",
+                "c10":"${:coeff<10?'none':''}",
+                "fign":"0_2"
+            },
+            "figure":{
+                "type":"svg",
+                "content":"${:fig[:fign][1]}"
+            },
+            "question":"Combien pèse ${:fig[:fign][0]} ?",
+            "answer":"${:fig[:fign][0].charAt(0).toUpperCase() + :fig[:fign][0].slice(1)} pèse $$\\color{red}{${:qte*10} g}$$"
+        },{
+            "name":"Deux étapes",
+            "consts":{
+                "fig":[
+                    ["un cube gris","<svg width='15em' height='5em' version='1.1' viewBox='0 0 79.37 26.46' xmlns='http://www.w3.org/2000/svg'><g><path d='m39.69 13.56-1.155 7.268a1.188 1.188 0 00-.03978.3052v.01117a1.188 1.188 0 001.198 1.176 1.188 1.188 0 001.179-1.195 1.188 1.188 0 00-.01553-.1798h.000527l-.0049-.03024z' style='fill:#000000'/><path d='m18.54 21.18h42.29' style='fill:none;stroke-width:.2646px;stroke:#000000'/><rect x='14.29' y='19.76' width='.881' height='1.496' style='fill:#000000'/><rect x='59.97' y='19.76' width='.881' height='1.496' style='fill:#000000'/><path d='m2.465 18.18 1.224 1.516h30.69l1.077-1.475' style='fill:none;stroke-width:.2646px;stroke:#000000'/><path d='m46.6 18.14 1.024 1.516h25.69l.9015-1.475' style='fill:none;stroke-width:.2646px;stroke:#000000'/><path d='m34.53 14.22a8.564 8.564 0 0110.37.03969' style='fill:none;stroke-width:.2;stroke:#000000'/><g style='fill:none;stroke-width:.1;stroke:#000000'><path d='m39.69 12.48v.891'/><path d='m40.9 12.56-.08233.5883'/><path d='m38.51 12.56.08233.5883'/><path d='m42.06 12.81-.162.5715'/><path d='m37.34 12.81.162.5715'/><path d='m43.2 13.22-.2395.5436'/><path d='m36.2 13.22.2395.5436'/></g><path d='m60.35 8.565a2.421 2.422 0 00-2.412 2.424v.0224a2.421 2.422 0 00.8034 1.777h-4.846v6.675h13.02v-6.675h-4.941a2.421 2.422 0 00.8034-1.816 2.421 2.422 0 00-2.429-2.408z' style='fill:#b3b3b3;stroke-width:.1;stroke:#000000'/><g style='fill:#53676c;stroke-width:.1;stroke:#000000'><rect x='12.78' y='15.74' width='3.811' height='3.811'/><rect x='17.02' y='15.74' width='3.811' height='3.811'/><rect x='8.55' y='15.74' width='3.811' height='3.811' style='display:${:c3}'/><rect x='4.317' y='15.74' width='3.811' height='3.811' style='display:${:c4}'/><rect transform='rotate(-90)' x='-11.08' y='12.78' width='3.811' height='3.811' style='display:${:c5}'/><rect x='12.78' y='11.5' width='3.811' height='3.811' style='display:${:c6}'/><rect x='17.02' y='11.5' width='3.811' height='3.811' style='display:${:c7}'/><rect x='8.55' y='11.5' width='3.811' height='3.811' style='display:${:c8}'/><rect x='4.317' y='11.5' width='3.811' height='3.811' style='display:${:c9}'/><rect transform='rotate(-90)' x='-11.08' y='8.55' width='3.811' height='3.811' style='display:${:c10}'/></g><rect x='22.24' y='11.46' width='11.46' height='8.091' style='fill:#164450'/><g style='font-family:Arial;font-size:3.492px;letter-spacing:0px;line-height:1.25;stroke-width:.2646;text-align:center;text-anchor:middle;word-spacing:0px'><text x='60.397362' y='17.259487' xml:space='preserve'>${:m}</text><text x='28.347479' y='16.634733' style='fill:#FFF'>${:n}</text></g></g></g></svg>"]
+                ]
+            },
+            "vars":{
+                "qte":"2_10",
+                "coeff":"2_10",
+                "c":"1_10",
+                "nv":"${:c*10}",
+                "n":"${:nv} g",
+                "m":"${:coeff*:qte*10 + :nv} g",
+                "c3":"${:coeff<3?'none':''}",
+                "c4":"${:coeff<4?'none':''}",
+                "c5":"${:coeff<5?'none':''}",
+                "c6":"${:coeff<6?'none':''}",
+                "c7":"${:coeff<7?'none':''}",
+                "c8":"${:coeff<8?'none':''}",
+                "c9":"${:coeff<9?'none':''}",
+                "c10":"${:coeff<10?'none':''}",
+                "fign":"0"
+            },
+            "figure":{
+                "type":"svg",
+                "content":"${:fig[:fign][1]}"
+            },
+            "question":"Combien pèse ${:fig[:fign][0]} ?",
+            "answer":"${:fig[:fign][0].charAt(0).toUpperCase() + :fig[:fign][0].slice(1)} pèse $$\\color{red}{${:qte*10} g}$$"
+        }
+    ]
+}
