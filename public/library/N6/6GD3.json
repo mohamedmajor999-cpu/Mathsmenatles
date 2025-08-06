@@ -67,7 +67,7 @@
                 "rep":"${:cx[0]<=:cx[1]?'Oui':'Non'}",
                 "justif":"${:cx[0]<=:cx[1]?', car $$O'+:B+'\\leqslant O'+:C+'$$':', car $$O'+:lettres[:l[:cx[0]]]+'> O'+:lettres[:l[:cx[1]]]+'$$'}"
             },
-            "question":"On sait que $$O ${:A}=${:lg[0]}$$, $$O ${:B}=${:lg[1]}$$, $$O ${:C}=${:lg[1]}$$ et $$O ${:D}=${:lg[2]}$$.<br>Le point ${:lettres[:l[:cx[0]]]} appartient-il au cercle de centre O passant par ${:lettres[:l[:cx[1]]]} ?",
+            "question":"On sait que $$O ${:A}=${:lg[0]}$$, $$O ${:B}=${:lg[1]}$$, $$O ${:C}=${:lg[1]}$$ et $$O ${:D}=${:lg[2]}$$.<br>Le point ${:lettres[:l[:cx[0]]]} appartient-il au disque de centre O passant par ${:lettres[:l[:cx[1]]]} ?",
             "answer":"<span class='red'>${:rep}</span>${:justif}",
             "value":["${:cx[0]<=:cx[1]?'oui':'non'}","${:cx[0]<=:cx[1]?'O':'N'}"]
         }
