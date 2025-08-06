@@ -6,7 +6,10 @@
     "repeat":5,
     "type":"text",
     "consts":{
-        
+        "drapeaux":[
+            [["ad.andorre","d’"],["ba.bosnie herzegovine","de "],["by.bielorussie","de la "],["cy.chypre", "de "],["es.espagne","de l’"],["gb.royaume-uni","du "],["gb-nir.irlande du nord","de l’ "],["gb-wls.pays de galles","du "],["gr.grece","de la "],["hr.croatie", "de la "],["li.lichtenstein","du "],["md.moldavie","de la "],["me.montenegro", "du "],["mt.malte","de "],["pt.portugal","du "],["rs.serbie","de la "],["si.slovenie","de la "],["sk.slovaquie","de la "],["sm.saint-marin","de "]],
+            [["pl.pologne","de la ",1],["ro.roumanie","de la ",1], ["ru.russie","de la ",1],["se.suede","de la ",1],["ua.ukraine","de l’",1],["al.albanie","de l’",1],["at.autriche","de l’",2],["be.belgique","de la ",1],["bg.bulgarie","de la ",1],["ch.suisse","de la ",2],["cz.republique tcheque","de la ",1],["de.allemagne","de l’",1],["dk.danemark","du ",1],["ee.estonie","de l'’",1],["fi.finlande","de la ",1],["fr.france","de la ",1],["gb-eng.angleterre","de l’",2],["gb-sct.ecosse","de l’",2],["ie.irlande","de l’",1],["is.islande","de l’",1],["it.italie","de l’",1],["lt.lituanie","de la ",1],["lu.luxembourg","du ",1],["lv.lettonie","de la ",2],["mc.monaco","de ",1],["mk.macedoine du nord","de la ",2],["nl.pays bas","des ",1],["no.norvege","de la ",1]]
+        ],
         "panneauxAvecAxes":[
             ["arret et stationnement interdit",4],
             ["autoroute",1],
@@ -165,6 +168,25 @@
                 "content":"<custom-svg src='${:fichier}' class='corrige'></custom-svg>"
             },
             "answer":"Cette écriture de <b>${:nombres[:numero][:illustration][0]}</b> <span class='red'>${:nombres[:numero][:illustration][1]>0?'possède '+:nombres[:numero][:illustration][1]+' axe'+(:nombres[:numero][:illustration][1]>1?'s':''):'ne possède pas d’axe'} de symétrie</span>."
+        },{
+            "name":"Drapeaux européens",
+            "vars":{
+                "axes":[true,false],
+                "illustration":"0_${:drapeaux[:axes?1:0].length-1}",
+                "fichier":"library/illustrations/drapeaux/${:drapeaux[:axes?1:0][:illustration][0]}.svg",
+                "pays":"${:drapeaux[:axes?1:0][:illustration][1]+(:drapeaux[:axes?1:0][:illustration][0].charAt(:drapeaux[:axes?1:0][:illustration][0].indexOf('.')+1).toUpperCase())+:drapeaux[:axes?1:0][:illustration][0].substring(:drapeaux[:axes?1:0][:illustration][0].indexOf('.')+2)}",
+                "nombre":"${:axes?:drapeaux[1][:illustration][2]:0}"
+            },
+            "figure":{
+                "type":"svg",
+                "content":"<custom-svg src='${:fichier}'></custom-svg>"
+            },
+            "figureCorrection":{
+                "type":"svg",
+                "content":"<custom-svg src='${:fichier}' class='corrige'></custom-svg>"
+            },
+            "question":"Combien d’axes de symétrie possède le drapeau ${:pays} ?",
+            "answer":"Le drapeau ${:pays} <span class='red'>${:axes?'possède '+:nombre+' axe'+(:nombre>1?'s':''):'ne possède pas d’axe'} de symétrie</span>."
         }
     ],
     "question":"Combien d’axes de symétrie cette figure possède-t-elle ?"
