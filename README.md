@@ -49,6 +49,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.
 * Les images du mode duel viennent du site [freepik](https://www.freepik.com) dont j'ai acquis les licences, elles ne sont pas disponibles sur github ni en téléchargement en accord avec les termes de la licence. Si je trouve d'autres images de qualité, je changerai cela.
 * [Color Palette](https://icons8.com/icon/A5KjfdAgYLNE/color-palette) icon by [Icons8](https://icons8.com)
 * Meteor Icons by Daniel [meteoricons.com](https://meteoricons.com/), avec ajout d'axes et centres de symétrie licence MIT
+* [Flag Icons](https://flagicons.lipis.dev/), avec ajout d'axes et centre de symétrie, licence MIT
 
 ### fonts
 * Digital Numbers Font [Copyright (c) 2015, Stephan Ahlf](https://github.com/s-a/digital-numbers-font) licensed under the SIL Open Font License, Version 1.1.
