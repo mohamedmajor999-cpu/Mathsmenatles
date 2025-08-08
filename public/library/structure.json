@@ -213,6 +213,15 @@
                     "6GC":"Reconnaitre, nommer, décrire, etc. des figures planes",
                     "6GD":"Utiliser quelques relations géométriques"
                 }
+            },
+            "6L":{
+                "nom":"Leçons",
+                "chapitres":{
+                    "6LN":"Nombres et calculs",
+                    "6LM":"Grandeurs et mesures",
+                    "6LG":"Espace et Géométrie",
+                    "6LD":"Organisation et gestion de données"
+                }
             }
         }
     },
