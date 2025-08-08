@@ -301,13 +301,13 @@ export default class Figure {
         this.figure = undefined;
         this.displayed = false;
         this.transformLayer = (obj.transformLayer!==false)?obj.transformLayer:false;
-        this.create(target);
+        this.create(target)
     }
     /**
      * construct de destination DOM element
      * @param {destination} destination DOMelement
      */
-    create(destination){
+    async create(destination){
         if(this.type === "chart"){
             const div = utils.create("div",{id:"div-dest-canvas-"+this.id, style:'width:14em'});
             const canvas = document.createElement("canvas");
@@ -335,6 +335,7 @@ export default class Figure {
             document.body.appendChild(this.div2);
         } else if(this.type === "svg"){
             let div = document.createElement("div");
+            div.className = "fig";
             div.id=this.id;
             destination.appendChild(div);
         } else if(this.type === 'scratch') {
@@ -349,6 +350,7 @@ export default class Figure {
             destination.appendChild(div);
             div.innerHTML = `<canvas id="${this.id}-canvas"></canvas>`
         }
+        return false
     }
     /**
      * Crée une copie de la figure dans une nouvelle instance
@@ -421,7 +423,7 @@ export default class Figure {
             const scene = new Scene()
             scene.background = null
             // Create spot lights
-            const color = 0xFFFFFF;
+            //const color = 0xFFFFFF;
             const colors = ['red','orange','yellow']
             colors.forEach(color => {
                 let i=0, j=0, k=0

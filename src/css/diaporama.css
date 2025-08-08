@@ -100,10 +100,10 @@ Animations from https://www.w3schools.com/w3css/4/w3.css
   height: 300px;
   width: 300px;
 } */
-#enonce-content .fig {
+/* #enonce-content .fig {
   height: 150px;
   width: 150px;
-}
+}*/
 .fig svg {
   max-width: 100% !important;
   max-height: 100% !important;

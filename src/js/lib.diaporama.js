@@ -692,7 +692,6 @@ const diaporama = {
       if (typeof diaporama.figsCorr[i + "-0"] === "object") {
         diaporama.figsCorr[i + "-0"].display();
       }
-
     }
   },
   hideSlideshows: function () {
@@ -701,11 +700,12 @@ const diaporama = {
     const $containerEnonce = document.getElementById('enonce-content')
     $containerEnonce.innerHTML = '';
     $containerEnonce.appendChild(diaporama.enonces);
+    setTimeout(() => {
     for (const figureId in diaporama.memory) {
       if (figureId.indexOf("e") === 0) {
         diaporama.memory[figureId].display();
       }
-    }
+    }},1000)
     if (diaporama.forcedOnline) {
       // on affiche un message de fin qui attend une validation
       let message = ''
@@ -730,9 +730,9 @@ const diaporama = {
           $containerCorrige.innerHTML = '';
           $containerCorrige.appendChild(diaporama.correction);
           for (const figureId in diaporama.memory) {
-            if (figureId.indexOf("c") === 0) {
+            /*if (figureId.indexOf("c") === 0) {
               diaporama.memory[figureId].display();
-            }
+            }*/
             if(figureId.indexOf("fc") === 0) {
               diaporama.memory[figureId].display();
             }
@@ -749,11 +749,12 @@ const diaporama = {
       $containerCorrige.innerHTML = '';
       $containerCorrige.appendChild(diaporama.correction);      
       for (const figureId in diaporama.memory) {
-        if (figureId.indexOf("c") === 0) {
-          diaporama.memory[figureId].display();
-        }
+        /*if (figureId.indexOf("c") === 0) {
+        inutile car s'affiche au toggle
+          //diaporama.memory[figureId].display();
+        }*/
         if (figureId.indexOf("fc") === 0) {
-          diaporama.memory[figureId].display();
+          //diaporama.memory[figureId].display();
           diaporama.memory[figureId].toggle();
         }
       }
