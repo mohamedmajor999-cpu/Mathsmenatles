@@ -24,7 +24,7 @@
         }
     }],
     "question":[
-        "Quel est la moitié de $$${:n}$$ ?",
+        "Quelle est la moitié de $$${:n}$$ ?",
         "$$${:n} \\div 2$$"
     ],
     "answer":[

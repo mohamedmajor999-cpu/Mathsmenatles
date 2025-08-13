@@ -37,8 +37,8 @@
         },{
             "name":"Moitié des nombres pairs inférieurs à 20",
             "vars":{"n":"1_10","double":"${:n*2}"},
-            "question":"Quel est la moitié de ${:double} ?",
-            "audio":"Quel est la moitié de ${:double} ?",
+            "question":"Quelle est la moitié de ${:double} ?",
+            "audio":"Quelle est la moitié de ${:double} ?",
             "answer":"La moitié de ${:double} est <span class='red'>${:n}</span>.",
             "value":"${:n}"
         }
