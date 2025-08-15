@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import {utils,_} from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
 import math from "./math.js";
@@ -9,8 +9,9 @@ import {
   Mesh,
   MeshPhongMaterial,
   PerspectiveCamera,
+  OrthographicCamera,
   Scene,
-  WebGLRenderer, OrbitControls, LineMaterial, Wireframe, LineSegmentsGeometry } from '../libs/threejs.bundle.min.js';
+  WebGLRenderer, OrbitControls, LineMaterial, Wireframe, LineSegmentsGeometry  } from '../libs/threejs.bundle.min.js';
 
 scratchblocks.loadLanguages({
     fr: {
@@ -424,33 +425,36 @@ export default class Figure {
             scene.background = null
             // Create spot lights
             //const color = 0xFFFFFF;
-            const colors = ['red','orange','yellow']
-            colors.forEach(color => {
+            const colors = ['red','orange','yellow'],light=[],light2=[]
+            for (const [index, color] of colors.entries()) {
                 let i=0, j=0, k=0
-                if(color === 'red')j=1
-                else if (color === 'orange')k=1
+                if(index === 0)j=1
+                else if (index === 2)k=1
                 else i=1
-                const light = new DirectionalLight( color, 4 );
-                light.position.set( i, j, k );
-                scene.add( light );
-                const light2 = new DirectionalLight( color, 2)
-                light2.position.set(-i, -j, -k)
-                scene.add(light2)
-            })
-
+                light[index] = new DirectionalLight( color, 4 );
+                light[index].position.set( i, j, k );
+                scene.add( light[index] );
+                light2[index] = new DirectionalLight( color, 2)
+                light2[index].position.set(-i, -j, -k)
+                scene.add(light2[index])
+            }            
             // Create a camera
             const fov = 35; // AKA Field of View
             if(this.size === undefined){
                 this.size = [500,300]
             }
+            const midWidth = 5
+            const offset = 1
             const aspect = this.size[0] / this.size[1];
             const near = 0.1; // the near clipping plane
             const far = 100; // the far clipping plane
 
-            const camera = new PerspectiveCamera(fov, aspect, near, far);
+            //const camera = new PerspectiveCamera(fov, aspect, near, far);
+            const camera = new OrthographicCamera(-midWidth, midWidth, midWidth/aspect+offset, -midWidth/aspect+offset, near, far)
             // every object is initially created at ( 0, 0, 0 )
             // move the camera back so we can view the scene
-            camera.position.set(11, 11, 11);
+            const xyz = 30
+            camera.position.set(xyz, xyz, xyz);
             camera.lookAt(0,0,0)
 
             // define a cube and his edges
@@ -465,21 +469,24 @@ export default class Figure {
             // create a default (white) Basic material
             const material = new MeshPhongMaterial({color: "lightgrey"});
 
-            function createCube({x=0,y=0,z=0}) {
+            function createCube({x=0,y=0,z=0},dir=undefined) {
+                let deltax=0,deltaz=0
+                if(dir ==='right'){deltax = 3;deltaz=-3}
+                else if(dir === 'left'){deltax = -3;deltaz=3}
                 // create a Mesh containing the geometry and material
                 const cube = new Mesh(geometry, material);
-                cube.position.x = x
+                cube.position.x = x + deltax
                 cube.position.y = y
-                cube.position.z = z
+                cube.position.z = z +deltaz
                 // add the mesh to the scene
                 scene.add(cube);
                 // add edges
                 const wireframe = new Wireframe( lineGeometry, matLine );
                 wireframe.computeLineDistances();
-                wireframe.scale.set( 1, 1, 1 );
-                wireframe.position.x = x
+                wireframe.scale.set( 1.02, 1.02, 1.02 );
+                wireframe.position.x = x + deltax
                 wireframe.position.y = y
-                wireframe.position.z = z
+                wireframe.position.z = z + deltaz
                 scene.add( wireframe );
             }
             const controls = new OrbitControls(camera, $scene);
@@ -487,8 +494,30 @@ export default class Figure {
             controls.update();
             // cubes selon les coordonnées passées en contents
             for(const content of this.content){
-                if(content.camera > 0 ){
-                    camera.position.set(content.camera,content.camera,content.camera)
+                if(content.camera !== undefined ){
+                    let midWidth, offset=1
+                    if(_.isArray(content.camera)){
+                        midWidth = content.camera[0]
+                        offset = content.camera[1]
+                    } else {
+                        midWidth = content.camera
+                    }
+                    camera.left = -midWidth
+                    camera.right = midWidth
+                    camera.bottom = -midWidth/aspect+offset
+                    camera.top = midWidth/aspect+offset
+                    camera.updateProjectionMatrix ()
+                }
+                if(content.colors !== undefined){ // array of 3 named colors
+                    const rgb = [utils.colorNameToRBG(content.colors[0]),utils.colorNameToRBG(content.colors[1]),utils.colorNameToRBG(content.colors[2])]
+                    for(let i=0;i<3;i++){
+                        light[i].color.r=rgb[i].r
+                        light[i].color.g=rgb[i].g
+                        light[i].color.b=rgb[i].b
+                        light2[i].color.r=rgb[i].r
+                        light2[i].color.g=rgb[i].g
+                        light2[i].color.b=rgb[i].b
+                    }
                 }
                 if(content.cube > 0){
                     for(let x=0;x<content.cube;x++){
@@ -499,30 +528,42 @@ export default class Figure {
                         }
                     }
                 } else if (content.mur !== undefined) {
-                    let x=0,z=0,xorz=math.aleaInt(0,1)
+                    let x=0,z=0,xorz=math.aleaInt(0,1),translate
+                    if(['left','right'].includes(content.mur[0])){
+                        translate = content.mur[0]
+                    }
                     for(const value of content.mur){
+                        if(['left','right'].includes(value)) continue
                         for(let y=0;y<value;y++){
-                            createCube({x,y,z})
+                            createCube({x,y,z},translate)
                         }
                         if(xorz)x++;
                         else z++
                     }
                 } else if (content.doublemur !== undefined){
+                    let translate,index=0
+                    if(['left','right'].includes(content.doublemur[0])){
+                        translate = content.doublemur[0]
+                        index = 1
+                    }
                     let z=0
-                    for(const value of content.doublemur[0]){
+                    for(const value of content.doublemur[0+index]){
                         for(let y=0;y<value;y++){
-                            createCube({x:0,y,z})
+                            createCube({x:0,y,z},translate)
                         }
                         z++
                     }
                     let x=1
-                    for(const value of content.doublemur[1]){
+                    for(const value of content.doublemur[1+index]){
                         for(let y=0;y<value;y++){
-                            createCube({x,y,z:0})
+                            createCube({x,y,z:0},translate)
                         }
                         x++
                     }
-                } else if(content.cube !== undefined){
+                } else if(content.cubeincomplet !== undefined){
+                    if(_.isString(content.cubeincomplet) && content.cubeincomplet.indexOf(',')>0){
+                        content.cubeincomplet = content.cubeincomplet.split(',')
+                    }
                     /*
                     hauteur des colonnes données dans l'ordre suivant :
                     cube 3x3 :  cube 4x4
@@ -531,12 +572,16 @@ export default class Figure {
                     2 5 8       2 6 10 14
                                 3 7 11 15
                     */
-                    let index=0
-                    const size = Math.sqrt(content.cube.length)
+                    let index=0, translate
+                    if(['left','right'].includes(content.cubeincomplet[0])){
+                        translate = content.cubeincomplet[0]
+                        index = 1
+                    }
+                    const size = Math.sqrt(content.cubeincomplet.length-index)
                     for(let x=0;x<size;x++){
                         for(let z=0;z<size;z++){
-                            for(let y=0;y<content.cube[index];y++){
-                                createCube({x,y,z})
+                            for(let y=0;y<content.cubeincomplet[index];y++){
+                                createCube({x,y,z},translate)
                             }
                             index++
                         }

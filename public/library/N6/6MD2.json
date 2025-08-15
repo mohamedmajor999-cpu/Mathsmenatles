@@ -22,8 +22,8 @@
                 "type":"threecubes",
                 "size":[500,400],
                 "content":[
-                    {"camera":6},
-                    {"cube":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
+                    {"camera":[4,0]},
+                    {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
                 ]
             },
             "question":"Combien manque-t-il de cubes pour former un grand cube 3x3 ?",
@@ -46,8 +46,8 @@
                 "type":"threecubes",
                 "size":[500,400],
                 "content":[
-                    {"camera":6},
-                    {"cube":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
+                    {"camera":[4,0]},
+                    {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
                 ]
             },
             "question":"Combien manque-t-il de cubes pour former un grand cube 3x3 ?",
@@ -76,8 +76,8 @@
                 "type":"threecubes",
                 "size":[500,400],
                 "content":[
-                    {"camera":8.5},
-                    {"cube":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
+                    {"camera":[5,0]},
+                    {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
                 ]
             },
             "question":"Combien manque-t-il de cubes pour former un grand cube 4x4 ?",
@@ -106,8 +106,8 @@
                 "type":"threecubes",
                 "size":[500,400],
                 "content":[
-                    {"camera":8.5},
-                    {"cube":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
+                    {"camera":[5,0]},
+                    {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
                 ]
             },
             "question":"Combien manque-t-il de cubes pour former un grand cube 4x4 ?",
@@ -136,8 +136,8 @@
                 "type":"threecubes",
                 "size":[500,400],
                 "content":[
-                    {"camera":8.5},
-                    {"cube":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
+                    {"camera":[5,0]},
+                    {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
                 ]
             },
             "question":"Combien manque-t-il de cubes pour former un grand cube 4x4 ?",
