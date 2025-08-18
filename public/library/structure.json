@@ -194,6 +194,12 @@
                     "6NN":"Faits numériques"   
                 }
             },
+            "6D":{
+                "nom":"Organisation et gestion de données, probabilités",
+                "chapitres":{
+                    "6DA":"Gestion de données et probabilités"
+                }
+            },
             "6M":{
                 "nom": "Grandeurs et mesures",
                 "chapitres":{

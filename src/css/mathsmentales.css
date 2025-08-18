@@ -61,8 +61,12 @@
 .hidden {
     display: none;
 }
-.center{
+.center {
   text-align: center;
+}
+
+table.center th, table.center td {
+  text-align: center !important;
 }
 mark {
   padding:0;

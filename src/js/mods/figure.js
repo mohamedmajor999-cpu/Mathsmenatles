@@ -658,7 +658,7 @@ export default class Figure {
                             this.figure.jc.use(this.figure);
                         }
                         this.figure.jc.parse(commande);
-                    } else if(["angle", "axis", "circle", "glider", "grid", "intersection", "line", "perpendicular", "point", "polygon", "transform", "segment", "text", "ticks", "foreignobject"].indexOf(type)>-1){
+                    } else if(["angle", "axis", "circle", "glider", "grid", "intersection", "line", "perpendicular", "point", "polygon", "transform", "segment", "text", "ticks", "foreignobject","sector"].indexOf(type)>-1){
                         if(!options)
                             elements[i] = this.figure.create(type, commande);
                         else {
@@ -732,8 +732,8 @@ export default class Figure {
                             for (let j=0; j<sectors[i].length; j++) {
                                 if (sectors[i][j] === 1) {
                                     const center = options.centers[i]
-                                    let a = this.figure.create('point',[center[0]+radius*Math.cos(2*Math.PI*j/unitCut),center[1]+radius*Math.sin(2*Math.PI*j/unitCut)], {face:'', label:{visible: false}})
-                                    let b = this.figure.create('point',[center[0]+radius*Math.cos(2*Math.PI*(j+1)/unitCut),center[1]+radius*Math.sin(2*Math.PI*(j+1)/unitCut)], {face:'', label:{visible: false}})
+                                    const a = this.figure.create('point',[center[0]+radius*Math.cos(2*Math.PI*j/unitCut),center[1]+radius*Math.sin(2*Math.PI*j/unitCut)], {face:'', label:{visible: false}})
+                                    const b = this.figure.create('point',[center[0]+radius*Math.cos(2*Math.PI*(j+1)/unitCut),center[1]+radius*Math.sin(2*Math.PI*(j+1)/unitCut)], {face:'', label:{visible: false}})
                                     this.figure.create('sector',[center,a,b],{withLines:false})
                                 }
                             }

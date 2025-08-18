@@ -42,13 +42,16 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.
  * [tinyweb](https://www.ritlabs.com/en/products/tinyweb/) pour le mini serveur web sous windows. (licence non libre, Cf. fichier de licence)
  * [sonothèque](https://lasonotheque.org), source des bruitages utilisés pour réveiller l'attention des élèves entre chaque diapo
  * [Vanilla-picker](https://github.com/Sphinxxxx/vanilla-picker) sélectionneur de couleur en pur javascript (ISC Licence)
+ * [threejs](https://threejs.org) qui me permet d'afficher solides en 3D dans le navigateur (MIT license)
 
-### icones
+### icones et images
 * "Circle Icons" de Nick Roach [iconfinder](https://www.iconfinder.com/iconsets/circle-icons-1) parfois retouchées, licence GPL
 * usage d'[Emoji](https://emojipedia.org/) dans l'affichage des ressources
+* Images de [Undraw](https://undraw.co/illustrations) pour illustrer la page "à propos" et quelques icones
 * Les images du mode duel viennent du site [freepik](https://www.freepik.com) dont j'ai acquis les licences, elles ne sont pas disponibles sur github ni en téléchargement en accord avec les termes de la licence. Si je trouve d'autres images de qualité, je changerai cela.
 * [Color Palette](https://icons8.com/icon/A5KjfdAgYLNE/color-palette) icon by [Icons8](https://icons8.com)
 * Meteor Icons by Daniel [meteoricons.com](https://meteoricons.com/), avec ajout d'axes et centres de symétrie licence MIT
+* [Icon Park](https://icon-sets.iconify.design/icon-park-outline/) icones d’illustration pour certains exercices.
 * [Flag Icons](https://flagicons.lipis.dev/), avec ajout d'axes et centre de symétrie, licence MIT
 
 ### fonts
