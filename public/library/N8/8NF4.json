@@ -1,0 +1,69 @@
+{
+    "ID": "8NF4",
+    "dest": [
+        "8NF",
+        "7NF",
+        "6NF"
+    ],
+    "title": "Résoudre des problèmes multiplicatifs avec des décimaux",
+    "type": "text",
+    "consts":{
+        "prenoms": [
+            "Alexandre", "Pierre", "Jean", "Paul", "Théo",
+            "Luc", "Guillaume", "Hugo", "Clément", "Jules",
+            "Marie", "Anne", "Sophie", "Alice", "Chloé",
+            "Émilie", "Léa", "Manon", "Sarah", "Camille",
+            "Lina","Fatima","Amina","Amira","Samira",
+            "Rayan","Aaron","Leo","Liam",
+            "Ava","Emma","Mia"
+        ]
+    },
+
+    "options": [
+        {
+            "name":"Résolution par multiplication (CM)",
+            "consts": {
+                "phrases": [
+                    [
+                        "Des feuilles ont une épaisseur de $$${:n2}~mm$$. Quelle est l’épaisseur d’un tas de ${:n1} de ces mêmes feuilles ?",
+                        "Le tas mesure $$${:n1}\\times${:n2}=\\color{red}{${:produit}~mm}$$."
+                    ]
+                ]
+            },
+            "vars": {
+                "situation": "0_${:phrases.length-1}",
+                "pren":"0_${:prenoms.length-1}_2_^&",
+                "paul":"${:prenoms[:pren[0]]}",
+                "pierre":"${:prenoms[:pren[1]]}",
+                "n1": "2_10",
+                "ne2":"2_10",
+                "d":[10,100,1000],
+                "n2": "${math.round(:ne2/:d,3)}",
+                "produit": "${math.round(:n1*:n2,3)}"
+            }
+        },{
+            "name":"Résolution par division (CM)",
+            "consts":{
+                "phrases":[
+                    [
+                        "Un tas de ${:n1} feuilles identiques a une épaisseur de $$${math.round(:n1*:n2,3)}~mm$$. Combien mesure une feuille ?",
+                        "Le tas mesure $$${:produit}\\div${:n1}=\\color{red}{${:n2}~mm}$$."
+                    ]
+                ]
+            },
+            "vars": {
+                "situation": "0_${:phrases.length-1}",
+                "pren":"0_${:prenoms.length-1}_2_^&",
+                "paul":"${:prenoms[:pren[0]]}",
+                "pierre":"${:prenoms[:pren[1]]}",
+                "n1": "2_10",
+                "ne2":"2_10",
+                "d":[10,100,1000],
+                "n2": "${math.round(:ne2/:d,3)}",
+                "produit": "${math.round(:n1*:n2,3)}"
+            }
+        }
+    ],
+    "question": "${:phrases[:situation][0]}",
+    "answer": "${:phrases[:situation][1]}"
+}

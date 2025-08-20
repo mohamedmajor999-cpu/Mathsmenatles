@@ -14,7 +14,7 @@
             "value":"\\dfrac{${:num}}{2}",
             "figure":{
                 "type":"graph",
-                "boundingbox":[0,0,14,9],
+                "boundingbox":[0,9,14,0],
                 "axis":false,
                 "content":[
                     ["point", [1, 1], {"name":"A","face":"", "label":{"visible":false}}],
@@ -46,7 +46,7 @@
             "value":"\\dfrac{${:num}}{3}",
             "figure":{
                 "type":"graph",
-                "boundingbox":[0,0,14,9],
+                "boundingbox":[0,9,14,0],
                 "axis":false,
                 "content":[
                     ["point", [1, 1], {"name":"A","face":"", "label":{"visible":false}}],
@@ -77,7 +77,7 @@
             "value":"\\dfrac{${:num}}{4}",
             "figure":{
                 "type":"graph",
-                "boundingbox":[0,0,14,9],
+                "boundingbox":[0,9,14,0],
                 "axis":false,
                 "content":[
                     ["point", [1, 1], {"name":"A","face":"", "label":{"visible":false}}],
@@ -110,7 +110,7 @@
             "value":"\\dfrac{${:num}}{6}",
             "figure":{
                 "type":"graph",
-                "boundingbox":[0,0,14,9],
+                "boundingbox":[0,9,14,0],
                 "axis":false,
                 "content":[
                     ["point", [1, 1], {"name":"A","face":"", "label":{"visible":false}}],
@@ -144,7 +144,7 @@
             "value":"\\dfrac{${:num}}{8}",
             "figure":{
                 "type":"graph",
-                "boundingbox":[0,0,14,9],
+                "boundingbox":[0,9,14,0],
                 "axis":false,
                 "content":[
                     ["point", [1, 1], {"name":"A","face":"", "label":{"visible":false}}],
@@ -183,7 +183,7 @@
             "value":"\\dfrac{${:num}}{12}",
             "figure":{
                 "type":"graph",
-                "boundingbox":[0,0,14,9],
+                "boundingbox":[0,9,14,0],
                 "axis":false,
                 "content":[
                     ["point", [1, 1], {"name":"A","face":"", "label":{"visible":false}}],

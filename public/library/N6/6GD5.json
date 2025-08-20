@@ -21,7 +21,7 @@
            "figure":{
                 "type":"graph",
                 "axis":false,
-                "boundingbox":[0,-8,17,8],
+                "boundingbox":[0,8,17,-8],
                 "content":[
                     ["point",["${:s1+0.5}",0],{"name":"${:A}", "face":"x","label":{"offset":[5,5]}}],
                     ["point",["${:s1+:s+0.5}",0],{"name":"${:B}", "face":"x","label":{"offset":[5,5]}}],
@@ -53,7 +53,7 @@
            "figure":{
                 "type":"graph",
                 "axis":false,
-                "boundingbox":[0,-8,18,8],
+                "boundingbox":[0,8,18,-8],
                 "content":[
                     ["point",["${:s1+0.5}",0],{"name":"${:A}", "face":"x","label":{"offset":[5,5]}}],
                     ["point",["${:s1+:s+0.5}",0],{"name":"${:B}", "face":"x","label":{"offset":[5,5]}}],

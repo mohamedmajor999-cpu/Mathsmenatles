@@ -2,13 +2,14 @@ import {utils,_} from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
 import math from "./math.js";
+import JXG from '../libs/JSXGraph1.11.1/jsxgraphcore.mjs'
 import {
   BoxGeometry,
   DirectionalLight,
   EdgesGeometry,
   Mesh,
   MeshPhongMaterial,
-  PerspectiveCamera,
+  //PerspectiveCamera,
   OrthographicCamera,
   Scene,
   WebGLRenderer, OrbitControls, LineMaterial, Wireframe, LineSegmentsGeometry  } from '../libs/threejs.bundle.min.js';
@@ -663,6 +664,18 @@ export default class Figure {
                             elements[i] = this.figure.create(type, commande);
                         else {
                             elements[i] = this.figure.create(type,commande,options);
+                        }
+                    } else if(type === 'divideAngle'){
+                        const angle = Number(options.angle) * Math.PI / 180
+                        const divisions = Number(options.divisions)
+                        const angleInit = Number(options.angleInit)*Math.PI / 180
+                        const center = commande;
+                        const smallAngle = angle / divisions
+                        const radius = Number(options.rayon)
+                        for (let i=0;i<divisions;i++){
+                            const A1 = this.figure.create('point',[5*Math.cos(angleInit + i*smallAngle),5*Math.sin(angleInit + i*smallAngle)],{visible:false})
+                            const A2 = this.figure.create('point',[5*Math.cos(angleInit + (i+1)*smallAngle),5*Math.sin(angleInit + (i+1)*smallAngle)],{visible:false})
+                            this.figure.create('angle',[A1,center,A2],{orthoType:'sector',withLabel:false,radius,fillColor:options.color,strokeColor:'black',opacity:options.opacity})
                         }
                     } else if (type === 'fillSquares') {
                         const squares = [];

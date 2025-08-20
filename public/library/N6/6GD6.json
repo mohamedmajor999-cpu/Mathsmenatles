@@ -31,7 +31,7 @@
             "figure":{
                 "type":"graph",
                 "axis":false,
-                "boundingbox":[-6,-6,6,6],
+                "boundingbox":[-6,6,6,-6],
                 "content":[
                     ["point",["${:xA}","${:yA}"],{"name":"${:A}", "face":"x", "label":{"offset":[-10,10]}}],
                     ["point",["${-:xA}","${:yB}"],{"name":"${:B}", "face":"x", "label":{"offset":[0,10]}}],
@@ -64,7 +64,7 @@
             "figure":{
                 "type":"graph",
                 "axis":false,
-                "boundingbox":[-6,-6,6,6],
+                "boundingbox":[-6,6,6,-6],
                 "content":[
                     ["point",["${:xA}","${:yA}"],{"name":"${:A}", "face":"x", "label":{"offset":[-10,10]}}],
                     ["point",["${-:xA}","${:yB}"],{"name":"${:B}", "face":"x", "label":{"offset":[0,10]}}],

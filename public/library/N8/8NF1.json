@@ -102,6 +102,9 @@
                 "legn":"0_${:legumes.length-1}",
                 "livn":"0_${:livres.length-1}",
                 "gatn":"0_${:gateaux.length-1}",
+                "pren":"0_${:prenoms.length-1}_2_^&",
+                "paul":"${:prenoms[:pren[0]]}",
+                "pierre":"${:prenoms[:pren[1]]}",
                 "n1": "2_10",
                 "n2": "2_10",
                 "produit": "${:n1*:n2}"

@@ -77,7 +77,6 @@
         { 
             "name": "Angles adjacents, opposés par le sommet, supplémentaires",
             "vars":{
-                "fig":0,
                 "cx":"0_2",
                 "angh":"-9_9",
                 "aa":"${:angh*10}",

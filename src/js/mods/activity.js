@@ -1028,7 +1028,7 @@ export default class activity {
                             "axis":this.cFigure.axis,
                             "scale":this.cFigure.scale,
                             "xscale":this.cFigure.xscale,
-                            "grid":this.cFigure.grid?true:false,
+                            "grid":this.cFigure.grid?this.cFigure.grid:false,
                             "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true,
                             ...this.figures[i]
                         }
@@ -1048,7 +1048,7 @@ export default class activity {
                             "axis":this.cFigureCorrection.axis,
                             "scale":this.cFigureCorrection.scale,
                             "xscale":this.cFigureCorrection.xscale,
-                            "grid":this.cFigureCorrection.grid?true:false,
+                            "grid":this.cFigureCorrection.grid?this.cFigureCorrection.grid:false,
                             "transformLayer":this.cFigureCorrection.transformLayer?this.cFigureCorrection.transformLayer:false,
                             "keepAspect":(this.cFigureCorrection.keepAspect!==undefined)?this.cFigureCorrection.keepAspect:true,
                             ...this.figuresCorrection[i]
@@ -1086,7 +1086,7 @@ export default class activity {
                         this.sample.figure = {
                             "boundingbox":this.cFigure.boundingbox,
                             "axis":this.cFigure.axis,
-                            "grid":this.cFigure.grid?true:false,
+                            "grid":this.cFigure.grid?this.cFigure.grid:false,
                             "keepAspect":(this.cFigure.keepAspect!==undefined)?this.cFigure.keepAspect:true,
                             ...this.sample.figure
                         }
@@ -1104,7 +1104,7 @@ export default class activity {
                         this.sample.figureCorrection = {
                             "boundingbox": this.cFigureCorrection.boundingbox,
                             "axis": this.cFigureCorrection.axis,
-                            "grid": this.cFigureCorrection.grid ? true : false,
+                            "grid": this.cFigureCorrection.grid ? this.cFigureCorrection.grid : false,
                             "keepAspect": (this.cFigureCorrection.keepAspect !== undefined) ? this.cFigureCorrection.keepAspect : true,
                             ...this.sample.figureCorrection
                         };
