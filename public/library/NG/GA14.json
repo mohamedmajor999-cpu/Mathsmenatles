@@ -8,7 +8,7 @@
     "textSize":"medium",
     "keys":["x²","/","+","-","x","y","z","t"],
     "consts":{"lettres":["x","y","z","t"]},
-    "vars":{"a":"-3_3_^0","b":"-3_3","cx":"0_3","x":"${:lettres[:cx]}","f":"${math.signIfOne(:a)+:x}${math.signedNumber(:b)}","s":"${math.calc((-:b)+'/('+:a+')')}"},
+    "vars":{"a":"-3_3_^0","b":"-3_3","cx":"0_3","x":"${:lettres[:cx]}","f":"${MMmath.signIfOne(:a)+:x}${MMmath.signedNumber(:b)}","s":"${MMmath.calc((-:b)+'/('+:a+')')}"},
     "consigne":"Donner la fonction dérivée.",
     "options":[{
         "name":"Racine carrée",
@@ -18,8 +18,8 @@
     },{
         "name":"Exponentielle",
         "question":["\\left(e^{${:f}}\\right)'","\\dfrac{d}{d${:x}} e^{${:f}}"],
-        "answer":":question=\\color{red}{${math.signIfOne(:a)} e^{${:f}}}",
-        "value":"${math.signIfOne(:a)} e^{${:f}}"
+        "answer":":question=\\color{red}{${MMmath.signIfOne(:a)} e^{${:f}}}",
+        "value":"${MMmath.signIfOne(:a)} e^{${:f}}"
     },{
         "name":"Logarithme népérien",
         "question":["\\left(\\ln(${:f})\\right)'","\\dfrac{d}{d${:x}} \\ln(${:f})"],
@@ -28,18 +28,18 @@
     },{
         "name":"Fonction sinus",
         "question":["\\left(\\sin(${:f})\\right)'","\\dfrac{d}{d${:x}} \\sin(${:f})"],
-        "answer":":question=\\color{red}{${math.signIfOne(:a)}\\cos(${:f})}",
-        "value":"${math.signIfOne(:a)}\\cos(${:f})"
+        "answer":":question=\\color{red}{${MMmath.signIfOne(:a)}\\cos(${:f})}",
+        "value":"${MMmath.signIfOne(:a)}\\cos(${:f})"
     },{
         "name":"Fonction cosinus",
         "question":["\\left(\\cos(${:f})\\right)'","\\dfrac{d}{d${:x}} \\cos(${:f})"],
-        "answer":":question=\\color{red}{${math.signIfOne(-:a)}\\sin(${:f})}",
-        "value":"${math.signIfOne(-:a)}\\sin(${:f})"
+        "answer":":question=\\color{red}{${MMmath.signIfOne(-:a)}\\sin(${:f})}",
+        "value":"${MMmath.signIfOne(-:a)}\\sin(${:f})"
     },{
         "name":"Fonction tangente",
         "question":["\\left(\\tan(${:f})\\right)'","\\dfrac{d}{d${:x}} \\tan(${:f})"],
-        "answer":":question=\\color{red}{${:a}${math.signedNumberButOne(:a)}\\tan^2(${:f})}",
-        "value":"${:a}${math.signedNumberButOne(:a)}\\tan^2(${:f})"
+        "answer":":question=\\color{red}{${:a}${MMmath.signedNumberButOne(:a)}\\tan^2(${:f})}",
+        "value":"${:a}${MMmath.signedNumberButOne(:a)}\\tan^2(${:f})"
     }
     ]
 }

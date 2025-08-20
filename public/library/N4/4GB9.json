@@ -63,11 +63,11 @@
             "figure":{"type":"svg","content":"${:figures[:idfig]}"},
             "vars":{
                 "lAM":"${:lignes.includes(0)?'d0.1_0.9_1':'&nbsp;'}",
-                "lAB":"${:lignes.includes(0)?math.round(:lAM*:coeff,1):'&nbsp;'}",
+                "lAB":"${:lignes.includes(0)?MMmath.round(:lAM*:coeff,1):'&nbsp;'}",
                 "lAN":"${:lignes.includes(1)?'d0.1_0.9_1':'&nbsp;'}",
-                "lAC":"${:lignes.includes(1)?math.round(:lAN*:coeff,1):'&nbsp;'}",
+                "lAC":"${:lignes.includes(1)?MMmath.round(:lAN*:coeff,1):'&nbsp;'}",
                 "lMN":"${:lignes.includes(2)?'d0.1_0.9_1':'&nbsp;'}",
-                "lBC":"${:lignes.includes(2)?math.round(:lMN*:coeff,1):'&nbsp;'}"        
+                "lBC":"${:lignes.includes(2)?MMmath.round(:lMN*:coeff,1):'&nbsp;'}"        
             }
         },
         {
@@ -75,11 +75,11 @@
             "figure":{"type":"svg","content":"${:figurescroisees[:idfig]}"},
             "vars":{
                 "lAM":"${:lignes.includes(0)?'d0.1_0.9_1':'&nbsp;'}",
-                "lAB":"${:lignes.includes(0)?math.round(:lAM*:coeff,1):'&nbsp;'}",
+                "lAB":"${:lignes.includes(0)?MMmath.round(:lAM*:coeff,1):'&nbsp;'}",
                 "lAN":"${:lignes.includes(1)?'d0.1_0.9_1':'&nbsp;'}",
-                "lAC":"${:lignes.includes(1)?math.round(:lAN*:coeff,1):'&nbsp;'}",
+                "lAC":"${:lignes.includes(1)?MMmath.round(:lAN*:coeff,1):'&nbsp;'}",
                 "lMN":"${:lignes.includes(2)?'d0.1_0.9_1':'&nbsp;'}",
-                "lBC":"${:lignes.includes(2)?math.round(:lMN*:coeff,1):'&nbsp;'}"        
+                "lBC":"${:lignes.includes(2)?MMmath.round(:lMN*:coeff,1):'&nbsp;'}"        
             }
         }
     ],

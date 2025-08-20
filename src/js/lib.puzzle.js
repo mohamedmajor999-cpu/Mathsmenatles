@@ -1,7 +1,7 @@
 import utils from "./mods/utils.js";
 import common from './mods/common.js';
 import cart from './mods/cart.js';
-import math from "./mods/math.js";
+import MMmath from "./mods/math.js";
 // import Figure from './mods/figure.js';
 // import activity from "./mods/activity.js";
 
@@ -247,7 +247,7 @@ function makePage(){
         for(let j=0;j<activity.questions.length;j++){
             let value = (Array.isArray(activity.values[j]))?activity.values[j][0]:activity.values[j];
             if (String(value).indexOf(',') > -1)
-                value = value.split(',')[math.aleaInt(0, value.split(',').length-1)]
+                value = value.split(',')[MMmath.aleaInt(0, value.split(',').length-1)]
         if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                 let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
                 let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
@@ -275,17 +275,17 @@ function makePage(){
             for(let j=0;j<activity.questions.length;j++){
                 let value = (Array.isArray(activity.values[j]))?activity.values[j][0]:activity.values[j];
                 if (String(value).indexOf(',') > -1){
-                    value = value.split(',')[math.aleaInt(0, value.split(',').length-1)]
+                    value = value.split(',')[MMmath.aleaInt(0, value.split(',').length-1)]
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                     let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
                     let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
-                    if (math.aleaInt(0,1))
+                    if (MMmath.aleaInt(0,1))
                         dis.push(span.outerHTML)
                     else
                         dis.push(spanCorrection.outerHTML)
                 } else {
-                    if (math.aleaInt(0,1))
+                    if (MMmath.aleaInt(0,1))
                         dis.push(activity.questions[j])
                     else {
                         dis.push('$$'+value+'$$')
@@ -328,7 +328,7 @@ function makePage(){
         for (let [index, set] of sets.entries()){
             let count = 0
             while(workSet3.length > 8 && count < 8) {
-                set = set.concat(workSet3.splice(math.aleaInt(0,workSet3.length-1),1))
+                set = set.concat(workSet3.splice(MMmath.aleaInt(0,workSet3.length-1),1))
                 count++
             }
             sets[index] = set
@@ -370,7 +370,7 @@ function makePage(){
         for (let [index, set] of sets.entries()){
             let count = 0
             while(workSet4.length > 2 && count < 2) {
-                set = set.concat(workSet4.splice(math.aleaInt(0,workSet4.length-1),1))
+                set = set.concat(workSet4.splice(MMmath.aleaInt(0,workSet4.length-1),1))
                 count++
             }
             sets[index] = set

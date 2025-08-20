@@ -22,6 +22,6 @@
     }
     ],
     "question": "\\begin{cases}\\vec{${:vecteurs[:v[0]]}}(${:x[0]+';\\color{blue}{'+:x[1]}}) \\\\ \\vec{${:vecteurs[:v[1]]}}(${:x[2]+';\\color{blue}{'+:x[3]}})\\end{cases} \\quad \\vec{${:vecteurs[:v[0]]}}${:signe}\\vec{${:vecteurs[:v[1]]}}(? ; ?)",
-    "answer":"\\text{Pour }${:vecteurs[:v[0]]}(${:x[0]+';\\color{blue}{'+:x[1]}}) \\text{ et } ${:vecteurs[:v[1]]}(${:x[2]+';\\color{blue}{'+:x[3]}}), \\vec{${:vecteurs[:v[0]]+:vecteurs[:v[1]]}}\\color{red}{(${math.round(:signe=='+'?:x[2]+:x[0]::x[0]-:x[2],2)};${math.round(:signe=='-'?:x[1]-:x[3]::x[3]+:x[1],2)})}",
-    "value":"\\left(${math.round(:signe=='+'?:x[2]+:x[0]::x[0]-:x[2],2)};${math.round(:signe=='-'?:x[1]-:x[3]::x[3]+:x[1],2)}\\right)"
+    "answer":"\\text{Pour }${:vecteurs[:v[0]]}(${:x[0]+';\\color{blue}{'+:x[1]}}) \\text{ et } ${:vecteurs[:v[1]]}(${:x[2]+';\\color{blue}{'+:x[3]}}), \\vec{${:vecteurs[:v[0]]+:vecteurs[:v[1]]}}\\color{red}{(${MMmath.round(:signe=='+'?:x[2]+:x[0]::x[0]-:x[2],2)};${MMmath.round(:signe=='-'?:x[1]-:x[3]::x[3]+:x[1],2)})}",
+    "value":"\\left(${MMmath.round(:signe=='+'?:x[2]+:x[0]::x[0]-:x[2],2)};${MMmath.round(:signe=='-'?:x[1]-:x[3]::x[3]+:x[1],2)}\\right)"
 }

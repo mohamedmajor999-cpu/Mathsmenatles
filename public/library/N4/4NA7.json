@@ -17,6 +17,6 @@
     }
     ],
     "question": "2^{${:p}}",
-    "answer":":question=\\color{red}{${math.round(Math.pow(2,:p),6)}}",
-    "value":"${math.round(Math.pow(2,:p),6)}"
+    "answer":":question=\\color{red}{${MMmath.round(Math.pow(2,:p),6)}}",
+    "value":"${MMmath.round(Math.pow(2,:p),6)}"
 }

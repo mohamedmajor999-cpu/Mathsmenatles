@@ -16,7 +16,7 @@
                 "s1":"2_${:s-2}",
                 "s2":"${:s-:s1}",
                 "qp":", ${:A+:B}=?",
-                "ap":", ${:A+:B}=${math.round(:s)}"
+                "ap":", ${:A+:B}=${MMmath.round(:s)}"
            },
            "figure":{
                 "type":"graph",
@@ -72,5 +72,5 @@
         }
     ],
     "question":"${:A+:C}=?, ${:B+:C}=?${:qp}",
-    "answer":"${:A+:C}=${math.round(:s1,1)}, ${:B+:C}=${math.round(:s2,1)}${:ap}"
+    "answer":"${:A+:C}=${MMmath.round(:s1,1)}, ${:B+:C}=${MMmath.round(:s2,1)}${:ap}"
 }

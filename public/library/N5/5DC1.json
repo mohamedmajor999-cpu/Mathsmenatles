@@ -20,6 +20,6 @@
     ],
     "question": ["Augmenter ${:qte} de ${:pourcent} %", "Réduire ${:qte} de ${:pourcent} %"],
     "shortq": [" + ${:pourcent} % à ${:qte} :", "- ${:pourcent} % à ${:qte} :"],
-    "answer":["${:qte} + ${:pourcent}% de ${:qte} = <span class='red'>$$${math.round(:qte*(1+:pourcent/100),2)}$$</span>","${:qte} - ${:pourcent}% de ${:qte} = <span class='red'>$$${math.round(:qte*(1-:pourcent/100),2)}$$</span>"],
-    "value":["${math.round(:qte*(1+:pourcent/100),2)}","${math.round(:qte*(1-:pourcent/100),2)}"]
+    "answer":["${:qte} + ${:pourcent}% de ${:qte} = <span class='red'>$$${MMmath.round(:qte*(1+:pourcent/100),2)}$$</span>","${:qte} - ${:pourcent}% de ${:qte} = <span class='red'>$$${MMmath.round(:qte*(1-:pourcent/100),2)}$$</span>"],
+    "value":["${MMmath.round(:qte*(1+:pourcent/100),2)}","${MMmath.round(:qte*(1-:pourcent/100),2)}"]
 }

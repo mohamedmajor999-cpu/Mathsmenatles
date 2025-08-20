@@ -1,10 +1,11 @@
 import utils from "./utils.js";
-export { math as default };
+export { MMmath as default };
+import Big from '../libs/bigjs/big.esm.js'
 import { ComputeEngine } from "../libs/compute-engine/compute-engine.esm.js";
 
 const ce = new ComputeEngine();
 
-const math = {
+const MMmath = {
   premiers: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997, 1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069, 1087, 1091, 1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163, 1171, 1181, 1187, 1193, 1201, 1213, 1217, 1223, 1229, 1231, 1237, 1249, 1259, 1277, 1279, 1283, 1289, 1291, 1297, 1301, 1303, 1307, 1319, 1321, 1327, 1361, 1367, 1373, 1381, 1399, 1409, 1423, 1427, 1429, 1433, 1439, 1447, 1451, 1453, 1459, 1471, 1481, 1483, 1487, 1489, 1493, 1499, 1511, 1523, 1531, 1543, 1549, 1553, 1559, 1567, 1571, 1579, 1583, 1597, 1601, 1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663, 1667, 1669, 1693, 1697, 1699, 1709, 1721, 1723, 1733, 1741, 1747, 1753, 1759, 1777, 1783, 1787, 1789, 1801, 1811, 1823, 1831, 1847, 1861, 1867, 1871, 1873, 1877, 1879, 1889, 1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987, 1993, 1997, 1999],
   //ce:new ComputeEngine({multiply:"\\times"}),
   /**
@@ -103,8 +104,8 @@ const math = {
     if (arrayType) {
       var integers = [];
       for (let i = 0; i < qty; i++) {
-        let thisint = math.round(utils.alea() * (max - min)) + min;
-        if (avoid.indexOf(thisint) > -1 || (nodouble && integers.indexOf(thisint) > -1) || (notPrime && math.premiers.includes(thisint))) {
+        let thisint = MMmath.round(utils.alea() * (max - min)) + min;
+        if (avoid.indexOf(thisint) > -1 || (nodouble && integers.indexOf(thisint) > -1) || (notPrime && MMmath.premiers.includes(thisint))) {
           // do not use exeptions numbers
           // or no double number
           i--;
@@ -118,10 +119,10 @@ const math = {
     } else {
       let thisint;
       do {
-        thisint = math.round(utils.alea() * (max - min)) + min;
+        thisint = MMmath.round(utils.alea() * (max - min)) + min;
         if (!utils.checkSecurity()) break;
       }
-      while (avoid.indexOf(thisint) > -1 || (notPrime && math.premiers.indexOf(thisint) > -1))
+      while (avoid.indexOf(thisint) > -1 || (notPrime && MMmath.premiers.indexOf(thisint) > -1))
       return thisint;
     }
   },
@@ -157,7 +158,7 @@ const math = {
       let nb;
       var floats = [];
       for (let i = 0; i < qty; i++) {
-        nb = math.round(utils.alea() * (max - min) + min, precision);
+        nb = MMmath.round(utils.alea() * (max - min) + min, precision);
         if (avoid.indexOf(nb) > -1 || (nodouble && floats.indexOf(nb) > -1)) {
           i--;
           if (!utils.checkSecurity()) break;
@@ -171,7 +172,7 @@ const math = {
     } else { // one value
       let nb;
       do {
-        nb = math.round(utils.alea() * (max - min) + min, precision);
+        nb = MMmath.round(utils.alea() * (max - min) + min, precision);
         if (!utils.checkSecurity()) break;
         //debug(nb);
       }
@@ -315,7 +316,7 @@ const math = {
    * @returns integer : le plus grand diviseur non égal au nombre
    */
   plusGrandDiviseur: function (nb) {
-    const liste = math.listeDiviseurs(nb, true);
+    const liste = MMmath.listeDiviseurs(nb, true);
     return liste[liste.length - 2];
   },
   /**
@@ -326,10 +327,10 @@ const math = {
   plusGrandDiviseurPremier(nb) {
     if (nb < 2) return nb;
     let prime = 0, indice = 0;
-    while (math.premiers[indice] <= nb) {
+    while (MMmath.premiers[indice] <= nb) {
       indice++;
-      if (nb % math.premiers[indice] == 0)
-        prime = math.premiers[indice];
+      if (nb % MMmath.premiers[indice] == 0)
+        prime = MMmath.premiers[indice];
     }
     return prime;
   },
@@ -356,13 +357,13 @@ const math = {
    * return un non diviseur d'un nombre
    */
   nonDiviseur(nb, superieur = false) {
-    if (nb === 1) return math.aleaInt(2, 10);
-    if (nb === 2) return math.aleaInt(3, 10);
+    if (nb === 1) return MMmath.aleaInt(2, 10);
+    if (nb === 2) return MMmath.aleaInt(3, 10);
     let unnondiviseur = 0;
-    do { unnondiviseur = math.aleaInt(2, nb - 1); }
+    do { unnondiviseur = MMmath.aleaInt(2, nb - 1); }
     while (nb % unnondiviseur === 0)
-    if (superieur && math.aleaInt(0, 1) === 0) {
-      do { unnondiviseur = math.aleaInt(nb + 1, nb+10); }
+    if (superieur && MMmath.aleaInt(0, 1) === 0) {
+      do { unnondiviseur = MMmath.aleaInt(nb + 1, nb+10); }
       while (unnondiviseur % nb === 0)
     }
     return unnondiviseur;
@@ -379,7 +380,7 @@ const math = {
     if (pointPosition < 0) return "\\dfrac{" + decimal + "}{1}";
     else {
       let nbChiffres = string.length - pointPosition - 1;
-      return "\\dfrac{" + math.round(decimal * Math.pow(10, nbChiffres), 0) + "}{" + Math.pow(10, nbChiffres) + "}";
+      return "\\dfrac{" + MMmath.round(decimal * Math.pow(10, nbChiffres), 0) + "}{" + Math.pow(10, nbChiffres) + "}";
     }
 
   },
@@ -389,14 +390,14 @@ const math = {
    * return un diviseur de nb
    */
   unDiviseur(nb, notOne = false, notNb = true) {
-    if (Number(nb) === 0) return math.aleaInt(1, 10);
+    if (Number(nb) === 0) return MMmath.aleaInt(1, 10);
     if (Number(nb) === 1) return 1
-    let diviseurs = math.listeDiviseurs(nb, true);
+    let diviseurs = MMmath.listeDiviseurs(nb, true);
     // on enlève la première valeur qui est 1.
     if (notOne) diviseurs = diviseurs.slice(1)
     // on enlève la dernière valeur qui est le nombre s'il y a d'autres valeurs
     if (notNb && diviseurs.length > 1) diviseurs = diviseurs.slice(0, -1);
-    return diviseurs[math.aleaInt(0, diviseurs.length - 1)];
+    return diviseurs[MMmath.aleaInt(0, diviseurs.length - 1)];
   },
   /**
    * Renvoie le décomposé en facteurs premiers d'un nombre
@@ -416,7 +417,7 @@ const math = {
         primeDivisors[divisor]++
         nb /= divisor
       }
-      divisor = math.premiers[++i]
+      divisor = MMmath.premiers[++i]
     }
     if (!divisors) return String(nb)
     if (nb > 1) {
@@ -439,7 +440,7 @@ const math = {
     let matches = value.match(/(\d*)\^(\d*)/g);
     if (matches)
       for (let i = 0, l = matches.length; i < l; i += 2) {
-        value = value.replace(matches[i], math.powerToProduct(matches[i]));
+        value = value.replace(matches[i], MMmath.powerToProduct(matches[i]));
       }
     return value;
   },
@@ -489,7 +490,7 @@ const math = {
    * @returns 
    */
   simplifieRacine(radicande) {
-    const factors = math.factor(radicande).split('*')
+    const factors = MMmath.factor(radicande).split('*')
     let outOfSquareR = 1;
     let inSquareR = 1;
     for (let i = 0; i < factors.length; ++i) {
@@ -534,7 +535,7 @@ const math = {
    */
   pgcd: function (a, b) {
     if (b) {
-      return math.pgcd(b, a % b);
+      return MMmath.pgcd(b, a % b);
     } else {
       return Math.abs(a);
     }
@@ -558,7 +559,7 @@ const math = {
    * @returns lcm of a & b
    */
   ppcm: function (a, b) {
-    const pgcd = math.pgcd(a, b);
+    const pgcd = MMmath.pgcd(a, b);
     return (a * b) / pgcd;
   },
   /**
@@ -632,7 +633,7 @@ const math = {
     if (n < 0 && d < 0 || n > 0 && d < 0) {
       n = -n; d = -d;
     }
-    const gcd = math.pgcd(n, d);
+    const gcd = MMmath.pgcd(n, d);
     if (Number.isInteger(n / d))
       return n / d;
     else
@@ -734,9 +735,9 @@ const math = {
       return total;
     } else {
       if (entier) {
-        return math.aleaInt(total - min + 1, total);
+        return MMmath.aleaInt(total - min + 1, total);
       } else {
-        return math.aleaFloat(total - min + 1, total, 2);
+        return MMmath.aleaFloat(total - min + 1, total, 2);
       }
     }
   },

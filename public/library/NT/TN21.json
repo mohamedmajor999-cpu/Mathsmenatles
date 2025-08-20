@@ -9,7 +9,7 @@
       "vars": {
         "a": "-5_5_^0",
         "b": "1_5",
-        "f": "${math.box(['Multiply', :a, ['Power', 'n', :b]])}",
+        "f": "${MMmath.box(['Multiply', :a, ['Power', 'n', :b]])}",
         "lim": "${:a > 0 ? '+\\infty' : '-\\infty'}",
         "set": "\\mathbb{N}"
       }
@@ -19,7 +19,7 @@
       "vars": {
         "a": "-5_5_^0",
         "b": "1_5",
-        "f": "${math.box(['Divide', :a, ['Power', 'n', :b]])}",
+        "f": "${MMmath.box(['Divide', :a, ['Power', 'n', :b]])}",
         "lim": "0",
         "set": "\\mathbb{N}^*"
       }
@@ -28,7 +28,7 @@
       "name": "Suite de type a·√n",
       "vars": {
         "a": "-5_5_^0",
-        "f": "${math.box(['Multiply', :a, ['Sqrt', 'n']])}",
+        "f": "${MMmath.box(['Multiply', :a, ['Sqrt', 'n']])}",
         "lim": "${:a > 0 ? '+\\infty' : '-\\infty'}",
         "set": "\\mathbb{N}"
       }

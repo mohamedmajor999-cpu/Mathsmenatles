@@ -8,7 +8,7 @@
     "consigne":"Décomposer en entier + fraction inférieure à 1",
     "question":"\\dfrac{${:num}}{${:den}}~=~ ... + \\dfrac{...}{...}",
     "shortq":"\\dfrac{${:num}}{${:den}}~=~ \\colorbox{#ECECEC}{\\quad} + \\dfrac{\\colorbox{#ECECEC}{\\quad}}{\\colorbox{#ECECEC}{\\quad}}",
-    "audio":"Décomposer ${:num} ${math.NumberToFraction(:den)} en un entier plusse une fraction plus petite que 1.",
+    "audio":"Décomposer ${:num} ${MMmath.NumberToFraction(:den)} en un entier plusse une fraction plus petite que 1.",
     "options":[{
         "name":"Dénominateur entre 2 et 11",
         "vars":{"den":"2_11", "num":"12_${:den*10}","entier":"${Math.floor(:num/:den)}", "reste":"${:num%:den}"},

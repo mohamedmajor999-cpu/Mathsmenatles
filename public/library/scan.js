@@ -14,9 +14,10 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
     } else {
+      // on stocke la date de création du fichier
       arrayOfFiles.push([file,
                       path.join(__dirname, dirPath, "/", file),
-                      fs.statSync(dirPath + "/" + file).mtime
+                      fs.statSync(dirPath + "/" + file).birthtime
                     ])
     }
   })

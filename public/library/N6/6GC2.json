@@ -140,9 +140,9 @@
                 "grid":false,
                 "content" :[
                         ["point",[0,0],{"name":"${:O}","size":3, "sizeUnit":"em", "face":"x"}],
-                        ["point",["${math.round(4*Math.cos(Math.PI*:aa/180),3)}","${math.round(4*Math.sin(Math.PI*:aa/180),3)}"],{"name":"${:A}","size":3, "face":"x", "visible": "${:pointordir[0]==0?1:0}"}],
-                        ["point",["${math.round(4*Math.cos(Math.PI*(:aa+:ab)/180),3)}","${math.round(4*Math.sin(Math.PI*(:aa+:ab)/180),3)}"],{"name":"${:B}","size":3, "face":"x", "visible": "${:pointordir[1]==0?1:0}"}],                        
-                        ["point",["${math.round(4*Math.cos(Math.PI*(:aa+:ac)/180),3)}","${math.round(4*Math.sin(Math.PI*(:aa+:ac)/180),3)}"],{"name":"${:C}","size":3, "face":"x", "visible": "${:pointordir[2]==0?1:0}"}],
+                        ["point",["${MMmath.round(4*Math.cos(Math.PI*:aa/180),3)}","${MMmath.round(4*Math.sin(Math.PI*:aa/180),3)}"],{"name":"${:A}","size":3, "face":"x", "visible": "${:pointordir[0]==0?1:0}"}],
+                        ["point",["${MMmath.round(4*Math.cos(Math.PI*(:aa+:ab)/180),3)}","${MMmath.round(4*Math.sin(Math.PI*(:aa+:ab)/180),3)}"],{"name":"${:B}","size":3, "face":"x", "visible": "${:pointordir[1]==0?1:0}"}],                        
+                        ["point",["${MMmath.round(4*Math.cos(Math.PI*(:aa+:ac)/180),3)}","${MMmath.round(4*Math.sin(Math.PI*(:aa+:ac)/180),3)}"],{"name":"${:C}","size":3, "face":"x", "visible": "${:pointordir[2]==0?1:0}"}],
                         ["text", [0.3,0.3, "${:x}"], {"anchor":"${:A}", "visible":"${:pointordir[0]==1?1:0}","cssClass":"italic"}],
                         ["text", [0.3,0.3, "${:y}"], {"anchor":"${:B}", "visible":"${:pointordir[1]==1?1:0}","cssClass":"italic"}],
                         ["text", [0.3,0.3, "${:z}"], {"anchor":"${:C}", "visible":"${:pointordir[2]==1?1:0}","cssClass":"italic"}],

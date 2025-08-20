@@ -39,6 +39,6 @@
     ],
     "question":"${:text}<b>${:vocab[:a]}</b> de $$${:qte}$$ ?",
     "audio":"${:text} ${:vocab[:a]} de ${:qte} ?",
-    "answer":"$$${:qte+:tx[:a]}=\\color{red}{${eval(math.calc(:qte+'*'+:coef[:a]))}}$$",
-    "value":"${eval(math.calc(:qte+'*'+:coef[:a]))}"
+    "answer":"$$${:qte+:tx[:a]}=\\color{red}{${eval(MMmath.calc(:qte+'*'+:coef[:a]))}}$$",
+    "value":"${eval(MMmath.calc(:qte+'*'+:coef[:a]))}"
 }

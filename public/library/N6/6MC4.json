@@ -55,7 +55,7 @@
                 "coef":"${:unit2=='t'?0.001:0.01}"
             },
             "question":"${:n}\\text{ ${:unit1}} = \\text{...}\\text{ ${:unit2}}",
-            "answer":"${:n}\\text{ ${:unit1}} = \\color{red}{${math.round(:n*:coef,3)}}\\text{ ${:unit2}}"
+            "answer":"${:n}\\text{ ${:unit1}} = \\color{red}{${MMmath.round(:n*:coef,3)}}\\text{ ${:unit2}}"
         },{
             "name":"De la tonne ou du quintal au kg",
             "vars":{
@@ -66,7 +66,7 @@
                 "coef":"${:unit1=='t'?1000:100}"
             },
             "question":"${:n}\\text{ ${:unit1}} = \\text{...}\\text{ ${:unit2}}",
-            "answer":"${:n}\\text{ ${:unit1}} = \\color{red}{${math.round(:n*:coef,3)}}\\text{ ${:unit2}}"
+            "answer":"${:n}\\text{ ${:unit1}} = \\color{red}{${MMmath.round(:n*:coef,3)}}\\text{ ${:unit2}}"
         }
     ],
     "question":[
@@ -75,9 +75,9 @@
         "${:n}\\text{ ${:unit1}L} = \\text{...}\\text{ ${:unit2}L}"
     ],
     "answer":[
-        "${:n}\\text{ ${:unit1}m} = \\color{red}{${math.round(:n*:coef,3)}}\\text{ ${:unit2}m}",
-        "${:n}\\text{ ${:unit1}g} = \\color{red}{${math.round(:n*:coef,3)}}\\text{ ${:unit2}g}",
-        "${:n}\\text{ ${:unit1}L} = \\color{red}{${math.round(:n*:coef,3)}}\\text{ ${:unit2}L}"
+        "${:n}\\text{ ${:unit1}m} = \\color{red}{${MMmath.round(:n*:coef,3)}}\\text{ ${:unit2}m}",
+        "${:n}\\text{ ${:unit1}g} = \\color{red}{${MMmath.round(:n*:coef,3)}}\\text{ ${:unit2}g}",
+        "${:n}\\text{ ${:unit1}L} = \\color{red}{${MMmath.round(:n*:coef,3)}}\\text{ ${:unit2}L}"
     ],
-    "value":"${math.round(:n*:coef,3)}"
+    "value":"${MMmath.round(:n*:coef,3)}"
 }

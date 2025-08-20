@@ -20,6 +20,6 @@
             ]
         },
     "question":"Quel est le coefficient de la fonction affine ?",
-    "answer":"Le coefficient de la fonction est <span class='red'>$$${math.calc(:a+'/('+:b+')')}$$</span>",
-    "value":["${math.calc(:a+'/('+:b+')',true)}"]
+    "answer":"Le coefficient de la fonction est <span class='red'>$$${MMmath.calc(:a+'/('+:b+')')}$$</span>",
+    "value":["${MMmath.calc(:a+'/('+:b+')',true)}"]
 }

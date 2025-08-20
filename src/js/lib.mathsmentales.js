@@ -7,6 +7,7 @@ import MM from "./mods/MM.js";
 import library from './mods/library.js';
 import sound from './mods/sound.js';
 import speech from './mods/speech.js';
+import Picker from './libs/vanilla-picker/vanilla-picker.esm.js'
 
 window.onload = function() {
     MM.version = utils.getVersion()

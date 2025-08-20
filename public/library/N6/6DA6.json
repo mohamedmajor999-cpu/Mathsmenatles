@@ -22,8 +22,8 @@
                     "La probabilité d’obtenir un nombre impair est $$\\color{red}{\\dfrac36} = \\color{green}{\\dfrac12}$$.",
                     "La probabilité d’obtenir un nombre multiple de 2 est $$\\color{red}{\\dfrac36} = \\color{green}{\\dfrac12}$$.",
                     "La probabilité d’obtenir un nombre multiple de 3 est $$\\color{red}{\\dfrac26} = \\color{green}{\\dfrac13}$$.",
-                    "La probabilité d’obtenir un nombre inférieur à ${:bornes} est $$\\color{red}{\\dfrac${:bornes-1}6}${math.pgcd(6,:bornes-1)!==1?'=\\color{green}{'+math.fractionSimplifiee(:bornes-1,6)+'}':''}$$.",
-                    "La probabilité d’obtenir un nombre supérieur à ${:bornei} est $$\\color{red}{\\dfrac${6-:bornei}6}${math.pgcd(6,6-:bornei)!==1?'=\\color{green}{'+math.fractionSimplifiee(6-:bornei,6)+'}':''}$$."
+                    "La probabilité d’obtenir un nombre inférieur à ${:bornes} est $$\\color{red}{\\dfrac${:bornes-1}6}${MMmath.pgcd(6,:bornes-1)!==1?'=\\color{green}{'+MMmath.fractionSimplifiee(:bornes-1,6)+'}':''}$$.",
+                    "La probabilité d’obtenir un nombre supérieur à ${:bornei} est $$\\color{red}{\\dfrac${6-:bornei}6}${MMmath.pgcd(6,6-:bornei)!==1?'=\\color{green}{'+MMmath.fractionSimplifiee(6-:bornei,6)+'}':''}$$."
                 ]
             },
             "vars":{
@@ -103,7 +103,7 @@
                 ]
             },
             "question":"On fait tourner cette roue équilibrée. Quelle est la probabilité que le curseur noir montre la couleur ${:couleur1} ?",
-            "answer":"La probabilité d’obtenir le ${:couleur1} est $$\\color{red}{\\dfrac${:nbc1}6}${math.pgcd(6,:nbc1)!==1?'=\\color{green}{'+math.fractionSimplifiee(:nbc1,6)+'}':''}$$"
+            "answer":"La probabilité d’obtenir le ${:couleur1} est $$\\color{red}{\\dfrac${:nbc1}6}${MMmath.pgcd(6,:nbc1)!==1?'=\\color{green}{'+MMmath.fractionSimplifiee(:nbc1,6)+'}':''}$$"
         },{
             "name":"Roue à 8 secteurs",
             "consts":{
@@ -145,7 +145,7 @@
                 ]
             },
             "question":"On fait tourner cette roue équilibrée. Quelle est la probabilité que le curseur noir montre la couleur ${:couleur1} ?",
-            "answer":"La probabilité d’obtenir le ${:couleur1} est $$\\color{red}{\\dfrac${:nbc1}8}${math.pgcd(8,:nbc1)!==1?'=\\color{green}{'+math.fractionSimplifiee(:nbc1,8)+'}':''}$$"
+            "answer":"La probabilité d’obtenir le ${:couleur1} est $$\\color{red}{\\dfrac${:nbc1}8}${MMmath.pgcd(8,:nbc1)!==1?'=\\color{green}{'+MMmath.fractionSimplifiee(:nbc1,8)+'}':''}$$"
         },
         {
             "name":"Sac de balles noires ou blanches",

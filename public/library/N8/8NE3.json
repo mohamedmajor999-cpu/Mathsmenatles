@@ -10,56 +10,56 @@
         "name":"Diviser un décimal par 10",
         "question": "${:c}\\div 10",
         "audio": "${String(:c).replace('.',',')} divisé par 10",
-        "answer":":question=\\color{red}{${math.round(:c/10,4)}}",
-        "value":"${math.round(:c/10,4)}"
+        "answer":":question=\\color{red}{${MMmath.round(:c/10,4)}}",
+        "value":"${MMmath.round(:c/10,4)}"
     },{
         "name":"Diviser un décimal par 100",
         "question": "${:c}\\div 100",
         "audio": "${String(:c).replace('.',',')} divisé par 100",
-        "answer":":question=\\color{red}{${math.round(:c/100,5)}}",
-        "value":"${math.round(:c/100,5)}"
+        "answer":":question=\\color{red}{${MMmath.round(:c/100,5)}}",
+        "value":"${MMmath.round(:c/100,5)}"
     },{
         "name":"Diviser un décimal par 1000",
         "question": "${:c}\\div 1000",
         "audio": "${String(:c).replace('.',',')} divisé par 1000",
-        "answer":":question=\\color{red}{${math.round(:c/1000,6)}}",
-        "value":"${math.round(:c/1000,6)}"
+        "answer":":question=\\color{red}{${MMmath.round(:c/1000,6)}}",
+        "value":"${MMmath.round(:c/1000,6)}"
     },{
         "name":"Diviser un décimal à 3 chiffres par 10",
         "vars":{
             "a":[9,99,999],
             "decs":"1_${:a}",
             "p":"-3_3",
-            "c":"${math.round(:decs*Math.pow(10,:p),3)}"
+            "c":"${MMmath.round(:decs*Math.pow(10,:p),3)}"
         },
         "question": "${:c}\\div 10",
         "audio": "${String(:c).replace('.',',')} divisé par 10",
-        "answer":":question=\\color{red}{${math.round(:c/10,4)}}",
-        "value":"${math.round(:c/10,4)}"
+        "answer":":question=\\color{red}{${MMmath.round(:c/10,4)}}",
+        "value":"${MMmath.round(:c/10,4)}"
     },{
         "name":"Diviser un décimal  à 3 chiffres par 100",
         "vars":{
             "a":[9,99,999],
             "decs":"1_${:a}",
             "p":"-3_3",
-            "c":"${math.round(:decs*Math.pow(10,:p),3)}"
+            "c":"${MMmath.round(:decs*Math.pow(10,:p),3)}"
         },
         "question": "${:c}\\div 100",
         "audio": "${String(:c).replace('.',',')} divisé par 100",
-        "answer":":question=\\color{red}{${math.round(:c/100,5)}}",
-        "value":"${math.round(:c/100,5)}"
+        "answer":":question=\\color{red}{${MMmath.round(:c/100,5)}}",
+        "value":"${MMmath.round(:c/100,5)}"
     },{
         "name":"Diviser un décimal à 3 chiffres par 1000",
         "vars":{
             "a":[9,99,999],
             "decs":"1_${:a}",
             "p":"-3_3",
-            "c":"${math.round(:decs*Math.pow(10,:p),3)}"
+            "c":"${MMmath.round(:decs*Math.pow(10,:p),3)}"
         },
         "question": "${:c}\\div 1000",
         "audio": "${String(:c).replace('.',',')} divisé par 1000",
-        "answer":":question=\\color{red}{${math.round(:c/1000,6)}}",
-        "value":"${math.round(:c/1000,6)}"
+        "answer":":question=\\color{red}{${MMmath.round(:c/1000,6)}}",
+        "value":"${MMmath.round(:c/1000,6)}"
     }
     ]
 }

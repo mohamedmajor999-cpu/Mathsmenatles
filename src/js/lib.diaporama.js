@@ -11,7 +11,7 @@ import steps from './mods/steps.js';
 import timer from './mods/timer.js';
 import { MathfieldElement } from "./libs/mathlive/mathlive.mjs";
 import keyBoard from "./mods/keyboard.js";
-import math from './mods/math.js';
+import MMmath from './mods/math.js';
 import draw from './mods/draw.js';
 import Figure from './mods/figure.js';
 import analyseReponse from './mods/analysereponse.js';
@@ -993,7 +993,7 @@ const diaporama = {
             let targetId = Number(diaporama.carts[cartId].target[slider])
             let ol = document.createElement("ol");
             ol.innerHTML = "<b>Réponses pour " + String(targetId) + "</b>";
-            ol.innerHTML += ' (' + math.round(diaporama.times[targetId - 1] / 1000,2) + ' s. / ' + diaporama.totaltimes[targetId - 1] + ' s. prévues.)';
+            ol.innerHTML += ' (' + MMmath.round(diaporama.times[targetId - 1] / 1000,2) + ' s. / ' + diaporama.totaltimes[targetId - 1] + ' s. prévues.)';
             let ia = 0;
             // pour un target, on a l'ordre des activités et des réponses.
             for (let slide = 0, len2 = diaporama.carts[cartId].actsArrays[slider].length; slide < len2; slide++) {

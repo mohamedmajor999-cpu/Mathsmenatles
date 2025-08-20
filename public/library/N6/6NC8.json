@@ -37,7 +37,7 @@
             "answer":"Dans $$${:c}$$, 9 est le chiffre des <span class='red'>${:u[:b]}</span>",
             "value":"${:u[:b]}",
             "question": "Dans $$${:c}$$, quelle est la valeur du chiffre 9 ?",
-            "audio":"Dans ${math.NumberToLetter(:c)}, quel est le rang du chiffre 9 ?"
+            "audio":"Dans ${MMmath.NumberToLetter(:c)}, quel est le rang du chiffre 9 ?"
         }
     ],
     "question": "Dans $$${:c}$$, quelle est la valeur du chiffre 9 ?",

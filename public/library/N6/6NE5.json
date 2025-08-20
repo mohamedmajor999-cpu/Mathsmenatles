@@ -20,6 +20,6 @@
     }
     ],
     "question": ["${:a}\\times ${:c}", "${:c}\\times ${:a}"],
-    "answer":":question = \\color{red}{${math.round(:a*:c,4)}}",
-    "value":"${math.round(:a*:c,4)}"
+    "answer":":question = \\color{red}{${MMmath.round(:a*:c,4)}}",
+    "value":"${MMmath.round(:a*:c,4)}"
 }

@@ -40,7 +40,7 @@
             "vars":{
                 "AB":"d3_20_1",
                 "CA":"d3.1_${:AB-0.5}_1",
-                "BC":"d${math.round(:AB-:CA+0.4,1)}_${:AB-0.5}_1_^:CA",
+                "BC":"d${MMmath.round(:AB-:CA+0.4,1)}_${:AB-0.5}_1_^:CA",
                 "longueurs":["${:cAB} = ${:AB}~${:u}, ${:cBC} = ${:BC}~${:u}, ${:cCA} = ${:CA}~${:u}", "${:cBC} = ${:BC}~${:u}, ${:cCA} = ${:CA}~${:u}, ${:cAB} = ${:AB}~${:u}", "${:cCA} = ${:CA}~${:u}, ${:cAB} = ${:AB}~${:u}, ${:cBC} = ${:BC}~${:u}"],
                 "sample":"${:CA/:BC>.87&&:CA/:BC<1.15?0::CA<:BC?1:2}"
             },
@@ -51,7 +51,7 @@
             "name":"Triangle isocèle",
             "vars":{
                 "AB":"d3_20_1",
-                "BC":"d${math.round(:AB/2+0.5,1)}_${math.round(:AB*2,1)}_1",
+                "BC":"d${MMmath.round(:AB/2+0.5,1)}_${MMmath.round(:AB*2,1)}_1",
                 "CA":"${:BC}",
                "sample":"${:BC<:AB?'0_1':'2_3'}",
                "longueurs":["${:cAB}=${:AB}~${:u} \\text{ et } ${:cBC}=${:BC}~${:u}","${:cAB}=${:AB}~${:u} \\text{ et } ${:cCA}=${:CA}~${:u}","${:cBC}=${:BC}~${:u} \\text{ et } ${:cAB}=${:AB}~${:u}", "${:cCA}=${:CA}~${:u} \\text{ et } ${:cAB}=${:AB}~${:u}"]

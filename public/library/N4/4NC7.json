@@ -54,7 +54,7 @@
         "name":"Quotient d'une différence par un carré (nb < 5)",
         "vars":{"y":"1_4","c":"1_4",
         "x":"${Math.ceil(Math.sqrt(:y*:y*:c))}_${Math.ceil(Math.sqrt(:y*:y*:c))+3}",
-        "p":"${math.unProduitEgalA(:x*:x-:y*:y*:c)}"},
+        "p":"${MMmath.unProduitEgalA(:x*:x-:y*:y*:c)}"},
         "question":["(${:x}^2 - ${:p} )\\div ${:y}^2","\\dfrac{(${:x}^2-${:p})}{${:y}^2}"],
         "answer":":question = \\color{red}{${:c}}",
         "value":"${:c}"

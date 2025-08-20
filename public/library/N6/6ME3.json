@@ -1,7 +1,7 @@
 {
     "ID":"6ME3",
     "description":"Lire la mesure d'un angle à l’aide d’un rapporteur bien placé.",
-    "title":"Bon placement du rappoteur, lecture de la mesure",
+    "title":"Bon placement du rapporteur, lecture de la mesure",
     "type":"text",
     "dest":["6ME"],
     "consts":{

@@ -32,6 +32,6 @@
     }
     ],
     "question":["${(:a<0)?'('+:a+')^2'::a+'^2'}","${:a}^2"],
-    "answer":[":question=\\color{red}{${math.round(:a*:a,4)}}",":question=\\color{red}{${(:a<0)?math.round(-:a*:a,4):math.round(:a*:a,4)}}"],
-    "value":["${math.round(:a*:a,4)}","${(:a<0)?math.round(-:a*:a,4):math.round(:a*:a,4)}"]
+    "answer":[":question=\\color{red}{${MMmath.round(:a*:a,4)}}",":question=\\color{red}{${(:a<0)?MMmath.round(-:a*:a,4):MMmath.round(:a*:a,4)}}"],
+    "value":["${MMmath.round(:a*:a,4)}","${(:a<0)?MMmath.round(-:a*:a,4):MMmath.round(:a*:a,4)}"]
 }

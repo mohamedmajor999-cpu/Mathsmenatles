@@ -21,6 +21,6 @@
     ],
     "question": "${:t1}+${:t2}",
     "audio":"${String(:t1).replace('.',',')} plusse ${String(:t2).replace('.',',')}",
-    "answer":":question=\\color{red}{${math.round(:t1+:t2,3)}}",
-    "value":"${math.round(:t1+:t2,3)}"
+    "answer":":question=\\color{red}{${MMmath.round(:t1+:t2,3)}}",
+    "value":"${MMmath.round(:t1+:t2,3)}"
 }

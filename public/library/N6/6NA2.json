@@ -27,7 +27,7 @@
         }
     ],
     "answer":"Dans $$${:c}$$, le chiffre des <u>${:d}</u> est $$\\color{red}{${:a[:b]}}$$",
-    "audio":"Dans ${math.NumberToLetter(:c).replace('-',' ')}, quel est le chiffre des ${:d} ?",
+    "audio":"Dans ${MMmath.NumberToLetter(:c).replace('-',' ')}, quel est le chiffre des ${:d} ?",
     "value":"${:a[:b]}",
     "question": "Dans $$${:c}$$, quel est le chiffre des <b>${:d}</b> ?"
 }

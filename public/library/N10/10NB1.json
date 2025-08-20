@@ -22,9 +22,9 @@
         "vars":{"n":"100_1000"}
     }
     ],
-    "question": "Écris en chiffres le nombre <b>${math.NumberToLetter(:n)}</b>.",
-    "shortq":"<b>${math.NumberToLetter(:n)}</b> en chiffres ?",
-    "audio":"Écris en chiffres le nombre ${math.NumberToLetter(:n)}",
-    "answer":"${math.NumberToLetter(:n)} s'écrit $$\\color{red}{${:n}}$$",
+    "question": "Écris en chiffres le nombre <b>${MMmath.NumberToLetter(:n)}</b>.",
+    "shortq":"<b>${MMmath.NumberToLetter(:n)}</b> en chiffres ?",
+    "audio":"Écris en chiffres le nombre ${MMmath.NumberToLetter(:n)}",
+    "answer":"${MMmath.NumberToLetter(:n)} s'écrit $$\\color{red}{${:n}}$$",
     "value":"${:n}"
 }

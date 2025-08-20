@@ -23,6 +23,6 @@
     ],
     "question": "Écris en lettres le nombre <b>${:n}</b>.",
     "shortq":"<b>${:n}</b> en lettres ?",
-    "answer":"${:n} s'écrit <span class='red'>${math.NumberToLetter(:n)}</span>",
-    "value":"${math.NumberToLetter(:n)}"
+    "answer":"${:n} s'écrit <span class='red'>${MMmath.NumberToLetter(:n)}</span>",
+    "value":"${MMmath.NumberToLetter(:n)}"
 }

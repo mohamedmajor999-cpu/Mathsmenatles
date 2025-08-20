@@ -74,7 +74,7 @@
         "name":"Volume d'une boule à partir du rayon",        
         "vars":{
             "r":"1_5",
-            "v":"${math.calc(:r+'*'+:r+'*'+:r+'*4/3')}\\pi"
+            "v":"${MMmath.calc(:r+'*'+:r+'*'+:r+'*4/3')}\\pi"
         },
         "figure":{"type":"svg", "content":"<svg width=\"15em\" height=\"9em\" viewBox=\"0 0 79.375 47.625\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M39.726 23.663l15.26 4.898\" fill=\"none\" stroke=\"#000\" stroke-width=\".529\" stroke-linecap=\"round\" stroke-dasharray=\"2.117 2.117\"/><text style=\"line-height:1.25;-inkscape-font-specification:Arial;text-align:center\" x=\"53.492\" y=\"11.315\" transform=\"rotate(14.726)\" font-size=\"4.233\" font-family=\"Arial\" letter-spacing=\"0\" word-spacing=\"0\" text-anchor=\"middle\" stroke-width=\".265\"><tspan style=\"text-align:center\" x=\"53.492\" y=\"11.315\">${:r} cm</tspan></text><path d=\"M60.95 23.64a21.09 7.097 0 01-10.545 6.147 21.09 7.097 0 01-21.09 0 21.09 7.097 0 01-10.546-6.146\" fill=\"none\" stroke=\"#000\" stroke-width=\".455\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M18.77 23.583a21.09 7.097 0 0121.175-7.04A21.09 7.097 0 0160.95 23.64\" fill=\"none\" stroke=\"#000\" stroke-width=\".455\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"1.82 1.82\"/><circle cx=\"39.859\" cy=\"23.641\" r=\"21.09\" fill=\"none\" stroke=\"#000\" stroke-width=\".529\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"},
         "shortq":"Volume ?",
@@ -86,7 +86,7 @@
         "vars":{
             "d0":"1_4",
             "d":"${:d0*2}",
-            "v":"${math.calc(:d+'*'+:d+'*'+:d+'/6')}\\pi"
+            "v":"${MMmath.calc(:d+'*'+:d+'*'+:d+'/6')}\\pi"
         },
         "figure":{"type":"svg", "content":"<svg width=\"15em\" height=\"9em\" viewBox=\"0 0 79.375 47.625\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M25.254 18.206l29.165 9.73\" fill=\"none\" stroke=\"#000\" stroke-width=\".529\" stroke-linecap=\"round\" stroke-dasharray=\"2.117 2.117\"/><text style=\"line-height:1.25;-inkscape-font-specification:Arial;text-align:center\" x=\"42.189\" y=\"15.767\" transform=\"rotate(14.726)\" font-size=\"4.233\" font-family=\"Arial\" letter-spacing=\"0\" word-spacing=\"0\" text-anchor=\"middle\" stroke-width=\".265\"><tspan style=\"text-align:center\" x=\"42.189\" y=\"15.767\">${:d} cm</tspan></text><path d=\"M60.233 23.14a20.56 6.918 0 01-10.28 5.99 20.56 6.918 0 01-20.56 0 20.56 6.918 0 01-10.28-5.99\" fill=\"none\" stroke=\"#000\" stroke-width=\".467\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M19.114 23.083a20.56 6.918 0 0120.642-6.862 20.56 6.918 0 0120.477 6.918\" fill=\"none\" stroke=\"#000\" stroke-width=\".467\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"1.867 1.867\"/><circle cx=\"39.673\" cy=\"23.139\" r=\"20.56\" fill=\"none\" stroke=\"#000\" stroke-width=\".529\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"},
         "shortq":"Volume ?",

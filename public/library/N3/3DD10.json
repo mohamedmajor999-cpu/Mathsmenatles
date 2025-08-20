@@ -14,8 +14,8 @@
                 "a":"-10_10_^0", "b":"-10_10_^0","choix":"0_1", "type":"${:vocab[:choix]}"
             },
             "question":[
-                "La fonction $$f:x \\mapsto ${math.signIfOne(:a)} x ${:choix==0?'':math.signedNumber(:b)}$$ est elle linéaire (L) ou affine non linéaire (A) ?",
-                "La fonction $$f:x \\mapsto ${:choix==0?''::b} ${:choix==0?math.signIfOne(:a):math.signedNumberButOne(:a)} x $$ est elle linéaire (L) ou affine non linéaire (A) ?"
+                "La fonction $$f:x \\mapsto ${MMmath.signIfOne(:a)} x ${:choix==0?'':MMmath.signedNumber(:b)}$$ est elle linéaire (L) ou affine non linéaire (A) ?",
+                "La fonction $$f:x \\mapsto ${:choix==0?''::b} ${:choix==0?MMmath.signIfOne(:a):MMmath.signedNumberButOne(:a)} x $$ est elle linéaire (L) ou affine non linéaire (A) ?"
             ]
         },{
             "name":"Fonctions sous forme canonique ax+b ou ax avec fractions",
@@ -29,10 +29,10 @@
                 "a":"-10_10_^0", "b":"-10_10_^0","choix":"0_1", "c":"-10_10_^0", "d":"-10_10_^0,${:b}", "type":"${:vocab[:choix]}","formes":["c(ax+b)","c(ax+b)-cb","(ax+b)-(cx+d)"]
             },
             "question":[
-                "La fonction $$f:x \\mapsto ${math.signIfOne(:c)}(${math.signIfOne(:a)} x ${:choix==0?'':math.signedNumber(:b)})$$ est elle linéaire (L) ou affine non linéaire (A) ?",
-                "La fonction $$f:x \\mapsto ${math.signIfOne(:c)}(${math.signIfOne(:a)} x ${math.signedNumber(:b)})${:choix==0?math.signedNumber(-:c*:b):math.signedNumber(:c*:d)}$$ est elle linéaire (L) ou affine non linéaire (A) ?",
-                "La fonction $$f:x \\mapsto ${math.signIfOne(:c)}(${math.signIfOne(:a)} x ${math.signedNumber(:b)})${:choix==0?'':math.signedNumber(-:c*:b)}$$ est elle linéaire (L) ou affine non linéaire (A) ?",
-                "La fonction $$f:x \\mapsto ${math.signIfOne(:c)}(${math.signIfOne(:a)} x ${math.signedNumber(:b)})-(${math.signIfOne(:c)} x ${:choix==0?math.signedNumber(:c*:b):math.signedNumber(:c*:d)})$$ est elle linéaire (L) ou affine non linéaire (A) ?"
+                "La fonction $$f:x \\mapsto ${MMmath.signIfOne(:c)}(${MMmath.signIfOne(:a)} x ${:choix==0?'':MMmath.signedNumber(:b)})$$ est elle linéaire (L) ou affine non linéaire (A) ?",
+                "La fonction $$f:x \\mapsto ${MMmath.signIfOne(:c)}(${MMmath.signIfOne(:a)} x ${MMmath.signedNumber(:b)})${:choix==0?MMmath.signedNumber(-:c*:b):MMmath.signedNumber(:c*:d)}$$ est elle linéaire (L) ou affine non linéaire (A) ?",
+                "La fonction $$f:x \\mapsto ${MMmath.signIfOne(:c)}(${MMmath.signIfOne(:a)} x ${MMmath.signedNumber(:b)})${:choix==0?'':MMmath.signedNumber(-:c*:b)}$$ est elle linéaire (L) ou affine non linéaire (A) ?",
+                "La fonction $$f:x \\mapsto ${MMmath.signIfOne(:c)}(${MMmath.signIfOne(:a)} x ${MMmath.signedNumber(:b)})-(${MMmath.signIfOne(:c)} x ${:choix==0?MMmath.signedNumber(:c*:b):MMmath.signedNumber(:c*:d)})$$ est elle linéaire (L) ou affine non linéaire (A) ?"
             ]
         }
     ],

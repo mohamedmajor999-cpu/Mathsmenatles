@@ -53,7 +53,7 @@
                 "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M10.496 6.982l53.11 32.395 6.438-32.29z' fill='none' stroke='#000' stroke-width='.706'/><path d='M70.084 7.087l-15.939 26.13' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M54.999 31.818l1.688 1.03-1.03 1.687-1.688-1.03z'/><text style='line-height:1.25;text-align:end' x='37.786' y='27.584' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='32.182' y='27.584'>${:base}</tspan></text><text style='line-height:1.25;text-align:end' x='60.164' y='20.491' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='60.164' y='20.491'>${:h}</tspan></text></svg>",
                 "<svg width='15em' height='9em' viewBox='0 0 79.375 47.625' xmlns='http://www.w3.org/2000/svg'><path d='M72.566 2.785L12.132 17.55l18.333 27.35z' fill='none' stroke='#000' stroke-width='.706'/><path d='M30.465 44.899l-7.263-29.734' fill='none' stroke='#000' stroke-width='.706' stroke-linecap='round'/><path fill='#fff' stroke='#1a1a1a' stroke-width='.706' stroke-linecap='round' d='M23.59 16.757l-1.92.47-.469-1.921 1.92-.47z'/><text style='line-height:1.25;text-align:end' x='40.652' y='9.158' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='40.652' y='9.158'>${:base}</tspan></text><text style='line-height:1.25;text-align:start' x='28.241' y='28.17' font-size='7.793' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265'><tspan style='text-align:start' x='32.511' y='28.17'>${:h}</tspan></text></svg>"
             ]},
-        "vars":{"a":"1_9","h":"1_9","u":"0_6","xc":"1_10","aire":"${math.round(:a*:h/2,1)}", "fig":"0_4", "base":"${:a} ${:unites[:u]}"},
+        "vars":{"a":"1_9","h":"1_9","u":"0_6","xc":"1_10","aire":"${MMmath.round(:a*:h/2,1)}", "fig":"0_4", "base":"${:a} ${:unites[:u]}"},
         "figure":{
             "type":"svg",
             "content":"${:triangles[:fig]}"
@@ -66,7 +66,7 @@
     },
     {
         "name":"Aire du disque",
-        "vars":{"r":"1_5","aire":"${math.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}", "ray":"${:r} ${:unites[:u]}"},
+        "vars":{"r":"1_5","aire":"${MMmath.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}", "ray":"${:r} ${:unites[:u]}"},
         "figure":{
             "type":"svg",
             "content":"<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><text style='line-height:1.25' font-size='7.546' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265' transform='scale(.99928 1.00072)' text-anchor='end'><tspan x='52.727' y='18.152' style='text-align:end'>${:ray}</tspan></text><ellipse cx='39.006' cy='23.78' fill='none' stroke='#000' stroke-width='.49' stroke-linecap='round' stroke-linejoin='round' rx='19.98' ry='20.009'/><path d='M37.544 22.477l2.923 2.606M40.291 22.16l-2.57 3.24M39.05 23.77l19.122-5.775' fill='none' stroke='#000' stroke-width='.49'/></svg>"
@@ -74,12 +74,12 @@
         "question": "Quelle est l'<b>aire</b> d'un disque de rayon $$${:r}\\text{ ${:unites[:u]}}$$ ?",
         "shortq": "Aire du disque ?",
         "audio": "Quelle est l'aire d'un disque de rayon ${:r} ${:uv[:unites[:u]]} ?",
-        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2 \\approx ${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":["${:aire}${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2", "${:aire}", "${math.signIfOne(:r2)}\\pi"]
+        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${MMmath.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2 \\approx ${:aire}\\text{ ${:unites[:u]}}^2}$$",
+        "value":["${:aire}${:unites[:u]}^2","${MMmath.signIfOne(:r2)}\\pi${:unites[:u]}^2", "${:aire}", "${MMmath.signIfOne(:r2)}\\pi"]
     },
     {
         "name":"Aire du disque à partir du diamètre",
-        "vars":{"r":"1_5", "d":"${:r*2}","aire":"${math.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}","xN":"${5-:r}", "diam":"${:d} ${:unites[:u]}"},
+        "vars":{"r":"1_5", "d":"${:r*2}","aire":"${MMmath.round(Math.PI*:r*:r,1)}","r2":"${:r*:r}","u":"0_6","xM":"${:r+5}","xN":"${5-:r}", "diam":"${:d} ${:unites[:u]}"},
         "figure":{
             "type":"svg",
             "content":"<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><text style='line-height:1.25;text-align:center' x='21.799' y='36.157' transform='rotate(-29.672)' font-size='8.041' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='middle' stroke-width='.265'><tspan style='text-align:center' x='21.799' y='36.157'>${:diam}</tspan></text><circle cx='38.666' cy='23.542' r='21.307' fill='none' stroke='#000' stroke-width='.49' stroke-linecap='round' stroke-linejoin='round'/><path d='M20.688 34.773l36.63-21.385m-19.695 9.716l3.23 2.357' fill='none' stroke='#000' stroke-width='.49'/></svg>"
@@ -87,8 +87,8 @@
         "question": "Quelle est l'<b>aire</b> d'un disque de diamètre $$${:d}\\text{ ${:unites[:u]}}$$ ?",
         "shortq": "Aire du disque ?",
         "audio": "Quelle est l'aire d'un disque de diamètre ${:d} ${:uv[:unites[:u]]} ?",
-        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2 \\approx ${:aire}\\text{ ${:unites[:u]}}^2}$$",
-        "value":["${:aire}${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2", "${:aire}", "${math.signIfOne(:r2)}\\pi"]
+        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${MMmath.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2 \\approx ${:aire}\\text{ ${:unites[:u]}}^2}$$",
+        "value":["${:aire}${:unites[:u]}^2","${MMmath.signIfOne(:r2)}\\pi${:unites[:u]}^2", "${:aire}", "${MMmath.signIfOne(:r2)}\\pi"]
     },
     {
         "name":"Aire du triangle rectangle",
@@ -100,7 +100,7 @@
                 "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><g font-family='Arial' font-size='4.23' letter-spacing='0' stroke-width='.178' word-spacing='0'><text x='41.699' y='20.725' style='line-height:1.25' transform='translate(-6.5 6.696) scale(1.4876)'><tspan x='41.699' y='20.725'>A</tspan></text><text x='6.723' y='20.936' style='line-height:1.25' transform='translate(-6.5 6.696) scale(1.4876)'><tspan x='6.723' y='20.936'>B</tspan></text><text x='32.636' y='5.18' style='line-height:1.25' transform='translate(-6.5 6.696) scale(1.4876)'><tspan x='32.636' y='5.18'>C</tspan></text></g><g fill='none' stroke='#000' stroke-width='.49'><path d='M54.811 34.61L45.29 15.92 9.236 34.29z'/><path stroke-linecap='round' stroke-linejoin='round' d='M46.092 17.498l-1.63.83-.83-1.63 1.63-.83z'/></g><text style='line-height:1.25;text-align:start' font-size='6.5' font-family='Arial' letter-spacing='0' word-spacing='0' stroke-width='.265'><tspan style='text-align:start' x='50.106' y='23.828'>${:lar}</tspan></text><text style='line-height:1.25;text-align:center' x='12.874' y='28.795' transform='matrix(.83328 -.4006 .46862 .97479 0 0)' font-size='6.5' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='middle' stroke-width='.265'><tspan style='text-align:center' x='12.874' y='28.795'>${:long}</tspan></text></svg>",
                 "<svg width='15em' height='9em' viewBox='0 0 79.35 47.7' xmlns='http://www.w3.org/2000/svg'><g font-family='Arial' font-size='4.23' letter-spacing='0' stroke-width='.16' word-spacing='0'><text x='7.348' y='5.334' style='line-height:1.25' transform='matrix(1.65499 0 0 1.65499 -.734 -.19)'><tspan x='7.348' y='5.334'>A</tspan></text><text x='42.211' y='6.504' style='line-height:1.25' transform='matrix(1.65499 0 0 1.65499 -.734 -.19)'><tspan x='42.211' y='6.504'>B</tspan></text><text x='15.599' y='22.563' style='line-height:1.25' transform='matrix(1.65499 0 0 1.65499 -.734 -.19)'><tspan x='15.599' y='22.563'>C</tspan></text></g><g fill='none' stroke='#000' stroke-width='.607'><path d='M17.287 9.72l10.775 20.7 39.93-20.787z'/><path stroke-linecap='round' stroke-linejoin='round' d='M27.153 28.672l1.806-.94.94 1.806-1.806.94z' /></g><text style='line-height:1.25;text-align:end' font-size='6.5' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='end' stroke-width='.265'><tspan style='text-align:end' x='22.524' y='22.771'>${:lar}</tspan></text><text style='line-height:1.25;text-align:center' transform='matrix(.81837 -.43024 .5033 .95734 0 0)' font-size='6.5' font-family='Arial' letter-spacing='0' word-spacing='0' text-anchor='middle' stroke-width='.265'><tspan x='36.057' y='44.057'>${:long}</tspan></text></svg>"
             ]},
-        "vars":{"a":"1_8", "b":"${:a+1}_9", "aire":"${math.round(:a*:b/2, 1)}","u":"0_6","fig":"0_5", "lar":"${:a} ${:unites[:u]}", "long":"${:b} ${:unites[:u]}"},
+        "vars":{"a":"1_8", "b":"${:a+1}_9", "aire":"${MMmath.round(:a*:b/2, 1)}","u":"0_6","fig":"0_5", "lar":"${:a} ${:unites[:u]}", "long":"${:b} ${:unites[:u]}"},
         "figure":{
             "type":"svg",
             "content":"${:trianglesRectangles[:fig]}"
@@ -121,8 +121,8 @@
         "question": "Quelle est l'<b>aire</b> exacte d'un disque de rayon $$${:r}\\text{ ${:unites[:u]}}$$ ?",
         "audio": "Quelle est l'aire exacte d'un disque de rayon ${:r} ${:uv[:unites[:u]]} ?",
         "shortq": "Aire exacte ?",
-        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2}$$",
-        "value":["${math.signIfOne(:r2)}\\pi~${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2"] 
+        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${MMmath.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2}$$",
+        "value":["${MMmath.signIfOne(:r2)}\\pi~${:unites[:u]}^2","${MMmath.signIfOne(:r2)}\\pi${:unites[:u]}^2"] 
     },
     {
         "name":"Aire exacte du disque à partir du diamètre",
@@ -134,8 +134,8 @@
         "question": "Quelle est l'<b>aire</b> exacte d'un disque de diamètre $$${:d}\\text{ ${:unites[:u]}}$$ ?",
         "shortq": "Aire exacte ?",
         "audio": "Quelle est l'aire exacte d'un disque de diamètre ${:d} ${:uv[:unites[:u]]} ?",
-        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${math.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2}$$",
-        "value":["${math.signIfOne(:r2)}\\pi~${:unites[:u]}^2","${math.signIfOne(:r2)}\\pi${:unites[:u]}^2"]
+        "answer":"$$pi \\times R \\times R = \\pi\\times${:r}\\times ${:r} =\\color{red}{${MMmath.signIfOne(:r2)}\\pi\\text{ ${:unites[:u]}}^2}$$",
+        "value":["${MMmath.signIfOne(:r2)}\\pi~${:unites[:u]}^2","${MMmath.signIfOne(:r2)}\\pi${:unites[:u]}^2"]
     }
     ]
 }

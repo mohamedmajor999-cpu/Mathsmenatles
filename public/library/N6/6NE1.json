@@ -23,6 +23,6 @@
     }
     ],
     "question":["${:c}^2","${:c}\\times${:c}"],
-    "answer":":question=\\color{red}{${math.round(:c**2,4)}}",
-    "value":"${math.round(:c**2,4)}"
+    "answer":":question=\\color{red}{${MMmath.round(:c**2,4)}}",
+    "value":"${MMmath.round(:c**2,4)}"
 }

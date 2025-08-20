@@ -10,8 +10,8 @@
                 "a":"-10_10_^0",
                 "bz":"0_1",
                 "b":"${:bz==0?0:'-10_10'}",
-                "F":"\\ln |${math.box(['Add',['Multiply',:a,'x'],:b])}| + C",
-                "f":"${math.box(['Divide',:a,['Add',['Multiply',:a,'x'],:b]])}"
+                "F":"\\ln |${MMmath.box(['Add',['Multiply',:a,'x'],:b])}| + C",
+                "f":"${MMmath.box(['Divide',:a,['Add',['Multiply',:a,'x'],:b]])}"
             }
         },{
             "name":"Primitive de $$\\dfrac1f$$",
@@ -19,8 +19,8 @@
                 "a":"-10_10_^0",
                 "bz":"0_1",
                 "b":"${:bz==0?0:'-10_10'}",
-                "F":"${math.box(['Divide',1,:a])}\\ln |${math.box(['Add',['Multiply',:a,'x'],:b])}| + C",
-                "f":"${math.box(['Divide',1,['Add',['Multiply',:a,'x'],:b]])}"
+                "F":"${MMmath.box(['Divide',1,:a])}\\ln |${MMmath.box(['Add',['Multiply',:a,'x'],:b])}| + C",
+                "f":"${MMmath.box(['Divide',1,['Add',['Multiply',:a,'x'],:b]])}"
             }
         },{
             "name":"Primitive de $$\\dfrac af$$",
@@ -29,8 +29,8 @@
                 "bz":"0_1",
                 "b":"${:bz==0?0:'-10_10'}",
                 "c":"-10_10_^0",
-                "F":"${math.box(['Divide',:c,:a])}\\ln |${math.box(['Add',['Multiply',:a,'x'],:b])}| + C",
-                "f":"${math.box(['Divide',:c,['Add',['Multiply',:a,'x'],:b]])}"
+                "F":"${MMmath.box(['Divide',:c,:a])}\\ln |${MMmath.box(['Add',['Multiply',:a,'x'],:b])}| + C",
+                "f":"${MMmath.box(['Divide',:c,['Add',['Multiply',:a,'x'],:b]])}"
             }
         },{
             "name":"Primitive de $$f'(x)e^{f(x)}$$",
@@ -38,8 +38,8 @@
                 "a":"-10_10_^0",
                 "bz":"0_1",
                 "b":"${:bz==0?0:'-10_10'}",
-                "F":"e^{${math.box(['Add',['Multiply',:a,'x'],:b])}} + C",
-                "f":"${:a}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}}"
+                "F":"e^{${MMmath.box(['Add',['Multiply',:a,'x'],:b])}} + C",
+                "f":"${:a}e^{${MMmath.box(['Add',['Multiply',:a,'x'],:b])}}"
             }
         },{
             "name":"Primitive de $$e^{f(x)}$$",
@@ -47,8 +47,8 @@
                 "a":"-10_10_^0",
                 "bz":"0_1",
                 "b":"${:bz==0?0:'-10_10'}",
-                "F":"${math.box(['Divide',1,:a])}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}} + C",
-                "f":"e^{${math.box(['Add',['Multiply',:a,'x'],:b])}}"
+                "F":"${MMmath.box(['Divide',1,:a])}e^{${MMmath.box(['Add',['Multiply',:a,'x'],:b])}} + C",
+                "f":"e^{${MMmath.box(['Add',['Multiply',:a,'x'],:b])}}"
             }
         },{
             "name":"Primitive de $$a e^{f(x)}$$",
@@ -57,8 +57,8 @@
                 "bz":"0_1",
                 "b":"${:bz==0?0:'-10_10'}",
                 "c":"-10_10_^0",
-                "F":"${math.box(['Divide',:c,:a])}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}} + C",
-                "f":"${:c}e^{${math.box(['Add',['Multiply',:a,'x'],:b])}}"
+                "F":"${MMmath.box(['Divide',:c,:a])}e^{${MMmath.box(['Add',['Multiply',:a,'x'],:b])}} + C",
+                "f":"${:c}e^{${MMmath.box(['Add',['Multiply',:a,'x'],:b])}}"
             }
         }
     ],

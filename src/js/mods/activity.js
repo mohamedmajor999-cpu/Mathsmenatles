@@ -1,5 +1,5 @@
 import { utils, _ } from './utils.js';
-import math from "./math.js";
+import MMmath from "./math.js";
 import Figure from "./figure.js";
 import library from "./library.js";
 
@@ -813,7 +813,7 @@ export default class activity {
                     if(this.cAnswer.length === lenQ){
                         this.cAnswer = this.cAnswer[patternNumber]; // same answer index as question index
                     } else { // alea answer
-                        this.cAnswer = this.cAnswer[math.aleaInt(0,this.cAnswer.length-1)];
+                        this.cAnswer = this.cAnswer[MMmath.aleaInt(0,this.cAnswer.length-1)];
                     }
                     if(this.cValue.length === lenQ){ // same values index as question index
                         this.cValue = this.cValue[patternNumber];
@@ -882,7 +882,7 @@ export default class activity {
                     }
                     let protectionLoop = 0, entier = 0
                     do {
-                        entier = math.aleaInt(0,this.wVars[name].length-1)
+                        entier = MMmath.aleaInt(0,this.wVars[name].length-1)
                         protectionLoop++
                         if(protectionLoop > 100) break; // tant pis, on sort de la boucle
                     } while (this.arraysHistoric[name].indexOf(entier) > -1)
@@ -895,7 +895,7 @@ export default class activity {
                     // var is defined with a min-max interval within a string
                     var bornes = this.wVars[name].split("_");
                     if(bornes[0].indexOf("d")>-1) {// float case
-                        this.wVars[name] = math.aleaFloat(Number(bornes[0].substring(1)), Number(bornes[1]), Number(bornes[2]), bornes[3], bornes[4]);
+                        this.wVars[name] = MMmath.aleaFloat(Number(bornes[0].substring(1)), Number(bornes[1]), Number(bornes[2]), bornes[3], bornes[4]);
                     } else { // integer case
                         // on va faire un historique des données et tourner dessus, sous certaines conditions.
                         // pour cela, on va compter le nombre de valeurs entières possibles pour chaque variable.
@@ -919,10 +919,10 @@ export default class activity {
                                 let liste = objContraintes.substring(1).split(",");
                                 // on liste les nombre premiers à éviter
                                 if(liste.indexOf("prime")>-1){
-                                    for(let i=0;i<math.premiers.length;i++){
-                                        if(math.premiers[i]<=max && math.premiers[i]>=min){
-                                            primes.push(math.premiers[i]);
-                                        } else if(math.premiers[i]>max) {
+                                    for(let i=0;i<MMmath.premiers.length;i++){
+                                        if(MMmath.premiers[i]<=max && MMmath.premiers[i]>=min){
+                                            primes.push(MMmath.premiers[i]);
+                                        } else if(MMmath.premiers[i]>max) {
                                             break;
                                         }
                                     }
@@ -937,7 +937,7 @@ export default class activity {
                         // on tire un entier au hasard tant qu'il n'est pas dans l'historique
                         let protectionLoop = 0;
                         do {
-                            entier = math.aleaInt(Number(bornes[0]), Number(bornes[1]), bornes[2], bornes[3]);
+                            entier = MMmath.aleaInt(Number(bornes[0]), Number(bornes[1]), bornes[2], bornes[3]);
                             protectionLoop++;
                             if(protectionLoop>100)break;
                         } while (this.intVarsHistoric[name].indexOf(entier)>-1)// l'index 0 est réservé à la taille du tableau

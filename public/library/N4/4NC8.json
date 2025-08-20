@@ -15,8 +15,8 @@
         "question": ["\\dfrac{${:num}}{${:den}} \\text{ de } ${:qte}",
             "\\dfrac{${:num}}{${:den}} \\times ${:qte}",
         "${:qte}\\times\\dfrac{${:num}}{${:den}}"],
-        "answer":":question = \\color{red}{${math.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}}",
-        "value":"${math.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}"
+        "answer":":question = \\color{red}{${MMmath.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}}",
+        "value":"${MMmath.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}"
 },{
     "name": "10e, 100e, 1000e de quantité multiple du dénominateur",
     "vars": {
@@ -27,8 +27,8 @@
     "question": ["\\dfrac{${:num}}{${:den}} \\text{ de } ${:qte}",
         "\\dfrac{${:num}}{${:den}} \\times ${:qte}",
     "${:qte}\\times\\dfrac{${:num}}{${:den}}"],
-    "answer":":question = \\color{green}{${math.round(:num*:qte/:den,2)}}=\\color{red}{${math.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}}",
-    "value":["${math.round(:num*:qte/:den,2)}","${math.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}"]
+    "answer":":question = \\color{green}{${MMmath.round(:num*:qte/:den,2)}}=\\color{red}{${MMmath.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}}",
+    "value":["${MMmath.round(:num*:qte/:den,2)}","${MMmath.calc('\\frac{'+:num+'}{'+:den+'}\\times'+:qte)}"]
 },{
     "name": "Fraction de fraction",
     "vars": {
@@ -41,7 +41,7 @@
         "\\dfrac{${:num1}}{${:den1}} \\text{ de } \\dfrac{${:num2}}{${:den2}}",
         "\\dfrac{${:num1}}{${:den1}} \\times \\dfrac{${:num2}}{${:den2}}"
     ],
-    "answer":":question = \\color{red}{${math.calc('\\frac{'+:num1+' \\times '+:num2+'}{'+:den1+' \\times '+:den2+'}')}}",
-    "value":"${math.calc('\\frac{'+:num1+' \\times '+:num2+'}{'+:den1+' \\times '+:den2+'}')}"
+    "answer":":question = \\color{red}{${MMmath.calc('\\frac{'+:num1+' \\times '+:num2+'}{'+:den1+' \\times '+:den2+'}')}}",
+    "value":"${MMmath.calc('\\frac{'+:num1+' \\times '+:num2+'}{'+:den1+' \\times '+:den2+'}')}"
 }]
 }

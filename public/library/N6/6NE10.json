@@ -6,13 +6,13 @@
     "repeat":"true",
     "options":[{
         "name":"Compléter des dixièmes",
-        "vars":{"n":"1_9","a":"${math.round(:n/10,1)}","c":"${math.round(1-:a,1)}"}
+        "vars":{"n":"1_9","a":"${MMmath.round(:n/10,1)}","c":"${MMmath.round(1-:a,1)}"}
     },{
         "name":"Compléter des centièmes",
-        "vars":{"n":"1_99","a":"${math.round(:n/100,2)}","c":"${math.round(1-:a,2)}"}
+        "vars":{"n":"1_99","a":"${MMmath.round(:n/100,2)}","c":"${MMmath.round(1-:a,2)}"}
     },{
         "name":"Compléter des millièmes",
-        "vars":{"n":"1_999","a":"${math.round(:n/1000,3)}","c":"${math.round(1-:a,3)}"}
+        "vars":{"n":"1_999","a":"${MMmath.round(:n/1000,3)}","c":"${MMmath.round(1-:a,3)}"}
     }
     ],
     "question": ["\\begin{array}{c} \\text{Combien manque-t-il à}\\\\ ${:a} \\text{ pour faire 1 ?}\\end{array}",

@@ -60,7 +60,7 @@
             "choix":[true,false],"somm":[true,false],
             "a":"${:choix?:triplets[:tr][0]:'2_12'}",
             "b":"${:choix?:triplets[:tr][1]:(:a+1)+'_16'}",
-            "c":"${:choix?:triplets[:tr][2]::somm?:a+:b:(:b+1)+'_20_^'+math.round(Math.sqrt(:a*:a+:b*:b),1)}",
+            "c":"${:choix?:triplets[:tr][2]::somm?:a+:b:(:b+1)+'_20_^'+MMmath.round(Math.sqrt(:a*:a+:b*:b),1)}",
             "AB":["${:A+:B}","${:B+:A}"],
             "BC":["${:B+:C}","${:C+:B}"],
             "CA":["${:C+:A}","${:A+:C}"],

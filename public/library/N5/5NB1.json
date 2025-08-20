@@ -16,6 +16,6 @@
     }],
     "value":"${:inf};${:sup}",
     "question":"Encadrer entre deux entiers consécutifs $$\\dfrac{${:num}}{${:den}}$$",
-    "audio":"Encadrer entre deux entiers consécutifs la fraction ${:num} ${math.NumberToFraction(:den)}",
+    "audio":"Encadrer entre deux entiers consécutifs la fraction ${:num} ${MMmath.NumberToFraction(:den)}",
     "answer":"$$\\color{red}{${:inf}} \\lt \\dfrac{${:num}}{${:den}} \\lt \\color{red}{${:sup}}$$"
 }

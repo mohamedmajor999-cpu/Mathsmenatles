@@ -6,7 +6,7 @@
     "description":"Écrire une fraction en utilisant une décomposition.",
     "dest":["5NA","4NA","3NA"],
     "question":"\\dfrac{${:num}}{${:den}}~=~ ... - \\dfrac{...}{...}",
-    "audio":"Décomposer ${:num} ${math.NumberToFraction(:den)} en un entier moins une fraction plus petite que 1.",
+    "audio":"Décomposer ${:num} ${MMmath.NumberToFraction(:den)} en un entier moins une fraction plus petite que 1.",
     "options":[{
         "name":"Dénominateur entre 2 et 11",
         "vars":{"den":"2_11", "num":"12_${:den*10}","entier":"${Math.ceil(:num/:den)}", "reste":"${:entier*:den-:num}"},

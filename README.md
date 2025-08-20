@@ -77,6 +77,15 @@ Et si on est en mode online :
  * nbMauvaisesReponses: nombre de mauvaises réponses,
  * slider: numero du panneau d'affichage (jusqu'à 4 possibles)
 
+## Développement
+- installer nodejs, npm, git, vscodium
+- récupérer le code sur gitlab
+- npm install
+- gulp pour passer en production dans le dossier dist qu'il suffit ensuite de mettre en ligne
+- les fichiers de la bibliothèque sont dans public/library
+- les fichier de dév sont dans src/
+- gulp permet de produire les fichiers de production dans public (à mettre sur son site perso)
+
 ### Changement de fonctionnement de la bibliothèque d'activités.
 Elle est à présent réalisée à l'aide de fichiers json peu complexes
 
@@ -92,7 +101,7 @@ Ces fichiers json comportent des *données obligatoires* :
      * des décimaux dmin_max_précision (pouvant être négative pour les puissances de 10 positives)
      * une valeur dans un tableau
    * une variable a pourra être reprise dans une autre variable par un appel de type ${:a} pour utiliser la variable a. Attention, les déclarations sont chronologiques : a ne peut être appelée avant sa déclaration.
-   * des calculs utilisant la bibliothèque math peuvent être effectués dans les paires d'accolades, exemple : ${math.multiply(:a,:b)}
+   * des calculs utilisant la bibliothèque math peuvent être effectués dans les paires d'accolades, exemple : ${MMmath.multiply(:a,:b)}
    * d'autres traitements peuvent être effectués à l'aide de fonctions javascript ${:a.toUpperCase()}
    * Note : les variables présentes dans l'activité et redéfinies dans une option sont définies dans l'ordre de déclaration globale. Il faut bien l'avoir en tête.
 * **question** : chaine unique ou tableau de chaines contenant le texte de la question
@@ -195,28 +204,28 @@ Il est possible de choisir parmi les types de questions, celle qui sera affiché
     "options":[{
         "name":"(ax+b)²",
         "question": [
-          "(${math.signIfOne(:a)}${:c}+${:b})^2", // (ax + b)², le a pouvant être 1, on utilise math.signIfOne qui remplace le nombre par rien si 1 ou - si -1
-          "(${:b}+${math.signIfOne(:a)}${:c})^2" // (b + ax)²
+          "(${MMmath.signIfOne(:a)}${:c}+${:b})^2", // (ax + b)², le a pouvant être 1, on utilise MMmath.signIfOne qui remplace le nombre par rien si 1 ou - si -1
+          "(${:b}+${MMmath.signIfOne(:a)}${:c})^2" // (b + ax)²
           ],
-          // reponse : (ax+b)² = en rouge ax²+2ab+b² on utilise math.multiply et math.pow plutôt que * et ^ qui peuvent créer des pb d'arrondi
-        "answer":":question=\\color{red}{${math.signIfOne(math.pow(:a,2))}${:c}^2+${math.multiply(2,:a,:b)}${:c}+${math.pow(:b,2)}}",
-        "value":"${math.signIfOne(math.pow(:a,2))}${:c}^2+${math.multiply(2,:a,:b)}${:c}+${math.pow(:b,2)}"    
+          // reponse : (ax+b)² = en rouge ax²+2ab+b² on utilise MMmath.multiply et MMmath.pow plutôt que * et ^ qui peuvent créer des pb d'arrondi
+        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2+${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}}",
+        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2+${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}"    
     },
     {
         "name":"(ax-b)²",
-        "question": ["(${math.signIfOne(:a)}${:c}-${:b})^2", "(${:b}-${math.signIfOne(:a)}${:c})^2"],
-        "answer":":question=\\color{red}{${math.signIfOne(math.pow(:a,2))}${:c}^2-${math.multiply(2,:a,:b)}${:c}+${math.pow(:b,2)}}",
-        "value":"${math.signIfOne(math.pow(:a,2))}${:c}^2-${math.multiply(2,:a,:b)}${:c}+${math.pow(:b,2)}"    
+        "question": ["(${MMmath.signIfOne(:a)}${:c}-${:b})^2", "(${:b}-${MMmath.signIfOne(:a)}${:c})^2"],
+        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}}",
+        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}"    
     },
     {
         "name":"(ax-b)(ax+b)",
         "question": [
-            "(${math.signIfOne(:a)}${:c}-${:b})(${math.signIfOne(:a)}${:c}+${:b})", // (ax-b)(ax+b)
-            "(${math.signIfOne(:a)}${:c}-${:b})(${:b}+${math.signIfOne(:a)}${:c})", // (ax-b)(b+ax)
-            "(${math.signIfOne(:a)}${:c}+${:b})(${math.signIfOne(:a)}${:c}-${:b})", // (ax+b)(ax-b)
-            "(${:b}+${math.signIfOne(:a)}${:c})(${math.signIfOne(:a)}${:c}-${:b})"], // (b-ax)(ax-b)
-        "answer":":question=\\color{red}{${math.signIfOne(math.pow(:a,2))}${:c}^2-${math.pow(:b,2)}}",
-        "value":"${math.signIfOne(math.pow(:a,2))}${:c}^2-${math.pow(:b,2)}"    
+            "(${MMmath.signIfOne(:a)}${:c}-${:b})(${MMmath.signIfOne(:a)}${:c}+${:b})", // (ax-b)(ax+b)
+            "(${MMmath.signIfOne(:a)}${:c}-${:b})(${:b}+${MMmath.signIfOne(:a)}${:c})", // (ax-b)(b+ax)
+            "(${MMmath.signIfOne(:a)}${:c}+${:b})(${MMmath.signIfOne(:a)}${:c}-${:b})", // (ax+b)(ax-b)
+            "(${:b}+${MMmath.signIfOne(:a)}${:c})(${MMmath.signIfOne(:a)}${:c}-${:b})"], // (b-ax)(ax-b)
+        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.pow(:b,2)}}",
+        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.pow(:b,2)}"    
     }
     ]
 }
@@ -265,8 +274,8 @@ Conversions
     ],
     "description":"Conversions des multiples et sous-multiples des m, L et g vers les m, L et g",
     "question":"\\text{Convertir } ${:x} \\text{ ${:k[0]} en }\\color{blue}\\text{${:q}}",
-    "answer":"${:x} \\text{ ${:k[0]}} = \\color{red}{${math.round(:x*:k[1],7)}\\text{ ${:q}}}",
-    "value":"${math.round(:x*:k[1],7)}\\text{ ${:q}}"
+    "answer":"${:x} \\text{ ${:k[0]}} = \\color{red}{${MMmath.round(:x*:k[1],7)}\\text{ ${:q}}}",
+    "value":"${MMmath.round(:x*:k[1],7)}\\text{ ${:q}}"
 }
 ```
 

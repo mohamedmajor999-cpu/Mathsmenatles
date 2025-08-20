@@ -1,4 +1,5 @@
-import katex from '../libs/katex/katex.mjs';
+import katex from '../libs/katex/katex.esm.js';
+import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
 export { utils as default }
 // Some traductions
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -508,10 +509,10 @@ export const utils = {
     initializeAlea: function (seed) {
         if (seed !== undefined) {
             if (utils.alea) delete utils.alea;
-            utils.alea = new Math.seedrandom(seed);
+            utils.alea = new seedrandom(seed);
         } else {
             if (utils.alea) delete utils.alea;
-            utils.alea = new Math.seedrandom(diaporama.seed);
+            utils.alea = new seedrandom(diaporama.seed);
         }
     },
 

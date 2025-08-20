@@ -40,6 +40,6 @@
     }],
     "question": "Lis le nombre <b>${:n}</b>.",
     "shortq": "Lis <b>${:n}</b> ?",
-    "answer": "${:n} se lit <span class='red'>${math.NumberToLetter(:n)}</span>",
-    "value": "${math.NumberToLetter(:n)}"
+    "answer": "${:n} se lit <span class='red'>${MMmath.NumberToLetter(:n)}</span>",
+    "value": "${MMmath.NumberToLetter(:n)}"
 }

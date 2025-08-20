@@ -6,6 +6,9 @@ import Figure from "./figure.js";
 import library from "./library.js";
 import draw from "./draw.js";
 import activity from "./activity.js";
+import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
+import QRCodeStyling from '../libs/qr-code-styling/qr-code-styling.js'
+
 export { MM as default }
 const MM = {
     version: 7,// à mettre à jour à chaque upload pour régler les pb de cache
@@ -80,10 +83,10 @@ const MM = {
     initializeAlea: function (seed) {
         if (seed) {
             if (utils.alea) delete utils.alea;
-            utils.alea = new Math.seedrandom(seed);
+            utils.alea = new seedrandom(seed);
         } else {
             if (utils.alea) delete utils.alea;
-            utils.alea = new Math.seedrandom(MM.seed);
+            utils.alea = new seedrandom(MM.seed);
         }
     },
     /**
@@ -1364,19 +1367,22 @@ const MM = {
                     return;
                 }
                 alert.appendChild(utils.create("h2", { innerText: "QRcode de l'exercice" }));
-                const qrdest = utils.create("img", { id: "qrious", "title": "Clic droit pour copier l'image" });
+                const qrdest = utils.create("div", { id: "qrious", "title": "Clic droit pour copier l'image" });
                 alert.appendChild(qrdest);
                 let inputShortUrl = document.getElementById("shorturl");
                 inputShortUrl.value = shorturl;
                 inputShortUrl.select();
                 inputShortUrl.setSelectionRange(0, 99999);
                 document.execCommand("copy");
-                let QR = new QRious({
-                    element: qrdest,// DOM destination
-                    value: shorturl,
-                    size: 200,
+                let QR = new QRCodeStyling({
+                    // element: qrdest,// DOM destination
+                    data: shorturl,
+                    width: 200,
+                    height: 200,
+                    type: 'svg',
                     padding: 12
                 });
+                QR.append(qrdest)
             } catch (err) {
                 console.log(err);
             }

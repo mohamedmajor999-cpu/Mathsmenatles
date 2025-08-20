@@ -8,16 +8,16 @@
         "vars":{
             "u":"1_9",
             "dx":"1_9",
-            "n":"${math.round(:u+:dx/10,1)}",
-            "double":"${math.round(2*:n,1)}"
+            "n":"${MMmath.round(:u+:dx/10,1)}",
+            "double":"${MMmath.round(2*:n,1)}"
         }
     },{
         "name":"Nombres à partie décimale > 10",
         "vars":{
             "u":"10_50",
             "dx":"1_9",
-            "n":"${math.round(:u+:dx/10,1)}",
-            "double":"${math.round(2*:n,1)}"
+            "n":"${MMmath.round(:u+:dx/10,1)}",
+            "double":"${MMmath.round(2*:n,1)}"
         }
     },{
         "name":"Nombres avec des centièmes",
@@ -25,8 +25,8 @@
             "u":"1_9",
             "dx":"0_9",
             "cm":"1_9",
-            "n":"${math.round(:u+:dx/10+:cm/100,2)}",
-            "double":"${math.round(2*:n,2)}"
+            "n":"${MMmath.round(:u+:dx/10+:cm/100,2)}",
+            "double":"${MMmath.round(2*:n,2)}"
         }
     }
     ],

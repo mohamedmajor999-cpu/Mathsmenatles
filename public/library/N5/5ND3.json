@@ -19,11 +19,11 @@
         "name":"Diviseurs parmi 2, 3, 4, 9 et 10 (5e+)",
         "vars":{"a":[2,3,5,9,10],"b":"20_2000", "c":"0_1", "d":"${:b*:a**:c}"},
         "question":"Quels sont les diviseurs de ${:d} parmi 2, 3, 5, 9 et 10 ?",
-        "answer":"${:d} est divisible par <span class='red'>${math.listeDiviseurs10(:d)}</span>",
-        "value":"${math.listeDiviseurs10(:d)}"
+        "answer":"${:d} est divisible par <span class='red'>${MMmath.listeDiviseurs10(:d)}</span>",
+        "value":"${MMmath.listeDiviseurs10(:d)}"
     }
     ],
     "question": "Quels sont tous les diviseurs de ${:c} ?",
-    "answer":"Diviseurs de ${:c} : <span class='red'>${math.listeDiviseurs(:c)}</span>",
-    "value":"${math.listeDiviseurs(:c)}"
+    "answer":"Diviseurs de ${:c} : <span class='red'>${MMmath.listeDiviseurs(:c)}</span>",
+    "value":"${MMmath.listeDiviseurs(:c)}"
 }

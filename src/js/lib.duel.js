@@ -7,6 +7,7 @@ import Figure from './mods/figure.js';
 import keyBoard from './mods/keyboard.js';
 import { MathfieldElement } from './libs/mathlive/mathlive.mjs';
 import MM from './mods/MM.js';
+import KAS from './libs/kas.esm.js';
 
 MathfieldElement.fontsDirectory = '../katex/fonts'
 MathfieldElement.soundsDirectory = null

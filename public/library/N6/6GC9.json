@@ -112,7 +112,7 @@
                 "BC":"d5_20_1",
                 "CA":"",
                 "angA":"",
-                "AB":"d3_${math.round(:BC-1,1)}_1",
+                "AB":"d3_${MMmath.round(:BC-1,1)}_1",
                 "mesures":["${:cAB}=${:AB}~${:u} \\text{ et } ${:cBC}=${:BC}~${:u}"," ${:cBC}=${:BC}~${:u} \\text{ et }${:cAB}=${:AB}~${:u}"],
                "sample":"0_3"
             },

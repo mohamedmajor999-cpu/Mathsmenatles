@@ -11,14 +11,14 @@
         "name":"Monomes",
         "vars":{"a":"-9_9_^0","p":"1_9","cx":"0_3","x":"${:lettres[:cx]}"},
         "question": "\\left(${:a==1?''::a==-1?'-'::a}${:x}{${:p>1?'^'+:p:''}}\\right)'",
-        "answer":":question=\\color{red}{${math.calc('('+:a+')*'+:p+:x+'^'+(:p-1))}}",
-        "value":"${math.calc('('+:a+')*'+:p+:x+'^'+(:p-1))}"
+        "answer":":question=\\color{red}{${MMmath.calc('('+:a+')*'+:p+:x+'^'+(:p-1))}}",
+        "value":"${MMmath.calc('('+:a+')*'+:p+:x+'^'+(:p-1))}"
     },{
         "name":"Polynomes de degré 2",
         "vars":{"a":"-9_9_3","cx":"0_3","x":"${:lettres[:cx]}"},
-        "question":"\\left(${math.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}\\right)'",
-        "answer":":question=\\color{red}{${math.calc((:a[0]*2)+'*'+:x+'+'+:a[1])}}",
-        "value":"${math.calc('('+:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+'))')}"
+        "question":"\\left(${MMmath.calc(:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+')')}\\right)'",
+        "answer":":question=\\color{red}{${MMmath.calc((:a[0]*2)+'*'+:x+'+'+:a[1])}}",
+        "value":"${MMmath.calc('('+:a[0]+'*'+:x+'^2+('+:a[1]+')*'+:x+'+('+:a[2]+'))')}"
     }
     ]
 }

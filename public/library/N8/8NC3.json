@@ -24,7 +24,7 @@
             "$$${:n} + ${:x}\\times 1000 = \\color{red}{${:n+:x*1000}}$$",
             "$$${:n}$$ et $$${:x}$$ centaine${:x>1?'s':''} font $$\\color{red}{${:n+:x*1000}}$$"
         ],
-        "value":"${math.round(:n+:x*1000)}"
+        "value":"${MMmath.round(:n+:x*1000)}"
     },{
         "name":"Ajouter des centaines",
         "vars":{
@@ -45,7 +45,7 @@
             "$$${:n} + ${:x}\\times 100 = \\color{red}{${:n+:x*100}}$$",
             "$$${:n}$$ et $$${:x}$$ centaine${:x>1?'s':''} font $$\\color{red}{${:n+:x*100}}$$"
         ],
-        "value":"${math.round(:n+:x*100)}"
+        "value":"${MMmath.round(:n+:x*100)}"
     },{
         "name":"Ajouter des dizaines",
         "vars":{
@@ -66,7 +66,7 @@
             "$$${:n} + ${:x}\\times 10 = \\color{red}{${:n+:x*10}}$$",
             "$$${:n}$$ et $$${:x}$$ dizaine${:x>1?'s':''} font $$\\color{red}{${:n+:x*10}}$$"
         ],
-        "value":"${math.round(:n+:x*10)}"
+        "value":"${MMmath.round(:n+:x*10)}"
     },{
         "name":"Ajouter des unités",
         "vars":{
@@ -74,7 +74,7 @@
             "dizaines":"0_9",
             "centaines":"1_9",
             "dixiemes":"0_9",
-            "n":"${math.round(:centaines*100+:dizaines*10+:unites+:dixiemes/10,1)}",
+            "n":"${MMmath.round(:centaines*100+:dizaines*10+:unites+:dixiemes/10,1)}",
             "x":"1_${9-:unites}"
         },
         "question":[
@@ -83,11 +83,11 @@
             "Combien font $$${:n}$$ et $$${:x}$$ unité${:x>1?'s':''} ?"
         ],
         "answer":[
-            "$$${:n}+${:x}= \\color{red}{${math.round(:n+:x,1)}}$$",
-            "$$${:n}+${:x}\\times 1= \\color{red}{${math.round(:n+:x,1)}}$$",
-            "$$${:n}$$ et $$${:x}$$ unité${:x>1?'s':''} font $$\\color{red}{${math.round(:n+:x,1)}}$$"
+            "$$${:n}+${:x}= \\color{red}{${MMmath.round(:n+:x,1)}}$$",
+            "$$${:n}+${:x}\\times 1= \\color{red}{${MMmath.round(:n+:x,1)}}$$",
+            "$$${:n}$$ et $$${:x}$$ unité${:x>1?'s':''} font $$\\color{red}{${MMmath.round(:n+:x,1)}}$$"
         ],
-        "value":"${math.round(:n+:x,1)}"
+        "value":"${MMmath.round(:n+:x,1)}"
     },{
         "name":"Ajouter des dixièmes",
         "vars":{
@@ -95,20 +95,20 @@
             "unites":"0_9",
             "dixiemes":"0_8",
             "centiemes":"0_9",
-            "n":"${math.round(:dizaines*10+:unites+:dixiemes/10+:centiemes/100,2)}",
+            "n":"${MMmath.round(:dizaines*10+:unites+:dixiemes/10+:centiemes/100,2)}",
             "x":"1_${9-:dixiemes}"
         },
         "question":[
-            "$$${:n}+${math.round(:x/10,1)}$$",
+            "$$${:n}+${MMmath.round(:x/10,1)}$$",
             "$$${:n} + \\dfrac{${:x}}{10}$$",
             "Combien font $$${:n}$$ et $$${:x}$$ dixième${:x>1?'s':''} ?"
         ],
         "answer":[
-            "$$${:n}+${:x}=\\color{red}{${math.round(:n+:x/10,2)}}$$",
-            "$$${:n} + \\dfrac{${:x}}{10} = \\color{red}{${math.round(:n+:x/10,2)}}$$",
-            "$$${:n}$$ et $$${:x}$$ dixième${:x>1?'s':''} font $$\\color{red}{${math.round(:n+:x/10,2)}}$$."
+            "$$${:n}+${:x}=\\color{red}{${MMmath.round(:n+:x/10,2)}}$$",
+            "$$${:n} + \\dfrac{${:x}}{10} = \\color{red}{${MMmath.round(:n+:x/10,2)}}$$",
+            "$$${:n}$$ et $$${:x}$$ dixième${:x>1?'s':''} font $$\\color{red}{${MMmath.round(:n+:x/10,2)}}$$."
         ],
-        "value":"${math.round(:n+:x/10,2)}"
+        "value":"${MMmath.round(:n+:x/10,2)}"
     },{
         "name":"Ajouter des centièmes",
         "vars":{
@@ -116,20 +116,20 @@
             "dixiemes":"0_9",
             "centiemes":"0_8",
             "milliemes":"0_9",
-            "n":"${math.round(:unites+:dixiemes/10+:centiemes/100+:milliemes/1000,3)}",
+            "n":"${MMmath.round(:unites+:dixiemes/10+:centiemes/100+:milliemes/1000,3)}",
             "x":"1_${9-:centiemes}"
         },
         "question":[
-            "$$${:n}+${math.round(:x/100,2)}$$",
+            "$$${:n}+${MMmath.round(:x/100,2)}$$",
             "$$${:n} + \\dfrac{${:x}}{100}$$",
             "Combien font $$${:n}$$ et $$${:x}$$ centième${:x>1?'s':''} ?"
         ],
         "answer":[
-            "$$${:n}+${:x}=\\color{red}{${math.round(:n+:x/100,3)}}$$",
-            "$$${:n} + \\dfrac{${:x}}{100} = \\color{red}{${math.round(:n+:x/100,3)}}$$",
-            "$$${:n}$$ et $$${:x}$$ centième${:x>1?'s':''} font $$\\color{red}{${math.round(:n+:x/100,3)}}$$."
+            "$$${:n}+${:x}=\\color{red}{${MMmath.round(:n+:x/100,3)}}$$",
+            "$$${:n} + \\dfrac{${:x}}{100} = \\color{red}{${MMmath.round(:n+:x/100,3)}}$$",
+            "$$${:n}$$ et $$${:x}$$ centième${:x>1?'s':''} font $$\\color{red}{${MMmath.round(:n+:x/100,3)}}$$."
         ],
-        "value":"${math.round(:n+:x/100,3)}"
+        "value":"${MMmath.round(:n+:x/100,3)}"
     },{
         "name":"Ajouter des millièmes (CM2)",
         "vars":{
@@ -137,19 +137,19 @@
             "dixiemes":"0_9",
             "centiemes":"0_9",
             "milliemes":"0_8",
-            "n":"${math.round(:unites+:dixiemes/10+:centiemes/100+:milliemes/1000,3)}",
+            "n":"${MMmath.round(:unites+:dixiemes/10+:centiemes/100+:milliemes/1000,3)}",
             "x":"1_${9-:milliemes}"
         },
         "question":[
-            "$$${:n}+${math.round(:x/1000,3)}$$",
+            "$$${:n}+${MMmath.round(:x/1000,3)}$$",
             "$$${:n} + \\dfrac{${:x}}{1000}$$",
             "Combien font $$${:n}$$ et $$${:x}$$ millièmes${:x>1?'s':''} ?"
         ],
         "answer":[
-            "$$${:n}+${:x}=\\color{red}{${math.round(:n+:x/1000,3)}}$$",
-            "$$${:n} + \\dfrac{${:x}}{1000} = \\color{red}{${math.round(:n+:x/1000,3)}}$$",
-            "$$${:n}$$ et $$${:x}$$ millième${:x>1?'s':''} font $$\\color{red}{${math.round(:n+:x/1000,3)}}$$."
+            "$$${:n}+${:x}=\\color{red}{${MMmath.round(:n+:x/1000,3)}}$$",
+            "$$${:n} + \\dfrac{${:x}}{1000} = \\color{red}{${MMmath.round(:n+:x/1000,3)}}$$",
+            "$$${:n}$$ et $$${:x}$$ millième${:x>1?'s':''} font $$\\color{red}{${MMmath.round(:n+:x/1000,3)}}$$."
         ],
-        "value":"${math.round(:n+:x/1000,3)}"
+        "value":"${MMmath.round(:n+:x/1000,3)}"
     }]
 }

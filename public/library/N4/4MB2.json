@@ -38,7 +38,7 @@
         "name":"Trouver le coefficient à partir de longueurs",
         "vars":{
             "la":"1_10",
-            "la1":"${math.round(:la*:vcoef,1)}",
+            "la1":"${MMmath.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
             "coef":"?",
@@ -52,20 +52,20 @@
         "name":"Multiplication des aires connaissant le coefficient",
         "vars":{
             "la":"2_10",
-            "la1":"${math.round(:la*:vcoef,1)}",
+            "la1":"${MMmath.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
             "choixfig":"0_8"
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
         "question":"Par combien sont multipliées les aires ?",
-        "answer":"Les aires sont multipliées par $$${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef,2)}}$$",
-        "value":"${math.round(:vcoef*:vcoef,2)}"
+        "answer":"Les aires sont multipliées par $$${:vcoef}\\times${:vcoef}=\\color{red}{${MMmath.round(:vcoef*:vcoef,2)}}$$",
+        "value":"${MMmath.round(:vcoef*:vcoef,2)}"
     },{
         "name":"Multiplication des aires connaissant des longueurs",
         "vars":{
             "la":"2_10",
-            "la1":"${math.round(:la*:vcoef,1)}",
+            "la1":"${MMmath.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
             "choixfig":"0_8",
@@ -73,27 +73,27 @@
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
         "question":"Par combien sont multipliées les aires ?",
-        "answer":"Le coefficient est $$${:la1+'\\div'+:la}=${:vcoef}$$,<br> les aires sont donc multipliées par $$${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef,2)}}$$",
-        "value":"${math.round(:vcoef*:vcoef,2)}"
+        "answer":"Le coefficient est $$${:la1+'\\div'+:la}=${:vcoef}$$,<br> les aires sont donc multipliées par $$${:vcoef}\\times${:vcoef}=\\color{red}{${MMmath.round(:vcoef*:vcoef,2)}}$$",
+        "value":"${MMmath.round(:vcoef*:vcoef,2)}"
     },{
         "name":"Multiplication des volumes connaissant le coefficient (peu varié)",
         "vars":{
             "vcoef":"${:AorR==0?'2_3':'d0.1_0.3_1'}",
             "la":"2_10",
-            "la1":"${math.round(:la*:vcoef,1)}",
+            "la1":"${MMmath.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
             "choixfig":"4_8"
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
         "question":"Par combien sont multipliés les volumes ?",
-        "answer":"Le coefficient est $$${:vcoef}$$,<br> les volumes sont donc multipliés par $$${:vcoef}\\times${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef*:vcoef,3)}}$$",
-        "value":"${math.round(:vcoef*:vcoef*:vcoef,3)}"
+        "answer":"Le coefficient est $$${:vcoef}$$,<br> les volumes sont donc multipliés par $$${:vcoef}\\times${:vcoef}\\times${:vcoef}=\\color{red}{${MMmath.round(:vcoef*:vcoef*:vcoef,3)}}$$",
+        "value":"${MMmath.round(:vcoef*:vcoef*:vcoef,3)}"
     }, {
         "name":"Multiplication des volumes connaissant des longueurs",
         "vars":{
             "la":"2_10",
-            "la1":"${math.round(:la*:vcoef,1)}",
+            "la1":"${MMmath.round(:la*:vcoef,1)}",
             "a":"${:la}",
             "a1":"${:la1}",
             "choixfig":"4_8",
@@ -101,8 +101,8 @@
         },
         "figure":{"type":"svg","content":"${:AorR==0?:agrandissements[:choixfig]::reductions[:choixfig]}"},
         "question":"Par combien sont multipliés les volumes ?",
-        "answer":"Le coefficient est $$${:la1+'\\div'+:la}=${:vcoef}$$,<br> les volumes sont donc multipliés par $$${:vcoef}\\times${:vcoef}\\times${:vcoef}=\\color{red}{${math.round(:vcoef*:vcoef*:vcoef,3)}}$$",
-        "value":"${math.round(:vcoef*:vcoef*:vcoef,3)}"
+        "answer":"Le coefficient est $$${:la1+'\\div'+:la}=${:vcoef}$$,<br> les volumes sont donc multipliés par $$${:vcoef}\\times${:vcoef}\\times${:vcoef}=\\color{red}{${MMmath.round(:vcoef*:vcoef*:vcoef,3)}}$$",
+        "value":"${MMmath.round(:vcoef*:vcoef*:vcoef,3)}"
     }
     ]
 }

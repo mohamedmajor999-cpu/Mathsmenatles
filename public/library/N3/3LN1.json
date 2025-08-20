@@ -9,19 +9,19 @@
         {
             "name":"Vocabulaire",
             "question":[
-                "Comment s’appelle ce type d’égalité : $$${:a[0]}x${math.signedNumber(:a[1])}=${:a[2]}$$ ?",
+                "Comment s’appelle ce type d’égalité : $$${:a[0]}x${MMmath.signedNumber(:a[1])}=${:a[2]}$$ ?",
                 "Comment s’appellent les lettres dans une équation ?",
                 "Qu’est-ce qu’une solution d’une équation ?",
-                "Dans l’équation $$${:a[0]}x${math.signedNumber(:a[1])}=${:a[2]}x${math.signedNumber(:a[3])}$$, comment s’appelle $$${:a[0]}x${math.signedNumber(:a[1])}$$ ?",
-                "Dans l’équation $$${:a[0]}x${math.signedNumber(:a[1])}=${:a[2]}x${math.signedNumber(:a[3])}$$, comment s’appelle $$${:a[2]}x${math.signedNumber(:a[3])}$$ ?",
+                "Dans l’équation $$${:a[0]}x${MMmath.signedNumber(:a[1])}=${:a[2]}x${MMmath.signedNumber(:a[3])}$$, comment s’appelle $$${:a[0]}x${MMmath.signedNumber(:a[1])}$$ ?",
+                "Dans l’équation $$${:a[0]}x${MMmath.signedNumber(:a[1])}=${:a[2]}x${MMmath.signedNumber(:a[3])}$$, comment s’appelle $$${:a[2]}x${MMmath.signedNumber(:a[3])}$$ ?",
                 "Que veut dire résoudre une équation ?"
             ],
             "answer":[
-                "$$${:a[0]}x${math.signedNumber(:a[1])}=${:a[2]}$$ est une <b>équation</b>.",
+                "$$${:a[0]}x${MMmath.signedNumber(:a[1])}=${:a[2]}$$ est une <b>équation</b>.",
                 "Les lettres dans une équations s’appellent les <b>inconnues</b>?",
                 "Une solution est un nombre qui rend vraie l’égalité entre les deux membres de l’équation.",
-                "Dans l’équation $$${:a[0]}x${math.signedNumber(:a[1])}=${:a[2]}x${math.signedNumber(:a[3])}$$, $$${:a[0]}x${math.signedNumber(:a[1])}$$ est le <b>membre de gauche</b> ou premier membre.",
-                "Dans l’équation $$${:a[0]}x${math.signedNumber(:a[1])}=${:a[2]}x${math.signedNumber(:a[3])}$$, $$${:a[2]}x${math.signedNumber(:a[3])}$$ est le <b>membre de droite</b> ou deuxième membre.",
+                "Dans l’équation $$${:a[0]}x${MMmath.signedNumber(:a[1])}=${:a[2]}x${MMmath.signedNumber(:a[3])}$$, $$${:a[0]}x${MMmath.signedNumber(:a[1])}$$ est le <b>membre de gauche</b> ou premier membre.",
+                "Dans l’équation $$${:a[0]}x${MMmath.signedNumber(:a[1])}=${:a[2]}x${MMmath.signedNumber(:a[3])}$$, $$${:a[2]}x${MMmath.signedNumber(:a[3])}$$ est le <b>membre de droite</b> ou deuxième membre.",
                 "Résoudre une équation veut dire <b>trouver toutes ses solutions</b>."
             ]
         },{

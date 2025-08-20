@@ -12,8 +12,8 @@
         "name":"Racines d'entiers divisés par 10, 100, 1000",
         "vars":{"entier":"1_20",
             "diviseur":[10,100,1000],
-            "racine":"${math.round(:entier/:diviseur,3)}",
-            "carre":"${math.round(:racine*:racine,6)}"
+            "racine":"${MMmath.round(:entier/:diviseur,3)}",
+            "carre":"${MMmath.round(:racine*:racine,6)}"
         }
     },{
         "name":"Racines d'entiers multipliés par 10, 100, 1000",
@@ -31,8 +31,8 @@
         "name":"Racines d'entiers ≤144 divisés par 10, 100, 1000",
         "vars":{"entier":"1_12",
             "diviseur":[10,100,1000],
-            "racine":"${math.round(:entier/:diviseur,3)}",
-            "carre":"${math.round(:racine*:racine,6)}"
+            "racine":"${MMmath.round(:entier/:diviseur,3)}",
+            "carre":"${MMmath.round(:racine*:racine,6)}"
         }
     },{
         "name":"Racines d'entiers ≤144 multipliés par 10, 100, 1000",

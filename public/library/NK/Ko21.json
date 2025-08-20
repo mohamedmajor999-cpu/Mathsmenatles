@@ -9,10 +9,10 @@
     "options":[{
         "name":"Double distributivité",
         "vars":{"l":"0_4", "a":"-10_10_^0","b":"-10_10_^0","c":"-10_10_^0","d":"-10_10_^0,${-:b*:c/:a}","x":"${:lettres[:l]}"},
-        "question": "\\begin{array}{c} \\text{Développer et réduire}\\\\(${math.signIfOne(:a)+:x}${math.signedNumber(:b)})(${math.signIfOne(:c)+:x}${math.signedNumber(:d)})\\end{array}",
-        "shortq": "(${math.signIfOne(:a)+:x}${math.signedNumber(:b)})(${math.signIfOne(:c)+:x}${math.signedNumber(:d)})",
-        "answer":"(${math.signIfOne(:a)+:x}${math.signedNumber(:b)})(${math.signIfOne(:c)+:x}${math.signedNumber(:d)})=\\color{red}{${math.signIfOne(:a*:c)+:x}^2${(:a*:d+:b*:c!=0)?math.signedNumberButOne(:a*:d+:b*:c)+:x:''}${math.signedNumber(:b*:d)}}",
-        "value":"${math.signIfOne(:a*:c)+:x}^2${(:a*:d+:b*:c!=0)?math.signedNumberButOne(:a*:d+:b*:c)+:x:''}${math.signedNumber(:b*:d)}"
+        "question": "\\begin{array}{c} \\text{Développer et réduire}\\\\(${MMmath.signIfOne(:a)+:x}${MMmath.signedNumber(:b)})(${MMmath.signIfOne(:c)+:x}${MMmath.signedNumber(:d)})\\end{array}",
+        "shortq": "(${MMmath.signIfOne(:a)+:x}${MMmath.signedNumber(:b)})(${MMmath.signIfOne(:c)+:x}${MMmath.signedNumber(:d)})",
+        "answer":"(${MMmath.signIfOne(:a)+:x}${MMmath.signedNumber(:b)})(${MMmath.signIfOne(:c)+:x}${MMmath.signedNumber(:d)})=\\color{red}{${MMmath.signIfOne(:a*:c)+:x}^2${(:a*:d+:b*:c!=0)?MMmath.signedNumberButOne(:a*:d+:b*:c)+:x:''}${MMmath.signedNumber(:b*:d)}}",
+        "value":"${MMmath.signIfOne(:a*:c)+:x}^2${(:a*:d+:b*:c!=0)?MMmath.signedNumberButOne(:a*:d+:b*:c)+:x:''}${MMmath.signedNumber(:b*:d)}"
     }
     ]
 }

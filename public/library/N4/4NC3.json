@@ -15,6 +15,6 @@
     }
     ],
     "question":"\\dfrac{${:num[0]}}{${:den[0]}}\\times\\dfrac{${:num[1]}}{${:den[1]}}",
-    "answer":":question=\\color{red}{\\displaystyle${math.calc(:num[0]+'*('+:num[1]+')/('+:den[0]+')/('+:den[1]+')',false)}}",
-    "value":"${math.calc(:num[0]+'*('+:num[1]+')/('+:den[0]+')/('+:den[1]+')')}"
+    "answer":":question=\\color{red}{\\displaystyle${MMmath.calc(:num[0]+'*('+:num[1]+')/('+:den[0]+')/('+:den[1]+')',false)}}",
+    "value":"${MMmath.calc(:num[0]+'*('+:num[1]+')/('+:den[0]+')/('+:den[1]+')')}"
 }

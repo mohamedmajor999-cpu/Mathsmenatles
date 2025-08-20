@@ -22,9 +22,9 @@
             "vars":{
                 "c":"1_9",
                 "d":"10_99",
-                "n":"${math.round((:c+10*:d)/100,2)}",
+                "n":"${MMmath.round((:c+10*:d)/100,2)}",
                 "unit":"0_1",
-                "n2":"${math.round(:n*100,1)}"
+                "n2":"${MMmath.round(:n*100,1)}"
             },
             "question":"Combien de $$\\text{${:units[:unit+1]}}^2$$ y a-t-il dans $$${:n}\\text{ ${:units[:unit]}}^2$$ ?",
             "answer":"$$${:n}\\text{ ${:units[:unit]}}^2=\\color{red}{${:n2}}\\text{ ${:units[:unit+1]}}^2$$",
@@ -34,9 +34,9 @@
             "vars":{
                 "c":"1_9",
                 "d":"1_9",
-                "n":"${math.round((:c+10*:d)/10,1)}",
+                "n":"${MMmath.round((:c+10*:d)/10,1)}",
                 "unit":"0_1",
-                "n2":"${math.round(:n*100,1)}"
+                "n2":"${MMmath.round(:n*100,1)}"
             },
             "question":"Combien de $$\\text{${:units[:unit+1]}}^2$$ y a-t-il dans $$${:n}\\text{ ${:units[:unit]}}^2$$ ?",
             "answer":"$$${:n}\\text{ ${:units[:unit]}}^2=\\color{red}{${:n2}}\\text{ ${:units[:unit+1]}}^2$$",
@@ -47,7 +47,7 @@
                 "c":"1_9",
                 "n":"${:c*100}",
                 "unit":"1_2",
-                "n2":"${math.round(:n/100,2)}"
+                "n2":"${MMmath.round(:n/100,2)}"
             },
             "question":"Combien de $$\\text{${:units[:unit-1]}}^2$$ y a-t-il dans $$${:n}\\text{ ${:units[:unit]}}^2$$ ?",
             "answer":"$$${:n}\\text{ ${:units[:unit]}}^2=\\color{red}{${:n2}}\\text{ ${:units[:unit-1]}}^2$$",
@@ -59,7 +59,7 @@
                 "d":"10_99",
                 "n":"${:u+10*:d}",
                 "unit":"1_2",
-                "n2":"${math.round(:n/100,2)}"
+                "n2":"${MMmath.round(:n/100,2)}"
             },
             "question":"Combien de $$\\text{${:units[:unit-1]}}^2$$ y a-t-il dans $$${:n}\\text{ ${:units[:unit]}}^2$$ ?",
             "answer":"$$${:n}\\text{ ${:units[:unit]}}^2=\\color{red}{${:n2}}\\text{ ${:units[:unit-1]}}^2$$",
@@ -70,7 +70,7 @@
                 "d":"10_99",
                 "n":"${10*:d}",
                 "unit":"1_2",
-                "n2":"${math.round(:n/100,2)}"
+                "n2":"${MMmath.round(:n/100,2)}"
             },
             "question":"Combien de $$\\text{${:units[:unit-1]}}^2$$ y a-t-il dans $$${:n}\\text{ ${:units[:unit]}}^2$$ ?",
             "answer":"$$${:n}\\text{ ${:units[:unit]}}^2=\\color{red}{${:n2}}\\text{ ${:units[:unit-1]}}^2$$",

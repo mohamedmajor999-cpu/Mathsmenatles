@@ -83,7 +83,7 @@ async function minifyCss() {
     })
     let listOfCss = ['src/css/'+ module + '.css']
     if(module === 'mathsmentales')
-      listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/bulma-steps.css','src/css/mathsmentales.css']
+      listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/bulma-steps.css','src/css/mathsmentales.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css']
     else if(module === 'diaporama')
       listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/diaporama.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css','src/js/libs/katex/katex.min.css', 'src/css/bulma-steps.css']
     else if(module === 'wall')
@@ -110,7 +110,7 @@ async function updateVersion() {
     updatedContent = updatedContent.replace('alllibs.js', 'alllibs.min.js')
     // css - à mettre à jour pour autres modules
     if(htmlPageName === 'index.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacssextract.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />', '<link rel="stylesheet" href="css/mathsmentales-' + packageJson.version + '.css?" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacssextract.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" /><link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/mathsmentales-' + packageJson.version + '.css?" />')
     } else if(htmlPageName === 'wall.html') {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'diaporama.html') {
@@ -160,7 +160,7 @@ builds.forEach(module => {
       })
     let listOfCss = ['src/css/'+module + '.css']
     if(module === 'mathsmentales')
-      listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/bulma-steps.css','src/css/mathsmentales.css']
+      listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/bulma-steps.css','src/css/mathsmentales.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css']
     else if(module === 'diaporama')
       listOfCss = ['src/css/sprites.css', 'src/css/knacssextract.css','src/css/diaporama.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css','src/js/libs/katex/katex.min.css', 'src/css/bulma-steps.css']
     else if(module === 'wall')
@@ -184,7 +184,7 @@ builds.forEach(module => {
     updatedContent = updatedContent.replace('alllibs.js', 'alllibs.min.js')
     // css - à mettre à jour pour autres modules
     if(htmlPageName === 'index.html') {
-      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacssextract.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" />', '<link rel="stylesheet" href="css/mathsmentales-' + packageJson.version + '.css" />')
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/sprites.css"><link rel="stylesheet" href="css/knacssextract.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" media="screen" /><link rel="stylesheet" href="css/mathsmentales.css" type="text/css" media="screen" /><link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/mathsmentales-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'wall.html') {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/wall.css?v=1" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css"><link href="js/libs/katex/katex.min.css" rel="stylesheet" type="text/css" />', '<link rel="stylesheet" href="css/wall-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'diaporama.html') {

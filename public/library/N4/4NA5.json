@@ -18,8 +18,8 @@
         "vars":{"n":"1_10"},
         "question": "Quelle est l'écriture décimale de $$10^{-${:n}}$$ ?",
         "shortq":"$$10^{-${:n}}=?$$",
-        "answer":"$$10^{-${:n}}= \\color{red}{${math.bigDecimal(10,'pow',-:n)}}$$",
-        "value":"${math.round(Math.pow(10,-:n),10)}"
+        "answer":"$$10^{-${:n}}= \\color{red}{${MMmath.bigDecimal(10,'pow',-:n)}}$$",
+        "value":"${MMmath.round(Math.pow(10,-:n),10)}"
     },{
         "name":"Ecriture fractionnaire d'une puissance de 10 négative",
         "vars":{"n":"1_10"},
@@ -30,9 +30,9 @@
     },{
         "name":"Puissance de 10 correspondante",
         "vars":{"n":"-6_6"},
-        "question":"À quelle puissance de dix correspond $$${math.round(Math.pow(10,:n),6)}$$ ?",
-        "shortq":"$$${math.round(Math.pow(10,:n),6)}=10^{?}$$",
-        "answer":"$$${math.round(Math.pow(10,:n),6)}=\\color{red}{10^{${:n}}}$$",
+        "question":"À quelle puissance de dix correspond $$${MMmath.round(Math.pow(10,:n),6)}$$ ?",
+        "shortq":"$$${MMmath.round(Math.pow(10,:n),6)}=10^{?}$$",
+        "answer":"$$${MMmath.round(Math.pow(10,:n),6)}=\\color{red}{10^{${:n}}}$$",
         "value":"10^${:n}"
     }
     ]

@@ -10,7 +10,7 @@
         "c":"-10_10",
         "d":"-10_10",
         "ans":"${:a}\\\\${:b}\\\\${:c}",
-        "eq":"${:a!==0?math.signIfOne(:a)+'x':''} ${(:a!==0&&:b!==0)?math.signedNumberButOne(:b)+'y'::b!==0?math.signIfOne(:b)+'y':''} ${(:a!==0||:b!==0&&:c!==0)?math.signedNumberButOne(:c)+'z'::c!==0?math.signIfOne(:c)+'z':''} ${math.signedNumber(:d)} = 0"
+        "eq":"${:a!==0?MMmath.signIfOne(:a)+'x':''} ${(:a!==0&&:b!==0)?MMmath.signedNumberButOne(:b)+'y'::b!==0?MMmath.signIfOne(:b)+'y':''} ${(:a!==0||:b!==0&&:c!==0)?MMmath.signedNumberButOne(:c)+'z'::c!==0?MMmath.signIfOne(:c)+'z':''} ${MMmath.signedNumber(:d)} = 0"
     },
     "options":[
         {

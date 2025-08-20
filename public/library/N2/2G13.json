@@ -16,8 +16,8 @@
     },{
         "name":"Linéarité",
         "vars":{"k":"-10_10_2_^0","v":"0_5","x":"-10_10_2"},
-        "question":"\\text{Si }\\vec{${:vecteurs[:v]}}(${:x[0]};${:x[1]}) \\text{,}\\\\ \\text{alors } ${math.signIfOne(:k[0])}\\vec{${:vecteurs[:v]}}${math.signedNumberButOne(:k[1])}\\vec{${:vecteurs[:v]}}(?;?)",
-        "answer":"\\vec{${:vecteurs[:v]}}(${:x[0]};${:x[1]}) \\text{, donc } ${math.signIfOne(:k[0])}\\vec{${:vecteurs[:v]}}${math.signedNumberButOne(:k[1])}\\vec{${:vecteurs[:v]}}\\color{red}{(${(:k[0]+:k[1])*:x[0]};${(:k[0]+:k[1])*:x[1]})}",
+        "question":"\\text{Si }\\vec{${:vecteurs[:v]}}(${:x[0]};${:x[1]}) \\text{,}\\\\ \\text{alors } ${MMmath.signIfOne(:k[0])}\\vec{${:vecteurs[:v]}}${MMmath.signedNumberButOne(:k[1])}\\vec{${:vecteurs[:v]}}(?;?)",
+        "answer":"\\vec{${:vecteurs[:v]}}(${:x[0]};${:x[1]}) \\text{, donc } ${MMmath.signIfOne(:k[0])}\\vec{${:vecteurs[:v]}}${MMmath.signedNumberButOne(:k[1])}\\vec{${:vecteurs[:v]}}\\color{red}{(${(:k[0]+:k[1])*:x[0]};${(:k[0]+:k[1])*:x[1]})}",
         "value":"(${(:k[0]+:k[1])*:x[0]};${(:k[0]+:k[1])*:x[1]})"
     }],
     "question": "\\text{Si }\\vec{${:vecteurs[:v]}}(${:x[0]};${:x[1]}) \\text{,}\\\\ \\text{alors } ${:k==0?:k+'\\times '::k}\\vec{${:vecteurs[:v]}} (?;?)",

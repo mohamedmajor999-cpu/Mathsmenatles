@@ -51,7 +51,7 @@
     }, {
         "name":"Puissance négative d'une puissance négative de 10",
         "vars":{"d":"-6_-1", "p":"-6_-1"},
-        "question":"${math.round(10**:d,8)}^{${:p}}",
+        "question":"${MMmath.round(10**:d,8)}^{${:p}}",
         "answer":":question=\\color{green}{10^{${:d}\\times(${:p})}}=\\color{red}{${10**(:d*:p)}}",
         "value":"${:d**(-:p)}"
     }

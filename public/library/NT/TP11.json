@@ -25,6 +25,6 @@
         }
     ],
     "question":"Calculer $$\\dbinom{${:n}}{${:k}}$$",
-    "answer":"$$\\dbinom{${:n}}{${:k}}=\\dfrac{${:n}!}{${:k}!\\left(${:n}-${:k}\\right)!}=\\color{red}{${math.factorial(:n)/(math.factorial(:k)*math.factorial(:n-:k))}}$$",
-    "value":"${math.factorial(:n)/(math.factorial(:k)*math.factorial(:n-:k))}"
+    "answer":"$$\\dbinom{${:n}}{${:k}}=\\dfrac{${:n}!}{${:k}!\\left(${:n}-${:k}\\right)!}=\\color{red}{${MMmath.factorial(:n)/(MMmath.factorial(:k)*MMmath.factorial(:n-:k))}}$$",
+    "value":"${MMmath.factorial(:n)/(MMmath.factorial(:k)*MMmath.factorial(:n-:k))}"
 }

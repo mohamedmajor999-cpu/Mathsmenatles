@@ -29,6 +29,6 @@
     }
     ],
     "question": "${:a}\\div ${:b}",
-    "answer":":question = \\color{red}{${math.round(:a/:b,4)}}",
-    "value":"${math.round(:a/:b,4)}"
+    "answer":":question = \\color{red}{${MMmath.round(:a/:b,4)}}",
+    "value":"${MMmath.round(:a/:b,4)}"
 }

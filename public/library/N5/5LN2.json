@@ -44,16 +44,16 @@
             "Comment ajouter deux relatifs de signes différents ?",
             "Quelle propriété permet de soustraire des nombres relatifs ?",
             "Qu’est-ce qu’une somme algébrique ?",
-            "Transforme $$(${math.signedNumber(:a[0])})-(${math.signedNumber(:a[1])})$$ en addition",
-            "Enlève les parenthèses de l'écriture $$(${math.signedNumber(:a[0])})+(${math.signedNumber(:a[1])})-(${math.signedNumber(:a[2])})-(${math.signedNumber(:a[3])})$$"
+            "Transforme $$(${MMmath.signedNumber(:a[0])})-(${MMmath.signedNumber(:a[1])})$$ en addition",
+            "Enlève les parenthèses de l'écriture $$(${MMmath.signedNumber(:a[0])})+(${MMmath.signedNumber(:a[1])})-(${MMmath.signedNumber(:a[2])})-(${MMmath.signedNumber(:a[3])})$$"
         ],
         "answer":[
             "On <b>garde le signe</b> et on <b>ajoute</b> les distances à zéro.",
             "On prend le <b>signe du nombre le plus éloigné de zéro</b> et on <b>soustrait</b> les distances à zéro.",
             "Soustraire un relatif revient à ajouter son opposé.",
             "C’est une opération composée d’addition et de soustractions de nombres relatifs.",
-            "$$(${:a[0]})-(${:a[1]})=\\color{red}{${:a[0]}+(${math.signedNumber(-:a[1])})}$$",
-            "$$(${math.signedNumber(:a[0])})+(${math.signedNumber(:a[1])})-(${math.signedNumber(:a[2])})-(${math.signedNumber(:a[3])})=\\color{red}{${:a[0]}${math.signedNumber(:a[1])}${math.signedNumber(-:a[2])}${math.signedNumber(-:a[3])}}$$"
+            "$$(${:a[0]})-(${:a[1]})=\\color{red}{${:a[0]}+(${MMmath.signedNumber(-:a[1])})}$$",
+            "$$(${MMmath.signedNumber(:a[0])})+(${MMmath.signedNumber(:a[1])})-(${MMmath.signedNumber(:a[2])})-(${MMmath.signedNumber(:a[3])})=\\color{red}{${:a[0]}${MMmath.signedNumber(:a[1])}${MMmath.signedNumber(-:a[2])}${MMmath.signedNumber(-:a[3])}}$$"
         ]
     }
     ]

@@ -23,6 +23,6 @@
     }
     ],
     "question": ["${:a}\\times ${:b}\\times ${:c}", "${:a}\\times ${:c}\\times ${:b}", "${:b}\\times ${:c}\\times ${:a}","${:c}\\times ${:b}\\times ${:a}"],
-    "answer":":question = \\color{red}{${math.round(:a*:c*:b,6)}}",
-    "value":"${math.round(:a*:c*:b,6)}"
+    "answer":":question = \\color{red}{${MMmath.round(:a*:c*:b,6)}}",
+    "value":"${MMmath.round(:a*:c*:b,6)}"
 }

@@ -57,9 +57,9 @@
             "figure":{"type":"svg","content":"${:figures[:idfig]}"},
             "vars":{
                 "AM":"d0.1_0.9_1",
-                "AB":"${math.round(:AM*:coeff1,1)}",
+                "AB":"${MMmath.round(:AM*:coeff1,1)}",
                 "AN":"d0.1_0.9_1",
-                "AC":"${math.round(:AN*:coeff2,1)}"
+                "AC":"${MMmath.round(:AN*:coeff2,1)}"
             }
         },
         {
@@ -67,9 +67,9 @@
             "figure":{"type":"svg","content":"${:figurescroisees[:idfig]}"},
             "vars":{
                 "AM":"d0.1_0.9_1",
-                "AB":"${math.round(:AM*:coeff1,1)}",
+                "AB":"${MMmath.round(:AM*:coeff1,1)}",
                 "AN":"d0.1_0.9_1",
-                "AC":"${math.round(:AN*:coeff2,1)}"
+                "AC":"${MMmath.round(:AN*:coeff2,1)}"
             }
         }
     ],

@@ -98,7 +98,7 @@
                 ]
             },
             "question":"",
-            "answer":"A\\left(\\dfrac{${:num}}{6}\\right)${:num%6==0?'\\text{ soit }A('+(math.round(:num/6,0))+')':''}",
+            "answer":"A\\left(\\dfrac{${:num}}{6}\\right)${:num%6==0?'\\text{ soit }A('+(MMmath.round(:num/6,0))+')':''}",
             "value":"\\dfrac{${:num}}{6}"
         }
     ]

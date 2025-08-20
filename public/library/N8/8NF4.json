@@ -38,15 +38,15 @@
                 "n1": "2_10",
                 "ne2":"2_10",
                 "d":[10,100,1000],
-                "n2": "${math.round(:ne2/:d,3)}",
-                "produit": "${math.round(:n1*:n2,3)}"
+                "n2": "${MMmath.round(:ne2/:d,3)}",
+                "produit": "${MMmath.round(:n1*:n2,3)}"
             }
         },{
             "name":"Résolution par division (CM)",
             "consts":{
                 "phrases":[
                     [
-                        "Un tas de ${:n1} feuilles identiques a une épaisseur de $$${math.round(:n1*:n2,3)}~mm$$. Combien mesure une feuille ?",
+                        "Un tas de ${:n1} feuilles identiques a une épaisseur de $$${MMmath.round(:n1*:n2,3)}~mm$$. Combien mesure une feuille ?",
                         "Le tas mesure $$${:produit}\\div${:n1}=\\color{red}{${:n2}~mm}$$."
                     ]
                 ]
@@ -59,8 +59,8 @@
                 "n1": "2_10",
                 "ne2":"2_10",
                 "d":[10,100,1000],
-                "n2": "${math.round(:ne2/:d,3)}",
-                "produit": "${math.round(:n1*:n2,3)}"
+                "n2": "${MMmath.round(:ne2/:d,3)}",
+                "produit": "${MMmath.round(:n1*:n2,3)}"
             }
         }
     ],

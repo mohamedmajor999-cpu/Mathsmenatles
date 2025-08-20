@@ -33,9 +33,9 @@
                 "grid":false,
                 "content" :[
                         ["point",[0,0],{"name":"${:A}","size":3, "face":"x"}],
-                        ["point",["${math.round(4*Math.cos(Math.PI*:in/180),3)}","${math.round(4*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":3, "face":"x"}],
+                        ["point",["${MMmath.round(4*Math.cos(Math.PI*:in/180),3)}","${MMmath.round(4*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":3, "face":"x"}],
                         ["line",["${:A}","${:B}"],{"straightFirst":false}],
-                        ["point",["${math.round(4*Math.cos(Math.PI*(:in+:mes)/180),3)}","${math.round(4*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":3, "face":"x"}],
+                        ["point",["${MMmath.round(4*Math.cos(Math.PI*(:in+:mes)/180),3)}","${MMmath.round(4*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":3, "face":"x"}],
                         ["line",["${:A}","${:C}"],{"straightFirst":false}],
                         ["angle", ["${:B}", "${:A}", "${:C}"],{"radius":1,"label":{"visible":false}}]
                     ]    
@@ -62,9 +62,9 @@
                 "grid":false,
                 "content" :[
                         ["point",[0,0],{"name":"${:A}","size":3, "face":"x"}],
-                        ["point",["${math.round(3.5*Math.cos(Math.PI*:in/180),3)}","${math.round(3.5*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":3, "face":"x"}],
+                        ["point",["${MMmath.round(3.5*Math.cos(Math.PI*:in/180),3)}","${MMmath.round(3.5*Math.sin(Math.PI*:in/180),3)}"],{"name":"${:B}","size":3, "face":"x"}],
                         ["line",["${:A}","${:B}"],{"straightFirst":false}],
-                        ["point",["${math.round(4.55*Math.cos(Math.PI*(:in+:mes)/180),3)}","${math.round(4.55*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":3, "face":"x"}],
+                        ["point",["${MMmath.round(4.55*Math.cos(Math.PI*(:in+:mes)/180),3)}","${MMmath.round(4.55*Math.sin(Math.PI*(:in+:mes)/180),3)}"],{"name":"${:C}","size":3, "face":"x"}],
                         ["line",["${:A}","${:C}"],{"straightFirst":false}],
                         ["angle", ["${:B}", "${:A}", "${:C}"],{"radius":1,"label":{"visible":false}}]
                     ]    
@@ -91,10 +91,10 @@
                 "grid":false,
                 "content": [
                     ["point", [0,0], {"name":"O","size":3,"face":"x","visible":false}],
-                    ["point", ["${math.round(3.5*Math.cos(Math.PI*:aa/180),3)}","${math.round(3.5*Math.sin(Math.PI*:aa/180),3)}"], {"name":"A","visible":0}],
-                    ["point", ["${math.round(3.5*Math.cos(Math.PI*(:aa+:ab)/180),3)}","${math.round(3.5*Math.sin(Math.PI*(:aa+:ab)/180),3)}"], {"name":"B","visible":0}],
-                    ["point", ["${math.round(3.5*Math.cos(Math.PI*(:aa+:ac)/180),3)}","${math.round(3.5*Math.sin(Math.PI*(:aa+:ac)/180),3)}"], {"name":"C","visible":0}],
-                    ["point", ["${math.round(3.5*Math.cos(Math.PI*(:aa+:ab+180)/180),3)}","${math.round(3.5*Math.sin(Math.PI*(:aa+:ab+180)/180),3)}"], {"name":"D","visible":0}],
+                    ["point", ["${MMmath.round(3.5*Math.cos(Math.PI*:aa/180),3)}","${MMmath.round(3.5*Math.sin(Math.PI*:aa/180),3)}"], {"name":"A","visible":0}],
+                    ["point", ["${MMmath.round(3.5*Math.cos(Math.PI*(:aa+:ab)/180),3)}","${MMmath.round(3.5*Math.sin(Math.PI*(:aa+:ab)/180),3)}"], {"name":"B","visible":0}],
+                    ["point", ["${MMmath.round(3.5*Math.cos(Math.PI*(:aa+:ac)/180),3)}","${MMmath.round(3.5*Math.sin(Math.PI*(:aa+:ac)/180),3)}"], {"name":"C","visible":0}],
+                    ["point", ["${MMmath.round(3.5*Math.cos(Math.PI*(:aa+:ab+180)/180),3)}","${MMmath.round(3.5*Math.sin(Math.PI*(:aa+:ab+180)/180),3)}"], {"name":"D","visible":0}],
                     ["line", ["O","A"], {"straightFirst":false}],
                     ["line", ["O","B"], {"straightFirst":false}],
                     ["line", ["O","C"], {"straightFirst":false, "visible":1}],

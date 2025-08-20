@@ -55,7 +55,7 @@
         "vars":{"a":[-61,-71,-81,-91,-101],"b":"102_1000"}
     }
     ],
-    "question": "${:b}${math.signedNumber(:a)}",
+    "question": "${:b}${MMmath.signedNumber(:a)}",
     "audio":"${:b} moins ${-:a}",
     "answer":":question=\\color{red}{${:a+:b}}",
     "value":"${:a+:b}"

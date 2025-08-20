@@ -8,11 +8,11 @@
         "name":"Trouver le multiple",
         "vars":{
             "a":"8_24_^prime",
-            "d":"${math.unDiviseur(:a,true,true)}",
+            "d":"${MMmath.unDiviseur(:a,true,true)}",
             "e":"-1_1_^0",
-            "nd":"${math.nonDiviseur(:a)}",
-            "m":"${:a*math.aleaInt(1,5)}",
-            "nm":"${:a*math.aleaInt(2,5)+math.aleaInt(1,:a-1)*:e}",
+            "nd":"${MMmath.nonDiviseur(:a)}",
+            "m":"${:a*MMmath.aleaInt(1,5)}",
+            "nm":"${:a*MMmath.aleaInt(2,5)+MMmath.aleaInt(1,:a-1)*:e}",
             "t":"${:d},${:nd},${:m},${:nm}"
         },
         "question": "Parmi les nombres ci-dessous, lequel est un <b>multiple</b> de ${:a} ?<br>${utils.shuffle(:t.split(',')).join(' ; ')}",
@@ -23,11 +23,11 @@
         "name":"Trouver le diviseur",
         "vars":{
             "a":"8_24_^prime",
-            "d":"${math.unDiviseur(:a,true,false)}",
+            "d":"${MMmath.unDiviseur(:a,true,false)}",
             "e":"-1_1_^0",
-            "nd":"${math.nonDiviseur(:a)}",
-            "m":"${:a*math.aleaInt(2,5)}",
-            "nm":"${:a*math.aleaInt(2,5)+math.aleaInt(1,:a-1)*:e}",
+            "nd":"${MMmath.nonDiviseur(:a)}",
+            "m":"${:a*MMmath.aleaInt(2,5)}",
+            "nm":"${:a*MMmath.aleaInt(2,5)+MMmath.aleaInt(1,:a-1)*:e}",
             "t":"${:d},${:nd},${:m},${:nm}"
         },
         "question": "Parmi les nombres ci-dessous, lequel est un <b>diviseur</b> de ${:a} ?<br>${utils.shuffle(:t.split(',')).join(' ; ')}",

@@ -18,6 +18,6 @@
         "PGCD(${:n};${:d})",
         "Par quel nombre simplifier au maximum $$\\dfrac{${:d}}{${:n}}$$ ?"
     ],
-    "answer":"PGCD(${:d};${:n}) = $$\\color{red}{${math.pgcd(:d,:n)}}$$",
-    "value":"${math.pgcd(:d,:n)}"
+    "answer":"PGCD(${:d};${:n}) = $$\\color{red}{${MMmath.pgcd(:d,:n)}}$$",
+    "value":"${MMmath.pgcd(:d,:n)}"
 }

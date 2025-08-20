@@ -23,7 +23,7 @@
             "phrase2":"${:op2>0?:phrases[:signes[:op2]][1][0]::phrases['moins'][1][:tdiv][0]}${:n2}${:op2>0?:phrases[:signes[:op2]][1][1]::phrases['moins'][1][:tdiv][1]}."
         },
         "question": "Traduire ce programme par une expression :<br><ul><li>Choisir un nombre.</li><li>${:phrase1}</li><li>${:phrase2}</li></ul>",
-        "answer":"$$\\color{red}{x${:operations[:op1]}${:n1}${:operations[:op2]}${:n2}}=${math.calc('x'+:opes[:op1]+:n1+:opes[:op2]+:n2)}$$",
+        "answer":"$$\\color{red}{x${:operations[:op1]}${:n1}${:operations[:op2]}${:n2}}=${MMmath.calc('x'+:opes[:op1]+:n1+:opes[:op2]+:n2)}$$",
         "value":"x${:operations[:op1]}${:n1}${:operations[:op2]}${:n2}"
     },{
         "name":"Deux opérations, avec parenthèses (5e)",

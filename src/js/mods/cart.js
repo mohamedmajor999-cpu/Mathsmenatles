@@ -1,6 +1,6 @@
 import activity from "./activity.js";
 import utils from "./utils.js";
-import Sortable from '../libs/sortable/Sortable.mjs.js';
+import Sortable from '../libs/sortable/sortable.core.esm.js';
 
 export default class cart {
     constructor(id){

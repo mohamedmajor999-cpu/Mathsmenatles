@@ -14,9 +14,9 @@
         "c":"-9_9",
         "cx":"0_3",
         "x":"${:lettres[:cx]}",
-        "f":"${math.signIfOne(:a)+:x}^2${:b!=0?math.signedNumberButOne(:b)+:x:''}${math.signedNumber(:c)}",
-        "df":"${2*:a+:x}${math.signedNumber(:b)}",
-        "mdf":"${-2*:a+:x}${math.signedNumber(-:b)}"
+        "f":"${MMmath.signIfOne(:a)+:x}^2${:b!=0?MMmath.signedNumberButOne(:b)+:x:''}${MMmath.signedNumber(:c)}",
+        "df":"${2*:a+:x}${MMmath.signedNumber(:b)}",
+        "mdf":"${-2*:a+:x}${MMmath.signedNumber(-:b)}"
         },
     "consigne":"Donner la fonction dérivée.",
     "options":[{

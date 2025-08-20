@@ -26,7 +26,7 @@
                     ["point", ["${6.5*Math.cos(:phi*(:aa+90))}","${6.5*Math.sin(:phi*(:aa+90))}"], {"name":"B","visible":false}],
                     ["line", ["O","A"], {"straightFirst":false}],
                     ["line", ["O","B"], {"straightFirst":false}],
-                    ["divideAngle","O",{"divisions":"${:div}","angle":90,"angleInit":"${:aa}","rayon":4,"color":"${:color}"}],
+                    ["divideAngle","O",{"divisions":"${:div}","angle":90,"angleInit":"${:aa}","rayon":4,"color":"${:color}","opacity":0.7}],
                     ["angle", ["A","O","B"], {"radius":1,"withLabel":false,"strokeColor":"black","fillColor":"black"}]
                 ]
             },
@@ -50,7 +50,7 @@
                     ["point", ["${6.5*Math.cos(:phi*(:aa+180))}","${6.5*Math.sin(:phi*(:aa+180))}"], {"name":"B","visible":false}],
                     ["line", ["O","A"], {"straightFirst":false}],
                     ["line", ["O","B"], {"straightFirst":false}],
-                    ["divideAngle","O",{"divisions":"${:div}","angle":180,"angleInit":"${:aa}","rayon":4,"color":"${:color}"}],
+                    ["divideAngle","O",{"divisions":"${:div}","angle":180,"angleInit":"${:aa}","rayon":4,"color":"${:color}","opacity":0.7}],
                     ["text", [0,-1,"angle plat"], {"anchorX":"middle"}]
                 ]
             },

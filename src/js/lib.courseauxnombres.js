@@ -4,7 +4,7 @@ import common from './mods/common.js';
 import cart from './mods/cart.js';
 import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
-import math from './mods/math.js';
+import MMmath from './mods/math.js';
 
 const MM = {};
 MM.version = utils.getVersion()
@@ -231,7 +231,7 @@ function shuffleTable(tablee, tablec) {
     let tbodyc = tablec.tBodies[0];
     let rowsc = tbodyc.rows
     for (let i = rowse.length; i; i--) {
-        let index = math.aleaInt(0, i);
+        let index = MMmath.aleaInt(0, i);
         tbodye.appendChild(rowse[index]);
         tbodyc.appendChild(rowsc[index]);
     }

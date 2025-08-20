@@ -15,7 +15,7 @@
       "question": [
         "Quelle est la formule explicite d'une suite géométrique définie par $$u_0 = ${:a}$$ et $$q = ${:q}$$ ?"
       ],
-      "answer": "$$u_n = ${:a} \\times ${math.nP(:q)}^n$$"
+      "answer": "$$u_n = ${:a} \\times ${MMmath.nP(:q)}^n$$"
     },
     {
       "name": "Raison entière négative",
@@ -25,7 +25,7 @@
       "question": [
         "Quelle est la formule explicite d'une suite géométrique définie par $$u_0 = ${:a}$$ et $$q = ${-:q}$$ ?"
       ],
-      "answer": "$$u_n = ${:a} \\times ${math.nP(-:q)}^n$$"
+      "answer": "$$u_n = ${:a} \\times ${MMmath.nP(-:q)}^n$$"
     },
     {
       "name": "Raison fractionnaire positive",

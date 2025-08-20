@@ -10,35 +10,35 @@
         "name":"Calculer le cosinus d'un angle aigu",
         "vars":{"angle":"1_89","arrondi":"2_4"},
         "question": "Calculer l'arrondi <b>${:vocab[:arrondi]}</b> du cosinus de <b>${:angle}°</b>.${:calculatrice}",
-        "answer":"$$cos(${:angle}°)\\approx \\color{red}{${math.round(Math.cos(:angle*Math.PI/180),:arrondi)}}$$ ${:vocab[:arrondi]}",
-        "value":"${math.round(Math.cos(:angle/180*Math.PI),:arrondi)}"
+        "answer":"$$cos(${:angle}°)\\approx \\color{red}{${MMmath.round(Math.cos(:angle*Math.PI/180),:arrondi)}}$$ ${:vocab[:arrondi]}",
+        "value":"${MMmath.round(Math.cos(:angle/180*Math.PI),:arrondi)}"
     },{
         "name":"Calculer le sinus d'un angle aigu",
         "vars":{"angle":"1_89","arrondi":"2_4"},
         "question": "Calculer l'arrondi <b>${:vocab[:arrondi]}</b> du sinus de <b>${:angle}°</b>.${:calculatrice}",
-        "answer":"$$sin(${:angle}°)\\approx \\color{red}{${math.round(Math.sin(:angle*Math.PI/180),:arrondi)}}$$ ${:vocab[:arrondi]}",
-        "value":"${math.round(Math.sin(:angle/180*Math.PI),:arrondi)}"
+        "answer":"$$sin(${:angle}°)\\approx \\color{red}{${MMmath.round(Math.sin(:angle*Math.PI/180),:arrondi)}}$$ ${:vocab[:arrondi]}",
+        "value":"${MMmath.round(Math.sin(:angle/180*Math.PI),:arrondi)}"
     },{
         "name":"Calculer la tangente d'un angle aigu",
         "vars":{"angle":"1_89","arrondi":"2_4"},
         "question": "Calculer l'arrondi <b>${:vocab[:arrondi]}</b> de la tangente de <b>${:angle}°</b>.${:calculatrice}",
-        "answer":"$$tan(${:angle}°)\\approx \\color{red}{${math.round(Math.tan(:angle*Math.PI/180),:arrondi)}}$$ ${:vocab[:arrondi]}",
-        "value":"${math.round(Math.tan(:angle/180*Math.PI),:arrondi)}"
+        "answer":"$$tan(${:angle}°)\\approx \\color{red}{${MMmath.round(Math.tan(:angle*Math.PI/180),:arrondi)}}$$ ${:vocab[:arrondi]}",
+        "value":"${MMmath.round(Math.tan(:angle/180*Math.PI),:arrondi)}"
     },{
         "name":"Calculer un angle aigu à partir de son cosinus",
-        "vars":{"angle":"1_89","arrondi":"3_4", "valeur":"${math.round(Math.cos(:angle*Math.PI/180),:arrondi)}"},
+        "vars":{"angle":"1_89","arrondi":"3_4", "valeur":"${MMmath.round(Math.cos(:angle*Math.PI/180),:arrondi)}"},
         "question": "Calculer l'angle de <b>cosinus</b> égal à <b>${:valeur}</b>, arrondi à l'unité.${:calculatrice}",
         "answer":"$$Arccos(${:valeur})\\approx \\color{red}{${:angle}°}$$ arrondi à l'unité",
         "value":"${:angle}"
     },{
         "name":"Calculer un angle aigu à partir de son sinus",
-        "vars":{"angle":"1_89","arrondi":"3_4", "valeur":"${math.round(Math.sin(:angle*Math.PI/180),:arrondi)}"},
+        "vars":{"angle":"1_89","arrondi":"3_4", "valeur":"${MMmath.round(Math.sin(:angle*Math.PI/180),:arrondi)}"},
         "question": "Calculer l'angle de <b>sinus</b> égal à <b>${:valeur}</b>, arrondi à l'unité.${:calculatrice}",
         "answer":"$$Arcsin(${:valeur})\\approx \\color{red}{${:angle}°}$$ arrondi à l'unité",
         "value":"${:angle}"
     },{
         "name":"Calculer un angle aigu à partir de sa tangente",
-        "vars":{"angle":"1_89","arrondi":"3_4", "valeur":"${math.round(Math.tan(:angle*Math.PI/180),:arrondi)}"},
+        "vars":{"angle":"1_89","arrondi":"3_4", "valeur":"${MMmath.round(Math.tan(:angle*Math.PI/180),:arrondi)}"},
         "question": "Calculer l'angle de <b>tangente</b> égale à <b>${:valeur}</b>, arrondi à l'unité.${:calculatrice}",
         "answer":"$$Arctan(${:valeur})\\approx \\color{red}{${:angle}°}$$ arrondi à l'unité",
         "value":"${:angle}"

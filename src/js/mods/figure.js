@@ -1,8 +1,8 @@
 import {utils,_} from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
-import math from "./math.js";
-import JXG from '../libs/JSXGraph1.11.1/jsxgraphcore.mjs'
+import MMmath from "./math.js";
+import JXG from '../libs/JSXGraph1.11.1/jsxgraphcore.esm.js'
 import {
   BoxGeometry,
   DirectionalLight,
@@ -529,7 +529,7 @@ export default class Figure {
                         }
                     }
                 } else if (content.mur !== undefined) {
-                    let x=0,z=0,xorz=math.aleaInt(0,1),translate
+                    let x=0,z=0,xorz=MMmath.aleaInt(0,1),translate
                     if(['left','right'].includes(content.mur[0])){
                         translate = content.mur[0]
                     }
@@ -597,7 +597,7 @@ export default class Figure {
             renderer.setSize(width, height)
             // on change la taille ici maintenant que tout est ok
             $scene.style['width'] = '15em'
-            $scene.style['height'] = String(math.round(15*this.size[1]/this.size[0],2))+'em'
+            $scene.style['height'] = String(MMmath.round(15*this.size[1]/this.size[0],2))+'em'
             // finally, set the pixel ratio so that our scene will look good on HiDPI displays
             renderer.setPixelRatio(window.devicePixelRatio);
             let isRendering = true
@@ -691,8 +691,8 @@ export default class Figure {
                             let ii,jj
                             let test = 0;
                             do {
-                                ii = math.aleaInt(0, width-1);
-                                jj = math.aleaInt(0, height-1);
+                                ii = MMmath.aleaInt(0, width-1);
+                                jj = MMmath.aleaInt(0, height-1);
                                 test++
                                 if(test > protectLoop){
                                     console.log('erreur looping')
@@ -731,8 +731,8 @@ export default class Figure {
                             let ii,jj
                             let test = 0;
                             do {
-                                ii = math.aleaInt(0, nbOfCircles-1);
-                                jj = math.aleaInt(0, unitCut-1);
+                                ii = MMmath.aleaInt(0, nbOfCircles-1);
+                                jj = MMmath.aleaInt(0, unitCut-1);
                                 test++
                                 if(test > protectLoop){
                                     console.log('erreur looping')

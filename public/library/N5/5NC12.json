@@ -33,7 +33,7 @@
             "resultat":"2_10",
             "denom":"2_10",
             "produit":"${:resultat*:denom}",
-            "facteur1":"${math.unDiviseur(:produit)}",
+            "facteur1":"${MMmath.unDiviseur(:produit)}",
             "facteur2":"${:produit/:facteur1}"
         },
         "question": "\\dfrac{${:facteur1}\\times${:facteur2}}{${:denom}}=?",
@@ -50,7 +50,7 @@
             "terme1":"1_${Math.min(15,:produit)}",
             "terme2":"${:produit-:terme1}"
         },
-        "question": "\\dfrac{${:terme1}+${:terme2}}{${:denterme1}${math.signedNumber(:denterme2)}}=?",
+        "question": "\\dfrac{${:terme1}+${:terme2}}{${:denterme1}${MMmath.signedNumber(:denterme2)}}=?",
         "answer":":question|2=\\color{green}{\\dfrac{${:produit}}{${:denterme1+:denterme2}}}=\\color{red}{${:resultat}}",
         "value":"${:resultat}"
     },{
@@ -64,7 +64,7 @@
             "terme1":"${:produit}_${:produit+10}",
             "terme2":"${:terme1-:produit}"
         },
-        "question": "\\dfrac{${:terme1}-${:terme2}}{${:denterme1}${math.signedNumber(:denterme2)}}=?",
+        "question": "\\dfrac{${:terme1}-${:terme2}}{${:denterme1}${MMmath.signedNumber(:denterme2)}}=?",
         "answer":":question|2=\\color{green}{\\dfrac{${:produit}}{${:denterme1+:denterme2}}}=\\color{red}{${:resultat}}",
         "value":"${:resultat}"
     },{
@@ -75,10 +75,10 @@
             "denterme1":"1_20",
             "denterme2":"${1-:denterme1}_${10-:denterme1}",
             "produit":"${:resultat*(:denterme1+:denterme2)}",
-            "facteur1":"${math.unDiviseur(:produit)}",
+            "facteur1":"${MMmath.unDiviseur(:produit)}",
             "facteur2":"${:produit/:facteur1}"
         },
-        "question": "\\dfrac{${:facteur1}\\times${:facteur2}}{${:denterme1}${math.signedNumber(:denterme2)}}=?",
+        "question": "\\dfrac{${:facteur1}\\times${:facteur2}}{${:denterme1}${MMmath.signedNumber(:denterme2)}}=?",
         "answer":":question|2=\\color{green}{\\dfrac{${:produit}}{${:denterme1+:denterme2}}}=\\color{red}{${:resultat}}",
         "value":"${:resultat}"
     }
