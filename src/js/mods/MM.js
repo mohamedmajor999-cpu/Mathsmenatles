@@ -897,7 +897,13 @@ const MM = {
             if (vars.embed.match(regex))
                 MM.embededIn = vars.embed;
         }
-        if (vars.n !== undefined && vars.cd === undefined && !edit) { // un niveau à afficher
+        if (vars.s !== undefined){ // chaine de recherche
+            document.getElementById('searchinput').value = vars.s
+            if (vars.f !== '' && vars.f !== undefined){
+                vars.f.split(',').forEach(el => {document.getElementById('ccbs'+el).checked = true})
+            }
+            library.displayContent(vars.s)
+        } else if (vars.n !== undefined && vars.cd === undefined && !edit) { // un niveau à afficher
             library.displayContent(vars.n, true);
             return;
         } else if (vars.u !== undefined && vars.cd === undefined && !edit) { // ancien exo MM1
@@ -1255,6 +1261,7 @@ const MM = {
         li.appendChild(this.getCartsContent());
         // on supprime les anciennes références à la même activité
         try {
+            console.log("#tab-historique span[data-url='" + url + "']")
             let lis = document.querySelectorAll("#tab-historique span[data-url='" + url + "']");
             for (let k = 0; k < lis.length; k++) {
                 let parent = lis[k].parentNode;
@@ -1413,7 +1420,10 @@ const MM = {
             const titre = utils.create("h3", { "innerHTML": obj.nom });
             elt.appendChild(titre);
             const nba = utils.create("div", { "innerHTML": obj.activitiesNumber + " activités" });
-            elt.onclick = () => { library.displayContent(id, true) };
+            elt.onclick = () => {
+                MM.setHistory('MathsMentales niveau '+obj.nom,'n='+id)
+                library.displayContent(id, true)
+            };
             elt.appendChild(nba);
             grille.appendChild(elt);
         }
@@ -1437,7 +1447,10 @@ const MM = {
                     continue;
                 const div = utils.create("div");
                 const input = utils.create("input", { type: "checkbox", name: "searchlevel", value: ordre[o][i], className: "checkbox", id: "ccbs" + ordre[o][i] });
-                input.onclick = () => { library.displayContent(document.getElementById("searchinput").value) };
+                input.onclick = () => {
+                    library.displayContent(document.getElementById("searchinput").value)
+                    MM.setHistory('MathsMentales filtre : '+ordre[o][i],'s='+document.getElementById('searchinput').value+'&f='+([...dest.querySelectorAll('input:checked')].map(e => e.value).join(',')))
+                };
                 const label = utils.create("label", { for: "ccbs" + ordre[o][i], innerText: MM.content[ordre[o][i]].nom });
                 label.onclick = (evt) => { document.getElementById(evt.target.for).click() };
                 div.appendChild(input);

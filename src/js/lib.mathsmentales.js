@@ -94,6 +94,7 @@ window.onload = function() {
     for(const li of lis){
         li.onclick = (evt)=>{
             library.displayContent(evt.target.dataset.niv,true)
+            MM.setHistory('MathsMentales niveau '+evt.target.innerHTML,'n='+evt.target.dataset.niv)
             document.querySelectorAll('#nav-menu-niveaux > ul > li > ul').forEach(elem => {
                 elem.classList.remove('show')
             })
@@ -342,7 +343,15 @@ window.onload = function() {
         }
     })
     // moteur de recherche d'activité
-    document.getElementById("searchinput").onkeyup = (evt)=>{library.displayContent(evt.target.value)};
+    document.getElementById("searchinput").onkeyup = (evt)=>{
+        const searchString = evt.target.value
+        // check if filters
+        const filters = [...document.querySelectorAll('#searchLevels input:checked')].map(e=>e.value).join(',');
+        if(searchString.length > 2){
+            MM.setHistory('MathsMentales recherche :'+searchString,'s='+searchString+'&f='+filters)
+        }
+        library.displayContent(searchString)
+    };
     document.getElementById("resultat-chercher").addEventListener("click",(evt)=>{
         if (evt.target.type === 'checkbox'){
             return;
