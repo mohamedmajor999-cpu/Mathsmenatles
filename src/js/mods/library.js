@@ -191,14 +191,15 @@ const library = {
         if (nbexos) {
           itemsNumber += nbexos;
           theme = true; chapitre = true;
+          const svg = "<svg xmlns='http://www.w3.org/2000/svg' class='actitityLink' width='1.2em' height='1.2em' viewBox='0 0 48 48'><g fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='4'><path d='M30 19H20a8 8 0 1 0 0 16h16a8 8 0 0 0 6-13.292' /><path d='M6 24.292A8 8 0 0 1 12 11h16a8 8 0 1 1 0 16H18' /></g></svg>";
           for (let k = 0, len = nbexos; k < len; k++) {
             let id = niveau["themes"][i]["chapitres"][j]["e"][k].id;
             let title = niveau["themes"][i]["chapitres"][j]["e"][k]["t"];
             let url = niveau["themes"][i]["chapitres"][j]["e"][k]["u"];
             if (niveau["themes"][i]["chapitres"][j]["e"][k]["new"]) {
-              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='new tooltip' data-id='" + id + "' data-url='" + url + "'><input type='checkbox' class='checkitem' value='" + id + "' data-url='" + url + "'>" + title + "<div class='tooltiptext'>" + id + "</div></li>";
+              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='new tooltip' data-id='" + id + "' data-url='" + url + "'><input type='checkbox' class='checkitem' value='" + id + "' data-url='" + url + "'>" + title + "<div class='tooltiptext'>" + id + "</div><span class='link' data-link='"+id+"' title='Cliquer pour copier le lien\ndans le presse papier'>"+svg+"</span></li>";
             } else {
-              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='tooltip' data-id='" + id + "' data-url='" + url + "'><input type='checkbox' class='checkitem' value='" + id + "' data-url='" + url + "'>" + title + "<div class='tooltiptext'>" + id + "</div></li>";
+              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='tooltip' data-id='" + id + "' data-url='" + url + "'><input type='checkbox' class='checkitem' value='" + id + "' data-url='" + url + "'>" + title + "<div class='tooltiptext'>" + id + "</div><span class='link' title='Cliquer pour copier le lien\ndans le presse papier' data-link='"+id+"'>"+svg+"</span></li>";
             }
           }
         } else {

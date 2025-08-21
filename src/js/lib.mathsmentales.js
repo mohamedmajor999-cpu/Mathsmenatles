@@ -346,14 +346,22 @@ window.onload = function() {
     document.getElementById("searchinput").onkeyup = (evt)=>{
         const searchString = evt.target.value
         // check if filters
-        const filters = [...document.querySelectorAll('#searchLevels input:checked')].map(e=>e.value).join(',');
+        let filters = ''
+        const searchFilters = document.querySelectorAll('#searchLevels input:checked')
+        if(searchFilters !== null){
+            filters = [...searchFilters].map(e=>e.value).join(',');
+        }
         if(searchString.length > 2){
             MM.setHistory('MathsMentales recherche :'+searchString,'s='+searchString+'&f='+filters)
         }
         library.displayContent(searchString)
     };
-    document.getElementById("resultat-chercher").addEventListener("click",(evt)=>{
-        if (evt.target.type === 'checkbox'){
+    document.getElementById("resultat-chercher").addEventListener("click",async (evt)=>{
+        if(evt.target.classList.contains('actitityLink')){
+            await navigator.clipboard.writeText(utils.baseURL+'?u='+evt.target.parentNode.dataset.link)
+            evt.target.classList.add('red')
+            setTimeout(()=>{evt.target.classList.remove('red')},1500)
+        } else if (evt.target.type === 'checkbox'){
             return;
         }else if(evt.target.id.indexOf("rch2")===0){
             utils.deploy(evt.target);

@@ -1178,24 +1178,20 @@ const MM = {
         const encodedParams = this.paramsToURL(withSeed, type, true);
         const input2 = document.getElementById("encodedurl");
         input2.value = this.setURL(encodedParams, type);
-        input2.onclick = () => {
-            navigator.clipboard.writeText(input2.value);
-            setTimeout(()=>{
-                input2.select();
-                input2.setSelectionRange(0, 99999);    
-                document.getElementById('encodedcopied').classList.remove('hidden');
-            }, 200)
+        input2.onclick = async () => {
+            await navigator.clipboard.writeText(input2.value);
+            input2.select();
+            input2.setSelectionRange(0, 99999);    
+            document.getElementById('encodedcopied').classList.remove('hidden');
             setTimeout(()=>{
                 document.getElementById('encodedcopied').classList.add('hidden');
-            },2200);
+            },2000);
         };
-        input.onclick = () => {
-            navigator.clipboard.writeText(input.value);
-            setTimeout(()=>{
-                input.select();
-                input.setSelectionRange(0, 99999);    
-                document.getElementById('longcopied').classList.remove('hidden');
-            }, 500)
+        input.onclick = async () => {
+            await navigator.clipboard.writeText(input.value);
+            input.select();
+            input.setSelectionRange(0, 99999);    
+            document.getElementById('longcopied').classList.remove('hidden');
             setTimeout(()=>{
                 document.getElementById('longcopied').classList.add('hidden');
             },2000);

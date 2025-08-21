@@ -590,6 +590,16 @@ ul.menu, .menu ul {
   left: 50%;
   transform: translateX(-50%);
 }
+#resultat-chercher .link {
+  visibility: hidden;
+}
+#resultat-chercher .tooltip:hover .link {
+  visibility: inherit;
+}
+/* éviter que le path ne prenne le clic au lieu du svg parent */
+#resultat-chercher .actitityLink path {
+  pointer-events: none;
+}
 custom-svg svg .correction {
   display: none
 }
