@@ -542,6 +542,15 @@
                     "TMM":"Matrices"
                 }
             },
+            "TG":{
+                "nom":"Albègre et géométrie",
+                "chapitres":{
+                    "TGC":"Combinatoire et dénombrement",
+                    "TGV":"Manipuler les vecteurs, droites et plans",
+                    "TGO":"Orthogonalité et distances",
+                    "TGR":"Représentations paramétriques et équations cartésiennes"
+                }
+            },
             "TN":{
                 "nom":"Analyse",
                 "chapitres":{
@@ -568,6 +577,14 @@
     "H":{
         "nom":"Hors Prog.",
         "themes":{
+            "HN":{
+                "nom":"Analyse",
+                "chapitres":{
+                    "HN1":"Suites",
+                    "HN2":"Limites",
+                    "HN3":"Dérivation"
+                }
+            },
             "HP":{
                 "nom":"Puissances",
                 "chapitres":{
