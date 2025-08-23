@@ -96,10 +96,10 @@ Ces fichiers json comportent des *données obligatoires* :
  * **ID** : un identifiant unique de l'activité pour la retrouver facilement dans la base de données, correspond au nom du fichier json : ID.json (pas de doublon !), ex : 6ND6 rangé dans N6 (niveau 6e) sous le code 6ND (Cf structure.json pour le classement) 6ND6 pour le numéro dans l'ordre de création des fichiers
  * **dest** : la liste des niveaux et sous partie qui seront peuplés par l'activité, ex 7NA1 sera rangé en CM2 (**7**e) > **N**umérique > Comprendre et utiliser les nombres (**A**) > 1ère activité
  * **vars** : objet json contenant la ou les variables utilisées dans l'activité
-   * une variable est une chaine ou un tableau. elle est interprétée pour tirer au sort des nombres uniques, des tableaux de nombres ...
-     * des entiers min_max ou min_max_quantité ou min_max_^liste de valeurs à éviter ou min_max_quantité_^&,val1,val2... & signifie pas de double
-     * des décimaux dmin_max_précision (pouvant être négative pour les puissances de 10 positives)
-     * une valeur dans un tableau
+   * une variable est une chaine ou un tableau. elle est interprétée pour tirer au sort des nombres uniques, des tableaux de nombres, un élément d'un tableau ...
+     * des entiers min_max ou min_max_quantité ou min_max_^liste de valeurs à éviter ou min_max_quantité_^&,val1,val2... & signifie pas de double. Exemple : "1_10_2_^&,5" tire au hasard deux nombres différents entre 1 et 10 inclus qui ne valent pas 5
+     * des décimaux dmin_max_précision (pouvant être négative pour les puissances de 10 positives). Exemple : "d0.1_2_2" tire un nombre à deux chiffres après la virgule compris entre 0.1 et 2 inclus
+     * une valeur dans un tableau. Exemple : [10,100,1000] var tirer l'un des nombres de la liste
    * une variable a pourra être reprise dans une autre variable par un appel de type :var ou :var[2] pour la 3e valeur d'un tableau s'il n'est pas associé à une autre variable (voir les précisions suivantes) pour utiliser la variable var. Attention, les déclarations sont chronologiques :var ne peut être appelée avant sa déclaration.
    * des calculs utilisant la bibliothèque math peuvent être effectués dans les paires d'accolades, exemple : ${MMmath.multiply(:a,:b)}
    * d'autres traitements peuvent être effectués à l'aide de fonctions javascript ${:a.toUpperCase()}
@@ -248,8 +248,8 @@ Conversions
             "q":"m",
             "k":[["km",1000], ["hm",100], ["dam",10], ["dm",0.1], ["cm",0.01], ["mm",0.001]], // pour chaque unité on associe le multiplicande permettant la conversion
             "p":[[0.1,2],[1,1],[0,10],[-1,100],[-2,1000]], // le premier nombre est la précision, le second est la limite supérieure pour la génération du nombre
-            "z":"${:p[0]}_3", // définition de la précision de l'arrondi : 0,1-0,001 ou 1-0,001 ou 10-0,001 ou encore 100-0,001
-            "x":"d0_${:p[1]}_:z_^0"} // d indique qu'on veut des nombres décimaux, nombre entre 0 et 1, 10, 100 ou 1000, non nul
+            "z":":p[0]_3", // définition de la précision de l'arrondi : 0,1-0,001 ou 1-0,001 ou 10-0,001 ou encore 100-0,001
+            "x":"d0_:p[1]_:z_^0"} // d indique qu'on veut des nombres décimaux, nombre entre 0 et 1, 10, 100 ou 1000, non nul
             },
         {
           "name":"L",
@@ -257,7 +257,7 @@ Conversions
             "q":"L",
             "k":[["hL",100], ["daL",10], ["dL",0.1], ["cL",0.01], ["mL",0.001]],
             "p":[[0,0],[-1,10],[-2,100],[-3,1000]],
-            "z":"${:p[0]}_3",
+            "z":":p[0]_3",
             "x":"d0_${:p[1]}_:z_^0"
           }
         },
@@ -267,7 +267,7 @@ Conversions
             "q":"g",
             "k":[["kg",1000], ["hg",100], ["dag",10], ["dg",0.1], ["cg",0.01], ["mg",0.001]],
             "p":[[0,0],[-1,10],[-2,100],[-3,1000]],
-            "z":"${:p[0]}_3",
+            "z":":p[0]_3",
             "x":"d0_${:p[1]}_:z_^0"
             }
           }
