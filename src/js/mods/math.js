@@ -213,7 +213,7 @@ const MMmath = {
     else return nb;
   },
   /**
-   * tranform the number 1 or -1 to + or -
+   * tranform the number 1 or -1 to '' or -
    * 
    * @param {Number} nb 
    * @returns nothing if nb=1, - if nb=-1 the number in other cases
@@ -501,6 +501,21 @@ const MMmath = {
       inSquareR = inSquareR * Math.pow(nb, power % 2);
     }
     return (outOfSquareR > 1 ? outOfSquareR : '') + (inSquareR > 1 ? "\\sqrt{" + inSquareR + "}" : '');
+  },
+  /**
+   * Renvoie true si la racine est simplifiable, false sinon
+   */
+  racineSimplifiable(nb){
+    const factors = MMmath.factor(nb).split('*');
+    let canBeSimplified = false;
+    for (const factor of factors) {
+      const elt = factor.split("^");
+      if (elt.length > 1) {
+        canBeSimplified = true;
+        break;
+      }
+    }
+    return canBeSimplified
   },
   /**
    * Indicates if a number is divided by another
