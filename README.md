@@ -100,10 +100,10 @@ Ces fichiers json comportent des *données obligatoires* :
      * des entiers min_max ou min_max_quantité ou min_max_^liste de valeurs à éviter ou min_max_quantité_^&,val1,val2... & signifie pas de double
      * des décimaux dmin_max_précision (pouvant être négative pour les puissances de 10 positives)
      * une valeur dans un tableau
-   * une variable a pourra être reprise dans une autre variable par un appel de type ${:a} pour utiliser la variable a. Attention, les déclarations sont chronologiques : a ne peut être appelée avant sa déclaration.
+   * une variable a pourra être reprise dans une autre variable par un appel de type :var ou :var[2] pour la 3e valeur d'un tableau s'il n'est pas associé à une autre variable (voir les précisions suivantes) pour utiliser la variable var. Attention, les déclarations sont chronologiques :var ne peut être appelée avant sa déclaration.
    * des calculs utilisant la bibliothèque math peuvent être effectués dans les paires d'accolades, exemple : ${MMmath.multiply(:a,:b)}
    * d'autres traitements peuvent être effectués à l'aide de fonctions javascript ${:a.toUpperCase()}
-   * Note : les variables présentes dans l'activité et redéfinies dans une option sont définies dans l'ordre de déclaration globale. Il faut bien l'avoir en tête.
+   * Note : les variables présentes dans l'activité et redéfinies dans une option sont définies dans l'ordre de déclaration globale. Il faut bien l'avoir en tête. Il vaut mieux éviter de redéclarer une variable globale...
 * **question** : chaine unique ou tableau de chaines contenant le texte de la question
   * pour le cas du tableau, il est possible de choisir le type de question à afficher lors du paramétrage de l'activité
 * **answer** : chaine unique ou tableau de chaines contenant la réponse à la question. L'énoncé de la question peut être repris en indiquant :question directement dans la chaine, sans accolades si vous ajoutez |15 les 15 premiers caractères seront ignorés dans la recopie.
@@ -170,7 +170,7 @@ Tables de multiplciation : avec du latex, type par défaut, donc non indiqué
 ```js
 {
     "title":"Tables de Multiplications", // obligatoire
-    "ID":"6ND6", // obligatoire
+    "ID":"6ND6", // non obligatoire, il correspond au nom du fichier
     "dest":["6ND", "7ND"], // obligatoire, permet de placer l'activité dans les listes de chaque niveau correspondant.
                            //Les références utilisées sont à consulter dans le fichier library/structure.json
     "vars":{
@@ -178,8 +178,8 @@ Tables de multiplciation : avec du latex, type par défaut, donc non indiqué
       "b":"2_10" // b entier entre 2 et 10
       },
     "question":[
-      "\\bold{${:a}}\\times${:b}", // en gras le nombre a multiplié par le nombre b
-      "${:b}\\times\\bold{${:a}}" // le nombre b multiplié par le nombre a, en gras
+      "\\bold{:a}\\times:b", // en gras le nombre a multiplié par le nombre b
+      ":b\\times\\bold{:a}" // le nombre b multiplié par le nombre a, en gras
       ],
     "answer":":question=\\color{red}{${:a*:b}}", // une seule réponse possible on peut reprendre la variable question ici sans ${}, c'est la seule possible dans cette chaine
     "value":"${:a*:b}" // valeur attendue dans le corrigé
@@ -199,33 +199,33 @@ Il est possible de choisir parmi les types de questions, celle qui sera affiché
     "vars":{
       "a":"1_10",
       "b":"2_10",
-      "c":["u","v","t","x", "y", "z"]
+      "x":["u","v","t","x", "y", "z"]
       },
     "options":[{
         "name":"(ax+b)²",
         "question": [
-          "(${MMmath.signIfOne(:a)}${:c}+${:b})^2", // (ax + b)², le a pouvant être 1, on utilise MMmath.signIfOne qui remplace le nombre par rien si 1 ou - si -1
-          "(${:b}+${MMmath.signIfOne(:a)}${:c})^2" // (b + ax)²
+          "(${MMmath.signIfOne(:a)}:x+:b)^2", // (ax + b)², le a pouvant être 1, on utilise MMmath.signIfOne qui remplace le nombre par rien si 1 ou - si -1
+          "(:b+${MMmath.signIfOne(:a)}:x)^2" // (b + ax)²
           ],
           // reponse : (ax+b)² = en rouge ax²+2ab+b² on utilise MMmath.multiply et MMmath.pow plutôt que * et ^ qui peuvent créer des pb d'arrondi
-        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2+${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}}",
-        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2+${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}"    
+        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}:x^2+${MMmath.multiply(2,:a,:b)}:x+${MMmath.pow(:b,2)}}",
+        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}:x^2+${MMmath.multiply(2,:a,:b)}:x+${MMmath.pow(:b,2)}"    
     },
     {
         "name":"(ax-b)²",
-        "question": ["(${MMmath.signIfOne(:a)}${:c}-${:b})^2", "(${:b}-${MMmath.signIfOne(:a)}${:c})^2"],
-        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}}",
-        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.multiply(2,:a,:b)}${:c}+${MMmath.pow(:b,2)}"    
+        "question": ["(${MMmath.signIfOne(:a)}:x-:b)^2", "(:b-${MMmath.signIfOne(:a)}:x)^2"],
+        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}:x^2-${MMmath.multiply(2,:a,:b)}:x+${MMmath.pow(:b,2)}}",
+        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}:x^2-${MMmath.multiply(2,:a,:b)}:x+${MMmath.pow(:b,2)}"    
     },
     {
         "name":"(ax-b)(ax+b)",
         "question": [
-            "(${MMmath.signIfOne(:a)}${:c}-${:b})(${MMmath.signIfOne(:a)}${:c}+${:b})", // (ax-b)(ax+b)
-            "(${MMmath.signIfOne(:a)}${:c}-${:b})(${:b}+${MMmath.signIfOne(:a)}${:c})", // (ax-b)(b+ax)
-            "(${MMmath.signIfOne(:a)}${:c}+${:b})(${MMmath.signIfOne(:a)}${:c}-${:b})", // (ax+b)(ax-b)
-            "(${:b}+${MMmath.signIfOne(:a)}${:c})(${MMmath.signIfOne(:a)}${:c}-${:b})"], // (b-ax)(ax-b)
-        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.pow(:b,2)}}",
-        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}${:c}^2-${MMmath.pow(:b,2)}"    
+            "(${MMmath.signIfOne(:a)}:x-:b)(${MMmath.signIfOne(:a)}:x+:b)", // (ax-b)(ax+b)
+            "(${MMmath.signIfOne(:a)}:x-:b)(:b+${MMmath.signIfOne(:a)}:x)", // (ax-b)(b+ax)
+            "(${MMmath.signIfOne(:a)}:x+:b)(${MMmath.signIfOne(:a)}:x-:b)", // (ax+b)(ax-b)
+            "(${:b}+${MMmath.signIfOne(:a)}:x)(${MMmath.signIfOne(:a)}:x-:b)"], // (b-ax)(ax-b)
+        "answer":":question=\\color{red}{${MMmath.signIfOne(MMmath.pow(:a,2))}:x^2-${MMmath.pow(:b,2)}}",
+        "value":"${MMmath.signIfOne(MMmath.pow(:a,2))}:x^2-${MMmath.pow(:b,2)}"    
     }
     ]
 }
@@ -249,7 +249,7 @@ Conversions
             "k":[["km",1000], ["hm",100], ["dam",10], ["dm",0.1], ["cm",0.01], ["mm",0.001]], // pour chaque unité on associe le multiplicande permettant la conversion
             "p":[[0.1,2],[1,1],[0,10],[-1,100],[-2,1000]], // le premier nombre est la précision, le second est la limite supérieure pour la génération du nombre
             "z":"${:p[0]}_3", // définition de la précision de l'arrondi : 0,1-0,001 ou 1-0,001 ou 10-0,001 ou encore 100-0,001
-            "x":"d0_${:p[1]}_${:z}_^0"} // d indique qu'on veut des nombres décimaux, nombre entre 0 et 1, 10, 100 ou 1000, non nul
+            "x":"d0_${:p[1]}_:z_^0"} // d indique qu'on veut des nombres décimaux, nombre entre 0 et 1, 10, 100 ou 1000, non nul
             },
         {
           "name":"L",
@@ -258,7 +258,7 @@ Conversions
             "k":[["hL",100], ["daL",10], ["dL",0.1], ["cL",0.01], ["mL",0.001]],
             "p":[[0,0],[-1,10],[-2,100],[-3,1000]],
             "z":"${:p[0]}_3",
-            "x":"d0_${:p[1]}_${:z}_^0"
+            "x":"d0_${:p[1]}_:z_^0"
           }
         },
         {
@@ -268,14 +268,14 @@ Conversions
             "k":[["kg",1000], ["hg",100], ["dag",10], ["dg",0.1], ["cg",0.01], ["mg",0.001]],
             "p":[[0,0],[-1,10],[-2,100],[-3,1000]],
             "z":"${:p[0]}_3",
-            "x":"d0_${:p[1]}_${:z}_^0"
+            "x":"d0_${:p[1]}_:z_^0"
             }
           }
     ],
     "description":"Conversions des multiples et sous-multiples des m, L et g vers les m, L et g",
-    "question":"\\text{Convertir } ${:x} \\text{ ${:k[0]} en }\\color{blue}\\text{${:q}}",
-    "answer":"${:x} \\text{ ${:k[0]}} = \\color{red}{${MMmath.round(:x*:k[1],7)}\\text{ ${:q}}}",
-    "value":"${MMmath.round(:x*:k[1],7)}\\text{ ${:q}}"
+    "question":"\\text{Convertir } :x \\text{ ${:k[0]} en }\\color{blue}\\text{:q}",
+    "answer":":x \\text{ ${:k[0]}} = \\color{red}{${MMmath.round(:x*:k[1],7)}\\text{ :q}}",
+    "value":"${MMmath.round(:x*:k[1],7)}\\text{ :q}"
 }
 ```
 
@@ -289,8 +289,8 @@ Exemple avec du texte
   "vars":{
     "a":"2_10"
   }
-  "question":"Combien font $$3\\times${:a}$$ ?",
-  "answer":"$$3\\times${:a}=\\color{red}{${3*:a}}$$"
+  "question":"Combien font $$3\\times :a$$ ?",
+  "answer":"$$3\\times :a=\\color{red}{${3*:a}}$$"
   "value":"${3*:a}"
 }
 ```
@@ -333,12 +333,12 @@ Exemple avec JSXGraph
         "axis":true, // affiche les axes
         "grid":true, // affiche la grille
         "content" :[
-                ["functiongraph","${:a}*x+${:b}"] // functiongraph va tracer la représentation de la formule
+                ["functiongraph",":a*x+:b"] // functiongraph va tracer la représentation de la formule
             ]    
         },
     "question":"Quelle est l'ordonnée à l'origine de la fonction affine ?",
-    "answer":"L'ordonnée à l'origine de la fonction est <span class='red'>${:b}</span>",
-    "value":"${:b}" // valeur attendue en réponse
+    "answer":"L'ordonnée à l'origine de la fonction est <span class='red'>:b</span>",
+    "value":":b" // valeur attendue en réponse
 }
 ```
 
@@ -347,7 +347,6 @@ Fichier structure pour démarrer la création d'un exercice
 {
     "title":"", // titre
     "type":"", // laisser vide ou supprimer pour des notations de maths
-    "ID":"", // nom du fichier, sans l'extension .json
     "dest":[""], // Codes des chapitres de destination
     "consts":{"d":""}, // constantes utilisées, non obligatoires
     "vars":{"a":"", "b":"", "c":["u","v","t","x", "y", "z"]}, // variables utilisées, non obligatoires si dans les options

@@ -18,7 +18,8 @@ body {
     font-weight: bold;
 }
 #activityTitle {
-    font-size: bigger;
+    font-size: bigger !important;
+    font-weight: bold !important;
 }
 #activityDescription {
     font-size: smaller;
@@ -38,9 +39,9 @@ body {
     position: relative;
     background-color: rgb(249, 255, 226);
 }
-.red {
-    font-weight: bold;
-    color: red;
+.red, .katex-error {
+    font-weight: bold !important;
+    color: red !important;
 }
 #openFileInput {
     width: 150px;

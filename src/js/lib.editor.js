@@ -1,5 +1,6 @@
 import activity from './mods/activity.js'
 import MM from './mods/MM.js'
+import utils from './mods/utils.js'
 import theactivities from './mods/theactivities.js'
 
 const activitiesIDs = []
@@ -97,6 +98,7 @@ window.onload = () => {
     }
     document.getElementById('testBtn').onclick = () => {
         const act = new activity(editor.get())
+        document.getElementById('errors').innerHTML = '';
         MM.editedActivity = act
         act.display('sample',MM)
         saveJson()
@@ -147,7 +149,7 @@ window.onload = () => {
                     document.getElementById('activityTitle').innerHTML = "<span class='red'>Erreur dans le code</span>"+err
                 }
             } catch (error) {
-                console.error("Error parsing JSON: ", error);
+                utils.debug("Error parsing JSON: ", error);
             }
         };
         reader.readAsText(file);

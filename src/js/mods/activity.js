@@ -678,6 +678,9 @@ export default class activity {
             return "this.cConsts['"+p1+"']"+p2;
         }
         if(typeof chaine === "string"){
+            // ajout 23/08/2025 on peut définir les variables en dehors des ${} pour plus de facilité.
+            // on remplace tous les :a1 en ${:a1}
+            chaine = utils.convertToPointVar(chaine);
             for(const c in this.wVars){
                 let regex = new RegExp(":("+c+")([^\\w\\d])", 'g');
                 chaine = chaine.replace(regex, onlyVarw);
@@ -694,7 +697,7 @@ export default class activity {
             }
             catch(error){
                 utils.debug(error, "Error replacing vars with "+chaine);
-                console.log(this.wVars,this.cConsts)
+                utils.debug(this.wVars,this.cConsts)
             }
             // return number if this is one
             if(!isNaN(result) && result !== '' && result.indexOf('+')<0){

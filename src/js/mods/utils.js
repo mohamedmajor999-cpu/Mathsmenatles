@@ -156,7 +156,57 @@ export const utils = {
     security: 300,// max number for boucles
     modeDebug: true,
     debug: function () {
-        if (utils.modeDebug) console.log(arguments);
+        const divAffichage = document.getElementById('errors');
+        if (utils.modeDebug && divAffichage === null) {
+            console.log(arguments);
+        } else if(divAffichage !== null) {
+            if(arguments.length>1){
+                for (const argument of arguments)
+                    utils.afficheEnHTML(arguments,divAffichage)
+            } else {
+                utils.afficheEnHTML(arguments,divAffichage)
+            }
+        }
+    },
+    afficheEnHTML: function(obj,container){
+        // 1. Crée un élément container
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // 2. Parcours des paires clé/valeur
+        for (const [key, val] of Object.entries(obj)) {
+            const row = document.createElement('div');
+            row.className = 'row';
+
+            // Clé
+            const keyEl = document.createElement('span');
+            keyEl.className = 'key';
+            keyEl.textContent = `${key}: `;
+
+            // Valeur
+            const valEl = document.createElement('span');
+            valEl.className = 'value';
+            if (Array.isArray(val)) {
+                valEl.textContent = `[${val.join(', ')}]`;
+            } else if (typeof val === 'object' && val !== null) {
+                // Sous‑objet → appel récursif
+                valEl.appendChild(utils.afficheEnHTML(val, document.createElement('div')));
+            } else if(obj.name !== undefined){
+                valEl.textContent = obj.name
+                if(obj.stack !== undefined){
+                    valEl.textContent += err.stack
+                }
+            }{
+                valEl.textContent = val;
+            }
+
+            row.append(keyEl, valEl);
+            card.appendChild(row);
+        }
+
+        // 3. Ajout au container passé en argument
+        container.appendChild(card);
+        return card;
     },
     getVersion() {
         const fileName = document.getElementById("mmscriptid").attributes.src.value;
@@ -174,6 +224,62 @@ export const utils = {
             b:parseInt(argbHex[2],16)/255
         }
     },
+    /**
+ * Remplace tous les :var (hors de `${…}`) par `${:var}`,
+ * à l’exception de `:question` qui reste inchangé.
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+ convertToPointVar(str) {
+  let result = '';
+  let depth = 0; // 0 = hors `${…}`, >0 = dans un bloc `${…}`
+  let inside = false
+  let depthInside = 0
+
+  for (let i = 0; i < str.length; i++) {
+    /* --- Début d’un bloc `${…}` --------------------------------- */
+    if (str.startsWith('${', i)) {
+      depth++;                  // on entre dans un bloc
+      result += '${';
+      i += 1;                   // on saute le `$` et on laissera le `{`
+      inside = true
+      depthInside = depth
+      continue;
+    }
+    if(str.startsWith('{',i)){
+        depth++;
+        result += '{';
+        continue;
+    }
+    /* --- Fin d’un bloc `${…}` ----------------------------------- */
+    if (str[i] === '}' && depth > 0) {
+      if (depthInside === depth) inside = false
+      depth--;                  // on sort d’un bloc
+      result += '}';
+      continue;
+    }
+
+    /* --- Si on est à l’extérieur d’un bloc --------------------- */
+    if (!inside && str[i] === ':') {
+      const match = /^:\w+(?:\[\d+\])?/.exec(str.slice(i));
+      if (match) {
+        const varName = match[0];
+        i += varName.length - 1; // avancer jusqu’à la fin du token
+
+        if (varName === ':question') {
+          result += varName;          // garder :question inchangé
+        } else {
+          result += `\${${varName}}`;  // transformer :var en ${:var}
+        }
+        continue;
+      }
+    }
+    /* --- Caractère normal --------------------------------------- */
+    result += str[i];
+  }
+  return result;
+},
     /**
      * objet contenant des fonctions utiles à MathsMentales
      */
@@ -872,6 +978,6 @@ export const utils = {
         }).join(""));
     },
     isURLEncoded(str) {
-        return !(str.indexOf("n=") > -1 || str.indexOf("u=") > -1 || str.indexOf("&p=") > 0 || str.indexOf("&amp;p=") > 0 || str.indexOf("&c=") > 0 || str.indexOf('s=')===0);
+        return !(str.indexOf("n=") > -1 || str.indexOf("u=") > -1 || str.indexOf("&p=") > 0 || str.indexOf("&amp;p=") > 0 || str.indexOf("&c=") > 0 || str.indexOf('search=')===0);
     }
 }
