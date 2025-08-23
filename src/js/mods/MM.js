@@ -897,12 +897,12 @@ const MM = {
             if (vars.embed.match(regex))
                 MM.embededIn = vars.embed;
         }
-        if (vars.s !== undefined){ // chaine de recherche
-            document.getElementById('searchinput').value = vars.s
+        if (vars.search){ // chaine de recherche
+            document.getElementById('searchinput').value = vars.search
             if (vars.f !== '' && vars.f !== undefined){
                 vars.f.split(',').forEach(el => {document.getElementById('ccbs'+el).checked = true})
             }
-            library.displayContent(vars.s)
+            library.displayContent(vars.search)
         } else if (vars.n !== undefined && vars.cd === undefined && !edit) { // un niveau à afficher
             library.displayContent(vars.n, true);
             return;
@@ -1257,8 +1257,7 @@ const MM = {
         li.appendChild(this.getCartsContent());
         // on supprime les anciennes références à la même activité
         try {
-            console.log("#tab-historique span[data-url='" + url + "']")
-            let lis = document.querySelectorAll("#tab-historique span[data-url='" + url + "']");
+            let lis = document.querySelectorAll("#tab-historique span[data-url='" + url.replace(/\'/g,'%27') + "']");
             for (let k = 0; k < lis.length; k++) {
                 let parent = lis[k].parentNode;
                 contener.removeChild(parent);
@@ -1445,7 +1444,7 @@ const MM = {
                 const input = utils.create("input", { type: "checkbox", name: "searchlevel", value: ordre[o][i], className: "checkbox", id: "ccbs" + ordre[o][i] });
                 input.onclick = () => {
                     library.displayContent(document.getElementById("searchinput").value)
-                    MM.setHistory('MathsMentales filtre : '+ordre[o][i],'s='+document.getElementById('searchinput').value+'&f='+([...dest.querySelectorAll('input:checked')].map(e => e.value).join(',')))
+                    MM.setHistory('MathsMentales filtre : '+ordre[o][i],'search='+document.getElementById('searchinput').value+'&f='+([...dest.querySelectorAll('input:checked')].map(e => e.value).join(',')))
                 };
                 const label = utils.create("label", { for: "ccbs" + ordre[o][i], innerText: MM.content[ordre[o][i]].nom });
                 label.onclick = (evt) => { document.getElementById(evt.target.for).click() };

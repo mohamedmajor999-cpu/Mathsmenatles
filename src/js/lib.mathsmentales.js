@@ -352,7 +352,7 @@ window.onload = function() {
             filters = [...searchFilters].map(e=>e.value).join(',');
         }
         if(searchString.length > 2){
-            MM.setHistory('MathsMentales recherche :'+searchString,'s='+searchString+'&f='+filters)
+            MM.setHistory('MathsMentales recherche :'+searchString,'search='+searchString+'&f='+filters)
         }
         library.displayContent(searchString)
     };
