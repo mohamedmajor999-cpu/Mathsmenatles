@@ -1,6 +1,10 @@
-import katex from '../libs/katex/katex.esm.js';
+// import katex from '../libs/katex/katex.esm.js';
 import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
+import { convertLatexToMarkup, MathfieldElement, renderMathInDocument } from '../libs/mathlive/mathlive.mjs';
 export { utils as default }
+
+MathfieldElement.fontsDirectory = '../katex/fonts'
+MathfieldElement.soundsDirectory = null
 // Some traductions
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const joursFR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
@@ -236,6 +240,13 @@ export const utils = {
   let depth = 0; // 0 = hors `${…}`, >0 = dans un bloc `${…}`
   let inside = false
   let depthInside = 0
+  let insideStyle = false
+
+      // ne rien faire dans un svg
+      // TODO à traiter plus tard peut-être
+    if (str.startsWith('<svg')) {
+        return str
+    }
 
   for (let i = 0; i < str.length; i++) {
     /* --- Début d’un bloc `${…}` --------------------------------- */
@@ -261,8 +272,8 @@ export const utils = {
     }
 
     /* --- Si on est à l’extérieur d’un bloc --------------------- */
-    if (!inside && str[i] === ':') {
-      const match = /^:\w+(?:\[\d+\])?/.exec(str.slice(i));
+    if (!insideStyle && !inside && str[i] === ':') {
+      const match = /^:(?!\d)\w+(?:\[\d+\])?/.exec(str.slice(i));
       if (match) {
         const varName = match[0];
         i += varName.length - 1; // avancer jusqu’à la fin du token
@@ -882,7 +893,7 @@ export const utils = {
      * Render the math
      * @param (dom) wtarget : window reference
      */
-    mathRender: function (wtarget = false, diaporama = false) {
+    mathRender: function (fontType, wtarget = false, diaporama = false) {
         let contents = ["enonce-content", "corrige-content", "sampleLayer"];
         if (!diaporama) {
             contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne"];
@@ -892,43 +903,67 @@ export const utils = {
             // search for $$ formulas $$ => span / span
             let content = document.getElementById(id);
             if (content !== null) {
-                content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+                content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
             } else {
                 contents = document.querySelectorAll(id);
                 contents.forEach(elt => {
-                    elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+                    elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
                 });
             }
                 
         });
         document.querySelectorAll(".slide").forEach(elt => {
-            elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+            elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
         });
-        document.querySelectorAll(".math").forEach(function (item) {
+        document.querySelectorAll("script[type='math/tex']").forEach(function (item) {
             // transform ascii to Latex
             //var texTxt = MM.ascii2tex.parse(item.innerHTML);
-            var texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
+            let texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
             // suppression du displaystyle
             texTxt = texTxt.replace(/\\displaystyle/g, "");
+            texTxt = texTxt.replace(/\\color\{/g, "\\textcolor{")
             // remplacement de &gt; et &lt;
             texTxt = texTxt.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
             // recherche les nombres, décimaux ou pas
             let nbrgx = /(\d+\.*\d*)/g;
             // insère des espaces tous les 3 chiffres;
             texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
+            // setFontType
+            if (fontType === 'sansSerif')
+                texTxt = '\\mathsf {'+texTxt+'}'
+            item.innerHTML = texTxt
             //texTxt = texTxt.replace(/\.(\d{3})(?=(\d+))/g,"$1~");
             //texTxt = texTxt.replace(/\./g, "{,}");
-            try {
+            /*try {
+                renderMathInElement(item)
                 katex.render(texTxt, item, { //"\\displaystyle "+
                     throwOnError: false,
-                    errorColor: "#FFF",
-                    colorIsTextColor: true
+                    errorColor: "#ff0000ff",
+                    colorIsTextColor: true,
+                    output:'html'
                 });
                 utils.removeClass(item, "math");
+                
             } catch (err) {
                 item.innerHTML = "<span class='err'>" + err + ' avec ' + texTxt + '</span>';
-            };
+            };*/
         });
+        try {
+            renderMathInDocument()
+        } catch (err) {
+            console.log('Probleme de rendu des expressions mathématiques')
+        }
+    },
+    mathReRender(fontStyle){
+        document.querySelectorAll('span[data-latex]').forEach(latexEl => {
+            let latex = latexEl.dataset.latex
+            if(fontStyle === 'sansSerif' && !latex.startsWith('\\mathsf')){
+                latex = '\\mathsf {'+latex+'}'
+            } else if ((fontStyle === '' || fontStyle === 'serif') && latex.startsWith('\\mathsf')){
+                latex = latex.slice(10,-1)
+            }
+            latexEl.innerHTML = convertLatexToMarkup(latex)
+        })
     },
     /**
      * 

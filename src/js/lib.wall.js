@@ -29,7 +29,7 @@ document.getElementById('flipall').onclick = () => {
 }
 function refresh() {
     makePage()
-    common.mathRender(['.question', '.answer'])
+    utils.mathRender(parameters.fontType,['.question', '.answer'])
 }
 
 function fontSizePlus() {
@@ -140,8 +140,8 @@ function makePage() {
             }
             const divr = utils.create("div");
             if (activity.type === "latex" || activity.type === "" || activity.type === undefined) {
-                const span = utils.create("span", { className: "math", innerHTML: activity.questions[questionNumber] });
-                const spanCorrection = utils.create("span", { className: "math", innerHTML: activity.answers[questionNumber] });
+                const span = utils.create("span", { innerHTML: '<script type="math/tex">'+activity.questions[questionNumber]+'</script>' });
+                const spanCorrection = utils.create("span", { innerHTML: '<script type="math/tex">'+activity.answers[questionNumber]+'</script>'});
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {
@@ -286,6 +286,7 @@ function checkURL(urlString) {
         // paramètres des activités des paniers
         let json = vars.c;
         //document.getElementById("nbDominos").value = parameters.nb
+        parameters.fontType = vars.fs??'serif'
         parameters.titreFiche = decodeURI(vars.t);
         if (vars.t !== false)
             document.getElementById("creator-title").innerHTML = parameters.titreFiche

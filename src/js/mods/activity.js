@@ -202,7 +202,7 @@ export default class activity {
     }
     setMath(content){
         if(this.type === undefined || this.type === "latex"){
-            return '<span class="math">'+content+"</span>";
+            return '<script type="math/tex">'+content+"</script>";
         } else return content;
     }
     /**
@@ -342,7 +342,7 @@ export default class activity {
                         ul.appendChild(div);
                     }
                     li.className = "tooltip";
-                    li.innerHTML = "<input type='checkbox' class='checkbox' value='"+jj+"' onclick='MM.editedActivity.setQuestionType(this.value, this.checked);' ><span class='math'>"+this.questions[0][jj]+"</span>";
+                    li.innerHTML = "<input type='checkbox' class='checkbox' value='"+jj+"' onclick='MM.editedActivity.setQuestionType(this.value, this.checked);' >"+this.setMath(this.questions[0][jj]);
                     let span = document.createElement("span");
                     span.className = "tooltiptext";
                     if(Array.isArray(this.answers[0])){
@@ -416,7 +416,7 @@ export default class activity {
                 hr.parentNode.insertBefore(div, hr);
             }
         }
-        utils.mathRender();
+        utils.mathRender(MM.fontType);
     }
     replaceQuestionInAnswer(answer,question){
         // check if question as to be written in answer or shortquestion

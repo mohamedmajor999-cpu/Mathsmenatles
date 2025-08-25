@@ -189,8 +189,8 @@ function makePage(){
             const li = utils.create("li",{className:"interro"});
             const liCorrection = utils.create("li");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                const span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
-                const spanCorrection = utils.create("span", {className:"math", innerHTML:activity.answers[j]});
+                const span = utils.create("span",{innerHTML:'<script type="math/tex">'+activity.questions[j]+'</script>'});
+                const spanCorrection = utils.create("span", {innerHTML:'<script type="math/tex">'+activity.answers[j]+'</script>'});
                 li.appendChild(span);
                 liCorrection.appendChild(spanCorrection);
             } else {
@@ -241,7 +241,7 @@ function makePage(){
 }
 function refresh(){
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
     content.oninput = (evt)=>{
         if(evt.target.nodeName.toLowerCase()==="input"){
             changecols(evt.target.dataset.dest,evt.target.value)
@@ -285,6 +285,7 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=Number(vars.s);
         parameters.nb=Number(vars.n);
         parameters.positionCorrection=vars.cor||'end';

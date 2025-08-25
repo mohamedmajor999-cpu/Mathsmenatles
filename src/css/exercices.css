@@ -158,7 +158,10 @@ h3.exercice-title {
     margin-top: 10pt;
     break-inside: avoid;
 }
-
+.consigne {
+    font-style: italic;
+    font-weight: bold;
+}
 .corrige {
     font-size: smaller;
     color: grey;

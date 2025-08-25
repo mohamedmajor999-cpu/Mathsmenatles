@@ -46,6 +46,7 @@ window.onload = function() {
     }
     MM.checkValues();
     MM.initializeAlea(Date());
+    MM.setFontType()
     MM.content = library.openContents();
     MM.createTuiles();
     // création des tuiles des niveaux
@@ -217,6 +218,7 @@ window.onload = function() {
     document.getElementById("btncopytohistoric").onclick = ()=>{MM.copyURLtoHistory()};
     // bouton d'inclusion de la variable aléatoire
     document.getElementById("aleaInURL").onchange = ()=>{MM.setSeed("checkSwitched")}
+    document.getElementById('fontType').onchange = ()=>{MM.setFontType()}
     // boutons génération documents
     document.getElementById("chooseParamType").onchange = (evt)=>{MM.showParameters(evt.target.value)}
     // fiche d'exercices

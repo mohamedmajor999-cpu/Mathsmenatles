@@ -138,9 +138,12 @@ function makePage() {
                 let divanswerc = utils.create("td", { width: "50%" })
                 let answer = (Array.isArray(activity.answers[j])) ? activity.answers[j][0] : activity.answers[j];
                 if (activity.type === "latex" || activity.type === "" || activity.type === undefined) {
-                    let span = utils.create("span", { className: "math", innerHTML: activity.questions[j] });
-                    let spanc = utils.create("span", { className: "math", innerHTML: activity.questions[j] });
-                    let spanCorrection = utils.create("span", { className: "math", innerHTML: answer });
+                    let span = utils.create("span");
+                    span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                    let spanc = utils.create("span");
+                    spanc.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                    let spanCorrection = utils.create("span");
+                    spanCorrection.innerHTML = '<script type="math/tex">'+answer+'</script>'
                     divenonce.appendChild(span);
                     divenoncec.appendChild(spanc);
                     divanswerc.appendChild(spanCorrection);
@@ -208,7 +211,7 @@ function makePage() {
 }
 function refresh() {
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
     setTimeout(()=> {setPageBreaks()},1000)
     content.oninput = (evt) => {
         if (evt.target.nodeName.toLowerCase() === "input") {
@@ -306,6 +309,7 @@ function checkURL(urlString) {
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte = 10.5;
         parameters.nb = Number(vars.n);
         parameters.positionCorrection = vars.cor || "end";

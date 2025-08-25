@@ -4,7 +4,6 @@ import common from './mods/common.js';
 import cart from './mods/cart.js';
 import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
-// import math from './mods/MMmath.js';
 
 const MM={};
 MM.version = utils.getVersion()
@@ -164,7 +163,7 @@ function refresh(){
     if(pageFormat===0)pageHeight=275
     else pageHeight=190
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
 }
 /**
  * function from https://codepen.io/andreaswik/pen/YjJqpK/
@@ -252,8 +251,10 @@ function makePage(){
             artCorrection.style.width = parameters.cardWidth+"mm";
             const divr = utils.create("div");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                const span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
-                const spanCorrection = utils.create("span", {className:"math", innerHTML:activity.answers[j]});
+                const span = utils.create("span");
+                span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                const spanCorrection = utils.create("span");
+                spanCorrection.innerHTML = '<script type="math/tex">'+activity.answers[j]+'</script>'
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {
@@ -355,20 +356,13 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=10.5;
         parameters.disposition=vars.disp||'both';//'both' or 'separated'
         document.getElementById('btnRectoVerso').innerText = parameters.disposition==='both'?'Recto':'Recto/Verso'
         zoom = new Zoom("changeFontSize","#creator-content",true,"pt",parameters.tailleTexte);
         document.getElementById("fontSize").appendChild(zoom.createCursor());
-            //parameters.nb=Number(vars.n);
-        //document.getElementById("nbDominos").value = parameters.nb
         parameters.titreFiche=decodeURI(vars.t);
-        //parameters.doublons = eval(vars.d)||false;
-        //if(!parameters.doublons)document.getElementById("btnnodoublon").innerHTML = "Doublons"
-        // Affectation de la valeur au nombre de feuilles
-        //document.getElementById("nbDominos").value = parameters.nb;
-        //zoom = new Zoom("changeFontSize","#thehtml",true,"pt",parameters.tailleTexte);
-        //document.getElementById("creator-menu").appendChild(zoom.createCursor());
         document.querySelector("html").style["fontSize"] = parameters.tailleTexte+"pt";
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);

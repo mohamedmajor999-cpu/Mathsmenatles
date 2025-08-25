@@ -109,7 +109,7 @@ function noDoublon(){
 }
 function refresh(){
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
 }
 function makePage(){
     if(parameters.alea){
@@ -140,7 +140,7 @@ function makePage(){
             const artQuestion = utils.create("article",{className:"whogots-question",innerHTML:"<h3>"+parameters.question+"</h3>"});
             let divq = utils.create("div");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
+                let span = utils.create("span",{innerHTML:'<script type="math/tex">'+activity.questions[j]+'</script>'});
                 divq.appendChild(span);
             } else {
                 divq.innerHTML = activity.questions[j];
@@ -169,10 +169,10 @@ function makePage(){
             let answer = activity.values[j];
             if(_.isArray(answer))answer = answer[0];
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                let spanCorrection = utils.create("span", {className:"math", innerHTML:answer});
+                let spanCorrection = utils.create("span", {innerHTML:'<script type="math/tex">'+answer+'</script>'});
                 divr.appendChild(spanCorrection);
             } else {
-                divr.innerHTML = "<span class='math'>"+answer+"</span>";
+                divr.innerHTML = '<script type="math/tex">'+answer+'</script>';
             }
             if (activity.figuresCorrection[j] !== undefined){
                 MM.memory['fc'+numAnswer] = new Figure(utils.clone(activity.figuresCorrection[j]), 'fc'+numAnswer, divr)
@@ -228,6 +228,7 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=10.5;
         parameters.nb=Number(vars.n);
         document.getElementById("nbCartes").value = parameters.nb

@@ -106,7 +106,7 @@ function makePage(){
     for(let qty=0;qty<parameters.nb;qty++){
         const $enonceContent = utils.create("div", {className:"enonceContent"});        
         common.generateQuestions(parameters);
-        // si plus d'une interro, on introduit un pagebreak
+        // si plus d'une fiche d'exercices, on introduit un pagebreak
         if(qty>0){
             content.appendChild(utils.create("footer"));
             $enonceContent.classList.add('column-break');
@@ -144,7 +144,7 @@ function makePage(){
             }
             let input = `<input id="nbcols${qty}-${i}" data-dest="exo${i}" class="noprint fright" value="${parameters.exocols[i]}" title="Nb de colonnes" type="number" size="2" min="1" max="6">`;
             sectionEnonce.innerHTML += input;
-            let h3 = utils.create("h3", {className:"exercice-title pointer",innerHTML:exTitle+(i+1)+" : "+activity.title,id:"titreExo"+qty+"-"+i});
+            let h3 = utils.create("h3", {className:"exercice-title pointer",innerHTML:exTitle+(i+1)+" : "+(activity.consigne==''?activity.title:activity.consigne),id:"titreExo"+qty+"-"+i});
             sectionEnonce.appendChild(h3);
             let ol = utils.create("ol",{id:"ol"+qty+"-"+i,className:"grid g"+parameters.exocols[i]+" exo"+i});
             let olCorrection = utils.create("ol", {className:"hidden corrige", "id":"corrige"+qty+"-"+i});
@@ -153,8 +153,8 @@ function makePage(){
                 let liCorrection = utils.create("li");
                 let answer = (Array.isArray(activity.answers[j]))?activity.answers[j][0]:activity.answers[j];
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                    let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
-                    let spanCorrection = utils.create("span", {className:"math",innerHTML:answer});
+                    let span = utils.create("span",{innerHTML:'<script type="math/tex">'+activity.questions[j]+'</script>'});
+                    let spanCorrection = utils.create("span", {innerHTML:'<script type="math/tex">'+answer+'</script>'});
                     li.appendChild(span);
                     liCorrection.appendChild(spanCorrection);
                 } else {
@@ -208,7 +208,7 @@ function makePage(){
 }
 function refresh(){
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
     content.oninput = (evt)=>{
         if(evt.target.nodeName.toLowerCase()==="input"){
             changecols(evt.target.dataset.dest,evt.target.value)
@@ -252,6 +252,7 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=Number(vars.s);
         parameters.nb=Number(vars.n);
         parameters.positionCorrection=vars.cor;

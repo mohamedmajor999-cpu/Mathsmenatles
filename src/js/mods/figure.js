@@ -528,19 +528,23 @@ export default class Figure {
                             }
                         }
                     }
+                    //controls.target.set(content.cube/2,content.cube/2,content.cube/2)
                 } else if (content.mur !== undefined) {
+                    let h = 0
                     let x=0,z=0,xorz=MMmath.aleaInt(0,1),translate
                     if(['left','right'].includes(content.mur[0])){
                         translate = content.mur[0]
                     }
                     for(const value of content.mur){
                         if(['left','right'].includes(value)) continue
+                        if(value>h)h=value
                         for(let y=0;y<value;y++){
                             createCube({x,y,z},translate)
                         }
                         if(xorz)x++;
                         else z++
                     }
+                    //controls.target.set(xorz?content.mur.length/2:0.5,h/2,!xorz?content.mur.length/2:0.5)
                 } else if (content.doublemur !== undefined){
                     let translate,index=0
                     if(['left','right'].includes(content.doublemur[0])){

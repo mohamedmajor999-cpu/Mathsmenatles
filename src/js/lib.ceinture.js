@@ -635,7 +635,8 @@ function makePage(){
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                     const divq = utils.create("div",{className:"question"+colsid+" quest", style:'font-size:'+parameters.fontSizes[colsid]+'pt'});
-                    const span = utils.create("span",{className:"math", innerHTML:content});
+                    const span = utils.create("span");
+                    span.innerHTML = '<script type="math/tex">'+content+'</script>'
                     divq.appendChild(span);
                     divQuestion.appendChild(divq);
                 } else {
@@ -652,7 +653,9 @@ function makePage(){
                 if(Array.isArray(value)) {
                     value=value[0];
                 }
-                let spanc = utils.create("span", {innerHTML:value, classList:'math'});
+                let spanc = utils.create("span");
+                spanc.innerHTML = '<script type="math/tex">'+value+'</script>'
+
                 /*if(activity.type === undefined || activity.type === "" || activity.type === "latex"){
                     spanc.classList.add("math"); 
                 }*/
@@ -737,7 +740,7 @@ function makePage(){
 }
 function refresh(){
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
     content.oninput = (evt)=>{
         if(evt.target.nodeName.toLowerCase()==="input"){
             changecols(evt.target.dataset.dest,evt.target.value)
@@ -813,6 +816,7 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.nb=Number(vars.n);
         parameters.posCorrection=vars.cor;
         parameters.titreCeinture=vars.t?decodeURI(vars.t):"Ceinture";

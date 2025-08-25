@@ -117,7 +117,7 @@ function noDoublon(){
 }
 function refresh(){
     makePage()
-    common.mathRender()
+    utils.mathRender(parameters.fontType)
 }
 function makePage(){
     if(parameters.alea){
@@ -167,7 +167,8 @@ function makePage(){
             let artQuestion = utils.create("article",{className:"dominos-question"});
             let divq = utils.create("div");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
+                let span = utils.create("span");
+                span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
                 divq.appendChild(span);
             } else {
                 divq.innerHTML = activity.questions[j];
@@ -194,7 +195,8 @@ function makePage(){
             let answer = activity.values[j];
             if(_.isArray(answer))answer = answer[0];
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined || utils.testIfLatex(answer)){
-                let spanCorrection = utils.create("span", {className:"math", innerHTML:answer});
+                let spanCorrection = utils.create("span");
+                spanCorrection.innerHTML = '<script type="math/tex">'+answer+'</script>'
                 divr.appendChild(spanCorrection);
             } else {
                 divr.innerHTML = answer;
@@ -235,6 +237,7 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=10.5;
         parameters.nb=Number(vars.n);
         document.getElementById("nbDominos").value = parameters.nb

@@ -148,25 +148,17 @@ function render(id) {
         renderKtex(content)
     }
 }
-function renderKtex(content) {
-    content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
-    content.querySelectorAll(".math").forEach(function(item){
+function renderKtex() {
+    /*document.getElementById('affichage').innerHTML = document.getElementById('affichage').innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
+    content.querySelectorAll("script[type='math/tex']").forEach(function(item){
         var texTxt = item.innerHTML.replace(/\&amp\;/g,"&");
         // recherche les nombres, décimaux ou pas
         let nbrgx = /(\d+\.*\d*)/g;
         // insère des espaces tous les 3 chiffres;
         texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
-        try {
-          katex.render(texTxt, item, {
-            throwOnError: false,
-            errorColor: "#FFF",
-            colorIsTextColor: true
-          });
-          utils.removeClass(item,"math");
-        } catch (err) {
-          item.innerHTML = "<span class='err'>" + err + ' avec '+texTxt + '</span>';
-        };
-    })
+        item.innerHTML = texTxt
+    })*/
+    utils.mathRender(parameters.fontType, ['affichage'])
 }
 document.getElementById('radio-nodistract').onclick = () => {
     parameters.distract = false
@@ -249,8 +241,10 @@ function makePage(){
             if (String(value).indexOf(',') > -1)
                 value = value.split(',')[MMmath.aleaInt(0, value.split(',').length-1)]
         if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
-                let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
+                let span = utils.create("span");
+                span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                let spanCorrection = utils.create("span");
+                spanCorrection.innerHTML = '<script type="math/tex">'+value+'</script>'
                 pairs.push([span.outerHTML, spanCorrection.outerHTML])
             } else {
                 pairs.push([activity.questions[j], '$$'+value+'$$'])
@@ -278,8 +272,10 @@ function makePage(){
                     value = value.split(',')[MMmath.aleaInt(0, value.split(',').length-1)]
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                    let span = utils.create("span",{className:"math", innerHTML:activity.questions[j]});
-                    let spanCorrection = utils.create("span", {className:"math",innerHTML:value});
+                    let span = utils.create("span");
+                    span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                    let spanCorrection = utils.create("span");
+                    spanCorrection.innerHTML = '<script type="math/tex">'+value+'</script>'
                     if (MMmath.aleaInt(0,1))
                         dis.push(span.outerHTML)
                     else
@@ -455,6 +451,7 @@ function checkURL(urlString){
         let json = vars.c;
         // alcarts contient des promises qu'il faut charger
         parameters.cart = new cart(0);
+        parameters.fontType = vars.fs
         parameters.cart.import(json[0],false, MM.version).then(()=>{
             refresh()
         }).catch(err=>{

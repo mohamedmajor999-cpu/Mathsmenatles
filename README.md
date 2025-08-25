@@ -26,7 +26,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.
  * possibilité de faire lire automatiquement certains énoncés, pour certains exercices de dictées, mais aussi pour les déficients visuels
 
 ### bibliothèques externes
- * [KateX](https://katex.org/) pour afficher les maths (MIT licence)
+ * ~~[KateX](https://katex.org/) pour afficher les maths (MIT licence)~~ remplacé par mathslive le 26/08/2025
  * [KAS](https://github.com/Khan/KAS) outil de la Kahn academy pour évaluer des expressions littérales (MIT licence)
  * [Underscore](https://underscorejs.org/) pour pouvoir invoquer KAS (MIT Licence)
  * [knack.css](https://www.knacss.com/) framework css simple et léger ([licence WTFPL](http://www.wtfpl.net/))
@@ -38,7 +38,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.
  * [JSXGraph](http://jsxgraph.uni-bayreuth.de/wp/index.html) pour les représentations graphiques et la géométrie, notamment [JessieCode](https://github.com/jsxgraph/JessieCode) qui permet de réaliser des figures facilement (LGPL & MIT licences)
  * [asciimath2tex](https://github.com/christianp/asciimath2tex) pour taper plus rapidement les formules de maths (Licence Apache 2.0)
  * [qrious](https://github.com/neocotic/qrious) pour générer les qrcodes (GPLv3 licence)
- * [mathlive](https://mathlive.io/) pour l'interface de saisie utilisateur pour répondre en ligne (MIT license)
+ * [mathlive](https://mathlive.io/) pour l'interface de saisie utilisateur pour répondre en ligne (MIT license) et pour l'affichage des formules mathématiques
  * [tinyweb](https://www.ritlabs.com/en/products/tinyweb/) pour le mini serveur web sous windows. (licence non libre, Cf. fichier de licence)
  * [sonothèque](https://lasonotheque.org), source des bruitages utilisés pour réveiller l'attention des élèves entre chaque diapo
  * [Vanilla-picker](https://github.com/Sphinxxxx/vanilla-picker) sélectionneur de couleur en pur javascript (ISC Licence)

@@ -24,6 +24,7 @@ const MM = {
     carts: [], // max 4 carts
     steps: [],
     timers: [],
+    fontType: 'serif',
     figs: {}, // 
     userAnswers: [[], [], [], []],
     slidersNumber: 1,
@@ -63,6 +64,19 @@ const MM = {
             document.getElementById("aleaKey").value = MM.seed;
         }
         MM.initializeAlea(MM.seed);
+    },
+    setFontType(value){
+        if(value){
+            if(!['serif','sansSerif'].includes(value)) return
+            document.getElementById('fontType').checked = (value === 'serif'?false:true)
+            MM.fontType = value
+        } else {
+            if(document.getElementById('fontType').checked)
+                MM.fontType = 'sansSerif'
+            else
+                MM.fontType = 'serif'
+            utils.mathReRender(MM.fontType)
+        }
     },
     getSeed() {
         if (document.getElementById("aleaInURL").checked) {
@@ -235,6 +249,7 @@ const MM = {
     checkValues: function () {
         MM.changeTempoValue(document.getElementById('tempo-slider').value);
         MM.changeNbqValue(document.getElementById('nbq-slider').value);
+        MM.setIntroType()
     },
     resetCarts: function () {
         let Cart = new cart(0);
@@ -536,7 +551,7 @@ const MM = {
                 }
             }
         }
-        utils.mathRender();
+        utils.mathRender(MM.fontType);
         //MM.zoomCorrection();
     },
     setFacetoFace(etat) {
@@ -715,16 +730,13 @@ const MM = {
     paramsToURL(withAleaSeed = false, type = "", encoded=false) {
         let colors = MM.colors.join("~").replace(/\,/g, "_");
         // MM.setSeed()
+        let urlparams = "a=" + (withAleaSeed ? this.getSeed() : "") +',' +
+                        "fs="+MM.fontType+","
+
         if (type === "cartesflash") {
-            const urlparams = "disp=" + (utils.getRadioChecked("flashcarddispo")) +
+            urlparams += "disp=" + (utils.getRadioChecked("flashcarddispo")) +
                 ",t=" + (document.getElementById("FCtitle").value || "Cartes Flash") +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 this.export()
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
         } else if (type === "ceinture") {
             let chaine = "", t = 0;
             // liste des titres :
@@ -733,128 +745,83 @@ const MM = {
                 chaine += ",t" + t + "=" + (inp.value ? utils.superEncodeURI(inp.value) : "");
                 t++;
             })
-            const urlparams = "t=" + utils.superEncodeURI(document.getElementById("ceinttitle").value) +
+            urlparams += "t=" + utils.superEncodeURI(document.getElementById("ceinttitle").value) +
                 ",ke=" + document.getElementById("ceintprintToEnonce").checked +
                 ",kc=" + document.getElementById("ceintprintToCorrige").checked +
                 ",nc=" + document.getElementById("ceintcolsval").value +
                 chaine +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",nr=" + document.getElementById("ceintrowsval").value +
                 ",n=" + document.getElementById("ceintqtyvalue").value +
                 ",cor=" + (utils.getRadioChecked("ceintcorrpos") || "fin") +
                 ",pie=" + document.getElementById("ceintpiedcol").value +
                 ",or=" + (utils.getRadioChecked("ceintorientation") || "portrait") +
                 this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "cansheet") {
-            const urlparams = "n=" + document.getElementById("canqtyvalue").value +
+            urlparams += "n=" + document.getElementById("canqtyvalue").value +
                 ",t=" + encodeURI(document.getElementById("cantitle").value || document.getElementById("cantitle").placeholder) +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",cor=" + (utils.getRadioChecked("cancorrpos") || "fin") +
                 ",tm=" + (document.getElementById("cantime").value || document.getElementById("cantime").placeholder) +
                 ",t1=" + encodeURI(document.getElementById("cancol1title").value || document.getElementById("cancol1title").placeholder) +
                 ",t2=" + encodeURI(document.getElementById("cancol2title").value || document.getElementById("cancol2title").placeholder) +
                 ",t3=" + encodeURI(document.getElementById("cancol3title").value || document.getElementById("cancol3title").placeholder) +
                 this.export()
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "dominos") {
-            const urlparams = "n=" + document.getElementById("dominosNbValue").value +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+            urlparams += "n=" + document.getElementById("dominosNbValue").value +
                 ",d=" + (document.getElementById("dominosDoublons").checked) +
                 this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "duel") {
-            const urlparams = "ty=" + utils.getRadioChecked("dueltype") +
+            urlparams += "ty=" + utils.getRadioChecked("dueltype") +
                 ",bg=" + document.getElementById("duelbackgroundselect").value +
                 (utils.getRadioChecked("dueltemps") === "limit" ? ",t=" + utils.timeToSeconds(document.getElementById("dueltotaltime").value) : "") +
                 this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "exam") {
-            const urlparams = "s=" + document.getElementById("intTxtSizeValue").value +
+            urlparams += "s=" + document.getElementById("intTxtSizeValue").value +
                 ",n=" + document.getElementById("intQtyValue").value +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",t=" + encodeURI(document.getElementById("inttitle").value || document.getElementById("inttitle").placeholder) +
                 ",ex=" + encodeURI(document.getElementById("inteachex").value || document.getElementById("inteachex").placeholder) +
                 this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "exosheet") {
-            const urlparams = "s=" + document.getElementById("exTxtSizeValue").value +
+            urlparams += "s=" + document.getElementById("exTxtSizeValue").value +
                 ",n=" + document.getElementById("exQtyValue").value +
                 ",cor=" + utils.getRadioChecked("excorr") +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",t=" + encodeURI(document.getElementById("extitle").value || document.getElementById("extitle").placeholder) +
                 ",ex=" + encodeURI(document.getElementById("exeachex").value || document.getElementById("exeachex").placeholder) +
                 this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "whogots") {
-            const urlparams = "n=" + document.getElementById("cardsNbValue").value +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+            urlparams += "n=" + document.getElementById("cardsNbValue").value +
                 ",d=" + (document.getElementById("WGDoublons").checked) +
                 ',aff=' + (document.getElementById("WGaffirmation").value) +
                 ',quest=' + (document.getElementById("WGquestion").value) +
                 this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else if (type === "puzzles") {
-            const urlparams = ",a=" + (withAleaSeed ? this.getSeed() : "") +
-                this.export();
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            urlparams += this.export();
+            
         } else if (type === "wall") {
-            const urlparams = "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
+            urlparams += "t=" + utils.superEncodeURI(document.getElementById("walltitle").value) +
                 this.export()
-            if (encoded) {
-                return utils.encodeUrlUnreadable(urlparams);
-            } else {
-                return urlparams
-            }
+            
         } else {
-            const urlparams = "i=" + MM.introType +
+            urlparams += "i=" + MM.introType +
                 ",e=" + MM.endType +
                 ",o=" + MM.onlineState +
                 ",s=" + MM.slidersNumber +
                 ",so=" + MM.slidersOrientation +
                 ",f=" + MM.faceToFace +
-                ",a=" + (withAleaSeed ? this.getSeed() : "") +
                 ",colors=" + colors +
                 ",snd=" + sound.selected +
                 this.export();
-            if (encoded)
-                return utils.encodeUrlUnreadable(urlparams)
-            else
-                return urlparams
         }
+        if (encoded)
+            return utils.encodeUrlUnreadable(urlparams)
+        else
+            return urlparams
     },
     setHistory(pageName, params) {
         let url = MM.setURL(params);
@@ -974,6 +941,9 @@ const MM = {
             // son
             if (Number(vars.snd) >= 0 && !vars.snd) {
                 sound.setSound(Number(vars.snd));
+            }
+            if(vars.fs){
+                this.setFontType(vars.fs)
             }
             // le seed d'aléatorisation est fourni et on n'est pas en mode online
             if ((vars.a && MM.onlineState === "no") || edit) {

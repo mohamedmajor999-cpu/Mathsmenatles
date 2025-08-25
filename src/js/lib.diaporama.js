@@ -89,6 +89,8 @@ const diaporama = {
           diaporama.closeMessage('messageinfo');
         }, 3000);
       }
+      // police des formules 
+      diaporama.fontType = vars.fs??'serif'
       // indique quoi faire avant le slide
       diaporama.introType = vars.i || "nothing";
       // indique quoi faire après le slide
@@ -333,34 +335,40 @@ const diaporama = {
           if (activity.consigne !== false) {
             div.appendChild(utils.create('div', { className: 'consigne', innerHTML: activity.consigne }))
           }
-          let span = utils.create("span", { innerHTML: question });
-          if (fontSize) span.className = fontSize;
-          let answerHiddenState = ' hidden';
-          if (diaporama.carts[i].progress === 'withanswer') { answerHiddenState = ''; }
-          let spanAns = utils.create("span", { className: "answerInSlide" + answerHiddenState })
-          if (Array.isArray(answer))
-            spanAns.innerHTML = answer[0];
-          else
-            spanAns.innerHTML = answer;
-          if (fontSize) spanAns.className += " " + fontSize;
           // timers
           diaporama.timers[slideId].addDuration(activity.tempo);
           if (diaporama.totaltimes[slideId] === undefined) diaporama.totaltimes[slideId] = 0
           diaporama.totaltimes[slideId] += Number(activity.tempo);
+          // display questions & answers
+          let span = utils.create("span");
+          if (fontSize) span.className = fontSize;
+          let answerHiddenState = ' hidden';
+          if (diaporama.carts[i].progress === 'withanswer') { answerHiddenState = ''; }
+          let spanAns = utils.create("span", { className: "answerInSlide" + answerHiddenState })
+          if (fontSize) spanAns.className += " " + fontSize;
           // enoncés et corrigés pour la fin du diaporama
           let lie = utils.create("li");
           let lic = document.createElement("li");
           let tex = false; let spane, spanc;
           if (activity.type === undefined || activity.type === "" || activity.type === "latex") {
             tex = true;
-            spane = utils.create("span", { className: "math", innerHTML: question });
+            span.innerHTML = '<script type="math/tex">'+question+'</script>'
+            spane = utils.create("span", { innerHTML: '<script type="math/tex">'+question+'</script>' });
             lie.appendChild(spane);
             spanc = utils.create("span", { className: "math" });
             lic.appendChild(spanc);
             span.className += " math";
-            spanAns.className += " math";
+            if (Array.isArray(answer))
+              spanAns.innerHTML = '<script type="math/tex">'+answer[0]+'<script>';
+            else
+              spanAns.innerHTML = '<script type="math/tex">'+answer+'</script>';
           } else {
+            span.innerHTML = question
             lie.innerHTML = question;
+            if (Array.isArray(answer))
+              spanAns.innerHTML = answer[0];
+            else
+              spanAns.innerHTML = answer;
           }
           div.appendChild(span);
           if (diaporama.onlineState !== "yes" || diaporama.carts[i].progress === 'thenanswer') {
@@ -404,7 +412,7 @@ const diaporama = {
         diaporama.steps[slideId].display();
       }
     }
-    utils.mathRender(false, true);
+    utils.mathRender(diaporama.fontType,false, true);
     // diaporama.zoomCorrection();
   },
   /**
@@ -620,7 +628,7 @@ const diaporama = {
         }
       }
     }
-    utils.mathRender(false, true);
+    utils.mathRender(diaporama.fontType,false, true);
   },
   createSlideShows: function () {
     diaporama.zooms = {};
@@ -724,7 +732,7 @@ const diaporama = {
         if (evt.target.id === "btn-messagefin-close") {
           diaporama.closeMessage('messagefin');
         }
-        utils.mathRender(false, true);
+        utils.mathRender(diaporama.fontType,false, true);
         if(whatToDo === 'correction') {
           const $containerCorrige = document.getElementById('corrige-content')
           $containerCorrige.innerHTML = '';
@@ -737,7 +745,7 @@ const diaporama = {
               diaporama.memory[figureId].display();
             }
           }
-          utils.mathRender(false, true);
+          utils.mathRender(diaporama.fontType,false, true);
           saveContent()  
           diaporama.showTab('corrige');
         } else {
@@ -758,7 +766,7 @@ const diaporama = {
           diaporama.memory[figureId].toggle();
         }
       }
-      utils.mathRender(false, true);
+      utils.mathRender(diaporama.fontType,false, true);
       saveContent()
       if (whatToDo === "correction") {
         diaporama.showTab("corrige");
@@ -870,7 +878,7 @@ const diaporama = {
           const figCorrection = new Figure(utils.clone(act.sample.figureCorrection), "sample-fc" + id, document.getElementById("sample" + id+'-corr'));
           setTimeout(function () { figCorrection.display(); }, 100);
         }
-        utils.mathRender();
+        utils.mathRender(diaporama.fontType);
       }
     }
   },

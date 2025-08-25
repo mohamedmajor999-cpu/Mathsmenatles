@@ -711,12 +711,12 @@ function addContent(){
     for (let i = 0,len=actArray.length; i < len; i++) {
         const activity = parameters.cart.activities[actArray[i][0]];
         MM.activities.push({time:Number(activity.tempo), value:activity.values[actArray[i][1]], answer:activity.answers[actArray[i][1]], valueType:activity.valueType||false});
-        let question = activity.questions[actArray[i][1]].replace(/\$\$([^$]*)\$\$/gi, '<span class="math">$1</span>');
+        let question = activity.questions[actArray[i][1]].replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
         let carte = utils.create("article", {className:"diapo hidden",id:"ql"+questionCount});
         let carted = utils.create("article", {className:"diapo hidden",id:"qr"+questionCount});
         let divq = utils.create("div", {className:"enonce"});
         if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-            let span = utils.create("span",{className:"math", innerHTML:question});
+            let span = utils.create("span",{className:"math", innerHTML:'<script type="math/tex">'+question+'</script>'});
             divq.appendChild(span);
         } else {
             divq.innerHTML = question;
@@ -725,7 +725,7 @@ function addContent(){
         //let divqd = divq.cloneNode(true);
         let divqd = utils.create("div", {className:"enonce"});
         if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-            let span = utils.create("span",{className:"math", innerHTML:question});
+            let span = utils.create("span",{className:"math", innerHTML:'<script type="math/tex">'+question+'</script>'});
             divqd.appendChild(span);
         } else {
             divqd.innerHTML = question;
@@ -784,7 +784,7 @@ function addContent(){
             }
         }, 500);
     }
-    common.mathRender(['enonce']);
+    utils.mathRender(parameters.fontType,['enonce']);
 }
 /**
  * Récupère les paramètres indiqués dans l'url de la page appelée.
@@ -822,6 +822,7 @@ function checkURL(urlString){
         // paramètres des activités des paniers
         let json = vars.c;
         // parametres globaux :
+        parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=10.5;
         parameters.nb=Number(vars.n);
         parameters.typeduel=decodeURI(vars.ty);

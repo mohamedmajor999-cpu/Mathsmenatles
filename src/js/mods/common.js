@@ -162,15 +162,5 @@ const common = {
                 },3000);
             });
         }
-    },
-    mathRender: function(all) {
-        // search for $$ formulas $$ => span / span
-        if(all === undefined){
-            utils.mathRender(["creator-content"]);
-        } else {
-            if(Array.isArray(all)){
-                utils.mathRender(all);
-            }
-        }
-    },
+    }
 }
