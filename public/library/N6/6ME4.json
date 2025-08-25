@@ -65,7 +65,7 @@
                 "dizaines":"2_16_^9,8,10",
                 "color":"0_3_4_^&",
                 "dash":"0_3_4_^&",
-                "il":"0_${:lettres.length}_5_^&",
+                "il":"0_${:lettres.length-1}_5_^&",
                 "A":"${:lettres.charAt(:il[0])}",
                 "B":"${:lettres.charAt(:il[1])}",
                 "C":"${:lettres.charAt(:il[2])}",

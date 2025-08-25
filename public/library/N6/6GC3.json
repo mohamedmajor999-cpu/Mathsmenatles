@@ -123,8 +123,6 @@
                 "axis":false,
                 "grid":false,
                 "content":[
-                    ["point", ["${:xA}", "${:yA}"], {"name":"${:A}", "visible":false}],
-                    ["point", ["${:xB}", "${:yB}"], {"name":"${:B}", "visible":false}],
                     ["text", ["${:xA-.4}", "${:pente<0?:yA+1::yA-1}","${:x}"],{"cssClass":"italic", "fontSize":13}],
                     ["text", ["${:xB}", "${:pente<0?:yB+1::yB-1}","${:y}"],{"cssClass":"italic", "fontSize":13}],
                     ["line", [["${:xA}", "${:yA}"], ["${:xB}", "${:yB}"]]]
@@ -158,8 +156,6 @@
                 "axis":false,
                 "grid":false,
                 "content":[
-                    ["point", ["${:xA}", "${:yA}"], {"name":"${:A}", "visible":false}],
-                    ["point", ["${:xB}", "${:yB}"], {"name":"${:B}", "visible":false}],
                     ["point", ["${:xC}", "${:yC}"], {"name":"${:C}", "size":3, "face":"x", "label":{"offset":[5,"${:pente<0?10:-10}"]}}],
                     ["text", ["${:xA-.4}", "${:pente<0?:yA+1::yA-1}","${:x}"],{"cssClass":"italic", "fontSize":13}],
                     ["text", ["${:xB}", "${:pente<0?:yB+1::yB-1}","${:y}"],{"cssClass":"italic", "fontSize":13}],
@@ -197,8 +193,6 @@
                 "axis":false,
                 "grid":false,
                 "content":[
-                    ["point", ["${:xA}", "${:yA}"], {"name":"${:A}", "visible":false}],
-                    ["point", ["${:xB}", "${:yB}"], {"name":"${:B}", "visible":false}],
                     ["point", ["${:xC}", "${:yC}"], {"name":"${:C}", "size":3, "face":"x","label":{"offset":[5,"${:pente<0?10:-10}"]}}],
                     ["point", ["${:xD}", "${:yD}"], {"name":"${:D}", "size":3, "face":"x","label":{"offset":[5,"${:pente<0?10:-10}"]}}],
                     ["text", ["${:xA-.4}", "${:pente<0?:yA+1::yA-1}","${:x}"],{"cssClass":"italic", "fontSize":13}],
