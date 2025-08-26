@@ -153,8 +153,8 @@ function makePage(){
                 let liCorrection = utils.create("li");
                 let answer = (Array.isArray(activity.answers[j]))?activity.answers[j][0]:activity.answers[j];
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                    let span = utils.create("span",{innerHTML:'<script type="math/tex">'+activity.questions[j]+'</script>'});
-                    let spanCorrection = utils.create("span", {innerHTML:'<script type="math/tex">'+answer+'</script>'});
+                    let span = utils.create("span",{innerHTML:'$$'+activity.questions[j]+'$$'});
+                    let spanCorrection = utils.create("span", {innerHTML:'$$'+answer+'$$'});
                     li.appendChild(span);
                     liCorrection.appendChild(spanCorrection);
                 } else {

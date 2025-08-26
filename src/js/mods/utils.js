@@ -903,18 +903,18 @@ export const utils = {
             // search for $$ formulas $$ => script / script
             let content = document.getElementById(id);
             if (content !== null) {
-                content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
+                //content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
             } else {
                 contents = document.querySelectorAll(id);
                 contents.forEach(elt => {
-                    elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
+                    //elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
                 });
             }
         });
         document.querySelectorAll(".slide").forEach(elt => {
-            elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
+            //elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
         });
-        document.querySelectorAll("script[type='math/tex']").forEach(function (item) {
+        document.querySelectorAll("script[type='math/tex; mode=text']").forEach(function (item) {
             // transform ascii to Latex
             //var texTxt = MM.ascii2tex.parse(item.innerHTML);
             let texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
@@ -948,7 +948,7 @@ export const utils = {
             };*/
         });
         try {
-            renderMathInDocument()
+            renderMathInDocument({TeX:{delimiters:{inline:[['$$','$$']]}}})
         } catch (err) {
             console.log('Probleme de rendu des expressions mathématiques')
         }

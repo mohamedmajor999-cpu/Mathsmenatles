@@ -352,15 +352,15 @@ const diaporama = {
           let tex = false; let spane, spanc;
           if (activity.type === undefined || activity.type === "" || activity.type === "latex") {
             tex = true;
-            span.innerHTML = '<script type="math/tex">'+question+'</script>'
-            spane = utils.create("span", { innerHTML: '<script type="math/tex">'+question+'</script>' });
+            span.innerHTML = '$$'+question+'$$'
+            spane = utils.create("span", { innerHTML: '$$'+question+'$$' });
             lie.appendChild(spane);
             spanc = utils.create("span");
             lic.appendChild(spanc);
             if (Array.isArray(answer))
-              spanAns.innerHTML = '<script type="math/tex">'+answer[0]+'</script>';
+              spanAns.innerHTML = '$$'+answer[0]+'$$';
             else
-              spanAns.innerHTML = '<script type="math/tex">'+answer+'</script>';
+              spanAns.innerHTML = '$$'+answer+'$$';
           } else {
             span.innerHTML = question
             lie.innerHTML = question;
@@ -382,11 +382,11 @@ const diaporama = {
 
           if (Array.isArray(answer)) {
             if (!tex) lic.innerHTML += answer[0];
-            else spanc.innerHTML += '<script type="math/tex">'+answer[0]+'</script>';
+            else spanc.innerHTML += '$$'+answer[0]+'$$';
           }
           else {
             if (tex)
-              spanc.innerHTML += '<script type="math/tex">'+answer+'</script>';
+              spanc.innerHTML += '$$'+answer+'$$';
             else
               lic.innerHTML += answer;
           }
@@ -608,8 +608,8 @@ const diaporama = {
         let sN = diaporama.carts[i].target[y] - 1;
         let act = diaporama.carts[i].activities[0];
         if (act.type === undefined || act.type === "" || act.type === "latex") {
-          document.getElementById("sample" + sN + "-enonce").innerHTML = '<script type="math/tex">'+act.sample.question+'</script>';
-          document.getElementById("sample" + sN + "-corr").innerHTML = '<script type="math/tex">'+act.sample.answer+'</script>';          
+          document.getElementById("sample" + sN + "-enonce").innerHTML = '$$'+act.sample.question+'$$';
+          document.getElementById("sample" + sN + "-corr").innerHTML = '$$'+act.sample.answer+'$$';          
         } else {
           document.getElementById("sample" + sN + "-enonce").innerHTML = act.sample.question;
           document.getElementById("sample" + sN + "-corr").innerHTML = act.sample.answer;
@@ -855,8 +855,8 @@ const diaporama = {
         let act = diaporama.carts[i].activities[actId];
         act.generateSample();
         if (act.type === undefined || act.type === "" || act.type === "latex") {
-          document.getElementById("sample" + id + "-enonce").innerHTML = '<script type="math/tex">'+act.sample.question+'</script>';
-          document.getElementById("sample" + id + "-corr").innerHTML = '<script type="math/tex">'+act.sample.answer+'</script>';
+          document.getElementById("sample" + id + "-enonce").innerHTML = '$$'+act.sample.question+'$$';
+          document.getElementById("sample" + id + "-corr").innerHTML = '$$'+act.sample.answer+'$$';
         } else {
           document.getElementById("sample" + id + "-enonce").innerHTML = act.sample.question;
           document.getElementById("sample" + id + "-corr").innerHTML = act.sample.answer;          
@@ -1059,7 +1059,7 @@ const diaporama = {
               }
               if (li.className === '') li.className = 'wrong'
               // On transforme ça en champ LaTeX à afficher (vient mathlive qui renvoie du LaTeX)
-              span.innerHTML = '<script type="math/tex">'+ userAnswer+'</script>';
+              span.innerHTML = '$$'+ userAnswer+'$$';
               ia++;
               li.appendChild(span);
               ol.appendChild(li);

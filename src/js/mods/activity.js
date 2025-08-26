@@ -202,7 +202,7 @@ export default class activity {
     }
     setMath(content){
         if(this.type === undefined || this.type === "latex"){
-            return '<script type="math/tex">'+content+"</script>";
+            return '<script type="math/tex; mode=text">'+content+"</script>";
         } else return content;
     }
     /**

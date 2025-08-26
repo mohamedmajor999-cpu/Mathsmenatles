@@ -140,7 +140,7 @@ function makePage(){
             const artQuestion = utils.create("article",{className:"whogots-question",innerHTML:"<h3>"+parameters.question+"</h3>"});
             let divq = utils.create("div");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                let span = utils.create("span",{innerHTML:'<script type="math/tex">'+activity.questions[j]+'</script>'});
+                let span = utils.create("span",{innerHTML:'$$'+activity.questions[j]+'$$'});
                 divq.appendChild(span);
             } else {
                 divq.innerHTML = activity.questions[j];
@@ -169,10 +169,10 @@ function makePage(){
             let answer = activity.values[j];
             if(_.isArray(answer))answer = answer[0];
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                let spanCorrection = utils.create("span", {innerHTML:'<script type="math/tex">'+answer+'</script>'});
+                let spanCorrection = utils.create("span", {innerHTML:'$$'+answer+'$$'});
                 divr.appendChild(spanCorrection);
             } else {
-                divr.innerHTML = '<script type="math/tex">'+answer+'</script>';
+                divr.innerHTML = '$$'+answer+'$$';
             }
             if (activity.figuresCorrection[j] !== undefined){
                 MM.memory['fc'+numAnswer] = new Figure(utils.clone(activity.figuresCorrection[j]), 'fc'+numAnswer, divr)

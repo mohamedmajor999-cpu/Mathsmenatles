@@ -374,10 +374,6 @@ input[type="color"] {
     align-items: normal;
 }
 
-.inlineblock {
-    display: inline-block;
-}
-
 .valign {
     align-self: center;
 }

@@ -189,8 +189,8 @@ function makePage(){
             const li = utils.create("li",{className:"interro"});
             const liCorrection = utils.create("li");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                const span = utils.create("span",{innerHTML:'<script type="math/tex">'+activity.questions[j]+'</script>'});
-                const spanCorrection = utils.create("span", {innerHTML:'<script type="math/tex">'+activity.answers[j]+'</script>'});
+                const span = utils.create("span",{innerHTML:'$$'+activity.questions[j]+'$$'});
+                const spanCorrection = utils.create("span", {innerHTML:'$$'+activity.answers[j]+'$$'});
                 li.appendChild(span);
                 liCorrection.appendChild(spanCorrection);
             } else {

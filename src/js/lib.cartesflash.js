@@ -252,9 +252,9 @@ function makePage(){
             const divr = utils.create("div");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                 const span = utils.create("span");
-                span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                span.innerHTML = '$$'+activity.questions[j]+'$$'
                 const spanCorrection = utils.create("span");
-                spanCorrection.innerHTML = '<script type="math/tex">'+activity.answers[j]+'</script>'
+                spanCorrection.innerHTML = '$$'+activity.answers[j]+'$$'
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {

@@ -638,7 +638,7 @@ function makePage(){
                     inLatex = true
                     const divq = utils.create("div",{className:"question"+colsid+" quest", style:'font-size:'+parameters.fontSizes[colsid]+'pt'});
                     const span = utils.create("span");
-                    span.innerHTML = '<script type="math/tex">'+content+'</script>'
+                    span.innerHTML = '$$'+content+'$$'
                     divq.appendChild(span);
                     divQuestion.appendChild(divq);
                 } else {
@@ -657,7 +657,7 @@ function makePage(){
                 }
                 let spanc = utils.create("span");
                 if(inLatex)
-                    spanc.innerHTML = '<script type="math/tex">'+value+'</script>'
+                    spanc.innerHTML = '$$'+value+'$$'
                 else {
                     spanc.innerHTML = value
                 }

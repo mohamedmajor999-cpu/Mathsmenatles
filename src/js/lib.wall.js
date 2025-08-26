@@ -140,8 +140,8 @@ function makePage() {
             }
             const divr = utils.create("div");
             if (activity.type === "latex" || activity.type === "" || activity.type === undefined) {
-                const span = utils.create("span", { innerHTML: '<script type="math/tex">'+activity.questions[questionNumber]+'</script>' });
-                const spanCorrection = utils.create("span", { innerHTML: '<script type="math/tex">'+activity.answers[questionNumber]+'</script>'});
+                const span = utils.create("span", { innerHTML: '$$'+activity.questions[questionNumber]+'$$' });
+                const spanCorrection = utils.create("span", { innerHTML: '$$'+activity.answers[questionNumber]+'$$'});
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {

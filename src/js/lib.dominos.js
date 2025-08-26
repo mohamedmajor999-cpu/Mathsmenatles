@@ -168,7 +168,7 @@ function makePage(){
             let divq = utils.create("div");
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                 let span = utils.create("span");
-                span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                span.innerHTML = '$$'+activity.questions[j]+'$$'
                 divq.appendChild(span);
             } else {
                 divq.innerHTML = activity.questions[j];
@@ -196,7 +196,7 @@ function makePage(){
             if(_.isArray(answer))answer = answer[0];
             if(activity.type === "latex" || activity.type === "" || activity.type === undefined || utils.testIfLatex(answer)){
                 let spanCorrection = utils.create("span");
-                spanCorrection.innerHTML = '<script type="math/tex">'+answer+'</script>'
+                spanCorrection.innerHTML = '$$'+answer+'$$'
                 divr.appendChild(spanCorrection);
             } else {
                 divr.innerHTML = answer;

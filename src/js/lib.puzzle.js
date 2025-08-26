@@ -149,8 +149,8 @@ function render(id) {
     }
 }
 function renderKtex() {
-    /*document.getElementById('affichage').innerHTML = document.getElementById('affichage').innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
-    content.querySelectorAll("script[type='math/tex']").forEach(function(item){
+    /*document.getElementById('affichage').innerHTML = document.getElementById('affichage').innerHTML.replace(/\$\$([^$]*)\$\$/gi, '$$$1$$');
+    content.querySelectorAll("script[type='math/tex; mode=text']").forEach(function(item){
         var texTxt = item.innerHTML.replace(/\&amp\;/g,"&");
         // recherche les nombres, décimaux ou pas
         let nbrgx = /(\d+\.*\d*)/g;
@@ -242,9 +242,9 @@ function makePage(){
                 value = value.split(',')[MMmath.aleaInt(0, value.split(',').length-1)]
         if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                 let span = utils.create("span");
-                span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                span.innerHTML = '$$'+activity.questions[j]+'$$'
                 let spanCorrection = utils.create("span");
-                spanCorrection.innerHTML = '<script type="math/tex">'+value+'</script>'
+                spanCorrection.innerHTML = '$$'+value+'$$'
                 pairs.push([span.outerHTML, spanCorrection.outerHTML])
             } else {
                 pairs.push([activity.questions[j], '$$'+value+'$$'])
@@ -273,9 +273,9 @@ function makePage(){
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
                     let span = utils.create("span");
-                    span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                    span.innerHTML = '$$'+activity.questions[j]+'$$'
                     let spanCorrection = utils.create("span");
-                    spanCorrection.innerHTML = '<script type="math/tex">'+value+'</script>'
+                    spanCorrection.innerHTML = '$$'+value+'$$'
                     if (MMmath.aleaInt(0,1))
                         dis.push(span.outerHTML)
                     else

@@ -139,11 +139,11 @@ function makePage() {
                 let answer = (Array.isArray(activity.answers[j])) ? activity.answers[j][0] : activity.answers[j];
                 if (activity.type === "latex" || activity.type === "" || activity.type === undefined) {
                     let span = utils.create("span");
-                    span.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                    span.innerHTML = '$$'+activity.questions[j]+'$$'
                     let spanc = utils.create("span");
-                    spanc.innerHTML = '<script type="math/tex">'+activity.questions[j]+'</script>'
+                    spanc.innerHTML = '$$'+activity.questions[j]+'$$'
                     let spanCorrection = utils.create("span");
-                    spanCorrection.innerHTML = '<script type="math/tex">'+answer+'</script>'
+                    spanCorrection.innerHTML = '$$'+answer+'$$'
                     divenonce.appendChild(span);
                     divenoncec.appendChild(spanc);
                     divanswerc.appendChild(spanCorrection);
