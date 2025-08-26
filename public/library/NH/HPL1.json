@@ -13,7 +13,7 @@
         "answer":":question=\\color{red}{${:a}}",
         "value":"${:a}"
     },{
-        "name":"Logarithme en d'autres bases (log_n)",
+        "name":"Logarithme en d'autres bases (\\log_n)",
         "vars":{"a":"2_5", "b":"2_${:a==2?9:4}"},
         "question": "\\log_${:b}(${:b**:a})",
         "answer":":question=\\color{red}{${:a}}",

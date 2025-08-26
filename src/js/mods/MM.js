@@ -482,9 +482,9 @@ const MM = {
                     let tex = false; let spane, spanc;
                     if (activity.type === undefined || activity.type === "" || activity.type === "latex") {
                         tex = true;
-                        spane = utils.create("span", { className: "math", innerHTML: question });
+                        spane = utils.create("span", { innerHTML: '$$'+question+'$$' });
                         lie.appendChild(spane);
-                        spanc = utils.create("span", { className: "math" });
+                        spanc = utils.create("span");
                         lic.appendChild(spanc);
                         exportTextArea.value += '---\n$'+ question+'$\n\n';
                     } else {
@@ -496,11 +496,11 @@ const MM = {
                     }
                     if (Array.isArray(answer)) {
                         if (!tex) lic.innerHTML += answer[0];
-                        else spanc.innerHTML += answer[0];
+                        else spanc.innerHTML += '$$'+answer[0]+'$$';
                     }
                     else {
                         if (tex)
-                            spanc.innerHTML += answer;
+                            spanc.innerHTML += '$$'+answer+'$$';
                         else
                             lic.innerHTML += answer;
                     }

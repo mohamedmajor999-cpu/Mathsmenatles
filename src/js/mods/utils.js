@@ -241,6 +241,7 @@ export const utils = {
   let inside = false
   let depthInside = 0
   let insideStyle = false
+  let insideString = false
 
       // ne rien faire dans un svg
       // TODO à traiter plus tard peut-être
@@ -258,13 +259,18 @@ export const utils = {
       depthInside = depth
       continue;
     }
-    if(str.startsWith('{',i)){
+    if(str.startsWith("'",i)){
+        insideString = !insideString
+        result += "'"
+        continue
+    }
+    if(str.startsWith('{',i) && !insideString){
         depth++;
         result += '{';
         continue;
     }
     /* --- Fin d’un bloc `${…}` ----------------------------------- */
-    if (str[i] === '}' && depth > 0) {
+    if (str[i] === '}' && depth > 0  && !insideString) {
       if (depthInside === depth) inside = false
       depth--;                  // on sort d’un bloc
       result += '}';
@@ -277,7 +283,6 @@ export const utils = {
       if (match) {
         const varName = match[0];
         i += varName.length - 1; // avancer jusqu’à la fin du token
-
         if (varName === ':question') {
           result += varName;          // garder :question inchangé
         } else {
@@ -871,7 +876,7 @@ export const utils = {
         else return true;
     },
     toDecimalFr: function (value) {
-        let parties = value.split(".");
+        let parties = String(value).split(".");
         let partieEntiere = parties[0];
         let partieDecimale = "";
         if (parties.length > 1) partieDecimale = parties[1];
@@ -890,62 +895,57 @@ export const utils = {
         return partieEntiere + partieDecimale;
     },
     /**
+     * 
+     */
+    traiteLatex(str, fontType){
+        str = str.replace(/\&amp\;/g, "&");
+        // suppression du displaystyle
+//        texTxt = texTxt.replace(/\\displaystyle/g, "");
+        // remplacement de color par textcolor
+        str = str.replace(/\\color\{/g, "\\textcolor{")
+        // remplacement de &gt; et &lt;
+        str = str.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
+        // recherche les nombres, décimaux ou pas
+        const nbrgx = /(\d+\.*\d*)/g;
+        // insère des espaces tous les 3 chiffres;
+        str = str.replace(nbrgx, utils.toDecimalFr);
+        // setFontType
+        if (fontType === 'sansSerif')
+            str = '\\mathsf {'+str+'}'
+        //texTxt = texTxt.replace(/\.(\d{3})(?=(\d+))/g,"$1~");
+        //texTxt = texTxt.replace(/\./g, "{,}");
+        return str
+    },
+    /**
      * Render the math
      * @param (dom) wtarget : window reference
      */
     mathRender: function (fontType, wtarget = false, diaporama = false) {
         let contents = ["enonce-content", "corrige-content", "sampleLayer"];
         if (!diaporama) {
-            contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne"];
+            contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne",'creator-content','affichage'];
         }
         if(Array.isArray(wtarget))contents = wtarget;
+
+        const regex = /\$\$(.*?)\$\$/gs
+
         contents.forEach(id => {
             // search for $$ formulas $$ => script / script
             let content = document.getElementById(id);
             if (content !== null) {
+                content.innerHTML = content.innerHTML.replace(regex, (_, inner) => `$$${utils.traiteLatex(inner,fontType)}$$`)
                 //content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
             } else {
                 contents = document.querySelectorAll(id);
                 contents.forEach(elt => {
+                    elt.innerHTML = elt.innerHTML.replace(regex, (_, inner) => `$$${utils.traiteLatex(inner,fontType)}$$`)
                     //elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
                 });
             }
         });
         document.querySelectorAll(".slide").forEach(elt => {
+            elt.innerHTML = elt.innerHTML.replace(regex, (_, inner) => `$$${utils.traiteLatex(inner,fontType)}$$`)
             //elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
-        });
-        document.querySelectorAll("script[type='math/tex; mode=text']").forEach(function (item) {
-            // transform ascii to Latex
-            //var texTxt = MM.ascii2tex.parse(item.innerHTML);
-            let texTxt = item.innerHTML.replace(/\&amp\;/g, "&");
-            // suppression du displaystyle
-            texTxt = texTxt.replace(/\\displaystyle/g, "");
-            texTxt = texTxt.replace(/\\color\{/g, "\\textcolor{")
-            // remplacement de &gt; et &lt;
-            texTxt = texTxt.replace(/&gt;/g, "\\gt").replace(/&lt;/g, "\\lt");
-            // recherche les nombres, décimaux ou pas
-            let nbrgx = /(\d+\.*\d*)/g;
-            // insère des espaces tous les 3 chiffres;
-            texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
-            // setFontType
-            if (fontType === 'sansSerif')
-                texTxt = '\\mathsf {'+texTxt+'}'
-            item.innerHTML = texTxt
-            //texTxt = texTxt.replace(/\.(\d{3})(?=(\d+))/g,"$1~");
-            //texTxt = texTxt.replace(/\./g, "{,}");
-            /*try {
-                renderMathInElement(item)
-                katex.render(texTxt, item, { //"\\displaystyle "+
-                    throwOnError: false,
-                    errorColor: "#ff0000ff",
-                    colorIsTextColor: true,
-                    output:'html'
-                });
-                utils.removeClass(item, "math");
-                
-            } catch (err) {
-                item.innerHTML = "<span class='err'>" + err + ' avec ' + texTxt + '</span>';
-            };*/
         });
         try {
             renderMathInDocument({TeX:{delimiters:{inline:[['$$','$$']]}}})

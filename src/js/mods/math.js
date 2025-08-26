@@ -612,7 +612,11 @@ const MMmath = {
     return Math.abs(n).toString().replace('.', '').length;
   },
   box: function (expression) {
-    return ce.box(expression).simplify().latex.replace(/frac/g, 'dfrac').replace(/\\imaginaryI/g, 'i')
+    const thebox = ce.box(expression)
+    return thebox.simplify().latex.replace(/\\imaginaryI/g, 'i')
+  },
+  parse:function(expression) {
+    return ce.parse(expression).simplify().latex
   },
   /**
    * Retourne des heures minutes à partir d'heures, minutes, secondes pouvant dépasser 60 ou être négatives
