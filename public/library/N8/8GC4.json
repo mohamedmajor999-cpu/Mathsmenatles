@@ -14,6 +14,7 @@
                 ]
             },
             "answer":"Une ligne droite passant par deux points, donc c’est certainement <span class='red'>une droite</span>.",
+            "value":"une droite",
             "figure":{
                 "type":"svg",
                 "content":"${:droite}"
@@ -29,6 +30,7 @@
                 ]
             },
             "answer":"Une ligne droite qui commence à un point et passe par un autre, donc c’est certainement <span class='red'>une demi-droite</span>.",
+            "value":"une demi-droite",
             "figure":{
                 "type":"svg",
                 "content":"${:demidroite}"
@@ -43,6 +45,7 @@
                 ]
             },
             "answer":"Une ligne droite limitée par deux points, donc c’est certainement <span class='red'>un segment</span>.",
+            "value":"un segment",
             "figure":{
                 "type":"svg",
                 "content":"${:segment}"
@@ -58,6 +61,7 @@
                 ]
             },
             "answer":"Deux lignes droites qui vont dans la même direction, ce sont <span class='red'>des droites parallèles</span>.",
+            "value":"des droites parallèles",
             "figure":{
                 "type":"svg",
                 "content":"${:paralleles}"
@@ -72,6 +76,7 @@
                 ]
             },
             "answer":"Deux lignes droites formant un angle droit, ce sont <span class='red'>des droites perpendiculaires</span>.",
+            "value":"des droites perpendiculaires",
             "figure":{
                 "type":"svg",
                 "content":"${:perpendiculaires}"
@@ -87,6 +92,7 @@
                 ]
             },
             "answer":"C'est un triangle avec deux côtés égaux, donc c’est un <span class='red'>triangle isocèle</span>.",
+            "value":"un triangle isocèle",
             "figure":{
                 "type":"svg",
                 "content":"${:isocele}"
@@ -100,6 +106,7 @@
                 ]
             },
             "answer":"C'est un triangle dont les trois côtés sont égaux, donc c’est un <span class='red'>triangle équilatéral</span>.",
+            "value":"un triangle équilatéral",
             "figure":{
                 "type":"svg",
                 "content":"${:equilateral}"
@@ -115,6 +122,7 @@
                 ]
             },
             "answer":"C'est un triangle qui possède un angle droit, donc c’est un <span class='red'>triangle rectangle</span>.",
+            "value":"un triangle rectangle",
             "figure":{
                 "type":"svg",
                 "content":"${:rectangle}"
@@ -129,6 +137,7 @@
                 ]
             },
             "answer":"C'est un triangle qui possède un angle droit, donc c’est un <span class='red'>triangle rectangle isocèle</span>.",
+            "value":"un triangle rectangle isocèle",
             "figure":{
                 "type":"svg",
                 "content":"${:rectangleisocele}"
@@ -145,6 +154,7 @@
                 ]
             },
             "answer":"C’est un quadrilatère avec quatre angles droits, donc c’est un <span class='red'>rectangle</span>.",
+            "value":"un rectangle",
             "figure":{
                 "type":"svg",
                 "content":"${:rectangle}"
@@ -161,6 +171,7 @@
                 ]
             },
             "answer":"C’est un quadrilatère avec quatre côtés de même longueur, donc c’est un <span class='red'>losange</span>.",
+            "value":"un losange",
             "figure":{
                 "type":"svg",
                 "content":"${:losange}"
@@ -178,6 +189,7 @@
                 ]
             },
             "answer":"C’est un quadrilatère avec quatre côté égaux et quatre angles droits, donc c’est un <span class='red'>carré</span>.",
+            "value":"un carré",
             "figure":{
                 "type":"svg",
                 "content":"${:carre}"

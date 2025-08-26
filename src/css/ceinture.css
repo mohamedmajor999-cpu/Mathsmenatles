@@ -371,6 +371,11 @@ input[type="color"] {
 
 .ceinture .quest {
     display: table-cell;
+    align-items: normal;
+}
+
+.inlineblock {
+    display: inline-block;
 }
 
 .valign {

@@ -16,7 +16,7 @@ import draw from './mods/draw.js';
 import Figure from './mods/figure.js';
 import analyseReponse from './mods/analysereponse.js';
 
-MathfieldElement.fontsDirectory = '../katex/fonts'
+MathfieldElement.fontsDirectory = '../css/katex/fonts'
 MathfieldElement.soundsDirectory = null
 /* sauvegarde des résultats pour éviter la triche */
 let contentResultats = ''
@@ -355,11 +355,10 @@ const diaporama = {
             span.innerHTML = '<script type="math/tex">'+question+'</script>'
             spane = utils.create("span", { innerHTML: '<script type="math/tex">'+question+'</script>' });
             lie.appendChild(spane);
-            spanc = utils.create("span", { className: "math" });
+            spanc = utils.create("span");
             lic.appendChild(spanc);
-            span.className += " math";
             if (Array.isArray(answer))
-              spanAns.innerHTML = '<script type="math/tex">'+answer[0]+'<script>';
+              spanAns.innerHTML = '<script type="math/tex">'+answer[0]+'</script>';
             else
               spanAns.innerHTML = '<script type="math/tex">'+answer+'</script>';
           } else {
@@ -383,11 +382,11 @@ const diaporama = {
 
           if (Array.isArray(answer)) {
             if (!tex) lic.innerHTML += answer[0];
-            else spanc.innerHTML += answer[0];
+            else spanc.innerHTML += '<script type="math/tex">'+answer[0]+'</script>';
           }
           else {
             if (tex)
-              spanc.innerHTML += answer;
+              spanc.innerHTML += '<script type="math/tex">'+answer+'</script>';
             else
               lic.innerHTML += answer;
           }
@@ -608,12 +607,14 @@ const diaporama = {
       for (let y = 0; y < diaporama.carts[i].target.length; y++) {
         let sN = diaporama.carts[i].target[y] - 1;
         let act = diaporama.carts[i].activities[0];
-        document.getElementById("sample" + sN + "-enonce").innerHTML = act.sample.question;
-        document.getElementById("sample" + sN + "-corr").innerHTML = act.sample.answer;
         if (act.type === undefined || act.type === "" || act.type === "latex") {
-          document.getElementById("sample" + sN + "-enonce").className = "math";
-          document.getElementById("sample" + sN + "-corr").className = "hidden math";
+          document.getElementById("sample" + sN + "-enonce").innerHTML = '<script type="math/tex">'+act.sample.question+'</script>';
+          document.getElementById("sample" + sN + "-corr").innerHTML = '<script type="math/tex">'+act.sample.answer+'</script>';          
+        } else {
+          document.getElementById("sample" + sN + "-enonce").innerHTML = act.sample.question;
+          document.getElementById("sample" + sN + "-corr").innerHTML = act.sample.answer;
         }
+        document.getElementById("sample" + sN + "-corr").classList.add('hidden')
         if (act.textSize !== undefined) {
           document.getElementById("sample" + sN + "-enonce").classList.add(act.textSize);
           document.getElementById("sample" + sN + "-corr").classList.add(act.textSize);
@@ -853,11 +854,12 @@ const diaporama = {
         }
         let act = diaporama.carts[i].activities[actId];
         act.generateSample();
-        document.getElementById("sample" + id + "-enonce").innerHTML = act.sample.question;
-        document.getElementById("sample" + id + "-corr").innerHTML = act.sample.answer;
         if (act.type === undefined || act.type === "" || act.type === "latex") {
-          document.getElementById("sample" + id + "-enonce").className = "math";
-          document.getElementById("sample" + id + "-corr").className += " math";
+          document.getElementById("sample" + id + "-enonce").innerHTML = '<script type="math/tex">'+act.sample.question+'</script>';
+          document.getElementById("sample" + id + "-corr").innerHTML = '<script type="math/tex">'+act.sample.answer+'</script>';
+        } else {
+          document.getElementById("sample" + id + "-enonce").innerHTML = act.sample.question;
+          document.getElementById("sample" + id + "-corr").innerHTML = act.sample.answer;          
         }
         if (act.textSize !== undefined) {
           document.getElementById("sample" + id + "-enonce").classList.add(act.textSize);
@@ -1057,9 +1059,7 @@ const diaporama = {
               }
               if (li.className === '') li.className = 'wrong'
               // On transforme ça en champ LaTeX à afficher (vient mathlive qui renvoie du LaTeX)
-              span.className = "math";
-              userAnswer = "\\displaystyle " + userAnswer;
-              span.textContent = userAnswer;
+              span.innerHTML = '<script type="math/tex">'+ userAnswer+'</script>';
               ia++;
               li.appendChild(span);
               ol.appendChild(li);

@@ -18,12 +18,14 @@
     },{
         "name":"Trouver la fraction décimale",
         "vars":{"precision":"1_3_2","nb":"d0_${Math.pow(10,:precision[0])}_${:precision[1]}"},
-        "question":"Quelle est la \"plus petite\" fraction décimale égale à $$${:nb}$$ ?",
+        "question":"Quelle est la \"plus petite\" fraction décimale égale à $$:nb$$ ?",
         "audio":"Quelle est la plus petite fraction décimale égale à $$${String(:nb).replace('.',',')}$$ ?",
         "answer":"$$${:nb}=\\color{red}{${MMmath.fractionDecimale(:nb)}}$$",
         "value":"${MMmath.fractionDecimale(:nb)}"
     }],
-    "question":"Quelle est l'écriture décimale de $$\\dfrac{${:num}}{${:den}}$$ ?",
-    "audio":"Quelle est l'écriture décimale de ${:num} ${MMmath.NumberToFraction(:den)} ?",
-    "answer":"$$\\dfrac{${:num}}{${:den}}=\\color{red}{${MMmath.round(:num/:den,4)}}$$"
+    "question":"Quelle est l'écriture décimale de $$\\dfrac{:num}{:den}$$ ?",
+    "shortq":"Écriture décimale de $$\\dfrac{:num}{:den}$$ ?",
+    "audio":"Quelle est l'écriture décimale de :num ${MMmath.NumberToFraction(:den)} ?",
+    "answer":"$$\\dfrac{${:num}}{${:den}}=\\color{red}{${MMmath.round(:num/:den,4)}}$$",
+    "value":"${MMmath.round(:num/:den,4)}"
 }

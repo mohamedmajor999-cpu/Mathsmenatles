@@ -3,7 +3,7 @@ import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
 import { convertLatexToMarkup, MathfieldElement, renderMathInDocument } from '../libs/mathlive/mathlive.mjs';
 export { utils as default }
 
-MathfieldElement.fontsDirectory = '../katex/fonts'
+MathfieldElement.fontsDirectory = '../css/katex/fonts'
 MathfieldElement.soundsDirectory = null
 // Some traductions
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -900,7 +900,7 @@ export const utils = {
         }
         if(Array.isArray(wtarget))contents = wtarget;
         contents.forEach(id => {
-            // search for $$ formulas $$ => span / span
+            // search for $$ formulas $$ => script / script
             let content = document.getElementById(id);
             if (content !== null) {
                 content.innerHTML = content.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
@@ -910,7 +910,6 @@ export const utils = {
                     elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
                 });
             }
-                
         });
         document.querySelectorAll(".slide").forEach(elt => {
             elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex">$1</script>');
@@ -960,7 +959,7 @@ export const utils = {
             if(fontStyle === 'sansSerif' && !latex.startsWith('\\mathsf')){
                 latex = '\\mathsf {'+latex+'}'
             } else if ((fontStyle === '' || fontStyle === 'serif') && latex.startsWith('\\mathsf')){
-                latex = latex.slice(10,-1)
+                latex = latex.slice(9,-1)
             }
             latexEl.innerHTML = convertLatexToMarkup(latex)
         })

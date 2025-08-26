@@ -7,9 +7,9 @@ import Figure from './mods/figure.js';
 import keyBoard from './mods/keyboard.js';
 import { MathfieldElement } from './libs/mathlive/mathlive.mjs';
 import MM from './mods/MM.js';
-import KAS from './libs/kas.esm.js';
+import analyseReponse from './mods/analysereponse.js';
 
-MathfieldElement.fontsDirectory = '../katex/fonts'
+MathfieldElement.fontsDirectory = '../css/katex/fonts'
 MathfieldElement.soundsDirectory = null
 
 MM.touched = false;
@@ -489,80 +489,26 @@ function verifReponse(player){
     const expectedAnswer = MM.activities[NQ].value;
     const valueType = MM.activities[NQ].valueType;
     if(Array.isArray(expectedAnswer)){
-        for(let i=0;i<expectedAnswer.length;i++){
-            if(String(userAnswer).toLowerCase()==String(expectedAnswer[i]).toLowerCase()){
+        for (const oneExpected of expectedAnswer) {
+            const result = analyseReponse(oneExpected, userAnswer, valueType)
+            if (result) {
                 player.success[idq]= true;
                 break;
-            } else {
-                const expr1 = KAS.parse(expectedAnswer[i]).expr;
-                const expr2 = KAS.parse(String(userAnswer).replace('²', '^2')).expr;
-                if(expr1 && expr2)try {
-                    if(KAS.compare(expr1,expr2,{form:true,simplify:false}).equal){
-                    // use KAS.compare for algebraics expressions.
-                    player.success[idq]=true;
-                    break;
-                    }
-                } catch(error){
-                    console.log(error)
-                }
             }
         }
-    } else if(valueType !== false){
-        // confrontation de listes séparées par des ;
-        if(valueType === "liste"){
-            let arrayUser = userAnswer.split(";").map(value=>value.trim()).sort((a,b)=>a-b);
-            let arrayExpected = expectedAnswer.split(";").map(value=>value.trim()).sort((a,b)=>a-b);
-            // comparons les contenus en transformant en une chaine
-            if(arrayUser.toString()===arrayExpected.toString()){
-                player.success[idq]=true;
-            }
-        } else if(valueType === "inInterval"){
-            // ici la valeur doit être comprise entre les deux bornes de l'intervalle
-            let minmax = expectedAnswer.split("-").map(value=>Number(value));
-            //minmax[0] est la borne inf et minmax[1] est la borne sup;
-            if(Number(userAnswer)>minmax[0] && Number(userAnswer) < minmax[1]){
-                player.success[idq]=true;
+    } else if (String(expectedAnswer).indexOf(',') > 0) {
+        const expetedAnswersArray = expectedAnswer.split(',')
+        for (const oneExpected of expetedAnswersArray) {
+            const result = analyseReponse(oneExpected, userAnswer, valueType)
+            if (result) {
+                player.success[idq]= true;
+                break;
             }
         }
-    } else { // cas d'une chaine a priori
-        if(typeof expectedAnswer === "string")
-            if(expectedAnswer.indexOf(",")>0){
-                let expectedAnswerArray = expectedAnswer.split(",");
-                for(let i=0;i<expectedAnswer.length;i++){
-                    if(String(userAnswer).toLowerCase()==String(expectedAnswerArray[i]).toLowerCase()){
-                        player.success[idq]= true;
-                        break;
-                    } else {
-                        const expr1 = KAS.parse(expectedAnswer[i]).expr;
-                        const expr2 = KAS.parse(String(userAnswer).replace('²', '^2')).expr;
-                        if(expr1 && expr2){
-                            try {
-                                if(KAS.compare(expr1,expr2,{form:true,simplify:false}).equal){
-                                // use KAS.compare for algebraics expressions.
-                                player.success[idq]=true;
-                                break;
-                                }
-                            } catch(error){
-                                console.log(error)
-                            }
-                        }
-                    }
-                }
-            }
-        if(String(userAnswer).toLowerCase()==String(expectedAnswer).toLowerCase()){
-            player.success[idq]=true;
-        } else {
-            const expr1 = KAS.parse(String(expectedAnswer)).expr;
-            const expr2 = KAS.parse(String(userAnswer).replace('²', '^2')).expr;
-            if(expr1 && expr2) {
-                try{
-                    if(KAS.compare(expr1,expr2,{form:true,simplify:false}).equal){
-                    // use KAS.compare for algebraics expressions.
-                    player.success[idq]=true;
-                    }
-                } catch(error){
-                    console.log(error);
-            }}
+    } else {
+        const result = analyseReponse(expectedAnswer, userAnswer, valueType)
+        if (result) {
+            player.success[idq]= true;
         }
     }
     //document.getElementById("infodebug").innerHTML += player.nom + " : rép = "+player.answers[NQ]+" | attendu : "+expectedAnswer+" => "+player.success[NQ]+"<br>"

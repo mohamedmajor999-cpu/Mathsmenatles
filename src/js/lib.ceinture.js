@@ -629,11 +629,13 @@ function makePage(){
                 let divans=`<div class="bg-grey ans answer ${colsid}" style="height:${parameters.answerHeight}mm;"></div>`;
                 let content = activity.shortQuestions[j]||activity.questions[j];
                 let ansInside = false;
+                let inLatex = false
                 if(String(content).indexOf("colorbox")>-1){
                     ansInside = true; 
                     // divans = `<span class="bg-grey ans answer ${colsid}" style="height:20pt;"></span>`
                 }
                 if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
+                    inLatex = true
                     const divq = utils.create("div",{className:"question"+colsid+" quest", style:'font-size:'+parameters.fontSizes[colsid]+'pt'});
                     const span = utils.create("span");
                     span.innerHTML = '<script type="math/tex">'+content+'</script>'
@@ -654,7 +656,11 @@ function makePage(){
                     value=value[0];
                 }
                 let spanc = utils.create("span");
-                spanc.innerHTML = '<script type="math/tex">'+value+'</script>'
+                if(inLatex)
+                    spanc.innerHTML = '<script type="math/tex">'+value+'</script>'
+                else {
+                    spanc.innerHTML = value
+                }
 
                 /*if(activity.type === undefined || activity.type === "" || activity.type === "latex"){
                     spanc.classList.add("math"); 
