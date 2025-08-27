@@ -425,60 +425,68 @@ export default class activity {
         // if :question|-5 suppress the 5 firsts caracters
         let regex = /:question(\|(\-{0,1}(\d)+))*/;
         let detection
-        if(_.isArray(answer) && _.isArray(question)){
+        let questionATraiter = _.isArray(question)?[...question]:question
+        if (_.isArray(questionATraiter)){
+            for(const [index, q] of questionATraiter.entries()){
+                questionATraiter[index] = q.replace(/\$\$/g, '$$$$$$$$')
+            }
+        } else if(questionATraiter.indexOf('$$')>-1){
+            questionATraiter = questionATraiter.replace(/\$\$/g, '$$$$$$$$')
+        }
+        if(_.isArray(answer) && _.isArray(questionATraiter)){
             // same sizes
             for(const [index,ans] of answer.entries()){
                 if((detection = ans.match(regex)) !== null){
                     if(detection[2]!== undefined){
                         const numberOfCaracteresToDelete = -Number(detection[2])
                         if (numberOfCaracteresToDelete < 0)
-                            answer[index] = ans.replace(regex, question[index].slice(0,numberOfCaracteresToDelete))
+                            answer[index] = ans.replace(regex, questionATraiter[index].slice(0,numberOfCaracteresToDelete))
                         else 
-                            answer[index] = ans.replace(regex, question[index].slice(numberOfCaracteresToDelete))
+                            answer[index] = ans.replace(regex, questionATraiter[index].slice(numberOfCaracteresToDelete))
                     } else
-                        answer[index] = ans.replace(regex, question[index])
+                        answer[index] = ans.replace(regex, questionATraiter[index])
                 }
             }
             return answer
-        } else if(_.isString(answer) && _.isArray(question)) {
+        } else if(_.isString(answer) && _.isArray(questionATraiter)) {
             if((detection = answer.match(regex)) !== null){
                 const listOfAnswers = []
-                for (const [index,quest] of question.entries()) {
+                for (const [index,quest] of questionATraiter.entries()) {
                     if(detection[2]!== undefined){
                         const numberOfCaracteresToDelete = -Number(detection[2])
                         if (numberOfCaracteresToDelete < 0)
-                            listOfAnswers[index] = answer.replace(regex, question[index].slice(0,numberOfCaracteresToDelete))
+                            listOfAnswers[index] = answer.replace(regex, questionATraiter[index].slice(0,numberOfCaracteresToDelete))
                         else
-                            listOfAnswers[index] = answer.replace(regex, question[index].slice(numberOfCaracteresToDelete))
+                            listOfAnswers[index] = answer.replace(regex, questionATraiter[index].slice(numberOfCaracteresToDelete))
                     } else
-                        listOfAnswers[index] = answer.replace(regex, question[index])
+                        listOfAnswers[index] = answer.replace(regex, questionATraiter[index])
                 }
                 return listOfAnswers
             } else return answer
-        } else if(_.isArray(answer) && _.isString(question)){
+        } else if(_.isArray(answer) && _.isString(questionATraiter)){
             for(const [index,ans] of answer.entries()){
                 if((detection = ans.match(regex)) !== null){
                     if(detection[2]!== undefined) {
                         const numberOfCaracteresToDelete = -Number(detection[2])
                         if (numberOfCaracteresToDelete < 0)
-                            answer[index]=ans.replace(regex, question.slice(0,numberOfCaracteresToDelete))
+                            answer[index]=ans.replace(regex, questionATraiter.slice(0,numberOfCaracteresToDelete))
                         else
-                            answer[index]=ans.replace(regex, question.slice(numberOfCaracteresToDelete))
+                            answer[index]=ans.replace(regex, questionATraiter.slice(numberOfCaracteresToDelete))
                     } else
-                        answer[index]=ans.replace(regex, question)
+                        answer[index]=ans.replace(regex, questionATraiter)
                 }
             }
             return answer
-        } else if(_.isString(answer) && _.isString(question)){
+        } else if(_.isString(answer) && _.isString(questionATraiter)){
             if((detection = answer.match(regex)) !== null){
                 if(detection[2]!== undefined) {
                     const numberOfCaracteresToDelete = -Number(detection[2])
                     if (numberOfCaracteresToDelete < 0)
-                        answer = answer.replace(regex, question.slice(0,numberOfCaracteresToDelete))
+                        answer = answer.replace(regex, questionATraiter.slice(0,numberOfCaracteresToDelete))
                     else
-                        answer = answer.replace(regex, question.slice(numberOfCaracteresToDelete))
+                        answer = answer.replace(regex, questionATraiter.slice(numberOfCaracteresToDelete))
                 } else
-                    answer = answer.replace(regex, question)
+                    answer = answer.replace(regex, questionATraiter)
             }
             return answer
         }

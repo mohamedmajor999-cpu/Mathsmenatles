@@ -23,15 +23,16 @@ src/js/libs
 !src/js/libs/*alllibs.js
 !src/js/libs/*alllibs.min.js
 !public/js/libs/*alllibs.min.js
+!src/js/libs/chartjs
 !src/js/libs/compute-engine
+!src/js/libs/jsoneditor-9.5.3
 !src/js/libs/JSXGraph1.11.1
 !src/js/libs/mathlive
 !src/js/libs/qr-code-styling
 !src/js/libs/scratchblocks
 !src/js/libs/seedrandom
 !src/js/libs/sortable
-!src/js/libs/chartjs
-!src/js/libs/jsoneditor-9.5.3
+!src/js/libs/vanilla-picker
 
 # la conf privée
 _private

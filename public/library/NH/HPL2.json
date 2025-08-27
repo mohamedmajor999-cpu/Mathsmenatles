@@ -137,7 +137,8 @@
         "n2": "${:simplifiable?:duos[:choix][1]:'1_10'}"
       },
       "question": "\\log_{10}(:n1)+\\log_{10}(:n2)",
-      "answer": ":question=\\color{green}{\\log_{10}(:n1\\times:n2)}=\\color{${[10,100,1000].includes(:n1*:n2)?'green':'red'}}{\\log_{10}(${:n1*:n2})}${[10,100,1000].includes(:n1*:n2)?'=\\color{red}{'+(:n1*:n2==10 ? 1 : :n1*:n2==100 ? 2 : 3)+'}':''}"
+      "answer": ":question=\\color{green}{\\log_{10}(:n1\\times:n2)}=\\color{${[10,100,1000].includes(:n1*:n2)?'green':'red'}}{\\log_{10}(${:n1*:n2})}${[10,100,1000].includes(:n1*:n2)?'=\\color{red}{'+(:n1*:n2==10 ? 1 : :n1*:n2==100 ? 2 : 3)+'}':''}",
+      "value":"${[10,100,1000].includes(:n1*:n2)?(:n1*:n2==10 ? 1 : :n1*:n2==100 ? 2 : 3):`\\log_{10}(${:n1*:n2})`}"
     },
     {
       "name": "Différence de logarithmes",
@@ -159,7 +160,8 @@
         "n1": "${:logSimplifiable?:log*:n2::fractionSimplifiable?:n2*:k:'1_10'}"
       },
       "question": "\\log_{10}(:n1)-\\log_{10}(:n2)",
-      "answer": ":question=\\color{green}{\\log_{10}\\left(\\dfrac{:n1}{:n2}\\right)}${:n1%:n2==0?'=\\log_{10}('+MMmath.fractionSimplifiee(:n1,:n2)+')':''}${:logSimplifiable?'='+(:log==10?1:2):''}"
+      "answer": ":question=\\color{green}{\\log_{10}\\left(\\dfrac{:n1}{:n2}\\right)}${:n1%:n2==0?'=\\log_{10}('+MMmath.fractionSimplifiee(:n1,:n2)+')':''}${:logSimplifiable?'='+(:log==10?1:2):''}",
+      "value":"${!:logSimplifiable?'\\log_{10}('+MMmath.fractionSimplifiee(:n1,:n2)+')'::log==10?1:2}"
     },{
         "name":"Logarithme en base de 2 de puissances de 2",
         "vars":{
@@ -170,7 +172,8 @@
             "sig":["+","-"]
         },
         "question":"\\log_2(:n1):sig \\log_2(:n2)",
-        "answer":":question=\\color{green}{:p1:sig:p2}=\\color{red}{${:sig=='+'?:p1+:p2::p1-:p2}}"
+        "answer":":question=\\color{green}{:p1:sig:p2}=\\color{red}{${:sig=='+'?:p1+:p2::p1-:p2}}",
+        "value":"${:sig=='+'?:p1+:p2::p1-:p2}"
     },
     {
       "name": "Sommes de logarithmes de variables",
@@ -189,7 +192,8 @@
         "a": "1_4_2"
       },
       "question": "${MMmath.signIfOne(:a[0])}\\log_{:log}(:x)+${MMmath.signIfOne(:a[1])}\\log_{:log}(:y)",
-      "answer": ":question=\\color{red}{\\log_{:log}(${:l[0]!=:l[1]?:x+(:a[0]>1?'^'+:a[0]:'')+:y+(:a[1]>1?'^'+:a[1]:'')::x+'^'+(:a[0]+:a[1])})}"
+      "answer": ":question=\\color{red}{\\log_{:log}(${:l[0]!=:l[1]?:x+(:a[0]>1?'^'+:a[0]:'')+:y+(:a[1]>1?'^'+:a[1]:'')::x+'^'+(:a[0]+:a[1])})}",
+      "value":"\\log_{:log}(${:l[0]!=:l[1]?:x+(:a[0]>1?'^'+:a[0]:'')+:y+(:a[1]>1?'^'+:a[1]:'')::x+'^'+(:a[0]+:a[1])})"
     },
     {
       "name": "Différence de logarithmes de variables",
@@ -208,7 +212,8 @@
         "a": "1_4_2"
       },
       "question": "${MMmath.signIfOne(:a[0])}\\log_{:log}(:x)-${MMmath.signIfOne(:a[1])}\\log_{:log}(:y)",
-      "answer": ":question=\\color{red}{\\log_{:log}\\left(${:l[0]!=:l[1]?'\\dfrac{'+:x+(:a[0]>1?'^'+:a[0]:'')+'}{'+:y+(:a[1]>1?'^'+:a[1]:'')+'}'::a[0]-:a[1]>1?:x+'^'+(:a[0]-:a[1])::a[0]-:a[1]==1?:x::a[0]-:a[1]<-1?'\\dfrac 1{'+:x+'^'+(:a[1]-:a[0])+'}'::a[0]-:a[1]==-1?'\\dfrac 1{'+:x+'}':1}\\right)}"
+      "answer": ":question=\\color{red}{\\log_{:log}\\left(${:l[0]!=:l[1]?'\\dfrac{'+:x+(:a[0]>1?'^'+:a[0]:'')+'}{'+:y+(:a[1]>1?'^'+:a[1]:'')+'}'::a[0]-:a[1]>1?:x+'^'+(:a[0]-:a[1])::a[0]-:a[1]==1?:x::a[0]-:a[1]<-1?'\\dfrac 1{'+:x+'^'+(:a[1]-:a[0])+'}'::a[0]-:a[1]==-1?'\\dfrac 1{'+:x+'}':1}\\right)}",
+      "value":"\\log_{:log}\\left(${:l[0]!=:l[1]?'\\dfrac{'+:x+(:a[0]>1?'^'+:a[0]:'')+'}{'+:y+(:a[1]>1?'^'+:a[1]:'')+'}'::a[0]-:a[1]>1?:x+'^'+(:a[0]-:a[1])::a[0]-:a[1]==1?:x::a[0]-:a[1]<-1?'\\dfrac 1{'+:x+'^'+(:a[1]-:a[0])+'}'::a[0]-:a[1]==-1?'\\dfrac 1{'+:x+'}':1}\\right)"
     },
     {
       "name": "Somme algébrique de logarithmes de variables",
@@ -230,7 +235,8 @@
         "c": "-4_4_^0"
       },
       "question": "${MMmath.signIfOne(:a)}\\log_{:log}(:x)${MMmath.signedNumberButOne(:b)}\\log_{:log}(:y)${MMmath.signedNumberButOne(:c)}\\log_{:log}(:z)",
-      "answer": ":question=\\color{red}{\\log_{:log}\\left(${MMmath.parse('1'+(:a>0?'*':'/')+'('+:x+'^'+Math.abs(:a)+')'+(:b>0?'*':'/')+'('+:y+'^'+Math.abs(:b)+')'+(:c>0?'*':'/')+'('+:z+'^'+Math.abs(:c)+')')}\\right)}"
+      "answer": ":question=\\color{red}{\\log_{:log}\\left(${MMmath.parse('1'+(:a>0?'*':'/')+'('+:x+'^'+Math.abs(:a)+')'+(:b>0?'*':'/')+'('+:y+'^'+Math.abs(:b)+')'+(:c>0?'*':'/')+'('+:z+'^'+Math.abs(:c)+')')}\\right)}",
+      "value":"\\log_{:log}\\left(${MMmath.parse('1'+(:a>0?'*':'/')+'('+:x+'^'+Math.abs(:a)+')'+(:b>0?'*':'/')+'('+:y+'^'+Math.abs(:b)+')'+(:c>0?'*':'/')+'('+:z+'^'+Math.abs(:c)+')')}\\right)"
     }
   ]
 }

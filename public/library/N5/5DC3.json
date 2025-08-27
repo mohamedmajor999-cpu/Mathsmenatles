@@ -1,6 +1,6 @@
 {
     "title":"Tableaux de proportionnalité",
-    "type":"latex",
+    "type":"text",
     "ID":"5DC3",
     "description":"Calcul de données dans un tableau de proportionnalité",
     "dest":["5DC","4DC","3DC", "2N1"],
@@ -23,7 +23,7 @@
         "vars":{"a2":"11_20","b1":"2_15_^prime","a3":"2_12_^prime","a1":[2,5,10,"${MMmath.plusGrandDiviseur(:b1*:a3)}"],"b2":"${MMmath.round(:a2*:b1/:a1,2)}", "b3":"${MMmath.round(:a3*:b1/:a1,2)}","choix":"1_3"}
     }
     ],
-    "question": "\\begin{array}{|c|c|c|} \\hline ${:choix==1?:a3::a1} & ${:choix==2?:a3::choix==1?:a1::a2} & ${:choix==3?:a3::a2} \\\\ \\hline ${:choix==1?'?'::b1} & ${:choix==2?'?'::choix==1?:b1::b2} & ${:choix==3?'?'::b2} \\\\ \\hline \\end{array}",
-    "answer":"\\begin{array}{|c|c|c|} \\hline ${:choix==1?:a3::a1} & ${:choix==2?:a3::choix==1?:a1::a2} & ${:choix==3?:a3::a2} \\\\ \\hline ${:choix==1?'\\color{red}{'+:b3+'}'::b1} & ${:choix==2?'\\color{red}{'+:b3+'}'::choix==1?:b1::b2} & ${:choix==3?'\\color{red}{'+:b3+'}'::b2} \\\\ \\hline \\end{array}",
+    "question": "<table class='inline-table'><tr><td>${:choix==1?:a3::a1}</td><td>${:choix==2?:a3::choix==1?:a1::a2}</td><td>${:choix==3?:a3::a2}</td></tr><tr><td>${:choix==1?'?'::b1}</td><td>${:choix==2?'?'::choix==1?:b1::b2}</td><td>${:choix==3?'?'::b2}</td></tr></table>",
+    "answer":"<table class='inline-table'><tr><td>${:choix==1?:a3::a1}</td><td>${:choix==2?:a3::choix==1?:a1::a2}</td><td>${:choix==3?:a3::a2}</td></tr><tr><td>${:choix==1?'$$\\color{red}{'+:b3+'}$$'::b1}</td><td>${:choix==2?'$$\\color{red}{'+:b3+'}$$'::choix==1?:b1::b2}</td><td>${:choix==3?'$$\\color{red}{'+:b3+'}$$'::b2}</td></tr></table>",
     "value":"${:b3}"
 }

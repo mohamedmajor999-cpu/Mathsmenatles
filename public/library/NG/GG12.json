@@ -17,7 +17,7 @@
             "name":"Donner les coordonnées du vecteur normal",
             "question":"Déterminer le vecteur normal au plan d’équation : $$${:eq}$$",
             "answer":"Le vecteur normal au plan d'équation $$${:eq}$$ est : $$\\vec{n} \\begin{pmatrix}${:ans}\\end{pmatrix}$$",
-            "value":"${:ans.replace('\\\\',';')}"
+            "value":["\\vec n (:a;:b;:c)",":a;:b;:c"]
         },{
             "name":"Donner une équation du plan",
             "question":"Donner une équation d'un plan de vecteur normal : $$\\vec{n} \\begin{pmatrix}${:ans}\\end{pmatrix}$$",

@@ -48,7 +48,7 @@
                 "nbp2":"${:nbobj-:nbp1}"
             },
             "question":"Crée un tableau pour résumer la liste <b>${:icons[:id1][0]}</b> et de <b>${:icons[:id2][1]}</b>.<br>${:suiteobjets.map(x=>'<custom-svg src=library/illustrations/iconify/icon-park-outline--'+(x?:obj1url::obj2url)+'></custom-svg>').join(' ')}",
-            "answer":"$$\\begin{array}{|c|c|c|} \\hline \\textbf{Objet} & \\textbf{${:icons[:id1][1]}} & \\textbf{${:icons[:id2][1]}} \\\\ \\hline \\textbf{Quantité} & \\color{red}{${:nbp1}} & \\color{red}{${:nbp2}} \\\\ \\hline \\end{array}$$"
+            "answer":"<table class='inline-table'><tr><th>Objet</th><th>${:icons[:id1][1]}</td><th>${:icons[:id2][1]}</th></tr><tr><td>Quantité</td><td>$$\\color{red}{${:nbp1}}$$</td><td>$$\\color{red}{${:nbp2}}$$</td></tr></table>"
         },{
             "name":"Tableau de trois objets",
             "vars":{
@@ -65,7 +65,7 @@
                 "nbp3":"${:nbobj-:nbp1-:nbp2}"
             },
             "question":"Crée un tableau pour résumer la liste <b>${:icons[:id1][0]}</b>, <b>${:icons[:id2][0]}</b> et <b>${:icons[:id3][0]}</b>.<br>${:suiteobjets.map(x=>'<custom-svg src=library/illustrations/iconify/icon-park-outline--'+(x==0?:obj1url:x==1?:obj2url::obj3url)+'></custom-svg>').join(' ')}",
-            "answer":"$$\\begin{array}{|c|c|c|c|} \\hline \\textbf{Objet} & \\textbf{${:icons[:id1][1]}} & \\textbf{${:icons[:id2][1]}} & \\textbf{${:icons[:id3][1]}} \\\\ \\hline \\textbf{Quantité} & \\color{red}{${:nbp1}} & \\color{red}{${:nbp2}} & \\color{red}{${:nbp3}}\\\\ \\hline \\end{array}$$"
+            "answer":"<table class='inline-table'><tr><th>Objet}</th><th>${:icons[:id1][1]}</th><th>${:icons[:id2][1]}</th><th>${:icons[:id3][1]}</th></tr><tr><td>Quantité</td><td>$$\\color{red}{${:nbp1}}$$</td><td>$$\\color{red}{${:nbp2}}$$</td><td>$$\\color{red}{${:nbp3}}$$</td></tr></table>"
         },{
             "name":"Tableau de deux couleurs",
             "vars":{
@@ -82,7 +82,7 @@
                 "nbp2":"${:nbobj-:nbp1}"
             },
             "question":"Crée un tableau pour résumer la liste <b>${:icons[:idobj][0]}</b> dont les couleurs sont : ${:couleur1} et ${:couleur2}</b>.<br>${:suiteobjets.map(x=>'<custom-svg style=color:'+(x===1?:color1::color2)+' src=library/illustrations/iconify/icon-park-outline--'+:objurl+'></custom-svg>').join(' ')}",
-            "answer":"$$\\begin{array}{|c|c|c|} \\hline \\textbf{${:icons[:idobj][1]}} & \\textbf{${:couleur1}} & \\textbf{${:couleur2}} \\\\ \\hline \\textbf{Quantité} & \\color{red}{${:nbp1}} & \\color{red}{${:nbp2}} \\\\ \\hline \\end{array}$$"
+            "answer":"<table class='inline-table'><tr><th>${:icons[:idobj][1]}</th><th>${:couleur1}</th><th>${:couleur2}</th></tr><tr><td>Quantité</td><td>$$\\color{red}{${:nbp1}}$$</td><td>$$\\color{red}{${:nbp2}}$$</td></tr></table>"
         },{
             "name":"Compléter un tableau de trois couleurs",
             "vars":{
@@ -102,7 +102,7 @@
                 "nbp3":"${:nbobj-:nbp1-:nbp2}"
             },
             "question":"Crée un tableau pour résumer la liste <b>${:icons[:idobj][0]}</b> dont les couleurs sont : ${:couleur1}, ${:couleur2} et ${:couleur3}</b>.<br>${:suiteobjets.map(x=>'<custom-svg style=color:'+(x===0?:color1:x==1?:color2::color3)+' src=library/illustrations/iconify/icon-park-outline--'+:objurl+'></custom-svg>').join(' ')}",
-            "answer":"$$\\begin{array}{|c|c|c|c|}\\hline\\textbf{${:icons[:idobj][1]}} & \\textbf{${:couleur1}} & \\textbf{${:couleur2}} & \\textbf{${:couleur3}}\\\\ \\hline\\textbf{Quantité} & \\color{red}{${:nbp1}} & \\color{red}{${:nbp2}} & \\color{red}{${:nbp3}}\\\\\\hline\\end{array}$$"
+            "answer":"<table class='inline-table'><tr><th>${:icons[:idobj][1]}</th><th>${:couleur1}</th><th>${:couleur2}</th><th>${:couleur3}</th></tr><tr><td>Quantité</td><td>$$\\color{red}{${:nbp1}}$$</td><td>$$\\color{red}{${:nbp2}}$$</td><td>$$\\color{red}{${:nbp3}}$$</td></tr></table>"
         }
     ]
 }

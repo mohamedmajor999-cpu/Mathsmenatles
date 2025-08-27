@@ -1121,6 +1121,17 @@ ul.cart-list{
 /*
 * Enonces et corriges
 */
+.inline-table {
+  display: inline-table !important;
+  border-collapse: collapse !important;
+  width: auto !important;
+  vertical-align: middle;
+}
+.inline-table td, .inline-table th{
+    border: 1px solid #5b5b5b;
+    padding: 4px 8px;
+    text-align: center;
+  }
 .red {
   color:red;
   font-weight: bold;
