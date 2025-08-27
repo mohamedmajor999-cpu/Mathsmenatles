@@ -656,11 +656,11 @@ function makePage(){
                     value=value[0];
                 }
                 let spanc = utils.create("span");
-                if(inLatex)
+                //if(inLatex)
                     spanc.innerHTML = '$$'+value+'$$'
-                else {
+                /*else {
                     spanc.innerHTML = value
-                }
+                }*/
 
                 /*if(activity.type === undefined || activity.type === "" || activity.type === "latex"){
                     spanc.classList.add("math"); 
