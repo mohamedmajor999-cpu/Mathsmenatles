@@ -1,6 +1,6 @@
 // import katex from '../libs/katex/katex.esm.js';
 import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
-import { convertLatexToMarkup, MathfieldElement, renderMathInDocument } from '../libs/mathlive/mathlive.mjs';
+import { convertLatexToMarkup, MathfieldElement, renderMathInDocument } from '../libs/mathlive/mathlive.mjs.js';
 export { utils as default }
 
 MathfieldElement.fontsDirectory = '../css/katex/fonts'

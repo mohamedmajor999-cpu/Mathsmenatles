@@ -9,7 +9,7 @@ import Zoom from './mods/zoom.js';
 import speech from './mods/speech.js';
 import steps from './mods/steps.js';
 import timer from './mods/timer.js';
-import { MathfieldElement } from "./libs/mathlive/mathlive.mjs";
+import { MathfieldElement } from "./libs/mathlive/mathlive.mjs.js";
 import keyBoard from "./mods/keyboard.js";
 import MMmath from './mods/math.js';
 import draw from './mods/draw.js';

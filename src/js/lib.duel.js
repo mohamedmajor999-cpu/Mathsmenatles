@@ -5,7 +5,7 @@ import cart from './mods/cart.js';
 import Zoom from './mods/zoom.js';
 import Figure from './mods/figure.js';
 import keyBoard from './mods/keyboard.js';
-import { MathfieldElement } from './libs/mathlive/mathlive.mjs';
+import { MathfieldElement } from './libs/mathlive/mathlive.mjs.js';
 import MM from './mods/MM.js';
 import analyseReponse from './mods/analysereponse.js';
 
