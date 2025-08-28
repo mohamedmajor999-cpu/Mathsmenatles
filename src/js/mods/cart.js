@@ -162,7 +162,7 @@ export default class cart {
             let activity = this.activities[i];
             this.time += Number(activity.tempo)*Number(activity.nbq);
             this.nbq += Number(activity.nbq);
-            li.innerHTML = "<i class='sprite sprite-editcart pointer' align='left' data-actid='"+i+"' title=\"Editer l'activité\"></i><i class='sprite sprite-removefromcart removefromcartbutton pointer' data-actidtoremove='"+i+"' title='Enlever du panier'></i>"+(activity.audioRead==true?activity.title:activity.title.replace("📣 ","")) + " (<span>"+activity.tempo + "</span> s. / <span>"+activity.nbq+"</span> quest.)";
+            li.innerHTML = "<div class='cart-content-item'><div class='pointer actID' data-actid='"+i+"' title=\"Editer l'activité\">"+activity.id+"</div><i class='sprite sprite-removefromcart removefromcartbutton pointer' data-actidtoremove='"+i+"' title='Enlever du panier'></i>"+(activity.audioRead==true?activity.title:activity.title.replace("📣 ","")) + " <span>"+activity.tempo + "</span><span>"+activity.nbq+"</span>";
             if(this.editedActivityId === i){
                 li.className = "active";
             }

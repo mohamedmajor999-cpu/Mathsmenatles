@@ -64,6 +64,31 @@
 .center {
   text-align: center;
 }
+.actID {
+  background-color: #e09a64;
+  padding: 0.2em;
+  color: white;
+  width: 4em;
+  font-weight: bold;
+  user-select: none;
+  text-align: center;
+}
+.actID .small {
+  font-size: smaller;
+}
+.cart-content-title, .cart-content-item {
+  display:grid;
+  grid-template-columns: 4em auto 2em 2em;
+  align-items: center;
+  column-gap: 5px;
+}
+.cart-content-title{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.cart-content-title > span, .cart-content-item > span:not(:nth-of-type(2)) {
+  text-align: center;
+}
 
 table.center th, table.center td {
   text-align: center !important;

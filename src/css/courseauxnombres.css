@@ -177,6 +177,20 @@ h3.exercice-title {
     font-size: 1.1rem;
     margin-bottom: 0.3rem;
 }
+/*
+* Enonces et corriges
+*/
+.inline-table {
+  display: inline-table !important;
+  border-collapse: collapse !important;
+  width: auto !important;
+  vertical-align: middle;
+}
+.inline-table td, .inline-table th{
+    border: 1px solid #5b5b5b;
+    padding: 4px 8px;
+    text-align: center;
+  }
 
 @counter-style majuscules {
     system: alphabetic;

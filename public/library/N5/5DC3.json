@@ -5,6 +5,7 @@
     "description":"Calcul de données dans un tableau de proportionnalité",
     "dest":["5DC","4DC","3DC", "2N1"],
     "consts":{"prime":[2,3,5,7,11]},
+    "consigne":"Quelle est la valeur manquante dans ce tableau de proportionnalité ?",
     "options":[{
         "name":"Par addition de colonnes",
         "vars":{"a1":"2_40","a2":"2_40_^${:a1}","a3":"${:a1+:a2}","coeff":"d0.1_2.9_1_^1,2","choix":"1_3","b1":"${MMmath.round(:a1*:coeff,1)}","b2":"${MMmath.round(:a2*:coeff,1)}","b3":"${MMmath.round(:a3*:coeff,1)}"}
