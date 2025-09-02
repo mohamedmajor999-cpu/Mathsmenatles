@@ -9,6 +9,7 @@ Démo : https://www.mathsmentales.net/
  * Éric Elter a eu une relecture très attentive de plusieurs activités et en a proposé de nouvelles.
  * Fayçal TIB a voulu créer quelques activités pour le lycée (inachevées)
  * Mikael Le Mentec a modifié ou créé quelques activités en collège et lycée
+ * Xavier Levet s'est lancé dans la création d'activités pour le CM
  
 Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/blob/master/CONTRIBUTING.md?ref_type=heads)
 
