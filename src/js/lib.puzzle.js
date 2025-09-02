@@ -149,16 +149,7 @@ function render(id) {
     }
 }
 function renderKtex() {
-    /*document.getElementById('affichage').innerHTML = document.getElementById('affichage').innerHTML.replace(/\$\$([^$]*)\$\$/gi, '$$$1$$');
-    content.querySelectorAll("script[type='math/tex; mode=text']").forEach(function(item){
-        var texTxt = item.innerHTML.replace(/\&amp\;/g,"&");
-        // recherche les nombres, décimaux ou pas
-        let nbrgx = /(\d+\.*\d*)/g;
-        // insère des espaces tous les 3 chiffres;
-        texTxt = texTxt.replace(nbrgx, utils.toDecimalFr);
-        item.innerHTML = texTxt
-    })*/
-    utils.mathRender(parameters.fontType, ['affichage'])
+    utils.mathRender(parameters.fontType, ['creator-content'])
 }
 document.getElementById('radio-nodistract').onclick = () => {
     parameters.distract = false

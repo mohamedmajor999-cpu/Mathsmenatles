@@ -83,11 +83,11 @@
         "axis":false,
         "boundingbox":[-10,5,10,-5],
         "content":[
-            ["point",["${:xA}","${:yA}"],{"name":"A","visible":false}],
-            ["point",["${:xB}","${:yB}"],{"name":"B","visible":false}],
+            ["point",["${:xA}","${:yA}"],{"name":"A","visible":false,"withLabel":false}],
+            ["point",["${:xB}","${:yB}"],{"name":"B","visible":false,"withLabel":false}],
             ["line",["A","B"]],
-            ["point",["${:xC}","${:yC}"],{"name":"C","visible":false}],
-            ["point",["${:xD}","${:yD}"],{"name":"D","visible":false}],
+            ["point",["${:xC}","${:yC}"],{"name":"C","visible":false,"withLabel":false}],
+            ["point",["${:xD}","${:yD}"],{"name":"D","visible":false,"withLabel":false}],
             ["line",["C","D"],{"color":"red"}]
         ]
     }

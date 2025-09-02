@@ -47,7 +47,7 @@
                     ["angle",["B","O","C"],{"orthoType":"sector","radius":2,"label":{"visible":false},"fillColor":"transparent","strokeColor":"${:estBissectrice?:color1::color2}"}]
                 ]
             },
-            "question":"La droite rouge est-elle la biessectrice de l'angle ?",
+            "question":"La droite rouge est-elle la bissectrice de l'angle ?",
             "answer":"${:estBissectrice?'Oui, car les codages indiquent que les angles ont la même mesure.':'Non, car les angles n’ont pas un codage indiquant une même mesure.'}"
         },{
             "name":"À partir des mesures",
@@ -79,7 +79,7 @@
                     ["angle",["B","O","C"],{"orthoType":"sector","radius":2.3,"name":"${:ang2}°","fillColor":"transparent","strokeColor":"${:estBissectrice?:color1::color2}"}]
                 ]
             },
-            "question":"La droite rouge est-elle la biessectrice de l'angle ?",
+            "question":"La droite rouge est-elle la bissectrice de l'angle ?",
             "answer":"${:estBissectrice?'Oui, car elle partage l’angle en deux angles de même mesure.':'Non, car les angles n’ont pas la même mesure.'}"
         },{
             "name":"À partir de la position",
@@ -117,7 +117,7 @@
                     ["angle",["B","O","C"],{"orthoType":"sector","radius":2.3,"name":"${:ang1}°","fillColor":"transparent","strokeColor":"${:color1}","withLabel":"${:angleoucodage?1:0}"}]
                 ]
             },
-            "question":"La droite rouge est-elle la biessectrice de l'angle ?",
+            "question":"La droite rouge est-elle la bissectrice de l'angle ?",
             "answer":"${:estBissectrice?'Oui, car elle partage l’angle en deux angles de même mesure.':'Non, car la droite ne partage pas l’angle.'}"
         }
     ]

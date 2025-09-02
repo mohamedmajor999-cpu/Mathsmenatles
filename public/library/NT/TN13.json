@@ -19,9 +19,9 @@
         "S": "${(:diff+1) * (:u_b + :u_c) / 2}"
       },
       "question": [
-        "On considère la suite $$(u_n)$$ définie sur $$ \\mathbb{N} $$ par $$u_n = ${:a} ${math.signedNumber(:r)} n$$. Calculer la somme   $$S= u_{${:b}} $$+ ...+ $$u_{${:c}} $$ ."
+        "On considère la suite $$(u_n)$$ définie sur $$ \\mathbb{N} $$ par $$u_n = ${:a} ${MMmath.signedNumber(:r)} n$$. Calculer la somme   $$S= u_{${:b}} $$+ ...+ $$u_{${:c}} $$ ."
       ],
-      "answer": "$$S =  ${:diff+1 } \\times  \\frac{  ${:u_b}  ${math.signedNumber(:u_c)}   }{2} = ${:S} $$ "
+      "answer": "$$S =  ${:diff+1 } \\times  \\frac{  ${:u_b}  ${MMmath.signedNumber(:u_c)}   }{2} = ${:S} $$ "
     },
     {
       "name": "suite géométrique",
@@ -35,9 +35,9 @@
         "S": "${:a * (1 - :q**(:diff+1))/(1-:q)}"
       },
       "question": [
-        "On considère la suite $$(u_n)$$ définie sur $$ \\mathbb{N} $$ par $$u_n = ${:a} \\times ${math.nP(:q)}^n$$. Calculer la somme  $$S= u_0 $$+ ...+ $$u_{${:diff}} $$"
+        "On considère la suite $$(u_n)$$ définie sur $$ \\mathbb{N} $$ par $$u_n = ${:a} \\times ${MMmath.nP(:q)}^n$$. Calculer la somme  $$S= u_0 $$+ ...+ $$u_{${:diff}} $$"
       ],
-      "answer": "$$S =  ${:a} \\times  \\frac{ 1- ${math.nP(:q)}^{${:diff +1}} } {1 - ${:q}} =${:S}$$ "
+      "answer": "$$S =  ${:a} \\times  \\frac{ 1- ${MMmath.nP(:q)}^{${:diff +1}} } {1 - ${:q}} =${:S}$$ "
     }
   ]
 }

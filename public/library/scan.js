@@ -72,11 +72,7 @@ for(const niveau in structure){
     for (const chap in structure[niveau].themes[them].chapitres){
       if(structure[niveau].themes[them].chapitres[chap].e.length)
         structure[niveau].themes[them].chapitres[chap].e.sort((a,b)=>{
-          let fa = a.t.toLowerCase();
-          let fb = b.t.toLowerCase();
-          if(fa < fb) return -1;
-          if(fa > fb) return 1;
-          return 0;
+          return a.t.localeCompare(b.t, 'fr', { usage: 'sort'})
         })
     }
   }

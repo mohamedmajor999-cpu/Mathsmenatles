@@ -1,6 +1,6 @@
 // import katex from '../libs/katex/katex.esm.js';
 import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
-import { convertLatexToMarkup, MathfieldElement, renderMathInDocument } from '../libs/mathlive/mathlive.mjs.js';
+import { convertLatexToMarkup, MathfieldElement, renderMathInDocument, renderMathInElement } from '../libs/mathlive/mathlive.mjs.js';
 export { utils as default }
 
 MathfieldElement.fontsDirectory = '../css/katex/fonts'
@@ -923,7 +923,7 @@ export const utils = {
     mathRender: function (fontType, wtarget = false, diaporama = false) {
         let contents = ["enonce-content", "corrige-content", "sampleLayer"];
         if (!diaporama) {
-            contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne",'creator-content','affichage'];
+            contents = ["enonce-content", "corrige-content", "activityOptions", "activityDescription", "activityConsigne",'creator-content'];
         }
         if(Array.isArray(wtarget))contents = wtarget;
 
@@ -948,6 +948,9 @@ export const utils = {
             //elt.innerHTML = elt.innerHTML.replace(/\$\$([^$]*)\$\$/gi, '<script type="math/tex; mode=text">$1</script>');
         });
         try {
+            if(window.location.href.includes('editor.html')){
+                renderMathInElement(document.getElementById('display'),{TeX:{delimiters:{inline:[['$$','$$']]}}})
+            } else
             renderMathInDocument({TeX:{delimiters:{inline:[['$$','$$']]}}})
         } catch (err) {
             console.log('Probleme de rendu des expressions mathématiques')

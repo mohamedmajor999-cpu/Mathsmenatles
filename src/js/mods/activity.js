@@ -430,7 +430,7 @@ export default class activity {
             for(const [index, q] of questionATraiter.entries()){
                 questionATraiter[index] = q.replace(/\$\$/g, '$$$$$$$$')
             }
-        } else if(questionATraiter.indexOf('$$')>-1){
+        } else if(String(questionATraiter).indexOf('$$')>-1){
             questionATraiter = questionATraiter.replace(/\$\$/g, '$$$$$$$$')
         }
         if(_.isArray(answer) && _.isArray(questionATraiter)){
