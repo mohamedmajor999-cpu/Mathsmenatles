@@ -21,19 +21,19 @@
     },{
         "name":"Repérage",
         "question":[
+            "Comment s'appelle le nombre qui permet de repérer un point sur un axe gradué ?",
+            "Quelle propriété géométrique ont deux points d'une droite graduée dont les abscisses sont opposées ?",
             "Comment appelle-t-on les nombres qui permettent de repérer un point dans le plan ?",
             "Comment se notent les coordonnées d’un point ?",
-            "Quelle propriété géométrique ont deux points d'une droite graduée dont les abscisses sont opposées ?",
-            "Quelle propriété géométrique ont deux points du plan dont les abscisses sont opposées  ?",
-            "Comment s'appelle le nombre qui permet de repérer un point sur un axe gradué ?",
+            "Quelle propriété géométrique ont deux points du plan dont les abscisses sont opposées et les ordonnées sont identiques  ?",
             "Quelle propriété géométrique ont deux points du plan dont les abscisses et les ordonnées sont opposées ?"
         ],
         "answer":[
+            "Le nombre qui permet de répérer un point sur un axe gradué est appelé <b>abscisse du point</b>.",
+            "Des points d’abscisses opposées sur une droite graduée sont <b>symétriques par rapport à l’origine</b>.",
             "Ce sont les <b>coordonnées</b>. Le premier nombre est l’<b>abscisse</b>, le second est l’<b>ordonnée</b>.",
             "On les notes <b>entre parenthèses, séparées d’un point virgule</b>. Exemple : A(3 ;-5)",
-            "Des points d’abscisses opposées sur une droite graduée sont <b>symétriques par rapport à l’origine</b>.",
             "Des points du plan d'abscisses opposées sont <b>symétriques par rapport à l'axe des ordonnées</b>.",
-            "Le nombre qui permet de répérer un point sur un axe gradué est appelé <b>abscisse du point</b>.",
             "Des points d'abscisses et ordonnées opposées sont <b>symétriques par rapport à l'origine du repère</b>."
         ]
     },{
