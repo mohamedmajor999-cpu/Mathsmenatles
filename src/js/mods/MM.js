@@ -122,7 +122,7 @@ const MM = {
         document.getElementById(tab).style.display = "";
     },
     showParameters: function (id) {
-        let ids = ["paramsdiapo", "paramsexos", "paramsinterro", "paramsceinture", "paramsflashcards", "paramswhogots", "paramsdominos", 'paramspuzzle', "paramscourse", "paramsduel", "paramswall"];//
+        let ids = ["paramsdiapo", "paramsexos", "paramsinterro", "paramsceinture", "paramsflashcards", "paramsfichememo", "paramswhogots", "paramsdominos", 'paramspuzzle', "paramscourse", "paramsduel", "paramswall"];//
         if (ids.indexOf(id) < 0) return false;
         // hide all
         for (let i = 0, len = ids.length; i < len; i++) {
@@ -651,6 +651,17 @@ const MM = {
         MM.copyURLtoHistory('cartesflash');
         MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
     },
+    createFicheMemo: function () {
+        if (!MM.carts[0].activities.length) {
+            MM.carts[0].addActivity(MM.editedActivity);
+        }
+        let withSeed = false;
+        if (document.getElementById("aleaInURL").checked) withSeed = true;
+        let params = this.paramsToURL(withSeed, "fichememo");
+        let value = this.setURL(params, "fichememo");
+        MM.copyURLtoHistory('fichememo');
+        MM.window = window.open(value, "mywindow", "location=no,menubar=no,titlebar=no,width=1123");
+    },
     createWall: function () {
         if (!MM.carts[0].activities.length) {
             MM.carts[0].addActivity(MM.editedActivity);
@@ -736,6 +747,10 @@ const MM = {
         if (type === "cartesflash") {
             urlparams += "disp=" + (utils.getRadioChecked("flashcarddispo")) +
                 ",t=" + (document.getElementById("FCtitle").value || "Cartes Flash") +
+                this.export()
+        } else if (type === "fichememo") {
+            urlparams += "disp=" + (utils.getRadioChecked("fichememodispo")) +
+                ",t=" + (document.getElementById("FMtitle").value || "Fiche Mémorisation") +
                 this.export()
         } else if (type === "ceinture") {
             let chaine = "", t = 0;
@@ -1204,6 +1219,8 @@ const MM = {
             typeName = "🥋 Ceinture"
         } else if (type === 'cartesflash') {
             typeName = '⚡ Cartes flash'
+        } else if (type === 'fichememo') {
+            typeName = '🎦 Fiche Memo'
         } else if (type === 'puzzle') {
             typeName = '🧩 Puzzle'
         } else if (type === 'whogots') {
@@ -1453,6 +1470,8 @@ const MM = {
             return utils.baseURL.replace('index', 'courseauxnombres') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
         } else if (type === "cartesflash") {
             return utils.baseURL.replace('index', 'cartesflash') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
+        } else if (type === "fichememo") {
+            return utils.baseURL.replace('index', 'fichememo') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
         } else if (type === "wall") {
             return utils.baseURL.replace('index', 'wall') + '?' + string + (MM.embededIn ? '&embed=' + MM.embededIn : "");
         } else if (type === "dominos") {

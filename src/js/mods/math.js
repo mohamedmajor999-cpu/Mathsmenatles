@@ -382,7 +382,14 @@ const MMmath = {
       let nbChiffres = string.length - pointPosition - 1;
       return "\\dfrac{" + MMmath.round(decimal * Math.pow(10, nbChiffres), 0) + "}{" + Math.pow(10, nbChiffres) + "}";
     }
-
+  },
+  /**
+   * 
+   * @param {number} nombre Nombre à 1 ou deux chiffres
+   * @returns Nombre à deux chiffres comme 04
+   */
+  nombreAdeuxChiffres(nombre){
+    return Number(nombre) > 9 ? String(nombre) : '0' + String(nombre)
   },
   /**
    * 

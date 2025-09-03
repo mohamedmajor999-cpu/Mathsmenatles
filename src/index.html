@@ -290,6 +290,7 @@
                         <option value="paramsceinture">Ceintures de CM</option>
                         <option value="paramscourse">Course aux nombres</option>
                         <option value="paramsflashcards">Cartes flash</option>
+                        <option value="paramsfichememo">Fiche Mémorisation</option>
                         <option value="paramswhogots">J'ai/qui a ?</option>
                         <option value="paramsdominos">Dominos</option>
                         <option value="paramspuzzle">Puzzles</option>
@@ -592,10 +593,42 @@
                             </button>
                         </section>
                     </div>
+                    <div id="paramsfichememo" class="hidden">
+                        <fieldset>
+                            <legend>Info</legend>
+                            <p>Fiche adaptée aux questions de leçon. Une fois imprimée, plier la partie droite sur elle-même pour cacher les réponses en ne laissant apparaitre que les questions. Coller dans le cahier.</p>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Titre de la fiche</legend>
+                            <input type="text" placeholder="Fiche Mémorisation n°..." id="FMtitle">
+                        </fieldset>
+                        <fieldset>
+                            <legend>Disposition</legend>
+                            <input type="radio" class="radio" name="fichememodispo" id="fmdispomod1" value="mod1"
+                                checked><label for="fmdispomod1">Recto simple</label><br>
+                            <input type="radio" class="radio" name="fichememodispo" id="fmdispomod2"
+                                value="mod2" disabled><label for="fmdispomod2">Paysage recto-verso</label><br><br>
+                            <p>1er type de fiche disponible pour le moment</p>
+                        </fieldset>
+                        <section>
+                            <button class="button--primary beaubutton" id="btngenerateFM">Générer</button>
+                            <button class="button--inverse tooltip beaubutton" id="btn-memo-adresse">Adresse/QRCode
+                                <span class="tooltiptext">Copie l'adresse du<br>document dans<br>le presse papier</span>
+                            </button>
+                            <button class="button--success tooltip beaubutton" id="btn-memo-copytohistoric">→
+                                Historique
+                                <span class="tooltiptext">Copie l'adresse du document<br>dans l'historique</span>
+                            </button>
+                        </section>
+                    </div>
                     <div id="paramswall" class="hidden">
                         <fieldset>
                             <legend>Titre de la page</legend>
                             <input type="text" placeholder="Panneau d'activités" id="walltitle">
+                        </fieldset>
+                        <fieldset>
+                            <legend>Info</legend>
+                            Si vous créez deux paniers, vous aurez un mur avec une partie gauche (panier 1) et une partie droite (panier 2)
                         </fieldset>
                         <section>
                             <button class="button--primary beaubutton" id="btngenerateWall">Ouvrir</button>

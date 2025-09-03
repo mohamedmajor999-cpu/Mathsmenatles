@@ -20,7 +20,7 @@ lancer "gulp update-version-ceinture" pour modifier les version d'appel des fich
 "gulp bump-patch" pour un patch (correction de bug, ajout d'activité)
 */
 let cache
-const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall', 'puzzle', 'diaporama', 'jaiquia' ]
+const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall', 'puzzle', 'diaporama', 'jaiquia', 'fichememo' ]
 
 const packageJsonPath = path.join(__dirname, 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));

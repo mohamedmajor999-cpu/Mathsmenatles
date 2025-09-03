@@ -247,16 +247,19 @@ window.onload = function() {
     document.getElementById("cantitle").oninput = (evt)=>{MM.carts[0].title = evt.target.value}
     // flash cards
     document.getElementById("btngenerateFC").onclick = ()=>{MM.createFlashCards()}
-    document.getElementById("cardsNbValue").oninput = (evt)=>{document.getElementById('cardsNb').innerHTML=evt.target.value;}
     document.getElementById("btn-flash-adresse").onclick = ()=>{MM.copyURL('cartesflash');};
     document.getElementById("btn-flash-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('cartesflash')};
+    // fiches memo
+    document.getElementById("btngenerateFM").onclick = ()=>{MM.createFicheMemo()}
+    document.getElementById("btn-memo-adresse").onclick = ()=>{MM.copyURL('fichememo');};
+    document.getElementById("btn-memo-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('fichememo')};
     // Panneau d'activités
     document.getElementById("btngenerateWall").onclick = ()=>{MM.createWall()}
     document.getElementById("btn-wall-adresse").onclick = ()=>{MM.copyURL('wall');};
     document.getElementById("btn-wall-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('wall')};
-
     // j'ai / qui a ?
     document.getElementById("btngenerateWG").onclick = ()=>{MM.createWhoGots()}
+    document.getElementById("cardsNbValue").oninput = (evt)=>{document.getElementById('cardsNb').innerHTML=evt.target.value;}
     document.getElementById("btn-wg-adresse").onclick = ()=>{MM.copyURL('whogots');};
     document.getElementById("btn-wg-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('whogots')};
     // dominos
@@ -270,7 +273,6 @@ window.onload = function() {
     document.getElementById("btngeneratePuzzle").onclick = ()=>{MM.createPuzzle()}
     document.getElementById("btn-puzzle-adresse").onclick = ()=>{MM.copyURL('puzzle');};
     document.getElementById("btn-puzzle-copytohistoric").onclick = ()=>{MM.copyURLtoHistory('puzzle')};
-
     // duels
     document.getElementById("btn-duel-start").onclick = ()=>{MM.duelLaunch();};
     document.getElementById("btn-duel-adresse").onclick = ()=>{MM.copyURL('duel');};
