@@ -60,7 +60,7 @@ export default class cart {
             activities.push(activity.import(obj.a[i],i, version));
         }
         return await Promise.all(activities).then(data=>{
-            data.forEach((table)=>{
+            data.forEach((table) => {
                 this.activities[Number(table[0])] = table[1];
             });
             this.loaded = true;
@@ -95,7 +95,7 @@ export default class cart {
             // on affecte des copies des activités à ce nouveau panier.
             let cart = carts[carts.length-1];
             for(let i=0;i<this.activities.length;i++){
-                cart.addActivity(this.activities[i], this.activities[i].nbq, carts);
+                cart.addActivity(this.activities[i], this.activities[i].nbq, carts, false);
             }
             cart.ordered = this.ordered
             cart.progress = this.progress
@@ -103,16 +103,23 @@ export default class cart {
             // on affiche le panier.
             cart.display(carts);
         }
-
     }
-    addActivity(obj, nbQuestions=false, carts){
+    /**
+     * 
+     * @param {activity} obj instance de activity
+     * @param {integer} nbQuestions 
+     * @param {Array} carts array of instance of cart
+     * @param {boolean} refreshDisplay rafraichit l'affichage du panier après ajout
+     */
+    addActivity(obj, nbQuestions=false, carts, refreshDisplay = true){
         this.editedActivityId = -1;
         let temp = new activity(obj);
         if(nbQuestions){
             temp.nbq = nbQuestions;
         }
         this.activities.push(temp);
-        this.display(carts);
+        if(refreshDisplay)
+            this.display(carts);
     }
     /**
      * remove an activity from the list
@@ -173,14 +180,13 @@ export default class cart {
         spans[1].innerHTML = this.nbq;
         spans[2].innerHTML = this.target;
         this.setProgress(this.progress)
-        console.log(utils.clone(carts[0].activities));
         // détruit le sortable si déjà effectif.
         if(this.sortable)this.sortable.destroy();
+        if(dom.hasChildNodes())
         this.sortable = new Sortable(dom, {
             animation:150,
             ghostClass:'ghost-movement',
-            onEnd : evt=>{
-                console.log(carts)
+            onEnd : evt => {
                 if(carts === undefined){
                     this.exchange(evt.oldIndex, evt.newIndex);
                 } else {

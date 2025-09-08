@@ -1091,6 +1091,7 @@ const MM = {
             // alcarts contient des promises qu'il faut charger
             let allcarts = [];
             for (const i in json) {
+                if(MM.carts[i]) delete MM.carts[i]
                 MM.carts[i] = new cart(i);
                 allcarts.push(MM.carts[i].import(json[i], start, MM.version));
             }
