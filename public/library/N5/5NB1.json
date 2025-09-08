@@ -7,6 +7,7 @@
     "speech":1,
     "textSize":"medium",
     "dest":["5NB","6NB"],
+    "keys":["_","_",";","_","_","_","_","_"],
     "options":[{
         "name":"Fractions dont le numérateur est inférieur à 5 fois le dénominateur",
         "vars":{"den":"2_10", "coeff":"0_4", "delta":"1_${:den-1}", "num":"${:den*:coeff+:delta}", "inf":"${Math.floor(:num/:den)}", "sup":"${Math.ceil(:num/:den)}"}

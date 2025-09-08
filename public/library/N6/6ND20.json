@@ -1,6 +1,5 @@
 {
     "title":"Enchaînements d'opérations",
-    "ID":"6ND20",
     "dest":["6ND", "5NC"],
     "options":[{
         "name":"Deux opérations (+, -, ×) avec parenthèses (6e)",

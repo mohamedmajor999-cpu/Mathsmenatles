@@ -1,6 +1,5 @@
 {
     "title":"Multiplier un décimal (simple) par 0,1, 0,01, 0,001",
-    "ID":"6NE4",
     "speech":1,
     "keys":["_","_","_","_","_","_","_","_"],
     "description":"Multiplication de nombres à 1, 2 ou 3 chiffres significatifs par 0,1, 0,01, 0,001",

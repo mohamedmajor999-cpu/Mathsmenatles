@@ -388,6 +388,7 @@ const MM = {
         } else return false;
     },
     addToCart() {
+        if(MM.selectedCart === undefined || MM.editedActivity === undefined) return
         MM.carts[MM.selectedCart].addActivity(MM.editedActivity, false, MM.carts);
         // on affiche les panier
         MM.showCartInterface();

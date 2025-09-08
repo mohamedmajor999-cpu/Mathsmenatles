@@ -38,7 +38,7 @@ export default class cart {
      * @param {json} obj objet importé d'un exo téléchargé
      * @param {Boolean} start if true, will make start slideshow when all is ready
      */
-    import(obj,start=false, version) {
+    async import(obj,start=false, version) {
         // à revoir
         this.title = obj.t;
         this.target = obj.c;
@@ -59,16 +59,16 @@ export default class cart {
         for(const i in obj.a){
             activities.push(activity.import(obj.a[i],i, version));
         }
-        return Promise.all(activities).then(data=>{
+        return await Promise.all(activities).then(data=>{
             data.forEach((table)=>{
-                this.activities[table[0]] = table[1];
+                this.activities[Number(table[0])] = table[1];
             });
             this.loaded = true;
             // si dans contexte de MM
-            if(document.querySelector("#tab-parameters") !== null){
+            /*if(document.querySelector("#tab-parameters") !== null){
                 // on crée l'affichage du panier chargé dans le contexte de l'interface de config de MM
                 this.display();
-            }
+            }*/
         }).catch(err=>{
             let alert = utils.create(
                 "div",
@@ -162,7 +162,7 @@ export default class cart {
             let activity = this.activities[i];
             this.time += Number(activity.tempo)*Number(activity.nbq);
             this.nbq += Number(activity.nbq);
-            li.innerHTML = "<div class='cart-content-item'><div class='pointer actID' data-actid='"+i+"' title=\"Editer l'activité\">"+activity.id+"</div><i class='sprite sprite-removefromcart removefromcartbutton pointer' data-actidtoremove='"+i+"' title='Enlever du panier'></i>"+(activity.audioRead==true?activity.title:activity.title.replace("📣 ","")) + " <span>"+activity.tempo + "</span><span>"+activity.nbq+"</span>";
+            li.innerHTML = "<div class='cart-content-item'><div class='pointer actID' data-actid='"+i+"' title=\"Editer l'activité\">"+activity.id+"</div><i class='sprite sprite-removefromcart removefromcartbutton pointer' data-actidtoremove='"+i+"' title='Enlever du panier'></i><div>"+(activity.audioRead==true?activity.title:activity.title.replace("📣 ","")) + "</div> <span>"+activity.tempo + "</span><span>"+activity.nbq+"</span>";
             if(this.editedActivityId === i){
                 li.className = "active";
             }
@@ -173,12 +173,14 @@ export default class cart {
         spans[1].innerHTML = this.nbq;
         spans[2].innerHTML = this.target;
         this.setProgress(this.progress)
+        console.log(utils.clone(carts[0].activities));
         // détruit le sortable si déjà effectif.
         if(this.sortable)this.sortable.destroy();
         this.sortable = new Sortable(dom, {
             animation:150,
             ghostClass:'ghost-movement',
             onEnd : evt=>{
+                console.log(carts)
                 if(carts === undefined){
                     this.exchange(evt.oldIndex, evt.newIndex);
                 } else {

@@ -1,7 +1,6 @@
 {
     "title":"Écrire l'opération correspondant à la phrase",
     "type":"text",
-    "ID":"6ND15",
     "textSize":"medium",
     "description":"",
     "dest":["6ND","5NC","4NC","3NB"],

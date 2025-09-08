@@ -6,6 +6,7 @@
     "keys":["/"],
     "textSize":"medium",
     "dest":["6NB", "5NC", "4NC", "3NB", "2N2","Ko1"],
+    "consigne":"Calculer et simplifier si possible.",
     "options":[{
         "name":"Ajouter des fractions décimales (6e)",
         "consts":{"den0":[10,100,1000], "au":["dixièmes","centièmes","millièmes"]},
