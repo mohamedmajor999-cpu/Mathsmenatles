@@ -151,6 +151,10 @@ export default class cart {
      * display the cart in his content area
      */
     display(carts){
+        if(this.sortable){
+            this.sortable.destroy();
+            delete this.sortable
+        }
         document.querySelector("#cart"+this.id+" h3").innerText=this.title;
         let dom = document.getElementById("cart"+(this.id)+"-list");
         dom.innerHTML = "";
@@ -181,19 +185,18 @@ export default class cart {
         spans[2].innerHTML = this.target;
         this.setProgress(this.progress)
         // détruit le sortable si déjà effectif.
-        if(this.sortable)this.sortable.destroy();
         if(dom.hasChildNodes())
-        this.sortable = new Sortable(dom, {
-            animation:150,
-            ghostClass:'ghost-movement',
-            onEnd : evt => {
-                if(carts === undefined){
-                    this.exchange(evt.oldIndex, evt.newIndex);
-                } else {
-                    carts[this.id].exchange(evt.oldIndex, evt.newIndex, carts)
+            this.sortable = new Sortable(dom, {
+                animation:150,
+                ghostClass:'ghost-movement',
+                onEnd : evt => {
+                    if(carts === undefined){
+                        this.exchange(evt.oldIndex, evt.newIndex);
+                    } else {
+                        carts[this.id].exchange(evt.oldIndex, evt.newIndex, carts)
+                    }
                 }
-            }
-        });
+            });
     }
     /**
      * 

@@ -252,6 +252,14 @@ const MM = {
         MM.setIntroType()
     },
     resetCarts: function () {
+        if (MM.carts.length){
+            for(const cart of MM.carts){
+                if (cart.sortable) {
+                    cart.sortable.destroy()
+                    delete cart.sortable
+                }
+            }
+        }
         let Cart = new cart(0);
         MM.carts = [Cart];
         MM.setMinimalDisposition(0);
@@ -336,6 +344,10 @@ const MM = {
     removeCart: function (index) {
         if (!window.confirm("Vous êtes sur le point de supprimer ce panier.\nConfirmez-vous ?")) {
             return false;
+        }
+        if(MM.carts[index-1].sortable){
+            MM.carts[index-1].sortable.destroy()
+            delete MM.carts[index-1].sortable
         }
         // remove last cart button
         let buttonCartToremove = document.getElementById('button-cart' + MM.carts.length);
@@ -1091,7 +1103,10 @@ const MM = {
             // alcarts contient des promises qu'il faut charger
             let allcarts = [];
             for (const i in json) {
-                if(MM.carts[i]) delete MM.carts[i]
+                if(MM.carts[i]) {
+                    if(MM.carts[i].sortable) MM.carts[i].sortable.destroy()
+                    delete MM.carts[i]
+                }
                 MM.carts[i] = new cart(i);
                 allcarts.push(MM.carts[i].import(json[i], start, MM.version));
             }
