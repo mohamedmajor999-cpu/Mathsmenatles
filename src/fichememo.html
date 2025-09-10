@@ -23,21 +23,23 @@
                 Police : <span id="fontSize"></span>
                 Titre fiche <input type="text" id="title" size="15" title="Entrée pour valider" placeholder="Titre de la fiche">
                 <button id="btnValidateTitle"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg></button>
-                Couleur de fond :
+                <label for="inputColorQuestion">Couleur de fond :</label>
                 <input type="color" id="inputColorQuestion" title="Couleur de fond des question">
-                questions
+                <label for="inputColorReponse">questions</label>
                 <input type="color" id="inputColorReponse" title="Couleur de fond des réponses">
-                réponses
+                <label for="inputColorNumero">réponses</label>
                 <input type="color" id="inputColorNumero" title="Couleur de fond des numéros">
                 Numérotation :
-                <input type="radio" id="radioNo" name="num" value="no" checked><label for="radioQ">non</label>
+                <input type="radio" id="radioNo" name="num" value="no" checked><label for="radioNo">non</label>
                 <input type="radio" id="radioQ" name="num" value="Q"><label for="radioQ">oui</label>
                 <br>
-                <input type="checkbox" name="separationh" id="inputseparationh"> Séparation horizontale | 
+                <input type="checkbox" id="inputseparationh"> <label for="inputseparationh">Séparation horizontale</label> | 
                 Intérieur des zones textes :
-                <input id="inputPadding" value="5" title="Taille cartes" type="number" size="4" min="1" max="20"> mm
+                <input id="inputPadding" value="5" title="Taille cartes" type="number" size="4" min="1" max="20"> mm | 
                 Séparation verticale question / réponse :
-                <input id="inputSeparator" value="50" type="number" title="Placement de la séparation" size="4" min="20" max="80">%
+                <input id="inputSeparator" value="50" type="number" title="Placement de la séparation" size="4" min="20" max="80">%<br>
+                <input type="checkbox" id="inputprogrammerev"><label for="inputprogrammerev">Programme de révision</label>
+
             </section>
         <div id="creator-container">
             <div id="creator-content"></div>

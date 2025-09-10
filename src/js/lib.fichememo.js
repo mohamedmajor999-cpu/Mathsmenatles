@@ -13,11 +13,14 @@ let pageHeight = 275; // cm
 let pageFormat = 0;// portrait
 let questionBackgroundColor = "#ffffff"
 let answerBackgroundColor = '#ffffff'
-let numBackgroundColor = '#8193e5'
+let numBackgroundColor = '#b9c4f8'
 let zoom
-const parameters = {questColor:questionBackgroundColor, ansColor:answerBackgroundColor, numColor:numBackgroundColor};
-
-//let zoom;
+const parameters = {
+    questColor:questionBackgroundColor,
+    ansColor:answerBackgroundColor,
+    numColor:numBackgroundColor,
+    programRev:false
+};
 
 function changePadding(nb){
     parameters.padding = Number(nb)
@@ -34,6 +37,14 @@ function changeSeparator(percent) {
 }
 document.getElementById('inputSeparator').oninput = (evt) => {
     changeSeparator(evt.target.value)
+}
+function displayRevision(display) {
+    if (display)
+        document.getElementById('progrev').classList.remove('hidden')
+    else document.getElementById('progrev').classList.add('hidden')
+}
+document.getElementById('inputprogrammerev').oninput = evt => {
+    displayRevision(evt.target.checked)
 }
 
 document.getElementById('inputseparationh').oninput = () => {
@@ -58,6 +69,7 @@ document.getElementById('inputColorQuestion').onchange = (evt)=>{
         card.style['color'] = setWhiteOrBlack(color)
     }
 }
+
 document.getElementById('inputColorReponse').value = answerBackgroundColor
 document.getElementById('inputColorReponse').onchange = (evt) => {
     const color = evt.target.value
@@ -71,7 +83,7 @@ document.getElementById('inputColorReponse').onchange = (evt) => {
 document.getElementById('inputColorNumero').value = numBackgroundColor
 document.getElementById('inputColorNumero').onchange = (evt) => {
     const color = evt.target.value
-    parameters.ansColor = color
+    parameters.numColor = color
     const numeros = document.querySelectorAll('.questionNumero')
     numeros.forEach(numero => {
         numero.style['background-color'] = color
@@ -215,6 +227,7 @@ function makePage(){
     let pageWidth = 200
     if(pageFormat !== 0) pageWidth = 287
     common.generateQuestions(parameters);
+
     const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid"+(parameters.separationh?' separationh':''), style:'grid-template-columns: '+parameters.separation+'% auto', innerHTML:'<div class="center">Questions</div><div class="center">Réponses</div>'})]
     let currentSection = 0
     let globalPrintHeight = parameters.cardHeight
@@ -222,22 +235,7 @@ function makePage(){
     for (const [index,activity] of parameters.cart.activities.entries()) {
         for(let j=0;j<activity.questions.length;j++){
             nbOfCards++
-            /*if(parameters.disposition === 'separated'){
-                nbOfCards++
-                if (nbOfCards%nombreDeCartesParLigne === 1 && nbOfCards>1) {
-                    globalPrintHeight += parameters.cardHeight
-                }
-            } else {
-                nbOfCards = nbOfCards+2
-                if(nbOfCards>nombreDeCartesParLigne){
-                    globalPrintHeight += parameters.cardHeight
-                    nbOfCards = nbOfCards%nombreDeCartesParLigne
-                }
-            }*/
             const artQuestion = utils.create("article",{className:"question",style:'background-color:'+parameters.questColor+';color:'+setWhiteOrBlack(parameters.questColor)});
-            /*if (parameters.titreQuestion !== undefined) {
-                artQuestion.appendChild(utils.create('div', {className:'questionTitre', innerText:parameters.titreQuestion + (numeroterQ ? ' '+nbOfCards : '')}))
-            }*/
            if(numeroterQ){
             artQuestion.appendChild(utils.create('div',{className:'questionNumero',innerText:String(nbOfCards),style:'background-color:'+parameters.numColor+';color:'+setWhiteOrBlack(parameters.numColor)}))
            }
@@ -286,27 +284,21 @@ function makePage(){
     }
     for(const section of arrayOfFlashCardsSection){
         content.appendChild(section)
-        /*const resteDeCartes = section.childNodes.length%nombreDeCartesParLigne
-        if ( resteDeCartes > 0 ){
-            for(let i=0; i<nombreDeCartesParLigne-resteDeCartes; i++){
-                section.appendChild(utils.create('article'))
-            }
-        }
-        if(parameters.disposition === 'separated'){
-            const answersSections = document.querySelectorAll('.flash-section:nth-child(even)')
-            for(const section of answersSections){
-                for(let i=0; i<section.childNodes.length; i=i+nombreDeCartesParLigne){
-                    for(let j=i+1;j<i+nombreDeCartesParLigne;j++){
-                        const elem = section.childNodes[j]
-                        if(elem !== undefined){
-                            elem.parentNode.insertBefore(elem, section.childNodes[i])
-                        }
-                    }
-                }
-            }
-        }*/
     }
-
+    let visible = ''
+    if (!document.getElementById('inputprogrammerev').checked){
+        visible = 'hidden'
+    }
+    content.appendChild(utils.create('div',{id:'progrev', className:visible,
+        innerHTML: `<i>Note la date puis refais régulièrement cette fiche</i>.
+        <hr>
+        <div class="reviser">
+        <div><div>Jour J</div><div>.../...</div></div>
+        <div><div>J + 3 jours</div><div>.../...</div></div>
+        <div><div>J + 1 semaine</div><div>.../...</div></div>
+       <div><div>J + 2 semaines</div><div>.../...</div></div>
+        <div><div>J + 1 mois</div><div>.../...</div></div></div>`}))
+    
     if(!utils.isEmpty(MM.memory)){
         setTimeout(function(){
             for(const k in MM.memory){
