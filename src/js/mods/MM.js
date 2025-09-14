@@ -249,6 +249,7 @@ const MM = {
     checkValues: function () {
         MM.changeTempoValue(document.getElementById('tempo-slider').value);
         MM.changeNbqValue(document.getElementById('nbq-slider').value);
+        MM.endType = utils.getRadioChecked("endOfSlideRadio");
         MM.setIntroType()
     },
     resetCarts: function () {
@@ -1380,12 +1381,14 @@ const MM = {
                 inputShortUrl.select();
                 inputShortUrl.setSelectionRange(0, 99999);
                 document.execCommand("copy");
-                let QR = new QRCodeStyling({
+                const QR = new QRCodeStyling({
                     // element: qrdest,// DOM destination
                     data: shorturl,
                     width: 200,
                     height: 200,
-                    type: 'svg',
+                    type: 'canvas',
+                    image:'img/android-icon-72x72.png',
+                    imageOptions:{margin: 2},
                     padding: 12
                 });
                 QR.append(qrdest)

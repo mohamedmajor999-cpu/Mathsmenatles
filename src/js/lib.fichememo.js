@@ -8,18 +8,19 @@ import Figure from './mods/figure.js';
 const MM={};
 MM.version = utils.getVersion()
 const content = document.getElementById("creator-content");
-const pageOrientations = ["portrait","paysage"]
+const pageOrientations = ["Paysage","Portrait"]
 let pageHeight = 275; // cm
 let pageFormat = 0;// portrait
 let questionBackgroundColor = "#ffffff"
 let answerBackgroundColor = '#ffffff'
-let numBackgroundColor = '#b9c4f8'
+let numBackgroundColor = '#b5b5b5'
 let zoom
 const parameters = {
     questColor:questionBackgroundColor,
     ansColor:answerBackgroundColor,
     numColor:numBackgroundColor,
-    programRev:false
+    programRev:false,
+    disposition:'mod1'
 };
 
 function changePadding(nb){
@@ -58,7 +59,31 @@ function setSeparationh () {
     }
     refresh()
 }
+document.getElementById('inputseparationv').oninput = () => {
+    setSeparationv()
+}
+function setSeparationv () {
+    if(document.getElementById('inputseparationv').checked){
+        parameters.separationv = true
+    } else {
+        parameters.separationv = false
+    }
+    refresh()
+}
 
+document.getElementById('btnModele').onclick = (evt) => {
+    if(parameters.disposition === 'mod1') {
+        parameters.disposition = 'mod2'
+        evt.target.innerHTML = 'Modèle 2 (R/V)'
+        pageFormat = 0
+        changeOrientation()
+    } else {
+        pageFormat = 1
+        parameters.disposition = 'mod1'
+        evt.target.innerHTML = 'Modèle 1'
+        refresh()
+    }
+}
 document.getElementById('inputColorQuestion').value = questionBackgroundColor
 document.getElementById('inputColorQuestion').onchange = (evt)=>{
     const color = evt.target.value
@@ -115,6 +140,7 @@ document.getElementById('fontSize').onclick = (evt) =>{
     } else if(evt.target.dataset.what === "reset"){
         zoom.reset();
     }
+    adjustLinesHeights()
 }
 
 function changeTitle(evt) {
@@ -122,7 +148,7 @@ function changeTitle(evt) {
     if (evt !== undefined)
         content = evt.target.value
     else content = document.getElementById('title').value
-    document.querySelector('h1').innerText = content
+    document.querySelector('.titreFiche').innerText = content
     parameters.titreFiche = content
 }
 
@@ -134,7 +160,7 @@ function setWhiteOrBlack(color){
         return 'black'
     }
 }
-function changeOrientation(evt){
+function changeOrientation(){
     // suppression du style de page précédent
     let pagestyle = document.querySelectorAll("head style")
     for (const style of pagestyle) {
@@ -160,7 +186,7 @@ function changeOrientation(evt){
             document.head.appendChild(newStyle);
         }
     }
-    evt.target.innerHTML = pageOrientations[pageFormat];
+    document.getElementById('btnPageOrientation').innerHTML = pageOrientations[pageFormat];
     pageFormat = (pageFormat+1)%2;
     refresh()
 }
@@ -220,92 +246,230 @@ function makePage(){
     if(parameters.alea){
         common.setSeed(parameters.alea);
     }
-    content.innerHTML = '<h1>'+parameters.titreFiche+'</h1>';
     MM.memory = {};
     let numeroterQ = false
     if (parameters.numeroter === 'Q') numeroterQ = true
-    let pageWidth = 200
-    if(pageFormat !== 0) pageWidth = 287
+    /*let pageWidth = 200
+    if(pageFormat !== 0) pageWidth = 287*/
     common.generateQuestions(parameters);
 
-    const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid"+(parameters.separationh?' separationh':''), style:'grid-template-columns: '+parameters.separation+'% auto', innerHTML:'<div class="center">Questions</div><div class="center">Réponses</div>'})]
     let currentSection = 0
     let globalPrintHeight = parameters.cardHeight
     let nbOfCards = 0
-    for (const [index,activity] of parameters.cart.activities.entries()) {
-        for(let j=0;j<activity.questions.length;j++){
-            nbOfCards++
-            const artQuestion = utils.create("article",{className:"question",style:'background-color:'+parameters.questColor+';color:'+setWhiteOrBlack(parameters.questColor)});
-           if(numeroterQ){
-            artQuestion.appendChild(utils.create('div',{className:'questionNumero',innerText:String(nbOfCards),style:'background-color:'+parameters.numColor+';color:'+setWhiteOrBlack(parameters.numColor)}))
-           }
-            const divq = utils.create("div");
-            artQuestion.style.padding = parameters.padding+"mm";
-            const artCorrection = utils.create("article",{className:"answer",style:'background-color:'+parameters.ansColor+';color:'+setWhiteOrBlack(parameters.ansColor)});
-            artCorrection.style.padding = parameters.padding+"mm";
-            const divr = utils.create("div");
-            if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
-                const span = utils.create("span");
-                span.innerHTML = '$$'+activity.questions[j]+'$$'
-                const spanCorrection = utils.create("span");
-                spanCorrection.innerHTML = '$$'+activity.answers[j]+'$$'
-                divq.appendChild(span);
-                divr.appendChild(spanCorrection);
-            } else {
-                divq.innerHTML = activity.questions[j];
-                divr.innerHTML = activity.answers[j];
-            }
-            artQuestion.appendChild(divq);
-            // figures
-            if(activity.figures[j] !== undefined){
-                MM.memory["f"+index+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+index+"-"+j, divq);
-            }
-            artCorrection.appendChild(divr)
-            if(activity.figuresCorrection[j] !== undefined){
-                MM.memory["fc"+index+"-"+j] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc"+index+"-"+j, divr);
-            }
-            if(globalPrintHeight > pageHeight){
-                arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
-                currentSection++;
-                if(parameters.disposition === 'separated'){
-                    arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
+    if (parameters.disposition === 'mod1') {
+        content.classList.add('page','modele1')
+        content.classList.remove('modele2')
+
+        content.innerHTML = '<h1 class="titreFiche">'+parameters.titreFiche+'</h1>';
+        const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid"+(parameters.separationh?' separationh':'')+(parameters.separationv?' separationv':''), style:'grid-template-columns: '+parameters.separation+'% auto', innerHTML:'<div class="center">Questions</div><div class="center">Réponses</div>'})]
+        for (const [index,activity] of parameters.cart.activities.entries()) {
+            for(let j=0;j<activity.questions.length;j++){
+                nbOfCards++
+                const artQuestion = utils.create("article",{className:"question",style:'background-color:'+parameters.questColor+';color:'+setWhiteOrBlack(parameters.questColor)});
+                if(numeroterQ){
+                    artQuestion.appendChild(utils.create('div',{className:'questionNumero',innerText:String(nbOfCards),style:'background-color:'+parameters.numColor+';color:'+setWhiteOrBlack(parameters.numColor)}))
                 }
-                globalPrintHeight = parameters.cardHeight
+                const divq = utils.create("div");
+                artQuestion.style.padding = parameters.padding+"mm";
+                const artCorrection = utils.create("article",{className:"answer",style:'background-color:'+parameters.ansColor+';color:'+setWhiteOrBlack(parameters.ansColor)});
+                artCorrection.style.padding = parameters.padding+"mm";
+                const divr = utils.create("div");
+                if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
+                    const span = utils.create("span");
+                    span.innerHTML = '$$'+activity.questions[j]+'$$'
+                    const spanCorrection = utils.create("span");
+                    spanCorrection.innerHTML = '$$'+activity.answers[j]+'$$'
+                    divq.appendChild(span);
+                    divr.appendChild(spanCorrection);
+                } else {
+                    divq.innerHTML = activity.questions[j];
+                    divr.innerHTML = activity.answers[j];
+                }
+                artQuestion.appendChild(divq);
+                // figures
+                if(activity.figures[j] !== undefined){
+                    MM.memory["f"+index+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+index+"-"+j, divq);
+                }
+                artCorrection.appendChild(divr)
+                if(activity.figuresCorrection[j] !== undefined){
+                    MM.memory["fc"+index+"-"+j] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc"+index+"-"+j, divr);
+                }
+                if(globalPrintHeight > pageHeight){
+                    arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
+                    currentSection++;
+                    if(parameters.disposition === 'separated'){
+                        arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
+                    }
+                    globalPrintHeight = parameters.cardHeight
+                }
+                let indexWhereInsertQ = currentSection
+                let indexWhereInsertA = currentSection
+                if(parameters.disposition === 'separated'){
+                    indexWhereInsertQ = 2*currentSection
+                    indexWhereInsertA = 2*currentSection+1
+                }
+                arrayOfFlashCardsSection[indexWhereInsertQ].appendChild(artQuestion)
+                arrayOfFlashCardsSection[indexWhereInsertA].appendChild(artCorrection)
             }
-            let indexWhereInsertQ = currentSection
-            let indexWhereInsertA = currentSection
-            if(parameters.disposition === 'separated'){
-                indexWhereInsertQ = 2*currentSection
-                indexWhereInsertA = 2*currentSection+1
+        }
+        for(const section of arrayOfFlashCardsSection){
+            content.appendChild(section)
+        }
+        let visible = ''
+        if (!document.getElementById('inputprogrammerev').checked){
+            visible = 'hidden'
+        }
+        content.appendChild(utils.create('div',{id:'progrev', className:visible,
+            innerHTML: `<i>Note la date puis refais régulièrement cette fiche</i>.
+            <hr>
+            <div class="reviser">
+            <div><div>Jour J</div><div>.../...</div></div>
+            <div><div>J + 3 jours</div><div>.../...</div></div>
+            <div><div>J + 1 semaine</div><div>.../...</div></div>
+        <div><div>J + 2 semaines</div><div>.../...</div></div>
+            <div><div>J + 1 mois</div><div>.../...</div></div></div>`}))
+    } else {
+        // création de la mise en page
+        content.classList.remove('page','modele1')
+        content.classList.add('modele2')
+        content.innerHTML = '';
+        const recto = utils.create('div',{className:'page'})
+        const verso = utils.create('div', {className:'page'})
+        content.appendChild(recto)
+        content.appendChild(verso)
+        const containerRecto = utils.create('div',{className:'recto'})
+        recto.appendChild(containerRecto)
+        const reponsesLeftPart = utils.create('div',{className:'left'})
+        const reponsesRightPart = utils.create('div',{className:'right'})
+        containerRecto.appendChild(reponsesLeftPart)
+        containerRecto.appendChild(reponsesRightPart)
+        const containerVerso = utils.create('div',{className:'verso'})
+        verso.appendChild(containerVerso)
+        const questionsLeftPart = utils.create('div',{className:'questions fin'})
+        const aColler = utils.create('div',{className:'aColler',innerHTML:'Encoller cette partie'})
+        const titleDiv = utils.create('div',{className:'col',id:'instructions', innerHTML:'<h2 contenteditable="true">Fiche Mémorisation</h2><h3 class="titreFiche">'+parameters.titreFiche+'</h3>'})
+        let visible = ''
+        if (!document.getElementById('inputprogrammerev').checked){
+            visible = 'hidden'
+        }
+        titleDiv.appendChild(utils.create('div',{id:'progrev', className:visible,
+            innerHTML: `<i>Note la date puis refais régulièrement cette fiche</i>.
+            <hr>
+            <div class="reviser">
+            <div><div>Jour J</div><div>.../...</div></div>
+            <div><div>J + 3 jours</div><div>.../...</div></div>
+            <div><div>J + 1 semaine</div><div>.../...</div></div>
+        <div><div>J + 2 semaines</div><div>.../...</div></div>
+            <div><div>J + 1 mois</div><div>.../...</div></div></div>`}))
+        const questionsRightPart = utils.create('div',{className:'questions debut'})
+        containerVerso.appendChild(questionsLeftPart)
+        containerVerso.appendChild(aColler)
+        containerVerso.appendChild(titleDiv)
+        containerVerso.appendChild(questionsRightPart)
+        // Ajout des questions et réponses
+        for (const [index,activity] of parameters.cart.activities.entries()) {
+            for(let j=0;j<activity.questions.length;j++){
+                nbOfCards++
             }
-            arrayOfFlashCardsSection[indexWhereInsertQ].appendChild(artQuestion)
-            arrayOfFlashCardsSection[indexWhereInsertA].appendChild(artCorrection)
+        }
+        // on va prendre la moitié
+        let numeroOfCard = 0
+        for (const [index,activity] of parameters.cart.activities.entries()) {
+            for(let j=0;j<activity.questions.length;j++){
+                numeroOfCard++
+                const artQuestion = utils.create("article",{className:"question",style:'background-color:'+parameters.questColor+';color:'+setWhiteOrBlack(parameters.questColor)});
+                const numQuestion = utils.create('div',{className:'questionNumero',innerText:String(numeroOfCard),style:'background-color:'+parameters.numColor+';color:'+setWhiteOrBlack(parameters.numColor)})
+                const divq = utils.create("div");
+                artQuestion.style.padding = parameters.padding+"mm";
+                const artCorrection = utils.create("article",{className:"answer",style:'background-color:'+parameters.ansColor+';color:'+setWhiteOrBlack(parameters.ansColor)});
+                artCorrection.style.padding = parameters.padding+"mm";
+                const divr = utils.create("div");
+                if(activity.type === "latex" || activity.type === "" || activity.type === undefined){
+                    const span = utils.create("span");
+                    span.innerHTML = '$$'+activity.questions[j]+'$$'
+                    const spanCorrection = utils.create("span");
+                    spanCorrection.innerHTML = '$$'+activity.answers[j]+'$$'
+                    divq.appendChild(span);
+                    divr.appendChild(spanCorrection);
+                } else {
+                    divq.innerHTML = activity.questions[j];
+                    divr.innerHTML = activity.answers[j];
+                }
+                artQuestion.appendChild(divq);
+                // figures
+                if(activity.figures[j] !== undefined){
+                    MM.memory["f"+index+"-"+j] = new Figure(utils.clone(activity.figures[j]), "f"+index+"-"+j, divq);
+                }
+                artCorrection.appendChild(divr)
+                if(activity.figuresCorrection[j] !== undefined){
+                    MM.memory["fc"+index+"-"+j] = new Figure(utils.clone(activity.figuresCorrection[j]), "fc"+index+"-"+j, divr);
+                }
+                if (numeroOfCard <= nbOfCards / 2) {
+                    questionsRightPart.appendChild(artQuestion)
+                    reponsesLeftPart.appendChild(artCorrection)
+                    reponsesLeftPart.appendChild(numQuestion)
+                } else {
+                    questionsLeftPart.appendChild(artQuestion)
+                    reponsesRightPart.appendChild(numQuestion)
+                    reponsesRightPart.appendChild(artCorrection)
+                }
+            }
         }
     }
-    for(const section of arrayOfFlashCardsSection){
-        content.appendChild(section)
-    }
-    let visible = ''
-    if (!document.getElementById('inputprogrammerev').checked){
-        visible = 'hidden'
-    }
-    content.appendChild(utils.create('div',{id:'progrev', className:visible,
-        innerHTML: `<i>Note la date puis refais régulièrement cette fiche</i>.
-        <hr>
-        <div class="reviser">
-        <div><div>Jour J</div><div>.../...</div></div>
-        <div><div>J + 3 jours</div><div>.../...</div></div>
-        <div><div>J + 1 semaine</div><div>.../...</div></div>
-       <div><div>J + 2 semaines</div><div>.../...</div></div>
-        <div><div>J + 1 mois</div><div>.../...</div></div></div>`}))
-    
     if(!utils.isEmpty(MM.memory)){
         setTimeout(function(){
             for(const k in MM.memory){
                 if(k!=="dest")
                     MM.memory[k].display();
             }
+            // ajuster les hauteurs de lignes
+            adjustLinesHeights()
         }, 1000);
+    } else {
+        adjustLinesHeights()
+    }
+}
+
+function adjustLinesHeights(){
+    if (parameters.disposition === 'mod1') return
+    document.querySelector('.left').style['grid-template-rows'] = ''
+    document.querySelector('.questions.debut').style['grid-template-rows'] = ''
+    document.querySelector('.questions.fin').style['grid-template-rows'] = ''
+    document.querySelector('.right').style['grid-template-rows'] = ''
+    const answersDebut = document.querySelectorAll('.left .answer')
+    const answersFin = document.querySelectorAll('.right .answer')
+    const questionsDebut = document.querySelectorAll('.questions.debut .question')
+    const questionsFin = document.querySelectorAll('.questions.fin .question')
+    // recherche des plus grandes variations
+    let maxHeightAnswerDebut = 0;
+    let maxHeightQuestionDebut = 0;
+    let maxHeightAnswerFin = 0;
+    let maxHeightQuestionFin = 0;
+    answersDebut.forEach(a => {
+        maxHeightAnswerDebut += a.getBoundingClientRect().height
+    })
+    questionsDebut.forEach(q => {
+        maxHeightQuestionDebut += q.getBoundingClientRect().height
+    })
+    if(maxHeightAnswerDebut > maxHeightQuestionDebut) {
+        document.querySelector('.questions.debut').style['grid-template-rows'] = [...answersDebut].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+        document.querySelector('.left').style['grid-template-rows'] = [...answersDebut].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+    } else {
+        document.querySelector('.left').style['grid-template-rows'] = [...questionsDebut].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+        document.querySelector('.questions.debut').style['grid-template-rows'] = [...questionsDebut].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+    }
+    answersFin.forEach(a => {
+        maxHeightAnswerFin += a.getBoundingClientRect().height
+    })
+    questionsFin.forEach(q => {
+        maxHeightQuestionFin += q.getBoundingClientRect().height
+    })
+    if(maxHeightAnswerFin > maxHeightQuestionFin) {
+        document.querySelector('.questions.fin').style['grid-template-rows'] = [...answersFin].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+        document.querySelector('.right').style['grid-template-rows'] = [...answersFin].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+    } else {
+        document.querySelector('.right').style['grid-template-rows'] = [...questionsFin].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
+        document.querySelector('.questions.fin').style['grid-template-rows'] = [...questionsFin].map(a => a.getBoundingClientRect().height* 2.54 / 96).join('cm ')+'cm'
     }
 }
 
@@ -347,7 +511,7 @@ function checkURL(urlString){
         parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=10.5;
         parameters.disposition=vars.disp||'mod1';//'mod1' or 'mod2'
-        document.getElementById('btnRectoVerso').innerText = parameters.disposition==='mod1'?'Modèle 1':'Modèle 2 (R/V)'
+        document.getElementById('btnModele').innerText = parameters.disposition==='mod1'?'Modèle 1':'Modèle 2 (R/V)'
         zoom = new Zoom("changeFontSize","#creator-content",true,"pt",parameters.tailleTexte);
         document.getElementById("fontSize").appendChild(zoom.createCursor());
         parameters.titreFiche=decodeURI(vars.t);
@@ -361,6 +525,7 @@ function checkURL(urlString){
             document.getElementById('inputSeparator').value = vars.cw||50
             parameters.separation = document.getElementById('inputSeparator').value
             parameters.separationh = document.getElementById('inputseparationh').checked ? true : false
+            parameters.separationv = document.getElementById('inputseparationv').checked ? true : false
             parameters.questColor = document.getElementById('inputColorQuestion').value
             parameters.ansColor = document.getElementById('inputColorReponse').value
             parameters.numColor = document.getElementById('inputColorNumero').value
