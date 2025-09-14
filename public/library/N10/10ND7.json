@@ -1,0 +1,19 @@
+{
+    "title":"CE1 Procédures -> Soustraire un nombre <9",
+    "dest":["10ND"],
+    "options":[
+        {
+        "name":"Soustraire un nombre < 9 sans changement de dizaine",
+        "vars":{"a":"0_9","b":"1_8","c":"0_${:b}",
+         "qte":"${(:a*10+:b)-:c}"  }  
+        },{
+        "name":"Soustraire un nombre < 9 avec changement de dizaine",
+        "vars":{"a":"0_9","c":"1_9","b":"0_${:b}",
+         "qte":"${(:a*10+:b)-:c}"  }  
+        }
+    ],
+
+    "question":"${(:a*10+:b)}-${:c}",
+    "answer":":question = \\color{red}{${(:a*10+:b)-:c}}",
+    "value":"${(:a*10+:b)-:c}"
+}
