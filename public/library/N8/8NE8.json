@@ -1,5 +1,6 @@
 {
     "title":"Ajouter deux décimaux à une décimale",
+    "description":"Somme de deux nombres",
     "dest":["8NE","7NE","6NE"],
     "consigne":"Calculer",
     "options":[
@@ -36,5 +37,6 @@
         }
     ],
     "question":":nb1+:nb2",
-    "answer":":question=\\color{red}{${:nb1+:nb2}}"
+    "answer":":question=\\color{red}{${MMmath.round(:nb1+:nb2,1)}}",
+    "value":"${MMmath.round(:nb1+:nb2,1)}"
 }
