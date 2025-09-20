@@ -173,7 +173,6 @@ Tables de multiplciation : avec du latex, type par défaut, donc non indiqué
 ```js
 {
     "title":"Tables de Multiplications", // obligatoire
-    "ID":"6ND6", // non obligatoire, il correspond au nom du fichier
     "dest":["6ND", "7ND"], // obligatoire, permet de placer l'activité dans les listes de chaque niveau correspondant.
                            //Les références utilisées sont à consulter dans le fichier library/structure.json
     "vars":{
@@ -194,7 +193,6 @@ Il est possible de choisir parmi les types de questions, celle qui sera affiché
 ```js
 {
     "title":"Développer une identité remarquable",
-    "ID":"3ND2",
     "dest":["3ND"]
     // var a : entier entre 1 et 10
     // var b : entier entre 2 et 10
@@ -238,7 +236,6 @@ Conversions
 ``` js
 {
     "title":"Conversions vers les unités de base",
-    "ID":"7MA1", // nom du fichier
     "dest":["7MA", "6MA", "6MD"], // chapitres de destination dans l'arborescence
     "options":[
         // var k : unité d'où convertir et multiplicande
@@ -287,7 +284,6 @@ Exemple avec du texte
 {
   "type":"text",
   "title":"Table de 3",
-  "ID":"11N1", // nom du fichier
   "dest":["11NC"], // chapitre de destination 11 pour le CP, N pour les nombres, C pour le cacul avec les nombres
   "vars":{
     "a":"2_10"
@@ -304,7 +300,6 @@ Exemple avec chartjs : représentation de données statistiques
     "title":"Test de graphique",
     "type":"text", // pour affichier des maths, il faudra utiliser les marqueurs $$ $$ autour des expressions
     "dest":["5DA", "4DA", "3DA"],
-    "ID":"5DA1",
     "vars":{
       "a":"10_100_5_^&", // tire 5 entiers entre 10 et 100, tous différents (^&)
       "b":[["fraises", "bananes", "oranges", "kiwis", "pommes"], ["vélo", "trotinette", "voiture", "bus", "scooter"]] // choisit l'un des deux tableaux
@@ -325,7 +320,6 @@ Exemple avec chartjs : représentation de données statistiques
 Exemple avec JSXGraph
 ``` js
 {
-    "ID":"3DD1",
     "dest":["3DD"],
     "title":"Lire l'ordonnée à l'origine",
     "type":"text",
