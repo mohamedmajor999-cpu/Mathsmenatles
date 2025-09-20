@@ -19,7 +19,7 @@
         "answer":"${:a}${:x}=${:b} \\text{ pour } \\color{red}{${:x}=${:q}}",
         "value":"${:q}"
     },{
-        "name":"x ± a = b, a et b fractions",
+        "name":"ax = b, a et b fractions",
         "vars":{"n":"1_12_2","d":"2_12_2", "f1":"${MMmath.fractionSimplifiee(:n[0],:d[0])}", "f2":"${MMmath.fractionSimplifiee(:n[1],:d[1])}", "l":"0_5","x":"${:lettres[:l]}"},
         "question":"\\text{Résoudre } ${:f1}${:x}=${:f2}",
         "answer":"${:f1}${:x}=${:f2} \\text{ pour } \\color{red}{${:x}=${MMmath.calc(:n[1]+'/'+:d[1]+'*('+:d[0]+'/'+:n[0]+')')}}",

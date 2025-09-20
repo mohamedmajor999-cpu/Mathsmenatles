@@ -1,6 +1,7 @@
 {
     "title":"CE1 Procédures -> Ajouter 9,19,29 à un nombre",
     "dest":["10ND"],
+    "auteur":"Xavier Levet",
     "options":[{
         "name":"Ajouter 9 à un nombre dont l'unité est 0",
         "vars":{"a":9,"b":[0,10,20,30,40,50,60,70,80,90]},

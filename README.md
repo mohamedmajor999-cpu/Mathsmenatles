@@ -9,7 +9,8 @@ Démo : https://www.mathsmentales.net/
  * Éric Elter a eu une relecture très attentive de plusieurs activités et en a proposé de nouvelles.
  * Fayçal TIB a voulu créer quelques activités pour le lycée (inachevées)
  * Mikael Le Mentec a modifié ou créé quelques activités en collège et lycée
- * Xavier Levet s'est lancé dans la création d'activités pour le CM
+ * Xavier Levet s'est lancé dans la création d'activités pour le CM en sept 2025
+ * Dominique PORRONE a commencé la création d'activités pour le collège en septembre 2025
  
 Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.education.fr/mathsmentales/mathsmentales.forge.apps.education.fr/-/blob/master/CONTRIBUTING.md?ref_type=heads)
 
@@ -93,15 +94,16 @@ Elle est à présent réalisée à l'aide de fichiers json peu complexes
 La bibliothèque d'activités se trouve dans le dossier public\library
 
 Ces fichiers json comportent des *données obligatoires* :
- * **title** : titre de l'activité
- * **ID** : un identifiant unique de l'activité pour la retrouver facilement dans la base de données, correspond au nom du fichier json : ID.json (pas de doublon !), ex : 6ND6 rangé dans N6 (niveau 6e) sous le code 6ND (Cf structure.json pour le classement) 6ND6 pour le numéro dans l'ordre de création des fichiers
- * **dest** : la liste des niveaux et sous partie qui seront peuplés par l'activité, ex 7NA1 sera rangé en CM2 (**7**e) > **N**umérique > Comprendre et utiliser les nombres (**A**) > 1ère activité
- * **vars** : objet json contenant la ou les variables utilisées dans l'activité
-   * une variable est une chaine ou un tableau. elle est interprétée pour tirer au sort des nombres uniques, des tableaux de nombres, un élément d'un tableau ...
+ * **title** : titre de l’activité
+ * **auteur** : auteur de l’activité (si autre que S. COGEZ)
+ * <strike>**ID** : un identifiant unique de l’activité pour la retrouver facilement dans la base de données, correspond au nom du fichier json : ID.json (pas de doublon !),</strike> ex : 6ND6 rangé dans N6 (niveau 6e) sous le code 6ND (Cf structure.json pour le classement) 6ND6 pour le numéro dans l’ordre de création des fichiers. Plus besoin d’ID, c’est le nom du fichier qui le désigne, ex : 6ND6.json
+ * **dest** : la liste des niveaux et sous partie qui seront peuplés par l’activité, ex 7NA1 sera rangé en CM2 (**7**e) > **N**umérique > Comprendre et utiliser les nombres (**A**) > 1ère activité
+ * **vars** : objet json contenant la ou les variables utilisées dans l’activité
+   * une variable est une chaine ou un tableau. elle est interprétée pour tirer au sort des nombres uniques, des tableaux de nombres, un élément d’un tableau ...
      * des entiers min_max ou min_max_quantité ou min_max_^liste de valeurs à éviter ou min_max_quantité_^&,val1,val2... & signifie pas de double. Exemple : "1_10_2_^&,5" tire au hasard deux nombres différents entre 1 et 10 inclus qui ne valent pas 5
      * des décimaux dmin_max_précision (pouvant être négative pour les puissances de 10 positives). Exemple : "d0.1_2_2" tire un nombre à deux chiffres après la virgule compris entre 0.1 et 2 inclus
-     * une valeur dans un tableau. Exemple : [10,100,1000] var tirer l'un des nombres de la liste
-   * une variable a pourra être reprise dans une autre variable par un appel de type :var ou :var[2] pour la 3e valeur d'un tableau s'il n'est pas associé à une autre variable (voir les précisions suivantes) pour utiliser la variable var. Attention, les déclarations sont chronologiques :var ne peut être appelée avant sa déclaration.
+     * une valeur dans un tableau. Exemple : [10,100,1000] var tirer l’un des nombres de la liste
+   * une variable a pourra être reprise dans une autre variable par un appel de type :var ou :var[2] pour la 3e valeur d’un tableau s’il n'est pas associé à une autre variable (voir les précisions suivantes) pour utiliser la variable var. Attention, les déclarations sont chronologiques :var ne peut être appelée avant sa déclaration.
    * des calculs utilisant la bibliothèque math peuvent être effectués dans les paires d'accolades, exemple : ${MMmath.multiply(:a,:b)}
    * d'autres traitements peuvent être effectués à l'aide de fonctions javascript ${:a.toUpperCase()}
    * Note : les variables présentes dans l'activité et redéfinies dans une option sont définies dans l'ordre de déclaration globale. Il faut bien l'avoir en tête. Il vaut mieux éviter de redéclarer une variable globale...

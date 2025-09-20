@@ -7,12 +7,15 @@
   font-family: 'fugaz one';
   src: url('./fonts/fugaz-one.regular.ttf');
 }
+html {
+  height:100%;
+}
 
 body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  height: 100%;
   font-family: 'fugaz one', cursive;
   margin: 0;
   display: flex;
@@ -41,21 +44,21 @@ body {
 
 #creator-container {
   width: 96%;
-  min-height: 96vh;
-  margin: 2vh auto;
+  min-height: 96%;
+  margin: 2% auto;
 }
 
 #creator-content {
   display: grid;
   gap: 2%;
-  min-height: 96vh;
+  min-height: 100%;
 }
 
 #left,
 #right {
   border: rgb(45, 45, 45) 0.2em solid;
   border-radius: 1em;
-  padding: 1vh 1em;
+  padding: 1% 1em;
   text-align: center;
   position: relative;
   background-position: center center;

@@ -7,6 +7,7 @@
     "textSize":"medium",
     "keys":["-","+","a","b","c","x","y","z"],
     "consts":{"lettres":["a","b","c","x","y","z"]},
+    "consigne":"Développer et réduire",
     "options":[{
         "name":"Opposé d'une expression",
         "vars":{"a":"-9_9_2_^0","l":"0_5","x":"${:lettres[:l]}","posx":"0_1","s":"${:a[0]+:a[1]}","sx":"${:a[:posx]}"},
