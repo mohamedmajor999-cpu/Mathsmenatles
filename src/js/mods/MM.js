@@ -1519,10 +1519,11 @@ const MM = {
         MM.setSeed();
         MM.populateQuestionsAndAnswers();
         MM.showTab(document.querySelector("[numero='#tab-enonce'].tabs-menu-link"));
+        /* plus utile
         if (MM.carts.length === 1 && MM.carts[0].activities.length === 1) {
             MM.resetCarts();
             MM.editedActivity.display('sample', this);
-        }
+        }*/
     },
     showAnswers: function () {
         if (!MM.carts[0].activities.length)
