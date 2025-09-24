@@ -11,9 +11,7 @@ MM.version = utils.getVersion()
 let textSize = '0.35'
 const puzzles = ['pyr16', 'hexa24', 'los18', 'pier12']
 const parameters = {distract:false};
-const $fig = document.getElementById('figure')
 const $info = document.getElementById('info')
-const $impression = document.getElementById('impression')
 const nbQuestionsOfActivities = [];// array contenant les nombres de questions par activité
 let type = 'pyr16'
 const figures = {
@@ -180,6 +178,7 @@ function setTextSize(value) {
 }
 
 function makePage(){
+    const $fig = document.getElementById('puzzle')
     // Check du nombre de valeurs prévues
     let nbOfQuestions = 0
     if (parameters.alea){
@@ -217,7 +216,7 @@ function makePage(){
     MM.memory = {};
     common.generateQuestions(parameters);
     // set elements :
-    let aleaCode = utils.create("div",{className:"floatright",innerHTML:"Clé : "+common.seed});
+    let aleaCode = utils.create("div",{innerHTML:"Clé : "+common.seed});
     $info.appendChild(aleaCode);
     // get the titlesheet
     let sheetTitle = parameters.titreFiche||"Puzzle MathsMentales";
@@ -387,7 +386,7 @@ function makePage(){
             figs += fig
         }
     }
-    $impression.innerHTML = figs.replace(/\{\{(\w+)\[(\d+)\]\}\}/g, (match, arrayName, index) => {
+    document.getElementById('impression').innerHTML = figs.replace(/\{\{(\w+)\[(\d+)\]\}\}/g, (match, arrayName, index) => {
         const idx = parseInt(index, 10); // Convertit l'index en nombre
         // Utilisation d'un switch pour vérifier le bon tableau à utiliser
         switch (arrayName) {
