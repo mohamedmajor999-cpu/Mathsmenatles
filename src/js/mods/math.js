@@ -786,6 +786,18 @@ const MMmath = {
     }
     return txt;
   },
+  /**
+   * 
+   * @param {Array} arr tableau de valeurs numériques
+   * @returns Array tableau de valeurs sans un max et un min
+   */
+  valeursIntermediaires(arr) {
+    const tableau = [...arr]
+    tableau.sort((a,b) => a - b)
+    tableau.pop()
+    tableau.shift()
+    return tableau
+  },
   // JavaScript Document
   /****************************************************************************
   *________________________________________________________________________   *

@@ -27,7 +27,7 @@
                 "estmediatrice":"${:passeparmilieu&&:estperpendiculaire}"
             },
             "question":"La droite (d) est-elle la médiatrice de [${:A}${:B}] ? Justifie.",
-            "answer":"${:estmediatrice?'Oui, car (d) est perpendiculaire à ['+:A+:B+'] en son milieu.': 'Non, car '+(!:passeparmilieu?'(d) ne passe pas par le milieu de ['+:A+:B+']'+(!:estperpendiculaire?' et ':'.'):'')+(!:estperpendiculaire?'(d) n’est pas perpendiculaire à ['+:A+:B+']':'')}",
+            "answer":"${:estmediatrice?'Oui, car (d) est perpendiculaire à ['+:A+:B+'] en son milieu.': 'Non, car '+(!:passeparmilieu?'(d) ne passe pas par le milieu de ['+:A+:B+']'+(!:estperpendiculaire?' et ':'.'):'')+(!:estperpendiculaire?'(d) n’est pas perpendiculaire à ['+:A+:B+']':'')}.",
             "figure":{
                 "type":"graph",
                 "axis":false,
@@ -60,7 +60,7 @@
                 "estmediatrice":"${:passeparmilieu&&:estperpendiculaire}"
             },
             "question":"La droite (d) est-elle la médiatrice de [${:A}${:B}] ? Justifie.",
-            "answer":"${:estmediatrice?'Oui, car (d) est perpendiculaire à ['+:A+:B+'] en son milieu.': 'Non, car '+(!:passeparmilieu?'il n’y a pas le codage du milieu de ['+:A+:B+']'+(!:estperpendiculaire?' et ':'.'):'')+(!:estperpendiculaire?'(d) n’est pas codée perpendiculaire à ['+:A+:B+']':'')}",
+            "answer":"${:estmediatrice?'Oui, car (d) est perpendiculaire à ['+:A+:B+'] en son milieu': 'Non, car '+(!:passeparmilieu?'il n’y a pas le codage du milieu de ['+:A+:B+']'+(!:estperpendiculaire?' et ':'.'):'')+(!:estperpendiculaire?'(d) n’est pas codée perpendiculaire à ['+:A+:B+']':'')}.",
             "figure":{
                 "type":"graph",
                 "axis":false,

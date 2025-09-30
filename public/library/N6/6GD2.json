@@ -34,7 +34,7 @@
                 "yD":"${:yC+Math.sin(:angle2/180*Math.PI)}"
             },
             "question":"Les droites semblent-elles parallèles ?",
-            "answer":"${:par?'oui, les droites semblent parallèles':'non, les droites ne semblent pas parallèles'}",
+            "answer":"${:par?'Oui, les droites semblent parallèles.':'Non, les droites ne semblent pas parallèles.'}",
             "value":["${:par?'oui':'non'}","${:par?'o':'n'}"]
         },{
             "name":"Perpendiculaire",
@@ -54,7 +54,7 @@
                 "yD":"${:yC+Math.sin(:angle2/180*Math.PI)}"
             },
             "question":"Les droites semblent-elles perpendiculaires ?",
-            "answer":"${:perp?'oui, les droites semblent perpendiculaires':'non, les droites ne semblent pas perpendiculaires'}",
+            "answer":"${:perp?'Oui, les droites semblent perpendiculaires.':'Non, les droites ne semblent pas perpendiculaires.'}",
             "value":["${:perp?'oui':'non'}","${:perp?'o':'n'}"]
         },{
             "name":"Relation entre les droites",
@@ -74,7 +74,7 @@
                 "yD":"${:yC+Math.sin(:angle2/180*Math.PI)}"
             },
             "question":"Les droites semblent-elles parallèles, perpendiculaires ou sécantes non perpendiculaires",
-            "answer":"Les droites semblent ${:relation=='par'?'parallèles'::relation=='per'?'perpendiculaires':'sécantes non perpendiculaires'}",
+            "answer":"Les droites semblent ${:relation=='par'?'parallèles'::relation=='per'?'perpendiculaires':'sécantes non perpendiculaires'}.",
             "value":"${:relation=='par'?'parallèles'::relation=='per'?'perpendiculaires':'sécantes non perpendiculaires'}"
         }
     ],

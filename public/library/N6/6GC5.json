@@ -82,14 +82,17 @@
                 "l1":"1_10",
                 "l2":"1_10",
                 "exists":[true, false],
-                "l3":"${:exists?Math.abs(:l1-:l2)+1+'_'+(:l1+:l2-1):(:l1+:l2+1)+'_21'}",
-                "tri":"0_2_3_^&"
+                "l3":"${:exists?(Math.abs(:l1-:l2)+1)+'_'+(:l1+:l2-1):(:l1+:l2+1)+'_21'}",
+                "tri":"0_2_3_^&",
+                "max":"${Math.max(:l1,:l2,:l3)}",
+                "min":"${Math.min(:l1,:l2,:l3)}",
+                "third":"${MMmath.valeursIntermediaires([:l1,:l2,:l3])[0]}"
             },
             "consts":{
-                "l":["${:l1}", "${:l2}", "${:l3}"]
+                "l":[":l1", ":l2", ":l3"]
             },
             "question":"Existe-t-il un triangle avec des côtés de longueur ${:l[:tri[0]]}, ${:l[:tri[1]]} et ${:l[:tri[2]]} ?",
-            "answer":"${:exists?'Oui, car '+:l1+' + '+:l2+' > '+:l3:'Non, car '+:l1+' + '+:l2+' < '+:l3}",
+            "answer":"${:exists?'Oui, car '+:min+' + '+:third+' > '+:max:'Non, car '+:l1+' + '+:l2+' < '+:l3}",
             "value":["${:exists?'O':'N'}", "${:exists?'Oui':'Non'}"]
         },{
             "name":"Écriture d’une égalité (5e)",
