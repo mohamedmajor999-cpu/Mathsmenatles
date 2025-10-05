@@ -16,8 +16,17 @@ function buildContentXML(elements) {
                          xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
                          xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0"
                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                         xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
+                         xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"                         xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
                          xmlns:math="http://www.w3.org/1998/Math/MathML">
+  <office:automatic-styles>
+    <text:list-style style:name="NumberedList">
+      <text:list-level-style-number text:level="1" text:style-name="Numerotation arabe" style:num-format="1" style:num-suffix=".">
+        <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
+          <style:list-level-label-alignment text:label-followed-by="listtab" text:list-tab-stop-position="1.27cm" fo:text-indent="-0.635cm" fo:margin-left="1.27cm"/>
+        </style:list-level-properties>
+      </text:list-level-style-number>
+    </text:list-style>
+  </office:automatic-styles>
   <office:body>
     <office:text>`;
 
@@ -27,17 +36,6 @@ function buildContentXML(elements) {
       xml += `<text:p>${escapeXML(elem.text)}</text:p>`;
     }
     else if (elem.type === 'list') {
-      // Extraire les SVG qui doivent être ajoutés au ZIP
-      elem.items.forEach(item => {
-        if (item.svg) {
-          console.log("svg")
-          const file = `image_${svgNumber++}.svg`;
-          const name = `SVG${svgNumber}`
-          svgFiles.push({ file, content:'<?xml version="1.0" encoding="UTF-8"?>'+item.svg });
-          item.svgName = name
-          item.svgFile = file
-        }
-      });
       // Construire la liste
       xml += buildNumberedList(elem.items);
     }
@@ -53,7 +51,7 @@ function buildContentXML(elements) {
  * @returns {string}  XML du <text:list>
  */
 function buildNumberedList(items) {
-  let xml = '<text:list text:style-name="NumListe">';
+  let xml = '<text:list text:style-name="NumberedList" text:continue-numbering="false">';
   items.forEach(item => {
     xml += '<text:list-item>';
     // Contenu du paragraph
@@ -62,34 +60,13 @@ function buildNumberedList(items) {
       // faire des morceaux avec les parties en MATHML
       const tokens = splitElements(item.text)
       tokens.forEach(token => {
+        // si image svg, on met une nouvelle ligne
         if (token.type === 'svg') xml += '<text:line-break/>'
         xml += token.content
       })
       //xml += item.text//escapeXML(item.text);
-    }/*    if (item.mathml) {
-      // MathML est déjà valide XML
-      xml += `<draw:frame draw:style-name="Formula" text:anchor-type="as-char" svg:width="3cm" svg:height="1cm">
-          <draw:object>
-            <math:math display="block">${item.mathml}</math:math>
-          </draw:object>
-        </draw:frame>`
-    }*/
+    }
     xml += `</text:p>`;
-    /*// Si une image SVG doit être placée après le paragraphe
-    if (item.svgName) {
-      // <text:line-break/> pour le saut de ligne
-      xml += `<text:line-break/>`;
-      // On génère un nom unique pour le fichier image
-      // On stocke cette info pour que buildContentXML puisse la renvoyer
-      // (voir la partie 5️⃣)
-      xml += `<draw:frame draw:name="${item.svgName}"
-                  text:anchor-type="as-char" svg:width="5cm" svg:height="5cm">
-                <draw:image xlink:href="Pictures/${item.svgFile}"
-                            xlink:type="simple"
-                            xlink:show="embed"
-                            xlink:actuate="onLoad"/>
-              </draw:frame>`;
-    }*/
     xml += '</text:list-item>';
   });
   xml += '</text:list>';
@@ -135,7 +112,6 @@ function splitElements(source) {
       if (!node.hasAttribute('display')) {
         node.setAttribute('display', 'inline');
       }
-      console.log(node.innerHTML)
       const width = Number(node.attributes.width.value);
       const height = Number(node.attributes.height.value)
       node.innerHTML = '<semantics>'+node.innerHTML+'</semantics>'

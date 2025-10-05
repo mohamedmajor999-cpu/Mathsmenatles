@@ -498,10 +498,11 @@ const MM = {
                     let tex = false; let spane, spanc;
                     if (activity.type === undefined || activity.type === "" || activity.type === "latex") {
                         tex = true;
-                        spane = utils.create("span", { innerHTML: '$$'+question+'$$' });
-                        lie.appendChild(spane);
-                        spanc = utils.create("span");
-                        lic.appendChild(spanc);
+                        //spane = utils.create("span", { innerHTML: '$$'+question+'$$' });
+                        // lie.appendChild(spane);
+                        lie.innerHTML = '$$'+question+'$$'
+                        //spanc = utils.create("span");
+                        //lic.appendChild(spanc);
                         exportTextArea.value += '---\n$'+ question+'$\n\n';
                     } else {
                         lie.innerHTML = question;
@@ -512,11 +513,11 @@ const MM = {
                     }
                     if (Array.isArray(answer)) {
                         if (!tex) lic.innerHTML += answer[0];
-                        else spanc.innerHTML += '$$'+answer[0]+'$$';
+                        else lic.innerHTML += '$$'+answer[0]+'$$';
                     }
                     else {
                         if (tex)
-                            spanc.innerHTML += '$$'+answer+'$$';
+                            lic.innerHTML += '$$'+answer+'$$';
                         else
                             lic.innerHTML += answer;
                     }
@@ -1512,15 +1513,7 @@ const MM = {
                 li.querySelectorAll('span[data-latex]').forEach(el => {
                     el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
                     formulaNb++
-                })
-                /*// extraire le svg
-                const figure = li.querySelector('.fig')
-                if (figure !== null){
-                    const svg = li.querySelector('svg')
-                    if(svg !== null)
-                        item.svg = svg.outerHTML
-                    li.removeChild(figure)
-                }*/
+                })                
                 item.text = li.innerHTML
                 liste.items.push(item)
             }
@@ -1547,14 +1540,6 @@ const MM = {
                     el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
                     formulaNb++
                 })
-                // extraire le svg
-                const figure = li.querySelector('.fig')
-                if (figure !== null){
-                    const svg = li.querySelector('svg')
-                    if(svg !== null)
-                        item.svg = svg.outerHTML
-                    li.removeChild(figure)
-                }
                 const button = li.querySelector('button')
                 if (button !== null){
                     li.removeChild(button)
