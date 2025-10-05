@@ -31,7 +31,7 @@
                 ]
             },
             "question":"Tous les angles ${:couleur} sont égaux. Quelle est la mesure de l’un d’entre eux ?",
-            "answer":"L’angle droit est partagé en ${:div} parties égales. $$90°\\div${:div}=\\color{red}{${90/:div}°}$$"
+            "answer":"L’angle droit est partagé en ${:div} parties égales. $$90\\degree\\div${:div}=\\color{red}{${90/:div}\\degree}$$"
     },{
             "name":"Division de l’angle plat",
             "vars":{

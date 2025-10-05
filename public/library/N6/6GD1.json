@@ -15,7 +15,7 @@
         "name":"Aire du carré",
         "question": "Quelle est l'aire d'un carré de côté ${:a} ${:c} ?",
         "audio": "Quelle est l'aire d'un carré de côté ${:a} ${:uv[:c]} ?",
-        "answer":"$$${:a}\\text{ }${:c}\\times ${:a}\\text{ }${:c}=\\color{red}{${:b}\\text{ }${:c}^2}$$",
+        "answer":"$$${:a}\\text{ :c }\\times ${:a}\\text{ :c }=\\color{red}{${:b}\\text{ :c}^2}$$",
         "figure":{
             "type":"graph",
             "axis":false,
@@ -46,7 +46,7 @@
             "name":"Côté du carré",
             "question": "Quel est le côté d'un carré d'aire ${:b} ${:c}² ?",
             "audio": "Quel est le côté d'un carré d'aire ${:b} ${:uv[:c]} carré ?",
-            "answer":"$$\\color{red}{${:a}\\text{ }${:c}}\\times ${:a}\\text{ }${:c}=${:b}\\text{ }${:c}^2$$",
+            "answer":"$$\\color{red}{${:a}\\text{ :c }}\\times ${:a}\\text{ :c }=${:b}\\text{ :c}^2$$",
             "figure":{
                 "type":"graph",
                 "axis":false,
