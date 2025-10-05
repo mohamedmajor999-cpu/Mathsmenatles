@@ -8,6 +8,8 @@ import draw from "./draw.js";
 import activity from "./activity.js";
 import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
 import QRCodeStyling from '../libs/qr-code-styling/qr-code-styling.js'
+import { convertLatexToMathMl } from '../libs/cortexjs/mathlive.min.mjs'
+import GenerateODT from './odt.js'
 
 export { MM as default }
 const MM = {
@@ -1479,6 +1481,91 @@ const MM = {
             urlString += this.carts[i].export();
         }
         return urlString;//carts;
+    },
+    /**
+     * export enoncés et corrigés from DOM
+     */
+    exportODT(enonceDOM, corrigeDOM) {
+        const elements = []
+        // titres (h3)
+        const titlesEnonces = enonceDOM.querySelectorAll('h3');
+        const listesEnonces = enonceDOM.querySelectorAll('ol');
+        const titlesCorriges = corrigeDOM.querySelectorAll('h3')
+        const listesCorriges = corrigeDOM.querySelectorAll('ol');
+        for(let [index, content] of titlesEnonces.entries()) {
+            elements.push({type: 'title', text: content.innerHTML})
+            const lignes = listesEnonces[index].querySelectorAll('li')
+            const liste = {type:'list',items:[]}
+            for(let ligne of lignes){
+                const item = {}
+                const li = ligne.cloneNode(true);
+                const formules = []
+                ligne.querySelectorAll('span[data-latex]').forEach(el => {
+                    const copy = el.parentNode.cloneNode(true)
+                    document.body.appendChild(copy)
+                    const dims = copy.getBoundingClientRect()
+                    formules.push([dims.width,dims.height])
+                    document.body.removeChild(copy)
+                })
+                let formulaNb = 0
+                // remplacer le latex par mathml
+                li.querySelectorAll('span[data-latex]').forEach(el => {
+                    el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
+                    formulaNb++
+                })
+                /*// extraire le svg
+                const figure = li.querySelector('.fig')
+                if (figure !== null){
+                    const svg = li.querySelector('svg')
+                    if(svg !== null)
+                        item.svg = svg.outerHTML
+                    li.removeChild(figure)
+                }*/
+                item.text = li.innerHTML
+                liste.items.push(item)
+            }
+            elements.push(liste)
+        }
+        for (let [index, content] of titlesCorriges.entries()) {
+            elements.push({type: 'title', text: 'Correction '+content.innerHTML})
+            const lignes = listesCorriges[index].querySelectorAll('li')
+            const liste = {type:'list',items:[]}
+            for(let ligne of lignes){
+                const item = {}
+                const li = ligne.cloneNode(true);
+                const formules = []
+                ligne.querySelectorAll('span[data-latex]').forEach(el => {
+                    const copy = el.parentNode.cloneNode(true)
+                    document.body.appendChild(copy)
+                    const dims = copy.getBoundingClientRect()
+                    formules.push([dims.width,dims.height])
+                    document.body.removeChild(copy)
+                })
+                let formulaNb = 0
+                // remplacer le latex par mathml
+                li.querySelectorAll('span[data-latex]').forEach(el => {
+                    el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
+                    formulaNb++
+                })
+                // extraire le svg
+                const figure = li.querySelector('.fig')
+                if (figure !== null){
+                    const svg = li.querySelector('svg')
+                    if(svg !== null)
+                        item.svg = svg.outerHTML
+                    li.removeChild(figure)
+                }
+                const button = li.querySelector('button')
+                if (button !== null){
+                    li.removeChild(button)
+                    li.innerHTML = li.innerHTML.substring(0,li.innerHTML.lastIndexOf('&nbsp;'))
+                }
+                item.text = li.innerHTML
+                liste.items.push(item)
+            }
+            elements.push(liste)
+        }
+        GenerateODT(elements)
     },
     setURL(string, type) {
         if (utils.baseURL.indexOf("index.html") < 0) utils.baseURL += "index.html";

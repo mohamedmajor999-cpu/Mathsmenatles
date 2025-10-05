@@ -312,6 +312,10 @@ window.onload = function() {
         alert("Copié dans le presse-papiers !");
     }
 
+    document.getElementById('btn-export-odt').onclick = () => {
+        MM.exportODT(document.getElementById('enonce-content'), document.getElementById('corrige-content'))
+    }
+
     // boutons section corrigés
     document.querySelector("#tab-corrige aside").addEventListener("click",(evt)=>{
         let target = utils.getTargetWithImageInside(evt);

@@ -139,14 +139,18 @@ function makePage() {
                 flipCardInner.classList.toggle('rotate')
             }
             const divr = utils.create("div");
+            let answer = activity.answers[questionNumber];
+            if (typeof answer === 'object'){
+                answer = answer[0]
+            }
             if (activity.type === "latex" || activity.type === "" || activity.type === undefined) {
                 const span = utils.create("span", { innerHTML: '$$'+activity.questions[questionNumber]+'$$' });
-                const spanCorrection = utils.create("span", { innerHTML: '$$'+activity.answers[questionNumber]+'$$'});
+                const spanCorrection = utils.create("span", { innerHTML: '$$'+answer+'$$'});
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {
                 divq.innerHTML += activity.questions[questionNumber];
-                divr.innerHTML += activity.answers[questionNumber];
+                divr.innerHTML += answer;
             }
             artQuestion.appendChild(divq);
             flipCardInner.appendChild(artQuestion)

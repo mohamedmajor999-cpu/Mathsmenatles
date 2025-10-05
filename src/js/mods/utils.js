@@ -522,6 +522,7 @@ export const utils = {
                 let data = hash[i].split("=");
                 vars[data[0]] = data[1] ? data[1] : false;
             }
+            if (vars.search !== undefined) vars.search = decodeURIComponent(vars.search)
             // vars.c doit contenir les carts. Dans la version après 15/08/21, vars.c est une chaine
             // on reconstruit l'objet json à partir de la chaine
             vars.c = {};
