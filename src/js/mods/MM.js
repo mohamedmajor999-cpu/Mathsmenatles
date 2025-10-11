@@ -1533,7 +1533,7 @@ const MM = {
                 let formulaNb = 0
                 // remplacer le latex par mathml
                 li.querySelectorAll('span[data-latex]').forEach(el => {
-                    el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
+                    el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+utils.formatLargeNumbers(convertLatexToMathMl(el.dataset.latex))+'</math>'
                     formulaNb++
                 })                
                 // item.text = li.innerHTML
@@ -1563,7 +1563,7 @@ const MM = {
                     let formulaNb = 0
                     // remplacer le latex par mathml
                     li.querySelectorAll('span[data-latex]').forEach(el => {
-                        el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
+                        el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+utils.formatLargeNumbers(convertLatexToMathMl(el.dataset.latex))+'</math>'
                         formulaNb++
                     })
                     const button = li.querySelector('button')
@@ -1571,7 +1571,7 @@ const MM = {
                         li.removeChild(button)
                         li.innerHTML = li.innerHTML.substring(0,li.innerHTML.lastIndexOf('&nbsp;'))
                     }
-                    item.text = li.innerHTML
+                    item.content = li
                     liste.items.push(item)
                 }
                 elements.push(liste)

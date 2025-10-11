@@ -918,6 +918,25 @@ export const utils = {
         return str
     },
     /**
+     * Ajoute des espaces insécables entre les groupes de 3 chiffres
+     * pour les nombres de plus de 3 chiffres non précédés d'une balise séparateur
+     */
+    formatLargeNumbers (mathMLString) {
+        return mathMLString.replace(/(\d{4,})/g, (match) => {
+            // Vérifie si le nombre est précédé d'une balise séparateur
+            const beforeMatch = mathMLString.substring(0, mathMLString.indexOf(match));
+            const hasSeparatorBefore = /<math:mo[^>]*separator\s*=\s*["']true["'][^>]*>.*?<\/math:mo>\s*$/.test(beforeMatch);
+            console.log(match)
+            // Si précédé d'un séparateur, ne pas formater
+            if (hasSeparatorBefore) {
+                return match;
+            }
+            
+            // Sinon, ajoute des espaces insécables tous les 3 chiffres
+            return match.replace(/\B(?=(\d{3})+(?!\d))/g, ' "" ');
+        });
+    },
+    /**
      * Render the math
      * @param (dom) wtarget : window reference
      */

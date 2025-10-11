@@ -78,23 +78,14 @@ function buildNumberedList(items) {
         // Contenu du paragraph
         xml += `<text:p>`;
         if (item.text) {
-            // faire des morceaux avec les parties en MATHML
-            const tokens = splitElements(item.text)
-            tokens.forEach(token => {
-                // si image svg, on met une nouvelle ligne
-                if (token.type === 'svg') xml += '<text:line-break/>'+token.content
-                else if(token.type === 'redtext') xml += '<text:span text:style-name="RedText">'+token.content+'</text:span>'
-                else xml += token.content
-            })
-            //xml += item.text//escapeXML(item.text);
-        }
-        if(item.content) {
+            xml += item.text//escapeXML(item.text);
+        } else if (item.content) {
             const tokens = splitHTMLObject(item.content)
             tokens.forEach(token => {
                 // si image svg, on met une nouvelle ligne
-                if (token.type === 'svg') xml += '<text:line-break/>'+token.content
-                else if(token.type === 'redtext') xml += '<text:span text:style-name="RedText">'+token.content+'</text:span>'
-                else xml += token.content
+                if (token.type === 'svg') xml += '\n<text:line-break/>'+token.content
+                else if(token.type === 'redtext') xml += '\n<text:span text:style-name="RedText">'+token.content+'</text:span>'
+                else xml += '\n' + token.content
             })
         }
         xml += `</text:p>`;
@@ -112,76 +103,6 @@ function escapeXML(str) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&apos;');
 }
-/**
- * Découpe une chaîne qui contient du texte + du MathML
- * @param {string} source   La chaîne d’entrée (ex : "Voici  <math>…</math>  et encore.")
- * @returns {Array<{type:'text'|'math', content:string}>}
- */
-function splitElements(source) {
-    // 1️⃣  Enveloppez la chaîne pour qu’elle soit bien formée XML
-    // On ajoute un <root> et on déclare le namespace MathML
-    const wrapped = `<root>${source.replace('&nbsp;', ' ')}</root>`;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(wrapped, 'application/xml');
-
-    // 2️⃣  Vérifiez la présence d’erreurs de parsing
-    const parserError = doc.getElementsByTagName('parsererror');
-    if (parserError.length) {
-        throw new Error('Erreur de parsing XML : ' + parserError[0].textContent);
-    }
-
-    const tokens = [];
-
-    // 3️⃣  Itérez sur les nœuds enfants du <root>
-    const children = Array.from(doc.documentElement.childNodes);
-    children.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-            // Texte brut (les espaces et sauts de ligne sont conservés)
-            tokens.push({ type: 'text', content: node.textContent });
-        } else if (node.nodeName === 'math' || node.namespaceURI === 'http://www.w3.org/1998/Math/MathML') {
-            // MathML : ajoutez l’attribut math:display="inline" si absent
-            if (!node.hasAttribute('display')) {
-                node.setAttribute('display', 'inline');
-            }
-            const width = Number(node.attributes.width.value);
-            const height = Number(node.attributes.height.value)
-            node.innerHTML = '<semantics>' + node.innerHTML + '</semantics>'
-            // Sérialisez l’élément MathML en chaîne
-            tokens.push({ type: 'math', content: '<draw:frame draw:style-name="Formula" text:anchor-type="as-char" svg:width="' + (Math.round(100 * width * 2.54 / 96) / 100) + 'cm" svg:height="' + (Math.round(100 * height * 2.54 / 96) / 100) + 'cm"><draw:object>' + transformAllMathMLTags(node.outerHTML) + '</draw:object></draw:frame>' });
-        } else if (node.nodeName === 'svg' || node.firstChild.nodeName === 'svg') {
-            let theNode = node;
-            if (node.firstChild.nodeName === 'svg') theNode = node.firstChild
-            const file = `image_${svgNumber++}.svg`;
-            const name = `SVG${svgNumber}`
-            if (!theNode.hasAttribute('xmlns')) {
-                theNode.setAttribute('xmlns', 'xmlns="http://www.w3.org/2000/svg"')
-            }
-            const viewBox = theNode.attributes.viewBox.value.split(' ')
-            const width = Number(viewBox[2]);
-            const height = Number(viewBox[3])
-            svgFiles.push({ file, content: '<?xml version="1.0" encoding="UTF-8"?>' + theNode.outerHTML, w: width, h: height });
-            tokens.push({
-                type: 'svg', content: `<draw:frame draw:name="${name}"
-                  text:anchor-type="as-car" svg:width="${Math.round(100 * width * 2.54 / 96) / 100}cm" svg:height="${Math.round(100 * height * 2.54 / 96) / 100}cm">
-                <draw:image xlink:href="Pictures/${file}"
-                            xlink:type="simple"
-                            xlink:show="embed"
-                            xlink:actuate="onLoad"/>
-              </draw:frame>`})
-        } else if (node.nodeName === 'span' && node.className === 'red'){
-            tokens.push({
-                type:'redtext', content: node.textContent
-            })
-        } else {
-            // Tout autre tag (p.ex. <b>, <i>, <svg>, etc.) est conservé tel quel
-            const serializer = new XMLSerializer();
-            const otherXML = serializer.serializeToString(node);
-            tokens.push({ type: 'text', content: otherXML });
-        }
-    });
-
-    return tokens;
-}
 
 function splitHTMLObject (htmlObject) {
     const tokens = []
@@ -195,8 +116,8 @@ function splitHTMLObject (htmlObject) {
             if (!node.hasAttribute('display')) {
                 node.setAttribute('display', 'inline');
             }
-            const width = Number(node.width);
-            const height = Number(node.height)
+            const width = Number(node.attributes.width.value);
+            const height = Number(node.attributes.height.value)
             node.innerHTML = '<semantics>' + node.innerHTML + '</semantics>'
             // Sérialisez l’élément MathML en chaîne
             tokens.push({ type: 'math', content: '<draw:frame draw:style-name="Formula" text:anchor-type="as-char" svg:width="' + (Math.round(100 * width * 2.54 / 96) / 100) + 'cm" svg:height="' + (Math.round(100 * height * 2.54 / 96) / 100) + 'cm"><draw:object>' + transformAllMathMLTags(node.outerHTML) + '</draw:object></draw:frame>' });
