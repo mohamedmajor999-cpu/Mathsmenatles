@@ -1,5 +1,6 @@
 import utils from "./utils.js";
-import MM from "./MM.js";
+//import MM from "./MM.js";
+import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
 
 export {common as default}
 const pageOrientations = ["portrait","paysage"]
@@ -106,6 +107,20 @@ const common = {
         return code;
     },
     /**
+    * 
+    * @params {string} seed valeur d'initialisation des données aléatoires
+    * return nothing
+    */
+    initializeAlea: function (seed) {
+        if (seed) {
+            if (utils.alea) delete utils.alea;
+            utils.alea = new seedrandom(seed);
+        } else {
+            if (utils.alea) delete utils.alea;
+            utils.alea = new seedrandom(MM.seed);
+        }
+    },
+    /**
      * Crée un grain pour la génération aléatoire des données
      * @param {String} value 
      */
@@ -115,9 +130,9 @@ const common = {
         } else {
             this.seed = this.seedGenerator();
         }
-        MM.initializeAlea(this.seed);
+        this.initializeAlea(this.seed);
         return this.seed;
-    },
+    }/*,
     checkURL(){
         const vars = utils.getUrlVars();
         if(vars.embed !== undefined){
@@ -162,5 +177,5 @@ const common = {
                 },3000);
             });
         }
-    }
+    }*/
 }
