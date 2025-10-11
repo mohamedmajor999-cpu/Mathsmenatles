@@ -1,6 +1,6 @@
 {
     "ID":"6MC4",
-    "dest":["6MC","7MC"],
+    "dest":["6MC","7MA"],
     "title":"Conversions d’unités à partir d’entiers",
     "type":"latex",
     "consts":{"units":["k","h","da","","d","c","m"]},

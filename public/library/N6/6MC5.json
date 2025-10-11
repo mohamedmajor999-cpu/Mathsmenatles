@@ -1,6 +1,6 @@
 {
     "ID":"6MC5",
-    "dest":["6MC","7MC","8MC"],
+    "dest":["6MC","7MA","8MA"],
     "title":"Conversions d’unités à partir d’une autre",
     "type":"latex",
     "consts":{"units":["k","h","da","","d","c","m"]},
