@@ -198,7 +198,7 @@ builds.forEach(module => {
     console.log(htmlPageName + ' mis à jour')
     fs.writeFileSync(destPath, updatedContent, 'utf8');
   })
-  gulp.task('maj-'+module, gulp.series('bump-patch', 'minify-js-'+module, 'minify-css-'+module, 'update-version-'+module))
+  gulp.task('maj-'+module, gulp.series('minify-js-'+module, 'minify-css-'+module, 'update-version-'+module))
 })
 
 gulp.task('minify-css', minifyCss)

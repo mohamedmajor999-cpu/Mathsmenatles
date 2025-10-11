@@ -285,6 +285,7 @@
                     Type d'usage :
                     <select id="chooseParamType">
                         <option value="paramsdiapo" selected="selected">Diaporama</option>
+                        <option value="paramsdocLOOO">Document LibreOffice</option>
                         <option value="paramsexos">Feuille d'exercices</option>
                         <option value="paramsinterro">Feuille d'interro</option>
                         <option value="paramsceinture">Ceintures de CM</option>
@@ -401,6 +402,32 @@
                                 <span class="tooltiptext">Copie la sélection<br>dans l'historique</span>
                             </button>
                         </section>
+                    </div>
+                    <div id="paramsdocLOOO" class="hidden">
+                        <fieldset>
+                            <legend>Titre du document</legend>
+                            <input type="text" placeholder="fichier MathsMentales" id="docTitle">
+                        </fieldset>
+                        <br>
+                        <fieldset>
+                            <legend>Intégrer</legend>
+                            <input type="radio" class="radio" name="radiodoc" id="radiodocEnonce" value="questions">
+                                <label for="radiodocEnonce">Questions</label>
+                            <input type="radio" class="radio" name="radiodoc" id="radiodocCorriges" value="answers">
+                                <label for="radiodocCorriges">Réponses</label>
+                            <input type="radio" class="radio" name="radiodoc" id="radiodocBoth" value="both" checked>
+                                <label for="radiodocBoth">Les deux</label>
+                        </fieldset>
+                        <section>
+                            <button class="button--primary beaubutton" id="btngeneratedoc">Générer</button>
+                        </section>
+                        <fieldset>
+                            <legend>Information</legend>
+                            <p>MathsMentales exporte les paniers au format <a href="https://fr.libreoffice.org/">LibreOffice</a> (version >= 24) sous forme de listes avec formules modifiables et illustrations.</p>
+                            <p>Les <span class="red">couleurs</span> des corrigés ne sont pas transférées.</p>
+                            <p>Les polices de MathsMentales et LibreOffice étant différentes, les formules sont affichées “bizarrement”. Le document généré comporte une macro pour les remettre d’aplomb. (Niveau moyen de <a href="https://help.libreoffice.org/latest/fr/text/shared/optionen/macrosecurity.html?&DbPAR=SHARED&System=WIN">sécurité des macros</a>)</p>
+                            <p>Certaines figures ne sont pas bien exportées, notamment ceux des activités avec 3D, rapporteur ou scratch.</p>
+                        </fieldset>
                     </div>
                     <div id="paramsexos" class="hidden">
                         <fieldset>
@@ -784,9 +811,6 @@
                     <button id="btn-export-enonce-pixelart" title="Exporter les énoncés et réponses pour usage dans l'appli de génération de pixel art (temporaire en attendant implémentation complète)">
                         <i class="sprite sprite-pixelart"></i>
                     </button>
-                    <button id="btn-export-odt" title="Exporter en OpenDocument (expérimental)">
-                        <img src="img/libo-writer.svg" style="width:48px;height:auto">
-                    </button>
                     <textarea id="text-export-pixelart" class="hidden"></textarea>
                 </aside>
                 <div id="enonce-content" class="grid">
@@ -889,8 +913,7 @@
                     <div id="searchLevels" class="flex-container"></div>
                 </div>
                 <div id="resultat-chercher">
-                    Dans cet onglet s'affiche le résultat d'une recherche d'activités : soit un niveau complet, soit un
-                    début de mot clé.
+                    Dans cet onglet s'affiche le résultat d'une recherche d'activités : soit un niveau complet, soit un début de mot clé.
                 </div>
             </section>
         </div>
@@ -901,6 +924,193 @@
             <a href="./liste-des-exercices.html" class="tabs-menu-link">Liste des exercices</a>
             <a href="about.html">À propos</a>
             <a href="http://forge.apps.education.fr">LaForgeEdu</a>
+        </div>
+        <div id="loading" class="hidden">
+            <style>
+        #loading {
+            position: absolute;
+            height: 100%;
+            width:100%;
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        #loading .loader-container {
+            text-align: center;
+        }
+
+        #loading .loader {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+        }
+
+        #loading .circle {
+            fill: none;
+            stroke-width: 4;
+            transform-origin: center;
+        }
+
+        #loading .circle-bg {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+
+        #loading .circle-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% {
+                stroke-dashoffset: 283;
+                transform: rotate(0deg);
+            }
+            50% {
+                stroke-dashoffset: 75;
+                transform: rotate(180deg);
+            }
+            100% {
+                stroke-dashoffset: 283;
+                transform: rotate(360deg);
+            }
+        }
+
+        #loading .dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        #loading .dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        #loading .dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        #loading .dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        #loading .loading-text {
+            color: white;
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        #loading .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #loading .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        #loading .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        #loading .particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+        #loading .particle:nth-child(3) { left: 30%; animation-delay: 1s; }
+        #loading .particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+        #loading .particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+        #loading .particle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+        #loading .particle:nth-child(7) { left: 70%; animation-delay: 0.8s; }
+        #loading .particle:nth-child(8) { left: 80%; animation-delay: 1.3s; }
+
+        @keyframes float {
+            0% {
+                bottom: -10px;
+                opacity: 0;
+                transform: translateX(0) scale(0.5);
+            }
+            25% {
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateX(20px) scale(1);
+            }
+            75% {
+                opacity: 0.6;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+                transform: translateX(-20px) scale(0.3);
+            }
+        }
+            </style>
+            <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="loader-container">
+        <svg class="loader" viewBox="0 0 100 100">
+            <circle class="circle circle-bg" cx="50" cy="50" r="45"></circle>
+            <circle class="circle circle-progress" cx="50" cy="50" r="45"></circle>
+            <defs><linearGradient id="linearGradient4349" x1="3" x2="21" y1="23" y2="1" gradientUnits="userSpaceOnUse"><stop stop-color="#083fa6" offset="0"/><stop stop-color="#2dcbfd" offset="1"/></linearGradient></defs><g fill-rule="evenodd" stroke-linecap="square" transform="translate(34 34) scale(1.3 1.3)"><path d="m5 0c-1.662 0-3 1.338-3 3v18c0 1.662 1.338 3 3 3h14c1.662 0 3-1.338 3-3v-12l-9-9h-8zm10 0 7 7v-7h-7z" fill="url(#linearGradient4349)"/><g><path d="m2 20v1c0 1.662 1.338 3 3 3h14c1.662 0 3-1.338 3-3v-1c0 1.662-1.338 3-3 3h-14c-1.662 0-3-1.338-3-3z" fill-opacity=".19965"/><path d="m15 0h1.4l5.6 5.6v1.4z" fill-opacity=".19965"/></g><g><g fill="#fafafa"><rect x="6" y="9" width="5" height="1"/><rect x="6" y="11" width="5" height="1"/><rect x="6" y="13" width="5" height="1"/><rect x="6" y="15" width="12" height="1"/><rect x="6" y="17" width="5" height="1"/></g><path d="m12 9v5h6v-5h-6zm4.5 1a0.5 0.5 0 0 1 0.5 0.5 0.5 0.5 0 0 1-0.5 0.5 0.5 0.5 0 0 1-0.5-0.5 0.5 0.5 0 0 1 0.5-0.5zm-2.5 1 2 2h-3l1-2z" fill="#9ae9f9"/></g></g>
+        </svg>
+        
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        
+        <div class="loading-text">Génération</div>
+    </div>
         </div>
     </div>
 </body>

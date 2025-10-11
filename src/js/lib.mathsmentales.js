@@ -221,6 +221,8 @@ window.onload = function() {
     document.getElementById('fontType').onchange = ()=>{MM.setFontType()}
     // boutons génération documents
     document.getElementById("chooseParamType").onchange = (evt)=>{MM.showParameters(evt.target.value)}
+    // document LibreOffice
+    document.getElementById("btngeneratedoc").onclick = ()=>{MM.createODTDoc()}
     // fiche d'exercices
     document.getElementById("btngeneratesheet").onclick = ()=>{MM.createExercicesSheet()}
     document.getElementById("btn-ex-adresse").onclick = ()=>{MM.copyURL('exosheet');};
@@ -310,10 +312,6 @@ window.onload = function() {
         // copy value of textarea to clipboard
         navigator.clipboard.writeText(document.getElementById("text-export-pixelart").value);
         alert("Copié dans le presse-papiers !");
-    }
-
-    document.getElementById('btn-export-odt').onclick = () => {
-        MM.exportODT(document.getElementById('enonce-content'), document.getElementById('corrige-content'))
     }
 
     // boutons section corrigés

@@ -124,7 +124,7 @@ const MM = {
         document.getElementById(tab).style.display = "";
     },
     showParameters: function (id) {
-        let ids = ["paramsdiapo", "paramsexos", "paramsinterro", "paramsceinture", "paramsflashcards", "paramsfichememo", "paramswhogots", "paramsdominos", 'paramspuzzle', "paramscourse", "paramsduel", "paramswall"];//
+        let ids = ["paramsdiapo", "paramsdocLOOO", "paramsexos", "paramsinterro", "paramsceinture", "paramsflashcards", "paramsfichememo", "paramswhogots", "paramsdominos", 'paramspuzzle', "paramscourse", "paramsduel", "paramswall"];//
         if (ids.indexOf(id) < 0) return false;
         // hide all
         for (let i = 0, len = ids.length; i < len; i++) {
@@ -584,6 +584,30 @@ const MM = {
     },
     getFacetoFace() {
         this.faceToFace = utils.getRadioChecked("facetoface");
+    },
+    /**
+     * Create doc ODT
+     */
+    createODTDoc:function () {
+        // générer 
+        this.showQuestions()
+        document.getElementById('loading').style.display = 'flex'
+        // prévoir un truc qui montre que ça mouline
+        let title = document.getElementById('docTitle').value || 'document MathsMentales'
+        // export
+        setTimeout(() => {
+            const what = utils.getRadioChecked('radiodoc')
+            if (what === 'questions') {
+                MM.exportODT(title, document.getElementById('enonce-content'))
+            } else if (what === 'answers') {
+                MM.exportODT(title, document.getElementById('corrige-content'))
+            } else {
+                MM.exportODT(title, document.getElementById('enonce-content'),document.getElementById('corrige-content'))
+            }
+        }, 1500)
+        setTimeout(()=> {
+                document.getElementById('loading').style.display = 'none'
+            }, 2500)
     },
     /**
      * Create a sheet of exercices
@@ -1486,13 +1510,11 @@ const MM = {
     /**
      * export enoncés et corrigés from DOM
      */
-    exportODT(enonceDOM, corrigeDOM) {
+    exportODT(title, enonceDOM, corrigeDOM) {
         const elements = []
         // titres (h3)
         const titlesEnonces = enonceDOM.querySelectorAll('h3');
         const listesEnonces = enonceDOM.querySelectorAll('ol');
-        const titlesCorriges = corrigeDOM.querySelectorAll('h3')
-        const listesCorriges = corrigeDOM.querySelectorAll('ol');
         for(let [index, content] of titlesEnonces.entries()) {
             elements.push({type: 'title', text: content.innerHTML})
             const lignes = listesEnonces[index].querySelectorAll('li')
@@ -1514,43 +1536,48 @@ const MM = {
                     el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
                     formulaNb++
                 })                
-                item.text = li.innerHTML
+                // item.text = li.innerHTML
+                item.content = li
                 liste.items.push(item)
             }
             elements.push(liste)
         }
-        for (let [index, content] of titlesCorriges.entries()) {
-            elements.push({type: 'title', text: 'Correction '+content.innerHTML})
-            const lignes = listesCorriges[index].querySelectorAll('li')
-            const liste = {type:'list',items:[]}
-            for(let ligne of lignes){
-                const item = {}
-                const li = ligne.cloneNode(true);
-                const formules = []
-                ligne.querySelectorAll('span[data-latex]').forEach(el => {
-                    const copy = el.parentNode.cloneNode(true)
-                    document.body.appendChild(copy)
-                    const dims = copy.getBoundingClientRect()
-                    formules.push([dims.width,dims.height])
-                    document.body.removeChild(copy)
-                })
-                let formulaNb = 0
-                // remplacer le latex par mathml
-                li.querySelectorAll('span[data-latex]').forEach(el => {
-                    el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
-                    formulaNb++
-                })
-                const button = li.querySelector('button')
-                if (button !== null){
-                    li.removeChild(button)
-                    li.innerHTML = li.innerHTML.substring(0,li.innerHTML.lastIndexOf('&nbsp;'))
+        if (corrigeDOM) {
+            const titlesCorriges = corrigeDOM.querySelectorAll('h3')
+            const listesCorriges = corrigeDOM.querySelectorAll('ol');
+            for (let [index, content] of titlesCorriges.entries()) {
+                elements.push({type: 'title', text: 'Correction '+content.innerHTML})
+                const lignes = listesCorriges[index].querySelectorAll('li')
+                const liste = {type:'list',items:[]}
+                for(let ligne of lignes){
+                    const item = {}
+                    const li = ligne.cloneNode(true);
+                    const formules = []
+                    ligne.querySelectorAll('span[data-latex]').forEach(el => {
+                        const copy = el.parentNode.cloneNode(true)
+                        document.body.appendChild(copy)
+                        const dims = copy.getBoundingClientRect()
+                        formules.push([dims.width,dims.height])
+                        document.body.removeChild(copy)
+                    })
+                    let formulaNb = 0
+                    // remplacer le latex par mathml
+                    li.querySelectorAll('span[data-latex]').forEach(el => {
+                        el.parentNode.outerHTML = `<math width="${formules[formulaNb][0]}" height="${formules[formulaNb][1]}">`+convertLatexToMathMl(el.dataset.latex)+'</math>'
+                        formulaNb++
+                    })
+                    const button = li.querySelector('button')
+                    if (button !== null){
+                        li.removeChild(button)
+                        li.innerHTML = li.innerHTML.substring(0,li.innerHTML.lastIndexOf('&nbsp;'))
+                    }
+                    item.text = li.innerHTML
+                    liste.items.push(item)
                 }
-                item.text = li.innerHTML
-                liste.items.push(item)
+                elements.push(liste)
             }
-            elements.push(liste)
         }
-        GenerateODT(elements)
+        GenerateODT(title, elements)
     },
     setURL(string, type) {
         if (utils.baseURL.indexOf("index.html") < 0) utils.baseURL += "index.html";
