@@ -40,9 +40,9 @@
                         ["angle", ["${:B}", "${:A}", "${:C}"],{"radius":1,"label":{"visible":false}}]
                     ]    
                 },
-            "question":"Quelle est la nature de l'angle $$\\widehat{${:B+:A+:C}}$$ ?",
+            "question":"Quelle est la nature de l'angle $$\\widehat{\\text{${:B+:A+:C}}}$$ ?",
             "audio":"Quelle est la nature de l'angle ${:B} ${:A} ${:C} ?",
-            "answer":"L'angle $$\\widehat{${:B+:A+:C}}$$ est un angle <span class='red'>${:vocab[:cx]}</span>",
+            "answer":"L'angle $$\\widehat{\\text{${:B+:A+:C}}}$$ est un angle <span class='red'>${:vocab[:cx]}</span>",
             "value":"${:vocab[:cx]}"
         },
         {
@@ -69,9 +69,9 @@
                         ["angle", ["${:B}", "${:A}", "${:C}"],{"radius":1,"label":{"visible":false}}]
                     ]    
                 },
-            "question":"Quelle est la nature de l'angle $$\\widehat{${:B+:A+:C}}$$ ?",
+            "question":"Quelle est la nature de l'angle $$\\widehat{\\text{${:B+:A+:C}}}$$ ?",
             "audio":"Quelle est la nature de l'angle ${:B} ${:A} ${:C} ?",
-            "answer":"L'angle $$\\widehat{${:B+:A+:C}}$$ est un angle <span class='red'>${:vocab[:cx]}</span>",
+            "answer":"L'angle $$\\widehat{\\text{${:B+:A+:C}}}$$ est un angle <span class='red'>${:vocab[:cx]}</span>",
             "value":"${:vocab[:cx]}"
         },
         { 
