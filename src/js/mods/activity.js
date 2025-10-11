@@ -3,7 +3,6 @@ import MMmath from "./math.js";
 import Figure from "./figure.js";
 import library from "./library.js";
 
-// import MM from "./MM.js";
 // lecture des fichiers exercice
 /**
 * Structure d'un fichier exercice
