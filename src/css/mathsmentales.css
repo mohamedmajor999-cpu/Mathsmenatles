@@ -148,6 +148,11 @@ mark {
   position:relative;
   padding: 2rem 10rem;
 }
+.infosbug {
+  margin:auto;
+  position:relative;
+  padding: 2rem 10rem;
+}
 .grille .tuile h3 {
   font-weight: 500;
   font-size: 2.4rem;
@@ -199,6 +204,9 @@ mark {
   flex-direction: column;
   transition: .2s;
   margin: 0;
+}
+.grille .tuile.bleue {
+  background: linear-gradient(85deg,#e5efff,#9ec9fa);
 }
 @media screen and (max-width: 600px) {
     .grille .tuile {

@@ -1462,6 +1462,17 @@ const MM = {
                 if (MM.content[ordre[o][i]].activitiesNumber === undefined || MM.content[ordre[o][i]].activitiesNumber === 0 || i === "activitiesNumber") continue;
                 setContent(ordre[o][i], MM.content[ordre[o][i]]);
             }
+            if (o==='grille-college') {
+                const elt = utils.create("article", { "className": "tuile bleue", "title": "Cliquer pour afficher toutes les activités du niveau" });
+                const titre = utils.create("h3", { "innerHTML": '3e' });
+                elt.appendChild(titre);
+                const nba = utils.create("div", { "innerHTML": "Automatismes" });
+                elt.onclick = () => {
+                    window.location.href='/brevet-2025.html'
+                };
+                elt.appendChild(nba);
+                grille.appendChild(elt);
+            }
         }
     },
     /**
