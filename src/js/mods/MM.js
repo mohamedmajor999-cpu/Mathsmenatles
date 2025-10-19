@@ -8,7 +8,7 @@ import draw from "./draw.js";
 import activity from "./activity.js";
 import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
 import QRCodeStyling from '../libs/qr-code-styling/qr-code-styling.js'
-import { convertLatexToMathMl } from '../libs/cortexjs/mathlive.min.mjs'
+import { convertLatexToMathMl } from '../libs/cortexjs/mathlive.min.mjs.js'
 import GenerateODT from './odt.js'
 
 export { MM as default }
