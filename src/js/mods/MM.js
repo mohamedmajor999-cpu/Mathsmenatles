@@ -12,6 +12,7 @@ import { convertLatexToMathMl } from '../libs/cortexjs/mathlive.min.mjs.js'
 import GenerateODT from './odt.js'
 
 export { MM as default }
+const toast = document.getElementById('toast')
 const MM = {
     version: 7,// à mettre à jour à chaque upload pour régler les pb de cache
     content: undefined, // liste des exercices classés niveau/theme/chapitre chargé au démarrage
@@ -1144,8 +1145,10 @@ const MM = {
                 // on prépare l'affichage des paniers
                 MM.restoreCartsInterface();
                 MM.showCartInterface();
+                // crée l'affichage des paniers
+                MM.carts.forEach(thecart => thecart.display())
                 MM.showCart(1);
-                MM.editActivity(0);
+                // MM.editActivity(0);
             }).catch(err => {
                 // erreur à l'importation :(
                 let alert = utils.create("div",
@@ -1252,29 +1255,44 @@ const MM = {
         let urlSansSeed = this.setURL(paramsSansSeed, type);
         let li = utils.create("li");
         let typeName = "Panier"
+        let btnID = 'copytohistoric'
         if (type === "cansheet") {
             typeName = "🏃‍♀️ Course aux nombres"
+            btnID = 'btn-can-'+btnID
         } else if (type === "exosheet") {
             typeName = "📖 Fiche d'exercices"
+            btnID = 'btn-ex-'+btnID
         } else if (type === "exam") {
             typeName = "📝 Interrogation"
+            btnID = 'btn-exam-'+btnID
         } else if (type === "duel") {
             typeName = "💫 Duel"
+            btnID = 'btn-duel-'+btnID
         } else if (type === "ceinture") {
             typeName = "🥋 Ceinture"
+            btnID = 'btn-ceinture-'+btnID
         } else if (type === 'cartesflash') {
             typeName = '⚡ Cartes flash'
+            btnID = 'btn-flash-'+btnID
         } else if (type === 'fichememo') {
             typeName = '🎦 Fiche Memo'
+            btnID = 'btn-memo-'+btnID
         } else if (type === 'puzzle') {
             typeName = '🧩 Puzzle'
+            btnID = 'btn-puzzle-'+btnID
         } else if (type === 'whogots') {
             typeName = '⁉️ J’ai/Qui a ?'
+            btnID = 'btn-wg-'+btnID
         } else if (type === 'dominos') {
             typeName = '🀄 Dominos'
+            btnID = 'btn-dominos-'+btnID
         } else if (type === 'wall') {
             typeName = '🧱 Panneau'
+            btnID = 'btn-wall-'+btnID
+        } else {
+            btnID = 'btn'+btnID
         }
+        const btnClicked = document.getElementById(btnID)
         let span = utils.create("span", { innerText: typeName + " du " + utils.getDate() + ": ", className: "bold" });
         li.appendChild(span);
         const a = utils.create("a", { href: url, innerText: "🎯 lien (mêmes données)" });
@@ -1294,6 +1312,14 @@ const MM = {
                 let parent = lis[k].parentNode;
                 contener.removeChild(parent);
             }
+            toast.classList.add('show');
+            btnClicked.innerHTML = btnClicked.innerHTML.replace('Historique','📁 Copié ✅')
+            setTimeout(function() {
+                toast.classList.remove('show');
+                setTimeout(function() {
+                    btnClicked.innerHTML = btnClicked.innerHTML.replace('📁 Copié ✅','Historique');
+                }, 300);
+            }, 3000);
         } catch (err) {
             console.log(err)
         }
