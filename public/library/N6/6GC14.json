@@ -45,7 +45,7 @@
                     ["angle",["${:x}","O","${:B}"],{"orthoType":"sector","radius":2.3,"label":{"visible":false},"fillColor":"transparent","strokeColor":"${:color1}"}]
                 ]
             },
-            "question":"[O${:x}) est la biessectrice de l'angle $$\\widehat{${:A}O${:B}}$$, quelle est la mesure de $$\\widehat{${:A}O${:B}}$$ ?",
+            "question":"[O${:x}) est la bissectrice de l'angle $$\\widehat{${:A}O${:B}}$$, quelle est la mesure de $$\\widehat{${:A}O${:B}}$$ ?",
             "answer":"$$\\widehat{${:A}O${:B}}=${2*:ang1}°$$",
             "value":"${2*:ang1}"
         },{
@@ -83,7 +83,7 @@
                     ["angle",["${:x}","O","${:B}"],{"orthoType":"sector","radius":2.3,"label":{"visible":false},"fillColor":"transparent","strokeColor":"${:color1}"}]
                 ]
             },
-            "question":"[O${:x}) est la biessectrice de l'angle $$\\widehat{${:A}O${:B}}$$, quelle est la mesure de $$\\widehat{${:x}O${:B}}$$ ?",
+            "question":"[O${:x}) est la bissectrice de l'angle $$\\widehat{${:A}O${:B}}$$, quelle est la mesure de $$\\widehat{${:x}O${:B}}$$ ?",
             "answer":"$$\\widehat{${:x}O${:B}}=${:ang1}°$$",
             "value":"${:ang1}"
         }
