@@ -127,11 +127,11 @@
                     ["angle", ["${:B}","${:O}","${:C}"], {"orthoType":"sector","radius":2,"name":"${:ac-:ab}°","fillColor":"blue","strokeColor":"blue","label":{"strokeColor":"blue","anchorX":"auto","anchorY":"auto"}}]
                 ]
             },
-            "question":"Sur ce schéma, $$\\widehat{${:A+:O+:B}}=${:ab}°$$ et $$\\widehat{${:B+:O+:C}}=${:ac-:ab}°$$. L‘angle $$\\widehat{${:A+:O+:C}}$$ ?",
+            "question":"Sur ce schéma, $$\\widehat{${:A+:O+:B}}=${:ab}°$$ et $$\\widehat{${:B+:O+:C}}=${:ac-:ab}°$$. L‘angle $$\\widehat{${:A+:O+:C}}$$ est-il plat ?",
             "answer":"$$${:ab}°+${:ac-:ab}°=${:ac}°$$ donc $$\\widehat{${:A+:O+:C}}$$ <span class='red'>${:ac==180?'est':'n’est pas'} un angle plat.</span>.",
             "value":"${:ac==90?'oui':'non'}"
         },{
-            "name":"Angle plat ou pas ?",
+            "name":"Avec un angle plat",
             "vars":{
                 "l":"0_${:points.length-1}_4_^&",
                 "O":"${:points[0]}",
@@ -158,7 +158,7 @@
                     ["angle", ["${:B}","${:O}","${:C}"], {"orthoType":"sector","radius":2,"name":"${:ac-:ab}°","fillColor":"blue","strokeColor":"blue","withLabel":"${:AOB?0:1}","label":{"autoposition":true,"offset":[0,0],"strokeColor":"blue"}}]
                 ]
             },
-            "question":"Sur ce schéma, l‘angle $$\\widehat{${:A+:O+:C}}$$ et $$\\widehat{${:AOB?:A+:O+:B::B+:O+:C}}=${:AOB?:ab:180-:ab}°$$. Quelle est la mesure de $$\\widehat{${:AOB?:B+:O+:C::A+:O+:B}}$$?",
+            "question":"Sur ce schéma, l‘angle $$\\widehat{${:A+:O+:C}}$$ est plat et $$\\widehat{${:AOB?:A+:O+:B::B+:O+:C}}=${:AOB?:ab:180-:ab}°$$. Quelle est la mesure de $$\\widehat{${:AOB?:B+:O+:C::A+:O+:B}}$$?",
             "answer":"$$\\widehat{${:AOB?:B+:O+:C::A+:O+:B}}=180°-${:AOB?:ab:180-:ab}°=\\color{red}{${:AOB?180-:ab::ab}°}$$.",
             "value":["${:AOB?180-:ab::ab}","${:AOB?180-:ab::ab}°"]
         }
