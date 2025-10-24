@@ -1,6 +1,6 @@
 {
     "title":"Calculs successifs (6e)",
-    "ID":"6ND11",
+    "description":"Suivre les priorités des opérations.",
     "dest":["6ND", "5NC"],
     "options":[{
         "name":"+ suivi de -",
@@ -26,6 +26,30 @@
         "question": "${:a}-${:b}\\times ${:c}",
         "answer":":question=\\color{red}{${:a-:b*:c}}",
         "value":"${:a-:b*:c}"
+    },{
+        "name":"÷ suivi de ×",
+        "vars":{"n":"1_10","b":"2_10","a":"${:n*:b}","c":"2_10"},
+        "question": "${:a}\\div${:b}\\times ${:c}",
+        "answer":":question=\\color{red}{${Math.round(:a/:b*:c)}}",
+        "value":"${Math.round(:a/:b*:c)}"
+    },{
+        "name":"× suivi de ÷",
+        "vars":{"a":"2_10","b":"2_10","c":"${MMmath.unDiviseurInferieurA10(:a*:b,true)}"},
+        "question": ":a \\times :b \\div :c",
+        "answer":":question=\\color{red}{${Math.round(:a*:b/:c)}}",
+        "value":"${Math.round(:a/:b*:c)}"
+    },{
+        "name":"Deux divisions",
+        "vars":{"n":"2_10","a":"2_10","b":[2,3,4,5,10],"c":"${:a*:b*:n}"},
+        "question":":c \\div :b \\div :a",
+        "answer":":question=\\color{red}{:n}",
+        "value":":n"
+    },{
+        "name":"Deux multiplications",
+        "vars":{"n":"2_10","a":"2_10","b":[2,3,4,5,10],"c":"${:a*:b*:n}"},
+        "question":":n \\times :a \\times :b",
+        "answer":":question=\\color{red}{:c}",
+        "value":":c"
     }
     ]
 }
