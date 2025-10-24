@@ -1,6 +1,5 @@
 {
     "title":"Double, carré, triple, cube d'un entier",
-    "ID":"6ND25",
     "type":"text",
     "speech":1,
     "description":"Différencier le vocabulaire double, carré, triple, cube.",
@@ -18,6 +17,13 @@
         {
             "name":"Triple, cube",
             "vars":{"choix":"2_3", "n":"1_${:choix<3?10:5}"}
+        },
+        {
+            "name":"Notation carré, cube",
+            "vars":{"choix":[2,3], "n":"1_5"},
+            "question":"$$:n^:choix=?$$",
+            "answer":"$$:n^:choix=\\color{green}{${Array(:choix).fill(:n).join('\\times')}}=\\color{red}{${:n**:choix}}$$",
+            "value":"${:n**:choix}"
         }
     ],
     "question":"Quel est le ${:vocab[:choix]} de $$${:n}$$ ?",
