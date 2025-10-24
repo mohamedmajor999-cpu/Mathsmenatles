@@ -884,8 +884,8 @@ const MM = {
         let url = MM.setURL(params);
         history.pushState({ 'id': 'Homepage' }, pageName, url);
     },
-    loadActivity(url) {
-        library.load(url, MM.version).then(([json, id]) => {
+    loadActivity(activityId) {
+        library.load(activityId, MM.version).then(([json, id]) => {
             const obj = new activity(json, id);
             MM.editedActivity = obj;
             // show tab-content
@@ -944,8 +944,8 @@ const MM = {
                 library.displayContent(listeURLs);
             } else if (vars.u !== undefined) {
                 // s'il n'y a qu'une activité, on l'affiche.
-                let level = regexp.exec(vars.u)[0];
-                library.load("N" + level + "/" + vars.u + ".json", MM.version).then(([json, id]) => {
+                //let level = regexp.exec(vars.u)[0];
+                library.load(vars.u, MM.version).then(([json, id]) => {
                     const obj = new activity(json, id);
                     MM.editedActivity = obj;
                     // show tab-content

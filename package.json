@@ -1,6 +1,6 @@
 {
   "name": "mathsmentales",
-  "version": "2.3.156",
+  "version": "2.3.159",
   "description": "Outil pour travailler les automatismes et le calcul mental en mathématiques",
   "main": "index.html",
   "type": "commonjs",
@@ -20,6 +20,7 @@
     "@rollup/stream": "^3.0.1",
     "gulp": "^5.0.0",
     "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-uglify": "^3.0.2",
     "rollup": "^4.17.2",

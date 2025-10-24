@@ -140,10 +140,10 @@ export default class activity {
      */
     static import(obj, id, version){
         /* load */
-        let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
-        let level = regexp.exec(obj.i)[0];
-        let url = "N"+level+"/"+obj.i+".json";
-        return library.import(url, version).then((json)=>{
+        //let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
+        //let level = regexp.exec(obj.i)[0];
+        // const url = activitesURL[obj.i]//"N"+level+"/"+obj.i+".json";
+        return library.import(obj.i, version).then((json)=>{
             let act = new this(json);
             act.id = obj.i;
             act.chosenOptions = obj.o;

@@ -1,9 +1,12 @@
-// import katex from '../libs/katex/katex.esm.js';
 import seedrandom from '../libs/seedrandom/seedrandom.esm.js';
 import { convertLatexToMarkup, MathfieldElement, renderMathInDocument, renderMathInElement } from '../libs/mathlive/mathlive.mjs.js';
 export { utils as default }
 
-MathfieldElement.fontsDirectory = '../css/katex/fonts'
+if (window.location.host == "mathsmentales.forge.apps.education.fr" || window.location.host.indexOf('127.0.0.1')===0){
+    MathfieldElement.fontsDirectory = '/src/js/libs/katex/fonts'
+} else {
+    MathfieldElement.fontsDirectory = '../css/katex/fonts'
+}
 MathfieldElement.soundsDirectory = null
 // Some traductions
 const moisFR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];

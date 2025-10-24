@@ -1,5 +1,7 @@
 import { utils, _ } from './utils.js';
 import content from "./content.js";
+import activitesURL from './activitiesurl.js'
+
 //import theactivities from "./theactivities.js";
 
 export { library as default };
@@ -10,10 +12,11 @@ const library = {
    * Ouvre un fichier de la library
    * @param {String} url adresse du fichier à ouvrir
    */
-  load: async function (url, version) {
+  load: async function (activityId, version) {
     // pour le développement, on peut lire une activité qui n'a pas encore été intégrée dans la bibliothèque
     // en fournissant ?u=id de l'activité.
     let source = ''
+    let url = activitesURL[activityId]
     if (location.hostname === '127.0.0.1') source = '../public/'
     const result = await fetch(source + "library/" + url + "?v" + version);
     if (result.status) {
@@ -30,8 +33,9 @@ const library = {
    * 
    * @param {String} url url du json à récupérer
    */
-  loadJSON: async function (url, version) {
+  loadJSON: async function (activityId, version) {
     let source = ''
+    let url = activitesURL[activityId]
     if (location.hostname === '127.0.0.1') source = '../public/'
     const r = await fetch(source + "library/" + url + "?v" + version)
     if (r.ok === true) return r.json()
@@ -42,8 +46,9 @@ const library = {
    * @param {String} url adresse
    * @returns Promesse de chargement du fichier à charger
    */
-  import: async function (url, version) {
+  import: async function (activityId, version) {
     let source = ''
+    let url = activitesURL[activityId]
     if (location.hostname === '127.0.0.1') source = '../public/'
     const r = await fetch(source + "library/" + url + "?v" + version)
     if (r.ok === true) return r.json()
@@ -128,20 +133,20 @@ const library = {
                     tt = tt.replace(reg, function (x) {
                        return '<mark>' + x + '</mark>' })
                   })
-                  chapExo.push({ "u": lexo.u, "t": tt, id: lexo.id })
+                  chapExo.push({ "t": tt, id: lexo.id })
                 } else
                   // recherche dans le code de l'exo
                   if (chaineATrouver.every(txt => {
-                    return lexo.u.toLowerCase().indexOf(txt + ".") > -1
+                    return lexo.id.toLowerCase().indexOf(txt + ".") > -1
                   })) {
-                    chapExo.push({ "u": lexo.u, "t": lexo.t, id: lexo.id });
+                    chapExo.push({ "t": lexo.t, id: lexo.id });
                   } else
                     // recherche dans les descriptifs
                     if (lexo.d !== undefined) {
                       if (chaineATrouver.every(txt => {
                         return lexo.d.toLowerCase().indexOf(txt) > -1
                       })) {
-                        chapExo.push({ "u": lexo.u, "t": lexo.t, id: lexo.id });
+                        chapExo.push({ "t": lexo.t, id: lexo.id });
                       }
                     }
               }
@@ -194,11 +199,11 @@ const library = {
           for (let k = 0, len = nbexos; k < len; k++) {
             let id = niveau["themes"][i]["chapitres"][j]["e"][k].id;
             let title = niveau["themes"][i]["chapitres"][j]["e"][k]["t"];
-            let url = niveau["themes"][i]["chapitres"][j]["e"][k]["u"];
+            // let url = niveau["themes"][i]["chapitres"][j]["e"][k]["u"];
             if (niveau["themes"][i]["chapitres"][j]["e"][k]["new"]) {
-              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='new tooltip' data-id='" + id + "' data-url='" + url + "'><input type='checkbox' class='checkitem' value='" + id + "' data-url='" + url + "'>" + title + "<div class='tooltiptext'>" + id + "</div><span class='link' data-link='"+id+"' title='Cliquer pour copier le lien\ndans le presse papier'>"+svg+"</span></li>";
+              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='new tooltip' data-id='" + id + "'><input type='checkbox' class='checkitem' value='" + id + "'>" + title + "<div class='tooltiptext'>" + id + "</div><span class='link' data-link='"+id+"' title='Cliquer pour copier le lien\ndans le presse papier'>"+svg+"</span></li>";
             } else {
-              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='tooltip' data-id='" + id + "' data-url='" + url + "'><input type='checkbox' class='checkitem' value='" + id + "' data-url='" + url + "'>" + title + "<div class='tooltiptext'>" + id + "</div><span class='link' title='Cliquer pour copier le lien\ndans le presse papier' data-link='"+id+"'>"+svg+"</span></li>";
+              htmlc += "<li id='rcli" + i + "-" + j + "-" + k + "' class='tooltip' data-id='" + id + "'><input type='checkbox' class='checkitem' value='" + id + "'>" + title + "<div class='tooltiptext'>" + id + "</div><span class='link' title='Cliquer pour copier le lien\ndans le presse papier' data-link='"+id+"'>"+svg+"</span></li>";
             }
           }
         } else {

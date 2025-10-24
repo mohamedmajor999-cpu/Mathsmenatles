@@ -17,7 +17,8 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
       // on stocke la date de création du fichier
       arrayOfFiles.push([file,
                       path.join(__dirname, dirPath, "/", file),
-                      fs.statSync(dirPath + "/" + file).birthtime
+                      fs.statSync(dirPath + "/" + file).birthtime,
+                      path.join(dirPath, "/", file)
                     ])
     }
   })
@@ -43,13 +44,14 @@ for (const niveau in structure){
   let listOfFiles = getAllFiles("./N"+niveau);
   listOfFiles.forEach(function(fichierExo){
     let nouveau = false;
-    let dt = new Date(fichierExo[2]).getTime();
-    if(dt > now){nouveau = true;console.log(fichierExo[0])}
+    // let dt = new Date(fichierExo[2]).getTime();
+    // if(dt > now){nouveau = true;console.log(fichierExo[0])}
     //console.log(fichierExo);
     let json = JSON.parse(fs.readFileSync(fichierExo[1]));
-    const ID = fichierExo[0].replace('.json', '')
+    const ID = fichierExo[0].replace('.json', '').replace('.yaml','')
     listOfActivities[ID]=json;
-    let exo = {"u":"N"+niveau+"/"+fichierExo[0], "t":json.title+(json.speech?" 📣":""),"new":nouveau, id:ID};
+    listOfActivities[ID].url = fichierExo[3]
+    let exo = {"t":json.title+(json.speech?" 📣":""),"new":nouveau, id:ID};
     // descriptif
     if(json.description !== undefined){
       exo.d = json.description;
@@ -85,8 +87,9 @@ fs.writeFileSync("../liste-des-exercices.html",
   ).join("")+
   "</ol></body></html>"
 );
-let dataActivities = JSON.stringify(listOfActivities);
-fs.writeFileSync("../../src/js/mods/theactivities.js","export {theactivities as default};"+
-"const theactivities="+dataActivities);
+const dataActivities = {}
+Object.keys(listOfActivities).forEach(id => {dataActivities[id]=listOfActivities[id].url});
+fs.writeFileSync("../../src/js/mods/activitiesurl.js","export {activitiesURL as default};"+
+"const activitiesURL="+JSON.stringify(dataActivities));
 let data = JSON.stringify(structure);
 fs.writeFileSync("../../src/js/mods/content.js", "export {content as default};const content="+data);

@@ -7,6 +7,7 @@ const cleanCSS = require('gulp-clean-css')
 const concat = require('gulp-concat')
 const fs = require('fs')
 const path = require('path')
+
 /*
 à faire dans le terminal de VSC
 lancer "gulp" pour une maj générale (modif d'un module touchant les autres, par exemple)
@@ -19,6 +20,16 @@ lancer "gulp update-version-ceinture" pour modifier les version d'appel des fich
 "gulp bump-minor" pour une petite mise à jour (nouvelle fonctionnalité par exemple)
 "gulp bump-patch" pour un patch (correction de bug, ajout d'activité)
 */
+
+// création des dossiers ./public/css et ./public/js si inexistants
+// create public/js directory if not exist
+if (!fs.existsSync('./public/js')) {
+  fs.mkdirSync('./public/js')
+}
+if (!fs.existsSync('./public/css')) {
+  fs.mkdirSync('./public/css')
+}
+
 let cache
 const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall', 'puzzle', 'diaporama', 'jaiquia', 'fichememo' ]
 

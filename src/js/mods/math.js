@@ -406,6 +406,19 @@ const MMmath = {
     if (notNb && diviseurs.length > 1) diviseurs = diviseurs.slice(0, -1);
     return diviseurs[MMmath.aleaInt(0, diviseurs.length - 1)];
   },
+  unDiviseurInferieurA10(nb, notOne = false) {
+    if (Number(nb) === 0) return MMmath.aleaInt(1, 10);
+    if (Number(nb) === 1) return 1
+    let diviseurs = MMmath.listeDiviseurs(nb, true);
+    // on enlève la première valeur qui est 1.
+    if (notOne) diviseurs = diviseurs.slice(1)
+    // on enlève toutes les valeurs supérieures à 10
+    for (let i = diviseurs.length - 1; i >= 0; i--) {
+      if (diviseurs[i] > 10) diviseurs.splice(i, 1);
+      if (diviseurs[i] < 11) break
+    }
+    return diviseurs[MMmath.aleaInt(0, diviseurs.length - 1)];
+  },
   /**
    * Renvoie le décomposé en facteurs premiers d'un nombre
    * @param {integer} nb

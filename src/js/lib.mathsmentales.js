@@ -364,7 +364,7 @@ window.onload = function() {
     };
     document.getElementById("resultat-chercher").addEventListener("click",async (evt)=>{
         if(evt.target.classList.contains('actitityLink')){
-            await navigator.clipboard.writeText(utils.baseURL+'?u='+evt.target.parentNode.dataset.link)
+            await navigator.clipboard.writeText(utils.baseURL+'?u='+evt.target.parentNode.dataset.id)
             evt.target.classList.add('red')
             setTimeout(()=>{evt.target.classList.remove('red')},1500)
         } else if (evt.target.type === 'checkbox'){
@@ -375,9 +375,9 @@ window.onload = function() {
             utils.deploy(evt.target);
         } else if(evt.target.id.indexOf("rcli")===0){
             // clic sur une activite
-            MM.loadActivity(evt.target.dataset['url'])
+            MM.loadActivity(evt.target.dataset.id)
         } else if (evt.target.parentNode.id.indexOf("rcli")===0) {
-            MM.loadActivity(evt.target.parentNode.dataset['url'])
+            MM.loadActivity(evt.target.parentNode.dataset.id)
         }
     })
     // bouton d'ajout au panier
