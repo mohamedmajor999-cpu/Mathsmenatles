@@ -42,6 +42,30 @@
         "question": "Calculer l'angle de <b>tangente</b> égale à <b>${:valeur}</b>, arrondi à l'unité.${:calculatrice}",
         "answer":"$$Arctan(${:valeur})\\approx \\color{red}{${:angle}°}$$ arrondi à l'unité",
         "value":"${:angle}"
+    },{
+        "name":"Calculer un angle aigu à partir de son cosinus (fraction)",
+        "vars":{
+            "num":"1_14","den":"${:num+1}_15", "angle":"${Math.round(Math.acos(:num/:den)*180/Math.PI)}","angleM":"${MMmath.round(Math.acos(:num/:den)*180/Math.PI,6)}"
+        },
+        "question": "Calculer l'angle de <b>cosinus</b> égal à <b>$$\\dfrac{:num}{:den}$$</b>, arrondi à l'unité.${:calculatrice}",
+        "answer":"$$Arccos\\left(\\dfrac{:num}{:den}\\right)${:angle==:angleM?'=':'\\approx'} \\color{red}{${:angle}°}$$ arrondi à l'unité",
+        "value":"${:angle}"
+    },{
+        "name":"Calculer un angle aigu à partir de son sinus (fraction)",
+        "vars":{
+            "num":"1_14","den":"${:num+1}_15", "angle":"${Math.round(Math.asin(:num/:den)*180/Math.PI)}","angleM":"${MMmath.round(Math.asin(:num/:den)*180/Math.PI,6)}"
+        },
+        "question": "Calculer l'angle de <b>sinus</b> égal à <b>$$\\dfrac{:num}{:den}$$</b>, arrondi à l'unité.${:calculatrice}",
+        "answer":"$$Arcsin\\left(\\dfrac{:num}{:den}\\right)${:angle==:angleM?'=':'\\approx'} \\color{red}{${:angle}°}$$ arrondi à l'unité",
+        "value":"${:angle}"
+    },{
+        "name":"Calculer un angle aigu à partir de sa tangente (fraction)",
+        "vars":{
+            "num":"1_15","den":"1_15", "angle":"${Math.round(Math.atan(:num/:den)*180/Math.PI)}","angleM":"${MMmath.round(Math.atan(:num/:den)*180/Math.PI,6)}"
+        },
+        "question": "Calculer l'angle de <b>tangente</b> égal à <b>$$\\dfrac{:num}{:den}$$</b>, arrondi à l'unité.${:calculatrice}",
+        "answer":"$$Arctan\\left(\\dfrac{:num}{:den}\\right)${:angle==:angleM?'=':'\\approx'} \\color{red}{${:angle}°}$$ arrondi à l'unité",
+        "value":"${:angle}"
     }
     ]
 }
