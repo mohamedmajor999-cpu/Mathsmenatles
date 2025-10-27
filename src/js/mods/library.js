@@ -1,6 +1,7 @@
 import { utils, _ } from './utils.js';
 import content from "./content.js";
 import activitesURL from './activitiesurl.js'
+import jsYaml from '../libs/js-yaml.mjs.js'
 
 //import theactivities from "./theactivities.js";
 
@@ -17,16 +18,24 @@ const library = {
     // en fournissant ?u=id de l'activité.
     let source = ''
     let url = activitesURL[activityId]
+    let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
+    let level = regexp.exec(activityId)[0];
+    if (url === undefined) {
+      url = "N"+level+"/"+activityId+".json";
+    }
     if (location.hostname === '127.0.0.1') source = '../public/'
-    const result = await fetch(source + "library/" + url + "?v" + version);
-    if (result.status) {
-      const data = await result.json();
-      let regexp = /\/(.*)\./;
-      url = regexp.exec(url)[1];
-      return [data, url]
-    } else {
-      console.log(result)
-      return false
+    try {
+      if(url.indexOf('.yml')>0){
+        let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
+        return [jsYaml.load(result), activityId]
+      } else {
+        let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.json())
+        return [result, activityId]
+      }
+    } catch (jsonError){
+      url = "N"+level+"/"+activityId+".yml";
+      let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
+      return [jsYaml.load(result), activityId]
     }
   },
   /**
@@ -35,11 +44,26 @@ const library = {
    */
   loadJSON: async function (activityId, version) {
     let source = ''
+    let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
+    let level = regexp.exec(activityId)[0];
     let url = activitesURL[activityId]
+    if (url === undefined) {
+      url = "N"+level+"/"+activityId+".json";
+    }
     if (location.hostname === '127.0.0.1') source = '../public/'
-    const r = await fetch(source + "library/" + url + "?v" + version)
-    if (r.ok === true) return r.json()
-    throw new Error('Erreur de chargement de l\'activité')
+    try {
+      if(url.indexOf('.yml')>0){
+        let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
+        return jsYaml.load(result)
+      } else {
+        let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.json())
+        return result
+      }
+    } catch (jsonError){
+      url = "N"+level+"/"+activityId+".yml";
+      let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
+      return jsYaml.load(result)
+    }
   },
   /**
    * Récupère les données d'une activité lors d'un import venant du chargement d'un panier préconfiguré.
@@ -48,11 +72,26 @@ const library = {
    */
   import: async function (activityId, version) {
     let source = ''
+    let regexp = /^(\d{1,2}|T|G|K|H)/;// le fichier commence par un nombre ou un T pour la terminale
+    let level = regexp.exec(activityId)[0];
     let url = activitesURL[activityId]
+    if (url === undefined) {
+      url = "N"+level+"/"+activityId+".json";
+    }
     if (location.hostname === '127.0.0.1') source = '../public/'
-    const r = await fetch(source + "library/" + url + "?v" + version)
-    if (r.ok === true) return r.json()
-    throw new Error('Problème de chargement de l\'activité')
+    try {
+      if(url.indexOf('.yml')>0){
+        let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
+        return jsYaml.load(result)
+      } else {
+        let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.json())
+        return result
+      }
+    } catch (jsonError){
+      url = "N"+level+"/"+activityId+".yml";
+      let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
+      return jsYaml.load(result)
+    }
   },
   /**
    * Ouvre le fichier de description de toutes les activités disponibles sur MathsMentales

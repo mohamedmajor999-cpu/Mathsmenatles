@@ -4,6 +4,8 @@
 // remplace le fichier scan.php
 const fs = require("fs");
 const path = require("path");
+const yaml = require('js-yaml');
+
 const listOfActivities = {};
 const { off } = require("process");
 const getAllFiles = function(dirPath, arrayOfFiles) {
@@ -15,10 +17,11 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
     } else {
       // on stocke la date de création du fichier
-      arrayOfFiles.push([file,
-                      path.join(__dirname, dirPath, "/", file),
-                      fs.statSync(dirPath + "/" + file).birthtime,
-                      path.join(dirPath, "/", file)
+      arrayOfFiles.push([
+                      file, // nom du fichier
+                      path.join(__dirname, dirPath, "/", file), // chemin du fichier local
+                      fs.statSync(dirPath + "/" + file).birthtime, // date de création du fichier
+                      path.join(dirPath, "/", file) // chemin du fichier relatif
                     ])
     }
   })
@@ -47,8 +50,14 @@ for (const niveau in structure){
     // let dt = new Date(fichierExo[2]).getTime();
     // if(dt > now){nouveau = true;console.log(fichierExo[0])}
     //console.log(fichierExo);
-    let json = JSON.parse(fs.readFileSync(fichierExo[1]));
-    const ID = fichierExo[0].replace('.json', '').replace('.yaml','')
+    let json
+    const fileContent = fs.readFileSync(fichierExo[1])
+    if (fichierExo[0].indexOf('.json')>-1)
+      json = JSON.parse(fileContent);
+    else if(fichierExo[0].indexOf('.yml')>-1) {
+      json = yaml.load(fileContent)
+    }
+    const ID = fichierExo[0].replace('.json', '').replace('.yml','')
     listOfActivities[ID]=json;
     listOfActivities[ID].url = fichierExo[3]
     let exo = {"t":json.title+(json.speech?" 📣":""),"new":nouveau, id:ID};

@@ -162,22 +162,26 @@ function makePage(){
             activitiesArray = utils.shuffle(activitiesArray)
         }
         let lastActivityIndex = 0,ol,olCorrection,h3,input,activityTitle
+        let sectionEnonce, sectionCorrection
         for (let i = 0; i < activitiesArray.length; i++) {
             const actIndex = activitiesArray[i][0]
             const activity = parameters.cart.activities[actIndex]
             const j = activitiesArray[i][1]
             // à revoir, une seule section par type d'exercice nécessaire.
-            const sectionEnonce = utils.create("section",{id:"section"+qty+"-"+i})
-            const sectionCorrection = utils.create("section");
             if((lastActivityIndex !== actIndex && parameters.cart.ordered) || i===0){
+                sectionEnonce = utils.create("section",{id:"section"+qty+"-"+i})
+                content.appendChild(sectionEnonce);
+                sectionCorrection = utils.create("section")
+                correctionContent.appendChild(sectionCorrection);
                 input = `<input id="inputheight${qty}-${i}" class="noprint fright" value="30" title="Taille réponse" type="number" size="3" min="10" max="200" data-target="${qty}-${i}">`;
                 sectionEnonce.innerHTML += input;
                 input = `<input id="nbcols${qty}-${i}" class="noprint fright" value="2" title="Nb de colonnes" type="number" size="2" min="1" max="6" data-target="${qty}-${i}">`;
                 sectionEnonce.innerHTML += input;
-                if(!parameters.cart.ordered)
-                    activityTitle = exTitle
-                else
+                if(!parameters.cart.ordered){
+                    activityTitle = exTitle+" :"
+                } else {
                     activityTitle = exTitle+(actIndex+1)+" : "+activity.title
+                }
                 h3 = utils.create("h3", {className:"exercice-title",innerHTML: activityTitle});
                 sectionEnonce.appendChild(h3);
                 if(activity.consigne){
@@ -219,8 +223,6 @@ function makePage(){
                 lastActivityIndex = actIndex
             }
             sectionCorrection.appendChild(olCorrection);
-            correctionContent.appendChild(sectionCorrection);
-            content.appendChild(sectionEnonce);
         }
         // insert footer for print page break
         const footer = utils.create("footer", {className: 'footer-enonce'});
