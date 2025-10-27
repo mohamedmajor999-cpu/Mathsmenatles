@@ -110,7 +110,7 @@ function splitHTMLObject (htmlObject) {
     children.forEach(node => {
         if (node.nodeType === Node.TEXT_NODE) {
             // Texte brut (les espaces et sauts de ligne sont conservés)
-            tokens.push({ type: 'text', content: node.textContent });
+            tokens.push({ type: 'text', content: node.textContent.replace('<', '&lt;').replace('>', '&gt;') });
         } else if (node.nodeName === 'math' || node.namespaceURI === 'http://www.w3.org/1998/Math/MathML') {
             // MathML : ajoutez l’attribut math:display="inline" si absent
             if (!node.hasAttribute('display')) {

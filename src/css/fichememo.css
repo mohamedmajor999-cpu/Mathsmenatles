@@ -94,7 +94,7 @@ input[type="color"] {
     border: none;
   }
 
-.fig, .threecubes, .scratchblocks {
+.fig, .scratchblocks {
     width:90%;
     display:flex;
     justify-content: center;

@@ -129,7 +129,7 @@ Taille carte de visite
     page-break-inside:avoid;
     position: relative;
 }
-.fig, .threecubes, .scratchblocks {
+.fig, .scratchblocks {
     width:90%;
     display:flex;
     justify-content: center;

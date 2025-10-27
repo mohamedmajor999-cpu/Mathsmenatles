@@ -11,11 +11,12 @@
                 "a":"2_5"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":["${:a*1.3}","${:a/5}"]},
-                    {"colors":["cyan","lightblue","royalblue"]},
+                    {"colors":["#00b3b3","#abbdc2","#4d7ee6","#c6dae0","#4470cc","#00ebeb"]},
                     {"cube":"${:a}"}
                 ]
             },
@@ -33,10 +34,12 @@
                 "h5":"${:a>5?'1_6':0}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"colors":["cyan","lightblue","royalblue"]},
+                    {"colors":["#00b3b3","#abbdc2","#4d7ee6","#c6dae0","#4470cc","#00ebeb"]},
                     {"mur":["${:h0}","${:h1}","${:h2}","${:h3}","${:h4}","${:h5}"]}
                 ]
             },
@@ -58,10 +61,12 @@
                 "bh4":"${:b>3?'1_5':0}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"colors":["cyan","lightblue","royalblue"]},
+                    {"colors":["#00b3b3","#abbdc2","#4d7ee6","#c6dae0","#4470cc","#00ebeb"]},
                     {"doublemur":[["${:ah0}","${:ah1}","${:ah2}","${:ah3}","${:ah4}"],["${:bh1}","${:bh2}","${:bh3}","${:bh4}"]]}
                 ]
             },
@@ -82,11 +87,12 @@
                 "cols":"0_${:type[1].length-1}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"colors":["cyan","lightblue","royalblue"]},
-                    {"camera":["${:type[0]}",0]},
+                    {"colors":["#00b3b3","#abbdc2","#4d7ee6","#c6dae0","#4470cc","#00ebeb"]},
                     {"cubeincomplet":"${:type[1][:cols]}"}
                 ]
             },
@@ -107,11 +113,12 @@
                 "ch5":"0_${:bh3}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"colors":["cyan","lightblue","royalblue"]},
-                    {"camera":["${:ah0*1.1+1}",0]},
+                    {"colors":["#00b3b3","#abbdc2","#4d7ee6","#c6dae0","#4470cc","#00ebeb"]},
                     {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
                 ]
             },

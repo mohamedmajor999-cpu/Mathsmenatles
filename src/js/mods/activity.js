@@ -1032,7 +1032,7 @@ export default class activity {
                     }
                     if(this.cFigure.size !== undefined)
                         this.figures[i].size = this.replaceVars(utils.clone(this.cFigure.size))
-                    if(this.cFigure.type === 'graph') {
+                    if(this.cFigure.type === 'graph' || this.cFigure.type === 'graph3Dcubes') {
                         this.figures[i] = {
                             "boundingbox":this.cFigure.boundingbox,
                             "axis":this.cFigure.axis,
@@ -1052,7 +1052,7 @@ export default class activity {
                     }
                     if(this.cFigureCorrection.size !== undefined)
                         this.figuresCorrection[i].size = this.replaceVars(utils.clone(this.cFigureCorrection.size))
-                    if(this.cFigureCorrection.type === 'graph') {
+                    if(this.cFigureCorrection.type === 'graph' || this.cFigure.type === 'graph3Dcubes') {
                         this.figuresCorrection[i] = {
                             "boundingbox":this.cFigureCorrection.boundingbox,
                             "axis":this.cFigureCorrection.axis,
@@ -1092,7 +1092,7 @@ export default class activity {
                     }
                     if(this.cFigure.size !== undefined)
                         this.sample.figure.size = this.replaceVars(utils.clone(this.cFigure.size))
-                    if(this.cFigure.type === "graph"){
+                    if(this.cFigure.type === "graph" || this.cFigure.type === 'graph3Dcubes'){
                         this.sample.figure = {
                             "boundingbox":this.cFigure.boundingbox,
                             "axis":this.cFigure.axis,
@@ -1110,7 +1110,7 @@ export default class activity {
                     if(this.cFigureCorrection.size !== undefined)
                         this.sample.figureCorrection.size = this.replaceVars(utils.clone(this.cFigureCorrection.size))
 
-                    if (this.cFigureCorrection.type === "graph") {
+                    if (this.cFigureCorrection.type === "graph" || this.cFigure.type === 'graph3Dcubes') {
                         this.sample.figureCorrection = {
                             "boundingbox": this.cFigureCorrection.boundingbox,
                             "axis": this.cFigureCorrection.axis,

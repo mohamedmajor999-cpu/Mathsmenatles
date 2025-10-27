@@ -3,16 +3,6 @@ import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
 import Chart from "../libs/chartjs/Chart.js";
 import MMmath from "./math.js";
 import JXG from '../libs/JSXGraph1.11.1/jsxgraphcore.esm.js'
-import {
-  BoxGeometry,
-  DirectionalLight,
-  EdgesGeometry,
-  Mesh,
-  MeshPhongMaterial,
-  //PerspectiveCamera,
-  OrthographicCamera,
-  Scene,
-  WebGLRenderer, OrbitControls, LineMaterial, Wireframe, LineSegmentsGeometry  } from '../libs/threejs.bundle.min.js';
 
 scratchblocks.loadLanguages({
     fr: {
@@ -335,6 +325,25 @@ export default class Figure {
             div3.style.height = Math.abs(this.boundingbox[3] - this.boundingbox[1])*10*this.scale + "px";
             this.div2.style.display = 'none';
             document.body.appendChild(this.div2);
+        } else if(this.type === 'graph3Dcubes'){
+            const div = document.createElement("div");
+            div.id=this.id;
+            div.className = "fig";
+            destination.appendChild(div);
+            div.style.width = Math.abs(this.boundingbox[2] - this.boundingbox[0])+'em'
+            div.style.height = Math.abs(this.boundingbox[3] - this.boundingbox[1])+'em'
+            /*
+            // create svg fixed container for jsxgraph temp construction
+            this.div2 = document.createElement("div");
+            this.div2.id = this.id + "-svgcontainer";
+            const div3 = document.createElement("div");
+            div3.id = this.id + "-svg";
+            this.div2.appendChild(div3);
+            div3.style.width = Math.abs(this.boundingbox[2] - this.boundingbox[0])+'em'//Math.abs(this.boundingbox[2] - this.boundingbox[0])*10*this.scale + "px";
+            div3.style.height = Math.abs(this.boundingbox[3] - this.boundingbox[1])+'em'//Math.abs(this.boundingbox[3] - this.boundingbox[1])*10*this.scale + "px";
+            // this.div2.style.display = 'none';
+            destination.appendChild(this.div2);
+            //document.body.appendChild(this.div2);*/
         } else if(this.type === "svg"){
             let div = document.createElement("div");
             div.className = "fig";
@@ -345,12 +354,6 @@ export default class Figure {
             div.className = "scratchblocks";
             div.id=this.id;
             destination.appendChild(div);
-        } else if(this.type === 'threecubes'){
-            const div = document.createElement('div');
-            div.id = this.id;
-            div.className = 'threecubes';
-            destination.appendChild(div);
-            div.innerHTML = `<canvas id="${this.id}-canvas"></canvas>`
         }
         return false
     }
@@ -377,7 +380,7 @@ export default class Figure {
         let elt;
         if(this.type ==="chart")
             elt = document.getElementById(this.id).parentNode;
-        else if(['graph', 'svg', 'scratch', 'threecubes'].indexOf(this.type)>-1)
+        else if(['graph', 'svg', 'scratch', 'graph3Dcubes'].indexOf(this.type)>-1)
             elt = document.getElementById(this.id);
         let cln = elt.className; // div contenant
         if(cln.indexOf("visible")<0){
@@ -420,198 +423,180 @@ export default class Figure {
             this.setChartFontSize(target)
             this.figure = new Chart(target, this.content);
             
-        } else if(this.type === 'threecubes'){
-            const $scene = document.getElementById(this.id+'-canvas')
-            const scene = new Scene()
-            scene.background = null
-            // Create spot lights
-            //const color = 0xFFFFFF;
-            const colors = ['red','orange','yellow'],light=[],light2=[]
-            for (const [index, color] of colors.entries()) {
-                let i=0, j=0, k=0
-                if(index === 0)j=1
-                else if (index === 2)k=1
-                else i=1
-                light[index] = new DirectionalLight( color, 4 );
-                light[index].position.set( i, j, k );
-                scene.add( light[index] );
-                light2[index] = new DirectionalLight( color, 2)
-                light2[index].position.set(-i, -j, -k)
-                scene.add(light2[index])
-            }            
-            // Create a camera
-            const fov = 35; // AKA Field of View
-            if(this.size === undefined){
-                this.size = [500,300]
-            }
-            const midWidth = 5
-            const offset = 1
-            const aspect = this.size[0] / this.size[1];
-            const near = 0.1; // the near clipping plane
-            const far = 100; // the far clipping plane
-
-            //const camera = new PerspectiveCamera(fov, aspect, near, far);
-            const camera = new OrthographicCamera(-midWidth, midWidth, midWidth/aspect+offset, -midWidth/aspect+offset, near, far)
-            // every object is initially created at ( 0, 0, 0 )
-            // move the camera back so we can view the scene
-            const xyz = 30
-            camera.position.set(xyz, xyz, xyz);
-            camera.lookAt(0,0,0)
-
-            // define a cube and his edges
-            const geometry = new BoxGeometry();
-            const edgesGeometry = new EdgesGeometry( geometry );
-            const lineGeometry = new LineSegmentsGeometry().fromEdgesGeometry( edgesGeometry );
-            const matLine = new LineMaterial( {
-                color: "black",
-                linewidth: 3,
-            } );
-
-            // create a default (white) Basic material
-            const material = new MeshPhongMaterial({color: "lightgrey"});
-
-            function createCube({x=0,y=0,z=0},dir=undefined) {
-                let deltax=0,deltaz=0
-                if(dir ==='right'){deltax = 3;deltaz=-3}
-                else if(dir === 'left'){deltax = -3;deltaz=3}
-                // create a Mesh containing the geometry and material
-                const cube = new Mesh(geometry, material);
-                cube.position.x = x + deltax
-                cube.position.y = y
-                cube.position.z = z +deltaz
-                // add the mesh to the scene
-                scene.add(cube);
-                // add edges
-                const wireframe = new Wireframe( lineGeometry, matLine );
-                wireframe.computeLineDistances();
-                wireframe.scale.set( 1.02, 1.02, 1.02 );
-                wireframe.position.x = x + deltax
-                wireframe.position.y = y
-                wireframe.position.z = z + deltaz
-                scene.add( wireframe );
-            }
-            const controls = new OrbitControls(camera, $scene);
-            controls.target.set(0, 0, 0);
-            controls.update();
-            // cubes selon les coordonnées passées en contents
-            for(const content of this.content){
-                if(content.camera !== undefined ){
-                    let midWidth, offset=1
-                    if(_.isArray(content.camera)){
-                        midWidth = content.camera[0]
-                        offset = content.camera[1]
-                    } else {
-                        midWidth = content.camera
-                    }
-                    camera.left = -midWidth
-                    camera.right = midWidth
-                    camera.bottom = -midWidth/aspect+offset
-                    camera.top = midWidth/aspect+offset
-                    camera.updateProjectionMatrix ()
+        } else if (this.type === 'graph3Dcubes') {
+            try {
+                JXG.Options.text.display = 'internal'
+                if(destination === undefined){
+                    this.figure = JXG.JSXGraph.initBoard(this.id, {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid,
+    pan: { enabled: false },      // Disable pan for 3D view
+    zoom: { enabled: false } });
+                } else {
+                    this.figure = destination.JXG.JSXGraph.initBoard(this.id, {boundingbox:this.boundingbox, keepaspectratio: this.keepAspect, showNavigation: false, showCopyright: false,registerEvents:false, axis:this.axis, grid:this.grid,
+    pan: { enabled: false },      // Disable pan for 3D view
+    zoom: { enabled: false } });
                 }
-                if(content.colors !== undefined){ // array of 3 named colors
-                    const rgb = [utils.colorNameToRBG(content.colors[0]),utils.colorNameToRBG(content.colors[1]),utils.colorNameToRBG(content.colors[2])]
-                    for(let i=0;i<3;i++){
-                        light[i].color.r=rgb[i].r
-                        light[i].color.g=rgb[i].g
-                        light[i].color.b=rgb[i].b
-                        light2[i].color.r=rgb[i].r
-                        light2[i].color.g=rgb[i].g
-                        light2[i].color.b=rgb[i].b
-                    }
+                this.figure.renderer.svgRoot.setAttribute('viewBox', '0 0 ' + this.figure.renderer.svgRoot.getAttribute('width') + ' ' + this.figure.renderer.svgRoot.getAttribute('height'))
+                this.figure.renderer.svgRoot.setAttribute('width', '100%')
+                this.figure.renderer.svgRoot.setAttribute('height', '100%')
+                // création de la vue 3D
+                const gridXwidth = this.boundingbox[2]-this.boundingbox[0]
+                const gridYwidth = this.boundingbox[1]-this.boundingbox[3]
+                const boxX = [0, gridXwidth]
+                const boxY = [0, gridYwidth]
+                const [lowerleftx, lowerlefty] = [this.boundingbox[0]+1, this.boundingbox[3]+2]
+                const viewBoxSize = [gridXwidth, gridYwidth]
+                const view3D = this.figure.create('view3d',[
+                    [lowerleftx, lowerlefty],
+                    viewBoxSize,
+                    [boxX,boxY,boxX]
+                ],{
+                    projection: 'parallel',
+                    trackball: { enabled: false },
+                    axesPosition: 'center',
+                    depthOrder: { enabled: true },
+                    xPlaneRear: { visible: false },
+                    yPlaneRear: { visible: false },
+                    zPlaneRear: { visible: false},
+                    //el:{pointer: true, keyboard: true},
+                    xAxis: {visible: false},
+                    yAxis: {visible: false},
+                    zAxis: {visible: false}
+                })
+                // Paramètres cube initial
+                const r = 1 // arête
+                const facesColors = {
+                    fillColorArray: ['white', 'blue', 'red', 'green', 'orange', 'yellow'],
+                    fillOpacity: 1,
+                    strokeColor: '#333333',
+                    visible: false
                 }
-                if(content.cube > 0){
-                    for(let x=0;x<content.cube;x++){
-                        for(let y=0;y<content.cube;y++){
-                            for(let z=0;z<content.cube;z++){
-                                createCube({x,y,z})
+                // cube de base à translater
+                const cubeBase = view3D.create('polyhedron3d', [
+                            {
+                                a: [0, 0, 0],
+                                b: [r, 0, 0],
+                                c: [r, r, 0],
+                                d: [0, r, 0],
+                                e: [0, 0, r],
+                                f: [r, 0, r],
+                                g: [r, r, r],
+                                h: [0, r, r]
+                                },
+                                [
+                                    ['a', 'b', 'c', 'd'],
+                                    ['a', 'b', 'f', 'e'],
+                                    ['b', 'c', 'g', 'f'],
+                                    ['c', 'd', 'h', 'g'],
+                                    ['d', 'a', 'e', 'h'],
+                                    ['e', 'f', 'g', 'h']
+                                ]
+                            ], facesColors);
+                        
+                for (let onecontent of this.content){
+                    const content = utils.clone(onecontent);
+                    if (content.colors) {
+                        // remplacement des couleurs par défaut
+                        facesColors.fillColorArray = content.colors
+                    }
+                    const colorsOptions = {...facesColors};
+                    colorsOptions.visible = true
+                    if(content.cube) {
+                        const decalX = (gridXwidth - content.cube) / 2
+                        const decalY = (gridYwidth - content.cube) / 2
+                        const cube = view3D.create('polyhedron3d', [cubeBase, view3D.create('transform3d', [decalX, decalY, 0], {type: 'translate'})],colorsOptions)
+                        for (let i=0; i<content.cube;i++){
+                            for (let j=0; j<content.cube;j++){
+                                for(let z=0; z<content.cube;z++){
+                                    if (z==0 || z==content.cube-1){
+                                        view3D.create('polyhedron3d', [cube, view3D.create('transform3d', [i, j, z], { type: 'translate' })], colorsOptions)
+                                    } else if(i==0 || i == content.cube-1 || j== 0 || j == content.cube-1) {
+                                        view3D.create('polyhedron3d', [cube, view3D.create('transform3d', [i, j, z], { type: 'translate' })], colorsOptions)
+                                    }
+                                }
                             }
                         }
                     }
-                    //controls.target.set(content.cube/2,content.cube/2,content.cube/2)
-                } else if (content.mur !== undefined) {
-                    let h = 0
-                    let x=0,z=0,xorz=MMmath.aleaInt(0,1),translate
-                    if(['left','right'].includes(content.mur[0])){
-                        translate = content.mur[0]
-                    }
-                    for(const value of content.mur){
-                        if(['left','right'].includes(value)) continue
-                        if(value>h)h=value
-                        for(let y=0;y<value;y++){
-                            createCube({x,y,z},translate)
+                    if(content.mur) {
+                        // content.mur ['right'|'left', h0, h1, h2, h3, h4, h5] hauteurs des 6 colonnes
+                        const longueurMur = content.mur.indexOf(0) < 0 ? 6:content.mur.indexOf(0)
+                        let x=0, z=0, xorz=MMmath.aleaInt(0,1), translate
+                        let decalX = xorz ? gridXwidth/2 : (gridXwidth - longueurMur)/2
+                        let decalY = xorz ? (gridYwidth - longueurMur)/2 : gridYwidth/2
+                        if(['left','right'].includes(content.mur[0])){
+                            if (content.mur[0] === 'left') {decalX = 1;decalY=1, xorz=1}
+                            else {decalX=3;decalY=0;xorz=0}
                         }
-                        if(xorz)x++;
-                        else z++
-                    }
-                    //controls.target.set(xorz?content.mur.length/2:0.5,h/2,!xorz?content.mur.length/2:0.5)
-                } else if (content.doublemur !== undefined){
-                    let translate,index=0
-                    if(['left','right'].includes(content.doublemur[0])){
-                        translate = content.doublemur[0]
-                        index = 1
-                    }
-                    let z=0
-                    for(const value of content.doublemur[0+index]){
-                        for(let y=0;y<value;y++){
-                            createCube({x:0,y,z},translate)
-                        }
-                        z++
-                    }
-                    let x=1
-                    for(const value of content.doublemur[1+index]){
-                        for(let y=0;y<value;y++){
-                            createCube({x,y,z:0},translate)
-                        }
-                        x++
-                    }
-                } else if(content.cubeincomplet !== undefined){
-                    if(_.isString(content.cubeincomplet) && content.cubeincomplet.indexOf(',')>0){
-                        content.cubeincomplet = content.cubeincomplet.split(',')
-                    }
-                    /*
-                    hauteur des colonnes données dans l'ordre suivant :
-                    cube 3x3 :  cube 4x4
-                    0 3 6       0 4 8  12
-                    1 4 7       1 5 9  13
-                    2 5 8       2 6 10 14
-                                3 7 11 15
-                    */
-                    let index=0, translate
-                    if(['left','right'].includes(content.cubeincomplet[0])){
-                        translate = content.cubeincomplet[0]
-                        index = 1
-                    }
-                    const size = Math.sqrt(content.cubeincomplet.length-index)
-                    for(let x=0;x<size;x++){
-                        for(let z=0;z<size;z++){
-                            for(let y=0;y<content.cubeincomplet[index];y++){
-                                createCube({x,y,z},translate)
+                        const cube = view3D.create('polyhedron3d', [cubeBase, view3D.create('transform3d', [decalX, decalY, 0], {type: 'translate'})],colorsOptions)
+                        for(const value of content.mur){
+                            if (['left', 'right'].includes(value)) continue
+                            for(let y=0; y<value; y++){
+                                view3D.create('polyhedron3d', [cube, view3D.create('transform3d', [z, x, y], { type: 'translate' })], colorsOptions)
                             }
-                            index++
+                            if (xorz) x++;
+                            else z++
+                        }
+                    }
+                    if(content.doublemur) {
+                        // content doublemur [[h0, h1, h2, h3, h4],[h1, h2, h3, h4]]
+                        let decalX = 3, decalY = 1
+                        if(content.doublemur.includes('left')) {
+                            decalX = 3; decalY = 0
+                        } else if (content.doublemur.includes('right')) {
+                            decalX = 0; decalY = 2
+                        }
+                        const cube = view3D.create('polyhedron3d', [cubeBase, view3D.create('transform3d', [decalX, decalY, 0], {type: 'translate'})],colorsOptions)
+                        let indice = 0
+                        for (const mur of content.doublemur){
+                            if(['right','left'].indexOf(mur)>-1) continue
+                            for(let i=0,len=mur.length;i<len;i++){
+                                for (let j=0,height=Number(mur[i]);j<height;j++){
+                                    view3D.create('polyhedron3d', [cube, view3D.create('transform3d', [indice?0:i, indice?i+1:0, j], { type: 'translate' })], colorsOptions)
+                                }
+                            }
+                            indice++;
+                        }
+                    }
+                    if(content.cubeincomplet) {
+                        // content doublemur [[h0, h1, h2, h3, h4],[h0, h1, h2, h3, h4]]
+                        if(_.isString(content.cubeincomplet) && content.cubeincomplet.indexOf(',')>0){
+                            content.cubeincomplet = content.cubeincomplet.split(',')
+                        }
+                        /*
+                        hauteur des colonnes données dans l'ordre suivant :
+                        cube 3x3 :  cube 4x4
+                        0 3 6       0 4 8  12
+                        1 4 7       1 5 9  13
+                        2 5 8       2 6 10 14
+                                    3 7 11 15
+                        */
+                        let index=0, translate, size, decalX, decalY
+                        if(['left','right'].includes(content.cubeincomplet[0])){
+                            if (content.cubeincomplet[0] == 'left') {
+                                decalX = 6; decalY=0
+                            } else {
+                                decalX = 1; decalY=3
+                            }
+                            index = 1
+                            size = Math.sqrt(content.cubeincomplet.length-index)
+                        } else {
+                            size = Math.sqrt(content.cubeincomplet.length-index)
+                            decalX = (gridXwidth-size)/2
+                            decalY = (gridYwidth-size)/2
+                        }
+                        const cube = view3D.create('polyhedron3d', [cubeBase, view3D.create('transform3d', [decalX, decalY, 0], {type: 'translate'})],colorsOptions)
+                        for(let x=0;x<size;x++){
+                            for(let z=0;z<size;z++){
+                                for(let y=0;y<content.cubeincomplet[index];y++){
+                                    view3D.create('polyhedron3d', [cube, view3D.create('transform3d', [z, x, y], { type: 'translate' })], colorsOptions)
+                                }
+                                index++
+                            }
                         }
                     }
                 }
+            } catch (error) {
+                console.log('graph3Dcubes', error)
             }
-            // create the renderer
-            const renderer = new WebGLRenderer({antialias: true, canvas:$scene, alpha: true,preserveDrawingBuffer:true});
-            // renderer size
-            const width = this.size[0]
-            const height = this.size[1]
-            renderer.setSize(width, height)
-            // on change la taille ici maintenant que tout est ok
-            $scene.style['width'] = '15em'
-            $scene.style['height'] = String(MMmath.round(15*this.size[1]/this.size[0],2))+'em'
-            // finally, set the pixel ratio so that our scene will look good on HiDPI displays
-            renderer.setPixelRatio(window.devicePixelRatio);
-            let isRendering = true
-            function render() {
-                if(!isRendering) return
-              // render, or 'create a still image', of the scene
-              renderer.render(scene, camera);
-            }
-            controls.addEventListener('change',render)
-            render()
         } else if(this.type === "graph"){ //JSXGraph
             this.div2.style.display = 'block';
             const target = document.getElementById(this.id)

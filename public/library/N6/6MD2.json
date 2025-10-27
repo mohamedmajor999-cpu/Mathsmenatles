@@ -19,10 +19,12 @@
                 "ch5":"2_${:bh1+:bh2+:bh3+:ch1+:ch2+:ch3+:ch4==21?2:3}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":[4,0]},
+                    {"colors":["#C11007","#E1712B","#FFF085","#FE9A37","#FDC745","#E7180B"]},
                     {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
                 ]
             },
@@ -43,10 +45,12 @@
                 "ch5":"0_${:bh3}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":[4,0]},
+                    {"colors":["#C11007","#E1712B","#FFF085","#FE9A37","#FDC745","#E7180B"]},
                     {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]}
                 ]
             },
@@ -73,10 +77,12 @@
                 "dh7":"3_${:ch5}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":[5,0]},
+                    {"colors":["#C11007","#E1712B","#FFF085","#FE9A37","#FDC745","#E7180B"]},
                     {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
                 ]
             },
@@ -103,10 +109,12 @@
                 "dh7":"2_${:ch5}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":[5,0]},
+                    {"colors":["#C11007","#E1712B","#FFF085","#FE9A37","#FDC745","#E7180B"]},
                     {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
                 ]
             },
@@ -133,10 +141,12 @@
                 "dh7":"0_${:ch5}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,8,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":[5,0]},
+                    {"colors":["#C11007","#E1712B","#FFF085","#FE9A37","#FDC745","#E7180B"]},
                     {"cubeincomplet":["${:ah0}","${:bh1}","${:ch1}","${:dh1}","${:bh3}","${:bh2}","${:ch2}","${:dh2}","${:ch5}","${:ch4}","${:ch3}","${:dh3}","${:dh7}","${:dh6}","${:dh5}","${:dh4}"]}
                 ]
             },

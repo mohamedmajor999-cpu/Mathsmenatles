@@ -27,11 +27,12 @@
                 "vb":"${:bh0+:bh1+:bh2+:bh3+:bh4+:bh5}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,9,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":9},
-                    {"colors":["lightcoral","tan","cornflowerblue"]},
+                    {"colors":["#bf9090","#b3a695","#9cbae5","#d8c9b4","#829bbf","#e5adad"]},
                     {"mur":["left","${:ah0}","${:ah1}","${:ah2}","${:ah3}","${:ah4}","${:ah5}"]},
                     {"mur":["right","${:bh0}","${:bh1}","${:bh2}","${:bh3}","${:bh4}","${:bh5}"]}
                 ]
@@ -63,11 +64,12 @@
                 "vb":"${:a2h0+:b2h1+:b2h2+:b2h3+:c2h1+:c2h2+:c2h3+:c2h4+:c2h5}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,9,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":8},
-                    {"colors":["lightcoral","tan","cornflowerblue"]},
+                    {"colors":["#bf9090","#b3a695","#9cbae5","#d8c9b4","#829bbf","#e5adad"]},
                     {"cubeincomplet":["left","${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]},
                     {"cubeincomplet":["right","${:a2h0}","${:b2h1}","${:c2h1}","${:b2h3}","${:b2h2}","${:c2h2}","${:c2h5}","${:c2h4}","${:c2h3}"]}
                 ]
@@ -102,11 +104,12 @@
                 "vb":"${:pyramides[:pyr][2]}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-5,9,5,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":8},
-                    {"colors":["lightcoral","tan","cornflowerblue"]},
+                    {"colors":["#bf9090","#b3a695","#9cbae5","#d8c9b4","#829bbf","#e5adad"]},
                     {"cubeincomplet":["left","${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]},
                     {"cubeincomplet":"right,${:pyramides[:pyr][1][:cols]}"}
                 ]
@@ -140,16 +143,18 @@
                 "vb":"${:a2h0+:a2h1+:a2h2+:a2h3+:a2h4+:b2h1+:b2h2+:b2h3+:b2h4}"
             },
             "figure":{
-                "type":"threecubes",
-                "size":[500,400],
+                "type":"graph3Dcubes",
+                "boundingbox":[-6,9,6,0],
+                "axis":false,
+                "grid":false,
                 "content":[
-                    {"camera":8},
-                    {"colors":["lightcoral","tan","cornflowerblue"]},
+                    {"colors":["#bf9090","#b3a695","#9cbae5","#d8c9b4","#829bbf","#e5adad"]},
                     {"cubeincomplet":["left","${:ah0}","${:bh1}","${:ch1}","${:bh3}","${:bh2}","${:ch2}","${:ch5}","${:ch4}","${:ch3}"]},
-                    {"doublemur":["right",["${:a2h0}","${:a2h1}","${:a2h2}","${:a2h3}","${:a2h4}"],["${:b2h1}","${:b2h2}","${:b2h3}","${:b2h4}"]]}                ]
+                    {"doublemur":["right",["${:a2h0}","${:a2h1}","${:a2h2}","${:a2h3}","${:a2h4}"],["${:b2h1}","${:b2h2}","${:b2h3}","${:b2h4}"]]}
+                ]
             },
-            "answer":"${:va>:vb?:va+'>'+:vb+', donc le <b>solide de gauche</b> a le plus grand'::va<:vb?:va+'<'+:vb+', donc le <b>solide de droite</b> a le plus grand'::va+'='+:vb+', donc les <b>deux solides</b> ont le même'} volume.",
+            "answer":"${:va>:vb?:va+'>'+:vb+', donc l <b>solide de gauche</b> a le plus grand'::va<:vb?:va+'<'+:vb+', donc le <b>solide de droite</b> a le plus grand'::va+'='+:vb+', donc les <b>deux solides</b> ont le même'} volume.",
             "value":"${:va>:vb?'gauche'::va<:vb?'droite':'égaux'}"
         }],
-        "question":"Quel solide a le plus grand volume ?"
+        "question":"Quel assemblage de cubes a le plus grand volume ?"
 }
