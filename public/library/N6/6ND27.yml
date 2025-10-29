@@ -6,57 +6,57 @@ dest: # chapitres où sera intégrée l'activité
 description: Connaitre les tables de multiplications de 2 à 12, sous plusieurs formes
 type: latex # pas obligatoire, c'est la valeur par défaut
 options:
-  - name: 'Table de 2'
+  - name: Table de 2
     vars:
       m: '2_10'
       n: 2
       r: ${2*:m}
-  - name: 'Table de 3'
+  - name: Table de 3
     vars:
       m: '2_10'
       n: 3
       r: ${3*:m}
-  - name: 'Table de 4'
+  - name: Table de 4
     vars:
       m: '2_10'
       n: 4
       r: ${4*:m}
-  - name: 'Table de 5'
+  - name: Table de 5
     vars:
       m: '2_10'
       n: 5
       r: ${5*:m}
-  - name: 'Table de 6'
+  - name: Table de 6
     vars:
       m: '2_10'
       n: 6
       r: ${6*:m}
-  - name: 'Table de 7'
+  - name: Table de 7
     vars:
       m: '2_10'
       n: 7
       r: ${7*:m}
-  - name: 'Table de 8'
+  - name: Table de 8
     vars:
       m: '2_10'
       n: 8
       r: ${8*:m}
-  - name: 'Table de 9'
+  - name: Table de 9
     vars:
       m: '2_10'
       n: 9
       r: ${9*:m}
-  - name: 'Table de 10'
+  - name: Table de 10
     vars:
       m: '2_10'
       n: 10
       r: ${10*:m}
-  - name: 'Table de 11'
+  - name: Table de 11
     vars:
       m: '2_10'
       n: 11
       r: ${11*:m}
-  - name: 'Table de 12'
+  - name: Table de 12
     vars:
       m: '2_10'
       n: 12
