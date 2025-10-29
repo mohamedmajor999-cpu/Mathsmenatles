@@ -210,6 +210,13 @@ window.onload = function() {
             MM.speech.stop();
         }
     }
+    // lien direct items Brevet 3e
+    document.getElementById('liendirectitems3e').onclick = (e) => {
+        e.preventDefault()
+        MM.setHistory('MathsMentales items Brevet 2026','n=i3')
+        MM.showTab('tab-chercher')
+        MM.loadFromServer('brevet-2025.html')
+    }
     // boutons démarrage
     document.getElementById("btnstart").onclick = ()=>{MM.start();};
     document.getElementById("btnenonces").onclick = ()=>{MM.showQuestions();};
@@ -378,6 +385,9 @@ window.onload = function() {
             MM.loadActivity(evt.target.dataset.id)
         } else if (evt.target.parentNode.id.indexOf("rcli")===0) {
             MM.loadActivity(evt.target.parentNode.dataset.id)
+        } else if (evt.target.id === 'itemsbrevet2026'){
+            // ouvrir le lien vers les items du brevet
+            MM.loadFromServer('brevet-2025.html')
         }
     })
     // bouton d'ajout au panier

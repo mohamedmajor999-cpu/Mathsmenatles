@@ -3,8 +3,6 @@ import content from "./content.js";
 import activitesURL from './activitiesurl.js'
 import jsYaml from '../libs/js-yaml.mjs.js'
 
-//import theactivities from "./theactivities.js";
-
 export { library as default };
 // lecture de la bibliotheque
 const library = {
@@ -219,6 +217,10 @@ const library = {
     //if(base && !_.isObject(level)) // on change l'url level est un niveau de la bibliothèque
     //MM.setHistory(niveau["nom"],"n="+level);
     // Affichage et mise en forme des données.
+    // Si niveau 3e, on affiche le lien vers la liste des items du Brevet
+    if (level === '3') {
+      html += `<div id="itemsbrevet2026">🚩 Items des automatismes du brevet 2026</div>`
+    }
     let itemsNumber = 0;
     for (let i in niveau["themes"]) {
       //let first = true;

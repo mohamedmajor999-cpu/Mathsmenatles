@@ -921,6 +921,11 @@ const MM = {
             if (vars.embed.match(regex))
                 MM.embededIn = vars.embed;
         }
+        if(vars.n === 'i3') {
+            MM.showTab('tab-chercher')
+            MM.loadFromServer('brevet-2025.html')
+            return
+        }
         if (vars.search){ // chaine de recherche
             document.getElementById('searchinput').value = vars.search
             if (vars.f !== '' && vars.f !== undefined){
@@ -1028,7 +1033,6 @@ const MM = {
                 const typeParams = utils.getTypeOfURL(urlString, vars.type)
                 // remplissage des données de carte flash
                 if (typeParams === "paramsflashcards") {
-                    console.log(vars)
                     document.getElementById('FCtitle').value = vars.t ? decodeURIComponent(vars.t) : '';
                     utils.checkRadio('flashcarddispo', vars.disp);
                 } else
@@ -1794,5 +1798,103 @@ const MM = {
             document.getElementById("screen-division").className = "vertical";
             document.querySelector("input[name='direction'][value='v']").checked = true;
         }
+    },
+    /* ────────────────────────────────────────────────────────
+    4. Chargement via HTTP (si le fichier est servi)
+    ──────────────────────────────────────────────────────── */
+    async loadFromServer(url) {
+        try {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error('Impossible de charger brevet-2025.html');
+            const text = await res.text();
+            await processContent(text);
+        } catch (err) {
+            console.error(err);
+            alert('Erreur lors du chargement du fichier. Essayez le bouton « Charger ».');
+        }
     }
+}
+
+/* ────────────────────────────────────────────────────────
+   1. Extraction des paires i / o
+   ──────────────────────────────────────────────────────── */
+function extractActivities(url) {
+  const vars = utils.getUrlVars(url)
+  if (vars.c === undefined) {console.log(url, vars);return false}
+  return vars.c[0].a;
+}
+
+/* ────────────────────────────────────────────────────────
+   2. Fonction appelée lorsqu’on clique sur un lien
+   ──────────────────────────────────────────────────────── */
+async function handleLink(activities) {
+    const selectedCart =MM.carts[MM.selectedCart]
+    for (const act of Object.values(activities)) {
+        let newActivity = await activity.import(act, selectedCart.activities.length, MM.version)
+        // if (newActivity.id === undefined) newActivity.id = act.i
+        selectedCart.activities[newActivity[0]] = newActivity[1]
+    }
+    selectedCart.display()
+    const toastText = document.getElementById('toastText')
+    const defaulttext = toastText.innerHTML
+    toastText.innerHTML = 'Activités copiées dans le panier en cours'
+    toast.classList.add('show');
+    setTimeout(function() {
+        toast.classList.remove('show');
+        toastText.innerHTML = defaulttext
+    }, 3000);
+}
+
+/* ────────────────────────────────────────────────────────
+   3. Traitement du fichier HTML
+   ──────────────────────────────────────────────────────── */
+async function processContent(htmlText) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlText, 'text/html');
+
+  const resultContainer = document.getElementById('resultat-chercher');
+  resultContainer.innerHTML = ''; // vide
+
+  // On parcourt tous les <h2>
+  const headings = doc.querySelectorAll('h2');
+  let first = true
+  headings.forEach(h2 => {
+    if (first) {
+        first = false
+        return
+    }
+    // Clone le titre (et le ajoute au résultat)
+    const h2Clone = h2.cloneNode(true);
+    resultContainer.appendChild(h2Clone);
+
+    // On suppose que la <ul> vient juste après le <h2>
+    const ul = h2.parentNode.nextElementSibling;
+    if (ul && ul.tagName === 'UL') {
+      const ulClone = ul.cloneNode(false); // clone uniquement la balise UL
+      // On va construire les <li> à partir des liens
+      ul.querySelectorAll('li').forEach(li => {
+        const a = li.querySelector('a');
+        if (!a) return; // pas de lien
+
+        const originalHref = a.getAttribute('href');
+        const activities = extractActivities(originalHref);
+        if(!activities) return
+        // Crée un nouveau <a> cliquable
+        const newA = document.createElement('a');
+        newA.textContent = a.textContent;
+        newA.href = '#';
+        newA.addEventListener('click', e => {
+          e.preventDefault();
+          handleLink(activities);
+          newA.classList.add('used')
+        });
+
+        // Crée le <li> et l’ajoute
+        const liClone = document.createElement('li');
+        liClone.appendChild(newA);
+        ulClone.appendChild(liClone);
+      });
+      resultContainer.appendChild(ulClone);
+    }
+  });
 }

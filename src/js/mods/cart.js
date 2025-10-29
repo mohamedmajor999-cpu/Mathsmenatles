@@ -57,7 +57,7 @@ export default class cart {
         // activités, utilise Promise
         let activities = [];
         for(const i in obj.a){
-            activities.push(activity.import(obj.a[i],i, version));
+            activities.push(activity.import(obj.a[i], i, version));
         }
         return await Promise.all(activities).then(data=>{
             data.forEach((table) => {

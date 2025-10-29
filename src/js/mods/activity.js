@@ -153,7 +153,7 @@ export default class activity {
             act.nbq = obj.n;
             act.audioRead = (obj.au)?true:false;
             act.audioRepeat = obj.ar?obj.ar:2;
-            return [id,act];
+            return [id, act];
         },err=>{utils.debug(err)});
     }
     /**
