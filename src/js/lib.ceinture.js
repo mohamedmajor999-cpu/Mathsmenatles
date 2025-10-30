@@ -574,6 +574,7 @@ function makePage(){
         // un conteneur pour la ceinture
         const ceinture = utils.create("div",{className:"ceinture original"});
         const spacer = utils.create("div",{style:'margin-top:'+parameters.spacer+'mm;', className:'spacer original'})
+        const spacerCorrige = utils.create("div",{style:'margin-top:'+parameters.spacer+'mm;', className:'spacer original'})
         // un conteneur pour le corrigé
         const corrige = utils.create("div",{className:"ceintCorrige corrige"});
         if(qty%parameters.corrigeAuDosValue===0 && parameters.corrigeAuDos){
@@ -713,6 +714,8 @@ function makePage(){
             correction.appendChild(corrige);
         } else if(!parameters.corrigeAuDos) {
             content.appendChild(corrige);
+            corrige.classList.remove('fleft')
+            content.appendChild(spacerCorrige)
         } else if(parameters.corrigeAuDos && !parAlafin){
             content.appendChild(divsPar[divsPar.length-1])
         }
@@ -761,6 +764,7 @@ function setPageBreaks(){
     document.body.removeChild(tempDiv)
     const ceintures = document.querySelectorAll('#creator-content .ceinture')
     const spacers = document.querySelectorAll('#creator-content .spacer')
+    const corriges = document.querySelectorAll('#creator-content .corrige')
     const heightOfSpacer = spacers[0].getBoundingClientRect().height
     spacers.forEach(el=>el.classList.remove('pagebreak'))
     let heightOfElements = 0
@@ -768,16 +772,22 @@ function setPageBreaks(){
     if (parQuatre !== null) {
         document.querySelectorAll('.parquatre + .spacer:not(:last-of-type)').forEach(el => {
             el.classList.add('pagebreak')
-    })
+        })
     } else {
         for(let i=0;i<ceintures.length;i++) {
             heightOfElements += ceintures[i].getBoundingClientRect().height + heightOfSpacer
+            if (parameters.posCorrection === 'apres') {
+                heightOfElements += corriges[i].getBoundingClientRect().height + heightOfSpacer
+            }
             if(heightOfElements - heightOfSpacer > hauteurPage){
                 heightOfElements -= ceintures[i].getBoundingClientRect().height + heightOfSpacer
-                if(spacers[i-1] !== undefined){
-                    spacers[i-1].classList.add('pagebreak')
-                    spacers[i-1].style['margin-top'] = String(hauteurPage - heightOfElements)+'px'
-                    spacers[i-1].style['padding-bottom'] = '0.01px'
+                let indice = i
+                if (parameters.posCorrection === 'apres')
+                    indice = i*2
+                if(spacers[indice-1] !== undefined){
+                    spacers[indice-1].classList.add('pagebreak')
+                    spacers[indice-1].style['margin-top'] = String(hauteurPage - heightOfElements)+'px'
+                    spacers[indice-1].style['padding-bottom'] = '0.01px'
                 }
                 heightOfElements = ceintures[i].getBoundingClientRect().height + heightOfSpacer
             }

@@ -38,6 +38,9 @@ li {
 .fright {
     float: right;
 }
+.fleft {
+    float: left;
+}
 
 .abstopright {
     position: absolute;
@@ -265,12 +268,11 @@ body[size="A4"][layout="landscape"] .modele-ceinture {
 }
 
 .ceintCorrige {
-    float: left;
+    display: inline-block;
     margin-right: 15pt;
     margin-bottom: 15pt;
 }
-
-.ceintCorrige+.ceinture {
+.ceintCorrige+.ceinture, .ceintCorrige+.ceinture {
     clear: both;
 }
 
