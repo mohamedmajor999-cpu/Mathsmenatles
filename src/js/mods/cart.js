@@ -23,7 +23,7 @@ export default class cart {
      */
     export(){
         let urlString = "&p="+this.id+
-            "~t="+encodeURI(this.title)+
+            "~t="+ (encodeURI(this.title)) +
             "~c="+this.target+
             "~o="+this.ordered+
             '~d='+this.progress+
