@@ -31,7 +31,7 @@ if (!fs.existsSync('./public/css')) {
 }
 
 let cache
-const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'exam', 'exercices', 'wall', 'puzzle', 'diaporama', 'jaiquia', 'fichememo' ]
+const builds = [ 'mathsmentales', 'cartesflash', 'ceinture', 'courseauxnombres', 'dominos', 'duel', 'editor', 'editoryaml', 'exam', 'exercices', 'wall', 'puzzle', 'diaporama', 'jaiquia', 'fichememo' ]
 
 const packageJsonPath = path.join(__dirname, 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
@@ -101,6 +101,8 @@ async function minifyCss() {
       listOfCss = ['src/css/knacssextract.css','src/css/wall.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css']
     else if(module === 'editor')
       listOfCss = ['src/css/editor.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css']
+    else if(module === 'editoryaml')
+      listOfCss = ['src/js/libs/JSXGraph1.11.1/jsxgraph.css','src/js/libs/codemirror/codemirror.css','src/css/editoryaml.css']
     return gulp.src(listOfCss)
     .pipe(cleanCSS())
     .pipe(concat(module+'-' + packageJson.version +'.css'))
@@ -128,6 +130,8 @@ async function updateVersion() {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'editor.html'){
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" /><link rel="stylesheet" href="css/editor.css">', '<link rel="stylesheet" href="css/editor-' + packageJson.version + '.css" />')
+    } else if(htmlPageName === 'editoryaml.html'){
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" /><link rel="stylesheet" href="js/libs/codemirror/codemirror.css" /><link rel="stylesheet" href="css/editoryaml.css">', '<link rel="stylesheet" href="css/editoryaml-' + packageJson.version + '.css" />')
     } else {
       const regex2 = new RegExp(module+'\\.css\\?v=[\\d\\.]+')
       updatedContent = updatedContent.replace(regex2, module +'-' + packageJson.version + '.css');
@@ -178,6 +182,8 @@ builds.forEach(module => {
       listOfCss = ['src/css/knacssextract.css','src/css/wall.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css']
     else if(module === 'editor')
       listOfCss = ['src/css/editor.css','src/js/libs/JSXGraph1.11.1/jsxgraph.css']
+    else if(module === 'editoryaml')
+      listOfCss = ['src/js/libs/JSXGraph1.11.1/jsxgraph.css','src/js/libs/codemirror/codemirror.css','src/css/editoryaml.css']
     return gulp.src(listOfCss)
     .pipe(cleanCSS())
     .pipe(concat(module + '-' + packageJson.version +'.css'))
@@ -202,6 +208,8 @@ builds.forEach(module => {
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="css/knacssextract.css" type="text/css" /><link rel="stylesheet" href="css/bulma-steps.css" type="text/css" /><link rel="stylesheet" href="css/diaporama.css" type="text/css" /><link rel="stylesheet" href="css/sprites.css" type="text/css" /><link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" />', '<link rel="stylesheet" href="css/diaporama-' + packageJson.version + '.css" />')
     } else if(htmlPageName === 'editor.html'){
       updatedContent = updatedContent.replace('<link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" /><link rel="stylesheet" href="css/editor.css">', '<link rel="stylesheet" href="css/editor-' + packageJson.version + '.css" />')
+    } else if(htmlPageName === 'editoryaml.html'){
+      updatedContent = updatedContent.replace('<link rel="stylesheet" href="js/libs/JSXGraph1.11.1/jsxgraph.css" type="text/css" /><link rel="stylesheet" href="js/libs/codemirror/codemirror.css" /><link rel="stylesheet" href="css/editoryaml.css">', '<link rel="stylesheet" href="css/editoryaml-' + packageJson.version + '.css" />')
     } else {
       const regex2 = new RegExp(module+'\\.css\\?v=[\\d\\.]+')
       updatedContent = updatedContent.replace(regex2, module +'-' + packageJson.version + '.css');

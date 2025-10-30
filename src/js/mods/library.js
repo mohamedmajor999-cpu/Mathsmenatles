@@ -25,15 +25,20 @@ const library = {
     try {
       if(url.indexOf('.yml')>0){
         let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
-        return [jsYaml.load(result), activityId]
+        const json = jsYaml.load(result)
+        if(json.id === undefined) json.id = activityId
+        return [json, activityId]
       } else {
         let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.json())
+        if(result.id === undefined) result.id = activityId
         return [result, activityId]
       }
     } catch (jsonError){
       url = "N"+level+"/"+activityId+".yml";
       let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
-      return [jsYaml.load(result), activityId]
+      const json = jsYaml.load(result)
+      if(json.id === undefined) json.id = activityId
+      return [json, activityId]
     }
   },
   /**
@@ -52,15 +57,20 @@ const library = {
     try {
       if(url.indexOf('.yml')>0){
         let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
-        return jsYaml.load(result)
+        const json = jsYaml.load(result)
+        if(json.id === undefined) json.id = activityId
+        return json
       } else {
         let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.json())
+        if(result.id === undefined) result.id = activityId
         return result
       }
     } catch (jsonError){
       url = "N"+level+"/"+activityId+".yml";
       let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
-      return jsYaml.load(result)
+      const json = jsYaml.load(result)
+      if(json.id === undefined) json.id = activityId
+      return json
     }
   },
   /**
@@ -80,15 +90,20 @@ const library = {
     try {
       if(url.indexOf('.yml')>0){
         let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
-        return jsYaml.load(result)
+        const json = jsYaml.load(result)
+        if(json.id === undefined) json.id = activityId
+        return json
       } else {
         let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.json())
+        if(result.id === undefined) result.id = activityId
         return result
       }
     } catch (jsonError){
       url = "N"+level+"/"+activityId+".yml";
       let result = await fetch(source + "library/" + url + "?v" + version).then(res => res.text())
-      return jsYaml.load(result)
+      const json = jsYaml.load(result)
+      if(json.id === undefined) json.id = activityId
+      return json
     }
   },
   /**
@@ -174,7 +189,7 @@ const library = {
                 } else
                   // recherche dans le code de l'exo
                   if (chaineATrouver.every(txt => {
-                    return lexo.id.toLowerCase().indexOf(txt + ".") > -1
+                    return lexo.id.toLowerCase().indexOf(txt) > -1
                   })) {
                     chapExo.push({ "t": lexo.t, id: lexo.id });
                   } else
