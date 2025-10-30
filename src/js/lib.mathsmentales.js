@@ -63,8 +63,19 @@ window.onload = function() {
     MM.setDispositionEnonce(utils.getRadioChecked("Enonces"));
     // take history if present
     if(window.localStorage){
-        if(localStorage.getItem("history"))
-            document.querySelector("#tab-historique ol").innerHTML = localStorage.getItem("history").replace(/onclick="utils\.checkurl\(this.dataset\['url'\]\,false\,true\)"/gi,"");
+        if(localStorage.getItem("history")){
+            const historic = document.querySelector("#tab-historique ol")
+            historic.innerHTML = localStorage.getItem("history")//.replace(/onclick="utils\.checkurl\(this.dataset\['url'\]\,false\,true\)"/gi,"");
+            // on analyse le contenu pour ajouter ce qu'il manque
+            historic.querySelectorAll('span[data-url]').forEach(el => {
+                if(el.nextElementSibling.dataset.panier === undefined){
+                    const span = utils.create('span', {className: 'pointer underline', title:'Ajouter comme panier', innerHTML: '♻️ panier'})
+                    span.dataset.panier = el.dataset.url
+                    el.after(span)
+                    el.after(document.createTextNode(' '));
+                }
+            })
+        }
     }
     // ajout des pickers de colors
     for(let i=0;i<4;i++){
@@ -100,6 +111,15 @@ window.onload = function() {
                 elem.classList.remove('show')
             })
         };
+    }
+    // bouton de choix direct d'activité
+    document.getElementById('activityDirectID').onkeyup = (evt) => {
+        // si la toucne est enter
+        if (evt.key === 'Enter') {
+            if (!MM.loadActivity(evt.target.value)){
+                document.getElementById('activityOptions').innerHTML = '<br>Activité <b>'+evt.target.value+'</b> non trouvée'
+            }
+        }
     }
     // ouvrons l'interface des paniers pour que tout le monde sache qu'il y en a !
     MM.showCartInterface();
@@ -388,6 +408,7 @@ window.onload = function() {
         } else if (evt.target.id === 'itemsbrevet2026'){
             // ouvrir le lien vers les items du brevet
             MM.loadFromServer('brevet-2025.html')
+            MM.setHistory("Exercice", "n=i3");
         }
     })
     // bouton d'ajout au panier
@@ -423,9 +444,11 @@ window.onload = function() {
     // Suppression comportement avant modularisation  
     document.querySelector("#tab-historique ol").addEventListener("click",(evt)=>{
         if(evt.target.innerHTML.indexOf("🛠 éditer")>-1){
-            MM.checkURL(evt.target.dataset['url'],false,true)
+            MM.checkURL(evt.target.dataset.url,false,true)
         } else if(evt.target.innerHTML.indexOf("❌ Supprimer")>-1){
             MM.removeFromHistory(evt.target.parentNode);
+        } else if(evt.target.innerHTML === '♻️ panier') {
+            MM.addAsCarts(evt.target.dataset.panier)
         }
     })
     document.getElementById("corrige-content").addEventListener("click",(evt)=>{

@@ -345,10 +345,11 @@ const MM = {
             }
         }
     },
-    removeCart: function (index) {
-        if (!window.confirm("Vous êtes sur le point de supprimer ce panier.\nConfirmez-vous ?")) {
-            return false;
-        }
+    removeCart: function (index, forced = false) {
+        if(!forced)
+            if (!window.confirm("Vous êtes sur le point de supprimer ce panier.\nConfirmez-vous ?")) {
+                return false;
+            }
         if(MM.carts[index-1].sortable){
             MM.carts[index-1].sortable.destroy()
             delete MM.carts[index-1].sortable
@@ -897,6 +898,8 @@ const MM = {
             document.getElementById("removeFromCart").className = "hidden";
             obj.display('sample', MM);
             MM.setHistory("Exercice", "u=" + id);
+        }).catch(e => {
+            return false
         });
     },
     /**
@@ -1305,6 +1308,7 @@ const MM = {
         li.appendChild(a2);
         let button = `
         <span class="pointer underline" data-url="${url}">🛠 éditer</span>
+        <span class="pointer underline" data-panier="${url}" title="Ajouter comme panier">♻️ panier</span>
         <span class="pointer underline">❌ Supprimer</span>
         `;
         li.innerHTML += button;
@@ -1812,15 +1816,44 @@ const MM = {
             console.error(err);
             alert('Erreur lors du chargement du fichier. Essayez le bouton « Charger ».');
         }
+    },
+    async addAsCarts(url){
+        const carts = Object.entries(extractCarts(url))        
+        if (MM.carts.length + carts.length > 4){
+            console.log('Trop de panier !')
+            return false
+        }
+        let firstIsEmpty = false
+        if (MM.carts[MM.carts.length-1].activities.length === 0){
+            firstIsEmpty = true
+        }
+        for (const [i, cart] of carts) {
+            // ajout du panier
+            if(i>0 || !firstIsEmpty)
+                MM.addCart();
+            const index = MM.carts.length-1
+            await MM.carts[index].import(cart)
+            MM.carts[index].display()
+        }
+        MM.showTab(document.querySelector("a[numero='#tab-parameters']"))
+        toaster('Paniers ajoutés à la sélection')
     }
 }
 
+/* ───────  analyse de lien  ───────────────*/
+function extractCarts(url) {
+    const vars = utils.getUrlVars(url)
+    if(vars.c === undefined) {console.log((url, vars))}
+    return vars.c
+}
+
+/* ───────   Gestion des liens de Révisions ───────────────*/
 /* ────────────────────────────────────────────────────────
    1. Extraction des paires i / o
    ──────────────────────────────────────────────────────── */
 function extractActivities(url) {
   const vars = utils.getUrlVars(url)
-  if (vars.c === undefined) {console.log(url, vars);return false}
+  if (vars.c === undefined) {return false}
   return vars.c[0].a;
 }
 
@@ -1829,20 +1862,15 @@ function extractActivities(url) {
    ──────────────────────────────────────────────────────── */
 async function handleLink(activities) {
     const selectedCart =MM.carts[MM.selectedCart]
-    for (const act of Object.values(activities)) {
+    const theactivities = Object.values(activities)
+    for (const act of theactivities) {
         let newActivity = await activity.import(act, selectedCart.activities.length, MM.version)
         // if (newActivity.id === undefined) newActivity.id = act.i
         selectedCart.activities[newActivity[0]] = newActivity[1]
     }
+    MM.editActivity(selectedCart.activities.length - 1)
     selectedCart.display()
-    const toastText = document.getElementById('toastText')
-    const defaulttext = toastText.innerHTML
-    toastText.innerHTML = 'Activités copiées dans le panier en cours'
-    toast.classList.add('show');
-    setTimeout(function() {
-        toast.classList.remove('show');
-        toastText.innerHTML = defaulttext
-    }, 3000);
+    toaster('Activités copiées dans le panier en cours')
 }
 
 /* ────────────────────────────────────────────────────────
@@ -1897,4 +1925,16 @@ async function processContent(htmlText) {
       resultContainer.appendChild(ulClone);
     }
   });
+}
+
+function toaster(texte){
+    const toastText = document.getElementById('toastText')
+    const defaulttext = toastText.innerHTML
+    if(texte !== undefined)
+        toastText.innerHTML = texte
+    toast.classList.add('show');
+    setTimeout(function() {
+        toast.classList.remove('show');
+        toastText.innerHTML = defaulttext
+    }, 3000);
 }

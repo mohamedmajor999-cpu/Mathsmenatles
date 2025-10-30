@@ -1164,6 +1164,9 @@ h2.sg-title, h3.sg-title {
     padding:0;
     float:right;
 }
+#activityDirectID {
+  float: right;
+}
 #btn-annotation-corrige, #btn-annotation-enonce, #btn-restart-otherdata, #btn-restart-samedata, #btn-export-enonce-pixelart, #btn-export-odt{
   background-color: rgba(0,0,0,0);
   padding:0;

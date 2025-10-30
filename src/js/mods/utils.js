@@ -534,7 +534,11 @@ export const utils = {
                 // si la première lettre est p, on a un panier
                 if (hashes[i].indexOf("p") === 0) {
                     // le séparateur d'activités est le _
-                    let parts = hashes[i].split("_");
+                    let parts = hashes[i].split("_i")
+                    // cela permet d'éviter les pb de titres contenant _
+                    for(let i=1; i<parts.length;i++){
+                        parts[i] = 'i'+parts[i]
+                    }
                     // parts[0] contient les données du panier, que l'on stocke dans data
                     // le séparateur de couples var/valeur est ~
                     let data = parts[0].split("~");
