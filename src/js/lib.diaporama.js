@@ -196,9 +196,17 @@ const diaporama = {
         loaded = false;
     }
     if (loaded) {
+      // ! on fait attention à ce que les targets ne se chevauchent pas
+      const targets = []
       diaporama.carts.forEach(panier => {
-        if (typeof panier.target === 'string')
-          panier.target = panier.target.split(",");
+        if (typeof panier.target === 'string') // normalement, c'est un tableau
+          panier.target = panier.target.split(",").map(Number);
+        for (let i=0; i < panier.target.length; i++) {
+          if (targets.includes(panier.target[i])) {
+            do{panier.target[i]++} while(targets.includes(panier.target[i]))
+          }
+          targets.push(panier.target[i])
+        }
       })
       if (start || window.opener !== null)
         diaporama.start(sameData);

@@ -1340,6 +1340,48 @@ const MM = {
         }
     },
     /**
+     * Exporte l'historique dans un fichier html.
+     */
+    exportHistory() {
+        let content = document.querySelector("#tab-historique ol").innerHTML;
+        const blob = new Blob([content], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = utils.create("a", { href: url, download: "mathsmentales-historique.html" });
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    },
+    /** */
+    showInputImportHistory() {
+        const input = document.getElementById("inputHistoryImport");
+        input.classList.remove("hidden");
+        input.click();
+    },
+    /**
+     * Importe un historique depuis un fichier html.
+     * @param {event} event 
+     * @returns 
+     */
+    importHistory(event) {
+        const file = event.target.files[0];
+        if (!file) {
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const contents = e.target.result;
+            document.querySelector("#tab-historique ol").innerHTML = contents;
+            // sauvergarde du résultat
+            if (window.localStorage) {
+                localStorage.setItem("history", document.querySelector("#tab-historique ol").innerHTML);
+            }
+        };
+        reader.readAsText(file);
+        // réinitialisation du input file
+        event.target.value = "";
+    },
+    /**
      * Enlève un élément du DOM de l'historique et enregistre localement au cas où.
      * @param {DOM element} elem 
      */
@@ -1835,6 +1877,7 @@ const MM = {
             await MM.carts[index].import(cart)
             MM.carts[index].display()
         }
+        MM.setDispositionEnonce(MM.carts.length)
         MM.showTab(document.querySelector("a[numero='#tab-parameters']"))
         toaster('Paniers ajoutés à la sélection')
     }

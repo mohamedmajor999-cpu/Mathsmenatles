@@ -371,9 +371,21 @@ window.onload = function() {
             case "btnsupprselhist":
                 MM.removeSelectionFromHistory()
                 break
+            case "btnImportHist":
+                MM.showInputImportHistory()
+                break
+            case "btnExportHist":
+                MM.exportHistory()
+                break
             default:
                 break
         }
+    })
+    document.getElementById("inputHistoryImport").addEventListener("change", (evt)=>{
+        MM.importHistory(evt)
+        // hide the input
+        evt.target.value = ''
+        evt.target.classList.add('hidden')
     })
     // moteur de recherche d'activité
     document.getElementById("searchinput").onkeyup = (evt)=>{
@@ -418,11 +430,11 @@ window.onload = function() {
             let allActivities = [];
             let nbq = Number(document.getElementById("addToCartNbq").value);
             selection.forEach(el=>{
-                allActivities.push(library.loadJSON(el.dataset["url"], MM.version))
+                allActivities.push(library.loadJSON(el.value, MM.version))
             })
             Promise.all(allActivities).then(data=>{
                 data.forEach(val=>{
-                    MM.carts[MM.selectedCart].addActivity(val,nbq);
+                    MM.carts[MM.selectedCart].addActivity(val, nbq);
                 })
                 let tab = document.querySelector("a[numero$='parameters'].tabs-menu-link");
                 MM.resetAllTabs();
