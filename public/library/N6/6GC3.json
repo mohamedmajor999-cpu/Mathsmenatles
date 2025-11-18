@@ -1,6 +1,6 @@
 {
     "title":"Nommer une droite",
-    "description":"Donner le nom d'une droite avec deux lettres.",
+    "description":"Donner le nom d’une droite avec deux lettres.",
     "type":"text",
     "ID":"6GC3",
     "dest":["6GC", "5GB", "4GB", "3GB"],
@@ -10,7 +10,7 @@
     },
     "options":[
         {
-            "name":"Nommer une droite à l'aide de deux points",
+            "name":"Nommer une droite à l’aide de deux points",
             "vars":{
                 "pts":"0_16_2_^&",
                 "A":"${:points[:pts[0]]}",
@@ -36,7 +36,7 @@
             "answer":"$$\\left(${:A+:B}\\right), \\left(${:B+:A}\\right)$$",
             "value":"(${:A+:B});(${:B+:A})"
         },{
-            "name":"Nommer une droite à l'aide de trois points",
+            "name":"Nommer une droite à l’aide de trois points",
             "vars":{
                 "pts":"0_16_3_^&",
                 "A":"${:points[:pts[0]]}",
@@ -67,7 +67,7 @@
             "answer":"$$\\left(${:A+:C}\\right), \\left(${:A+:B}\\right), \\left(${:C+:B}\\right), \\left(${:B+:C}\\right), \\left(${:B+:A}\\right), \\left(${:C+:A}\\right)$$",
             "value":"(${:A+:C});(${:A+:B});(${:C+:B});(${:B+:C});(${:B+:A});(${:C+:A})"
         }, {
-            "name":"Nommer une droite à l'aide de quatre points",
+            "name":"Nommer une droite à l’aide de quatre points",
             "vars":{
                 "pts":"0_16_4_^&",
                 "A":"${:points[:pts[0]]}",
@@ -98,11 +98,11 @@
                     ["line", [["${:xA}", "${:yA}"], ["${:xB}", "${:yB}"]]]
                 ]
             },
-            "question":"Les points ${:A}, ${:C}, ${:D} et ${:B} sont sur la droite. Nommer la droites de quatre façons différentes.",
+            "question":"Les points ${:A}, ${:C}, ${:D} et ${:B} sont sur la droite. Nommer la droite de quatre façons différentes.",
             "answer":"Les noms possibles sont : $$\\left(${:A+:C}\\right), \\left(${:A+:D}\\right), \\left(${:A+:B}\\right), \\left(${:C+:D}\\right), \\left(${:C+:B}\\right), \\left(${:D+:B}\\right)$$ et ceux avec les lettres inversées.",
             "value":"(${:A+:C});(${:A+:D});(${:A+:B});(${:C+:D});(${:C+:B});(${:D+:B})"
         },{
-            "name":"Nommer une droite à l'aide de deux directions",
+            "name":"Nommer une droite à l’aide de deux directions",
             "vars":{
                 "pts":"0_16_2_^&",
                 "A":"${:points[:pts[0]]}",
@@ -129,10 +129,10 @@
                 ]
             },
             "question":"Quels sont les noms possibles pour cette droite ?",
-            "answer":"La droite peut s'appeler $$\\left(${:x+:y}\\right)$$ ou $$\\left(${:y+:x}\\right)$$.",
+            "answer":"La droite peut s’appeler $$\\left(${:x+:y}\\right)$$ ou $$\\left(${:y+:x}\\right)$$.",
             "value":"${:x+:y};${:y+:x}"
         },{
-            "name":"Nommer une droite à l'aide d'un point et deux directions",
+            "name":"Nommer une droite à l’aide d’un point et deux directions",
             "vars":{
                 "pts":"0_16_3_^&",
                 "A":"${:points[:pts[0]]}",
@@ -166,7 +166,7 @@
             "answer":" $$\\left(${:x+:y}\\right), \\left(${:y+:x}\\right), \\left(${:x+:C}\\right), \\left(${:C+:x}\\right), \\left(${:C+:y}\\right), \\left(${:y+:C}\\right)$$.",
             "value":"${:x+:y};${:y+:x};${:x+:C};${:C+:x};${:C+:y};${:y+:C}"
         },{
-            "name":"Nommer une droite à l'aide de deux points et deux directions",
+            "name":"Nommer une droite à l’aide de deux points et deux directions",
             "vars":{
                 "pts":"0_16_4_^&",
                 "A":"${:points[:pts[0]]}",
