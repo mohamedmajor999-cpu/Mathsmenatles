@@ -851,6 +851,7 @@ export const utils = {
      */
     testIfLatex(chaine){
         let isLatex = false;
+        if(typeof chaine !== 'string') return isLatex
         isLatex = chaine.indexOf('\\')>-1 || chaine.indexOf('x')>-1 || chaine.indexOf('^')>-1;
         return isLatex;
     },
