@@ -847,7 +847,7 @@ const diaporama = {
     // suppression de l'annotation si en cours.
     this.annotateThisThing(false);
     for (let i = 0, len = diaporama.carts.length; i < len; i++) {
-      if (diaporama.carts[i].target.indexOf(String(id + 1)) > -1) {
+      if (diaporama.carts[i].target.includes(String(id + 1)) || diaporama.carts[i].target.includes(id + 1)) {
         let nbActivities = diaporama.carts[i].activities.length;
         let actId = 0;
         // si le panier contient plusieurs activités,
