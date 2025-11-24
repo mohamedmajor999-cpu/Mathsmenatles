@@ -14,8 +14,9 @@ let pageFormat = 0;// portrait
 let answersBorderColor = "#d0d0d0"
 let couleurDuCoin = '#bfbfbf'
 let couleurDuTexteDeco = '#bfbfbf'
+let answerType = 'normal'
 let zoom
-const parameters = {coincolor:couleurDuCoin, bordercolor:answersBorderColor, decocolor:couleurDuTexteDeco};
+const parameters = {coincolor:couleurDuCoin, bordercolor:answersBorderColor, decocolor:couleurDuTexteDeco, answerType};
 
 //let zoom;
 
@@ -95,6 +96,14 @@ document.getElementById('radioQ').onclick = ()=>{
 }
 document.getElementById('radioText').onclick = ()=>{
     parameters.numeroter = 'text'
+    refresh()
+}
+document.getElementById('radioAnsTypeNorm').onclick = () => {
+    parameters.answerType = 'normal'
+    refresh()
+}
+document.getElementById('radioAnsTypeShort').onclick = () => {
+    parameters.answerType = 'value'
     refresh()
 }
 document.getElementById('fontSize').onclick = (evt) =>{
@@ -222,7 +231,7 @@ function makePage(){
     const nombreDeCartesParLigne = Math.floor(pageWidth/Number(parameters.cardWidth))
     common.generateQuestions(parameters);
     const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'})]
-    if(parameters.disposition === 'separated'){arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))}
+    if(parameters.disposition === 'separated'){arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid answers-section", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))}
     let currentSection = 0
     let globalPrintHeight = parameters.cardHeight
     let nbOfCards = 0
@@ -254,12 +263,20 @@ function makePage(){
                 const span = utils.create("span");
                 span.innerHTML = '$$'+activity.questions[j]+'$$'
                 const spanCorrection = utils.create("span");
-                spanCorrection.innerHTML = '$$'+activity.answers[j]+'$$'
+                if (parameters.answerType === 'normal') {
+                    spanCorrection.innerHTML = '$$'+activity.answers[j]+'$$'
+                } else {
+                    spanCorrection.innerHTML = '$$\\color{red}{'+activity.values[j]+'}$$'
+                }
                 divq.appendChild(span);
                 divr.appendChild(spanCorrection);
             } else {
                 divq.innerHTML = activity.questions[j];
-                divr.innerHTML = activity.answers[j];
+                if (parameters.answerType === 'normal') {
+                    divr.innerHTML = activity.answers[j]
+                } else {
+                    divr.innerHTML = '$$\\©olor{red}{'+activity.values[j]+'}$$'
+                }
             }
             artQuestion.appendChild(divq);
             // figures
@@ -290,14 +307,15 @@ function makePage(){
     }
     for(const section of arrayOfFlashCardsSection){
         content.appendChild(section)
+        content.appendChild(utils.create('div',{className:'break'}))
         const resteDeCartes = section.childNodes.length%nombreDeCartesParLigne
         if ( resteDeCartes > 0 ){
             for(let i=0; i<nombreDeCartesParLigne-resteDeCartes; i++){
                 section.appendChild(utils.create('article'))
             }
         }
-        if(parameters.disposition === 'separated'){
-            const answersSections = document.querySelectorAll('.flash-section:nth-child(even)')
+        if(parameters.disposition === 'separated'){ // on inverse l'ordre des réponses sur chaque ligne
+            const answersSections = document.querySelectorAll('.flash-section.answers-section')
             for(const section of answersSections){
                 for(let i=0; i<section.childNodes.length; i=i+nombreDeCartesParLigne){
                     for(let j=i+1;j<i+nombreDeCartesParLigne;j++){
@@ -358,6 +376,7 @@ function checkURL(urlString){
         // parametres globaux :
         parameters.fontType = vars.fs??'serif'
         parameters.tailleTexte=10.5;
+        parameters.answerType = utils.getRadioChecked('anstype')
         parameters.disposition=vars.disp||'both';//'both' or 'separated'
         document.getElementById('btnRectoVerso').innerText = parameters.disposition==='both'?'Recto':'Recto/Verso'
         zoom = new Zoom("changeFontSize","#creator-content",true,"pt",parameters.tailleTexte);
