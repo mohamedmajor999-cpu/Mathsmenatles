@@ -66,6 +66,11 @@ question: # forme de question commune à toutes les options
   - :m\times:n=?
   - :r = :n\times ?
   - :r\div:n=?
+shortq:
+  - :n\times:m
+  - :m\times:n
+  - :r = :n\times ?
+  - :r\div:n
 answer: # à chaque question sa réponse
   - :n\times:m=\color{red}{:r}
   - :m\times:n=\color{red}{:r}
