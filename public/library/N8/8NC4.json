@@ -22,7 +22,7 @@
         "answer":[
             "$$${:n} - ${:x*1000} = \\color{red}{${:n-:x*1000}}$$",
             "$$${:n} - ${:x}\\times 1000 = \\color{red}{${:n-:x*1000}}$$",
-            "$$${:n}$$ moins $$${:x}$$ centaine${:x>1?'s':''} font $$\\color{red}{${:n-:x*1000}}$$"
+            "$$${:n}$$ moins $$${:x}$$ millier${:x>1?'s':''} font $$\\color{red}{${:n-:x*1000}}$$"
         ],
         "value":"${MMmath.round(:n-:x*1000)}"
     },{
@@ -143,7 +143,7 @@
         "question":[
             "$$${:n}-${MMmath.round(:x/1000,3)}$$",
             "$$${:n} - \\dfrac{${:x}}{1000}$$",
-            "Combien font $$${:n}$$ moins $$${:x}$$ millièmes${:x>1?'s':''} ?"
+            "Combien font $$${:n}$$ moins $$${:x}$$ millième${:x>1?'s':''} ?"
         ],
         "answer":[
             "$$${:n}-${:x}=\\color{red}{${MMmath.round(:n-:x/1000,3)}}$$",

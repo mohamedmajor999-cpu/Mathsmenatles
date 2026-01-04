@@ -21,15 +21,15 @@
     },{
         "name":"Division euclidienne (petits nombres)",
         "vars":{"a":"11_50","b":"2_10", "qo":"${~~(:a/:b)}", "r":"${:a%:b}"},
-        "question":"Quels sont le quotient et le reste de $$:a\\div ${:b}$$ ?",
-        "shortq":"$$:a\\div :b \\, Q=\\colorbox{#ececec}{\\quad}; R=\\colorbox{#ececec}{\\quad}$$",
+        "question":"Quels sont le quotient et le reste de la division euclidienne de $$:a$$ par $$:b$$ ?",
+        "shortq":"$$ {:a\\atop{}}\\left\\rvert\\frac{:b}{} \\quad Q=\\colorbox{#ececec}{\\quad}; R=\\colorbox{#ececec}{\\quad}$$",
         "answer":"$$:a=:b\\times\\color{red}{:qo}+\\color{red}{:r}$$ ou $$\\color{green}{Q=${:qo}; R=${:r}}$$",
         "value":["${:qo};${:r}", "Q=${:qo};R=${:r}"]
     },{
         "name":"Division euclidienne (grands nombres)",
         "vars":{"a":"25_300","b":"2_25", "qo":"${~~(:a/:b)}", "r":"${:a%:b}"},
-        "question":"Quels sont le quotient et le reste de $$:a\\div :b$$ ?",
-        "shortq":"$$:a\\div :b \\, Q=\\colorbox{#ececec}{\\quad\\quad}; R=\\colorbox{#ececec}{\\quad}$$",
+        "question":"Quels sont le quotient et le reste de la division euclidienne de $$:a$$ par $$:b$$ ?",
+        "shortq":"$$ {:a\\atop{}}\\left\\rvert\\frac{:b}{} \\quad Q=\\colorbox{#ececec}{\\quad\\quad}; R=\\colorbox{#ececec}{\\quad}$$",
         "answer":"$$:a=:b\\times\\color{red}{${:qo}}+\\color{red}{${:r}}$$ ou $$\\color{green}{Q=${:qo}; R=${:r}}$$",
         "value":["${:qo};${:r}", "Q=${:qo};R=${:r}"]
     }

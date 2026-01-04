@@ -42,13 +42,13 @@ for (let niveau in structure){
   }
 }
 for (const niveau in structure){
-  let now = new Date().getTime()-30*24*3600*1000;
+  let now = new Date().getTime()-15*24*3600*1000;
   if(niveau === "activitiesNumber")continue;
   let listOfFiles = getAllFiles("./N"+niveau);
   listOfFiles.forEach(function(fichierExo){
     let nouveau = false;
-    // let dt = new Date(fichierExo[2]).getTime();
-    // if(dt > now){nouveau = true;console.log(fichierExo[0])}
+    let dt = new Date(fichierExo[2]).getTime();
+    if(dt > now){nouveau = true;console.log(fichierExo[0])}
     //console.log(fichierExo);
     let json
     const fileContent = fs.readFileSync(fichierExo[1])

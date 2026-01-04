@@ -13,7 +13,7 @@
                 "unit":"${:direction=='up'?'4_5':'3_4'}",
                 "unit2":"${:direction=='up'?:unit-1::unit+1}",
                 "ans1":"${:direction=='up'?'petit':'grand'}",
-                "ans2":"${:direction=='up'?'petite':'grande'}",
+                "ans2":"${:direction=='down'?'petite':'grande'}",
                 "fraction":"${:direction=='up'?'un centième':'une centaire'}",
                 "nombre1":"${:direction=='up'?'\\dfrac{1}{100}':'100'}"
             }
@@ -24,7 +24,7 @@
                 "unit":"${:direction=='up'?'1_6':'0_5'}",
                 "unit2":"${:direction=='up'?:unit-1::unit+1}",
                 "ans1":"${:direction=='up'?'petit':'grand'}",
-                "ans2":"${:direction=='up'?'petite':'grande'}",
+                "ans2":"${:direction=='down'?'petite':'grande'}",
                 "fraction":"${:direction=='up'?'un centième':'une centaire'}",
                 "nombre1":"${:direction=='up'?'\\dfrac{1}{100}':'100'}"
             }

@@ -1155,7 +1155,7 @@ const MM = {
                 // crée l'affichage des paniers
                 MM.carts.forEach(thecart => thecart.display())
                 MM.showCart(1);
-                // MM.editActivity(0);
+                if(edit) MM.editActivity(0);
             }).catch(err => {
                 // erreur à l'importation :(
                 let alert = utils.create("div",
@@ -1879,6 +1879,7 @@ const MM = {
         }
         MM.setDispositionEnonce(MM.carts.length)
         MM.showTab(document.querySelector("a[numero='#tab-parameters']"))
+        MM.editActivity(0)
         toaster('Paniers ajoutés à la sélection')
     }
 }

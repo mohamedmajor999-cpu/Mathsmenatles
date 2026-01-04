@@ -6,11 +6,11 @@
         {
         "name":"Soustraire un nombre < 9 sans changement de dizaine",
         "vars":{"a":"0_9","b":"1_8","c":"0_${:b}",
-         "qte":"${(:a*10+:b)-:c}"  }  
+         "qte":"${(:a*10+:b)-:c}"}
         },{
         "name":"Soustraire un nombre < 9 avec changement de dizaine",
-        "vars":{"a":"0_9","c":"1_9","b":"0_${:b}",
-         "qte":"${(:a*10+:b)-:c}"  }  
+        "vars":{"a":"1_9","b":"0_8","c":"${:b+1}_9",
+         "qte":"${(:a*10+:b)-:c}"}
         }
     ],
 

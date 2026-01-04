@@ -24,10 +24,10 @@
                     "Dans un panier, il y a $$${:nbe}$$ fruits. $$${:nbp2}$$ sont des pommes et les autres sont des bananes. Quelle est la proportion de bananes ?"
                 ],
                 "qv3":[
-                    "Une classe comporte $$${:nbp1}$$ filles et $$${:nbp2}$$ garçons. Quelle est la proportion de filles dans cette classe ?",
                     "Une classe comporte $$${:nbp1}$$ filles et $$${:nbp2}$$ garçons. Quelle est la proportion de garçons dans cette classe ?",
+                    "Une classe comporte $$${:nbp1}$$ filles et $$${:nbp2}$$ garçons. Quelle est la proportion de filles dans cette classe ?",
                     "En tirant à pile ou face j'ai obtenu $$${:nbp1}$$ piles et $$${:nbp2}$$ faces. Quelle est la proportion de piles ?",
-                    "En tirant à piles ou faces j'ai obtenu $$${:nbp2}$$ piles et $$${:nbp1}$$ face. Quelle est la proportion de facess ?",
+                    "En tirant à piles ou faces j'ai obtenu $$${:nbp2}$$ piles et $$${:nbp1}$$ faces. Quelle est la proportion de faces ?",
                     "Dans un panier il y a $$${:nbp1}$$ pommes et $$${:nbp2}$$ bananes. Quelle est la proportion de pommes ?",
                     "Dans un panier il y a $$${:nbp2}$$ pommes et $$${:nbp1}$$ bananes. Quelle est la proportion de bananes ?"
                 ],

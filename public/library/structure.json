@@ -264,7 +264,8 @@
                 "nom":"Espace et géométrie",
                 "chapitres":{
                     "5GA":"Représenter l'espace",
-                    "5GB":"Notions de géométrie pour démontrer"
+                    "5GB":"Notions de géométrie pour démontrer",
+                    "5GR": "Se repérer sur une droite, dans le plan"
                 }
             },
             "5A":{
@@ -317,7 +318,8 @@
                 "nom":"Espace et géométrie",
                 "chapitres":{
                     "4GA":"Représenter l'espace",
-                    "4GB":"Notions de géométrie pour démontrer"
+                    "4GB":"Notions de géométrie pour démontrer",
+                    "4GR": "Repérage sur une droite et dans le plan"
                 }
             },
             "4A":{
@@ -369,7 +371,8 @@
                 "nom":"Espace et géométrie",
                 "chapitres":{
                     "3GA":"Représenter l'espace",
-                    "3GB":"Notions de géométrie pour démontrer"
+                    "3GB":"Notions de géométrie pour démontrer",
+                    "3GR": "Repérage sur une droite et dans le plan"
                 }
             },
             "3A":{
