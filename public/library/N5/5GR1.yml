@@ -41,10 +41,6 @@ options:
       keepAspect: false
       axis: true
       grid: true
-      content:
-        - - point
-          - [:x, :y]
-          - {face: 'x', size: 3, visible: false}
     question: Placer le point de coordonnées ( :x ; :y )
     answer: 
     figureCorrection:

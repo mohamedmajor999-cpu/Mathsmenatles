@@ -62,7 +62,8 @@
                 "content":"${:fig[:fign][1]}"
             },
             "question":"Combien pèse ${:fig[:fign][0]} ?",
-            "answer":"${:fig[:fign][0].charAt(0).toUpperCase() + :fig[:fign][0].slice(1)} pèse $$\\color{red}{${:qte*10} g}$$"
+            "answer":"${:fig[:fign][0].charAt(0).toUpperCase() + :fig[:fign][0].slice(1)} pèse $$\\color{red}{${:qte*10} g}$$",
+            "value":["${:qte*10}","${:qte*10} g"]
         },{
             "name":"Représentation en barre, tables",
             "consts":{
@@ -89,7 +90,8 @@
                 "content":"${:fig['n'+:nb]}"
             },
             "question":"Combien vaut a ?",
-            "answer":"a vaut $$${:total}\\div${:nb}=\\color{red}{${:nba}}$$."
+            "answer":"a vaut $$${:total}\\div${:nb}=\\color{red}{${:nba}}$$.",
+            "value":"${:nba}"
         },{
             "name":"Représentation en barre, deux étapes",
             "consts":{

@@ -181,7 +181,7 @@ function makePage() {
                     container.classList.add('fullscreen')
                     endWidth = container.getBoundingClientRect().width
                     endHeight = container.getBoundingClientRect().height
-                    const ratio = Math.min(4, Math.max(endWidth / initWidth, endHeight / initHeight))
+                    const ratio = Math.min(3, Math.max(endWidth / initWidth, endHeight / initHeight))
                     container.style['font-size'] = ratio * 100 + '%'
                 } else {
                     container.classList.remove('fullscreen')
