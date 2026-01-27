@@ -231,7 +231,9 @@ function makePage(){
     const nombreDeCartesParLigne = Math.floor(pageWidth/Number(parameters.cardWidth))
     common.generateQuestions(parameters);
     const arrayOfFlashCardsSection = [utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'})]
-    if(parameters.disposition === 'separated'){arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid answers-section", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))}
+    if(parameters.disposition === 'separated') {
+        arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid answers-section", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
+    }
     let currentSection = 0
     let globalPrintHeight = parameters.cardHeight
     let nbOfCards = 0
@@ -291,7 +293,7 @@ function makePage(){
                 arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
                 currentSection++;
                 if(parameters.disposition === 'separated'){
-                    arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
+                    arrayOfFlashCardsSection.push(utils.create("section",{className:"flash-section grid answers-section", style:'grid-template-columns: repeat('+nombreDeCartesParLigne+',1fr);'}))
                 }
                 globalPrintHeight = parameters.cardHeight
             }
@@ -305,6 +307,7 @@ function makePage(){
             arrayOfFlashCardsSection[indexWhereInsertA].appendChild(artCorrection)
         }
     }
+    console.log(arrayOfFlashCardsSection);
     for(const section of arrayOfFlashCardsSection){
         content.appendChild(section)
         content.appendChild(utils.create('div',{className:'break'}))
