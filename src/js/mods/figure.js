@@ -1,6 +1,11 @@
 import {utils,_} from "./utils.js";
 import scratchblocks from "../libs/scratchblocks/scratchblocks.min.es.js";
-import Chart from "../libs/chartjs/Chart.js";
+import {
+    Chart,
+    downloadSVG,
+    exportToPNG
+} from '../libs/chartClaude/charts.mjs.js';
+
 import MMmath from "./math.js";
 import JXG from '../libs/JSXGraph1.11.1/jsxgraphcore.esm.js'
 
@@ -301,14 +306,7 @@ export default class Figure {
      */
     async create(destination){
         if(this.type === "chart"){
-            const div = utils.create("div",{id:"div-dest-canvas-"+this.id, style:'width:14em'});
-            const canvas = document.createElement("canvas");
-            canvas.id = this.id;
-            if(this.size !== undefined){
-                div.style.width = this.size[0]+"px";
-                div.style.height = this.size[1]+"px";
-            }
-            div.appendChild(canvas);
+            const div = utils.create("div",{id:this.id});
             destination.appendChild(div);
         } else if(this.type === "graph"){
             const div = document.createElement("div");
@@ -378,9 +376,9 @@ export default class Figure {
      */
     toggle(){
         let elt;
-        if(this.type ==="chart")
-            elt = document.getElementById(this.id).parentNode;
-        else if(['graph', 'svg', 'scratch', 'graph3Dcubes'].indexOf(this.type)>-1)
+        if(this.type ==="oups") // cas oups n'existe pas
+            elt = document.getElementById(this.id);
+        else if(['graph', 'svg', 'scratch', 'graph3Dcubes', 'chart'].indexOf(this.type)>-1)
             elt = document.getElementById(this.id);
         let cln = elt.className; // div contenant
         if(cln.indexOf("visible")<0){
@@ -389,12 +387,6 @@ export default class Figure {
         } else {
             utils.removeClass(elt,"visible");
         }
-    }
-    setChartFontSize(target){
-        const envFontSize = window.getComputedStyle(target.parentNode).fontSize
-        const fontSizeValue = Number(envFontSize.substring(0, envFontSize.length - 2))
-        const fontSize = String(fontSizeValue * 0.8) + 'px';
-        Chart.defaults.font.size = fontSize;
     }
     /**
      * Crée la figure
@@ -420,9 +412,14 @@ export default class Figure {
             } else {
                 target = destination.document.getElementById(this.id);
             }
-            this.setChartFontSize(target)
-            this.figure = new Chart(target, this.content);
-            
+            const chartType = this.content.type;
+            const chartData = this.content.data;
+            const chartLabels = this.content.labels||[];
+            const chartOptions = this.content.options||{};
+            this.figure = new Chart(chartType, chartData, chartLabels, chartOptions)
+            this.figure.style.width = '17em'
+            this.figure.style.height = '10em'
+            target.appendChild(this.figure);
         } else if (this.type === 'graph3Dcubes') {
             try {
                 JXG.Options.text.display = 'internal'

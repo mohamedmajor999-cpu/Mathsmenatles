@@ -38,7 +38,7 @@ Pour ceux qui veulent participer, voir [cette documentation](https://forge.apps.
  * [algebrite.js](http://algebrite.org/) An extensive math library symbolic computation (MIT licence)
  * [Sortable.js](http://sortablejs.github.io/Sortable/) Javascript library for reorderable drag-and-drop lists (MIT licence)
  * [seedrandom.js](https://github.com/davidbau/seedrandom) pour créer des nombres aléatoires "controlés" (MIT licence)
- * [Chart.js](https://www.chartjs.org/) pour représenter des statistiques (MIT licence)
+ * ~~[Chart.js](https://www.chartjs.org/) pour représenter des statistiques (MIT licence)~~ remplacé par une bibliothèque développée à l'aide de Claude ia
  * [JSXGraph](http://jsxgraph.uni-bayreuth.de/wp/index.html) pour les représentations graphiques et la géométrie, notamment [JessieCode](https://github.com/jsxgraph/JessieCode) qui permet de réaliser des figures facilement (LGPL & MIT licences)
  * ~~[asciimath2tex](https://github.com/christianp/asciimath2tex) pour taper plus rapidement les formules de maths (Licence Apache 2.0)~~ inutilisé à présent
  * ~~[qrious](https://github.com/neocotic/qrious) pour générer les qrcodes (GPLv3 licence)~~ remplacé par qr-code-styling
@@ -412,9 +412,11 @@ Exemple avec chartjs : représentation de données statistiques
     "figure":{
       "type":"chart", // sera affiché à l’aide de la bibliothèque chartjs
       "content":{ // les données passées à l’objet chartjs
-        "type":"bar", // le type de représentation
+        "type":"vertical", // le type de représentation (vertical, horizontal, pie, semicircular)
+        "labels":[":b[0]", ":b[1]", ":b[2]", ":b[3]", ":b[4]"]
+        "data":[":a[0]",":a[1]",":a[2]",":a[3]",":a[4]"]
         // les datas à afficher, dont les couleurs
-        "data":{"labels":"${:b}", "datasets":[{"label":"Graphique","backgroundColor": ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],"data":"${:a}"}]}}
+        "options":{"title":"Graphique","colors": ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]}}
         },
     "question":"Quelle est la donnée la plus représentée ?", // la question posée
     "answer":"C’est ${:b[:a.indexOf(Math.max(...:a))]}", // la réponse attendue (le max de la série)
