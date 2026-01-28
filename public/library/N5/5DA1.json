@@ -9,8 +9,9 @@
         "b":[["fraises", "bananes", "oranges", "kiwis", "pommes"],
             ["vélo", "trotinette", "voiture", "bus", "scooter"],
             ["2016", "2017", "2018", "2019", "2020"]],
-        "c":[["Quelle est la donnée la plus représentée ?", "La donnée la plus représentée est ${:b[:f][:a.indexOf(Math.max(...:a))]}", "${Math.max(...:a)}"],
-        ["Quelle est la donnée la moins représentée ?","La donnée la moins représentée est ${:b[:f][:a.indexOf(Math.min(...:a))]}", "${Math.min(...:a)}"]],
+        "titres":["Fruits préférés","Moyens de transport","Années de naissance"],
+        "c":[["Quelle est la donnée la plus représentée ?", "La donnée la plus représentée est <span class='red'>${:b[:f][:a.indexOf(Math.max(...:a))]}</span>", "${Math.max(...:a)}"],
+        ["Quelle est la donnée la moins représentée ?","La donnée la moins représentée est <span class='red'>${:b[:f][:a.indexOf(Math.min(...:a))]}</span>", "${Math.min(...:a)}"]],
         "m":[["${:a[0]}","${:a[1]}","${:a[2]}","${:a[3]}","${:a[4]}"],["${10*:a[0]}","${10*:a[1]}","${10*:a[2]}","${10*:a[3]}","${10*:a[4]}"]]
     },
     "options":[
@@ -18,20 +19,22 @@
             "vars":{
                 "a":"10_100_5_^&",
                 "n":0,
-                "d":"bar",
+                "d":"vertical",
                 "f":"0_2",
                 "ia":"x",
-                "g":"0_1"
+                "g":"0_1",
+            "legend":false
             }
         },
         {"name":"barres horizonales",
         "vars":{
             "a":"10_100_5_^&",
             "n":0,
-            "d": "bar",
+            "d": "horizontal",
             "ia":"y",
             "f":"0_2",
-            "g":"0_1"
+            "g":"0_1",
+            "legend":false
             }
         },
         {"name":"Diagramme circulaire",
@@ -41,20 +44,23 @@
             "ia":"",
             "d":"pie",
             "f":"0_2",
-            "g":"0_1"
+            "g":"0_1",
+            "legend":true
         }
         }
     ],
-    "figure":{"type":"chart",
+    "figure":{
+        "type":"chart",
         "content":{
-        "type":"${:d}",
-        "data":{
+            "type":"${:d}",
             "labels":["${:b[:f][0]}","${:b[:f][1]}","${:b[:f][2]}","${:b[:f][3]}","${:b[:f][4]}"],
-            "datasets":[{
-                "label":"Graphique",
-                "indexAxis":"${:ia}",
-                "backgroundColor": ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                "data":["${:m[:n][0]}","${:m[:n][1]}","${:m[:n][2]}","${:m[:n][3]}","${:m[:n][4]}"]}]
+            "data":["${:m[:n][0]}","${:m[:n][1]}","${:m[:n][2]}","${:m[:n][3]}","${:m[:n][4]}"],
+            "options":{
+                "title":"${:titres[:f]}",
+                "showGrid":false,
+                "showValues":false,
+                "showLegend":":legend",
+                "colors": ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
             }
         }
     },
