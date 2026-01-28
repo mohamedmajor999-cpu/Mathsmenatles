@@ -1,4 +1,5 @@
 <?php
+
 /**
  * script qui envoie l'url longue au raccourcisseur d'url
  */
