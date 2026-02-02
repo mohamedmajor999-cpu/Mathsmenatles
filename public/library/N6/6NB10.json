@@ -8,7 +8,7 @@
         {
             "name":"Lire des demis",
             "vars":{
-                "num":"3_11"
+                "num":"3_7"
             },
             "figure":{
                 "type":"graph",
