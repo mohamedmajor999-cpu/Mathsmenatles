@@ -1,5 +1,5 @@
 title: Repérage dans le plan avec les relatifs
-dest: 
+dest:
   - 5GR
   - 4GR
   - 3GR
@@ -24,7 +24,7 @@ options:
       content:
         - - point
           - [:x, :y]
-          - {face: 'x', size: 3}
+          - { face: "x", size: 3 }
     question: Quelles sont les coordonnées du point A ?
     answer: Les coordonnées du point A sont ( :x ; :y ).
     value: (:x, :y)
@@ -42,7 +42,7 @@ options:
       axis: true
       grid: true
     question: Placer le point de coordonnées ( :x ; :y )
-    answer: 
+    answer: ""
     figureCorrection:
       type: graph
       scale: 3
@@ -53,4 +53,4 @@ options:
       content:
         - - point
           - [:x, :y]
-          - {face: 'x', size: 3}
+          - { face: "x", size: 3 }
