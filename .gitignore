@@ -44,3 +44,4 @@ tinyweb-1-94
 *_log
 
 .htaccess
+.zed/tasks.json
