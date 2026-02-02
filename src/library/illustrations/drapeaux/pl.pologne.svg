@@ -3,5 +3,5 @@
   <path d="M640 480H0V0h640z" fill="#fff"/>
   <path d="M640 480H0V240h640z" fill="#dc143c"/>
  </g>
- <path class="correction" d="m662.3 240h-684.6" style="fill:none;stroke-dasharray:19.9999, 5;stroke-width:5;stroke:#800000"/>
+ <path class="correction" d="m320 -20v520" style="fill:none;stroke-dasharray:19.9999, 5;stroke-width:5;stroke:#800000"/>
 </svg>
