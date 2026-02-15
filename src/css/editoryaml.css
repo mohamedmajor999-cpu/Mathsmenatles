@@ -1,17 +1,18 @@
-body, html {
+body,
+html {
     padding: 0;
     height: 100%;
 }
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1em;
 }
 .CodeMirror {
-    height: calc( 100% - 100px);
+    height: calc(100% - 100px);
 }
 #result {
-    border:1px solid black;
-    padding:5px;
+    border: 1px solid black;
+    padding: 5px;
 }
 #param-title-act {
     font-weight: bold;
@@ -38,7 +39,8 @@ body {
     position: relative;
     background-color: rgb(249, 255, 226);
 }
-.red, .katex-error {
+.red,
+.katex-error {
     font-weight: bold !important;
     color: red !important;
 }
@@ -47,13 +49,13 @@ body {
 }
 .paramsButtons > span {
     color: #818181;
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
     padding: 0.2em 1em;
     margin: 0.2em 0.5em;
     display: inline-block;
     border-radius: 0.3em;
     font-size: smaller;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .paramsButtons > span:hover {
     cursor: pointer;
@@ -70,24 +72,25 @@ legend button {
     color: red;
     background-color: white;
 }
-.nom, .value {
+.nom,
+.value {
     display: inline-block;
     margin-left: 0.5em;
 }
 .ligne {
     display: block;
-    width:100%;
+    width: 100%;
 }
 .valedit {
-    position:relative;
+    position: relative;
     padding-right: 0.5em;
 }
 .supprthis {
     position: absolute;
-    top:-0.2em;
+    top: -0.2em;
     right: -0.2em;
     background-color: red;
-    color:white;
+    color: white;
     border-radius: 0.5em;
     width: 1em;
     height: 1em;
@@ -100,7 +103,7 @@ legend button {
 blockquote {
     padding: 0.2em;
     margin: 0.2em;
-    background-color: #EEFFFE;
+    background-color: #eefffe;
 }
 .valedit:hover .supprthis {
     visibility: visible;
@@ -130,8 +133,8 @@ fieldset .champ {
     z-index: 10;
     width: 300px;
     height: 200px;
-    top:100px;
-    left:50%;
+    top: 100px;
+    left: 50%;
     transform: translateX(-50%);
     padding: 1em;
     background-color: burlywood;
@@ -140,7 +143,7 @@ fieldset .champ {
 }
 .modal .fermer {
     position: absolute;
-    top:5px;
+    top: 5px;
     right: 5px;
     color: red;
     background-color: white;
@@ -158,13 +161,23 @@ fieldset legend {
 * Enonces et corriges
 */
 .inline-table {
-  display: inline-table !important;
-  border-collapse: collapse !important;
-  width: auto !important;
-  vertical-align: middle;
+    display: inline-table !important;
+    border-collapse: collapse !important;
+    width: auto !important;
+    vertical-align: middle;
 }
-.inline-table td, .inline-table th{
+.inline-table td,
+.inline-table th {
     border: 1px solid #5b5b5b;
     padding: 4px 8px;
     text-align: center;
-  }
+}
+
+custom-svg svg .correction,
+svg .correction {
+    display: none;
+}
+custom-svg.corrige svg .correction,
+.corrige svg .correction {
+    display: initial;
+}

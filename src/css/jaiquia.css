@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body[size="A4"] {
@@ -151,7 +151,9 @@ thead.report-header {
     min-width: 5cm;
     max-width: 10cm;
     padding: 1pt 10pt;
-    font-family: 'Century Gothic', 'Trebuchet MS', 'Segoe UI', Geneva, Verdana, sans-serif;
+    font-family:
+        "Century Gothic", "Trebuchet MS", "Segoe UI", Geneva, Verdana,
+        sans-serif;
     font-size: 1.3rem;
     border: 1pt solid black;
     text-align: center;
@@ -169,7 +171,7 @@ h3.exercice-title {
 @counter-style majuscules {
     system: alphabetic;
     symbols: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
-    suffix: ') ';
+    suffix: ") ";
 }
 
 .enonce ol {
@@ -219,16 +221,17 @@ h3.exercice-title {
 * Enonces et corriges
 */
 .inline-table {
-  display: inline-table !important;
-  border-collapse: collapse !important;
-  width: auto !important;
-  vertical-align: middle;
+    display: inline-table !important;
+    border-collapse: collapse !important;
+    width: auto !important;
+    vertical-align: middle;
 }
-.inline-table td, .inline-table th{
+.inline-table td,
+.inline-table th {
     border: 1px solid #5b5b5b;
     padding: 4px 8px;
     text-align: center;
-  }
+}
 .whogots-carte {
     height: 55mm;
     width: 55mm;
@@ -266,8 +269,8 @@ h3.exercice-title {
 }
 
 #file {
-    width: .1px;
-    height: .1px;
+    width: 0.1px;
+    height: 0.1px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
@@ -280,15 +283,16 @@ h3.exercice-title {
 }
 
 .fig .italic {
-    font-family: 'Times New Roman', Times, serif !important;
+    font-family: "Times New Roman", Times, serif !important;
     font-style: italic;
 }
 
-custom-svg svg .correction {
+custom-svg svg .correction,
+svg .correction {
     display: none;
 }
-
-custom-svg.corrige svg .correction {
+custom-svg.corrige svg .correction,
+.corrige svg .correction {
     display: initial;
 }
 
@@ -343,8 +347,19 @@ custom-svg.corrige svg .correction {
 }
 
 .glow-on-hover:before {
-    content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
     position: absolute;
     top: -2px;
     left: -2px;
@@ -355,12 +370,12 @@ custom-svg.corrige svg .correction {
     height: calc(100% + 4px);
     animation: glowing 20s linear infinite;
     opacity: 0;
-    transition: opacity .3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
 }
 
 .glow-on-hover:active {
-    color: #000
+    color: #000;
 }
 
 .glow-on-hover:active:after {
@@ -373,7 +388,7 @@ custom-svg.corrige svg .correction {
 
 .glow-on-hover:after {
     z-index: -1;
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;

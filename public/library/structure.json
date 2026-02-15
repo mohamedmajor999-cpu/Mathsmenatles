@@ -122,7 +122,7 @@
                 "chapitres":{
                     "8MA":"Longueurs et périmètres",
                     "8MB":"Aires",
-                    "8MC":"Durées",
+                    "8MC":"Temps, durées",
                     "8MD":"Volumes et contenances",
                     "8ME":"Angles",
                     "8MF":"Résoudre des problèmes impliquant des grandeurs",
@@ -162,7 +162,7 @@
                 "chapitres":{
                     "7MA":"Longueurs et périmètres",
                     "7MB":"Aires",
-                    "7MC":"Durées",
+                    "7MC":"Temps, durées",
                     "7MD":"Volumes et contenances",
                     "7ME":"Angles",
                     "7MF":"Résoudre des problèmes impliquant des grandeurs",
@@ -191,7 +191,7 @@
                     "6ND":"Calculer avec des nombres entiers",
                     "6NE":"Calculer avec des nombres décimaux",
                     "6NF":"Résoudre des problèmes avec des calculs",
-                    "6NN":"Faits numériques"   
+                    "6NN":"Faits numériques"
                 }
             },
             "6D":{
@@ -204,7 +204,7 @@
                 "nom": "Grandeurs et mesures",
                 "chapitres":{
                     "6MA":"Longueurs, masses",
-                    "6MB":"Durées",
+                    "6MB":"Temps, durées",
                     "6MC":"Aires",
                     "6MD":"Contenances et volumes",
                     "6ME":"Angles",
@@ -241,7 +241,7 @@
                     "5NB":"Comparaison des nombres",
                     "5NC":"Calculer avec les nombres",
                     "5ND":"Notion de divisibilité et nombres premiers",
-                    "5NE":"Utiliser le calcul littéral"                
+                    "5NE":"Utiliser le calcul littéral"
                 }
             },
             "5D":{
@@ -250,14 +250,14 @@
                     "5DA":"Interpréter, représenter et traiter des données",
                     "5DB":"Notions de probabilités",
                     "5DC":"Problèmes de proportionnalité",
-                    "5DD":"Notion de fonction"         
+                    "5DD":"Notion de fonction"
                 }
             },
             "5M":{
                 "nom":"Grandeurs et mesures",
                 "chapitres":{
                     "5MA":"Calculs de grandeurs",
-                    "5MB":"Effet des transformations"       
+                    "5MB":"Effet des transformations"
                 }
             },
             "5G":{
@@ -305,7 +305,7 @@
                     "4DA":"Interpréter, représenter et traiter des données",
                     "4DB":"Notions de probabilités",
                     "4DC":"Problèmes de proportionnalité",
-                    "4DD":"Notion de fonction"         
+                    "4DD":"Notion de fonction"
                 }
             },
             "4M":{
@@ -502,11 +502,11 @@
                 "KA2":"Variations et courbes",
                 "KA5":"Second degré"
                 }
-            }, 
+            },
             "Ko":{
             "nom":"Automatismes",
             "chapitres":{
-                "Ko1":"Calculs numériques", 
+                "Ko1":"Calculs numériques",
                 "Ko2":"Calcul littéral",
                 "Ko3":"Calcul de probabilité",
                 "Ko4":"Fonctions"

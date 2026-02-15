@@ -28,12 +28,7 @@
                     ["point", [13, 8], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", [1, 8], {"name":"H","face":"", "label":{"visible":false}}],
                     ["polygon", ["E","F","G","H"], {"fillColor":"none"}],
-                    ["segment",[[5,5],[5,8]], {"strokeWidth":1}],
-                    ["segment",[[9,5],[9,8]], {"strokeWidth":1}],
-                    ["segment",[[3,5],[3,8]], {"strokeWidth":1}],
-                    ["segment",[[7,5],[7,8]], {"strokeWidth":1}],
-                    ["segment",[[11,5],[11,8]], {"strokeWidth":1}],
-                    ["fillSquares",[], {"width":6,"height":1,"qty":"${:num}","left":1,"top":5,"scaleX":2,"scaleY":3}]
+                    ["fillSquares",[], {"width":6,"height":1,"qty":"${:num}","left":1,"top":5,"scaleX":2,"scaleY":3,"allLines":true}]
                 ]
             }
         },{
@@ -60,11 +55,7 @@
                     ["point", [13, 8], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", [1, 8], {"name":"H","face":"", "label":{"visible":false}}],
                     ["polygon", ["E","F","G","H"], {"fillColor":"none"}],
-                    ["segment",[[5,5],[5,8]], {"strokeWidth":1}],
-                    ["segment",[[9,5],[9,8]], {"strokeWidth":1}],
-                    ["segment",[[1,6],[13,6]], {"strokeWidth":1}],
-                    ["segment",[[1,7],[13,7]], {"strokeWidth":1}],
-                    ["fillSquares", [], {"width":3,"height":3,"qty":"${:num}","left":1,"top":5,"scaleX":4,"scaleY":1}]
+                    ["fillSquares", [], {"width":3,"height":3,"qty":"${:num}","left":1,"top":5,"scaleX":4,"scaleY":1,"allLines":true}]
                 ]
             }
         },{
@@ -91,13 +82,7 @@
                     ["point", [13, 8], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", [1, 8], {"name":"H","face":"", "label":{"visible":false}}],
                     ["polygon", ["E","F","G","H"], {"fillColor":"none"}],
-                    ["segment",[[5,5],[5,8]], {"strokeWidth":1}],
-                    ["segment",[[9,5],[9,8]], {"strokeWidth":1}],
-                    ["segment",[[1,6.5],[13,6.5]], {"strokeWidth":1}],
-                    ["segment",[[3,5],[3,8]], {"strokeWidth":1}],
-                    ["segment",[[7,5],[7,8]], {"strokeWidth":1}],
-                    ["segment",[[11,5],[11,8]], {"strokeWidth":1}],
-                    ["fillSquares", [], {"width":6,"height":2,"qty":"${:num}","left":1,"top":5,"scaleX":2,"scaleY":1.5}]
+                    ["fillSquares", [], {"width":6,"height":2,"qty":"${:num}","left":1,"top":5,"scaleX":2,"scaleY":1.5,"allLines":true}]
                 ]
             }
         },{
@@ -124,14 +109,7 @@
                     ["point", [13, 8], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", [1, 8], {"name":"H","face":"", "label":{"visible":false}}],
                     ["polygon", ["E","F","G","H"], {"fillColor":"none"}],
-                    ["segment",[[5,5],[5,8]], {"strokeWidth":1}],
-                    ["segment",[[9,5],[9,8]], {"strokeWidth":1}],
-                    ["segment",[[1,6],[13,6]], {"strokeWidth":1}],
-                    ["segment",[[1,7],[13,7]], {"strokeWidth":1}],
-                    ["segment",[[3,5],[3,8]], {"strokeWidth":1}],
-                    ["segment",[[7,5],[7,8]], {"strokeWidth":1}],
-                    ["segment",[[11,5],[11,8]], {"strokeWidth":1}],
-                    ["fillSquares", [], {"width":6,"height":3,"qty":"${:num}","left":1,"top":5,"scaleX":2,"scaleY":1}]
+                    ["fillSquares", [], {"width":6,"height":3,"qty":"${:num}","left":1,"top":5,"scaleX":2,"scaleY":1,"allLines":true}]
                 ]
             }
         },{
@@ -158,19 +136,7 @@
                     ["point", [13, 8], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", [1, 8], {"name":"H","face":"", "label":{"visible":false}}],
                     ["polygon", ["E","F","G","H"], {"fillColor":"none"}],
-                    ["segment",[[5,5],[5,8]], {"strokeWidth":1}],
-                    ["segment",[[9,5],[9,8]], {"strokeWidth":1}],
-                    ["segment",[[1,6.5],[13,6.5]], {"strokeWidth":1}],
-                    ["segment",[[2,5],[2,8]], {"strokeWidth":1}],
-                    ["segment",[[3,5],[3,8]], {"strokeWidth":1}],
-                    ["segment",[[4,5],[4,8]], {"strokeWidth":1}],
-                    ["segment",[[6,5],[6,8]], {"strokeWidth":1}],
-                    ["segment",[[7,5],[7,8]], {"strokeWidth":1}],
-                    ["segment",[[8,5],[8,8]], {"strokeWidth":1}],
-                    ["segment",[[10,5],[10,8]], {"strokeWidth":1}],
-                    ["segment",[[11,5],[11,8]], {"strokeWidth":1}],
-                    ["segment",[[12,5],[12,8]], {"strokeWidth":1}],
-                    ["fillSquares", [], {"width":12,"height":2,"qty":"${:num}","left":1,"top":5,"scaleX":1,"scaleY":1.5}]
+                    ["fillSquares", [], {"width":12,"height":2,"qty":"${:num}","left":1,"top":5,"scaleX":1,"scaleY":1.5,"allLines":true}]
                 ]
             }
         },{
@@ -197,20 +163,7 @@
                     ["point", [13, 8], {"name":"G","face":"", "label":{"visible":false}}],
                     ["point", [1, 8], {"name":"H","face":"", "label":{"visible":false}}],
                     ["polygon", ["E","F","G","H"], {"fillColor":"none"}],
-                    ["segment",[[5,5],[5,8]], {"strokeWidth":1}],
-                    ["segment",[[9,5],[9,8]], {"strokeWidth":1}],
-                    ["segment",[[1,6],[13,6]], {"strokeWidth":1}],
-                    ["segment",[[1,7],[13,7]], {"strokeWidth":1}],
-                    ["segment",[[2,5],[2,8]], {"strokeWidth":1}],
-                    ["segment",[[3,5],[3,8]], {"strokeWidth":1}],
-                    ["segment",[[4,5],[4,8]], {"strokeWidth":1}],
-                    ["segment",[[6,5],[6,8]], {"strokeWidth":1}],
-                    ["segment",[[7,5],[7,8]], {"strokeWidth":1}],
-                    ["segment",[[8,5],[8,8]], {"strokeWidth":1}],
-                    ["segment",[[10,5],[10,8]], {"strokeWidth":1}],
-                    ["segment",[[11,5],[11,8]], {"strokeWidth":1}],
-                    ["segment",[[12,5],[12,8]], {"strokeWidth":1}],
-                    ["fillSquares", [], {"width":12,"height":3,"qty":"${:num}","left":1,"top":5,"scaleX":1,"scaleY":1}]
+                    ["fillSquares", [], {"width":12,"height":3,"qty":"${:num}","left":1,"top":5,"scaleX":1,"scaleY":1,"allLines":true}]
                 ]
             }
         }

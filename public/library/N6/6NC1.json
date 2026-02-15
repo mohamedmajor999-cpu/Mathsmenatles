@@ -45,7 +45,7 @@
     {
         "name":"Décimal -> Entier et fractions décimales",
         "vars":{"a":[10,100,1000,10000], "e":"1_${:a}", "b":"0_9_2", "c":"1_9"},
-        "question": "\\begin{array}{c} \\text{Entier + décomposition en fractions}\\\\${MMmath.round(:e+:b[0]/10+:b[1]/100+:c/1000,3)}\\end{array}",
+        "question": "\\begin{array}{c} \\text{Entier + décomp. en fractions décimales}\\\\${MMmath.round(:e+:b[0]/10+:b[1]/100+:c/1000,3)}\\end{array}",
         "audio":"Écris sous la forme d'une somme d'un entier plus des fractions décimales de numérateur inférieur à 10 ( ) le nombre ${String(MMmath.round(:e+:b[0]/10+:b[1]/100+:c/1000,3)).replace('.',',')}",
         "answer":":question=\\color{red}{${:e}${:b[0]?'+\\dfrac{'+:b[0]+'}{10}':''}${:b[1]?'+\\dfrac{'+:b[1]+'}{100}':''}+\\dfrac{${:c}}{1000}}",
         "value":"${:e}+${:b[0]}/10+${:b[1]}/100+${:c}/1000"

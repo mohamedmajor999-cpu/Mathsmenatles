@@ -1,20 +1,24 @@
-*{
+* {
     box-sizing: border-box;
 }
-@page{
-    size:A4 portrait;
-    margin:0;
+@page {
+    size: A4 portrait;
+    margin: 0;
 }
-html{
-    padding:0;
-    margin:0;
+html {
+    padding: 0;
+    margin: 0;
     font-size: 10pt;
 }
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-footer {page-break-after: always;}
-.pagebreak{page-break-before: always;}
+footer {
+    page-break-after: always;
+}
+.pagebreak {
+    page-break-before: always;
+}
 
 .zoom {
     display: inline-block;
@@ -33,10 +37,10 @@ h1 {
     margin-top: 0;
 }
 /** grilles */
-.grid{
-    display:grid;
+.grid {
+    display: grid;
     column-gap: 2mm;
-    row-gap:2mm;
+    row-gap: 2mm;
     overflow: hidden;
 }
 
@@ -50,7 +54,7 @@ h1 {
     position: relative;
 }
 .grid.separationh > article::after {
-    content: '';
+    content: "";
     position: absolute;
     background-color: var(--line-color);
     z-index: 1;
@@ -66,11 +70,15 @@ h1 {
 .grid.separationv > article:nth-child(odd):before {
     content: ""; /* Crée un élément fantôme pour contenir la ligne séparatrice */
     display: block;
-    width: var(--line-thickness); /* Fait que l'élément fantôme occupe l'espace total de la cellule */
+    width: var(
+        --line-thickness
+    ); /* Fait que l'élément fantôme occupe l'espace total de la cellule */
     height: 100%; /* Définit la hauteur de la ligne séparatrice */
     position: absolute; /* Fixe l'élément fantôme en bas de la cellule */
     bottom: 0; /* Place l'élément fantôme au fond de la cellule */
-    right: var(--line-offset); /* Positionne l'élément fantôme en plein centre horizontalement */
+    right: var(
+        --line-offset
+    ); /* Positionne l'élément fantôme en plein centre horizontalement */
     margin-left: -0.5px; /* Ajuste la position de gauche pour centrer correctement la ligne séparatrice */
     background-color: var(--line-color);
 }
@@ -84,34 +92,38 @@ input[type="color"] {
     border: none;
     cursor: pointer;
     border-radius: 0.5em;
-  }
-  input[type="color"]::-webkit-color-swatch {
+}
+input[type="color"]::-webkit-color-swatch {
     border-radius: 15px;
     border: none;
-  }
-  input[type="color"]::-moz-color-swatch {
+}
+input[type="color"]::-moz-color-swatch {
     border-radius: 15px;
     border: none;
-  }
+}
 
-.fig, .scratchblocks {
-    width:90%;
-    display:flex;
+.fig,
+.scratchblocks {
+    width: 90%;
+    display: flex;
     justify-content: center;
     /* height: 150px;
     aspect-ratio: 4 / 3;*/
 }
 
 .fig .italic {
-    font-family: 'Times New Roman', Times, serif !important;
+    font-family: "Times New Roman", Times, serif !important;
     font-style: italic;
-  }
-custom-svg svg .correction {
-  display: none;
 }
-custom-svg.corrige svg .correction {
-  display: initial;
+custom-svg svg .correction,
+svg .correction {
+    display: none;
 }
+custom-svg.corrige svg .correction,
+.corrige svg .correction {
+    display: initial;
+}
+
 .questionTitre {
     font-weight: bold;
 }
@@ -120,7 +132,7 @@ custom-svg.corrige svg .correction {
 }
 .modele1 .questionNumero {
     float: left;
-    margin-left:-3mm;
+    margin-left: -3mm;
     margin-top: -3mm;
     width: 2em;
     text-align: center;
@@ -129,24 +141,24 @@ custom-svg.corrige svg .correction {
     font-weight: bold;
 }
 
-input[type='color'] {
-width: 2.6em;
-border: 1px solid black;
-position: relative;
-top: 5px;
+input[type="color"] {
+    width: 2.6em;
+    border: 1px solid black;
+    position: relative;
+    top: 5px;
 }
 /* Commons
 */
 #creator-container {
     display: flex;
-    min-height:100%;
+    min-height: 100%;
     flex-direction: column;
     width: 100%;
 }
-#creator-content header{
+#creator-content header {
     font-size: 1.3rem;
 }
-h3.exercice-title{
+h3.exercice-title {
     font-weight: 400;
     margin-top: 0.5rem;
     text-decoration: underline;
@@ -154,40 +166,40 @@ h3.exercice-title{
     margin-bottom: 0.3rem;
 }
 @counter-style majuscules {
-    system : alphabetic;
-    symbols : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
-    suffix : ') ';
+    system: alphabetic;
+    symbols: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
+    suffix: ") ";
 }
-.enonce ol{
+.enonce ol {
     padding-left: 1.5rem;
 }
-#creator-content ol{
-    margin-top:0;
+#creator-content ol {
+    margin-top: 0;
     list-style-type: majuscules;
 }
 #creator-content li {
     float: left;
-    margin-right:2rem;
+    margin-right: 2rem;
     font-size: 1rem;
     padding: 4px 10px 4px;
 }
-#creator-content section{
+#creator-content section {
     clear: both;
     margin-bottom: 1rem;
 }
 .enonce {
-    margin-top:10pt;
+    margin-top: 10pt;
 }
 .corrige {
-    font-size:smaller;
-    color:grey;
+    font-size: smaller;
+    color: grey;
 }
 .correction {
-    margin-top:2rem;
-    color:grey;
+    margin-top: 2rem;
+    color: grey;
 }
 .clearfix {
-    clear:both;
+    clear: both;
 }
 
 :root {
@@ -196,7 +208,7 @@ h3.exercice-title{
 /* Modèle 1 */
 .modele1 .reviser {
     display: grid;
-    grid-template-columns:repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: stretch;
     column-gap: 10px;
     width: fit-content;
@@ -213,7 +225,8 @@ h3.exercice-title{
 }
 
 /* Modèle 2 */
-.recto, .verso {
+.recto,
+.verso {
     height: 100%;
     width: 100%;
 }
@@ -223,7 +236,9 @@ h3.exercice-title{
 }
 .verso {
     display: grid;
-    grid-template-columns: calc( (50% - 1cm) / 2) calc( (50% - 1cm ) / 2 + 1cm) calc( (50% - 1cm ) / 2 + 1cm) calc( (50% - 1cm) / 2);
+    grid-template-columns: calc((50% - 1cm) / 2) calc(
+            (50% - 1cm) / 2 + 1cm
+        ) calc((50% - 1cm) / 2 + 1cm) calc((50% - 1cm) / 2);
 }
 
 .recto .left {
@@ -250,7 +265,10 @@ h3.exercice-title{
 .modele2 .right .questionNumero {
     border-right: 0.6pt solid var(--border-color);
 }
-.modele2 .questionNumero:not(:last-of-type), .modele2 .left > article:not(:last-of-type), .modele2 .right > article:not(:last-of-type), .modele2 .questions > article:not(:last-of-type) {
+.modele2 .questionNumero:not(:last-of-type),
+.modele2 .left > article:not(:last-of-type),
+.modele2 .right > article:not(:last-of-type),
+.modele2 .questions > article:not(:last-of-type) {
     border-bottom: 0.6pt solid var(--border-color);
 }
 
@@ -268,30 +286,34 @@ h3.exercice-title{
     display: grid;
     grid-template-columns: 1fr;
 }
-.verso .questions > article, .recto .left > article, .recto .right > article {
+.verso .questions > article,
+.recto .left > article,
+.recto .right > article {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .aColler {
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100M0 0 L100 100' stroke='rgb(187, 187, 187)' stroke-width='1'/></svg>");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%, auto;
-  display:flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  font-size: x-large;
-  border-right: 1pt solid var(--border-color);
-  border-left: 1pt solid var(--border-color);
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100M0 0 L100 100' stroke='rgb(187, 187, 187)' stroke-width='1'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:
+        100% 100%,
+        auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    border-right: 1pt solid var(--border-color);
+    border-left: 1pt solid var(--border-color);
 }
 #instructions {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  padding:0.5cm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5cm;
 }
 #instructions h2 {
     text-align: center;
@@ -305,8 +327,8 @@ label {
 }
 
 @media screen {
-    html{
-        background: rgb(204,204,204); 
+    html {
+        background: rgb(204, 204, 204);
     }
     body[size="A4"] .page {
         width: 21cm;
@@ -336,7 +358,7 @@ label {
         margin: 1em auto;
         margin-bottom: 0.5cm;
         box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
-    }    
+    }
     /*footer.break::before,
     .pagebreak::before {
         content: ' ';
@@ -414,7 +436,7 @@ label {
     .noprint {
         display: none;
     }
-/*
+    /*
     .enonceContent:not(:first-of-type) {
         margin-top: 1cm;
     }*/

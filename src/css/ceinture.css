@@ -14,7 +14,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 footer.break {
@@ -126,7 +126,9 @@ Taille carte de visite
     min-width: 5cm;
     max-width: 10cm;
     padding: 1pt 10pt;
-    font-family: 'Century Gothic', 'Trebuchet MS', 'Segoe UI', Geneva, Verdana, sans-serif;
+    font-family:
+        "Century Gothic", "Trebuchet MS", "Segoe UI", Geneva, Verdana,
+        sans-serif;
     font-size: 1.3rem;
     border: 1pt solid black;
     text-align: center;
@@ -186,15 +188,16 @@ Taille carte de visite
 }
 
 .fig .italic {
-    font-family: 'Times New Roman', Times, serif !important;
+    font-family: "Times New Roman", Times, serif !important;
     font-style: italic;
 }
 
-custom-svg svg .correction {
+custom-svg svg .correction,
+svg .correction {
     display: none;
 }
-
-custom-svg.corrige svg .correction {
+custom-svg.corrige svg .correction,
+.corrige svg .correction {
     display: initial;
 }
 
@@ -238,7 +241,7 @@ custom-svg.corrige svg .correction {
 }
 
 .colorpicker,
-input[type='color'] {
+input[type="color"] {
     cursor: url(../img/icons8-color-palette-32.png), pointer;
 }
 
@@ -272,11 +275,12 @@ body[size="A4"][layout="landscape"] .modele-ceinture {
     margin-right: 15pt;
     margin-bottom: 15pt;
 }
-.ceintCorrige+.ceinture, .ceintCorrige+.ceinture {
+.ceintCorrige + .ceinture,
+.ceintCorrige + .ceinture {
     clear: both;
 }
 
-.ceinture+.ceintCorrige {
+.ceinture + .ceintCorrige {
     margin-top: 15pt;
     margin-bottom: 15pt;
 }
@@ -290,7 +294,7 @@ body[size="A4"][layout="landscape"] .modele-ceinture {
     grid-template-columns: 4cm auto 3cm 3cm;
 }
 
-.ceinture-header>div {
+.ceinture-header > div {
     display: flex;
     align-items: center;
 }
@@ -325,7 +329,7 @@ body[size="A4"][layout="landscape"] .modele-ceinture {
 }
 
 .bg-grey {
-    background-color: #ECECEC;
+    background-color: #ececec;
 }
 
 input[type="color"] {
@@ -387,16 +391,17 @@ input[type="color"] {
 * Enonces et corriges
 */
 .inline-table {
-  display: inline-table !important;
-  border-collapse: collapse !important;
-  width: auto !important;
-  vertical-align: middle;
+    display: inline-table !important;
+    border-collapse: collapse !important;
+    width: auto !important;
+    vertical-align: middle;
 }
-.inline-table td, .inline-table th{
+.inline-table td,
+.inline-table th {
     border: 1px solid #5b5b5b;
     padding: 4px 8px;
     text-align: center;
-  }
+}
 
 .nofig .fig,
 .nofig svg {
@@ -472,8 +477,8 @@ body[size="A4"][layout="landscape"] .parquatre {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 .slider:before {
@@ -484,19 +489,19 @@ body[size="A4"][layout="landscape"] .parquatre {
     left: 2px;
     bottom: 2px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-input:checked+.slider {
-    background-color: #2196F3;
+input:checked + .slider {
+    background-color: #2196f3;
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(13px);
     -ms-transform: translateX(13px);
     transform: translateX(13px);
@@ -510,7 +515,6 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-
 
 @media screen {
     html {
@@ -545,7 +549,7 @@ input:checked+.slider:before {
     }*/
     footer.break::before,
     .pagebreak::before {
-        content: ' ';
+        content: " ";
         position: absolute;
         display: block;
         box-shadow: 0 0.2cm 0.2cm rgba(0, 0, 0, 0.5);
@@ -563,7 +567,7 @@ input:checked+.slider:before {
     .pagebreak::after {
         position: absolute;
         z-index: 2;
-        content: ' ';
+        content: " ";
         display: block;
         margin-top: 5mm;
         height: 0.5cm;
