@@ -552,50 +552,60 @@ async function selectChap(chapId, chapNom){
   g.innerHTML = '<div class="loading"><div class="spin"></div>Chargement des exercices…</div>';
   goto('p-exos');
 
-  // Charger le fichier content.json du bon dossier
   const dossier = getDossier(chapId);
   let exercices = [];
+
+  // MÉTHODE 1 : charger le content.json global de library/
   try{
-    const resp = await fetch(`library/${dossier}/content.json`);
-    if(!resp.ok) throw new Error('not found');
-    const all = await resp.json();
-    // Filtrer ceux dont dest contient chapId
-    exercices = all.filter(ex=>{
-      if(!ex.dest) return false;
-      return ex.dest.some(d=>d.startsWith(chapId));
-    });
-  }catch(e){
-    // Essayer de charger depuis le content.json global
+    const resp = await fetch('library/content.json');
+    if(resp.ok){
+      const all = await resp.json();
+      exercices = all.filter(ex=>{
+        if(!ex.dest) return false;
+        return ex.dest.some(d=>d.startsWith(chapId));
+      });
+    }
+  }catch(e){}
+
+  // MÉTHODE 2 : si pas de content.json, charger les fichiers individuels
+  // en devinant les noms (ex: chapId=10ND → cherche 10ND1.json, 10ND2.json...)
+  if(!exercices.length){
+    const promises = [];
+    for(let i=1; i<=30; i++){
+      const fname = `library/${dossier}/${chapId}${i}.json`;
+      promises.push(
+        fetch(fname).then(r=>r.ok?r.json():null).catch(()=>null)
+      );
+    }
+    const results = await Promise.all(promises);
+    exercices = results.filter(r=>r!==null);
+  }
+
+  // MÉTHODE 3 : essayer aussi sans numéro (chapId.json)
+  if(!exercices.length){
     try{
-      const resp2 = await fetch('library/content.json');
-      if(resp2.ok){
-        const all2 = await resp2.json();
-        exercices = all2.filter(ex=>{
-          if(!ex.dest) return false;
-          return ex.dest.some(d=>d.startsWith(chapId));
-        });
-      }
-    }catch(e2){}
+      const r = await fetch(`library/${dossier}/${chapId}.json`);
+      if(r.ok){ const d=await r.json(); exercices=[d]; }
+    }catch(e){}
   }
 
   if(!exercices.length){
     g.innerHTML = `<div class="empty">
       <div style="font-size:2.5rem">📭</div>
       <p style="margin-top:.75rem">Aucun exercice trouvé pour ce chapitre.<br>
-      <small style="color:var(--muted)">Vérifiez que le dossier <b>library/</b> est bien placé à côté de ce fichier index.html</small></p>
+      <small style="color:var(--muted)">Code chapitre : <b>${chapId}</b> — Dossier : <b>library/${dossier}/</b></small></p>
     </div>`;
     return;
   }
 
   g.innerHTML = `<div class="grid">${exercices.map((ex,i)=>
     `<div class="card" onclick="openConfig(${i})">
-      <div class="card-badge">${ex.ID||ex.dest?.[0]||'?'}</div>
+      <div class="card-badge">${ex.ID||chapId+(i+1)||'?'}</div>
       <div class="card-title">${ex.title||'Sans titre'}</div>
       ${ex.description?`<div class="card-sub">${ex.description.substring(0,80)}${ex.description.length>80?'…':''}</div>`:''}
       ${ex.options?`<div class="card-sub" style="color:var(--blue);margin-top:.3rem">${ex.options.length} variante${ex.options.length>1?'s':''}</div>`:''}
     </div>`).join('')}</div>`;
 
-  // Stocker les exercices pour y accéder dans openConfig
   window._currentExos = exercices;
 }
 
@@ -879,4 +889,3 @@ renderHome();
 </script>
 </body>
 </html>
-
