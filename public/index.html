@@ -543,6 +543,18 @@ function escapeQ(s){ return s.replace(/'/g,"\\'"); }
 // ══════════════════════════════════════════════════
 // SÉLECTION CHAPITRE → EXERCICES (charge JSON)
 // ══════════════════════════════════════════════════
+// Cache du content.json global
+let _contentCache = null;
+async function getContent(){
+  if(_contentCache) return _contentCache;
+  const resp = await fetch('library/content.json');
+  const text = await resp.text();
+  // Le fichier commence par "export {content as default};const content="
+  const clean = text.replace(/^export\s*\{[^}]+\};\s*const\s+content\s*=\s*/, '');
+  _contentCache = JSON.parse(clean);
+  return _contentCache;
+}
+
 async function selectChap(chapId, chapNom){
   curState.chapId = chapId;
   document.getElementById('bc-exos').innerHTML = `${STRUCT[curState.levelId].nom} › <span>${chapNom}</span>`;
@@ -552,61 +564,61 @@ async function selectChap(chapId, chapNom){
   g.innerHTML = '<div class="loading"><div class="spin"></div>Chargement des exercices…</div>';
   goto('p-exos');
 
-  const dossier = getDossier(chapId);
-  let exercices = [];
-
-  // MÉTHODE 1 : charger le content.json global de library/
+  // Récupérer la liste depuis content.json
+  let liste = []; // [{u, t, d}]
   try{
-    const resp = await fetch('library/content.json');
-    if(resp.ok){
-      const all = await resp.json();
-      exercices = all.filter(ex=>{
-        if(!ex.dest) return false;
-        return ex.dest.some(d=>d.startsWith(chapId));
-      });
+    const content = await getContent();
+    const lvlKey = curState.levelId;
+    const lvlData = content[lvlKey];
+    if(lvlData){
+      // Chercher le chapitre dans tous les thèmes
+      for(const theme of Object.values(lvlData.themes||{})){
+        for(const [cid, chap] of Object.entries(theme.chapitres||{})){
+          if(cid === chapId && chap.e && chap.e.length > 0){
+            liste = chap.e;
+          }
+        }
+      }
     }
-  }catch(e){}
+  }catch(e){ console.error('Erreur content.json:', e); }
 
-  // MÉTHODE 2 : si pas de content.json, charger les fichiers individuels
-  // en devinant les noms (ex: chapId=10ND → cherche 10ND1.json, 10ND2.json...)
-  if(!exercices.length){
-    const promises = [];
-    for(let i=1; i<=30; i++){
-      const fname = `library/${dossier}/${chapId}${i}.json`;
-      promises.push(
-        fetch(fname).then(r=>r.ok?r.json():null).catch(()=>null)
-      );
-    }
-    const results = await Promise.all(promises);
-    exercices = results.filter(r=>r!==null);
-  }
-
-  // MÉTHODE 3 : essayer aussi sans numéro (chapId.json)
-  if(!exercices.length){
-    try{
-      const r = await fetch(`library/${dossier}/${chapId}.json`);
-      if(r.ok){ const d=await r.json(); exercices=[d]; }
-    }catch(e){}
-  }
-
-  if(!exercices.length){
+  if(!liste.length){
     g.innerHTML = `<div class="empty">
       <div style="font-size:2.5rem">📭</div>
-      <p style="margin-top:.75rem">Aucun exercice trouvé pour ce chapitre.<br>
-      <small style="color:var(--muted)">Code chapitre : <b>${chapId}</b> — Dossier : <b>library/${dossier}/</b></small></p>
+      <p style="margin-top:.75rem">Aucun exercice disponible pour ce chapitre.</p>
     </div>`;
     return;
   }
 
-  g.innerHTML = `<div class="grid">${exercices.map((ex,i)=>
+  // Charger tous les JSON d'exercices en parallèle
+  g.innerHTML = '<div class="loading"><div class="spin"></div>Chargement des exercices…</div>';
+  const exercices = await Promise.all(liste.map(async item=>{
+    try{
+      const resp = await fetch(`library/${item.u}`);
+      if(!resp.ok) return null;
+      const ex = await resp.json();
+      ex._titre = item.t;
+      ex._desc = item.d || ex.description || '';
+      ex._url = item.u;
+      return ex;
+    }catch(e){ return null; }
+  }));
+  const valides = exercices.filter(e=>e!==null);
+
+  if(!valides.length){
+    g.innerHTML = `<div class="empty"><div style="font-size:2.5rem">📭</div><p style="margin-top:.75rem">Impossible de charger les exercices.</p></div>`;
+    return;
+  }
+
+  g.innerHTML = `<div class="grid">${valides.map((ex,i)=>
     `<div class="card" onclick="openConfig(${i})">
-      <div class="card-badge">${ex.ID||chapId+(i+1)||'?'}</div>
-      <div class="card-title">${ex.title||'Sans titre'}</div>
-      ${ex.description?`<div class="card-sub">${ex.description.substring(0,80)}${ex.description.length>80?'…':''}</div>`:''}
+      <div class="card-badge">${ex._url?.split('/').pop()?.replace('.json','') || chapId+(i+1)}</div>
+      <div class="card-title">${ex._titre||ex.title||'Sans titre'}</div>
+      ${ex._desc?`<div class="card-sub">${ex._desc.substring(0,90)}${ex._desc.length>90?'…':''}</div>`:''}
       ${ex.options?`<div class="card-sub" style="color:var(--blue);margin-top:.3rem">${ex.options.length} variante${ex.options.length>1?'s':''}</div>`:''}
     </div>`).join('')}</div>`;
 
-  window._currentExos = exercices;
+  window._currentExos = valides;
 }
 
 // Déterminer le dossier library à partir du code chapitre
